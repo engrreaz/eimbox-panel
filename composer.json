@@ -1,0 +1,15 @@
+{
+    "name": "xeneen/eimbox-panel",
+    "description": "EIMBox Admin Panel for web Users",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Engr. Reazul Hoque",
+            "email": "engrreaz@gmail.com"
+        }
+    ],
+    "require": {
+        
+    }
+}

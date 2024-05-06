@@ -1,0 +1,87 @@
+
+
+- Dashboard
+- HRD
+----- Teachers
+----- Staffs
+----- Attendance
+----- MPO Management
+- Students
+----- Profile
+----- Tutioin Fee 
+----- Attendance
+- Accounts
+----- At A Glance 
+----- Income | Expenditure 
+----- Cashbook 
+----- Bank Statement 
+----- Budget 
+----- Fund Management 
+- Bank Management 
+----- Daily Collection Receipt 
+----- 
+- Academics
+----- Class/Section 
+----- Class Routine 
+----- Subjects 
+----- Syllabus 
+----- Online Test 
+----- Online Homework
+
+- Examination / Class Test
+----- Admit Card 
+----- Seat Plan 
+----- Seat Card
+----- Exam Schedule
+----- Exam Policies 
+----- Result Management
+---------- Marks Entry
+---------- Marks Validation
+---------- Marks Processing
+----- Result Card
+
+
+- Management 
+----- SMC 
+----- ......
+
+- Register
+----- Refernce Book 
+----- Notice Book 
+
+
+- user Management 
+----- Users List 
+----- Role 
+----- Users Permissions
+
+- Certificates 
+----- Testimonial 
+----- Tranfer Certificates
+----- To Whom
+
+- Reports 
+
+- Public Exams 
+
+
+- More 
+----- Promotion
+----- Migration
+
+
+Hostel
+Library
+Event Management 
+Digital Diary
+Academic Plan
+Notice/Notification
+Zoom
+Android / IOS
+
+Error Scanner
+Logbook
+
+
+
+Settings/ Institure Management, User Management 
