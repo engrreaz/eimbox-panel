@@ -1,9 +1,6 @@
 <?php
 include 'header.php';
 
-// $datefrom = $_GET['datefrom'] ?? date('Y-m-01');
-// $dateto = $_GET['dateto'] ?? date('Y-m-d');
-// $dept = $_GET['dept'] ?? 'School';
 
 if(isset($_GET['datefrom'])){$datefrom = $_GET['datefrom'];} else {$datefrom = date('Y-m-01');}
 if(isset($_GET['dateto'])){$dateto = $_GET['dateto'];} else {$dateto = date('Y-m-d');}
