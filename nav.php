@@ -126,6 +126,8 @@
           <li class="nav-item"> <a class="nav-link" href="regdbook.php">Registers</a></li>
           <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columner Cash Book</a></li>
           <li class="nav-item"> <a class="nav-link" href="seatplan.php">Exam Hall Setup</a></li>
+          <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
+          <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
         </ul>
       </div>
     </li>
