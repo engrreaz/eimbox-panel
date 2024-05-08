@@ -238,7 +238,7 @@ $pgm = $pgl * $col;
                                                 </span>
                                             </td>
                                             <td valign="bottom" style="text-align:center;">
-                                                <img src="sign/<?php echo $sccode; ?>.png" width="80px" /><br>
+                                                <img src="../sign/<?php echo $sccode; ?>.png" width="80px" /><br>
                                                 <span style="font-size:9px;">principal</span>
                                             </td>
                                         </tr>
