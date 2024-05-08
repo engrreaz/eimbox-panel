@@ -1,16 +1,9 @@
-
-ALTER TABLE `salarydetails` ADD `refnoextra` VARCHAR(20) NULL DEFAULT NULL AFTER `refnopf`;
-ALTER TABLE `cashbook` ADD `refno` VARCHAR(20) NULL DEFAULT NULL AFTER `type`;
-
-ALTER TABLE `cashbook` ADD `month` INT NOT NULL DEFAULT '0' AFTER `sessionyear`, ADD `year` INT NOT NULL DEFAULT '0' AFTER `month`;
-
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2024 at 12:24 AM
+-- Generation Time: May 07, 2024 at 11:07 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,30 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `refbook`
+-- Table structure for table `examlist`
 --
 
-CREATE TABLE `refbook` (
+CREATE TABLE `examlist` (
   `id` int(11) NOT NULL,
   `sccode` int(11) DEFAULT NULL,
   `sessionyear` int(11) DEFAULT NULL,
-  `refno` varchar(30) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `month` int(11) DEFAULT NULL,
-  `title` varchar(150) DEFAULT NULL,
-  `descrip` varchar(500) DEFAULT NULL,
-  `entryby` varchar(100) DEFAULT NULL,
-  `entrytime` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+  `slot` varchar(20) NOT NULL DEFAULT 'School',
+  `examtitle` varchar(50) DEFAULT NULL,
+  `classname` varchar(25) DEFAULT NULL,
+  `sectionname` varchar(25) DEFAULT NULL,
+  `datestart` date DEFAULT NULL,
+  `createdby` varchar(100) DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `refbook`
+-- Indexes for table `examlist`
 --
-ALTER TABLE `refbook`
+ALTER TABLE `examlist`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -62,9 +56,9 @@ ALTER TABLE `refbook`
 --
 
 --
--- AUTO_INCREMENT for table `refbook`
+-- AUTO_INCREMENT for table `examlist`
 --
-ALTER TABLE `refbook`
+ALTER TABLE `examlist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
@@ -72,6 +66,14 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
--- --------------------------------------------------------
--- --------------------------------------------------------
--- --------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+ALTER TABLE `examroutine` ADD `subcode` INT NULL DEFAULT NULL AFTER `secname`;

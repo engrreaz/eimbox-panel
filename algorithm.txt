@@ -29,11 +29,14 @@
 ----- Online Homework
 
 - Examination / Class Test
+----- Exam List/Create
+----- Exam Schedule
+----- Exam Policies 
 ----- Admit Card 
 ----- Seat Plan 
 ----- Seat Card
------ Exam Schedule
------ Exam Policies 
+
+
 ----- Result Management
 ---------- Marks Entry
 ---------- Marks Validation

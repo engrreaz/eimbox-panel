@@ -125,6 +125,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="regdbook.php">Registers</a></li>
           <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columner Cash Book</a></li>
+          <li class="nav-item"> <a class="nav-link" href="seatplan.php">Exam Hall Setup</a></li>
         </ul>
       </div>
     </li>
