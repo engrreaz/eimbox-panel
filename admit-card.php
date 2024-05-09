@@ -57,7 +57,7 @@ if (isset($_GET['addnew'])) {
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Select Class & Section to Generate Seat Card
+                    Select Class & Section to Generate Admit Card
                 </h6>
                 <div class="row">
                     <div class="col-md-3">

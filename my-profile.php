@@ -52,153 +52,25 @@ if (isset($_GET['addnew'])) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="text-muted font-weight-normal">
-                    Select Month & Year and press 'Proceed' to proceed
-                </h6>
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Month</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="month">
-                                    <option value="0"></option>
-                                    <?php
-                                    for ($x = 1; $x <= 12; $x++) {
-                                        $flt = '';
-                                        $xx = strtotime(date('Y') . '-' . $x . '-01');
-                                        if ($month == $x) {
-                                            $flt = 'selected';
-                                        }
-
-                                        echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
-                                    }
-                                    ?>
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-2">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Year</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="year">
-                                    <option value="0"></option>
-                                    <?php
-                                    for ($y = date('Y'); $y >= 2024; $y--) {
-                                        $flt2 = '';
-                                        if ($year == $y) {
-                                            $flt2 = 'selected';
-                                        }
-                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-1">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
-                            <div class="col-12">
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary" style="" onclick="go();"><i class="mdi mdi-eye"></i></button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Ref. No.</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $refno; ?>" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-1">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
-                            <div class="col-12">
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary" style="" onclick="go2();"><i class="mdi mdi-eye"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
-                            <div class="col-12">
-                                <button type="button" style="" class="icon-btn btn-info" title="Undefined Item" style=""
-                                    onclick="go3();">&nbsp;<i class="mdi mdi-crop-square"></i>&nbsp;</button>
-
-                                <button type="button" style="" title="Add New Expenditure" class="icon-btn btn-success"
-                                    style="" onclick="addnew();">&nbsp;<i
-                                        class="mdi mdi-library-plus"></i>&nbsp;</button>
-                                <button type="button" style="" title="Search" class="icon-btn btn-warning" style=""
-                                    onclick="go4();">&nbsp;<i class="mdi mdi-magnify"></i>&nbsp;</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-- SEARCH BLOCK -->
-
-                <div class="row" id="search" style="display:none;">
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Key</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="srchkey">
-                                    <option value="">....</option>
-                                </select>
+                                <img style="" src="<?php echo $pth; ?>" />
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+
+
+                    <div class="col-md-9">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="srchop">
-                                    <option value="">....</option>
-                                </select>
+                                <h4><?php echo $fullname; ?></h4>
+                                <h5><?php echo $usr; ?></h5>
+                                <small><?php echo $userlevel; ?></small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Value</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="srchval">
-                                    <option value="">....</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
-                            <div class="col-12">
-
-                                <button type="button" style="" title="Search" class="btn btn-info" style=""
-                                    onclick="go4();">&nbsp;<i class="mdi mdi-magnify"></i>&nbsp;Find</button>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -206,23 +78,17 @@ if (isset($_GET['addnew'])) {
 </div>
 
 
-<div class="row" style="display:<?php echo $newblock; ?>;">
+<div class="row">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="text-muted font-weight-normal">
-                    Add a new expenditure(s)
-                </h6>
+                <h3 class="text-muted font-weight-normal text-center">
+                    Basic Information
+                </h3>
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-hover text-white">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
+                          
                             <tbody>
                                 <?php
                                 $sccodes = $sccode * 10;
@@ -245,21 +111,11 @@ if (isset($_GET['addnew'])) {
                                 // $ = $row0x[""];
                                 ?>
                                 <tr>
-                                    <td>Dept. :
+                                    <td>Display Name :
                                     </td>
                                     <td>
-                                        <select class="form-control" id="dept">
-                                            <?php
-                                            $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
-                                            $result0x2 = $conn->query($sql0x);
-                                            if ($result0x2->num_rows > 0) {
-                                                while ($row0x = $result0x2->fetch_assoc()) {
-                                                    $slotname = $row0x["slotname"];
-                                                    echo '<option value="' . $slotname . '">' . $slotname . '</option>';
-                                                }
-                                            }
-                                            ?>
-                                        </select>
+                                    <input type="text" class="form-control" id="date"
+                                            value="<?php echo $fullname; ?>" />
                                     </td>
                                     <td></td>
                                 </tr>
@@ -609,11 +465,14 @@ if (isset($_GET['addnew'])) {
                                                 <table class="table">
                                                     <tr>
                                                         <td class="text-left" id="seat<?php echo $i . $j; ?>a">
-                                                            <?php echo $i . $j; ?>A</td>
+                                                            <?php echo $i . $j; ?>A
+                                                        </td>
                                                         <td class="text-center" id="seat<?php echo $i . $j; ?>b">
-                                                            <?php echo $i . $j; ?>B</td>
+                                                            <?php echo $i . $j; ?>B
+                                                        </td>
                                                         <td class="text-right" id="seat<?php echo $i . $j; ?>c">
-                                                            <?php echo $i . $j; ?>C</td>
+                                                            <?php echo $i . $j; ?>C
+                                                        </td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -744,5 +603,3 @@ include 'footer.php';
     }
 
 </script>
-
-

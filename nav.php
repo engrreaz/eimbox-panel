@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas no-print d-print-none" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-    <a class="sidebar-brand brand-logo" href="index.php"><img src="assets/imgs/logo.png" alt="logo" /></a>
-    <a class="sidebar-brand brand-logo-mini" href="index.php"><img src="assets/imgs/logo.png" alt="logo" /></a>
+    <a class="sidebar-brand brand-logo" href="index.php"><img src="assets/imgs/logo-brand.png" alt="logo" /></a>
+    <a class="sidebar-brand brand-logo-mini" href="index.php"><img src="assets/imgs/logo-bw.png" alt="logo" /></a>
   </div>
   <ul class="nav">
     <li class="nav-item profile">
@@ -128,6 +128,7 @@
           <li class="nav-item"> <a class="nav-link" href="seatplan.php">Exam Hall Setup</a></li>
           <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
           <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
+          <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule</a></li>
         </ul>
       </div>
     </li>

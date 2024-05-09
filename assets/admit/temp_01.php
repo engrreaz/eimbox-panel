@@ -1,9 +1,8 @@
 
-<tr><td valign="top" class="backpic" background="assets/admit/sample_02.png" style="width:210mm; height:147.5mm; padding:3mm">
-                    
-                    
-                      
-                            <table style="font-size:10px; width:100%; border:0;">
+<tr>
+    <td valign="top" class="backpic" background="assets/admit/sample_02.png" style="width:210mm; height:147.5mm; padding:3mm">
+      
+    <table style="font-size:10px; width:100%; border:0;">
                                <tr>
                                    <td height="1px"></td><td></td>
                                </tr>
@@ -78,7 +77,7 @@
                                                        </tr>
                                                        
                                                        	<?php
-								$sqlww = "SELECT * FROM examroutine WHERE sccode='$sccode' and clsname = '$classname' and secname='$sectionname' and examname='Annual Examination' and sessionyear='$sy' order by date, time";
+								$sqlww = "SELECT * FROM examroutine WHERE sccode='$sccode' and clsname = '$classname' and secname='$sectionname' and examname='$exam2' and sessionyear='$sy' order by date, time";
 
 								$resultww = $conn->query($sqlww);
 								if ($resultww->num_rows > 0) {
@@ -87,18 +86,12 @@
 												$edate=$rowww["date"];
 												$etime=$rowww["time"];
 												$subj=$rowww["subj"];
-												if (($stid=='1056751562') && ($subj=='Higher Mathematics')){
-												    $subj = 'Home Science';
-												}
-												
-												if (($fourth_subject==126) && ($subj=='Agriculture Studies')){
-												    $subj = 'Higher Mathematics';
-												}
+											
 												?>
 											    <tr>
-											        <td align="center"><?php echo date('l, d/m/Y',strtotime($edate))  ;?></td>
-											        <td align="center"><?php echo $etime ;?></td>
-											        <td align="center"><?php echo $subj;?></td>
+											        <td style="text-align:center"><?php echo date('l, d/m/Y',strtotime($edate));?></td>
+											        <td style="text-align:center"><?php echo $etime ;?></td>
+											        <td style="text-align:center"><?php echo $subj;?></td>
 											    </tr>
 												
 												<?php  	}} ?>

@@ -54,9 +54,12 @@
 
 
 - user Management 
------ Users List 
+----- Users List ..... teacher.......student.........guardian........... guest......... committee
 ----- Role 
 ----- Users Permissions
+
+----- seeting change / update tracking
+----- user last setting pull tracking
 
 - Certificates 
 ----- Testimonial 
@@ -89,3 +92,5 @@ Logbook
 
 
 Settings/ Institure Management, User Management 
+
+*** class notifcation for teacher.
