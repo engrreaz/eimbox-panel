@@ -9,6 +9,7 @@ $rrr = $_SERVER['PHP_SELF'];
 $host = $_SERVER['HTTP_HOST'];
 preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches);
 $domain =  $matches[0];
+// $domain = 'https://' . $matches[0];
 
 
 
