@@ -64,6 +64,7 @@
 ----- To Whom
 
 - Reports 
+----- Dues Report
 
 - Public Exams 
 

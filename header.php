@@ -38,7 +38,7 @@ include 'inc.php';
     <!-- Layout styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <link rel="shortcut icon" href="assets/imgs/logo.png" />
     <style>
         * {font-family: "Noto Sans Bengali", sans-serif; }
     </style>
