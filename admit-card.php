@@ -42,6 +42,12 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
+<style>
+    .backpic {
+        filter: grayscale(100);
+        background:black;
+    }
+</style>
 
 
 <h3 class="d-print-none">Admit Card of <?php echo $exam2 . ' Examination - ' . $sy; ?> </h3>

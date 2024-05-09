@@ -1,5 +1,5 @@
 
-<tr><td valign="top" background="assets/admit/sample_01.png" style="width:210mm; height:147.5mm; padding:3mm">
+<tr><td valign="top" class="backpic" background="assets/admit/sample_02.png" style="width:210mm; height:147.5mm; padding:3mm">
                     
                     
                     
@@ -110,7 +110,7 @@
 
 
                                                <td style="font-size:11px; padding-bottom:10px; text-align:center;" valign="bottom">
-                                                       <img src="<?php echo $domain . 'sign/' . $sccode;?>.png" width="120px" /><br>
+                                                       <img src="<?php echo $domain . '/sign/' . $sccode;?>.png" width="120px" /><br>
                                                        Principal<br>
                                                        <?php echo $scname;?><br>
                                                        <?php echo $scadd1 .  ', ' . $ps . ', ' . $dist  ;?>
