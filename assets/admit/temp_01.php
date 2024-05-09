@@ -42,7 +42,7 @@
                                     
                                    
                                     <td  valign="top" style="padding: 8px 0 8px 50px;">
-                                        Name of Student<br><span style="font-size:18px;  font-weight:bold;"><?php echo $stnameeng;?></span>
+                                        Name of Student<br><span style="font-size:18px;  font-weight:bold;"><?php echo $stnameeng . $domain;?></span>
                                         <br>
                                         Class : <b><?php echo $classname;?></b> 
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -111,7 +111,7 @@
 
                                                <td style="font-size:11px; padding-bottom:10px;" valign="bottom">
                                                    <center>
-                                                       <img src="sign/<?php echo $sccode;?>.png" width="120px" /><br>
+                                                       <img src="<?php echo $domain . 'sign/' . $sccode;?>.png" width="120px" /><br>
                                                        Principal<br>
                                                        <?php echo $scname;?><br>
                                                        <?php echo $scadd1 .  ', ' . $ps . ', ' . $dist  ;?>

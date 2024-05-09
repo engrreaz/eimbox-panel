@@ -5,6 +5,13 @@ date_default_timezone_set('Asia/Dhaka');
 
 $rrr = $_SERVER['PHP_SELF'];
 
+
+$host = $_SERVER['HTTP_HOST'];
+preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches);
+$domain = '' . $matches[0] . '/';
+
+
+
 if(isset($_GET["email"])){
     $usr = $_GET["email"];
     $_SESSION["user"] = $usr; 
