@@ -109,13 +109,11 @@
                                                </td>
 
 
-                                               <td style="font-size:11px; padding-bottom:10px;" valign="bottom">
-                                                   <center>
+                                               <td style="font-size:11px; padding-bottom:10px; text-align:center;" valign="bottom">
                                                        <img src="<?php echo $domain . 'sign/' . $sccode;?>.png" width="120px" /><br>
                                                        Principal<br>
                                                        <?php echo $scname;?><br>
                                                        <?php echo $scadd1 .  ', ' . $ps . ', ' . $dist  ;?>
-                                                   </center>
                                                </td>
                                            </tr>
                                        </table> 
