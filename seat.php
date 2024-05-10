@@ -6,6 +6,8 @@ include 'header.php';
 
 // $refno = $_GET['ref'] ?? 0;
 // $undef = $_GET['undef'] ?? 99;
+if(isset($_GET['year'])){$year = $_GET['year'];} else {$year = 0;}
+
 
 if (isset($_GET['cls'])) {
     $cls2 = $_GET['cls'];
@@ -51,6 +53,27 @@ if (isset($_GET['addnew'])) {
                     Select Class & Section to Generate Seat Card
                 </h6>
                 <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Year</label>
+                            <div class="col-12">
+                                <select class="form-control text-white" id="year">
+                                    <option value="0"></option>
+                                    <?php
+                                    for ($y = date('Y'); $y >= 2024; $y--) {
+                                        $flt2 = '';
+                                        if ($year == $y) {
+                                            $flt2 = 'selected';
+                                        }
+                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
@@ -123,20 +146,32 @@ if (isset($_GET['addnew'])) {
                     </div>
 
 
-                    <div class="col-md-3">
+                    
+
+
+
+                </div>
+
+                <div class="row">
+                <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary" style="" onclick="go();"><i class="mdi mdi-eye"></i> Generate
+                                    class=" btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i> Generate
                                     Card</button>
-
                             </div>
                         </div>
                     </div>
 
-
-
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">  
+                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
+                                    class=" btn-info btn-block" style="" onclick="goprint();"><i class="mdi mdi-eye"></i> Print
+                                    View</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -164,111 +199,106 @@ $pgm = $pgl * $col;
 ?>
 
 
+<div id="alladmit">
+    <table style="left:0; top:0; border:0;" width="100%">
+        <tr>
 
-<table style="left:0; top:0; border:0;" width="100%">
-    <tr>
+            <?php for ($i = 0; $i < $col; $i++) {
+                $s = $pgl * $i;
+                ?>
+                <td valign="top">
 
-        <?php for ($i = 0; $i < $col; $i++) {
-            $s = $pgl * $i;
-            ?>
-            <td valign="top">
-
-                <?php
-                $sql = "SELECT * FROM sessioninfo WHERE sccode='$sccode'  and sessionyear='$sy'  and classname = '$cls2' and sectionname = '$sec2'  order by classname, sectionname, rollno LIMIT $s, $pgl "; //and (classname='Sux' or classname='Sejven' or classname='Nine') ";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $k = $row["id"];
-                        $iid = $row["stid"];
-                        $clname = $row["classname"];
-                        $secname = $row["sectionname"];
-                        $roll = $row["rollno"];
+                    <?php
+                    $sql = "SELECT * FROM sessioninfo WHERE sccode='$sccode'  and sessionyear='$sy'  and classname = '$cls2' and sectionname = '$sec2'  order by classname, sectionname, rollno LIMIT $s, $pgl "; //and (classname='Sux' or classname='Sejven' or classname='Nine') ";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $k = $row["id"];
+                            $iid = $row["stid"];
+                            $clname = $row["classname"];
+                            $secname = $row["sectionname"];
+                            $roll = $row["rollno"];
 
 
-                        $sqlw = "SELECT * FROM students WHERE sccode='$sccode' and stid =  '$iid'  ";
-                        $resultw = $conn->query($sqlw);
-                        if ($resultw->num_rows > 0) {
-                            while ($roww = $resultw->fetch_assoc()) {
-                                $stname = $roww["stnameben"];
-                                $stnameeng = $roww["stnameeng"];
+                            $sqlw = "SELECT * FROM students WHERE sccode='$sccode' and stid =  '$iid'  ";
+                            $resultw = $conn->query($sqlw);
+                            if ($resultw->num_rows > 0) {
+                                while ($roww = $resultw->fetch_assoc()) {
+                                    $stname = $roww["stnameben"];
+                                    $stnameeng = $roww["stnameeng"];
+                                }
                             }
-                        }
-                        $loc = '../students/' . $row["stid"] . '.jpg';
-                        if (file_exists($loc) == 1) {
-                            $pt = $loc;
-                        } else {
-                            $pt = 'students/noimg.jpg';
-                        } ?>
-                        <table style=" border:0;">
-                            <tr>
-                                <td valign="top" style="text-align:center; width:105mm; height:71mm; padding:5mm;"> <br>
-                                    <div style="font-size:12px; font-weight:bold;"><?php echo $scname; ?></div>
+                            $loc = '../students/' . $row["stid"] . '.jpg';
+                            if (file_exists($loc) == 1) {
+                                $pt = $loc;
+                            } else {
+                                $pt = 'students/noimg.jpg';
+                            } ?>
+                            <table style=" border:0;">
+                                <tr>
+                                    <td valign="top" style="text-align:center; width:105mm; height:71mm; padding:5mm;"> <br>
+                                        <div style="font-size:12px; font-weight:bold;"><?php echo $scname; ?></div>
 
-                                    <div style="font-size:11px;"><?php echo $scadd2 . ', ' . $ps . ', ' . $dist; ?></div>
-                                    <div style="font-size:16px; font-weight:bold; margin:10px 0; border:1px">SEAT
-                                        CARD</div>
-                                    <b><?php echo $exam2 . ' Examination - ' . $sy; ?></b>
+                                        <div style="font-size:11px;"><?php echo $scadd2 . ', ' . $ps . ', ' . $dist; ?></div>
+                                        <div style="font-size:16px; font-weight:bold; margin:10px 0; border:1px">SEAT
+                                            CARD</div>
+                                        <b><?php echo $exam2 . ' Examination - ' . $sy; ?></b>
 
-                                    <br><br>
+                                        <br><br>
 
-                                    <table style="border:0; width:100%;">
-                                        <tr>
-                                            <td colspan="2" style="text-align:center;">
-                                                <span style=" font-weight:bold; font-size:18px;  color:blue;">
-                                                    <?php echo $stnameeng; ?>
-                                                </span><br>
-                                                <span
-                                                    style="position:static;  left:240px; top:80px; font-family:SutonnyOMJ; font-weight:bold; font-size:24px;  color:red;">
-                                                    <?php echo $stname; ?><br>
-                                                </span>
-                                            </td>
+                                        <table style="border:0; width:100%;">
+                                            <tr>
+                                                <td colspan="2" style="text-align:center;">
+                                                    <span style=" font-weight:bold; font-size:18px;  color:blue;">
+                                                        <?php echo $stnameeng; ?>
+                                                    </span><br>
+                                                    <span
+                                                        style="position:static;  left:240px; top:80px; font-family:SutonnyOMJ; font-weight:bold; font-size:24px;  color:red;">
+                                                        <?php echo $stname; ?><br>
+                                                    </span>
+                                                </td>
 
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span
-                                                    style="position:static; text-align:left;  left:-50px; top:100px; font-family:Calibri;  font-size:16;">
-                                                    CLASS : <?php echo $clname; ?><br>
-                                                    Section/Group : <?php echo $secname; ?><br>
-                                                    ROLL #<span style="font-size:16px; ">&nbsp;&nbsp;<?php $led = '';
-                                                    if ($roll < 10) {
-                                                        $led = "0";
-                                                    }
-                                                    echo $led . $roll; ?></span>
-                                                </span>
-                                            </td>
-                                            <td valign="bottom" style="text-align:center;">
-                                                <img src="../sign/<?php echo $sccode; ?>.png" width="80px" /><br>
-                                                <span style="font-size:9px;">principal</span>
-                                            </td>
-                                        </tr>
-                                    </table>
-
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span
+                                                        style="position:static; text-align:left;  left:-50px; top:100px; font-family:Calibri;  font-size:16;">
+                                                        CLASS : <?php echo $clname; ?><br>
+                                                        Section/Group : <?php echo $secname; ?><br>
+                                                        ROLL #<span style="font-size:16px; ">&nbsp;&nbsp;<?php $led = '';
+                                                        if ($roll < 10) {
+                                                            $led = "0";
+                                                        }
+                                                        echo $led . $roll; ?></span>
+                                                    </span>
+                                                </td>
+                                                <td valign="bottom" style="text-align:center;">
+                                                    <img src="../sign/<?php echo $sccode; ?>.png" width="80px" /><br>
+                                                    <span style="font-size:9px;">principal</span>
+                                                </td>
+                                            </tr>
+                                        </table>
 
 
 
-                                </td>
 
-                            </tr>
-                        </table>
-                    <?php }
-                } ?>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        <?php }
+                    } ?>
 
 
-            </td>
-            <!--*****************************************************************************************
+                </td>
+                <!--*****************************************************************************************
             -->
-        <?php } ?>
+            <?php } ?>
 
 
-    </tr>
-</table>
-
-
-
-
-
-
+        </tr>
+    </table>
+</div>
 
 
 
@@ -278,11 +308,23 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+    function reload() {
+        window.location.href = uri;
+    }
+    function goprint() {
+        var txt = document.getElementById("alladmit").innerHTML;
+        document.write('<div class="d-print-none"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
+        document.write(txt);
+
+    }
+
+
     function go() {
+        var year = document.getElementById('year').value;
         var cls = document.getElementById('cls').value;
         var sec = document.getElementById('sec').value;
         var exam = document.getElementById('exam').value;
-        window.location.href = 'seat.php?&cls=' + cls + '&sec=' + sec + '&exam=' + exam;
+        window.location.href = 'seat.php?&cls=' + cls + '&sec=' + sec + '&exam=' + exam + '&year=' + year;
     }
     function go2() {
         var m = document.getElementById('ref').value;

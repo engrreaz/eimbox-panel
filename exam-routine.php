@@ -54,7 +54,7 @@ if (isset($_GET['id'])) {
 
 ?>
 
-<h3>Exam Management</h3>
+<h3>Exam Schedule / Routine</h3>
 
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
@@ -64,7 +64,8 @@ if (isset($_GET['id'])) {
                     Fill out the form below to show routine
                 </h6>
                 <div class="row">
-                    <div class="col-md-3">
+
+                <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
@@ -83,9 +84,8 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
+
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class</label>
@@ -104,7 +104,9 @@ if (isset($_GET['id'])) {
                             <div class="col-12">
                                 <select class="form-control text-white" id="sec">
                                     <!-- <option value=""></option> -->
-                                    <option value="science">Science</option>
+                                    <option value="Science" <?php if($sec=='Science') {echo 'selected';} ?>>Science</option>
+                                    <option value="Business Studies" <?php if($sec=='Business Studies') {echo 'selected';} ?>>Business Studies</option>
+                                    <option value="Humanities" <?php if($sec=='Humanities') {echo 'selected';} ?>>Humanities</option>
                                 </select>
                             </div>
                         </div>
@@ -123,22 +125,33 @@ if (isset($_GET['id'])) {
                     </div>
 
 
-                    <div class="col-md-3">
+                    
+
+
+
+                </div>
+
+                <div class="row">
+                <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-primary" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    class="btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
                                     View</button>
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-danger" style="" onclick="god();"><i class="mdi mdi-plus"></i>
-                                   Add New</button>
                             </div>
                         </div>
                     </div>
 
 
-
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
+                                    class="btn-danger btn-block" style="" onclick="god();"><i class="mdi mdi-plus"></i>
+                                   Add New</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 

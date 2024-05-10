@@ -8,6 +8,10 @@ include 'header.php';
 // $refno = $_GET['ref'] ?? 0;
 // $undef = $_GET['undef'] ?? 99;
 
+
+
+if(isset($_GET['year'])){$year = $_GET['year'];} else {$year = 0;}
+
 if (isset($_GET['cls'])) {
     $cls2 = $_GET['cls'];
 } else {
@@ -60,6 +64,28 @@ if (isset($_GET['addnew'])) {
                     Select Class & Section to Generate Admit Card
                 </h6>
                 <div class="row">
+
+                <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Year</label>
+                            <div class="col-12">
+                                <select class="form-control text-white" id="year">
+                                    <option value="0"></option>
+                                    <?php
+                                    for ($y = date('Y'); $y >= 2024; $y--) {
+                                        $flt2 = '';
+                                        if ($year == $y) {
+                                            $flt2 = 'selected';
+                                        }
+                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
@@ -132,22 +158,33 @@ if (isset($_GET['addnew'])) {
                     </div>
 
 
-                    <div class="col-md-3">
+                    
+
+
+
+                </div>
+
+                <div class="row">
+                <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary" style="" onclick="go();"><i class="mdi mdi-eye"></i> Generate
+                                    class=" btn-primary btn-block " style="" onclick="go();"><i class="mdi mdi-eye"></i> Generate
                                     Card</button>
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary" style="" onclick="goprint();"><i class="mdi mdi-eye"></i> Print View</button>
-
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                
+                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
+                                    class=" btn-info btn-block" style="" onclick="goprint();"><i class="mdi mdi-eye"></i> Print View</button>
 
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -250,10 +287,11 @@ include 'footer.php';
         
     }
     function go() {
+        var year = document.getElementById('year').value;
         var cls = document.getElementById('cls').value;
         var sec = document.getElementById('sec').value;
         var exam = document.getElementById('exam').value;
-        window.location.href = 'admit-card.php?&cls=' + cls + '&sec=' + sec + '&exam=' + exam;
+        window.location.href = 'admit-card.php?&cls=' + cls + '&sec=' + sec + '&exam=' + exam + '&year=' + year;
     }
     function go2() {
         var m = document.getElementById('ref').value;
