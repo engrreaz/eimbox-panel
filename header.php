@@ -29,7 +29,7 @@ include 'inc.php';
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
-    
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css"> -->
     <!-- End plugin css for this page -->
@@ -40,7 +40,9 @@ include 'inc.php';
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/imgs/logo.png" />
     <style>
-        * {font-family: "Noto Sans Bengali", sans-serif; }
+        * {
+            font-family: "Noto Sans Bengali", sans-serif;
+        }
     </style>
 
 
@@ -60,3 +62,9 @@ include 'inc.php';
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper ">
+
+                    <?php
+                    $enum = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '0');
+                    $bnum = array('১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০');
+                    
+                  

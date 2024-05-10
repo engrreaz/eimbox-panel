@@ -114,6 +114,23 @@
 
 
     <li class="nav-item menu-items">
+      <a class="nav-link" data-toggle="collapse" href="#repo" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-icon">
+          <i class="mdi mdi-laptop"></i>
+        </span>
+        <span class="menu-title">Reports</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="repo">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Student's Dues List</a></li>
+        </ul>
+      </div>
+    </li>
+
+
+
+    <li class="nav-item menu-items">
       <a class="nav-link" data-toggle="collapse" href="#tttax" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
           <i class="mdi mdi-laptop"></i>
@@ -129,7 +146,6 @@
           <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
           <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
           <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule</a></li>
-          <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Dues List</a></li>
         </ul>
       </div>
     </li>

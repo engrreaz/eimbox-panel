@@ -3,7 +3,8 @@ include 'header.php';
 
 // $month = $_GET['m'] ?? 0;
 // $year = $_GET['y'] ?? 0;
-
+$refno = '';
+$refdate = date('Y-m-d');
 // $refno = $_GET['ref'] ?? 0;
 // $undef = $_GET['undef'] ?? 99;
 if (isset($_GET['year'])) {
@@ -187,24 +188,56 @@ if (isset($_GET['addnew'])) {
     </div>
 </div>
 
+<div id="pad" style="display:none;">
+    <div style="font-size:10px; font-style:italic;">
+        <?php include ('assets/pad/temp-01.php'); ?>
+    </div>
+</div>
 
+<div>
+    
+<div id="alladmit">
 
-<div id="alladmit" >
+    <head>
+        <style>
+            * {
+                font-family: "Noto Sans Bengali", sans-serif;
+            }
 
-<style>
-    * {font-family: "Noto Sans Bengali", sans-serif; }
-    #main-table td {
-        border: 1px solid black;
-    }
-    .txt-right{text-align:center; font-weight:bold; font-size:14px; padding:5px;}
-</style>    
-<table class="table table-bordered" style="width:100%; border:1px solid black; border-collapse:collapse;" id="main-table">
+            #main-table td {
+                border: 1px solid black;
+            }
+
+            .txt-right {
+                text-align: center;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 5px;
+            }
+
+            @media print {
+                .d-print-nones,
+                #nono {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <div style="text-align: center;">
+        Class : <b><?php echo $cls2;?></b> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-:|:-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Section : <b><?php echo $sec2;?></b> 
+        <hr style="width:75%"/>
+    </div>
+
+    <table style="width:100%; border:1px solid black; border-collapse:collapse;" class="table table-bordered" 
+        id="main-table">
         <thead>
-            <tr >
+            <tr>
                 <td class="txt-right">Roll</td>
                 <td class="txt-right">Name of Student</td>
                 <td class="txt-right">Dues</td>
-                <td class="txt-right" style="width:100px;">Pay</td>
+                <td class="txt-right" style="width:100px;">Pay Amount</td>
                 <td class="txt-right" style="width:120px;">Date</td>
             </tr>
         </thead>
@@ -254,9 +287,21 @@ if (isset($_GET['addnew'])) {
 
                     ?>
                     <tr>
-                        <td style="text-align:right; padding : 3px 5px;" class=""><?php echo $rollno; ?></td>
-                        <td style="padding : 3px 5px;"><?php echo $nben; ?></td>
-                        <td style="text-align:right; padding : 3px 5px;" class="text-right"><?php echo number_format($totaldues, 2, ".", ","); ?></td>
+                        <td style="text-align:center; padding : 3px 5px;" class="">
+                            <?php
+                            $rl = $rollno;
+                            echo str_replace($enum, $bnum, $rl);
+                            ?>
+                        </td>
+                        <td style="padding : 3px 10px;"><?php echo $nben; ?></td>
+                        <td style="text-align:right; padding : 3px 5px;" class="text-right">
+                            <?php
+                            $tt = number_format($totaldues, 2, ".", ",");
+                            // echo $tt;
+                            echo str_replace($enum, $bnum, $tt);
+                            ?>
+
+                        </td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -275,121 +320,37 @@ if (isset($_GET['addnew'])) {
 
 
 
-</div>
+    </div>
 
 
 
-<?php
-include 'footer.php';
-?>
+    <?php
+    include 'footer.php';
+    ?>
 
-<script>
-    var uri = window.location.href;
-    function reload() {
-        window.location.href = uri;
-    }
-    function goprint() {
-        var txt = document.getElementById("alladmit").innerHTML;
-        document.write('<div class="d-print-none"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
-        document.write('<div id="margin" style="padding: 10mm 20mm;"></div>');
-        document.getElementById("margin").innerHTML = txt;
-        // document.write(txt);
-
-    }
-
-
-    function go() {
-        var year = document.getElementById('year').value;
-        var cls = document.getElementById('cls').value;
-        var sec = document.getElementById('sec').value;
-        var exam = document.getElementById('exam').value;
-        window.location.href = 'student-dues-list.php?&cls=' + cls + '&sec=' + sec + '&exam=' + exam + '&year=' + year;
-    }
-
-</script>
-<script>
-    function addnew() {
-        var und = '<?php echo $undef; ?>';
-        var mmm = '<?php echo $month; ?>';
-        var yyy = '<?php echo $year; ?>';
-        var rrr = '<?php echo $refno; ?>';
-        var tail = '';
-
-        if (und == '') tail = '&undef';
-        if (mmm > 0 || yyy > 0) tail = '&m=' + mmm + '&y=' + yyy;
-        if (rrr > 0) tail = '&ref=' + rrr;
-
-        window.location.href = 'expenditure.php?addnew' + tail;
-    }
-
-
-    function edit(id, taill) {
-        var und = '<?php echo $undef; ?>';
-        var mmm = '<?php echo $month; ?>';
-        var yyy = '<?php echo $year; ?>';
-        var rrr = '<?php echo $refno; ?>';
-        var tail = '';
-
-        if (und == '') tail = '&undef';
-        if (mmm > 0 || yyy > 0) tail = '&m=' + mmm + '&y=' + yyy;
-        if (rrr > 0) tail = '&ref=' + rrr;
-
-        window.location.href = 'expenditure.php?addnew=' + id + tail;
-    }
-
-</script>
-
-<script>
-    function save(id, tail) {
-        alert(tail);
-        if (id == 0) tail = 0;
-        if (tail == 0 || tail == 1) {
-            var dept = document.getElementById('dept').value;
-            var date = document.getElementById('date').value;
-            var cate = document.getElementById('cate').value;
-            var descrip = document.getElementById('descrip').value;
-            var amt = document.getElementById('amt').value;
-
-            var infor = "dept=" + dept + '&date=' + date + '&cate=' + cate + '&descrip=' + descrip + '&amt=' + amt + '&id=' + id + "&tail=" + tail;
-        } else if (tail == 2 || tail == 3) {
-            var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
+    <script>
+        var uri = window.location.href;
+        function reload() {
+            window.location.href = uri;
+        }
+        function goprint() {
+            var txt = document.getElementById("alladmit").innerHTML;
+            var pad = document.getElementById("pad").innerHTML;
+            document.write('<title>Eimbox</title>');
+            document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:50px; background: black;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Dues List</button></div>');
+            document.write('<div id="margin" style="padding: 0mm 20mm;"></div>');
+            // document.write(pad);
+            document.getElementById("margin").innerHTML = pad + txt;
+            // document.write(txt);
         }
 
-        alert(infor);
-        $("#sspd").html("");
 
-        $.ajax({
-            type: "POST",
-            url: "savecash.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#sspd').html('<span class=""><center>Check Issue....</center></span>');
-            },
-            success: function (html) {
-                $("#sspd").html(html);
+        function go() {
+            var year = document.getElementById('year').value;
+            var cls = document.getElementById('cls').value;
+            var sec = document.getElementById('sec').value;
+            var exam = document.getElementById('exam').value;
+            window.location.href = 'student-dues-list.php?&cls=' + cls + '&sec=' + sec + '&exam=' + exam + '&year=' + year;
+        }
 
-                var und = '<?php echo $undef; ?>';
-                var mmm = '<?php echo $month; ?>';
-                var yyy = '<?php echo $year; ?>';
-                var rrr = '<?php echo $refno; ?>';
-                var taild = '';
-
-                if (und == '') taild = '&undef';
-                if (mmm > 0 || yyy > 0) taild = '&m=' + mmm + '&y=' + yyy;
-                if (rrr > 0) taild = '&ref=' + rrr;
-
-                if (tail == 1) {
-                    window.location.href = 'expenditure.php?addnews=' + taild;
-                } else if (tail == 2 || tail == 3) {
-                    window.location.href = 'expenditure.php?q=' + taild;
-                } else if (tail == 0) {
-                    document.getElementById('gex').innerHTML = document.getElementById('sspd').innerHTML;
-                    document.getElementById('sspd').innerHTML = '';
-                    window.location.href = 'expenditure.php?addnew' + taild;
-                }
-            }
-        });
-    }
-
-</script>
+    </script>
