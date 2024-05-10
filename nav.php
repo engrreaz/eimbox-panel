@@ -129,6 +129,7 @@
           <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
           <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
           <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule</a></li>
+          <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Dues List</a></li>
         </ul>
       </div>
     </li>
