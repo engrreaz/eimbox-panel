@@ -4,17 +4,22 @@ session_start();
 date_default_timezone_set('Asia/Dhaka');
 
 $usr = $_SESSION["user"];
+$domain = $_SESSION["domain"];
 $userlevel = 'Guest';
 
 $pxx = '';
 // 
-include '../db.php';
+if($domain == 'localhost'){
+    include '../db.php';
+} else {
+    include '../../db.php';
+}
+
 
 //*****************************************************************
 $sy = date('Y');
 $td = date('Y-m-d');
 $cur = date('Y-m-d H:i:s');
-
 //********************************************************************
 
 $sql0 = "SELECT * FROM usersapp where email='$usr' LIMIT 1";
