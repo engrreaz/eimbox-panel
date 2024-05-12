@@ -1,6 +1,8 @@
 <?php
 date_default_timezone_set('Asia/Dhaka');
-// include ('../inc2.php');
+include ('../inc2.php');
+require_once ('../db.php');
+
 
 $br = $_POST['br'];
 $st = '';
