@@ -2,27 +2,14 @@
 // include 'config.inc.php';
 session_start();
 date_default_timezone_set('Asia/Dhaka');
-;
 
-/*
-if(isset($_GET["email"])){
-    $usr = $_GET["email"];
-    $_SESSION["user"] = $usr; 
-}
-if(isset($_GET["token"])){
-    $token = $_GET["token"];
-}
-if(isset($_GET["photo"])){
-    $pth = $_GET["photo"];
-}
-*/
 
 $usr = $_SESSION["user"];
 $userlevel = 'Guest';
 
 $pxx = '';
 // 
-include 'db.php';
+include '../db.php';
 
 //*****************************************************************
 $sy = date('Y');
@@ -108,9 +95,12 @@ if ($usr == '') {
     $scname = '';
     $scaddress = '';
 
+
     if ($_SERVER['REQUEST_URI'] != "/index.php") {
         header("Location: index.php");
     }
+
+
 } else {
 
 

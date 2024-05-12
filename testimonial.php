@@ -487,15 +487,15 @@ if (isset($_GET['addnew'])) {
                     },
                     success: function (html) {
                         $("#sscspan").html(html);
-                        // var st = document.getElementById("sscspan").innerHTML;
+                        var st = document.getElementById("sscspan").innerHTML;
 
-                        // if (st == 'Something went wrong.') {
-                        //     document.getElementById("sscspan").innerHTML = '<code>' + st + '</code><br>Data Missing or Multiple Entry Found.';
-                        // } else {
-                        //     document.getElementById("stname").value = st;
-                        //     document.getElementById("sscspan").innerHTML = '';
-                        //     document.getElementById("gpagla").focus();
-                        // }
+                        if (st == 'Something went wrong.') {
+                            document.getElementById("sscspan").innerHTML = '<code>' + st + '</code><br>Data Missing or Multiple Entry Found.';
+                        } else {
+                            document.getElementById("stname").value = st;
+                            document.getElementById("sscspan").innerHTML = '';
+                            document.getElementById("gpagla").focus();
+                        }
                     }
                 });
             }
