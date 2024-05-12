@@ -58,7 +58,9 @@ if (isset($_GET['addnew'])) {
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Student's Dues Report - <?php echo $year; ?>
+                   
+
+                    <php echo $domain ;?></php>
                 </h6>
                 <div class="row">
                     <div class="col-md-3">
