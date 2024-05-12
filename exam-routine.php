@@ -7,30 +7,26 @@ include 'header.php';
 // $refno = $_GET['ref'] ?? 0;
 // $undef = $_GET['undef'] ?? 99;
 
-if (isset($_GET['e'])) {
-    $examname = $_GET['e'];
-} else {
-    $examname = '';
-}
+
 if (isset($_GET['y'])) {
     $year = $_GET['y'];
 } else {
     $year = date('Y');
 }
 if (isset($_GET['c'])) {
-    $cls = $_GET['c'];
+    $cls2 = $_GET['c'];
 } else {
-    $cls = '';
+    $cls2 = '';
 }
 if (isset($_GET['s'])) {
-    $sec = $_GET['s'];
+    $sec2 = $_GET['s'];
 } else {
-    $sec = '';
+    $sec2 = '';
 }
 if (isset($_GET['e'])) {
-    $exam = $_GET['e'];
+    $exam2 = $_GET['e'];
 } else {
-    $exam = '';
+    $exam2 = '';
 }
 
 if (isset($_GET['id'])) {
@@ -39,7 +35,11 @@ if (isset($_GET['id'])) {
     $schid = 0;
 }
 
-if($schid==0){$btntxt = 'Save Schedule';} else {$btntxt = 'Update Schedule';}
+if ($schid == 0) {
+    $btntxt = 'Save Schedule';
+} else {
+    $btntxt = 'Update Schedule';
+}
 
 $examname = $exam;
 $status = 0;
@@ -50,8 +50,6 @@ if (isset($_GET['id'])) {
     $anbd = 'none';
 }
 
-
-
 ?>
 
 <h3>Exam Schedule / Routine</h3>
@@ -61,11 +59,11 @@ if (isset($_GET['id'])) {
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Fill out the form below to show routine
+                    Fill out the form below to show routine 
                 </h6>
                 <div class="row">
 
-                <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
@@ -88,11 +86,27 @@ if (isset($_GET['id'])) {
 
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Class</label>
+                            <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls">
-                                    <!-- <option value=""></option> -->
-                                    <option value="ten">Ten</option>
+                                <select class="form-control text-white" id="cls" onchange="go();">
+                                    <option value=" ">---</option>
+                                    <?php
+                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
+                                    echo $sql0x;
+                                    $result0x = $conn->query($sql0x);
+                                    if ($result0x->num_rows > 0) {
+                                        while ($row0x = $result0x->fetch_assoc()) {
+                                            $cls = $row0x["areaname"];
+                                            if ($cls == $cls2) {
+                                                $selcls = 'selected';
+                                            } else {
+                                                $selcls = '';
+                                            }
+                                            echo '<option value="' . $cls . '" ' . $selcls . ' >' . $cls . '</option>';
+                                        }
+                                    }
+                                    ?>
+
                                 </select>
                             </div>
                         </div>
@@ -100,13 +114,26 @@ if (isset($_GET['id'])) {
 
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Section/Group</label>
+                            <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec">
-                                    <!-- <option value=""></option> -->
-                                    <option value="Science" <?php if($sec=='Science') {echo 'selected';} ?>>Science</option>
-                                    <option value="Business Studies" <?php if($sec=='Business Studies') {echo 'selected';} ?>>Business Studies</option>
-                                    <option value="Humanities" <?php if($sec=='Humanities') {echo 'selected';} ?>>Humanities</option>
+                                <select class="form-control text-white" id="sec" onchange="go();">
+                                    <option value="">---</option>
+                                    <?php
+                                    $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
+                                    echo $sql0x;
+                                    $result0r = $conn->query($sql0x);
+                                    if ($result0r->num_rows > 0) {
+                                        while ($row0x = $result0r->fetch_assoc()) {
+                                            $sec = $row0x["subarea"];
+                                            if ($sec == $sec2) {
+                                                $selsec = 'selected';
+                                            } else {
+                                                $selsec = '';
+                                            }
+                                            echo '<option value="' . $sec . '" ' . $selsec . ' >' . $sec . '</option>';
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -117,22 +144,38 @@ if (isset($_GET['id'])) {
                             <label class="col-form-label pl-3">Examination</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="exam">
-                                    <!-- <option value=""></option> -->
-                                    <option value="Half-Yearly">Half-Yearly Examination</option>
+
+                                    <option value="">---</option>
+                                    <?php
+                                    $sql0x = "SELECT examtitle FROM examlist where sccode='$sccode' and sessionyear='$year'   order by id;";
+                                    echo $sql0x;
+                                    $result0rt = $conn->query($sql0x);
+                                    if ($result0rt->num_rows > 0) {
+                                        while ($row0x = $result0rt->fetch_assoc()) {
+                                            $exname = $row0x["examtitle"];
+                                            if ($exname == $exam2) {
+                                                $selex = 'selected';
+                                            } else {
+                                                $selex = '';
+                                            }
+                                            echo '<option value="' . $exname . '" ' . $selex . ' >' . $exname . '</option>';
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
                     </div>
 
 
-                    
+
 
 
 
                 </div>
 
                 <div class="row">
-                <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
@@ -148,7 +191,7 @@ if (isset($_GET['id'])) {
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
                                     class="btn-danger btn-block" style="" onclick="god();"><i class="mdi mdi-plus"></i>
-                                   Add New</button>
+                                    Add New</button>
                             </div>
                         </div>
                     </div>
@@ -162,7 +205,7 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
-<div class="row" id="addnewblock" style="display:<?php echo $anbd;?>">
+<div class="row" id="addnewblock" style="display:<?php echo $anbd; ?>">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -181,8 +224,8 @@ if (isset($_GET['id'])) {
                     }
                 } else {
                     $scode = 0;
-                        $exdate = '';
-                        $extime = '';
+                    $exdate = '';
+                    $extime = '';
                 }
                 ?>
 
@@ -192,7 +235,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" value="<?php echo $exdate;?>" id="exdate" />
+                                <input type="date" class="form-control" value="<?php echo $exdate; ?>" id="exdate" />
                             </div>
                         </div>
                     </div>
@@ -201,7 +244,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section/Group</label>
                             <div class="col-12">
-                                <input type="time" class="form-control" value="<?php echo $extime;?>" id="extime" />
+                                <input type="time" class="form-control" value="<?php echo $extime; ?>" id="extime" />
                             </div>
                         </div>
                     </div>
@@ -213,7 +256,7 @@ if (isset($_GET['id'])) {
                                 <select class="form-control text-white" id="subcode">
                                     <option value="">------</option>
                                     <?php
-                                    $sql0x = "SELECT * FROM subsetup where sccode='$sccode' and sessionyear = '$year' and classname='$cls' and sectionname='$sec' order by subject;";
+                                    $sql0x = "SELECT * FROM subsetup where sccode='$sccode' and sessionyear = '$year' and classname='$cls2' and sectionname='$sec2' order by subject;";
                                     $result0xr = $conn->query($sql0x);
                                     if ($result0xr->num_rows > 0) {
                                         while ($row0x = $result0xr->fetch_assoc()) {
@@ -226,7 +269,11 @@ if (isset($_GET['id'])) {
                                                     $subname = $row0x["subject"];
                                                 }
                                             }
-                                            if($subcode == $scode) {$sld = 'selected'; } else {$sld = '';}
+                                            if ($subcode == $scode) {
+                                                $sld = 'selected';
+                                            } else {
+                                                $sld = '';
+                                            }
                                             echo '<option value="' . $subcode . '" ' . $sld . ' >' . $subname . '</option>';
                                         }
                                     }
@@ -245,7 +292,7 @@ if (isset($_GET['id'])) {
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
                                     class="btn-success" style="" onclick="save(<?php echo $schid; ?>, 1);"><i
                                         class="mdi mdi-disc"></i>
-                                    <?php echo $btntxt;?></button>
+                                    <?php echo $btntxt; ?></button>
                                 <span id="ssk"></span>
                             </div>
                         </div>
@@ -418,7 +465,7 @@ if (isset($_GET['id'])) {
                             <tbody>
                                 <?php
 
-                                $sql0x = "SELECT * FROM examroutine where sccode='$sccode' and sessionyear = '$year' and examname='$examname' and clsname='$cls' and secname='$sec' order by date;";
+                                $sql0x = "SELECT * FROM examroutine where sccode='$sccode' and sessionyear = '$year' and examname='$exam2' and clsname='$cls2' and secname='$sec2' order by date;";
                                 // echo $sql0x;
                                 $result0x = $conn->query($sql0x);
                                 if ($result0x->num_rows > 0) {
@@ -470,6 +517,12 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+
+    var d = localStorage.getItem("ex-routine-date");
+    var t = localStorage.getItem("ex-routine-time");
+    document.getElementById("exdate").value = d;
+    document.getElementById("extime").value = t;
+
     function go() {
         var y = document.getElementById('year').value;
         var c = document.getElementById('cls').value;
@@ -491,7 +544,7 @@ include 'footer.php';
         var c = document.getElementById('cls').value;
         var s = document.getElementById('sec').value;
         var e = document.getElementById('exam').value;
-        window.location.href = 'exam-routine.php?&y=' + y + '&c=' + c + '&s=' + s + '&e=' + e + '&id=0&tail=1' ;
+        window.location.href = 'exam-routine.php?&y=' + y + '&c=' + c + '&s=' + s + '&e=' + e + '&id=0&tail=1';
     }
 </script>
 
@@ -518,6 +571,13 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#ssk").html(html);
+                if (tail == 0) {
+                    go();
+                } else {
+                    localStorage.setItem("ex-routine-date", date);
+                    localStorage.setItem("ex-routine-time", time);
+                    god();
+                }
             }
         });
     }

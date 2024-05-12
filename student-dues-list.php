@@ -10,7 +10,7 @@ $refdate = date('Y-m-d');
 if (isset($_GET['year'])) {
     $year = $_GET['year'];
 } else {
-    $year = 0;
+    $year = date('Y');
 }
 
 
@@ -48,7 +48,7 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
-<h3 class="d-print-none">Seat Card of <?php echo $exam2 . ' Examination - ' . $sy; ?> </h3>
+<h3 class="d-print-none">Student's Dues Report @ <?php echo date('l, d F, Y'); ?> </h3>
 
 <div class="row d-print-none">
     <div class="col-12 grid-margin stretch-card">
@@ -83,11 +83,10 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls">
+                                <select class="form-control text-white" id="cls"  onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
-                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$sy' group by areaname order by idno;";
-                                    echo $sql0x;
+                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
                                     $result0x = $conn->query($sql0x);
                                     if ($result0x->num_rows > 0) {
                                         while ($row0x = $result0x->fetch_assoc()) {
@@ -112,10 +111,10 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec">
+                                <select class="form-control text-white" id="sec" onchange="gox();">
                                     <option value="">---</option>
                                     <?php
-                                    $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$sy' group by subarea order by idno;";
+                                    $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
                                     echo $sql0x;
                                     $result0r = $conn->query($sql0x);
                                     if ($result0r->num_rows > 0) {

@@ -6,7 +6,11 @@ include 'header.php';
 
 // $refno = $_GET['ref'] ?? 0;
 // $undef = $_GET['undef'] ?? 99;
-if(isset($_GET['year'])){$year = $_GET['year'];} else {$year = 0;}
+if (isset($_GET['year'])) {
+    $year = $_GET['year'];
+} else {
+    $year = date('Y');
+}
 
 
 if (isset($_GET['cls'])) {
@@ -78,10 +82,10 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls">
+                                <select class="form-control text-white" id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
-                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$sy' group by areaname order by idno;";
+                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
                                     echo $sql0x;
                                     $result0x = $conn->query($sql0x);
                                     if ($result0x->num_rows > 0) {
@@ -110,7 +114,7 @@ if (isset($_GET['addnew'])) {
                                 <select class="form-control text-white" id="sec">
                                     <option value="">---</option>
                                     <?php
-                                    $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$sy' group by subarea order by idno;";
+                                    $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
                                     echo $sql0x;
                                     $result0r = $conn->query($sql0x);
                                     if ($result0r->num_rows > 0) {
@@ -134,30 +138,46 @@ if (isset($_GET['addnew'])) {
 
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Section</label>
+                            <label class="col-form-label pl-3">Examination</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="exam">
 
-                                    <!-- <option value="">---</option> -->
-                                    <option value="Half-Yearly">Half-Yearly</option>
+                                    <option value="">---</option>
+                                    <?php
+                                    $sql0x = "SELECT examtitle FROM examlist where sccode='$sccode' and sessionyear='$year'   order by id;";
+                                    echo $sql0x;
+                                    $result0rt = $conn->query($sql0x);
+                                    if ($result0rt->num_rows > 0) {
+                                        while ($row0x = $result0rt->fetch_assoc()) {
+                                            $exname = $row0x["examtitle"];
+                                            if ($exname == $exam2) {
+                                                $selex = 'selected';
+                                            } else {
+                                                $selex = '';
+                                            }
+                                            echo '<option value="' . $exname . '" ' . $selex . ' >' . $exname . '</option>';
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
                     </div>
 
 
-                    
+
 
 
 
                 </div>
 
                 <div class="row">
-                <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i> Generate
+                                    class=" btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    Generate
                                     Card</button>
                             </div>
                         </div>
@@ -165,9 +185,10 @@ if (isset($_GET['addnew'])) {
 
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <div class="col-12">  
+                            <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-info btn-block" style="" onclick="goprint();"><i class="mdi mdi-eye"></i> Print
+                                    class=" btn-info btn-block" style="" onclick="goprint();"><i
+                                        class="mdi mdi-eye"></i> Print
                                     View</button>
                             </div>
                         </div>
@@ -200,15 +221,39 @@ $pgm = $pgl * $col;
 
 
 <div id="alladmit">
+
+    <head>
+        <style>
+            * {
+                font-family: "Noto Sans Bengali", sans-serif;
+            }
+
+
+
+            @media print {
+
+                .d-print-nones,
+                #nono {
+                    display: none;
+                }
+            }
+
+            td {
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+
     <table style="left:0; top:0; border:0;" width="100%">
         <tr>
 
             <?php for ($i = 0; $i < $col; $i++) {
                 $s = $pgl * $i;
                 ?>
-                <td valign="top">
+                <td valign="top" style=" border-collapse:collapse;">
 
                     <?php
+                    $rw = 0;
                     $sql = "SELECT * FROM sessioninfo WHERE sccode='$sccode'  and sessionyear='$sy'  and classname = '$cls2' and sectionname = '$sec2'  order by classname, sectionname, rollno LIMIT $s, $pgl "; //and (classname='Sux' or classname='Sejven' or classname='Nine') ";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
@@ -218,6 +263,8 @@ $pgm = $pgl * $col;
                             $clname = $row["classname"];
                             $secname = $row["sectionname"];
                             $roll = $row["rollno"];
+
+                            $rw++;
 
 
                             $sqlw = "SELECT * FROM students WHERE sccode='$sccode' and stid =  '$iid'  ";
@@ -234,21 +281,21 @@ $pgm = $pgl * $col;
                             } else {
                                 $pt = 'students/noimg.jpg';
                             } ?>
-                            <table style=" border:0;">
+                            <table style=" border:1px solid gray;  border-collapse:collapse;">
                                 <tr>
-                                    <td valign="top" style="text-align:center; width:105mm; height:71mm; padding:5mm;"> <br>
+                                    <td valign="top" style="text-align:center; width:105mm;  padding:7mm 5mm 7mm;">
                                         <div style="font-size:12px; font-weight:bold;"><?php echo $scname; ?></div>
 
                                         <div style="font-size:11px;"><?php echo $scadd2 . ', ' . $ps . ', ' . $dist; ?></div>
-                                        <div style="font-size:16px; font-weight:bold; margin:10px 0; border:1px">SEAT
-                                            CARD</div>
-                                        <b><?php echo $exam2 . ' Examination - ' . $sy; ?></b>
+                                        <div style="font-size:16px; font-weight:bold; margin:10px 0; border:1px">
+                                            <?php echo $exam2 . ' Examination - ' . $sy; ?>
+                                        </div>
 
-                                        <br><br>
+
 
                                         <table style="border:0; width:100%;">
                                             <tr>
-                                                <td colspan="2" style="text-align:center;">
+                                                <td colspan="2" style="text-align:center; padding:2px;">
                                                     <span style=" font-weight:bold; font-size:18px;  color:blue;">
                                                         <?php echo $stnameeng; ?>
                                                     </span><br>
@@ -261,35 +308,35 @@ $pgm = $pgl * $col;
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span
-                                                        style="position:static; text-align:left;  left:-50px; top:100px; font-family:Calibri;  font-size:16;">
+                                                    <span>
                                                         CLASS : <?php echo $clname; ?><br>
-                                                        Section/Group : <?php echo $secname; ?><br>
+                                                        Section : <?php echo $secname; ?><br>
                                                         ROLL #<span style="font-size:16px; ">&nbsp;&nbsp;<?php $led = '';
                                                         if ($roll < 10) {
                                                             $led = "0";
                                                         }
                                                         echo $led . $roll; ?></span>
                                                     </span>
+
                                                 </td>
                                                 <td valign="bottom" style="text-align:center;">
-                                                    <img src="../sign/<?php echo $sccode; ?>.png" width="80px" /><br>
+                                                    <img src="../sign/<?php echo $sccode; ?>.png" width="75px" /><br>
                                                     <span style="font-size:9px;">principal</span>
                                                 </td>
                                             </tr>
+
                                         </table>
 
-
-
-
                                     </td>
-
                                 </tr>
                             </table>
+                            <?php
+                            if ($rw % 3 == 0) {
+                                echo '<div style="page-break-before:always; margin:0; padding:0; height:10px; "></div>';
+                            }
+                            ?>
                         <?php }
                     } ?>
-
-
                 </td>
                 <!--*****************************************************************************************
             -->
@@ -313,7 +360,7 @@ include 'footer.php';
     }
     function goprint() {
         var txt = document.getElementById("alladmit").innerHTML;
-        document.write('<div class="d-print-none"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
+        document.write('<div class="d-print-noneS" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button></div>');
         document.write(txt);
 
     }
