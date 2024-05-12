@@ -1,9 +1,9 @@
 <?php
 date_default_timezone_set('Asia/Dhaka');
-include ('../inc2.php');
+// include ('../inc2.php');
 
-$br = $_POST['br'];
-$st = '';
+// $br = $_POST['br'];
+// $st = '';
 $sql0 = "SELECT * FROM students where sccode = '$sccode' and rollno = '$br' ;";
 echo $sql0;
 // $result0rt = $conn->query($sql0);
