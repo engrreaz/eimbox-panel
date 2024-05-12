@@ -23,11 +23,14 @@
     .code {text-align:center; font-size:11px; font-weight:700;}
 </style>
 
-<table style="margin:auto;">
+<table style="margin:auto; width:100%;">
     <tr>
-        <td style="width:70px;">
-            <img src="https://eimbox.com/logo/<?php echo $sccode; ?>.png" width="60" />
+        <td style="text-align:center;">
+            <img src="https://eimbox.com/logo/<?php echo $sccode; ?>.png" width="80" />
         </td>
+    </tr>
+    <tr>
+        
         <td style="text-align:center;">
             <div class="a"><?php echo $scname; ?></div>
             <div class="b"><?php echo $scaddress; ?></div>

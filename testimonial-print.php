@@ -14,6 +14,8 @@
             font-family: 'Segoe UI';
         }
 
+
+
         .clr {
             color: #0088cd !important;
         }
@@ -22,6 +24,7 @@
             body {
                 margin: 0mm !important;
             }
+
         }
 
         @media print {
@@ -48,12 +51,12 @@
 
 
     //echo '<b>Examination : ' . $examname . ' | Passing Year : ' . $passingyear . ' | Group : ' . $groupsection . '</b><hr>';
-    if($stid == 0) {
+    if ($stid == 0) {
         $sql = "SELECT * FROM testimonial where sccode='$sccode' and pubexam='$examname' and passyear='$passingyear' and groupsection='$groupsection' and testslno!=''";
     } else {
         $sql = "SELECT * FROM testimonial where sccode='$sccode' and pubexam='$examname' and passyear='$passingyear' and groupsection='$groupsection' and testslno!='' and stid='$stid'";
     }
-    
+
     //echo $sql;
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -103,91 +106,129 @@
             //echo 'Group : ' . $group . ' | Result : ' . $gpa . ' (' . $grade . ')'; 
     
             ?>
+            <div style="padding:12mm 20mm 15mm;">
+                <div id="pad" style="display:block; text-align:center;">
+                    <div style="font-size:10px; font-style:italic; margin: auto;">
+                        <?php include ('assets/pad/pad.php'); ?>
+                    </div>
+                </div>
 
-            <div id="pad" style="display:block;">
-                <div style="font-size:10px; font-style:italic;">
-                    <?php include ('assets/pad/pad.php'); ?>
+                <div style="padding : 5mm; page-break-after:always;">
+                    <table style="border:0; width:100%; ">
+
+
+                        <tr>
+                            <td style="height:10mm;" text-align="left" valign="middle">
+                                SL : <?php echo $testslno; ?>
+                            </td>
+                            <td style="text-align:right" valign="middle" style="">
+                                Date : <?php echo date('l, d F, Y', strtotime($testdate)); ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" style="height:15mm; text-align:center" valign="bottom">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td>
+                                            <img src="assets/images/testimonials.jpg" width="250" />
+                                        </td>
+                                        <td>
+                                        <img src="<?php echo $domain; ?>/students/<?php echo $stid; ?>.jpg" width="100px" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"
+                                style="line-height:1.75; font-family:'Segoe UI'; font-size:16px; text-align:justify;"
+                                valign="top">
+                                This is to certify that <b><span class=""
+                                        style="font-family:'Segoe UI'; font-size:20px;"><?php echo $stname; ?></span></b>
+                                <?php echo $lingo . ' : ' . $fname . ' & ' . $mname; ?> of Village :
+                                <?php echo $vill; ?>, Post Office : <?php echo $po; ?>, Police Station : <?php echo $ps; ?>,
+                                District :
+                                <?php echo $dist; ?> was
+                                a student of this school. <?php echo $pronoun; ?> passed the <?php echo $exam; ?> Examination in
+                                <?php echo $passyear; ?> from
+                                this school bearing Roll <strong><?php echo $examcenter; ?></strong> No
+                                <strong><?php echo $rollno; ?></strong>, Registration No. <?php echo $regd; ?> Session :
+                                <?php echo $session; ?>
+                                obtaining <strong><span class="" style="font-family:'Segoe UI'; font-size:16px; ">GPA
+                                        <?php echo $gpa . ' (' . $grade . ' Grade) '; ?> </span></strong>
+                                from <?php echo $group; ?> group under Comilla Education Board, Comilla.
+                                <br><br>
+                                To the best of my knowledge <?php echo $pnoun; ?> did not take part in any activities subversive
+                                of
+                                the
+                                state or of discipline.
+                                <?php echo $obj; ?> date of birth as per admission register is
+                                <?php echo date('l, d F, Y', strtotime($dob)); ?>
+                                <br><br>
+                                <?php echo $pronoun; ?> bears a good moral character and amiable disposition.
+                                <br>
+                                I wish <?php echo $obj; ?> bright future and successful life.
+
+
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table style="width:100%; ">
+                                    <tr>
+                                        <td>
+                                            <table style="float:left;">
+                                                <tr>
+                                                    <td
+                                                        style="line-height:1; font-family:'Segoe UI'; font-size:10px; text-align:center; padding-top:15px;">
+                                                        To Verify this Testimonial,<br>
+                                                        Please scan the QR Code<br>
+
+                                                        <?php
+                                                        $lnk = 'https://www.dashboard.eimbox.com/qrcode/verifytestimonial.php?slno=' . $testslno . '&id=' . $stid;
+                                                        ?>
+                                                        <img style="padding: 5px; background:var(--lighter);"
+                                                            src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=120" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+
+
+
+                                        <td style="line-height:1; font-family:'Segoe UI'; font-size:11px; text-align:right; "
+                                            valign="bottom">
+
+                                            <table style="float:right;">
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <b><?php echo $headname; ?></b><br>
+                                                        <?php echo $headtitle; ?> <br>
+                                                        <?php echo $scname; ?> <br>
+                                                        <?php echo $scaddress; ?>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+
+                    </table>
                 </div>
             </div>
-
-            <div style="padding : 8mm 15mm;">
-                <table style="border:0; width:100%; ">
-                    <tr>
-                        <td valign="bottom" colspan="2" style="height:5mm; padding-right: 70px;"
-                            text-align="right">
-                            <img src="<?php echo $root; ?>/students/<?php echo $stid; ?>.jpg" width="100px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="height:15mm; text-align:center" valign="bottom">
-                            <img src="assets/images/testimonials.jpg" width="250" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="height:10mm;" text-align="left" valign="middle">
-                            SL : <?php echo $testslno; ?>
-                        </td>
-                        <td style="text-align:right" valign="middle" style="">
-                            Date : <?php echo date('l, d F, Y', strtotime($testdate)); ?>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2"
-                            style="line-height:1.75; font-family:'Segoe UI'; font-size:16px; text-align:justify;"
-                            valign="top">
-                            This is to certify that <b><span class=""
-                                    style="font-family:'Segoe UI'; font-size:20px;"><?php echo $stname; ?></span></b>
-                            <?php echo $lingo . ' : ' . $fname . ' & ' . $mname; ?> of Village :
-                            <?php echo $vill; ?>, Post Office : <?php echo $po; ?>, Police Station : <?php echo $ps; ?>,
-                            District :
-                            <?php echo $dist; ?> was
-                            a student of this school. <?php echo $pronoun; ?> passed the <?php echo $exam; ?> Examination in
-                            <?php echo $passyear; ?> from
-                            this school bearing Roll <strong><?php echo $examcenter; ?></strong> No
-                            <strong><?php echo $rollno; ?></strong>, Registration No. <?php echo $regd; ?> Session :
-                            <?php echo $session; ?>
-                            obtaining <strong><span class="" style="font-family:'Segoe UI'; font-size:16px; ">GPA
-                                    <?php echo $gpa . ' (' . $grade . ' Grade) '; ?> </span></strong>
-                            from <?php echo $group; ?> group under Comilla Education Board, Comilla.
-                            <br><br>
-                            To the best of my knowledge <?php echo $pnoun; ?> did not take part in any activities subversive of
-                            the
-                            state or of discipline.
-                            <?php echo $obj; ?> date of birth as per admission register is
-                            <?php echo date('l, d F, Y', strtotime($dob)); ?>
-                            <br><br>
-                            <?php echo $pronoun; ?> bears a good moral character and amiable disposition.
-                            <br>
-                            I wish <?php echo $obj; ?> bright future and successful life.
-
-                            <br><br><br><br><br>
-                            <table style="windth:100%; border:0;">
-                                <tr>
-                                    <td width="60%" style="line-height:1; font-family:'Segoe UI'; font-size:10px;">
-                                        To Verify this Testimonial,<br>
-                                        Please scan the QR Code<br>
-                                        <img style="padding-top:2px;"
-                                            src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=http://www.eimbox.com/verifytestimonial.php?slno=<?php echo $testslno; ?>&id=<?php echo $stid; ?>&choe=UTF-8&chld=L|0" />
-                                    </td>
-                                    <td width="40%" style="line-height:1; font-family:'Segoe UI'; font-size:11px; text-align:center;"
-                                       valign="bottom">
-                                        <b><?php echo $fullname; ?></b><br>
-                                        Headmaster <br>
-                                        <?php echo $scname; ?> <br>
-                                        <?php echo $scaddress; ?> <br>
-
-                                    </td>
-                                </tr>
-                            </table>
-
-
-                    </tr>
-
-
-                </table>
-            </div>
-
 
             <?php
 

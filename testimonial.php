@@ -185,7 +185,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-warning btn-block" style="" onclick="resultentry();"><i
+                                    class=" btn-warning btn-block" style="" onclick="resultentry(0);"><i
                                         class="mdi mdi-eye"></i> Result Entry</button>
                             </div>
                         </div>
@@ -201,7 +201,7 @@ if (isset($_GET['addnew'])) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
@@ -273,6 +273,10 @@ if (isset($_GET['addnew'])) {
                     border: 1px solid gray !important;
                 }
 
+                .ooo {
+                    padding: 3px 0;
+                }
+
                 @media print {
 
                     .d-print-nones,
@@ -294,10 +298,11 @@ if (isset($_GET['addnew'])) {
             <thead>
                 <tr>
                     <td class="txt-right">#</td>
-                    <td class="txt-right" colspan="2">Name of Student</td>
-                    <td class="txt-right">Roll No.</td>
-                    <td class="txt-right">Regd.</td>
-                    <td class="txt-right" style="width:100px;">result</td>
+                    <td class="txt-right">Name of Student</td>
+                    <td class="txt-right">Parents</td>
+                    <td class="txt-right">Address</td>
+                    <td class="txt-right">Roll/Regd</td>
+                    <td class="txt-right">Result</td>
                     <td class="txt-right" style="width:100px;"></td>
                 </tr>
             </thead>
@@ -331,7 +336,11 @@ if (isset($_GET['addnew'])) {
 
                                 $fname = $row00["fname"];
                                 $mname = $row00["mname"];
-                                $vill = $row00["previll"];
+                                $vill = $row00["pervill"];
+                                $po = $row00["perpo"];
+                                $ps = $row00["perps"];
+                                $dist = $row00["perdist"];
+                                $dob = $row00["dob"];
 
 
 
@@ -356,10 +365,24 @@ if (isset($_GET['addnew'])) {
                                 echo $rollno;
                                 ?>
                             </td>
-                            <td style="padding : 3px 10px; border:1px solid gray;"><?php echo $neng; ?></td>
-                            <td style="padding : 3px 10px; border:1px solid gray;"><?php echo $nben; ?></td>
-                            <td style="padding : 3px 10px; border:1px solid gray;"><?php echo $sscroll; ?></td>
-                            <td style="padding : 3px 10px; border:1px solid gray;"><?php echo $regdno; ?></td>
+                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                <div class="ooo"><?php echo $neng; ?></div>
+                                <div class="ooo"><?php echo $nben; ?></div>
+                            </td>
+                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                <div class="ooo"><?php echo $fname; ?></div>
+                                <div class="ooo"><?php echo $mname; ?></div>
+                            </td>
+                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                <div class="ooo"><?php echo $vill; ?></div>
+                                <div class="ooo"><?php echo $po; ?></div>
+                                <div class="ooo"><?php echo $ps; ?></div>
+                                <div class="ooo"><?php echo $dist; ?></div>
+                            </td>
+                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                <div class="ooo"><?php echo $sscroll; ?></div>
+                                <div class="ooo"><?php echo $regdno; ?></div>
+                            </td>
 
                             <td style=" border:1px solid gray;"><?php echo $gpa . ' / ' . $gla; ?></td>
                             <td style=" border:1px solid gray;">
@@ -375,31 +398,49 @@ if (isset($_GET['addnew'])) {
                                             <button class="btn btn-success btn-block"
                                                 onclick="goprint(<?php echo $stid; ?>)">Print</button>
                                         </div>
+
+                                        <div id="btn<?php echo $stid; ?>">
+                                                <button class="btn btn-primary btn-block" onclick="issue(<?php echo $stid; ?>)">Issue
+                                                    Now</button>
+                                            </div>
+                                        
                                         <?php
                                     }
                                 } else {
 
-                                    if($regdno == '' || $sscroll == '') {
+                                    if ($regdno == '' || $sscroll == '') {
                                         ?>
                                         <div id="btn<?php echo $stid; ?>">
-                                            <button class="btn btn-danger btn-block" onclick="issuex(<?php echo $stid; ?>)">Modify</button>
+                                            <button class="btn btn-danger btn-block"
+                                                onclick="issuex(<?php echo $stid; ?>)">Modify</button>
                                         </div>
                                         <?php
-                                    } else if ($gpa <1) {
-                                        ?>
-                                        <div id="btn<?php echo $stid; ?>">
-                                            <button class="btn btn-warning btn-block" onclick="resultentry()">Result Entry</button>
-                                        </div>
-                                        <?php
+                                    } else if ($gpa < 1) {
+                                        if ($gla == 'F') {
+                                            ?>
+                                                <div id="btn<?php echo $stid; ?>">
+                                                    <button class="btn btn-dark btn-block"
+                                                        onclick="resultentry(<?php echo $sscroll; ?>)">Fail</button>
+                                                </div>
+                                            <?php
+                                        } else {
+                                            ?>
+                                                <div id="btn<?php echo $stid; ?>">
+                                                    <button class="btn btn-warning btn-block"
+                                                        onclick="resultentry(<?php echo $sscroll; ?>)">Result Entry</button>
+                                                </div>
+                                            <?php
+                                        }
+
                                     } else {
                                         ?>
-                                        <div id="btn<?php echo $stid; ?>">
-                                            <button class="btn btn-info btn-block" onclick="issue(<?php echo $stid; ?>)">Issue
-                                                Now</button>
-                                        </div>
+                                            <div id="btn<?php echo $stid; ?>">
+                                                <button class="btn btn-primary btn-block" onclick="issue(<?php echo $stid; ?>)">Issue
+                                                    Now</button>
+                                            </div>
                                         <?php
                                     }
-                                    
+
                                 }
                                 ?>
                             </td>
@@ -422,7 +463,13 @@ if (isset($_GET['addnew'])) {
         function reload() {
             window.location.href = uri;
         }
-        function resultentry () {
+        function resultentry(roll) {
+            if (roll == 0) {
+                document.getElementById('boardroll').value = '';
+            } else {
+                document.getElementById('boardroll').value = roll;
+            }
+
             document.getElementById('ren').style.display = 'block';
             document.getElementById('boardroll').focus();
         }
@@ -528,7 +575,7 @@ if (isset($_GET['addnew'])) {
                     document.getElementById("boardroll").value = st;
                     document.getElementById("gpagla").value = '';
                     document.getElementById("boardroll").focus();
-                    
+
                 }
             });
         }
