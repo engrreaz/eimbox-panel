@@ -208,7 +208,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Board Roll</label>
                             <div class="col-12">
-                                <input id="boardroll" type="text" class="form-control" onkeydown="fetch(event);" />
+                                <input id="boardroll" type="text" class="form-control" onkeydown="fetchs(event);" />
                             </div>
                         </div>
                     </div>
@@ -470,7 +470,7 @@ if (isset($_GET['addnew'])) {
 
 
     <script>
-        function fetch(e) {
+        function fetchs(e) {
             if (e.key == 'Enter') {
                 var br = document.getElementById("boardroll").value;
                 var infor = "br=" + br;
