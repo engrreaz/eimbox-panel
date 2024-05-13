@@ -104,7 +104,8 @@
 
                                                <td style="font-size:11px; padding-bottom:10px; text-align:center;" valign="bottom">
                                                        <img src="<?php echo $domain . '/sign/' . $sccode;?>.png" width="120px" /><br>
-                                                       Principal<br>
+                                                       <?php echo $headname . '<br>' . $headtitle ; ?>
+                                                       <br>
                                                        <?php echo $scname;?><br>
                                                        <?php echo $scadd1 .  ', ' . $ps . ', ' . $dist  ;?>
                                                </td>
