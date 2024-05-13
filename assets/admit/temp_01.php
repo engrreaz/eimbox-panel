@@ -57,7 +57,7 @@
                                         $file_pointer ="../students/" .  $stid . ".jpg";
                                         if (file_exists($file_pointer)===TRUE) {
                                         ?>
-                                        <img src="../students/<?php echo $stid;?>.jpg" alt=""  height="90px" style="border-radius:0%; border : 1px solid black; padding:3px; "/>
+                                        <img src="<?php echo $domain;?>/students/<?php echo $stid;?>.jpg" alt=""  height="90px" style="border-radius:0%; border : 1px solid black; padding:3px; "/>
                                         <?php } else {?>
                                         <img src="http://www.eimbox.com/admit/noimg.jpg" alt=""  height="90px" style="border-radius:0%; border : 1px solid black; padding:3px; right:10px;"/>
                                         

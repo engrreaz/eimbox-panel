@@ -643,3 +643,12 @@
 
 
 <?php include 'footer.php'; ?>
+
+
+
+<script>
+    // A $( document ).ready() block.
+    $(document).ready(function () {
+        alert("wait...");
+    });
+</script>

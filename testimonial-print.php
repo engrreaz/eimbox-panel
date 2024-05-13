@@ -113,16 +113,16 @@
                     </div>
                 </div>
 
-                <div style="padding : 5mm; page-break-after:always;">
+                <div style="padding : 1mm 5mm; page-break-after:always;">
                     <table style="border:0; width:100%; ">
 
 
                         <tr>
                             <td style="height:10mm;" text-align="left" valign="middle">
-                                SL : <?php echo $testslno; ?>
+                                SL : <b><?php echo $testslno; ?></b>
                             </td>
                             <td style="text-align:right" valign="middle" style="">
-                                Date : <?php echo date('l, d F, Y', strtotime($testdate)); ?>
+                                Date : <b><?php echo date('l, d F, Y', strtotime($testdate)); ?></b>
                             </td>
                         </tr>
 

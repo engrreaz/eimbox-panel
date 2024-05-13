@@ -354,6 +354,9 @@ if (isset($_GET['addnew'])) {
                             }
                         }
 
+
+
+
                         //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
                 
 
@@ -368,6 +371,9 @@ if (isset($_GET['addnew'])) {
                             <td style="padding : 3px 10px; border:1px solid gray;">
                                 <div class="ooo"><?php echo $neng; ?></div>
                                 <div class="ooo"><?php echo $nben; ?></div>
+                                <?php if ($dob != "") { ?>
+                                    <div class="ooo">DOB : <?php echo date('d / m / Y', strtotime($dob)); ?></div>
+                                <?php } ?>
                             </td>
                             <td style="padding : 3px 10px; border:1px solid gray;">
                                 <div class="ooo"><?php echo $fname; ?></div>
@@ -384,7 +390,11 @@ if (isset($_GET['addnew'])) {
                                 <div class="ooo"><?php echo $regdno; ?></div>
                             </td>
 
-                            <td style=" border:1px solid gray;"><?php echo $gpa . ' / ' . $gla; ?></td>
+                            <td style=" border:1px solid gray;">
+                                <?php if ($gpa != "") { ?>
+                                    <?php echo $gpa . ' / ' . $gla; ?>
+                                <?php } ?>
+                            </td>
                             <td style=" border:1px solid gray;">
                                 <?php
                                 $sql0 = "SELECT * from testimonial where stid='$stid' and sccode='$sccode' and pubexam = 'SSC' ";
@@ -400,10 +410,10 @@ if (isset($_GET['addnew'])) {
                                         </div>
 
                                         <div id="btn<?php echo $stid; ?>">
-                                                <button class="btn btn-primary btn-block" onclick="issue(<?php echo $stid; ?>)">Issue
-                                                    Now</button>
-                                            </div>
-                                        
+                                            <button class="btn btn-primary btn-block" onclick="issue(<?php echo $stid; ?>)">Issue
+                                                Now</button>
+                                        </div>
+
                                         <?php
                                     }
                                 } else {
