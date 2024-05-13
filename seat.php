@@ -320,8 +320,9 @@ $pgm = $pgl * $col;
 
                                                 </td>
                                                 <td valign="bottom" style="text-align:center;">
-                                                    <img src="https://eimbox.com/sign/<?php echo $sccode; ?>.png" width="75px" /><br>
-                                                    <span style="font-size:9px;"><?php echo $headtitle;?></span>
+                                                    <img src="https://eimbox.com/sign/<?php echo $sccode; ?>.png"
+                                                        width="75px" /><br>
+                                                    <span style="font-size:9px;"><?php echo $headtitle; ?></span>
                                                 </td>
                                             </tr>
 
@@ -358,11 +359,11 @@ include 'footer.php';
     function reload() {
         window.location.href = uri;
     }
+
     function goprint() {
         var txt = document.getElementById("alladmit").innerHTML;
-        document.write('<div class="d-print-noneS" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button></div>');
+        document.write('<div class="d-print-noneS" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Seat Card</button></div>');
         document.write(txt);
-
     }
 
 
