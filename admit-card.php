@@ -10,7 +10,11 @@ include 'header.php';
 
 
 
-if(isset($_GET['year'])){$year = $_GET['year'];} else {$year = 0;}
+if (isset($_GET['year'])) {
+    $year = $_GET['year'];
+} else {
+    $year = 0;
+}
 
 if (isset($_GET['cls'])) {
     $cls2 = $_GET['cls'];
@@ -49,7 +53,7 @@ if (isset($_GET['addnew'])) {
 <style>
     .backpic {
         filter: grayscale(100);
-        background:black;
+        background: black;
     }
 </style>
 
@@ -65,7 +69,7 @@ if (isset($_GET['addnew'])) {
                 </h6>
                 <div class="row">
 
-                <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
@@ -158,18 +162,19 @@ if (isset($_GET['addnew'])) {
                     </div>
 
 
-                    
+
 
 
 
                 </div>
 
                 <div class="row">
-                <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary btn-block " style="" onclick="go();"><i class="mdi mdi-eye"></i> Generate
+                                    class=" btn-primary btn-block " style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    Generate
                                     Card</button>
                             </div>
                         </div>
@@ -178,9 +183,10 @@ if (isset($_GET['addnew'])) {
                     <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
-                                
+
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-info btn-block" style="" onclick="goprint();"><i class="mdi mdi-eye"></i> Print View</button>
+                                    class=" btn-info btn-block" style="" onclick="goprint();"><i
+                                        class="mdi mdi-eye"></i> Print View</button>
 
                             </div>
                         </div>
@@ -217,56 +223,93 @@ $pgm = $pgl * $col;
 
 
 <div id="alladmit">
-<table>
-<?php
 
-    $sqlcccd = "SELECT * from sessioninfo WHERE  sccode='$sccode'  and sessionyear = '$sy' and classname='$cls2' and sectionname='$sec2' order by rollno " ;
-//	echo $sqlcccd;
-    $resultcccd = $conn->query($sqlcccd);
-    if ($resultcccd->num_rows > 0) {
-    while($rowcccd = $resultcccd->fetch_assoc()) {
-    $stid=$rowcccd["stid"];
-    $classname=$rowcccd["classname"];  $sectionname=$rowcccd["sectionname"];  $rollno=$rowcccd["rollno"];	
-    $fourth_subject=$rowcccd["fourth_subject"];
-    if(($classname == 'Nine')||($classname == 'Ten'))
-        {
-            $secgr = 'Group';
-        } else {
-            $secgr = 'Section';
+    <head>
+        <style>
+            * {
+                font-family: "Noto Sans Bengali", sans-serif;
+            }
+
+            #main-table td {
+                border: 1px solid black;
+            }
+
+            .txt-right {
+                text-align: center;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 5px;
+            }
+
+            @media print {
+
+                .d-print-nones,
+                #nono {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+
+
+
+    <table>
+        <?php
+
+        $sqlcccd = "SELECT * from sessioninfo WHERE  sccode='$sccode'  and sessionyear = '$sy' and classname='$cls2' and sectionname='$sec2' order by rollno ";
+        //	echo $sqlcccd;
+        $resultcccd = $conn->query($sqlcccd);
+        if ($resultcccd->num_rows > 0) {
+            while ($rowcccd = $resultcccd->fetch_assoc()) {
+                $stid = $rowcccd["stid"];
+                $classname = $rowcccd["classname"];
+                $sectionname = $rowcccd["sectionname"];
+                $rollno = $rowcccd["rollno"];
+                $fourth_subject = $rowcccd["fourth_subject"];
+                if (($classname == 'Nine') || ($classname == 'Ten')) {
+                    $secgr = 'Group';
+                } else {
+                    $secgr = 'Section';
+                }
+
+
+                $sqlcccd2 = "SELECT * from students WHERE  stid='$stid' ";
+                $resultcccd2 = $conn->query($sqlcccd2);
+                if ($resultcccd2->num_rows > 0) {
+                    while ($rowcccd2 = $resultcccd2->fetch_assoc()) {
+                        $stid = $rowcccd2["stid"];
+                        $stnameeng = $rowcccd2["stnameeng"];
+                        $stnameben = $rowcccd2["stnameben"];
+
+                        $fname = $rowcccd2["fname"];
+                        $mname = $rowcccd2["mname"];
+
+                        $previll = $rowcccd2["previll"];
+                        $prepo = $rowcccd2["prepo"];
+                        $preps = $rowcccd2["preps"];
+                        $predist = $rowcccd2["predist"];
+
+                        $guarmobile = $rowcccd2["guarmobile"];
+
+
+
+
+                    }
+                }
+
+
+                include 'assets/admit/temp_01.php';
+
+
+
+
+
+            }
         }
-
-        
-            $sqlcccd2 = "SELECT * from students WHERE  stid='$stid' ";
-            $resultcccd2 = $conn->query($sqlcccd2);
-            if ($resultcccd2->num_rows > 0) {
-            while($rowcccd2 = $resultcccd2->fetch_assoc()) {
-            $stid=$rowcccd2["stid"];
-            $stnameeng = $rowcccd2["stnameeng"];    $stnameben = $rowcccd2["stnameben"];
-            
-            $fname = $rowcccd2["fname"];    $mname = $rowcccd2["mname"];
-            
-            $previll = $rowcccd2["previll"];    $prepo = $rowcccd2["prepo"];
-            $preps = $rowcccd2["preps"];        $predist = $rowcccd2["predist"];
-            
-            $guarmobile = $rowcccd2["guarmobile"]; 
-            
-                            
-             
-          
-            }}
-            
-
-            include 'assets/admit/temp_01.php';
-            
-
-   
-
-    
-    }} 
-?>
+        ?>
 
 
-</table>
+    </table>
 </div>
 
 
@@ -277,14 +320,22 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    function reload(){
+    function reload() {
         window.location.href = uri;
     }
-    function goprint(){
-        var txt =document.getElementById("alladmit").innerHTML;
-        document.write('<div class="d-print-none" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
-        document.write(txt);
-        
+    function goprint() {
+        // var txt = document.getElementById("alladmit").innerHTML;
+        // document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
+        // document.write(txt);
+
+
+        var txt = document.getElementById("alladmit").innerHTML;
+        document.write('<title>Eimbox</title>');
+        document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:50px; background: black;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button></div>');
+        document.write('<div id="margin" style=""></div>');
+        // document.write(pad);
+        document.getElementById("margin").innerHTML = txt;
+        // document.write(txt);
     }
     function go() {
         var year = document.getElementById('year').value;

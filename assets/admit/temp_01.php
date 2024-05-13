@@ -90,7 +90,7 @@
 												?>
 											    <tr>
 											        <td style="text-align:center"><?php echo date('l, d/m/Y',strtotime($edate));?></td>
-											        <td style="text-align:center"><?php echo date('h:i:s', strtotime($etime)) ;?></td>
+											        <td style="text-align:center"><?php echo date('h:i:s a', strtotime($etime)) ;?></td>
 											        <td style="text-align:center"><?php echo $subj;?></td>
 											    </tr>
 												
