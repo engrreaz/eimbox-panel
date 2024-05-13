@@ -68,7 +68,7 @@
                                     <td colspan="2" style="padding-left:30px;">
                                        <table width="100%">
                                            <tr>
-                                               <td width="65%" style="padding-right:10px;" >
+                                               <td  style="padding-right:10px;" >
                                                    <table width="100%" border="1" style="border-collapse:collapse; font-size:10px;">
                                                        <tr>
                                                            <td align="center"><b>Date</b></td>
@@ -90,7 +90,7 @@
 												?>
 											    <tr>
 											        <td style="text-align:center"><?php echo date('l, d/m/Y',strtotime($edate));?></td>
-											        <td style="text-align:center"><?php echo date('h:i:s a', strtotime($etime)) ;?></td>
+											        <td style="text-align:center"><?php echo date('h:i:s A', strtotime($etime));?></td>
 											        <td style="text-align:center"><?php echo $subj;?></td>
 											    </tr>
 												
@@ -103,11 +103,25 @@
 
 
                                                <td style="font-size:11px; padding-bottom:10px; text-align:center;" valign="bottom">
-                                                       <img src="<?php echo $domain . '/sign/' . $sccode;?>.png" width="120px" /><br>
+                                               <table style="width:100%; text-align:center;">
+                                            <tr>
+                                                <td>
+                                                <img src="<?php echo $domain . '/sign/' . $sccode;?>.png" width="120px" /><br>
+                                                       Class Teacher
+                                                </td>
+                                                <td>
+                                                <img src="<?php echo $domain . '/sign/' . $sccode;?>.png" width="120px" /><br>
                                                        <?php echo '<b>' . $headname . '</b><br>' . $headtitle ; ?>
-                                                       <br>
-                                                       <?php echo $scname;?><br>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <?php echo $scname;?><br>
                                                        <?php echo $scadd1 .  ', ' . $ps . ', ' . $dist  ;?>
+                                                </td>
+                                            </tr>
+                                            </table>
+                                          
                                                </td>
                                            </tr>
                                        </table> 
