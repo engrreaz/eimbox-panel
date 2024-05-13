@@ -68,7 +68,7 @@
                                     <td colspan="2" style="padding-left:30px;">
                                        <table width="100%">
                                            <tr>
-                                               <td  style="padding-right:10px;" >
+                                               <td  style="padding-right:10px; width:55%;" >
                                                    <table width="100%" border="1" style="border-collapse:collapse; font-size:10px;">
                                                        <tr>
                                                            <td align="center"><b>Date</b></td>
@@ -103,7 +103,7 @@
 
 
                                                <td style="font-size:11px; padding-bottom:10px; text-align:center;" valign="bottom">
-                                               <table style="width:100%; text-align:center;">
+                                               <table style="width:100%; text-align:center; ">
                                                <tr>
                                                 <td colspan="2" style="text-align:left; font-size:10px;">
                                                     <ul>
@@ -118,17 +118,17 @@
                                                 </td>
                                                </tr>
                                             <tr>
-                                                <td>
+                                                <td style="font-size:12px;">
                                                 <img src="<?php echo 'https://eimbox.com/sign/' . $sccode;?>.png" width="90px" /><br>
                                                        Class Teacher
-                                                </td>
-                                                <td>
+                                                </td style="font-size:12px;">
+                                                <td style="font-size:12px;">
                                                 <img src="<?php echo 'https://eimbox.com/sign/' . $sccode;?>.png" width="90px" /><br>
                                                        <?php echo '<b>' . $headname . '</b><br>' . $headtitle ; ?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2">
+                                                <td colspan="2" style="font-size:10px;">
                                                     <?php echo $scname;?><br>
                                                        <?php echo $scadd1 .  ', ' . $ps . ', ' . $dist  ;?>
                                                 </td>
