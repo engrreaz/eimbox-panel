@@ -282,7 +282,7 @@ include 'footer.php';
     }
     function goprint(){
         var txt =document.getElementById("alladmit").innerHTML;
-        document.write('<div class="d-print-none"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
+        document.write('<div class="d-print-none" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
         document.write(txt);
         
     }

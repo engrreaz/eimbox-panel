@@ -315,13 +315,13 @@ $pgm = $pgl * $col;
                                                         if ($roll < 10) {
                                                             $led = "0";
                                                         }
-                                                        echo $led . $roll; ?></span>
+                                                        echo '<b>' . $led . $roll . '</b>'; ?></span>
                                                     </span>
 
                                                 </td>
                                                 <td valign="bottom" style="text-align:center;">
-                                                    <img src="../sign/<?php echo $sccode; ?>.png" width="75px" /><br>
-                                                    <span style="font-size:9px;">principal</span>
+                                                    <img src="https://eimbox.com/sign/<?php echo $sccode; ?>.png" width="75px" /><br>
+                                                    <span style="font-size:9px;"><?php echo $headtitle;?></span>
                                                 </td>
                                             </tr>
 
