@@ -104,13 +104,26 @@
 
                                                <td style="font-size:11px; padding-bottom:10px; text-align:center;" valign="bottom">
                                                <table style="width:100%; text-align:center;">
+                                               <tr>
+                                                <td colspan="2" style="text-align:left; font-size:10px;">
+                                                    <ul>
+                                                        <li>Don’t be late. Report to the hall min 15 min. before the exam starts.</li>
+                                                        <li>Carry your admit card and occupy the seat where your roll is marked.</li>
+                                                        <li>Carry your own stationary with calculator. Programmable Calculator and any electronic gadgets are not allowed.</li>
+                                                        <li>Don’t exchange stationary or calculator with others without invigilator permission.</li>
+                                                        <li>Don’t tear/damage your seat card on desk.</li>
+                                                        <li>Don’t any misbehave/argue with invigilator and others.</li>
+                                                        <li>Submit all of invalid equipment/docs to the invigilator before start exam and collect them before exiting hall.</li>
+                                                    </ul>
+                                                </td>
+                                               </tr>
                                             <tr>
                                                 <td>
-                                                <img src="<?php echo $domain . '/sign/' . $sccode;?>.png" width="120px" /><br>
+                                                <img src="<?php echo 'https://eimbox.com/sign/' . $sccode;?>.png" width="90px" /><br>
                                                        Class Teacher
                                                 </td>
                                                 <td>
-                                                <img src="<?php echo $domain . '/sign/' . $sccode;?>.png" width="120px" /><br>
+                                                <img src="<?php echo 'https://eimbox.com/sign/' . $sccode;?>.png" width="90px" /><br>
                                                        <?php echo '<b>' . $headname . '</b><br>' . $headtitle ; ?>
                                                 </td>
                                             </tr>
