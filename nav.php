@@ -140,6 +140,7 @@
             <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule</a></li>
             <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>
             <li class="nav-item"> <a class="nav-link" href="calendar.php">Calendar</a></li>
+            <li class="nav-item"> <a class="nav-link" href="users.php">User Manager</a></li>
           </ul>
         </div>
       </li>

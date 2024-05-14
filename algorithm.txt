@@ -54,7 +54,7 @@ git add .; git commit -m""; git push
 ----- Notice Book 
 
 - user Management 
------ Users List ..... teacher.......student.........guardian........... guest......... committee
+----- Users List /teacher/student/guardian/ guest/ committee...........................................
 ----- Role 
 ----- Users Permissions
 
@@ -81,7 +81,7 @@ Hostel
 Library
 Event Management 
 Digital Diary
-Academic Plan
+Academic Plan.........................................................................
 Notice/Notification
 Zoom
 Android / IOS
