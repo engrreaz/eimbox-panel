@@ -10,7 +10,7 @@
             <tr>
                 <td width="195px" style="padding-right:0px; text-align:right;" vlign="top">
 
-                    <img src="<?php echo $domain; ?>/logo/<?php echo $sccode; ?>.png" width="100px" />
+                    <img src="https://eimbox.com/logo/<?php echo $sccode; ?>.png" width="100px" />
                 </td>
                 <td style="color:black; padding-left:20px;  font-family:'Segoe UI'; font-size:20px;" vlign="top">
                     <b><?php echo $scname; ?></b>

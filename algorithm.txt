@@ -1,4 +1,5 @@
 
+git add .; git commit -m""; git push
 
 - Dashboard
 - HRD
@@ -8,8 +9,10 @@
 ----- MPO Management
 - Students
 ----- Profile
+----- Finanace Setup
 ----- Tutioin Fee 
 ----- Attendance
+
 - Accounts
 ----- At A Glance 
 ----- Income | Expenditure 
@@ -30,19 +33,17 @@
 
 - Examination / Class Test
 ----- Exam List/Create
------ Exam Schedule
+----- Exam Schedule.................................................................................
 ----- Exam Policies 
------ Admit Card 
+----- Admit Card ...........................................................................................
 ----- Seat Plan 
------ Seat Card
-
+----- Seat Card..........................................................................................
 
 ----- Result Management
 ---------- Marks Entry
 ---------- Marks Validation
 ---------- Marks Processing
 ----- Result Card
-
 
 - Management 
 ----- SMC 
@@ -51,7 +52,6 @@
 - Register
 ----- Refernce Book 
 ----- Notice Book 
-
 
 - user Management 
 ----- Users List ..... teacher.......student.........guardian........... guest......... committee
@@ -62,20 +62,20 @@
 ----- user last setting pull tracking
 
 - Certificates 
------ Testimonial 
+----- Testimonial ...............................................................................
 ----- Tranfer Certificates
 ----- To Whom
 
 - Reports 
------ Dues Report
+----- Dues Report.................................................................................
+----- My Transactioin
+
 
 - Public Exams 
-
 
 - More 
 ----- Promotion
 ----- Migration
-
 
 Hostel
 Library
@@ -87,10 +87,11 @@ Zoom
 Android / IOS
 
 Error Scanner
-Logbook
+Logbook ..................................................................................
 
 
 
 Settings/ Institure Management, User Management 
+Financial Setup
 
 *** class notifcation for teacher.

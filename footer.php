@@ -1,9 +1,13 @@
 </div>
 <!-- content-wrapper ends -->
 <!-- partial:partials/_footer.html -->
+
+
+
 <footer class="footer d-print-none">
     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">a paperless school management system</span>
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">a paperless school management
+            system</span>
         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © eimbox.com 2024</span>
     </div>
 </footer>
@@ -13,6 +17,8 @@
 </div>
 <!-- page-body-wrapper ends -->
 </div>
+<div id="logstatus"></div>
+
 <!-- container-scroller -->
 <!-- plugins:js -->
 <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -48,6 +54,54 @@
 <script>
     new DataTable('#example');
 </script>
+
+
 </body>
 
 </html>
+
+
+<script>
+
+    function loger() {
+        var infor = "page=<?php echo $curfile; ?>" ;
+        $("#logstatus").html("----");
+        $.ajax({
+            type: "POST",
+            url: "backend/save-log.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#logstatus').html('<span>***</span>');
+            },
+            success: function (html) {
+            }
+        });
+    }
+    // setInterval(logers, 3000);
+    // function logers() {
+    //     document.getElementById('logstatus').innerHTML = "xxxx";
+    //     document.getElementById('logstatus').innerHTML = "<?php echo $cur; ?>";
+    // }
+
+    const element = document.getElementById("logstatus");
+    setInterval(function () { 
+        var infor = "page=<?php echo $curfile; ?>" ;
+        
+        $("#logstatus").html("----");
+       
+        $.ajax({
+            type: "POST",
+            url: "backend/save-log.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#logstatus').html('<span></span>');
+            },
+            success: function (html) {
+                $('#logstatus').html(html);
+            }
+        });
+     }, 1000);
+
+</script>

@@ -649,6 +649,6 @@
 <script>
     // A $( document ).ready() block.
     $(document).ready(function () {
-        alert("wait...");
+        // alert("wait...");
     });
 </script>

@@ -42,11 +42,10 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
-
-
 ?>
 
 <h3>My Profile </h3>
+<code>Page Under Contruction</code>
 
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
@@ -88,7 +87,7 @@ if (isset($_GET['addnew'])) {
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-hover text-white">
-                          
+
                             <tbody>
                                 <?php
                                 $sccodes = $sccode * 10;
@@ -114,7 +113,7 @@ if (isset($_GET['addnew'])) {
                                     <td>Display Name :
                                     </td>
                                     <td>
-                                    <input type="text" class="form-control" id="date"
+                                        <input type="text" class="form-control" id="date"
                                             value="<?php echo $fullname; ?>" />
                                     </td>
                                     <td></td>
