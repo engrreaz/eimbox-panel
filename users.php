@@ -53,28 +53,58 @@ if (isset($_GET['level'])) {
 
                             <div style="text-align: right; margin-bottom:15px;">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-primary" onclick="go(1);">
+                                    <button type="button" class="btn btn-<?php if ($level == 'all') {
+                                        echo 'info';
+                                    } else {
+                                        echo 'primary';
+                                    }
+                                    ; ?>" onclick="go(1);">
                                         <i class="mdi mdi-heart-outline"></i> All
                                     </button>
-                                    <button type="button" class="btn btn-primary" onclick="go(2);">
+                                    <button type="button" class="btn btn-<?php if ($level == 'committee') {
+                                        echo 'info';
+                                    } else {
+                                        echo 'primary';
+                                    }
+                                    ; ?>" onclick="go(2);">
                                         <i class="mdi mdi-heart-outline"></i> Committee
                                     </button>
-                                    <button type="button" class="btn btn-info" onclick="go(3);">
+                                    <button type="button" class="btn btn-<?php if ($level == 'teacher') {
+                                        echo 'info';
+                                    } else {
+                                        echo 'primary';
+                                    }
+                                    ; ?>" onclick="go(3);">
                                         <i class="mdi mdi-heart-outline"></i> Teacher
                                     </button>
-                                    <button type="button" class="btn btn-primary" onclick="go(4);">
+                                    <button type="button" class="btn btn-<?php if ($level == 'guardian') {
+                                        echo 'info';
+                                    } else {
+                                        echo 'primary';
+                                    }
+                                    ; ?>" onclick="go(4);">
                                         <i class="mdi mdi-calendar"></i> Guardian
                                     </button>
-                                    <button type="button" class="btn btn-primary" onclick="go(5);">
+                                    <button type="button" class="btn btn-<?php if ($level == 'student') {
+                                        echo 'info';
+                                    } else {
+                                        echo 'primary';
+                                    }
+                                    ; ?>" onclick="go(5);">
                                         <i class="mdi mdi-clock"></i> Student
                                     </button>
-                                    <button type="button" class="btn btn-primary" onclick="go(6);">
+                                    <button type="button" class="btn btn-<?php if ($level == 'guest') {
+                                        echo 'info';
+                                    } else {
+                                        echo 'primary';
+                                    }
+                                    ; ?>" onclick="go(6);">
                                         <i class="mdi mdi-clock"></i> Guest
                                     </button>
                                 </div>
                             </div>
 
-                            <table class="table table-borderedx"
+                            <table class="table table-bordered"
                                 style="width:100%; border:1px solid gray !important; border-collapse:collapse;"
                                 id="main-table">
                                 <thead>
@@ -112,7 +142,7 @@ if (isset($_GET['level'])) {
                                             $photo = $row0["photourl"];
                                             $profilename = $row0["profilename"];
 
-                                            if($photo == 'null') {
+                                            if ($photo == 'null') {
                                                 $photo = 'assets/images/no-img.png';
                                             }
                                             ?>
@@ -130,11 +160,13 @@ if (isset($_GET['level'])) {
                                                 <td style="padding : 3px 10px; border:1px solid gray;">
                                                     <?php echo $profilename; ?>
                                                 </td>
-                                                <td style="padding : 3px 10px; border:1px solid gray;">
-                                                    <div id="btn<?php echo $stid; ?>">
-                                                        <button class="btn btn-primary btn-block"
-                                                            onclick="issue(<?php echo $stid; ?>)"></button>
-                                                    </div>
+                                                <td style="padding : 3px ; border:1px solid gray;">
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="perm('<?php echo $email; ?>');">
+                                                        <i class="mdi mdi-clock"></i></button>
+
+
+                                                        <span class="mdi mdi-arrow-top-right icon-item"></span>
                                                 </td>
 
 
@@ -179,6 +211,9 @@ include 'footer.php';
         else if (cat == 5) { b = 'student'; }
         else if (cat == 6) { b = 'guest'; }
         window.location.href = 'users.php?&level=' + b;
+    }
+    function perm(email){
+        window.location.href = 'users-permission.php?&useremail=' + email;
     }
 </script>
 
