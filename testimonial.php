@@ -409,11 +409,6 @@ if (isset($_GET['addnew'])) {
                                                 onclick="goprint(<?php echo $stid; ?>)">Print</button>
                                         </div>
 
-                                        <div id="btn<?php echo $stid; ?>">
-                                            <button class="btn btn-primary btn-block" onclick="issue(<?php echo $stid; ?>)">Issue
-                                                Now</button>
-                                        </div>
-
                                         <?php
                                     }
                                 } else {
