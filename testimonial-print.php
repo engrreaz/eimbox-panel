@@ -57,7 +57,7 @@
         $sql = "SELECT * FROM testimonial where sccode='$sccode' and pubexam='$examname' and passyear='$passingyear' and groupsection='$groupsection' and testslno!='' and stid='$stid'";
     }
 
-    //echo $sql;
+    echo $sql;
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
