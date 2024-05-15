@@ -117,7 +117,7 @@ if (isset($_GET['addnew'])) {
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
-                                    echo $sql0x;
+                                    // echo $sql0x;
                                     $result0r = $conn->query($sql0x);
                                     if ($result0r->num_rows > 0) {
                                         while ($row0x = $result0r->fetch_assoc()) {
