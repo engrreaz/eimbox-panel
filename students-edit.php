@@ -11,11 +11,16 @@ $sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear = '$sy' an
 $result6 = $conn->query($sql5);
 if ($result6->num_rows > 0) {
     while ($row5 = $result6->fetch_assoc()) {
-        $cls = $row5["classname"];
-        $sec = $row5["sectionname"];
+        $cls2 = $row5["classname"];
+        $sec2 = $row5["sectionname"];
         $rollno = $row5["rollno"];
         $stid = $row5["stid"];
     }
+} else {
+    $cls2 = '';
+    $sec2 = '';
+    $rollno = '';
+    $stid = '';
 }
 $sql5 = "SELECT * FROM students where stid='$stid' and sccode='$sccode' ";
 $result7 = $conn->query($sql5);
@@ -52,14 +57,48 @@ if ($result7->num_rows > 0) {
         $preinsadd = $row5["preinsadd"];
         $doa = $row5["doa"];
         $photoid = $row5["photo_id"];
-        $dopp = $row5["photo_pic_date"];
+        $dopp = $row5["photo_pick_date"];
         // $ = $row5[""];
     }
+} else {
+    $stnameeng = '';
+    $stnameben = '';
+    $fname = '';
+    $fprof = '';
+    $fmobile = '';
+    // $ = $row5["fnid"];
+    $mname = '';
+    $mprof = '';
+    $mmobile = '';
+    // $ = $row5["mnid"];
+    $previll = '';
+    $prepo = '';
+    $preps = '';
+    $predist = '';
+    $pervill = '';
+    $perpo = '';
+    $perps = '';
+    $perdist = '';
+    $dob = '';
+    $religion = '';
+    $brn = '';
+    $gender = '';
+    $guarname = '';
+    $guaradd = '';
+    $guarrelation = '';
+    $guarmobile = '';
+    $tcno = '';
+    $preins = '';
+    $preinsadd = '';
+    $doa = '';
+    $photoid = '';
+    $dopp = '';
+    // $ = $row5[""];
 }
 ?>
 <style>
-    .col-form-label{
-        color:slategray;
+    .col-form-label {
+        color: slategray;
     }
 </style>
 <h3>Student Editor</h3>
@@ -85,8 +124,12 @@ if ($result7->num_rows > 0) {
                                     if ($result000->num_rows > 0) {
                                         while ($row000 = $result000->fetch_assoc()) {
                                             $clsname = $row000["areaname"];
-
-                                            echo '<option value="' . $clsname . '">' . $clsname . '</option>';
+                                            if ($cls2 == $clsname) {
+                                                $selcls = 'selected';
+                                            } else {
+                                                $selcls = '';
+                                            }
+                                            echo '<option value="' . $clsname . '" ' . $selcls . ' >' . $clsname . '</option>';
                                         }
                                     }
                                     ?>
@@ -102,6 +145,21 @@ if ($result7->num_rows > 0) {
                                 <div id="secn" class="input-control select full-size error">
                                     <select id="sectionname" name="sectionname" class="form-control text-white">
                                         <option value="">Select a Section</option>
+                                        <?php
+                                        $sql000 = "SELECT * FROM areas where user='$rootuser' and areaname = '$cls2' group by subarea order by idno";
+                                        $result000 = $conn->query($sql000);
+                                        if ($result000->num_rows > 0) {
+                                            while ($row000 = $result000->fetch_assoc()) {
+                                                $secname = $row000["subarea"];
+                                                if ($sec2 == $secname) {
+                                                    $selsec = 'selected';
+                                                } else {
+                                                    $selsec = '';
+                                                }
+                                                echo '<option value="' . $secname . '" ' . $selsec . ' >' . $secname . '</option>';
+                                            }
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -113,7 +171,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Roll. No.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="rollno" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="rollno" value="<?php echo $rollno; ?>"
+                                    onkeydown="if(event.keyCode==13) document.getElementById('srchst').click()" />
                             </div>
                         </div>
                     </div>
@@ -123,7 +182,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Student's ID.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="stid" value="<?php echo $stid; ?>" disabled />
+                                <input type="text" class="form-control bg-dark" id="stid" value="<?php echo $stid; ?>"
+                                    disabled />
                             </div>
                         </div>
                     </div>
@@ -133,13 +193,12 @@ if ($result7->num_rows > 0) {
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" style="padding:4px 10px 3px; border-radius:5px;" name="srchst"
-                                    id="srchst" class=" btn-primary" style="" onclick="fetchstudent();"><i
-                                        class="mdi mdi-eye"></i></button>
+                                    id="srchst" class="btn btn-outline-primary btn-icon" style=""
+                                    onclick="fetchstudent();"><i class="mdi mdi-eye"></i></button>
                                 <div id="stinfo" style="display:none;"></div>
                             </div>
                         </div>
                     </div>
-                    <div id="stinfo" style="display:none;"></div>
                 </div>
             </div>
         </div>
@@ -156,7 +215,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Student's Name (In English)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="stnameeng" value="<?php echo $stnameeng; ?>" />
+                                <input type="text" class="form-control" id="stnameeng"
+                                    value="<?php echo $stnameeng; ?>" />
                             </div>
                         </div>
                     </div>
@@ -164,7 +224,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Student's Name (In Bengali)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="stnameben" value="<?php echo $stnameben; ?>" />
+                                <input type="text" class="form-control" id="stnameben"
+                                    value="<?php echo $stnameben; ?>" />
                             </div>
                         </div>
                     </div>
@@ -352,7 +413,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Religion</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="religion" value="<?php echo $religion; ?>" />
+                                <input type="text" class="form-control" id="religion"
+                                    value="<?php echo $religion; ?>" />
                             </div>
                         </div>
                     </div>
@@ -427,7 +489,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Guardian's Name</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="guarname" value="<?php echo $guarname; ?>" />
+                                <input type="text" class="form-control" id="guarname"
+                                    value="<?php echo $guarname; ?>" />
                             </div>
                         </div>
                     </div>
@@ -452,7 +515,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Mobile Number</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="guarmobile" value="<?php echo $guarmobile; ?>" />
+                                <input type="text" class="form-control" id="guarmobile"
+                                    value="<?php echo $guarmobile; ?>" />
                             </div>
                         </div>
                     </div>
@@ -529,7 +593,8 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Institute Address</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="preinsadd" value="<?php echo $preinsadd; ?>" />
+                                <input type="text" class="form-control" id="preinsadd"
+                                    value="<?php echo $preinsadd; ?>" />
                             </div>
                         </div>
                     </div>
@@ -588,6 +653,7 @@ if ($result7->num_rows > 0) {
                             <div class="col-12">
                                 <button type="submit" id="savest" name="savest" class="btn btn-success"
                                     onclick="savestudent();">Save the Student</button>
+                                <div id="batchbatch"></div>
                             </div>
                         </div>
                     </div>
@@ -623,20 +689,18 @@ include 'footer.php';
 </script>
 
 <script>
-
+    document.getElementById('defbtn').innerHTML = 'Save The Student';
     function defbtn() {
         savestudent();
     }
 
     function fetchsection() {
-
         var classname = document.getElementById("classname").value;
-        var infor = "classname=" + classname + "&usr=<?php echo $usr; ?>" ;
+        var infor = "classname=" + classname;
         $("#secn").html("");
-
         $.ajax({
             type: "POST",
-            url: "fetch-section.php",
+            url: "backend/fetch-section.php",
             data: infor,
             cache: false,
             beforeSend: function () {
@@ -649,30 +713,30 @@ include 'footer.php';
     }
 
 
-    function sameadd() {
+    function sameadd() {//*********************************************** */
         document.getElementById("pervill").value = document.getElementById("previll").value;
         document.getElementById("perpo").value = document.getElementById("prepo").value;
         document.getElementById("perps").value = document.getElementById("preps").value;
         document.getElementById("perdist").value = document.getElementById("predist").value;
     }
 
-    function guarf() {
+    function guarf() {//******************************************** */
         document.getElementById("guarname").value = document.getElementById("fname").value;
         document.getElementById("guaradd").value = document.getElementById("previll").value;
         document.getElementById("guarrelation").value = "Father";
         document.getElementById("guarmobile").value = document.getElementById("fmobile").value;
     }
 
-    function guarm() {
+    function guarm() {//************************************ */
         document.getElementById("guarname").value = document.getElementById("mname").value;
         document.getElementById("guaradd").value = document.getElementById("previll").value;
         document.getElementById("guarrelation").value = "Mother";
         document.getElementById("guarmobile").value = document.getElementById("mmobile").value;
     }
 
-
+</script>
+<script>
     function savestudent() {
-       
         var classname = document.getElementById("classname").value;
         var sectionname = document.getElementById("sectionname").value;
         var rollno = document.getElementById("rollno").value;
@@ -715,14 +779,6 @@ include 'footer.php';
         var photoid = document.getElementById("photoid").value;
         var dopp = document.getElementById("dopp").value;
 
-
-
-
-
-alert("OL");
-
-
-
         if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
             if (stid == "") { alert("You must search a student first after input class and roll no."); } else { }
             if (classname == "") { alert("You must select a class first."); } else { }
@@ -738,92 +794,40 @@ alert("OL");
             if (doa == "") { alert("You must select admission date."); } else { }
         }
         else {
-
-
-            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&sccode=" + sccode + "&photoid=" + photoid + "&dopp=" + dopp;
-            $("#batchbatch").html("");
+            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp;
+            $("#batchbatch").html("ddd");
 
             $.ajax({
                 type: "POST",
-                url: "save-student.php",
+                url: "backend/save-student.php",
                 data: infor,
                 cache: false,
                 beforeSend: function () {
-                    $('#batchbatch').html('<span class="mif-spinner4 mif-ani-pulse"></span>');
+                    $('#batchbatch').html('<span class="">...</span>');
                 },
                 success: function (html) {
                     $("#batchbatch").html(html);
-                    document.getElementById("rollno").focus();
-
-
-
-                    document.getElementById("rollno").value = +rollno + +1;
-                    document.getElementById("photoid").value = +photoid + +1;
-                    document.getElementById("dopp").value = dopp;
-                    document.getElementById("stid").value = "";
-                    document.getElementById("stnameeng").value = "";
-                    document.getElementById("stnameben").value = "";
-                    document.getElementById("fname").value = "";
-                    document.getElementById("fprof").value = "";
-                    document.getElementById("fmobile").value = "";
-
-                    document.getElementById("mname").value = "";
-                    document.getElementById("mprof").value = "";
-                    document.getElementById("mmobile").value = "";
-
-                    document.getElementById("previll").value = "";
-                    document.getElementById("prepo").value = "";
-                    document.getElementById("preps").value = "";
-                    document.getElementById("predist").value = "";
-
-                    document.getElementById("pervill").value = "";
-                    document.getElementById("perpo").value = "";
-                    document.getElementById("perps").value = "";
-                    document.getElementById("perdist").value = "";
-
-                    document.getElementById("dob").value = "";
-                    document.getElementById("religion").value = "";
-                    document.getElementById("brn").value = "";
-                    document.getElementById("gender").value = "";
-
-                    document.getElementById("guarname").value = "";
-                    document.getElementById("guaradd").value = "";
-                    document.getElementById("guarrelation").value = "";
-                    document.getElementById("guarmobile").value = "";
-
-                    document.getElementById("tcno").value = "";
-                    document.getElementById("preins").value = "";
-                    document.getElementById("preinsadd").value = "";
-                    document.getElementById("doa").value = "";
-                    document.getElementById("stid2").value = "";
-
-                    fetchstudent();
-
-
+                    window.location.href = 'students-edit.php';
                 }
             });
         }
     }
 
 
-
+</script>
+<script>
 
     function fetchstudent() {
-
-
         var classname = document.getElementById("classname").value;
         var sectionname = document.getElementById("sectionname").value;
         var rollno = document.getElementById("rollno").value;
-        var sccode = document.getElementById("sccode").innerHTML;
-
-
-        var infor = "classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&sccode=" + sccode;
+        var infor = "classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno;
         //alert(infor);
         $("#stinfo").html("");
 
         $.ajax({
             type: "POST",
-            url: "fetchcus.php",
+            url: "backend/fetch-stid.php",
             data: infor,
             cache: false,
             beforeSend: function () {
@@ -831,84 +835,8 @@ alert("OL");
             },
             success: function (html) {
                 $("#stinfo").html(html);
-                var stid = document.getElementById("stid0").innerHTML;
-                document.getElementById("stid").value = stid;
-                document.getElementById("stnameeng").focus();
-
-
-
-                var stnameeng = document.getElementById("stnameeng0").innerHTML;
-                document.getElementById("stnameeng").value = stnameeng;
-                document.getElementById("ls").innerHTML = stnameeng;
-                var stnameben = document.getElementById("stnameben0").innerHTML;
-                document.getElementById("stnameben").value = stnameben;
-                var fname = document.getElementById("fname0").innerHTML;
-                document.getElementById("fname").value = fname;
-                var fprof = document.getElementById("fprof0").innerHTML;
-                document.getElementById("fprof").value = fprof;
-                var fmobile = document.getElementById("fmobile0").innerHTML;
-                document.getElementById("fmobile").value = fmobile;
-                var mname = document.getElementById("mname0").innerHTML;
-                document.getElementById("mname").value = mname;
-                var mprof = document.getElementById("mprof0").innerHTML;
-                document.getElementById("mprof").value = mprof;
-                var mmobile = document.getElementById("mmobile0").innerHTML;
-                document.getElementById("mmobile").value = mmobile;
-                var previll = document.getElementById("previll0").innerHTML;
-                document.getElementById("previll").value = previll;
-                var prepo = document.getElementById("prepo0").innerHTML;
-                document.getElementById("prepo").value = prepo;
-                var preps = document.getElementById("preps0").innerHTML;
-                document.getElementById("preps").value = preps;
-                var predist = document.getElementById("predist0").innerHTML;
-                document.getElementById("predist").value = predist;
-                var pervill = document.getElementById("pervill0").innerHTML;
-                document.getElementById("pervill").value = pervill;
-                var perpo = document.getElementById("perpo0").innerHTML;
-                document.getElementById("perpo").value = perpo;
-                var perps = document.getElementById("perps0").innerHTML;
-                document.getElementById("perps").value = perps;
-                var perdist = document.getElementById("perdist0").innerHTML;
-                document.getElementById("perdist").value = perdist;
-                var dob = document.getElementById("dob0").innerHTML;
-                document.getElementById("dob").value = dob;
-                var religion = document.getElementById("religion0").innerHTML;
-                document.getElementById("religion").value = religion;
-                var brn = document.getElementById("brn0").innerHTML;
-                document.getElementById("brn").value = brn;
-                var gender = document.getElementById("gender0").innerHTML;
-                document.getElementById("gender").value = gender;
-
-                var guarname = document.getElementById("guarname0").innerHTML;
-                document.getElementById("guarname").value = guarname;
-                var guaradd = document.getElementById("guaradd0").innerHTML;
-                document.getElementById("guaradd").value = guaradd;
-                var guarrelation = document.getElementById("guarrelation0").innerHTML;
-                document.getElementById("guarrelation").value = guarrelation;
-                var guarmobile = document.getElementById("guarmobile0").innerHTML;
-                document.getElementById("guarmobile").value = guarmobile;
-
-                var tcno = document.getElementById("tcno0").innerHTML;
-                document.getElementById("tcno").value = tcno;
-                var preins = document.getElementById("preins0").innerHTML;
-                document.getElementById("preins").value = preins;
-
-                var preinsadd5 = document.getElementById("preisnadd0").innerHTML;
-                document.getElementById("preinsadd").value = preinsadd5;
-
-                var doa6 = document.getElementById("doa0").innerHTML;
-                document.getElementById("doa").value = doa6;
-
-                var photoid2 = document.getElementById("photoid0").innerHTML;
-                document.getElementById("photoid").value = photoid2;
-
-                var dopp3 = document.getElementById("dopp0").innerHTML;
-                document.getElementById("dopp").value = dopp3;
-
-
-                //	savestudent();
-                english();
-
+                var stid = document.getElementById("stinfo").innerHTML;
+                window.location.href = 'students-edit.php?stid=' + stid;
             }
         });
     }
