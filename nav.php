@@ -116,6 +116,7 @@
         </a>
         <div class="collapse" id="repo">
           <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="students-list.php">Student's List</a></li>
             <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Student's Dues List</a></li>
           </ul>
         </div>
