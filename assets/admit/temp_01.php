@@ -1,3 +1,7 @@
+<style>
+    #rout td{border:1px solid black;}
+    </style>
+
 <tr>
     <td valign="top" class="backpic" background="assets/admit/sample_02.png"
         style="width:210mm; height:147.5mm; padding:3mm;   font-family:'Segoe UI'; ">
@@ -72,7 +76,7 @@
                     <table width="100%">
                         <tr>
                             <td style="padding-right:10px; width:55%;">
-                                <table
+                                <table id="rout"
                                     style="width:100%; border:1px solid gray; border-collapse:collapse; font-size:10px;">
                                     <tr>
                                         <td style="text-align:center"><b>Date</b></td>
