@@ -12,14 +12,14 @@ if ($result0rt->num_rows == 1) {
         if ($lastpage == $page) {
             $query331 = "UPDATE logbook set duration = duration + 3 where id='$id' ;";
         } else {
-            $ip = $_SERVER['SERVER_ADDR'];
+            $ip = $_SERVER['REMOTE_ADDR'];
             $brs = $_SERVER['HTTP_USER_AGENT'];
             $query331 = "INSERT INTO logbook (id, email, sccode, pagename, duration, ipaddr, platform, browser, location, entrytime) 
             VALUES (NULL, '$usr', '$sccode', '$page', '3', '$ip', 'WEB', '$brs', NULL, '$cur');";
         }
     }
 } else {
-    $ip = $_SERVER['SERVER_ADDR'];
+    $ip = $_SERVER['REMOTE_ADDR'];
     $brs = $_SERVER['HTTP_USER_AGENT'];
     $query331 = "INSERT INTO logbook (id, email, sccode, pagename, duration, ipaddr, platform, browser, location, entrytime) 
     VALUES (NULL, '$usr', '$sccode', '$page', '3', '$ip', 'WEB', '$brs', NULL, '$cur');";

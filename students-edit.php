@@ -1,13 +1,31 @@
 <?php
 include 'header.php';
 
+$dismsg = 0;
+$cls2 = $sec2 = $roll2 = $rollno = '';
+$new = 0; // check new entry or not
+
 if (isset($_GET['stid'])) {
     $stid = $_GET['stid'];
 } else {
     $stid = 0;
 }
 
-$sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear = '$sy' and sccode='$sccode';";
+if (isset($_GET['cls'])) {
+    $cls2 = $_GET['cls'];
+}
+if (isset($_GET['sec'])) {
+    $sec2 = $_GET['sec'];
+}
+if (isset($_GET['roll'])) {
+    $roll2 = $_GET['roll'];
+}
+
+if ($cls2 != '' && $sec2 != '' && $roll2 != '') {
+    $sql5 = "SELECT * FROM sessioninfo where classname='$cls2' and sectionname = '$sec2' and rollno='$roll2' and sessionyear = '$sy' and sccode='$sccode';";
+} else {
+    $sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear = '$sy' and sccode='$sccode';";
+}
 $result6 = $conn->query($sql5);
 if ($result6->num_rows > 0) {
     while ($row5 = $result6->fetch_assoc()) {
@@ -17,11 +35,26 @@ if ($result6->num_rows > 0) {
         $stid = $row5["stid"];
     }
 } else {
-    $cls2 = '';
-    $sec2 = '';
-    $rollno = '';
-    $stid = '';
+    // $cls2 = '';
+    // $sec2 = '';
+    $rollno = $roll2;
+    // $stid = '';
+
+    $sql5 = "SELECT * FROM students where sccode='$sccode' order by stid desc LIMIT 1;";
+    $result6x = $conn->query($sql5);
+    if ($result6x->num_rows > 0) {
+        while ($row5 = $result6x->fetch_assoc()) {
+            $stid = $row5["stid"] + 1;
+            $dismsg += 1;
+            $new = 1;
+        }
+    }
 }
+
+
+
+
+
 $sql5 = "SELECT * FROM students where stid='$stid' and sccode='$sccode' ";
 $result7 = $conn->query($sql5);
 if ($result7->num_rows > 0) {
@@ -59,6 +92,7 @@ if ($result7->num_rows > 0) {
         $photoid = $row5["photo_id"];
         $dopp = $row5["photo_pick_date"];
         // $ = $row5[""];
+
     }
 } else {
     $stnameeng = '';
@@ -95,6 +129,13 @@ if ($result7->num_rows > 0) {
     $dopp = '';
     // $ = $row5[""];
 }
+
+if($doa == ''){
+    $doa = date('Y-01-01');
+}
+if($dob == ''){
+    $dob = date('Y-m-d');
+}
 ?>
 <style>
     .col-form-label {
@@ -103,10 +144,15 @@ if ($result7->num_rows > 0) {
 </style>
 <h3>Student Profile Entry / Editing Window</h3>
 
-<div class="row">
+<div class="row" style="display:<?php if ($dismsg == 0) {
+    $dismsg = 'hide';
+} else {
+    $dismsg = 'block';
+}
+echo $dismsg; ?>">
 
     <?php
-    if ($dob == '' || $dob == '1970-01-01') {
+    if ($new == 0 && ($dob == '' || $dob == '1970-01-01')) {
         ?>
         <div class="col-12 grid-margin stretch-card mb-1">
             <div class="card">
@@ -120,22 +166,41 @@ if ($result7->num_rows > 0) {
             </div>
         </div>
         <?php
-
     }
-    ?>
-
-
-    <div class="col-12 grid-margin stretch-card mb-1">
-        <div class="card">
-            <div class="row">
-                <div class="col-12">
-                    <div class="btn-inverse-warning rounded p-2">
-                        <i class="mdi mdi-phone p-1 pr-3"></i>Invalid Mobile Number
+    if ($new == 0 && ($guarmobile == '' || strlen($guarmobile) < 11)) {
+        ?>
+        <div class="col-12 grid-margin stretch-card mb-1">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-inverse-info rounded p-2 ">
+                            <i class="mdi mdi-phone p-1 pr-3"></i>Mobile Number Invalid
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <?php
+    }
+    if ($new == 1) {
+        ?>
+        <div class="col-12 grid-margin stretch-card mb-1">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-inverse-info rounded p-2 ">
+                            <i class="mdi mdi-paperclip p-1 pr-3"></i>Entry New Profile
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+
+
+
 </div>
 
 
@@ -711,9 +776,8 @@ if ($result7->num_rows > 0) {
 include 'footer.php';
 ?>
 
-
-
 <script>
+    document.getElementById('stnameeng').focus();
     $(function () {
         $(".js-select").select2({
             placeholder: "Select a state",
@@ -842,7 +906,8 @@ include 'footer.php';
                 },
                 success: function (html) {
                     $("#batchbatch").html(html);
-                    window.location.href = 'students-edit.php';
+                    var nextroll = parseInt(rollno) + 1;
+                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
         }
@@ -871,7 +936,12 @@ include 'footer.php';
             success: function (html) {
                 $("#stinfo").html(html);
                 var stid = document.getElementById("stinfo").innerHTML;
-                window.location.href = 'students-edit.php?stid=' + stid;
+                if (stid == '0') {
+                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + rollno;
+                } else {
+                    window.location.href = 'students-edit.php?stid=' + stid;
+                }
+
             }
         });
     }
@@ -892,11 +962,4 @@ include 'footer.php';
             titleCase += capitalizedWord + " ";
         });
     }
-
-
-
-
-
-
-
 </script>
