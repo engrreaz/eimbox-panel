@@ -101,7 +101,43 @@ if ($result7->num_rows > 0) {
         color: slategray;
     }
 </style>
-<h3>Student Editor</h3>
+<h3>Student Profile Entry / Editing Window</h3>
+
+<div class="row">
+
+    <?php
+    if ($dob == '' || $dob == '1970-01-01') {
+        ?>
+        <div class="col-12 grid-margin stretch-card mb-1">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-inverse-danger rounded p-2 ">
+                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing Date of Birth
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+
+    }
+    ?>
+
+
+    <div class="col-12 grid-margin stretch-card mb-1">
+        <div class="card">
+            <div class="row">
+                <div class="col-12">
+                    <div class="btn-inverse-warning rounded p-2">
+                        <i class="mdi mdi-phone p-1 pr-3"></i>Invalid Mobile Number
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
@@ -205,7 +241,6 @@ if ($result7->num_rows > 0) {
     </div>
 </div>
 
-
 <div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
@@ -215,7 +250,7 @@ if ($result7->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Student's Name (In English)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="stnameeng"
+                                <input type="text" class="form-control" id="stnameeng" onblur="ucword(this.id);"
                                     value="<?php echo $stnameeng; ?>" />
                             </div>
                         </div>
@@ -733,8 +768,8 @@ include 'footer.php';
         document.getElementById("guarrelation").value = "Mother";
         document.getElementById("guarmobile").value = document.getElementById("mmobile").value;
     }
-
 </script>
+
 <script>
     function savestudent() {
         var classname = document.getElementById("classname").value;
@@ -778,20 +813,20 @@ include 'footer.php';
         var doa = document.getElementById("doa").value;
         var photoid = document.getElementById("photoid").value;
         var dopp = document.getElementById("dopp").value;
-
-        if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
-            if (stid == "") { alert("You must search a student first after input class and roll no."); } else { }
-            if (classname == "") { alert("You must select a class first."); } else { }
-            if (isNaN(rollno) || rollno == "") { alert("You must enter a numeric value as roll."); } else { }
-            if (stnameeng == "") { alert("You must enter Student Name in English."); } else { }
-            if (dob == "") { alert("You must select his/her Birth Date."); } else { }
-            if (religion == "") { alert("You must select his/her religion"); } else { }
-            if (gender == "") { alert("You must select his/her gender"); } else { }
-            if (guarname == "") { alert("You must enter his/her guardian's name."); } else { }
-            if (guaradd == "") { alert("You must enter guardian's address."); } else { }
-            if (guarrelation == "") { alert("You must enter guardian's relation"); } else { }
-            if (guarmobile == "") { alert("You must enter a 11 digits valid guardian's mobile number."); } else { }
-            if (doa == "") { alert("You must select admission date."); } else { }
+        if (stid == "") {
+            // if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
+            //     if (stid == "") { alert("You must search a student first after input class and roll no."); } else { }
+            //     if (classname == "") { alert("You must select a class first."); } else { }
+            //     if (isNaN(rollno) || rollno == "") { alert("You must enter a numeric value as roll."); } else { }
+            //     if (stnameeng == "") { alert("You must enter Student Name in English."); } else { }
+            //     if (dob == "") { alert("You must select his/her Birth Date."); } else { }
+            //     if (religion == "") { alert("You must select his/her religion"); } else { }
+            //     if (gender == "") { alert("You must select his/her gender"); } else { }
+            //     if (guarname == "") { alert("You must enter his/her guardian's name."); } else { }
+            //     if (guaradd == "") { alert("You must enter guardian's address."); } else { }
+            //     if (guarrelation == "") { alert("You must enter guardian's relation"); } else { }
+            //     if (guarmobile == "") { alert("You must enter a 11 digits valid guardian's mobile number."); } else { }
+            //     if (doa == "") { alert("You must select admission date."); } else { }
         }
         else {
             var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp;
@@ -849,7 +884,14 @@ include 'footer.php';
 
     }
 
-
+    function ucword(iid) {
+        var str = document.getElementById(iid).value;
+        let titleCase = "";
+        str.split(" ").forEach(word => {
+            const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            titleCase += capitalizedWord + " ";
+        });
+    }
 
 
 
