@@ -127,8 +127,8 @@
                                     </tr>
                                     <tr>
                                         <td style="font-size:12px;">
-                                            <img src="<?php echo 'https://eimbox.com/sign/' . $sccode; ?>.png"
-                                                width="90px" /><br>
+                                            <!-- <img src="<?php echo 'https://eimbox.com/sign/' . $sccode; ?>.png"
+                                                width="90px" /><br> -->
                                             Class Teacher
                                         </td style="font-size:12px;">
                                         <td style="font-size:12px;">
