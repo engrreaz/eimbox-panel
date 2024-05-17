@@ -206,6 +206,18 @@ echo $dismsg; ?>">
         <?php
     }
     ?>
+
+    Missing Student Name (English) --- danger
+    missing student name (bengali) ... warning 
+    invalid fmobile - mmobile / info 
+    Present Add Missing ---- warning 
+    Permanent Missing ----- info 
+    Gender icon buuon on input 
+    religion icon button 
+    guar name missing --- warning
+    guar name missing/invalid --- danger 
+    
+
 </div>
 
 <style>
@@ -423,6 +435,9 @@ echo $dismsg; ?>">
         <div class="card">
             <div class="card-body">
                 <h4 class="text-muted font-weight-normal">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-inverse-info" onclick="sameadd();">Same as Present Address</button>
+                    </div>
                     Present Address
                 </h4>
 

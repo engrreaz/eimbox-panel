@@ -92,6 +92,11 @@ Logbook ........................................................................
 
 
 Settings/ Institure Management, User Management 
-Financial Setup
+Financial Setup 
+Voter List 
+Voter List Generate Tools
 
 *** class notifcation for teacher.
+
+
+Tools .......

@@ -97,6 +97,9 @@ if ($result7->num_rows > 0) {
         $sscroll = $row5["rollno"];
         $sscresult = $row5["gpa"];
 
+        $fnid = $row5["fnid"];
+        $mnid = $row5["mnid"];
+
     }
 } else {
     $stnameeng = '';
@@ -136,6 +139,8 @@ if ($result7->num_rows > 0) {
     $sscregd = '';
     $sscroll = '';
     $sscresult = '';
+    $fnid = '';
+    $mnid = '';
 }
 
 if ($doa == '') {
@@ -260,39 +265,39 @@ echo $dismsg; ?>">
                     <div class="col-md-12">
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item mr-0" role="presentation">
-                                <button class="nav-link active btn-inverse-primary text-secondary" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                    aria-selected="true">Personal</button>
+                                <button class="nav-link active btn-inverse-primary text-secondary" id="pills-home-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab"
+                                    aria-controls="pills-home" aria-selected="true">Personal</button>
                             </li>
                             <li class="nav-item mr-0" role="presentation">
-                                <button class="nav-link  btn-inverse-primary text-secondary"  id="pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-profile" type="button" role="tab"
+                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-profile-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab"
                                     aria-controls="pills-profile" aria-selected="false">Guardian</button>
                             </li>
-                           
+
                             <li class="nav-item mr-0" role="presentation">
-                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
+                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">Fees</button>
                             </li>
                             <li class="nav-item mr-0" role="presentation">
-                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
+                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">Attendance</button>
                             </li>
                             <li class="nav-item mr-0" role="presentation">
-                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
+                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">Results</button>
                             </li>
                             <li class="nav-item mr-0" role="presentation">
-                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
+                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">Archive</button>
                             </li>
                             <li class="nav-item mr-0" role="presentation">
-                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-contact" type="button" role="tab"
+                                <button class="nav-link  btn-inverse-primary text-secondary" id="pills-contact-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">Overall</button>
                             </li>
                         </ul>
@@ -303,26 +308,75 @@ echo $dismsg; ?>">
                                     <tbody>
                                         <tr>
                                             <td>Name (In English) :</td>
-                                            <td><?php echo $stnameeng;?></td>
+                                            <td><?php echo $stnameeng; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Name (In Bengali) :</td>
-                                            <td><?php echo $stnameben;?></td>
+                                            <td><?php echo $stnameben; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of Birth :</td>
+                                            <td><?php echo $dob; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Religion :</td>
+                                            <td><?php echo $religion; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender :</td>
+                                            <td><?php echo $gender; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Birth Registration #</td>
+                                            <td><?php echo $brn; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Present Address :</td>
-                                            <td><?php echo $previll . ', ' . $prepo . ', ' . $preps . ', ' . $predist;?></td>
+                                            <td><?php echo $previll . ', ' . $prepo . ', ' . $preps . ', ' . $predist; ?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Present Address :</td>
-                                            <td><?php echo $pervill . ', ' . $perpo . ', ' . $perps . ', ' . $perdist;?></td>
+                                            <td><?php echo $pervill . ', ' . $perpo . ', ' . $perps . ', ' . $perdist; ?>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            
+
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                aria-labelledby="pills-profile-tab">aaaaaaaaaaaaa</div>
+                                aria-labelledby="pills-profile-tab">
+                                <table class="table table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>Father :</td>
+                                            <td>
+                                                <h4><?php echo $fname; ?></h4>
+                                                <h6><?php echo $fprof; ?></h6>
+                                                <h5><?php echo $fmobile; ?></h5>
+                                                <h6><?php echo $fnid; ?></h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mother :</td>
+                                            <td>
+                                                <h4><?php echo $mname; ?></h4>
+                                                <h6><?php echo $mprof; ?></h6>
+                                                <h5><?php echo $mmobile; ?></h5>
+                                                <h6><?php echo $mnid; ?></h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guardian :</td>
+                                            <td>
+                                                <h4><?php echo $guarname; ?></h4>
+                                                <h6><?php echo $guarrelation; ?></h6>
+                                                <h5><?php echo $guarmobile; ?></h5>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                                 aria-labelledby="pills-contact-tab">xxxxxxxxxxxxxxxxxx</div>
                         </div>

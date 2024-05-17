@@ -1,0 +1,2 @@
+ALTER TABLE `students` ADD `fnid` VARCHAR(20) NULL DEFAULT NULL AFTER `fmobile`;
+ALTER TABLE `students` ADD `mnid` VARCHAR(20) NULL DEFAULT NULL AFTER `mmobile`;
