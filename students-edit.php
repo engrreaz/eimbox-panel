@@ -205,18 +205,58 @@ echo $dismsg; ?>">
         </div>
         <?php
     }
+
+    if ($new == 0 && ($stnameeng == '' || strlen($stnameeng) < 5 )) {
+        ?>
+        <div class="col-12 grid-margin stretch-card mb-1">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-inverse-danger rounded p-2 ">
+                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing Student's Name in English
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    if ($new == 0 && ($stnameben == '' || strlen($stnameben) < 5 )) {
+        ?>
+        <div class="col-12 grid-margin stretch-card mb-1">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-inverse-warning rounded p-2 ">
+                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing Student's Name in Bengali
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    if ($new == 0 && ($fmobile == '' || strlen($fmobile) < 11 || $mmobile == '' || strlen($mmobile) < 11 )) {
+        ?>
+        <div class="col-12 grid-margin stretch-card mb-1">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-inverse-info rounded p-2 ">
+                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing / Invalid Father's / Mother's Mobile Number.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
     ?>
 
-    Missing Student Name (English) --- danger
-    missing student name (bengali) ... warning 
-    invalid fmobile - mmobile / info 
-    Present Add Missing ---- warning 
-    Permanent Missing ----- info 
-    Gender icon buuon on input 
-    religion icon button 
-    guar name missing --- warning
-    guar name missing/invalid --- danger 
-    
+   
+
 
 </div>
 
@@ -1013,7 +1053,7 @@ include 'footer.php';
                 },
                 success: function (html) {
                     $("#batchbatch").html(html);
-                    var nextroll = parseInt(rollno) + 1;
+                    var nextroll = parseInt(rollno) + 0;
                     window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
@@ -1067,7 +1107,7 @@ include 'footer.php';
             const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
             titleCase += capitalizedWord + " ";
         });
-        document.getElementById(iid).value = titleCase;
+        document.getElementById(iid).value = titleCase.trim();
     }
 </script>
 

@@ -180,6 +180,14 @@ echo $dismsg; ?>">
         </div>
         <?php
     }
+
+    
+
+
+
+
+
+
     if ($new == 0 && ($guarmobile == '' || strlen($guarmobile) < 11)) {
         ?>
         <div class="col-12 grid-margin stretch-card mb-1">
@@ -543,7 +551,7 @@ include 'footer.php';
                 },
                 success: function (html) {
                     $("#batchbatch").html(html);
-                    var nextroll = parseInt(rollno) + 1;
+                    var nextroll = parseInt(rollno) + 0;
                     window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
