@@ -270,6 +270,22 @@ if (isset($_GET['addnew'])) {
 
 
                     }
+                } else {
+                    $neng = '';
+                    $nben = '';
+
+                    $fname = '';
+                    $mname = '';
+                    $vill = '';
+                    $po = '';
+                    $ps = '';
+                    $dist = '';
+                    $dob = '';
+
+                    $regdno = '';
+                    $sscroll = '';
+                    $gpa = '';
+                    $gla = '';
                 }
 
 
@@ -320,7 +336,7 @@ if (isset($_GET['addnew'])) {
                                 <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $stid; ?>)">
                                     <i class="mdi mdi-book-open-page-variant"></i>
                                 </button>
-                                <button type="button" class="btn btn-inverse-warning">
+                                <button type="button" class="btn btn-inverse-warning" onclick="issuet(<?php echo $stid; ?>)">
                                     <i class="mdi mdi-calendar"></i>
                                 </button>
                             </div>
@@ -374,30 +390,14 @@ include 'footer.php';
     }
 </script>
 
-
 <script>
     function issue(stid) {
-        var year = document.getElementById("year").value;
-        var sec = document.getElementById("sec").value;
-        var infor = "stid=" + stid + "&year=" + year + "&sec=" + sec;
-
-        $("#btn" + stid).html("");
-
-        $.ajax({
-            type: "POST",
-            url: "issue-testimonial.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#btn' + stid).html('<small>Processing...</small>');
-            },
-            success: function (html) {
-                $("#btn" + stid).html(html);
-            }
-        });
+        window.location.href = 'students-edit.php?stid=' + stid;
+    }
+    function issuet(stid) {
+        window.location.href = 'student-profile.php?stid=' + stid;
     }
 </script>
-
 
 <script>
     function fetchs(e) {
@@ -431,13 +431,11 @@ include 'footer.php';
         }
     }
 
-
     function svs(e) {
         if (e.key == 'Enter') {
             savessc();
         }
     }
-
 
     function savessc() {
         var br = document.getElementById("boardroll").value;

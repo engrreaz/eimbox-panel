@@ -15,11 +15,11 @@
     </ul>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown d-none d-lg-block">
-        <button class="nav-link btn btn-success create-new-button" id="defbtn" data-toggle="dropdown" onclick="defbtn();"
+        <button class="nav-link btn  btn-inverse-success create-new-button" id="defbtn" data-toggle="dropdown" onclick="defbtn();"
           aria-expanded="false" ></button>
 
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-          aria-labelledby="createbuttonDropdown">
+          aria-labelledby="createbuttonDropdown" id="defmenu">
           <h6 class="p-3 mb-0">Projects</h6>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item preview-item">

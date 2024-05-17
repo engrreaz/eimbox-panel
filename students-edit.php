@@ -92,6 +92,10 @@ if ($result7->num_rows > 0) {
         $photoid = $row5["photo_id"];
         $dopp = $row5["photo_pick_date"];
         // $ = $row5[""];
+        $sscyear = $row5["sscpassyear"];
+        $sscregd = $row5["regdno"];
+        $sscroll = $row5["rollno"];
+        $sscresult = $row5["gpa"];
 
     }
 } else {
@@ -128,12 +132,16 @@ if ($result7->num_rows > 0) {
     $photoid = '';
     $dopp = '';
     // $ = $row5[""];
+    $sscyear = '';
+    $sscregd = '';
+    $sscroll = '';
+    $sscresult = '';
 }
 
-if($doa == ''){
+if ($doa == '') {
     $doa = date('Y-01-01');
 }
-if($dob == ''){
+if ($dob == '') {
     $dob = date('Y-m-d');
 }
 ?>
@@ -198,19 +206,20 @@ echo $dismsg; ?>">
         <?php
     }
     ?>
-
-
-
 </div>
 
-
+<style>
+    h4 {
+        font-weight: bold;
+    }
+</style>
 <div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="text-muted font-weight-normal">
+                <h4 class="text-muted font-weight-normal">
                     Session Information
-                </h6>
+                </h4>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
@@ -336,7 +345,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Father's Name</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="fname" value="<?php echo $fname; ?>" />
+                                <input type="text" class="form-control" id="fname" value="<?php echo $fname; ?>"
+                                    onblur="ucword(this.id);" />
                             </div>
                         </div>
                     </div>
@@ -344,7 +354,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Profession</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="fprof" value="<?php echo $fprof; ?>" />
+                                <input type="text" class="form-control" id="fprof" value="<?php echo $fprof; ?>"
+                                    onblur="ucword(this.id);" />
                             </div>
                         </div>
                     </div>
@@ -371,7 +382,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Mother's Name</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="mname" value="<?php echo $mname; ?>" />
+                                <input type="text" class="form-control" id="mname" value="<?php echo $mname; ?>"
+                                    onblur="ucword(this.id);" />
                             </div>
                         </div>
                     </div>
@@ -379,7 +391,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Profession</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="mprof" value="<?php echo $mprof; ?>" />
+                                <input type="text" class="form-control" id="mprof" value="<?php echo $mprof; ?>"
+                                    onblur="ucword(this.id);" />
                             </div>
                         </div>
                     </div>
@@ -418,7 +431,14 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Addree Line 1 / Village</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="previll" value="<?php echo $previll; ?>" />
+                                <input type="text" list="village" class="form-control" id="previll"
+                                    value="<?php echo $previll; ?>" />
+                                <datalist id="village">
+                                    <option value="first@example.com">
+                                    <option value="second@example.com">
+                                    <option value="third@example.com">
+                                    <option value="last@example.com">
+                                </datalist>
                             </div>
                         </div>
                     </div>
@@ -426,7 +446,13 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Address Line 2 / PO</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="prepo" value="<?php echo $prepo; ?>" />
+                                <input type="text" list="postoffice" class="form-control" id="prepo" value="<?php echo $prepo; ?>" />
+                                <datalist id="postoffice">
+                                    <option value="abcde">
+                                    <option value="cdghd">
+                                    <option value="ahtfjrrt sa adrg">
+                                    <option value="sretrrudfg rdgdrhtys  tsr">
+                                </datalist>
                             </div>
                         </div>
                     </div>
@@ -498,8 +524,6 @@ echo $dismsg; ?>">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-
-
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
@@ -513,8 +537,22 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Religion</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="religion"
-                                    value="<?php echo $religion; ?>" />
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="religion"
+                                            value="<?php echo $religion; ?>" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-md btn-inverse-success" type="button">
+                                                <i class="mdi mdi-check-circle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Hide  -->
+                                <!-- <div id="the-basics" style="display:none;">
+                                    <input class="typeahead" type="text" placeholder="">
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -580,9 +618,9 @@ echo $dismsg; ?>">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h3 class="text-muted font-weight-normal">
+                <h4 class="text-muted font-weight-normal">
                     Guardian Information
-                </h3>
+                </h4>
 
                 <div class="row">
                     <div class="col-md-3">
@@ -668,9 +706,9 @@ echo $dismsg; ?>">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h3 class="text-muted font-weight-normal">
+                <h4 class="text-muted font-weight-normal">
                     Transfer Certificate (If Necessary)
-                </h3>
+                </h4>
 
                 <div class="row">
                     <div class="col-md-3">
@@ -713,15 +751,60 @@ echo $dismsg; ?>">
     </div>
 </div>
 
+<div class="row"> <!--   Class/Roll Block -->
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-muted font-weight-normal">
+                    Public Examination Information
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">SSC Passing Year</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="sscyear" value="<?php echo $sscyear; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">SSC Regd. No.</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="sscregd" value="<?php echo $sscregd; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">SSC Roll</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="sscroll" value="<?php echo $sscroll; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Result (GPA)</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="sscresult"
+                                    value="<?php echo $sscresult; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="text-muted font-weight-normal">
-                    Select Month & Year and press 'Proceed' to proceed
-                </h6>
-
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
@@ -789,6 +872,7 @@ include 'footer.php';
 
 <script>
     document.getElementById('defbtn').innerHTML = 'Save The Student';
+    document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         savestudent();
     }
@@ -877,6 +961,14 @@ include 'footer.php';
         var doa = document.getElementById("doa").value;
         var photoid = document.getElementById("photoid").value;
         var dopp = document.getElementById("dopp").value;
+
+        var sscyear = document.getElementById("sscyear").value;
+        var sscregd = document.getElementById("sscregd").value;
+        var sscroll = document.getElementById("sscroll").value;
+        var sscresult = document.getElementById("sscresult").value;
+
+
+
         if (stid == "") {
             // if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
             //     if (stid == "") { alert("You must search a student first after input class and roll no."); } else { }
@@ -893,7 +985,7 @@ include 'footer.php';
             //     if (doa == "") { alert("You must select admission date."); } else { }
         }
         else {
-            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp;
+            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll=" + sscroll + "&sscresult=" + sscresult;
             $("#batchbatch").html("ddd");
 
             $.ajax({
@@ -951,7 +1043,6 @@ include 'footer.php';
         document.getElementById("prepo").value = document.getElementById("po").innerHTML;
         document.getElementById("preps").value = document.getElementById("ps").innerHTML;
         document.getElementById("predist").value = document.getElementById("dist").innerHTML;
-
     }
 
     function ucword(iid) {
@@ -961,5 +1052,70 @@ include 'footer.php';
             const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
             titleCase += capitalizedWord + " ";
         });
+        document.getElementById(iid).value = titleCase;
     }
+</script>
+
+<script>
+    // Typeahead Javascript Select......................................
+    (function ($) {
+        'use strict';
+        var substringMatcher = function (strs) {
+            return function findMatches(q, cb) {
+                var matches, substringRegex;
+
+                // an array that will be populated with substring matches
+                matches = [];
+
+                // regex used to determine if a string contains the substring `q`
+                var substrRegex = new RegExp(q, 'i');
+
+                // iterate through the pool of strings and for any string that
+                // contains the substring `q`, add it to the `matches` array
+                for (var i = 0; i < strs.length; i++) {
+                    if (substrRegex.test(strs[i])) {
+                        matches.push(strs[i]);
+                    }
+                }
+
+                cb(matches);
+            };
+        };
+
+        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+            'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+            'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+            'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+            'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+            'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+            'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+            'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+            'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        ];
+
+        $('#the-basics .typeahead').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            name: 'states',
+            source: substringMatcher(states)
+        });
+        // constructs the suggestion engine
+        var states = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            // `states` is an array of state names defined in "The Basics"
+            local: states
+        });
+
+        $('#bloodhound .typeahead').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            name: 'states',
+            source: states
+        });
+    })(jQuery);
 </script>

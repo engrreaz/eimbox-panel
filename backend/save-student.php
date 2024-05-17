@@ -45,11 +45,20 @@ $doa = date('y-m-d', strtotime($doa));
 
 $sessionyear = $sy;
 
+$sscyear = $_POST['sscyear'];
+$sscregd = $_POST['sscregd'];
+$sscroll = $_POST['sscroll'];
+$sscresult = $_POST['sscresult'];
+
+if ($sscyear < 1900 && $sscresult>0) {
+	$sscyear = $sy;
+}
+
 
 $sql0 = "SELECT * FROM students where stid='$stid' and sccode='$sccode'";
 $result0 = $conn->query($sql0);
 if ($result0->num_rows > 0) {
-    $query3 = "UPDATE students SET 
+	$query3 = "UPDATE students SET 
 					stnameeng = '$stnameeng', 
 					stnameben = '$stnameben', 
 					fname = '$fname', 
@@ -85,41 +94,45 @@ if ($result0->num_rows > 0) {
 					doa = '$doa',
 					modify = '$td',
 					photo_id = '$photoid',
-					photo_pick_date = '$dopp'
+					photo_pick_date = '$dopp',
+
+					sscpassyear = '$sscyear',
+					regdno = '$sscregd',
+					rollno = '$sscroll',
+					gpa = '$sscresult'
 		WHERE stid='$stid' and sccode='$sccode'";
+	// echo $query3;
 } else {
-    $query33 = "insert into sessioninfo
+	$query33 = "insert into sessioninfo
 				(id, stid, sessionyear, classname, sectionname, rollno, sccode)
 		values 	(NULL, '$stid', '$sessionyear','$classname', '$sectionname', '$rollno','$sccode'				
 							)";
-    if ($conn->query($query33) === TRUE) {
-    }
+	$conn->query($query33);
 
-    $query3 = "insert into students
+	$query3 = "insert into students
 				(id, sccode, stid, stnameeng, stnameben, fname, fprof, fmobile, mname, mprof, mmobile, previll, prepo, preps, predist, pervill, perpo, perps, perdist, dob, religion, brn, gender, guarname, guaradd, guarrelation, guarmobile, tcno, preins, preinsadd, doa, modify, photo_id, photo_pick_date)
 		values 	(NULL, '$sccode','$stid','$stnameeng','$stnameben','$fname','$fprof','$fmobile','$mname','$mprof','$mmobile',
 							'$previll','$prepo','$preps','$predist','$pervill','$perpo','$perps','$perdist',
-							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$dt', '$photoid', '$dopp'
-							
+							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$dt', '$photoid', '$dopp'	
 							)";
 }
 
 
 if ($conn->query($query3) === TRUE) {
-    //echo "Data Submitted succesfully";
-    // include ('cuslist.php');
-    ?>
+	//echo "Data Submitted succesfully";
+	// include ('cuslist.php');
+	?>
 
-    <div id="lastadd" style="display:none;">
-        <span id="vill"><?php echo $previll; ?></span>
-        <span id="po"><?php echo $prepo; ?></span>
-        <span id="ps"><?php echo $preps; ?></span>
-        <span id="dist"><?php echo $predist; ?></span>
-    </div>
+	<div id="lastadd" style="display:none;">
+		<span id="vill"><?php echo $previll; ?></span>
+		<span id="po"><?php echo $prepo; ?></span>
+		<span id="ps"><?php echo $preps; ?></span>
+		<span id="dist"><?php echo $predist; ?></span>
+	</div>
 
-    <?php
+	<?php
 } else {
-    echo "Error Submitting Data. Please Try Again.";
+	echo "Error Submitting Data. Please Try Again.";
 }
 
 ?>
