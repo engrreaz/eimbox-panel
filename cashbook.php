@@ -2,43 +2,62 @@
 include 'header.php';
 
 
-if(isset($_GET['datefrom'])){$datefrom = $_GET['datefrom'];} else {$datefrom = date('Y-m-01');}
-if(isset($_GET['dateto'])){$dateto = $_GET['dateto'];} else {$dateto = date('Y-m-d');}
-if(isset($_GET['dept'])){$dept = $_GET['dept'];} else {$dept = 'School';}
+if (isset($_GET['datefrom'])) {
+    $datefrom = $_GET['datefrom'];
+} else {
+    $datefrom = date('Y-m-01');
+}
+if (isset($_GET['dateto'])) {
+    $dateto = $_GET['dateto'];
+} else {
+    $dateto = date('Y-m-d');
+}
+if (isset($_GET['dept'])) {
+    $dept = $_GET['dept'];
+} else {
+    $dept = 'School';
+}
 
 
 $inlist = $exlist = array();
 ;
-$incnt = $excnt = 0;
+$incnt = $excnt = 1;
 ?>
 
+<style>
+    table,
+    tr,
+    td {
+        border: 1px solid slate;
+    }
+</style>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Columner Cashbook</h4>
-            <p class="card-description"> Add class <code>.table-dark</code>
-            </p>
+            
             <div class="table-responsive">
-                <table class="table table-dark" id="example">
+                <table class="table table-dark" id="exampleX">
                     <tbody>
                         <tr>
                             <td>
-                                <input class="form-control" type="date" id="datefrom" value="<?php echo $datefrom; ?>" />
+                                <input class="form-control" type="date" id="datefrom"
+                                    value="<?php echo $datefrom; ?>" />
                                 <br>
-                                <codex>Date From</codex>
+                                Date From
                             </td>
                             <td>
                                 <input class="form-control" type="date" id="dateto" value="<?php echo $dateto; ?>" />
                                 <br>
-                                <codex>Date To</codex>
+                                Date To
                             </td>
                             <td>
                                 <input class="form-control" type="text" id="dept" value="<?php echo $dept; ?>" />
                                 <br>
-                                <codex>Dept.</codex>
+                                Dept.
                             </td>
                             <td><label class="badge badge-primary" onclick="go();">Search</label><br>
-                                <codex>&nbsp;</codex>
+                                &nbsp;
                             </td>
                         </tr>
 
@@ -62,12 +81,17 @@ $incnt = $excnt = 0;
         }
         // echo var_dump($inlist);
         $incnt = sizeof($inlist);
+        if ($incnt == 0) {
+            $inspan = 1;
+        } else {
+            $inspan = $incnt;
+        }
 
 
         // echo '-----' . $incnt;
-
+        
         // echo '<br>-------------------------------------------<br>';
-
+        
         $sql0x = "SELECT partid FROM cashbook where (sccode='$sccode' || sccode='$sccodes' )and date between '$datefrom' and '$dateto' and slots='$dept' and type='Expenditure'  group by partid order by partid ;";
         $result0x2 = $conn->query($sql0x);
         if ($result0x2->num_rows > 0) {
@@ -78,25 +102,31 @@ $incnt = $excnt = 0;
 
         // echo var_dump($exlist);
         $excnt = sizeof($exlist);
-
+        if ($excnt == 0) {
+            $exspan = 1;
+        } else {
+            $exspan = $excnt;
+        }
         // echo '-----' . $excnt;
         ?>
 
 
         <div class="card-body">
-            <p class="card-description"> Cashbook Details from <code><?php echo date('d F, Y', strtotime($datefrom));?></code> to <code><?php echo date('d F, Y', strtotime($dateto));?></code>
+            <p class="card-description"> Cashbook Details from
+                <code><?php echo date('d F, Y', strtotime($datefrom)); ?></code> to
+                <code><?php echo date('d F, Y', strtotime($dateto)); ?></code>
             </p>
             <div class="table-responsive">
-                <table class="table table-dark">
-                    <thead>
+                <table class="table table-dark table-bordered">
+                    <thead class=" " style="position:sticky;">
                         <tr>
-                            <th rowspan="2"> # </th>
-                            <th rowspan="2"> Date </th>
-                            <th rowspan="2"> Particulars </th>
-                            <th rowspan="2"> Amount </th>
-                            <th colspan="<?php echo $incnt; ?>">Income</th>
-                            <th rowspan="2"></th>
-                            <th colspan="<?php echo $excnt; ?>">Expenditure</th>
+                            <th rowspan="2">#</th>
+                            <th rowspan="2">Date</th>
+                            <th rowspan="2">Particulars</th>
+                            <th rowspan="2">Amount</th>
+                            <th colspan="<?php echo $inspan; ?>">Income</th>
+                            <th rowspan="2">@</th>
+                            <th colspan="<?php echo $exspan; ?>">Expenditure</th>
                             <th rowspan="2">*</th>
                         </tr>
                         <tr>
@@ -108,6 +138,7 @@ $incnt = $excnt = 0;
                                     echo '<th>' . $inlist[$x] . '</th>';
                                 }
                             } else {
+                                // if($incnt == 0) {$incnt = 1;}
                                 echo '<th>--</th>';
                             }
 
@@ -118,6 +149,7 @@ $incnt = $excnt = 0;
                                     echo '<th>' . $exlist[$y] . '</th>';
                                 }
                             } else {
+                                // if($excnt == 0) {$excnt = 1;}
                                 echo '<th>--</th>';
                             }
                             ?>
@@ -155,35 +187,38 @@ $incnt = $excnt = 0;
                                         for ($x = 0; $x < $incnt; $x++) {
                                             $curcol = $inlist[$x];
                                             if ($curcol == $partid) {
-                                                echo '<th>' . $amt . '</th>';
+                                                echo '<td>' . $amt . '</td>';
                                             } else {
-                                                echo '<th></th>';
+                                                echo '<td></td>';
                                             }
 
                                         }
                                     } else {
-                                        echo '<th>QQ</th>';
+                                        echo '<td>QQ</td>';
                                     }
 
-                                    echo '<th></th>';
+                                    echo '<td>@</td>';
 
                                     if ($excnt > 0) {
                                         for ($x = 0; $x < $excnt; $x++) {
                                             $curcol = $exlist[$x];
                                             if ($curcol == $partid) {
-                                                echo '<th>' . $amt . '</th>';
+                                                echo '<td>' . $amt . '</td>';
                                             } else {
-                                                echo '<th></th>';
+                                                echo '<td></td>';
                                             }
                                         }
                                     } else {
-                                        echo '<th>--</th>';
+                                        echo '<td>--</td>';
                                     }
                                     ?>
                                     <td><label class="badge badge-primary">View Book</label></td>
                                 </tr>
                             <?php }
-                        } ?>
+                        } else {
+                            echo '<tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>';
+                        }
+                        ?>
 
                     </tbody>
                 </table>

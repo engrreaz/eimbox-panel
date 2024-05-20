@@ -64,11 +64,11 @@ if ($result7->num_rows > 0) {
         $fname = $row5["fname"];
         $fprof = $row5["fprof"];
         $fmobile = $row5["fmobile"];
-        // $ = $row5["fnid"];
+        $fnid = $row5["fnid"];
         $mname = $row5["mname"];
         $mprof = $row5["mprof"];
         $mmobile = $row5["mmobile"];
-        // $ = $row5["mnid"];
+        $mnid = $row5["mnid"];
         $previll = $row5["previll"];
         $prepo = $row5["prepo"];
         $preps = $row5["preps"];
@@ -93,10 +93,12 @@ if ($result7->num_rows > 0) {
         $dopp = $row5["photo_pick_date"];
         // $ = $row5[""];
         $sscyear = $row5["sscpassyear"];
+        if($sscyear<1900){
+            $sscyear = '';
+        }
         $sscregd = $row5["regdno"];
         $sscroll = $row5["rollno"];
         $sscresult = $row5["gpa"];
-
     }
 } else {
     $stnameeng = '';
@@ -104,11 +106,11 @@ if ($result7->num_rows > 0) {
     $fname = '';
     $fprof = '';
     $fmobile = '';
-    // $ = $row5["fnid"];
+    $fnid = '';
     $mname = '';
     $mprof = '';
     $mmobile = '';
-    // $ = $row5["mnid"];
+    $mnid = '';
     $previll = '';
     $prepo = '';
     $preps = '';
@@ -206,7 +208,7 @@ echo $dismsg; ?>">
         <?php
     }
 
-    if ($new == 0 && ($stnameeng == '' || strlen($stnameeng) < 5 )) {
+    if ($new == 0 && ($stnameeng == '' || strlen($stnameeng) < 5)) {
         ?>
         <div class="col-12 grid-margin stretch-card mb-1">
             <div class="card">
@@ -222,7 +224,7 @@ echo $dismsg; ?>">
         <?php
     }
 
-    if ($new == 0 && ($stnameben == '' || strlen($stnameben) < 5 )) {
+    if ($new == 0 && ($stnameben == '' || strlen($stnameben) < 5)) {
         ?>
         <div class="col-12 grid-margin stretch-card mb-1">
             <div class="card">
@@ -238,7 +240,7 @@ echo $dismsg; ?>">
         <?php
     }
 
-    if ($new == 0 && ($fmobile == '' || strlen($fmobile) < 11 || $mmobile == '' || strlen($mmobile) < 11 )) {
+    if ($new == 0 && ($fmobile == '' || strlen($fmobile) < 11 || $mmobile == '' || strlen($mmobile) < 11)) {
         ?>
         <div class="col-12 grid-margin stretch-card mb-1">
             <div class="card">
@@ -255,7 +257,7 @@ echo $dismsg; ?>">
     }
     ?>
 
-   
+
 
 
 </div>
@@ -423,7 +425,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">NID Number</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="fnid" value="<?php echo $fmobile; ?>" />
+                                <input type="text" class="form-control" id="fnid" value="<?php echo $fnid; ?>" />
                             </div>
                         </div>
                     </div>
@@ -460,7 +462,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">NID Number</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="mnid" value="<?php echo $mmobile; ?>" />
+                                <input type="text" class="form-control" id="mnid" value="<?php echo $mnid; ?>" />
                             </div>
                         </div>
                     </div>
@@ -476,7 +478,8 @@ echo $dismsg; ?>">
             <div class="card-body">
                 <h4 class="text-muted font-weight-normal">
                     <div class="float-right">
-                        <button type="button" class="btn btn-inverse-info" onclick="sameadd();">Same as Present Address</button>
+                        <button type="button" class="btn btn-inverse-info" onclick="sameadd();">Same as Present
+                            Address</button>
                     </div>
                     Present Address
                 </h4>
@@ -501,7 +504,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Address Line 2 / PO</label>
                             <div class="col-12">
-                                <input type="text" list="postoffice" class="form-control" id="prepo" value="<?php echo $prepo; ?>" />
+                                <input type="text" list="postoffice" class="form-control" id="prepo"
+                                    value="<?php echo $prepo; ?>" />
                                 <datalist id="postoffice">
                                     <option value="abcde">
                                     <option value="cdghd">
@@ -708,13 +712,20 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Mobile Number</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="guarmobile"
-                                    value="<?php echo $guarmobile; ?>" />
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="guarmobile"
+                                        value="<?php echo $guarmobile; ?>" />
+
+                                    <!-- <div class="input-group-append">
+                                        <button class="btn btn-md btn-inverse-success" type="button">
+                                            <i class="mdi mdi-check-circle"></i>
+                                        </button>
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col-md-3">
@@ -950,7 +961,6 @@ include 'footer.php';
         });
     }
 
-
     function sameadd() {//*********************************************** */
         document.getElementById("pervill").value = document.getElementById("previll").value;
         document.getElementById("perpo").value = document.getElementById("prepo").value;
@@ -985,10 +995,12 @@ include 'footer.php';
         var fname = document.getElementById("fname").value;
         var fprof = document.getElementById("fprof").value;
         var fmobile = document.getElementById("fmobile").value;
+        var fnid = document.getElementById("fnid").value;
 
         var mname = document.getElementById("mname").value;
         var mprof = document.getElementById("mprof").value;
         var mmobile = document.getElementById("mmobile").value;
+        var mnid = document.getElementById("mnid").value;
 
         var previll = document.getElementById("previll").value;
         var prepo = document.getElementById("prepo").value;
@@ -1022,8 +1034,6 @@ include 'footer.php';
         var sscroll = document.getElementById("sscroll").value;
         var sscresult = document.getElementById("sscresult").value;
 
-
-
         if (stid == "") {
             // if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
             //     if (stid == "") { alert("You must search a student first after input class and roll no."); } else { }
@@ -1040,7 +1050,7 @@ include 'footer.php';
             //     if (doa == "") { alert("You must select admission date."); } else { }
         }
         else {
-            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll=" + sscroll + "&sscresult=" + sscresult;
+            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll=" + sscroll + "&sscresult=" + sscresult + "&fnid=" + fnid + "&mnid=" + mnid;
             $("#batchbatch").html("ddd");
 
             $.ajax({
@@ -1053,17 +1063,14 @@ include 'footer.php';
                 },
                 success: function (html) {
                     $("#batchbatch").html(html);
-                    var nextroll = parseInt(rollno) + 0;
+                    var nextroll = parseInt(rollno) + 1;
                     window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
         }
     }
-
-
 </script>
 <script>
-
     function fetchstudent() {
         var classname = document.getElementById("classname").value;
         var sectionname = document.getElementById("sectionname").value;
@@ -1088,7 +1095,6 @@ include 'footer.php';
                 } else {
                     window.location.href = 'students-edit.php?stid=' + stid;
                 }
-
             }
         });
     }

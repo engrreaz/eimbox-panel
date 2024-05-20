@@ -3,7 +3,7 @@ include 'inc.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <!-- Required meta tags -->
@@ -53,7 +53,15 @@ include 'inc.php';
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_sidebar.html -->
-        <?php include 'nav.php'; ?>
+        <?php 
+        
+        
+        include 'nav.php'; 
+        
+        
+        
+        
+        ?>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_navbar.html -->

@@ -23,6 +23,9 @@ $perpo = $_POST['perpo'];
 $perps = $_POST['perps'];
 $perdist = $_POST['perdist'];
 
+$fnid = $_POST['fnid'];
+$mnid = $_POST['mnid'];
+
 $photoid = $_POST['photoid'];
 $dopp = $_POST['dopp'];
 
@@ -64,9 +67,11 @@ if ($result0->num_rows > 0) {
 					fname = '$fname', 
 					fprof = '$fprof', 
 					fmobile = '$fmobile', 
+					fnid = '$fnid',
 					mname = '$mname', 
 					mprof = '$mprof', 
 					mmobile = '$mmobile',
+					mnid = '$mnid',
 					
 					previll = '$previll', 
 					prepo = '$prepo', 
@@ -110,10 +115,10 @@ if ($result0->num_rows > 0) {
 	$conn->query($query33);
 
 	$query3 = "insert into students
-				(id, sccode, stid, stnameeng, stnameben, fname, fprof, fmobile, mname, mprof, mmobile, previll, prepo, preps, predist, pervill, perpo, perps, perdist, dob, religion, brn, gender, guarname, guaradd, guarrelation, guarmobile, tcno, preins, preinsadd, doa, modify, photo_id, photo_pick_date)
+				(id, sccode, stid, stnameeng, stnameben, fname, fprof, fmobile, mname, mprof, mmobile, previll, prepo, preps, predist, pervill, perpo, perps, perdist, dob, religion, brn, gender, guarname, guaradd, guarrelation, guarmobile, tcno, preins, preinsadd, doa, modify, photo_id, photo_pick_date, fnid, mnid)
 		values 	(NULL, '$sccode','$stid','$stnameeng','$stnameben','$fname','$fprof','$fmobile','$mname','$mprof','$mmobile',
 							'$previll','$prepo','$preps','$predist','$pervill','$perpo','$perps','$perdist',
-							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$dt', '$photoid', '$dopp'	
+							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$dt', '$photoid', '$dopp', '$fnid', '$nid'	
 							)";
 }
 
