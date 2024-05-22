@@ -56,9 +56,29 @@
 </script>
 
 
+
+<?php
+// } else {
+//         include 'access-denied.php';
+// }
+?>
+    <script>
+        if (<?php echo $permission; ?> == 0) {
+            document.getElementById("full-page").style.display = "none";
+            document.write('<div>Access-Denied</div>');
+            document.write('<div><?php echo $permission . '...' . $key . '///';?></div>');
+
+        } else {
+            document.getElementById("full-page").style.display = "flex";
+
+        }
+        document.write('<div><?php echo $permission . '...' . $key . '///';?></div>');
+    </script>
+
 </body>
 
 </html>
+
 
 
 <script>
@@ -98,3 +118,5 @@
         });
     }, 1000);
 </script>
+
+

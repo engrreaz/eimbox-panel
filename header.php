@@ -48,16 +48,15 @@ include 'inc.php';
 
 
 <body>
-    <div class="container-scroller">
+
+
+
+    <div class="container-scroller" id="full-page" style="display:none;">
         <!-- partial:partials/_sidebar.html -->
-        <?php 
-        
-        
-        include 'nav.php'; 
-        
-        
-        
-        
+        <?php
+
+        include 'nav.php';
+
         ?>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
@@ -71,5 +70,13 @@ include 'inc.php';
                     <?php
                     $enum = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '0');
                     $bnum = array('১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০');
+
+
+                    // echo '----' . $key . '----';
+                    // echo '<br><br>';
+                    // echo '----' . $permission . '----';
+                    // echo '<br><br>';
+                    // echo var_dump($permissions_roll);
+                    // echo '<br><br>';
+                    // echo var_dump($key);
                     
-                  
