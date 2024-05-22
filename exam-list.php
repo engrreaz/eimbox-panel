@@ -30,7 +30,7 @@ if ($result0->num_rows > 0) {
         onclick="addnew();">
         <i class="mdi mdi-library-plus"> Add New Class </i></button>
 </div>
-<h3>Bank Details</h3>
+<h3>Exam Management Tool</h3>
 
 
 
@@ -143,7 +143,8 @@ if ($result0->num_rows > 0) {
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary" onclick="save(0,1);">Save</button>
+                                            <button class="btn btn-primary"
+                                                onclick="save(0,1);">Save</button>
 
                                             <div id="gex"></div>
                                         </div>
@@ -174,57 +175,40 @@ if ($result0->num_rows > 0) {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Acc. No.</th>
-                                    <th>Type</th>
-                                    <th>Bank / Branch</th>
-                                    <th class="text-right">Last Balance</th>
+                                    <th>Exam Title</th>
+                                    <th>Class</th>
+                                    <th>Section</th>
+                                    <th>Date Start</th>
                                     <th style="text-align:right;"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $slx = 1;
-                                $sql0x = "SELECT * FROM bankinfo where sccode='$sccode'  order by  id;";
+                                $sql0x = "SELECT * FROM examlist where sccode='$sccode' and sessionyear='$sy'  order by id;";
                                 $result0x = $conn->query($sql0x);
                                 if ($result0x->num_rows > 0) {
                                     while ($row0x = $result0x->fetch_assoc()) {
                                         $id = $row0x["id"];
-                                        $accno = $row0x["accno"];
-                                        $acctype = $row0x["acctype"];
-                                        $bankname = $row0x["bankname"];
-                                        $branch = $row0x["branch"];
-
-                                        $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accno'  order by id desc LIMIT 1;";
-                                        $result0xg = $conn->query($sql0x);
-                                        if ($result0xg->num_rows > 0) {
-                                            while ($row0x = $result0xg->fetch_assoc()) {
-                                                $balance = $row0x["balance"];
-                                            }
-                                        } else {
-                                            $balance = 0;
-                                        }
-
+                                        $exam = $row0x["examtitle"];
+                                        $cls = $row0x["classname"];
+                                        $sec = $row0x["sectionname"];
+                                        $datestart = $row0x["datestart"];
                                         ?>
                                         <tr>
                                             <td><?php echo $slx; ?></td>
-                                            <td><?php echo $accno; ?></td>
-                                            <td><?php echo $acctype; ?></td>
-                                            <td>
-                                                <?php echo $bankname . '<br><div class="pt-2"><small>' . $branch . '</small></div>'; ?>
-                                            </td>
-                                            <td class="text-right">
-                                                <h4><?php echo $balance; ?>.00</h4>
-                                            </td>
-
+                                            <td><?php echo $exam; ?></td>
+                                            <td><?php echo $cls; ?></td>
+                                            <td><?php echo $sec; ?></td>
+                                            <td><?php echo date('d F, Y', strtotime($datestart)); ?></td>
+                                            
 
                                             <td>
-                                                <div id="ssp<?php echo $id; ?>" class="btn-group" role="group"
-                                                    aria-label="Basic example">
-                                                    <button onclick="edit('<?php echo $accno; ?>',1);" class="btn btn-inverse-danger"
-                                                        ><i class="mdi mdi-grease-pencil"></i></button>
-                                                    <button onclick="savex(<?php echo $id; ?>,2);"
-                                                        class="btn btn-inverse-danger" disabled><i
-                                                            class="mdi mdi-delete"></i></button>
+                                                <div id="ssp<?php echo $id; ?>">
+                                                    <label onclick="edit(<?php echo $id; ?>,1);" class="icon-btn btn-info"><i
+                                                            class="mdi mdi-grease-pencil"></i></label>
+                                                    <label onclick="savex(<?php echo $id; ?>,2);" class="icon-btn btn-danger"><i
+                                                            class="mdi mdi-delete"></i></label>
                                                 </div>
                                             </td>
                                         </tr>
@@ -273,11 +257,11 @@ include 'footer.php';
     }
     function addnew() {
         var tail = '';
-        window.location.href = 'classes.php?addnew' + tail;
+        window.location.href = 'exam-list.php?addnew' + tail;
     }
 
     function edit(id, taill) {
-        window.location.href = 'bank-account.php?accno=' + id;
+        window.location.href = 'classes.php?addnew=' + id;
     }
 
 </script>
@@ -285,7 +269,7 @@ include 'footer.php';
 <script>
     function save(ids, ont) {
         // alert(ids);
-        if (ids == 0) {
+        if(ids == 0 ){
             var ids = document.getElementById('id').value;
         }
         var cls = document.getElementById('cls').value;

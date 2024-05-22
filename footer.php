@@ -62,7 +62,6 @@
 
 
 <script>
-
     function loger() {
         var infor = "page=<?php echo $curfile; ?>" ;
         $("#logstatus").html("----");
@@ -78,18 +77,13 @@
             }
         });
     }
-    // setInterval(logers, 3000);
-    // function logers() {
-    //     document.getElementById('logstatus').innerHTML = "xxxx";
-    //     document.getElementById('logstatus').innerHTML = "<?php echo $cur; ?>";
-    // }
 
     const element = document.getElementById("logstatus");
-    setInterval(function () { 
+    setInterval(function () {
         var infor = "page=<?php echo $curfile; ?>" ;
-        
+
         $("#logstatus").html("----");
-       
+
         $.ajax({
             type: "POST",
             url: "backend/save-log.php",
@@ -102,6 +96,5 @@
                 $('#logstatus').html(html);
             }
         });
-     }, 1000);
-
+    }, 1000);
 </script>

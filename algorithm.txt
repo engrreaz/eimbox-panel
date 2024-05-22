@@ -6,38 +6,38 @@ git add .; git commit -m""; git push
 ----- Teachers
 ----- Staffs
 ----- Attendance
------ MPO Management
+----- --------------------------------------- MPO Management
 - Students
------ Profile
+----- --------------------------------------- Profile
 ----- Finanace Setup
 ----- Tutioin Fee 
 ----- Attendance
 
 - Accounts
 ----- At A Glance 
------ Income | Expenditure 
------ Cashbook 
------ Bank Statement 
+----- --------------------------------------- Income | Expenditure 
+----- --------------------------------------- Cashbook 
+----- --------------------------------------- Bank Statement 
 ----- Budget 
 ----- Fund Management 
 - Bank Management 
 ----- Daily Collection Receipt 
 ----- 
 - Academics
------ Class/Section 
+----- --------------------------------------- Class/Section 
 ----- Class Routine 
------ Subjects 
+----- --------------------------------------- Subjects 
 ----- Syllabus 
 ----- Online Test 
 ----- Online Homework
 
 - Examination / Class Test
------ Exam List/Create
------ Exam Schedule.................................................................................
+----- --------------------------------------- Exam List/Create
+----- --------------------------------------- Exam Schedule
 ----- Exam Policies 
------ Admit Card ...........................................................................................
------ Seat Plan 
------ Seat Card..........................................................................................
+----- --------------------------------------- Admit Card 
+----- --------------------------------------- Seat Plan 
+----- --------------------------------------- Seat Card
 
 ----- Result Management
 ---------- Marks Entry
@@ -54,7 +54,7 @@ git add .; git commit -m""; git push
 ----- Notice Book 
 
 - user Management 
------ Users List /teacher/student/guardian/ guest/ committee...........................................
+----- --------------------------------------- Users List /teacher/student/guardian/ guest/ committee
 ----- Role 
 ----- Users Permissions
 
@@ -62,12 +62,12 @@ git add .; git commit -m""; git push
 ----- user last setting pull tracking
 
 - Certificates 
------ Testimonial ...............................................................................
+----- --------------------------------------- Testimonial 
 ----- Tranfer Certificates
 ----- To Whom
 
 - Reports 
------ Dues Report.................................................................................
+----- --------------------------------------- Dues Report
 ----- My Transactioin
 
 
@@ -81,13 +81,13 @@ Hostel
 Library
 Event Management 
 Digital Diary
-Academic Plan.........................................................................
+Academic Plan
 Notice/Notification
 Zoom
 Android / IOS
 
 Error Scanner
-Logbook ..................................................................................
+--------------------------------------- Logbook 
 
 
 

@@ -1,14 +1,12 @@
-<?php
-$pagelist = array('settings.php', 'classes.php', 'subjects.php');
-?>
+<?php $pagelist = array('settings.php', 'classes.php', 'subjects.php'); ?>
 
-<div style="overflow-y:auto;">
+<div style="overflow-y:auto; ">
   <nav class="sidebar sidebar-offcanvas no-print d-print-none" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
       <a class="sidebar-brand brand-logo" href="index.php"><img src="assets/imgs/logo-brand.png" alt="logo" /></a>
       <a class="sidebar-brand brand-logo-mini" href="index.php"><img src="assets/imgs/logo-bw.png" alt="logo" /></a>
     </div>
-    <ul class="nav">
+    <ul class="nav ">
       <li class="nav-item profile">
         <div class="profile-desc">
           <div class="profile-pic">
@@ -165,7 +163,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php');
               <li class="nav-item"> <a class="nav-link" href="seatplan.php">Exam Hall Setup</a></li>
               <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
               <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
-              <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule</a></li>
+              <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Routine</a></li>
               <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>
               <li class="nav-item"> <a class="nav-link" href="calendar.php">Calendar</a></li>
               <li class="nav-item"> <a class="nav-link" href="users.php">User Manager</a></li>
@@ -174,6 +172,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php');
               <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects</a></li>
               <li class="nav-item"> <a class="nav-link" href="settings.php">Settings</a></li>
               <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Manager</a></li>
+              <li class="nav-item"> <a class="nav-link" href="exam-list.php">Exam Schedule</a></li>
             </ul>
           </div>
         </li>

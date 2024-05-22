@@ -44,11 +44,8 @@ include 'inc.php';
             font-family: "Noto Sans Bengali", sans-serif;
         }
     </style>
-
-
-
-
 </head>
+
 
 <body>
     <div class="container-scroller">
@@ -69,7 +66,7 @@ include 'inc.php';
 
             <!-- partial -->
             <div class="main-panel">
-                <div class="content-wrapper ">
+                <div class="content-wrapper">
 
                     <?php
                     $enum = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '0');

@@ -1,6 +1,12 @@
 <?php
 include 'header.php';
 
+if (isset($_GET['accno'])) {
+    $accno = $_GET['accno'];
+} else {
+    $accno = '0';
+}
+
 if (isset($_GET['addnew'])) {
     $newblock = 'block';
     $exid = $_GET['addnew'];
@@ -12,17 +18,16 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
-
-$sql0 = "SELECT * FROM areas where id='$exid' and user='$rootuser' and sessionyear='$sy';";
+$sql0 = "SELECT * FROM bankinfo where sccode='$sccode' and accno='$accno' ;";
 $result0 = $conn->query($sql0);
 if ($result0->num_rows > 0) {
     while ($row5 = $result0->fetch_assoc()) {
-        $ccc = $row5["areaname"];
-        $sss = $row5["subarea"];
-        $exid = $row5["id"];
+        $acctype = $row5["acctype"];
+        $bankname = $row5["bankname"];
+        $branch = $row5["branch"];
     }
 } else {
-    $exid = $ccc = $sss = '';
+    $acctype = $bankname = $branch = '';
 }
 ?>
 <div class="float-right">
@@ -30,8 +35,44 @@ if ($result0->num_rows > 0) {
         onclick="addnew();">
         <i class="mdi mdi-library-plus"> Add New Class </i></button>
 </div>
-<h3>Bank Details</h3>
+<h3>Account Details</h3>
 
+
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="text-white">
+                            <tr>
+                                <td>Acoount # </td>
+                                <td class="pl-3"></td>
+                                <td><code><?php echo $accno; ?></code></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="pl-3"></td>
+                                <td><small><b><?php echo $acctype; ?></b> Account</small></td>
+                            </tr>
+                            <tr>
+                                <td>Bank : </td>
+                                <td class="pl-3"></td>
+                                <td><?php echo $bankname; ?></td>
+                            </tr>
+                            <tr>
+                                <td><small></small></td>
+                                <td class="pl-3"></td>
+                                <td><small><?php echo $branch; ?></small></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="row" style="display:<?php echo $newblock; ?>;">
@@ -170,61 +211,70 @@ if ($result0->num_rows > 0) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-bordered text-white" style="border:1px solid gray;">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Acc. No.</th>
+                                    <th>Date</th>
+                                    <th>Opening</th>
                                     <th>Type</th>
-                                    <th>Bank / Branch</th>
-                                    <th class="text-right">Last Balance</th>
+                                    <th>Cheque</th>
+                                    <th>Dr</th>
+                                    <th>Cr</th>
+                                    <th>Balance</th>
                                     <th style="text-align:right;"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $slx = 1;
-                                $sql0x = "SELECT * FROM bankinfo where sccode='$sccode'  order by  id;";
+                                $ooo = 0;
+                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode'  and accno='$accno' order by  date desc, verifytime desc;";
                                 $result0x = $conn->query($sql0x);
                                 if ($result0x->num_rows > 0) {
                                     while ($row0x = $result0x->fetch_assoc()) {
                                         $id = $row0x["id"];
-                                        $accno = $row0x["accno"];
-                                        $acctype = $row0x["acctype"];
-                                        $bankname = $row0x["bankname"];
-                                        $branch = $row0x["branch"];
-
-                                        $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accno'  order by id desc LIMIT 1;";
-                                        $result0xg = $conn->query($sql0x);
-                                        if ($result0xg->num_rows > 0) {
-                                            while ($row0x = $result0xg->fetch_assoc()) {
-                                                $balance = $row0x["balance"];
-                                            }
+                                        $date = $row0x["date"];
+                                        $obal = $row0x["transopening"];
+                                        $ttype = $row0x["transtype"];
+                                        $chqno = $row0x["chqno"];
+                                        $amt = $row0x["amount"];
+                                        $cbal = $row0x["balance"];
+                                        if ($ttype == 'Deposit') {
+                                            $dr = $amt;
+                                            $cr = '';
+                                            $trclr = 'text-success';
                                         } else {
-                                            $balance = 0;
+                                            $dr = '';
+                                            $cr = $amt;
+                                            $trclr = 'text-danger';
                                         }
 
+                                        $txt = $cbal - $ooo;
+                                        $ooo = $obal;
+                                        if ($txt != 0) {
+                                            // $trclr = 'text-warning';
+                                        } 
+
                                         ?>
-                                        <tr>
+                                        <tr class="<?php echo $trclr; ?>">
                                             <td><?php echo $slx; ?></td>
-                                            <td><?php echo $accno; ?></td>
-                                            <td><?php echo $acctype; ?></td>
-                                            <td>
-                                                <?php echo $bankname . '<br><div class="pt-2"><small>' . $branch . '</small></div>'; ?>
-                                            </td>
-                                            <td class="text-right">
-                                                <h4><?php echo $balance; ?>.00</h4>
-                                            </td>
-
-
+                                            <td><?php echo $date; ?></td>
+                                            <td><?php echo $obal; ?></td>
+                                            <td><?php echo $ttype; ?></td>
+                                            <td><?php echo $chqno; ?></td>
+                                            <td><?php echo $dr; ?></td>
+                                            <td><?php echo $cr; ?></td>
+                                            <td><?php echo $cbal; ?></td>
                                             <td>
                                                 <div id="ssp<?php echo $id; ?>" class="btn-group" role="group"
                                                     aria-label="Basic example">
-                                                    <button onclick="edit('<?php echo $accno; ?>',1);" class="btn btn-inverse-danger"
-                                                        ><i class="mdi mdi-grease-pencil"></i></button>
+                                                    <button onclick="edit(<?php echo $id; ?>,1);" class="btn btn-inverse-danger"
+                                                        disabled><i class="mdi mdi-grease-pencil"></i></button>
                                                     <button onclick="savex(<?php echo $id; ?>,2);"
                                                         class="btn btn-inverse-danger" disabled><i
                                                             class="mdi mdi-delete"></i></button>
+                                           
                                                 </div>
                                             </td>
                                         </tr>
@@ -255,29 +305,29 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    function go() {
-        var m = document.getElementById('month').value;
-        var y = document.getElementById('year').value;
-        window.location.href = 'expenditure.php?&m=' + m + '&y=' + y;
-    }
-    function go2() {
-        var m = document.getElementById('ref').value;
-        window.location.href = 'expenditure.php?&ref=' + m;
-    }
-    function go3() {
-        var m = document.getElementById('ref').value;
-        window.location.href = 'expenditure.php?&undef';
-    }
-    function go4() {
-        document.getElementById('search').style.display = 'block';
-    }
+    // function go() {
+    //     var m = document.getElementById('month').value;
+    //     var y = document.getElementById('year').value;
+    //     window.location.href = 'expenditure.php?&m=' + m + '&y=' + y;
+    // }
+    // function go2() {
+    //     var m = document.getElementById('ref').value;
+    //     window.location.href = 'expenditure.php?&ref=' + m;
+    // }
+    // function go3() {
+    //     var m = document.getElementById('ref').value;
+    //     window.location.href = 'expenditure.php?&undef';
+    // }
+    // function go4() {
+    //     document.getElementById('search').style.display = 'block';
+    // }
     function addnew() {
         var tail = '';
-        window.location.href = 'classes.php?addnew' + tail;
+        window.location.href = 'bank-account.php?accno=<?php echo $accno;?>&addnew' + tail;
     }
 
     function edit(id, taill) {
-        window.location.href = 'bank-account.php?accno=' + id;
+        window.location.href = 'bank-account.php?accno=<?php echo $accno;?>&addnew=' + id;
     }
 
 </script>

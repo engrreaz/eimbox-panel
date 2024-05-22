@@ -9332,7 +9332,6 @@
   box-sizing: border-box;
 }
 
-
 html {
   font-family: "Noto Sans Bengali", sans-serif;
   line-height: 1.15;
@@ -9343,8 +9342,6 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
-
-
 
 
 body {
@@ -28323,6 +28320,7 @@ div.tagsinput span.tag a {
 /* Layouts */
 .navbar.fixed-top+.page-body-wrapper {
   padding-top: 70px;
+  background: white;
 }
 
 @media (min-width: 992px) {
