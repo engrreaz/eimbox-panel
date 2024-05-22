@@ -19,6 +19,7 @@
               <span><?php echo $userlevel; ?></span>
             </div>
           </div>
+          
           <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
           <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
             aria-labelledby="profile-dropdown">
@@ -56,6 +57,7 @@
             </a>
           </div>
         </div>
+        <div class="profile-desc text-small menu-items"><?php echo $scname;?></div>
       </li>
       <li class="nav-item nav-category">
         <span class="nav-link"></span>
