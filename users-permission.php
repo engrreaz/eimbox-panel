@@ -5,6 +5,11 @@ if (isset($_GET['useremail'])) {
     $umail = $_GET['useremail'];
 } else {
     $umail = '';
+    $id = 0;
+        $profilename = '';
+        $mobile = '';
+        $userlevel = '';
+        $photourl = '';
 }
 
 ?>
@@ -13,6 +18,7 @@ if (isset($_GET['useremail'])) {
 <code>Page Under Contruction</code>
 
 <?php
+if($umail == ''){
 $sql0x = "SELECT * FROM usersapp where sccode='$sccode' and email='$umail';";
 $result0x3n = $conn->query($sql0x);
 if ($result0x3n->num_rows > 0) {
@@ -21,6 +27,7 @@ if ($result0x3n->num_rows > 0) {
         $profilename = $row0x["profilename"];
         $mobile = $row0x["mobile"];
         $userlevel = $row0x["userlevel"];
+        $photourl = $row0x["photourl"];
 
     }
 }
@@ -36,7 +43,7 @@ if ($result0x3n->num_rows > 0) {
                     <div class="col-md-2">
                         <div class="form-group row">
                             <div class="col-12">
-                                <img style="width:100px;" src="<?php echo $pth; ?>" />
+                                <img style="width:100px;" src="<?php echo $photourl; ?>" />
                             </div>
                         </div>
                     </div>
@@ -402,13 +409,12 @@ if ($result0x3n->num_rows > 0) {
 
 
 
-
-
-
-
-
-
 <?php
+} else {
+    echo '<div class="">User Not Defin!</div>';
+}
+
+
 include 'footer.php';
 ?>
 

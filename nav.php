@@ -170,6 +170,7 @@
               <li class="nav-item"> <a class="nav-link" href="calendar.php">Calendar</a></li>
               <li class="nav-item"> <a class="nav-link" href="users.php">User Manager</a></li>
               <li class="nav-item"> <a class="nav-link" href="users-permission.php">User Permission Manager</a></li>
+              <li class="nav-item"> <a class="nav-link" href="users-privileges.php">User privileges</a></li>
               <li class="nav-item"> <a class="nav-link" href="students-edit.php">Student Editor</a></li>
               <li class="nav-item"> <a class="nav-link" href="classes.php">Classes & Sections</a></li>
               <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects</a></li>

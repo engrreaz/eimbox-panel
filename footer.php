@@ -74,7 +74,6 @@
         }
         document.write('<div><?php echo $permission . '...' . $key . '///';?></div>');
     </script>
-
 </body>
 
 </html>
