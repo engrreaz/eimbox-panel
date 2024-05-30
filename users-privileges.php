@@ -32,29 +32,34 @@ $role2 = array("Head Teacher", "Class Teacher", "Teacher", "Accountants", "Offic
                             <div class="col-12">
                                 <div class="form-check form-check-success">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="test" id="" value="3"  > Read/Write/Modify
-                                        
+                                        <input type="radio" class="form-check-input" name="test" id="" value="3">
+                                        Read/Write/Modify
+
                                     </label>
                                     <span class="text-small ml-2">User can Read/Write/Nodify Data Instant.</span>
                                 </div>
                                 <div class="form-check form-check-primary">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="test" id="" value="3"  > Read/Write/Modify
-                                        
+                                        <input type="radio" class="form-check-input" name="test" id="" value="3">
+                                        Read/Write/Modify
+
                                     </label>
-                                    <span class="text-small ml-2">User can Read. But Modified data will live after admin's approval.</span>
+                                    <span class="text-small ml-2">User can Read. But Modified data will live after
+                                        admin's approval.</span>
                                 </div>
                                 <div class="form-check form-check-warning">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="test" id="" value="3"  > Read Only
-                                        
+                                        <input type="radio" class="form-check-input" name="test" id="" value="3"> Read
+                                        Only
+
                                     </label>
                                     <span class="text-small ml-2">User will get Read only privileges.</span>
                                 </div>
                                 <div class="form-check form-check-danger">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="test" id="" value="3"  > Access Denied
-                                        
+                                        <input type="radio" class="form-check-input" name="test" id="" value="3"> Access
+                                        Denied
+
                                     </label>
                                     <span class="text-small ml-2">No access permission</span>
                                 </div>
@@ -102,85 +107,110 @@ if ($result0x3n->num_rows > 0) {
 
         ?>
 
-<div class="row">
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <P class="text-secondary"><?php echo $pagetitle;?></P>
-                                    <P class="text-muted text-small"><?php echo $pagedescrip;?></P>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <?php 
-                                        for($i=0; $i<12; $i++) { 
-                                            $rolename = $role[$i];
-                                            $perma = $$rolename;
-                                            ?>
-
-
-                                        <div class="col-md-3">
-                                            <div class="form-group row">
-                                                <div class="col-12">
-                                                <div class="text-muted text-small"><?php echo $role2[$i];?></div>
-
-                                                </div>
-                                                <div class="col-12">
-                                                    <dfiv class="form-group row">
-                                                        <div class="form-check form-check-success">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" onclick="perma(<?php echo $id;?>, '<?php echo $rolename;?>', 3); "
-                                                                    name="<?php echo $rolename.$id;?>" id="<?php echo $rolename.$id;?>3" value="3" <?php if($perma==3){echo 'checked';} else {echo '';}?> >
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-primary">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" onclick="perma(<?php echo $id;?>, '<?php echo $rolename;?>', 2); "
-                                                                    name="<?php echo $rolename.$id;?>" id="<?php echo $rolename.$id;?>2" value="2" <?php if($perma==2){echo 'checked';} else {echo '';}?>>
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-warning">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" onclick="perma(<?php echo $id;?>, '<?php echo $rolename;?>', 1); "
-                                                                    name="<?php echo $rolename.$id;?>" id="<?php echo $rolename.$id;?>1" value="1" <?php if($perma==1){echo 'checked';} else {echo '';}?>>
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-danger">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" onclick="perma(<?php echo $id;?>, '<?php echo $rolename;?>', 0); "
-                                                                    name="<?php echo $rolename.$id;?>" id="<?php echo $rolename.$id;?>0" value="0" <?php if($perma==0){echo 'checked';} else {echo '';}?>>
-                                                            </label>
-                                                        </div>
-
-                                                    </dfiv>
-                                <div class="form-group row" id="st<?php echo $rolename.$id;?>">
-                            
-                            </div>
-                                                </div>
-                                            </div>
-                                        </div>
-<?php 
-    }  
-?>
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <P class="text-secondary"><?php echo $pagetitle; ?></P>
+                                        <P class="text-muted text-small"><?php echo $pagedescrip; ?></P>
                                     </div>
                                 </div>
-                              </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <?php
+                                            for ($i = 0; $i < 12; $i++) {
+                                                $rolename = $role[$i];
+                                                $perma = $$rolename;
+                                                ?>
+
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group row">
+                                                        <div class="col-12">
+                                                            <div class="text-muted text-small"><?php echo $role2[$i]; ?></div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <dfiv class="form-group row">
+                                                                <div class="form-check form-check-success">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input"
+                                                                            onclick="perma(<?php echo $id; ?>, '<?php echo $rolename; ?>', 3); "
+                                                                            name="<?php echo $rolename . $id; ?>"
+                                                                            id="<?php echo $rolename . $id; ?>3" value="3" <?php if ($perma == 3) {
+                                                                                     echo 'checked';
+                                                                                 } else {
+                                                                                     echo '';
+                                                                                 } ?>>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-primary">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input"
+                                                                            onclick="perma(<?php echo $id; ?>, '<?php echo $rolename; ?>', 2); "
+                                                                            name="<?php echo $rolename . $id; ?>"
+                                                                            id="<?php echo $rolename . $id; ?>2" value="2" <?php if ($perma == 2) {
+                                                                                     echo 'checked';
+                                                                                 } else {
+                                                                                     echo '';
+                                                                                 } ?>>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-warning">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input"
+                                                                            onclick="perma(<?php echo $id; ?>, '<?php echo $rolename; ?>', 1); "
+                                                                            name="<?php echo $rolename . $id; ?>"
+                                                                            id="<?php echo $rolename . $id; ?>1" value="1" <?php if ($perma == 1) {
+                                                                                     echo 'checked';
+                                                                                 } else {
+                                                                                     echo '';
+                                                                                 } ?>>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check form-check-danger">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input"
+                                                                            onclick="perma(<?php echo $id; ?>, '<?php echo $rolename; ?>', 0);"
+                                                                            name="<?php echo $rolename . $id; ?>"
+                                                                            id="<?php echo $rolename . $id; ?>0" value="0" <?php
+                                                                                 if ($perma == 0) {
+                                                                                     echo 'checked';
+                                                                                 } else {
+                                                                                     echo '';
+                                                                                 }
+                                                                                 ?>>
+                                                                    </label>
+                                                                </div>
+
+                                                            </dfiv>
+
+                                                        </div>
+                                                    </div>
+                                                    <span class="" id="st<?php echo $rolename . $id; ?>"></span>
+                                                </div>
+
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <?php
+        <?php
     }
 }
 ?>

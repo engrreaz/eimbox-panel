@@ -480,7 +480,7 @@ include 'footer.php';
 
 <script>
     function save(id, tail) {
-        alert(tail);
+        // alert(tail);
         if (id == 0) tail = 0;
         if (tail == 0 || tail == 1) {
             var dept = document.getElementById('dept').value;
@@ -494,7 +494,7 @@ include 'footer.php';
             var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
         }
 
-        alert(infor);
+        // alert(infor);
         $("#sspd").html("");
 
         $.ajax({
