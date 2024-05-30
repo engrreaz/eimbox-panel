@@ -2,7 +2,6 @@
 date_default_timezone_set('Asia/Dhaka');
 include ('inc2.php');
 
-
 // 0 == Add new (Expenditute), 1 == Edit, 2 == Delete, 3 == Set Memo No., 4 == ........, 5 == Add New (Income)
 
 $stid = $_POST['stid'];
@@ -43,6 +42,5 @@ $testsl = 'SSC-' . $sccode % 10000 . '-' . $year % 100 . '-' . $sst;
 $query331 = "INSERT INTO testimonial (id, sccode, stid, pubexam, regdno, regdyear, rollno, passyear, session, gpa, grade, slno, testslno, testdate, groupsection, examcenter, issueby, issuetime ) 
     values (NULL, '$sccode', '$stid', 'SSC', '$regdno', '$regdyear', '$rollno', '$year', '$session', '$gpa', '$gla', '$slno', '$testsl', '$td', '$sec', '$center', '$usr', '$cur' );";
 $conn->query($query331);
-
 
 echo 'Issued';

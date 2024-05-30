@@ -563,7 +563,7 @@ include 'footer.php';
 
         $.ajax({
             type: "POST",
-            url: "save-exam-routine.php",
+            url: "backend/save-exam-routine.php",
             data: infor,
             cache: false,
             beforeSend: function () {

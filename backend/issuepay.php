@@ -149,7 +149,6 @@ if ($tail == 0) {
     }
 
 
-
     if ($b == 'govt') {
         $fld = 'refnogovt';
     } else if ($b == 'school') {

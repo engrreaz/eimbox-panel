@@ -6,7 +6,7 @@ git add .; git commit -m""; git push
 ----- Teachers
 ----- Staffs
 ----- Attendance
------ --------------------------------------- MPO Management
+----- --------------------------------------- Salary & MPO Management
 - Students
 ----- --------------------------------------- Profile
 ----- Finanace Setup
@@ -47,7 +47,9 @@ git add .; git commit -m""; git push
 
 - Management 
 ----- SMC 
------ ......
+----- PTA 
+----- Student Cabinet 
+----- Voter List
 
 - Register
 ----- Refernce Book 
@@ -56,7 +58,7 @@ git add .; git commit -m""; git push
 - user Management 
 ----- --------------------------------------- Users List /teacher/student/guardian/ guest/ committee
 ----- Role 
------ Users Permissions
+----- --------------------------------------- Users Permissions
 
 ----- seeting change / update tracking
 ----- user last setting pull tracking

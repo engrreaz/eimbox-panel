@@ -202,7 +202,7 @@ include 'footer.php';
 
         $.ajax({
             type: "POST",
-            url: "issuepay.php",
+            url: "backend/issuepay.php",
             data: infor,
             cache: false,
             beforeSend: function () {

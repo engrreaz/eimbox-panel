@@ -506,7 +506,7 @@ if (isset($_GET['addnew'])) {
 
             $.ajax({
                 type: "POST",
-                url: "issue-testimonial.php",
+                url: "backend/issue-testimonial.php",
                 data: infor,
                 cache: false,
                 beforeSend: function () {

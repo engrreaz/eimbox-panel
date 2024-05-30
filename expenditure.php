@@ -499,7 +499,7 @@ include 'footer.php';
 
         $.ajax({
             type: "POST",
-            url: "savecash.php",
+            url: "backend/savecash.php",
             data: infor,
             cache: false,
             beforeSend: function () {
