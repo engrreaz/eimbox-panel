@@ -144,7 +144,7 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="users-privileges.php">
             <span class="menu-icon">
               <i class="mdi mdi-speedometer"></i>
             </span>
@@ -177,38 +177,9 @@
         </li>
 
 
-        <li class="nav-item menu-items">
-          <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
-            <span class="menu-icon">
-              <i class="mdi mdi-laptop"></i>
-            </span>
-            <span class="menu-title">Human Resource</span>
-            <i class="menu-arrow"></i>
-          </a>
-          <div class="collapse" id="hrd">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="teachers.php">Teachers</a></li>
-              <li class="nav-item"> <a class="nav-link" href="staffs.php">Staffs</a></li>
-              <li class="nav-item"> <a class="nav-link" href="tattnd.php">Attendance</a></li>
-            </ul>
-          </div>
-        </li>
+        
 
-        <li class="nav-item menu-items">
-          <a class="nav-link" data-toggle="collapse" href="#repo" aria-expanded="false" aria-controls="ui-basic">
-            <span class="menu-icon">
-              <i class="mdi mdi-laptop"></i>
-            </span>
-            <span class="menu-title">Reports</span>
-            <i class="menu-arrow"></i>
-          </a>
-          <div class="collapse" id="repo">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="students-list.php">Student's List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Student's Dues List</a></li>
-            </ul>
-          </div>
-        </li>
+
 
 
         <li class="nav-item menu-items">
@@ -221,28 +192,11 @@
           </a>
           <div class="collapse" id="tttax">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="regdbook.php">Registers</a></li>
-              <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columner Cash Book</a></li>
-              <li class="nav-item"> <a class="nav-link" href="seatplan.php">Exam Hall Setup</a></li>
-              <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
-              <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
-              <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Routine</a></li>
-              <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>
-              <li class="nav-item"> <a class="nav-link" href="calendar.php">Calendar</a></li>
-              <li class="nav-item"> <a class="nav-link" href="users.php">User Manager</a></li>
-              <li class="nav-item"> <a class="nav-link" href="users-permission.php">User Permission Manager</a></li>
-              <li class="nav-item"> <a class="nav-link" href="users-privileges.php">User privileges</a></li>
-              <li class="nav-item"> <a class="nav-link" href="students-edit.php">Student Editor</a></li>
-              <li class="nav-item"> <a class="nav-link" href="classes.php">Classes & Sections</a></li>
-              <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects</a></li>
-              <li class="nav-item"> <a class="nav-link" href="settings.php">Settings</a></li>
-              <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Manager</a></li>
-              <li class="nav-item"> <a class="nav-link" href="exam-list.php">Exam Schedule</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">-</a></li>
+              
             </ul>
           </div>
         </li>
-
-
 
         <!-- -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
@@ -252,30 +206,30 @@
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-laptop"></i>
+              <i class="mdi mdi-account-circle"></i>
             </span>
-            <span class="menu-title">HRD</span>
+            <span class="menu-title">Human Resources</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="hrd">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">Teaching Staffs</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php"></a>Management Staffs</li>
-              <li class="nav-item"> <a class="nav-link" href=".php"></a>HRD Attendance</li>
+              <li class="nav-item"> <a class="nav-link" href="teachers.php">Teaching Staffs</a></li>
+              <li class="nav-item"> <a class="nav-link" href="staffs.php">Management Staffs</a></li>
+              <li class="nav-item"> <a class="nav-link" href="tattnd.php">HRD Attendance</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#students" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-laptop"></i>
+              <i class="mdi mdi-account-multiple-outline"></i>
             </span>
             <span class="menu-title">Students</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="students">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">Student's Enrollment</a></li>
+              <li class="nav-item"> <a class="nav-link" href="students-edit.php">Student's Enrollment</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Online Enrollment</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Fees & Payments</a></li>
             </ul>
@@ -284,7 +238,7 @@
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#finance" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-laptop"></i>
+              <i class="mdi mdi-coin"></i>
             </span>
             <span class="menu-title">Finance</span>
             <i class="menu-arrow"></i>
@@ -311,7 +265,7 @@
           </a>
           <div class="collapse" id="bank-management">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">Bank Accounts</a></li>
+              <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Accounts</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Accounts Transactions</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li>
             </ul>
@@ -327,11 +281,11 @@
           </a>
           <div class="collapse" id="examination">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">Exam Schedule</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Seat Card</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Admit Card</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Exam Schedule & Routine</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Hall Setup</a></li>
+              <li class="nav-item"> <a class="nav-link" href="exam-list.php">Exam Schedule</a></li>
+              <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
+              <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
+              <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule & Routine</a></li>
+              <li class="nav-item"> <a class="nav-link" href="seatplan.php">Hall Setup</a></li>
             </ul>
           </div>
         </li>
@@ -363,7 +317,7 @@
           </a>
           <div class="collapse" id="modules">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">Academic Calendar</a></li>
+              <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Clubs in Institution</a></li>
@@ -441,9 +395,11 @@
           </a>
           <div class="collapse" id="register">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">Columnar Cash Book</a></li>
+              <li class="nav-item"> <a class="nav-link" href="regdbook.php">Register List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="refbook.php">Reference Book</a></li>
+              <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columnar Cash Book</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Transfer Certificate</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Testimonial</a></li>
+              <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>
             </ul>
           </div>
         </li>
@@ -462,8 +418,11 @@
               <li class="nav-item"> <a class="nav-link" href=".php">Collection Report</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Receipt Print</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Student's List</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Student's Dues List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="students-lis.php">Student's List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Student's Dues List</a></li>
+
+        
+
               <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">All Transactions</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">My Collection</a></li>
@@ -483,9 +442,9 @@
           </a>
           <div class="collapse" id="users">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">User List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="users.php">User List</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">User Profile</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Access Permission</a></li>
+              <li class="nav-item"> <a class="nav-link" href="users-permission.php">Access Permission</a></li>
             </ul>
           </div>
         </li>
