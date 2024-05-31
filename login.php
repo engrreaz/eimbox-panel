@@ -25,72 +25,131 @@
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">
-        <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-          <div class="card col-lg-4 mx-auto">
-            <div class="card-body px-5 py-5">
-              <h3 class="card-title text-left mb-3">Login</h3>
-              <form id="loginform" onsubmit="eiin(this);" autocomplete="on">
-                <div class="form-group">
-                  <label>Username or email *</label>
-                  <input type="text" id="username" name="username" class="form-control p_input">
-                </div>
-                <div class="form-group">
-                  <label>Password *</label>
-                  <input type="password" id="password" name="password" class="form-control p_input">
-                </div>
-                <div class="form-group d-flex align-items-center justify-content-between">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="checkbox" name="rememberme" class="form-check-input"> Remember me </label>
-                  </div>
-                  <a href="#" class="forgot-pass">Forgot password</a>
-                </div>
-                <div class="text-center">
-                  <button type="submit" id="btn" onclick="eiin();"
-                    class="btn btn-primary btn-block enter-btn">Login</button>
-                  <div id="status"></div>
-                </div>
-                <div class="d-flex">
-                  <button class="btn btn-facebook mr-2 col">
+        <div class="content-wrapper full-page-wrapper d-flexx align-items-center auth bg-gray-dark ">
+          <div class="row col-12">
+            <h2 class="card-title text-left mb-3 text-center">EIMBox | <small>School Management System</small></h2>
+          </div>
+          <div class="row col-12">
+
+            <div class="card col-lg-4  md-4 mx-auto">
+              <div class="card-body px-5 py-5">
+
+                <div class="d-flexx">
+                  <button class="btn  col full-width m-2 p-2 btn-outline-light" disabled>
                     <i class="mdi mdi-facebook"></i> Facebook </button>
-                  <button class="btn btn-google col">
+                  <button class="btn btn-google col full-width m-2 p-2">
                     <i class="mdi mdi-google-plus"></i> Google plus </button>
                 </div>
-                <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p>
-              </form>
+
+                <div class="row ml-1 mt-3">
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-md-6 col-6">
+                        <div class="template-demox mt-2">
+                          <button class="btn btn-outline-light btn-icon-text full-width" disabled>
+                            <i class="mdi mdi-apple btn-icon-prepend mdi-36px"></i>
+                            <span class="d-inline-block text-left">
+                              <small class="font-weight-light d-block">Available on the</small> App Store </span>
+                          </button>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-6">
+                        <div class="template-demox mt-2">
+
+                          <button class="btn btn-outline-light btn-icon-text full-width">
+                            <i class="mdi mdi-android-debug-bridge btn-icon-prepend mdi-36px"></i>
+                            <span class="d-inline-block text-left">
+                              <small class="font-weight-light d-block">Get it on the</small> Google Play </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
+
+              </div>
             </div>
-          </div>
-          <div class="card col-lg-4 mx-auto">
-            <div class="card-body px-5 py-5">
-              <h3 class="card-title text-left mb-3">Login</h3>
+            <div class="card col-lg-4 md-4 mx-auto">
+              <div class="card-body px-5 py-5">
+                <form id="loginform" onsubmit="eiin(this);" autocomplete="on">
+                  <div class="form-group">
+                    <label>Username or email *</label>
+                    <input type="text" id="username" name="username" class="form-control p_input">
+                  </div>
+                  <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" id="password" name="password" class="form-control p_input">
+                  </div>
+                  <div class="form-group d-flex align-items-center justify-content-between">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" name="rememberme" class="form-check-input"> Remember me </label>
+                    </div>
+                    <a href="#" class="forgot-pass">Forgot password</a>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" id="btn" onclick="eiin();"
+                      class="btn btn-primary btn-block enter-btn">Login</button>
+                    <div id="status"></div>
+                  </div>
 
-              <?php
-              // $key = 'sfdgsht5yryfyfhfgjgjtrfhfhfhfhf1234567890';
-              $qrtoken = '';
-              $keys = array_merge(range(0, 9), range('a', 'z'));
-              for ($i = 0; $i < 30; $i++) {
-                $qrtoken .= $keys[array_rand($keys)];
-              }
-              //echo $qrtoken ;
-              // include ('../db.php');
-              $cur = date('Y-m-d H:i:s');
-              $query35 = "INSERT INTO qrcodelogin (id, token, email, generatetime, logintime, status) VALUES (NULL, '$qrtoken', NULL, '$cur', NULL, 0)";//echo $query35;
-              $conn->query($query35);
-
-
-              $lnk = 'http://android.eimbox.com/qrlogin.php?qr=' . $qrtoken;
-              // https://quickchart.io/documentation/qr-codes/
-              ?>
-
-              <!--<img style="padding: 5px; background:var(--lighter);" src="https://chart.googleapis.com/chart?chs=170x170&cht=qr&chl=<?php echo $lnk; ?>&choe=UTF-8&chld=L|0" />-->
-              <img style="padding: 5px; background:var(--lighter);"
-                src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=170" />
-
-              <div id="japa"></div>
-
-
-
+                  <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
+                </form>
+              </div>
             </div>
+            <div class="card col-lg-4  md-4 mx-auto">
+              <div class="card-body px-5 py-5">
+
+                <?php
+                // $key = 'sfdgsht5yryfyfhfgjgjtrfhfhfhfhf1234567890';
+                $qrtoken = '';
+                $keys = array_merge(range(0, 9), range('a', 'z'));
+                for ($i = 0; $i < 30; $i++) {
+                  $qrtoken .= $keys[array_rand($keys)];
+                }
+                //echo $qrtoken ;
+                // include ('../db.php');
+                $cur = date('Y-m-d H:i:s');
+                $query35 = "INSERT INTO qrcodelogin (id, token, email, generatetime, logintime, status) VALUES (NULL, '$qrtoken', NULL, '$cur', NULL, 0)";//echo $query35;
+                $conn->query($query35);
+
+
+                $lnk = 'http://android.eimbox.com/qrlogin.php?qr=' . $qrtoken;
+                // https://quickchart.io/documentation/qr-codes/
+                ?>
+
+                <!--<img style="padding: 5px; background:var(--lighter);" src="https://chart.googleapis.com/chart?chs=170x170&cht=qr&chl=<?php echo $lnk; ?>&choe=UTF-8&chld=L|0" />-->
+
+                <div class="text-center">
+                  <img style="padding: 5px; background:var(--lighter); margin-auto;" class="m-2"
+                    src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=170" />
+                </div>
+
+
+                <div id="japa"></div>
+                <p class="text-center">
+ <small >Scan the QR Code with EIMBox Android App <br>or, Your Institute's Custom App.</small>
+                </p>
+               
+
+
+
+              </div>
+            </div>
+
+
+            <div class="row text-center pt-4">
+              <h6>Login</h6>
+            </div>
+
+
+
           </div>
 
 
@@ -135,7 +194,7 @@
 
 
 <script>
-   function qrcodecheck() {
+  function qrcodecheck() {
     var qr = '<?php echo $qrtoken; ?>';
     var infor = "qr=" + qr;
     $("#japa").html("");
@@ -165,7 +224,7 @@
 
 
 
- <script>
+<script>
 
   function login(email, qr) {
     // alert(qr+email);

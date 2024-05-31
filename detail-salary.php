@@ -700,11 +700,12 @@ include 'footer.php';
 
 
 <script>
-    function issue(id, tail) {
+    function issue(slot, cate, id) {
+
         var year = document.getElementById("year").value;
-        var month = document.getElementById("month").value;
-        var a = document.getElementById("slot" + id).innerHTML;
-        var b = document.getElementById("cate" + id).innerHTML;
+        var month = document.getElementById("month").value;alert(id);
+        var a = slot;//document.getElementById("slot" + id).innerHTML;
+        var b = cate; //document.getElementById("cate" + id).innerHTML;
         var c = parseInt(document.getElementById("amt" + id).innerHTML);
         var d = document.getElementById("ref" + id).value;
         var e = document.getElementById("chq" + id).value;
@@ -716,12 +717,12 @@ include 'footer.php';
         var infor = "year=" + year + "&month=" + month +
             "&a=" + a + "&b=" + b + "&c=" + c + "&d=" + d + "&e=" + e + "&f=" + f + "&g=" + g + "&tail=" + tail;
 
-        // alert(infor + id);
+        alert(infor + id);
         $("#ssp" + id).html("");
 
         $.ajax({
             type: "POST",
-            url: "issuepay.php",
+            url: "backend/issuepay.php",
             data: infor,
             cache: false,
             beforeSend: function () {

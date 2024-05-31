@@ -7,10 +7,26 @@ include 'header.php';
 // $refno = $_GET['ref'] ?? 0;
 // $undef = $_GET['undef'] ?? 99;
 
-if(isset($_GET['m'])){$month = $_GET['m'];} else {$month = 0;}
-if(isset($_GET['y'])){$year = $_GET['y'];} else {$year = 0;}
-if(isset($_GET['ref'])){$refno = $_GET['ref'];} else {$refno = 0;}
-if(isset($_GET['undef'])){$undef = $_GET['undef'];} else {$undef = 99;}
+if (isset($_GET['m'])) {
+    $month = $_GET['m'];
+} else {
+    $month = 0;
+}
+if (isset($_GET['y'])) {
+    $year = $_GET['y'];
+} else {
+    $year = 0;
+}
+if (isset($_GET['ref'])) {
+    $refno = $_GET['ref'];
+} else {
+    $refno = 0;
+}
+if (isset($_GET['undef'])) {
+    $undef = $_GET['undef'];
+} else {
+    $undef = 99;
+}
 
 
 $status = 0;
@@ -26,11 +42,37 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
-
-
 ?>
+<div id="varvar">
 
-<h3>Expenditure / Execution Expense </h3>
+</div>
+<script>
+    var catts = localStorage.getItem("inex-category");
+    // alert(catts);
+    if (catts == "Income") {
+        document.cookie = "inex=Income;";
+        document.cookie = "clr=danger;";
+        document.cookie = "txt=Expenditure;";
+    } else {
+        document.cookie = "inex=Expenditure;";
+        document.cookie = "clr=success;";
+        document.cookie = "txt=Income;";
+    }
+    //localStorage.setItem("ex-routine-time", time);
+</script>
+
+
+<?php $inex = $_COOKIE['inex'];
+$btnclr = $_COOKIE['clr'];
+$txt = $_COOKIE['txt'];
+echo $inex . '/' . $btnclr . '/' . $txt; ?>
+
+<div style="float:right;" id="inex">
+    <button type="button" class="btn btn-<?php echo $btnclr; ?>"
+        onclick="catt('<?php echo $txt; ?>');"><?php echo $txt; ?></button>
+</div>
+<h3 id="lbl-inex"><?php echo $inex . ' Management'; ?></h3>
+
 
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
@@ -53,7 +95,7 @@ if (isset($_GET['addnew'])) {
                                         if ($month == $x) {
                                             $flt = 'selected';
                                         }
-                                        
+
                                         echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
                                     }
                                     ?>
@@ -134,7 +176,7 @@ if (isset($_GET['addnew'])) {
                 </div>
 
 
-<!-- SEARCH BLOCK -->
+                <!-- SEARCH BLOCK -->
 
                 <div class="row" id="search" style="display:none;">
                     <div class="col-md-3">
@@ -406,13 +448,13 @@ if (isset($_GET['addnew'])) {
                                         <td colspan="7">No Data / Records Found.</td>
                                     </tr>
                                 <?php } ?>
-                                
+
                                 <tr>
                                     <td colspan="3" style="text-align:right;">Total : </td>
                                     <td style="text-align:right; font-weight:bold;"><?php echo $mottaka; ?>.00</td>
                                     <td></td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -531,4 +573,11 @@ include 'footer.php';
         });
     }
 
+</script>
+
+<script>
+    function catt(tu) {
+        localStorage.setItem("inex-category", tu);
+        window.location.reload(true);
+    }
 </script>

@@ -65,7 +65,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" href="index.php">
           <span class="menu-icon">
-            <i class="mdi mdi-speedometer"></i>
+            <i class="mdi mdi-speedometer mdi-18px pt-1"></i>
           </span>
           <span class="menu-title">Dashboard</span>
         </a>
@@ -168,16 +168,16 @@
           </a>
           <div class="collapse" id="execution">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Management Salary</a></li>
-              <li class="nav-item"> <a class="nav-link" href="detail-salary.php">details Exec. Salary</a></li>
-              <li class="nav-item"> <a class="nav-link" href="bank-cheque.php">Bank Cheque Management</a></li>
-              <li class="nav-item"> <a class="nav-link" href="expenditure.php">Expenditure</a></li>
+              <!-- <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Management Salary</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="detail-salary.php">details Exec. Salary</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="bank-cheque.php">Bank Cheque Management</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="expenditure.php">Expenditure</a></li> -->
             </ul>
           </div>
         </li>
 
 
-        
+
 
 
 
@@ -185,7 +185,7 @@
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#tttax" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-laptop"></i>
+              <i class="mdi mdi-laptop mdi-24px pt-1 "></i>
             </span>
             <span class="menu-title">On Going Module</span>
             <i class="menu-arrow"></i>
@@ -193,7 +193,7 @@
           <div class="collapse" id="tttax">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">-</a></li>
-              
+
             </ul>
           </div>
         </li>
@@ -206,7 +206,7 @@
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-account-circle"></i>
+              <i class="mdi mdi-account-circle mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Human Resources</span>
             <i class="menu-arrow"></i>
@@ -222,7 +222,7 @@
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#students" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-account-multiple-outline"></i>
+              <i class="mdi mdi-account-multiple-outline mdi-18px pt-1"></i>
             </span>
             <span class="menu-title">Students</span>
             <i class="menu-arrow"></i>
@@ -238,16 +238,17 @@
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#finance" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-coin"></i>
+              <i class="mdi mdi-coin mdi-18px pt-1"></i>
             </span>
             <span class="menu-title">Finance</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="finance">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">HRD Salar`y</a></li>
+              <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Income & Expenditures</a></li>
+              <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
+              <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li>
@@ -266,7 +267,7 @@
           <div class="collapse" id="bank-management">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Accounts</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Accounts Transactions</a></li>
+              <li class="nav-item"> <a class="nav-link" href="bank-account.php">Accounts Transactions</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li>
             </ul>
           </div>
@@ -421,7 +422,7 @@
               <li class="nav-item"> <a class="nav-link" href="students-lis.php">Student's List</a></li>
               <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Student's Dues List</a></li>
 
-        
+
 
               <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">All Transactions</a></li>

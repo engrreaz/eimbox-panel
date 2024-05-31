@@ -37,7 +37,14 @@ if ($tail == 0) {
 
     $query331 = "UPDATE cashbook set memono='$memono'  where id = '$id';";
     $conn->query($query331);
-}
+} else if ($tail == 0) {
+    $sccodes = $sccode * 10;
+    $query331 = "INSERT INTO cashbook (id, sccode, sessionyear, slots, date, type, refno, partid, category, particulars, income, expenditure, amount, entryby, entrytime, status , memono ) 
+    values (NULL, '$sccodes', '$sy', '$dept', '$date', 'Income', '0', '$cate', '', '$descrip', '0', '$amt', '$amt',  '$usr', '$cur', '0', '0' );";
+    $conn->query($query331);
+
+    // echo $query331;
+} 
 
 
 
