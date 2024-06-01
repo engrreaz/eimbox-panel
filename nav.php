@@ -158,7 +158,7 @@
 
 
 
-        <!-- <li class="nav-item menu-items">
+        <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#execution" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
               <i class="mdi mdi-laptop"></i>
@@ -168,22 +168,26 @@
           </a>
           <div class="collapse" id="execution">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Management Salary</a></li>
-              <li class="nav-item"> <a class="nav-link" href="detail-salary.php">details Exec. Salary</a></li>
-              <li class="nav-item"> <a class="nav-link" href="bank-cheque.php">Bank Cheque Management</a></li>
-              <li class="nav-item"> <a class="nav-link" href="expenditure.php">Expenditure</a></li>
+              <!-- <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Management Salary</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="detail-salary.php">details Exec. Salary</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="bank-cheque.php">Bank Cheque Management</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="expenditure.php">Expenditure</a></li> -->
             </ul>
           </div>
-        </li> -->
+        </li>
 
 
-        <li class="nav-item menu-items ">
-          <a class="nav-link bg-danger text-white" data-toggle="collapse" href="#tttax" aria-expanded="false"
-            aria-controls="ui-basic">
+
+
+
+
+
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#tttax" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
               <i class="mdi mdi-laptop mdi-24px pt-1 "></i>
             </span>
-            <span class="menu-title ">On Going Module</span>
+            <span class="menu-title">On Going Module</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="tttax">
@@ -195,9 +199,9 @@
         </li>
 
         <!-- -----------------------------------------------------------------------------------------------------
-        -----------------------------------------------------------------------------------------------------
-        -----------------------------------------------------------------------------------------------------
-        ----------------------------------------------------------------------------------------------------- -->
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------- -->
 
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
@@ -209,15 +213,12 @@
           </a>
           <div class="collapse" id="hrd">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link text-success" href="hr-list.php?teacher">Teaching Staffs</a></li>
-              <li class="nav-item"> <a class="nav-link text-warning" href="hr-list.php?staff">Management Staffs</a></li>
-              <li class="nav-item"> <a class="nav-link" href="hr-profile.php?staff">HR Profile</a></li>
-              <li class="nav-item"> <a class="nav-link " href="hr-edit.php?staff">HR Editor</a></li>
-              <li class="nav-item"> <a class="nav-link text-danger" href="hr-attnd.php">HRD Attendance</a></li>
+              <li class="nav-item"> <a class="nav-link" href="teachers.php">Teaching Staffs</a></li>
+              <li class="nav-item"> <a class="nav-link" href="staffs.php">Management Staffs</a></li>
+              <li class="nav-item"> <a class="nav-link" href="tattnd.php">HRD Attendance</a></li>
             </ul>
           </div>
         </li>
-
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#students" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">

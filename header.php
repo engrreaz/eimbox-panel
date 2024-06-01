@@ -1,5 +1,5 @@
 <?php
-include 'inc.php'; include_once 'auth/gpConfig.php';
+include 'inc.php';
 ?>
 
 <!DOCTYPE html>

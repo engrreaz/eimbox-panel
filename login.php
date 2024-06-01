@@ -1,6 +1,6 @@
 <?php
 include_once 'auth/gpConfig.php';
-$authUrl = $gClient->createAuthUrl();
+
 
 ?>
 <!DOCTYPE html>
@@ -42,11 +42,8 @@ $authUrl = $gClient->createAuthUrl();
                 <div class="d-flexx">
                   <button class="btn  col full-width m-2 p-2 btn-outline-light" disabled>
                     <i class="mdi mdi-facebook"></i> Facebook </button>
-
-                  <a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL); ?>">
-                    <button class="btn btn-google col full-width m-2 p-2">
-                      <i class="mdi mdi-google-plus"></i> Google plus </button>
-                  </a>
+                  <button class="btn btn-google col full-width m-2 p-2">
+                    <i class="mdi mdi-google-plus"></i> Google plus </button>
                 </div>
 
                 <div class="row ml-1 mt-3">
@@ -142,9 +139,9 @@ $authUrl = $gClient->createAuthUrl();
 
                 <div id="japa"></div>
                 <p class="text-center">
-                  <small>Scan the QR Code with EIMBox Android App <br>or, Your Institute's Custom App.</small>
+ <small >Scan the QR Code with EIMBox Android App <br>or, Your Institute's Custom App.</small>
                 </p>
-
+               
 
 
 
