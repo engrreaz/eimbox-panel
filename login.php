@@ -1,6 +1,6 @@
 <?php
 include_once 'auth/gpConfig.php';
-
+$authUrl = $gClient->createAuthUrl();
 
 ?>
 <!DOCTYPE html>
