@@ -1,6 +1,6 @@
 <?php
 include_once 'auth/gpConfig.php';
-
+$authUrl = $gClient->createAuthUrl();
 
 ?>
 <!DOCTYPE html>
@@ -42,8 +42,9 @@ include_once 'auth/gpConfig.php';
                 <div class="d-flexx">
                   <button class="btn  col full-width m-2 p-2 btn-outline-light" disabled>
                     <i class="mdi mdi-facebook"></i> Facebook </button>
-                  <button class="btn btn-google col full-width m-2 p-2">
-                    <i class="mdi mdi-google-plus"></i> Google plus </button>
+                  <a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL);?>">
+                    <button class="btn btn-google col full-width m-2 p-2">
+                    <i class="mdi mdi-google-plus"></i> Google plus </button></a>
                 </div>
 
                 <div class="row ml-1 mt-3">

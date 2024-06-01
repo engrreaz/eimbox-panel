@@ -1,5 +1,6 @@
 <?php
 include 'inc.php';
+include 'auth/gpConfig.php';
 ?>
 
 <!DOCTYPE html>
