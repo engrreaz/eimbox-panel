@@ -10,7 +10,7 @@ include_once 'src/contrib/Google_Oauth2Service.php';
  */
 $clientId = '813896999918-f081ttuss17bga48v1c2dh8fd1349rpk.apps.googleusercontent.com'; //Google client ID
 $clientSecret = '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'; //Google client secret
-$redirectURL = 'https://dashboard.eimbox.com'; //Callback URL
+$redirectURL = 'https://dashboard.eimbox.com/index.php'; //Callback URL
 
 //Call Google API
 $gClient = new Google_Client();
