@@ -1,3 +1,8 @@
+<?php
+include_once 'auth/gpConfig.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,8 +42,11 @@
                 <div class="d-flexx">
                   <button class="btn  col full-width m-2 p-2 btn-outline-light" disabled>
                     <i class="mdi mdi-facebook"></i> Facebook </button>
-                  <button class="btn btn-google col full-width m-2 p-2">
-                    <i class="mdi mdi-google-plus"></i> Google plus </button>
+
+                  <a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL); ?>">
+                    <button class="btn btn-google col full-width m-2 p-2">
+                      <i class="mdi mdi-google-plus"></i> Google plus </button>
+                  </a>
                 </div>
 
                 <div class="row ml-1 mt-3">
@@ -134,9 +142,9 @@
 
                 <div id="japa"></div>
                 <p class="text-center">
- <small >Scan the QR Code with EIMBox Android App <br>or, Your Institute's Custom App.</small>
+                  <small>Scan the QR Code with EIMBox Android App <br>or, Your Institute's Custom App.</small>
                 </p>
-               
+
 
 
 
