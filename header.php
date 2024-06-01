@@ -10,6 +10,7 @@ include 'auth/gpConfig.php';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-site-verification" content="K_qbT82L46NbBQI4vboBAETVLjE8sZGuZhwxHE7EIEA" />
     <title>EIMBox - Admin Panel</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
