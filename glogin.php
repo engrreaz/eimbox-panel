@@ -56,9 +56,13 @@ if ($gClient->getAccessToken()) {
     } else {
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 
-        $userData['picture'] = 'https://dashboard.eimbox.com/assets/imgs/logo.png';
-        $userData['first_name'] = 'EIMBox';
-        $userData['last_name'] = 'Xeneen';
+
+
+        $userData = array(
+            'picture'  => 'https://dashboard.eimbox.com/assets/imgs/logo.png',
+            'first_name' => 'EIMBox',
+            'last_name' => 'Xeneen',
+        );
 
     }
 } else {
@@ -150,23 +154,21 @@ if ($gClient->getAccessToken()) {
                                     </h2>
                                     <h6 class="text-center"><small>a paperless school management system</small></h6>
 
-                                    <div
+                                    <div style="display:none;"
                                         class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-                                        <div class="text-md-center text-xl-left">
-                                            <h6 class="mb-1">Transfer to Paypal</h6>
-                                            <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                                        <div class="text-md-center text-xl-right">
+                                            <img src="assets/images/partner.png" style="height:0px;" />
+                                            <p class="mt-3 mb-0"><small></small></p>
                                         </div>
                                         <div
-                                            class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                                            <h6 class="font-weight-bold mb-0">$236</h6>
+                                            class="align-self-center flex-grow text-right text-md-center text-xl-left py-md-2 py-xl-0">
+                                            <img src="assets/images/xeneen.png" style="height:0px;" />
+                                            <p class="mt-3 mb-0"><small></small></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
 
                         <div class="col-md-8 grid-margin stretch-card">
                             <div class="card">
@@ -192,10 +194,6 @@ if ($gClient->getAccessToken()) {
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
 
                     <div class="row " style="display:none;">
