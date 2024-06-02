@@ -1,4 +1,5 @@
 <?php
+session_start();
 // include_once 'auth/gpConfig.php';
 $_SESSION["user"] = '';
 
