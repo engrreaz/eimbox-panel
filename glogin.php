@@ -186,19 +186,25 @@ if ($gClient->getAccessToken()) {
                                                 <small>You've try to logged in with your email address
                                                     <b><?php echo $userData['email']; ?></b></small>
                                             </h6>
-                                            <p><small>We didn't recognise you. Please contact with your
-                                                    Headmaster/Principal/Administrator</small></p>
-
+                                            
 
                                             <?php
                                             $usr = $userData['email'];
                                             $sql0 = "SELECT * FROM usersapp where email='$usr' LIMIT 1";
                                             $result0 = $conn->query($sql0);
-                                            if ($result0->num_rows == 0) {
-                                                echo 'Found';
-                                                // header("location:index.php");
-                                            } else {echo 'Not  Found';
+                                            if ($result0->num_rows > 0) {
+                                                while ($row0 = $result0->fetch_assoc()) {
                                                 ?>
+                                                <script>
+                                                window.location.href='index.php';
+                                                </script>
+                                                <?php
+                                            } } else {
+                                                ?>
+                                                
+                                                <p><small>We didn't recognise you. Please contact with your
+                                                    Headmaster/Principal/Administrator</small></p>
+                                                
                                                 <a href="login.php">
                                                     <button class="btn btn-inverse-warning">Try again with authentic email</button>
                                                 </a>
