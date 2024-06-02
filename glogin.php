@@ -194,16 +194,15 @@ if ($gClient->getAccessToken()) {
                                             $sql0 = "SELECT * FROM usersapp where email='$usr' LIMIT 1";
                                             $result0 = $conn->query($sql0);
                                             if ($result0->num_rows == 0) {
-                                                header("location:login.php");
-                                            } else {
+                                                echo 'Found';
+                                                // header("location:index.php");
+                                            } else {echo 'Not  Found';
                                                 ?>
-                                                <a href="index.php">
-                                                    <button class="btn btn-inverse-warning">Log in as Guest</button>
+                                                <a href="login.php">
+                                                    <button class="btn btn-inverse-warning">Try again with authentic email</button>
                                                 </a>
                                                 <?php
                                             }
-
-
                                             ?>
 
 
