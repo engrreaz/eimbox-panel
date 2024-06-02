@@ -55,17 +55,18 @@ if ($gClient->getAccessToken()) {
         $_SESSION["user"] = $userData['email'];
     } else {
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
+
+        $userData['picture'] = 'https://dashboard.eimbox.com/assets/imgs/logo.png';
+        $userData['first_name'] = 'EIMBox';
+        $userData['last_name'] = 'Xeneen';
+
     }
 } else {
     $authUrl = $gClient->createAuthUrl();
     $output = '<a href="' . filter_var($authUrl, FILTER_SANITIZE_URL) . '"><img src="images/glogin.png" alt=""/></a>';
 }
 
-if ($userData == '') {
-    $userData['picture'] = 'assets/imgs/logo.png';
-    $userData['first_name'] = 'EIMBox';
-    $userData['last_name'] = 'Xeneen';
-}
+
 
 ?>
 
@@ -131,19 +132,19 @@ if ($userData == '') {
                 <div class="content-wrapper">
 
 
-                
+
 
 
                     <div class="row">
                         <div class="col-md-4 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body text-center">
-                                
+
                                     <img class="mb-3" src="assets/imgs/logo.png"
                                         style="height:100px; width:100px; border: 2px solid darkgray; border-radius:50%;">
 
                                     <h2 class="card-title text-center mt-3 mb-0">
-                                        EIMBox<?php echo '...' . $userData . '****'; ?>
+                                        EIMBox
                                         <br>
 
                                     </h2>
