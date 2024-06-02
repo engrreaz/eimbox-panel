@@ -3,6 +3,7 @@
 session_start();
 include_once 'auth/gpConfig.php';
 include_once 'auth/User.php';
+$userData = '';
 
 if (isset($_GET['code'])) {
     $gClient->authenticate($_GET['code']);
@@ -60,9 +61,12 @@ if ($gClient->getAccessToken()) {
     $output = '<a href="' . filter_var($authUrl, FILTER_SANITIZE_URL) . '"><img src="images/glogin.png" alt=""/></a>';
 }
 
-// $userData['picture'] = '';
-// $userData['first_name'] = 'Reazul';
-// $userData['last_name'] = 'Hoque';
+if ($userData == '') {
+    $userData['picture'] = 'assets/imgs/logo.png';
+    $userData['first_name'] = 'EIMBox';
+    $userData['last_name'] = 'Xeneen';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -127,23 +131,23 @@ if ($gClient->getAccessToken()) {
                 <div class="content-wrapper">
 
 
-
+                
 
 
                     <div class="row">
                         <div class="col-md-4 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body text-center">
-
+                                
                                     <img class="mb-3" src="assets/imgs/logo.png"
                                         style="height:100px; width:100px; border: 2px solid darkgray; border-radius:50%;">
 
                                     <h2 class="card-title text-center mt-3 mb-0">
-                                        EIMBox
+                                        EIMBox<?php echo '...' . $userData . '****'; ?>
                                         <br>
 
                                     </h2>
-                                    <h6 class="text-center">a paperless school management system</h6>
+                                    <h6 class="text-center"><small>a paperless school management system</small></h6>
 
                                     <div
                                         class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
