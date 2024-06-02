@@ -53,6 +53,7 @@ if ($gClient->getAccessToken()) {
         $output .= '<br/>Logout from <a href="logout.php">Google</a>';
 
         $_SESSION["user"] = $userData['email'];
+        header("location:login.php");
     } else {
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 
