@@ -1,8 +1,9 @@
 <?php
+
 //Include GP config file && User class
 session_start();
 include_once 'auth/gpConfig.php';
-// include_once 'User.php';
+include_once 'auth/User.php';
 
 if(isset($_GET['code'])){
 	$gClient->authenticate($_GET['code']);
@@ -50,6 +51,8 @@ if ($gClient->getAccessToken()) {
         $output .= '<br/>Logged in with : Google';
         $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Google+ Page</a>';
         $output .= '<br/>Logout from <a href="logout.php">Google</a>'; 
+        
+        $_SESSION["user"] = $userData['email'];
     }else{
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
     }
@@ -68,5 +71,6 @@ h1{font-family:Arial, Helvetica, sans-serif;color:#999999;}
 </head>
 <body>
 <div><?php echo $output; ?></div>
+<a href="index.php">Index</a>
 </body>
 </html>
