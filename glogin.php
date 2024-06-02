@@ -1,5 +1,6 @@
 <?php
 //Include GP config file && User class
+session_start();
 include_once 'auth/gpConfig.php';
 // include_once 'User.php';
 

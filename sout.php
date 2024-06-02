@@ -1,11 +1,11 @@
 <?php
-include_once 'auth/gpConfig.php';
+// include_once 'auth/gpConfig.php';
 $_SESSION["user"] = '';
 
-unset($_SESSION['token']);
-unset($_SESSION['userData']);
+// unset($_SESSION['token']);
+// unset($_SESSION['userData']);
 
-$gClient->revokeToken();
+// $gClient->revokeToken();
 
 
 session_destroy();
