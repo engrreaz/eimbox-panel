@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0">611</h3>
+              <h3 class="mb-0" id="total_students_main">0</h3>
               <p class="text-danger ml-2 mb-0 font-weight-medium">75.00%</p>
             </div>
           </div>
@@ -611,14 +611,33 @@
   </div>
 </div>
 
+<div style="" id="statistics"></div>
 
 <?php include 'footer.php'; ?>
 
-
+<script>
+    function statistics() {
+        var infor = "";
+        $("#statistics").html("");
+        $.ajax({
+            type: "POST",
+            url: "backend/statistics.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#statistics').html('');
+            },
+            success: function (html) {
+                $("#statistics").html(html);
+                document.getElementById("total_students_main").innerHTML = document.getElementById("total_students").innerHTML;
+            }
+        });
+    }
+</script>
 
 <script>
     // A $( document ).ready() block.
     $(document).ready(function () {
-        // alert("wait...");
+       statistics();
     });
 </script>

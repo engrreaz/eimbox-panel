@@ -158,7 +158,7 @@
 
 
 
-        <li class="nav-item menu-items">
+        <!-- <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#execution" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
               <i class="mdi mdi-laptop"></i>
@@ -167,14 +167,14 @@
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="execution">
-            <ul class="nav flex-column sub-menu">
+            <ul class="nav flex-column sub-menu"> -->
               <!-- <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Management Salary</a></li> -->
               <!-- <li class="nav-item"> <a class="nav-link" href="detail-salary.php">details Exec. Salary</a></li> -->
               <!-- <li class="nav-item"> <a class="nav-link" href="bank-cheque.php">Bank Cheque Management</a></li> -->
               <!-- <li class="nav-item"> <a class="nav-link" href="expenditure.php">Expenditure</a></li> -->
-            </ul>
+            <!-- </ul>
           </div>
-        </li>
+        </li> -->
 
 
 
