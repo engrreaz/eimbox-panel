@@ -187,7 +187,7 @@ if ($gClient->getAccessToken()) {
                                             <p><small>We didn't recognise you. Please contact with your
                                                     Headmaster/Principal/Administrator</small></p>
                                             <a href="index.php">
-                                                <button class="btn btn-inverse-warning">Back to Home</button>
+                                                <button class="btn btn-inverse-warning">Log in as Guest</button>
                                             </a>
                                         </div>
                                     </div>
