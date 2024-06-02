@@ -191,6 +191,7 @@ if ($gClient->getAccessToken()) {
 
 
                                             <?php
+                                            $usr = $userData['email'];
                                             $sql0 = "SELECT * FROM usersapp where email='$usr' LIMIT 1";
                                             $result0 = $conn->query($sql0);
                                             if ($result0->num_rows == 0) {
