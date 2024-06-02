@@ -4,60 +4,60 @@ session_start();
 include_once 'auth/gpConfig.php';
 include_once 'auth/User.php';
 
-if(isset($_GET['code'])){
-	$gClient->authenticate($_GET['code']);
-	$_SESSION['token'] = $gClient->getAccessToken();
-	header('Location: ' . filter_var($redirectURL, FILTER_SANITIZE_URL));
+if (isset($_GET['code'])) {
+    $gClient->authenticate($_GET['code']);
+    $_SESSION['token'] = $gClient->getAccessToken();
+    header('Location: ' . filter_var($redirectURL, FILTER_SANITIZE_URL));
 }
 
 if (isset($_SESSION['token'])) {
-	$gClient->setAccessToken($_SESSION['token']);
+    $gClient->setAccessToken($_SESSION['token']);
 }
 
 if ($gClient->getAccessToken()) {
-	//Get user profile data from google
-	$gpUserProfile = $google_oauthV2->userinfo->get();
-	
-	//Initialize User class
-	$user = new User();
-	
-	//Insert or update user data to the database
+    //Get user profile data from google
+    $gpUserProfile = $google_oauthV2->userinfo->get();
+
+    //Initialize User class
+    $user = new User();
+
+    //Insert or update user data to the database
     $gpUserData = array(
-        'oauth_provider'=> 'google',
-        'oauth_uid'     => $gpUserProfile['id'],
-        'first_name'    => $gpUserProfile['given_name'],
-        'last_name'     => $gpUserProfile['family_name'],
-        'email'         => $gpUserProfile['email'],
-        'gender'        => $gpUserProfile['gender'],
-        'locale'        => $gpUserProfile['locale'],
-        'picture'       => $gpUserProfile['picture'],
-        'link'          => $gpUserProfile['link']
+        'oauth_provider' => 'google',
+        'oauth_uid' => $gpUserProfile['id'],
+        'first_name' => $gpUserProfile['given_name'],
+        'last_name' => $gpUserProfile['family_name'],
+        'email' => $gpUserProfile['email'],
+        'gender' => $gpUserProfile['gender'],
+        'locale' => $gpUserProfile['locale'],
+        'picture' => $gpUserProfile['picture'],
+        'link' => $gpUserProfile['link']
     );
     $userData = $user->checkUser($gpUserData);
-	
-	//Storing user data into session
-	$_SESSION['userData'] = $userData;
-	
-	//Render facebook profile data
-    if(!empty($userData)){
+
+    //Storing user data into session
+    $_SESSION['userData'] = $userData;
+
+    //Render facebook profile data
+    if (!empty($userData)) {
         $output = '<h1>Google+ Profile Details </h1>';
-        $output .= '<img src="'.$userData['picture'].'" height="100">';
+        $output .= '<img src="' . $userData['picture'] . '" height="100">';
         $output .= '<br/>Google ID : ' . $userData['oauth_uid'];
-        $output .= '<br/>Name : ' . $userData['first_name'].' '.$userData['last_name'];
+        $output .= '<br/>Name : ' . $userData['first_name'] . ' ' . $userData['last_name'];
         $output .= '<br/>Email : ' . $userData['email'];
         $output .= '<br/>Gender : ' . $userData['gender'];
         $output .= '<br/>Locale : ' . $userData['locale'];
         $output .= '<br/>Logged in with : Google';
-        $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Google+ Page</a>';
-        $output .= '<br/>Logout from <a href="logout.php">Google</a>'; 
-        
+        $output .= '<br/><a href="' . $userData['link'] . '" target="_blank">Click to Visit Google+ Page</a>';
+        $output .= '<br/>Logout from <a href="logout.php">Google</a>';
+
         $_SESSION["user"] = $userData['email'];
-    }else{
+    } else {
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
     }
 } else {
-	$authUrl = $gClient->createAuthUrl();
-	$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin.png" alt=""/></a>';
+    $authUrl = $gClient->createAuthUrl();
+    $output = '<a href="' . filter_var($authUrl, FILTER_SANITIZE_URL) . '"><img src="images/glogin.png" alt=""/></a>';
 }
 
 // $userData['picture'] = '';
@@ -135,8 +135,8 @@ if ($gClient->getAccessToken()) {
                             <div class="card">
                                 <div class="card-body text-center">
 
-                                <img class="mb-3" src="assets/imgs/logo.png"
-                                                style="height:100px; width:100px; border: 2px solid darkgray; border-radius:50%;">
+                                    <img class="mb-3" src="assets/imgs/logo.png"
+                                        style="height:100px; width:100px; border: 2px solid darkgray; border-radius:50%;">
 
                                     <h2 class="card-title text-center mt-3 mb-0">
                                         EIMBox
@@ -173,13 +173,15 @@ if ($gClient->getAccessToken()) {
                                             <h3><small>Welcome,
                                                 </small><?php echo $userData['first_name'] . ' ' . $userData['last_name']; ?>,
                                             </h3>
+                                            <h3>
+                                                <small>You've try to logged in with your email address
+                                                    <b><?php echo $userData['email']; ?></b></small>
+                                            </h3>
                                             <p><small>We didn't recognise you. Please contact with your
                                                     Headmaster/Principal/Administrator</small></p>
-
-
-                                                    <a href="index.php">
-                                                        <button class="btn btn-inverse-warning">Back to Home</button>
-                                                    </a>
+                                            <a href="index.php">
+                                                <button class="btn btn-inverse-warning">Back to Home</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
