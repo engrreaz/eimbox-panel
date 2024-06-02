@@ -173,10 +173,10 @@ if ($gClient->getAccessToken()) {
                                             <h3><small>Welcome,
                                                 </small><?php echo $userData['first_name'] . ' ' . $userData['last_name']; ?>,
                                             </h3>
-                                            <h3>
+                                            <h6>
                                                 <small>You've try to logged in with your email address
                                                     <b><?php echo $userData['email']; ?></b></small>
-                                            </h3>
+                                            </h6>
                                             <p><small>We didn't recognise you. Please contact with your
                                                     Headmaster/Principal/Administrator</small></p>
                                             <a href="index.php">
