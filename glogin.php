@@ -3,6 +3,7 @@
 session_start();
 include_once 'auth/gpConfig.php';
 include_once 'auth/User.php';
+include_once 'db.php';
 $userData = '';
 
 if (isset($_GET['code'])) {
@@ -53,14 +54,14 @@ if ($gClient->getAccessToken()) {
         $output .= '<br/>Logout from <a href="logout.php">Google</a>';
 
         $_SESSION["user"] = $userData['email'];
-        header("location:login.php");
+
     } else {
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 
 
 
         $userData = array(
-            'picture'  => 'https://dashboard.eimbox.com/assets/imgs/logo.png',
+            'picture' => 'https://dashboard.eimbox.com/assets/imgs/logo.png',
             'first_name' => 'EIMBox',
             'last_name' => 'Xeneen',
         );
@@ -187,9 +188,25 @@ if ($gClient->getAccessToken()) {
                                             </h6>
                                             <p><small>We didn't recognise you. Please contact with your
                                                     Headmaster/Principal/Administrator</small></p>
-                                            <a href="index.php">
-                                                <button class="btn btn-inverse-warning">Log in as Guest</button>
-                                            </a>
+
+
+                                            <?php
+                                            $sql0 = "SELECT * FROM usersapp where email='$usr' LIMIT 1";
+                                            $result0 = $conn->query($sql0);
+                                            if ($result0->num_rows == 0) {
+                                                header("location:login.php");
+                                            } else {
+                                                ?>
+                                                <a href="index.php">
+                                                    <button class="btn btn-inverse-warning">Log in as Guest</button>
+                                                </a>
+                                                <?php
+                                            }
+
+
+                                            ?>
+
+
                                         </div>
                                     </div>
                                 </div>
