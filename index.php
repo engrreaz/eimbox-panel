@@ -18,7 +18,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Today's Attendance</h6>
+        <h6 class="text-muted font-weight-normal">Today's Students</h6>
       </div>
     </div>
   </div>
@@ -28,8 +28,8 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0">$17.34</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
+              <h3 class="mb-0">21</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium">100%</p>
             </div>
           </div>
           <div class="col-3">
@@ -38,7 +38,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Revenue current</h6>
+        <h6 class="text-muted font-weight-normal">Teacher's Attendance</h6>
       </div>
     </div>
   </div>
@@ -48,8 +48,8 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0">$12.34</h3>
-              <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
+              <h3 class="mb-0">480</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium">15 (Online)</p>
             </div>
           </div>
           <div class="col-3">
@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Daily Income</h6>
+        <h6 class="text-muted font-weight-normal">Total Users</h6>
       </div>
     </div>
   </div>
@@ -68,8 +68,8 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0">$31.53</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+              <h3 class="mb-0">৳ 12321.00</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium"></p>
             </div>
           </div>
           <div class="col-3">
@@ -78,7 +78,7 @@
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Expense current</h6>
+        <h6 class="text-muted font-weight-normal">Expense (Month)</h6>
       </div>
     </div>
   </div>
@@ -88,24 +88,28 @@
   <div class="col-md-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Transaction History</h4>
+        <h4 class="card-title">Collections </h4>
         <canvas id="transaction-history" class="transaction-chart"></canvas>
         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
           <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">Transfer to Paypal</h6>
-            <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+            <h6 class="mb-1">$ 1,24,950</h6>
+            <p class="text-muted mb-0">Collection (This Month)</p>
           </div>
           <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-            <h6 class="font-weight-bold mb-0">$236</h6>
+            <div class="icon icon-box-warning" style="float:right;">
+              <span class="mdi mdi-arrow-top-right icon-item"></span>
+            </div>
           </div>
         </div>
         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
           <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">Tranfer to Stripe</h6>
-            <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+            <h6 class="mb-1">$ 31,12,500</h6>
+            <p class="text-muted mb-0">Total Dues</p>
           </div>
           <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-            <h6 class="font-weight-bold mb-0">$593</h6>
+            <div class="icon icon-box-warning" style="float:right;">
+              <span class="mdi mdi-arrow-top-right icon-item"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -113,14 +117,12 @@
   </div>
 
 
-
-
   <div class="col-md-8 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="d-flex flex-row justify-content-between">
-          <h4 class="card-title mb-1">Open Projects</h4>
-          <p class="text-muted mb-1">Your data status</p>
+          <h2 class="card-title mb-1"><?php echo date('H:i:s'); ?></h2>
+          <p class="text-muted mb-1"><?php echo date('l, d F, Y'); ?></p>
         </div>
         <div class="row">
           <div class="col-12">
@@ -128,17 +130,20 @@
               <div class="preview-item border-bottom">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-primary">
-                    <i class="mdi mdi-file-document"></i>
+                    <i class="mdi mdi-numeric-4-box-multiple-outline mdi-24px"></i>
                   </div>
                 </div>
                 <div class="preview-item-content d-sm-flex flex-grow">
                   <div class="flex-grow">
-                    <h6 class="preview-subject">Admin dashboard design</h6>
-                    <p class="text-muted mb-0">Broadcast web app mockup</p>
+                    <h6 class="preview-subject">4th Period Running</h6>
+                    <div class="progress progress-md portfolio-progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                   </div>
                   <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                    <p class="text-muted">15 minutes ago</p>
-                    <p class="text-muted mb-0">30 tasks, 5 issues </p>
+                    <p class="text-muted">till 15:30:00</p>
+
                   </div>
                 </div>
               </div>
@@ -165,13 +170,52 @@
             </div>
           </div>
         </div>
+
+        <div class="d-flex flex-row justify-content-between">
+          <h4 class="card-title mb-1 mt-5">Notices/Events</h4>
+          <p class="text-muted mb-1 mt-5">-</p>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="preview-list">
+
+              <!-- ITEM -->
+
+              <?php for($i=0; $i<5; $i++){ ?>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="mdi mdi-cloud-download"></i>
+                  </div>
+                </div>
+
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Wordpress Development</h6>
+                    <p class="text-muted mb-0">Upload new design</p>
+                  </div>
+                  <div class="mr-auto text-sm-right pt-2 pt-sm-0">
+                    <p class="text-muted">1 hour ago</p>
+                    <p class="text-muted mb-0">23 tasks, 5 issues </p>
+                  </div>
+                </div>
+              </div>
+                <?php } ?>
+            </div>
+          </div>
+        </div>
+
+
+
+
       </div>
     </div>
 
-    
 
 
-    
+
+
   </div>
 
 
@@ -241,6 +285,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="row ">
   <div class="col-12 grid-margin">
     <div class="card">
@@ -379,6 +425,9 @@
     </div>
   </div>
 </div>
+
+
+
 <div class="row">
   <div class="col-md-6 col-xl-4 grid-margin stretch-card">
     <div class="card">
@@ -616,28 +665,28 @@
 <?php include 'footer.php'; ?>
 
 <script>
-    function statistics() {
-        var infor = "";
-        $("#statistics").html("");
-        $.ajax({
-            type: "POST",
-            url: "backend/statistics.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#statistics').html('');
-            },
-            success: function (html) {
-                $("#statistics").html(html);
-                document.getElementById("total_students_main").innerHTML = document.getElementById("total_students").innerHTML;
-            }
-        });
-    }
+  function statistics() {
+    var infor = "";
+    $("#statistics").html("");
+    $.ajax({
+      type: "POST",
+      url: "backend/statistics.php",
+      data: infor,
+      cache: false,
+      beforeSend: function () {
+        $('#statistics').html('');
+      },
+      success: function (html) {
+        $("#statistics").html(html);
+        document.getElementById("total_students_main").innerHTML = document.getElementById("total_students").innerHTML;
+      }
+    });
+  }
 </script>
 
 <script>
-    // A $( document ).ready() block.
-    $(document).ready(function () {
-       statistics();
-    });
+  // A $( document ).ready() block.
+  $(document).ready(function () {
+    statistics();
+  });
 </script>

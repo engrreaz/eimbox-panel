@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(strlen(isset($_SESSION["user"]))>0){
+  header("Location:index.php");
+}
+
 include_once 'auth/gpConfig.php';
 $authUrl = $gClient->createAuthUrl();
 

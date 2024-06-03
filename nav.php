@@ -213,7 +213,7 @@
           </a>
           <div class="collapse" id="hrd">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="teachers.php">Teaching Staffs</a></li>
+              <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=t">Teaching Staffs</a></li>
               <li class="nav-item"> <a class="nav-link" href="staffs.php">Management Staffs</a></li>
               <li class="nav-item"> <a class="nav-link" href="tattnd.php">HRD Attendance</a></li>
             </ul>
@@ -321,7 +321,7 @@
               <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Clubs in Institution</a></li>
+              <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Data Validation Scanner</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Notice Manager</a></li>

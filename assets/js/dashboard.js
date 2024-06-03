@@ -33,6 +33,9 @@
       bar.text.style.fontSize = '1.5rem';
       bar.animate(0.4);  // Number from 0.0 to 1.0
     }
+
+
+
     if($('#audience-map').length) {
       $('#audience-map').vectorMap({
         map: 'world_mill_en',
@@ -61,13 +64,16 @@
         }
       });
     }
+
+
+
     if ($("#transaction-history").length) {
       var areaData = {
-        labels: ["Paypal", "Stripe","Cash"],
+        labels: ["Six/Joba", "Eight/Bokul", "Nine/Tagor", "Ten/Science", "Ten/Business",],
         datasets: [{
-            data: [55, 25, 20],
+            data: [1800,1400,1000,3000,2600,],
             backgroundColor: [
-              "#111111","#00d25b","#ffab00"
+              "red","blue","purple","green","deeppink",
             ]
           }
         ]
@@ -102,7 +108,7 @@
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#ffffff";
       
-          var text = "$1200", 
+          var text = "৳ 4600", 
               textX = Math.round((width - ctx.measureText(text).width) / 2),
               textY = height / 2.4;
       
@@ -131,6 +137,11 @@
         plugins: transactionhistoryChartPlugins
       });
     }
+
+
+
+
+
     if ($("#transaction-history-arabic").length) {
       var areaData = {
         labels: ["Paypal", "Stripe","Cash"],
@@ -172,7 +183,7 @@
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#ffffff";
       
-          var text = "$1200", 
+          var text = "$1200x", 
               textX = Math.round((width - ctx.measureText(text).width) / 2),
               textY = height / 2.4;
       
@@ -201,6 +212,10 @@
         plugins: transactionhistoryChartPlugins
       });
     }
+
+
+
+    
     if ($('#owl-carousel-basic').length) {
       $('#owl-carousel-basic').owlCarousel({
         loop: true,

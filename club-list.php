@@ -21,10 +21,10 @@ if (isset($_GET['sec'])) {
 } else {
     $sec2 = '';
 }
-if (isset($_GET['hr'])) {
-    $hrtype = $_GET['hr']; $rnk = '<';
+if (isset($_GET['exam'])) {
+    $exam2 = $_GET['exam'];
 } else {
-    $hrtype = 'teacher'; $rnk = '>';
+    $exam2 = '';
 }
 
 $col = 3;
@@ -45,7 +45,7 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
-<h3 class="d-print-none">Human Resource (<?php echo $hrtype;?>)</h3>
+<h3 class="d-print-none">Student's List</h3>
 <p class="d-print-none">
     <code>Reports <i class="mdi mdi-arrow-right"></i> Students List </code>
 </p>
@@ -232,13 +232,61 @@ if (isset($_GET['addnew'])) {
         <?php
         $cnt = 0;
         $cntamt = 0;
-        $sql0 = "SELECT * FROM teacher where sccode='$sccode' and ranks $rnk 50  order by sl, ranks";
+        $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
         $result0 = $conn->query($sql0);
         if ($result0->num_rows > 0) {
             while ($row0 = $result0->fetch_assoc()) {
-                $tid = $row0["tid"];
-                $neng = $row0["tname"];
-                $nben = $row0["tnameb"];
+                $stid = $row0["stid"];
+                $rollno = $row0["rollno"];
+                $card = $row0["icardst"];
+                $dtid = $row0["id"];
+                $status = $row0["status"];
+                $rel = $row0["religion"];
+                $four = $row0["fourth_subject"];
+
+
+                $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid' LIMIT 1";
+                $result00 = $conn->query($sql00);
+                if ($result00->num_rows > 0) {
+                    while ($row00 = $result00->fetch_assoc()) {
+                        $neng = $row00["stnameeng"];
+                        $nben = $row00["stnameben"];
+
+                        $fname = $row00["fname"];
+                        $mname = $row00["mname"];
+                        $vill = $row00["pervill"];
+                        $po = $row00["perpo"];
+                        $ps = $row00["perps"];
+                        $dist = $row00["perdist"];
+                        $dob = $row00["dob"];
+
+
+
+                        $regdno = $row00["regdno"];
+                        $sscroll = $row00["rollno"];
+                        $gpa = $row00["gpa"];
+                        $gla = $row00["gla"];
+
+
+
+                    }
+                } else {
+                    $neng = '';
+                    $nben = '';
+
+                    $fname = '';
+                    $mname = '';
+                    $vill = '';
+                    $po = '';
+                    $ps = '';
+                    $dist = '';
+                    $dob = '';
+
+                    $regdno = '';
+                    $sscroll = '';
+                    $gpa = '';
+                    $gla = '';
+                }
 
 
 
@@ -251,20 +299,37 @@ if (isset($_GET['addnew'])) {
                 <tr>
                     <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                         <?php
-                    
+                        echo $rollno;
                         ?>
                     </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><small><?php echo $tid; ?></small></div>
+                        <div class="ooo"><small><?php echo $stid; ?></small></div>
                         <div class="ooo"><?php echo $neng; ?></div>
                         <div class="ooo"><?php echo $nben; ?></div>
-                       
+                        <?php if ($dob != "") { ?>
+                            <div class="ooo">DOB : <?php echo date('d / m / Y', strtotime($dob)); ?></div>
+                        <?php } ?>
                     </td>
-   
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $fname; ?></div>
+                        <div class="ooo"><?php echo $mname; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $vill; ?></div>
+                        <div class="ooo"><?php echo $po; ?></div>
+                        <div class="ooo"><?php echo $ps; ?></div>
+                        <div class="ooo"><?php echo $dist; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $sscroll; ?></div>
+                        <div class="ooo"><?php echo $regdno; ?></div>
+                    </td>
 
-                  
-
-                    
+                    <td style=" border:1px solid gray;">
+                        <?php if ($gpa != "") { ?>
+                            <?php echo $gpa . ' / ' . $gla; ?>
+                        <?php } ?>
+                    </td>
                     <td style=" border:1px solid gray;">
                         <div id="btn<?php echo $stid; ?>">
                             <div class="btn-group" role="group" aria-label="Basic example">
