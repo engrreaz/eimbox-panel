@@ -18,7 +18,6 @@
 
 
 
-<?php 
 $upload = 'err'; 
 if(!empty($_FILES['file'])){ 
      
@@ -39,5 +38,5 @@ if(!empty($_FILES['file'])){
     } 
 } 
 echo $upload; 
-?>
+
 
