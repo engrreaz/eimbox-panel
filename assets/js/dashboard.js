@@ -71,9 +71,9 @@
       var areaData = {
         labels: ["Six/Joba", "Eight/Bokul", "Nine/Tagor", "Ten/Science", "Ten/Business",],
         datasets: [{
-            data: [1800,1400,1000,3000,2600,],
+            data: [1800,1400,1000,3000,2600,100,],
             backgroundColor: [
-              "red","blue","purple","green","deeppink",
+              "black","lavendar","cyan","gray","lightpink", "silver",  "crimson",  "blue",  "white",  "lime", 
             ]
           }
         ]

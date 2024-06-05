@@ -8,8 +8,8 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="total_students_main">0</h3>
-              <p class="text-danger ml-2 mb-0 font-weight-medium">75.00%</p>
+              <h3 class="mb-0" id="st_attnd_main">0</h3>
+              <p class="text-danger ml-2 mb-0 font-weight-medium" id="total_students_main">0</p>
             </div>
           </div>
           <div class="col-3">
@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0">21</h3>
+              <h3 class="mb-0" id="t_attnd_main">0</h3>
               <p class="text-success ml-2 mb-0 font-weight-medium">100%</p>
             </div>
           </div>
@@ -48,8 +48,8 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0">480</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium">15 (Online)</p>
+              <h3 class="mb-0" id="users_main">0</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium" id="online_main">0</p>
             </div>
           </div>
           <div class="col-3">
@@ -68,7 +68,7 @@
         <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0">৳ 12321.00</h3>
+              <h3 class="mb-0" id="expense_main">0</h3>
               <p class="text-success ml-2 mb-0 font-weight-medium"></p>
             </div>
           </div>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="preview-item-content d-sm-flex flex-grow">
                   <div class="flex-grow">
-                    <h6 class="preview-subject">4th Period Running</h6>
+                    <h6 class="preview-subject" id="main-29-main"></h6>
                     <div class="progress progress-md portfolio-progress">
                       <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
@@ -148,32 +148,15 @@
                 </div>
               </div>
 
-              <div class="preview-item border-bottom">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-success">
-                    <i class="mdi mdi-cloud-download"></i>
-                  </div>
-                </div>
-
-                <div class="preview-item-content d-sm-flex flex-grow">
-                  <div class="flex-grow">
-                    <h6 class="preview-subject">Wordpress Development</h6>
-                    <p class="text-muted mb-0">Upload new design</p>
-                  </div>
-                  <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                    <p class="text-muted">1 hour ago</p>
-                    <p class="text-muted mb-0">23 tasks, 5 issues </p>
-                  </div>
-                </div>
-              </div>
+ 
 
             </div>
           </div>
         </div>
 
         <div class="d-flex flex-row justify-content-between">
-          <h4 class="card-title mb-1 mt-5">Notices/Events</h4>
-          <p class="text-muted mb-1 mt-5">-</p>
+          <h4 class="card-title mb-1 mt-4">Notices/Events</h4>
+          <p class="text-muted mb-1 mt-1">-</p>
         </div>
 
         <div class="row">
@@ -182,26 +165,26 @@
 
               <!-- ITEM -->
 
-              <?php for($i=0; $i<5; $i++){ ?>
-              <div class="preview-item border-bottom">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-success">
-                    <i class="mdi mdi-cloud-download"></i>
+              <?php for ($i = 0; $i < 5; $i++) { ?>
+                <div class="preview-item border-bottom">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-danger">
+                      <i class="mdi mdi-cloud-download"></i>
+                    </div>
                   </div>
-                </div>
 
-                <div class="preview-item-content d-sm-flex flex-grow">
-                  <div class="flex-grow">
-                    <h6 class="preview-subject">Wordpress Development</h6>
-                    <p class="text-muted mb-0">Upload new design</p>
-                  </div>
-                  <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                    <p class="text-muted">1 hour ago</p>
-                    <p class="text-muted mb-0">23 tasks, 5 issues </p>
+                  <div class="preview-item-content d-sm-flex flex-grow">
+                    <div class="flex-grow">
+                      <h6 class="preview-subject">Vacation</h6>
+                      <p class="text-muted mb-0">Eid-Ul-Adha Vacation</p>
+                    </div>
+                    <div class="mr-auto text-sm-right pt-2 pt-sm-0">
+                      <p class="text-muted">1 hour ago</p>
+                      <p class="text-muted mb-0">23 tasks, 5 issues </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-                <?php } ?>
+              <?php } ?>
             </div>
           </div>
         </div>
@@ -679,6 +662,14 @@
       success: function (html) {
         $("#statistics").html(html);
         document.getElementById("total_students_main").innerHTML = document.getElementById("total_students").innerHTML;
+        document.getElementById("st_attnd_main").innerHTML = document.getElementById("st_attnd").innerHTML;
+        document.getElementById("t_attnd_main").innerHTML = document.getElementById("t_attnd").innerHTML;
+        document.getElementById("users_main").innerHTML = document.getElementById("userstat").innerHTML;
+        document.getElementById("online_main").innerHTML = document.getElementById("online").innerHTML;
+        document.getElementById("expense_main").innerHTML = document.getElementById("expense").innerHTML;
+
+
+        document.getElementById("main-29-main").innerHTML = 'Current Period : <b>' + document.getElementById("main-29").innerHTML + '</b>' ;
       }
     });
   }

@@ -21,10 +21,10 @@ if (isset($_GET['sec'])) {
 } else {
     $sec2 = '';
 }
-if (isset($_GET['hr'])) {
-    $hrtype = $_GET['hr']; $rnk = '<';
+if (isset($_GET['exam'])) {
+    $exam2 = $_GET['exam'];
 } else {
-    $hrtype = 'teacher'; $rnk = '>';
+    $exam2 = '';
 }
 
 $col = 3;
@@ -45,9 +45,9 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
-<h3 class="d-print-none">Human Resource (<?php echo $hrtype;?>)</h3>
+<h3 class="d-print-none">View Live Attendance</h3>
 <p class="d-print-none">
-    <code>Reports <i class="mdi mdi-arrow-right"></i> Students List </code>
+    <code>Reports <i class="mdi mdi-arrow-right"></i> Live Attendance </code>
 </p>
 
 <div class="row d-print-none">
@@ -193,9 +193,8 @@ if (isset($_GET['addnew'])) {
                             </style>
                         </head>
                         <div style="text-align: left;">
-                                <button type="button" onclick="go()" class="btn btn-primary">All</button>
-                                <button type="button" onclick="go()" class="btn btn-inverse-warning">School</button>
-                                <button type="button" onclick="go()" class="btn btn-inverse-info">College</button>
+                            Class : <b><?php echo $cls2; ?></b>
+                            Section : <b><?php echo $sec2; ?></b>
 
                         </div>
 
@@ -218,10 +217,12 @@ if (isset($_GET['addnew'])) {
         <tr>
             <td class="txt-right">#</td>
             <td class="txt-right">Name of Student</td>
-            <td class="txt-right">Parents</td>
-            <td class="txt-right">Address</td>
-            <td class="txt-right">Roll/Regd</td>
-            <td class="txt-right">Result</td>
+            <td class="txt-right">Class</td>
+            <td class="txt-right">Section</td>
+            <td class="txt-right">Roll</td>
+            <td class="txt-right">Check-In</td>
+            <td class="txt-right">Check-Out</td>
+            <td class="txt-right">Device</td>
             <td class="txt-right"></td>
         </tr>
     </thead>
@@ -233,16 +234,18 @@ if (isset($_GET['addnew'])) {
         <?php
         $cnt = 0;
         $cntamt = 0;
-        $sql0 = "SELECT * FROM teacher where sccode='$sccode' and ranks $rnk 50  order by ranks, sl";
+        $sql0 = "SELECT * FROM stattnd where sessionyear='$sy' and sccode='$sccode' order by entrytime desc, id desc LIMIT 50";
         $result0 = $conn->query($sql0);
         if ($result0->num_rows > 0) {
             while ($row0 = $result0->fetch_assoc()) {
-                $tid = $row0["tid"];
-                $neng = $row0["tname"];
-                $nben = $row0["tnameb"];
-                $position = $row0["position"];
-                $ranks = $row0["ranks"];
-
+                $stid = $row0["stid"];
+                $stname = $row0["stname"];
+                $clsd = $row0["classname"];
+                $secd = $row0["sectionname"];
+                $roll = $row0["rollno"];
+                $device = $row0["entryby"];
+                $intime = $row0["intime"];
+                $outtime = $row0["outtime"];
 
 
 
@@ -254,34 +257,39 @@ if (isset($_GET['addnew'])) {
                 <tr>
                     <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                         <?php
-                    
+                        echo $roll;
                         ?>
                     </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><small><?php echo $tid; ?></small></div>
-                        <div class="ooo"><?php echo $neng; ?></div>
-                        <div class="ooo"><?php echo $nben; ?></div>
-                       
+                        <div class="ooo"><small><?php echo $stid; ?></small></div>
+                        <div class="ooo"><?php echo $stname; ?></div>
                     </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $ranks; ?></div>
+                        <div class="ooo"><?php echo $clsd; ?></div>
                     </td>
-   
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $position; ?></div>
+                        <div class="ooo"><?php echo $secd; ?></div>
                     </td>
-   
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $roll; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $intime; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $outtime; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $device; ?></div>
+                    </td>
 
-                  
-
-                    
                     <td style=" border:1px solid gray;">
                         <div id="btn<?php echo $stid; ?>">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $tid; ?>)">
+                                <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $stid; ?>)">
                                     <i class="mdi mdi-book-open-page-variant"></i>
                                 </button>
-                                <button type="button" class="btn btn-inverse-warning" onclick="issuet(<?php echo $tid; ?>)">
+                                <button type="button" class="btn btn-inverse-warning" onclick="issuet(<?php echo $stid; ?>)">
                                     <i class="mdi mdi-calendar"></i>
                                 </button>
                             </div>
@@ -336,11 +344,11 @@ include 'footer.php';
 </script>
 
 <script>
-    function issue(tid) {
-        window.location.href = 'hr-edit.php?tid=' + tid;
+    function issue(stid) {
+        window.location.href = 'students-edit.php?stid=' + stid;
     }
-    function issuet(tid) {
-        window.location.href = 'hr-profile.php?tid=' + tid;
+    function issuet(stid) {
+        window.location.href = 'student-profile.php?stid=' + stid;
     }
 </script>
 
