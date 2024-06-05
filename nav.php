@@ -315,7 +315,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#modules" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-view-module  mdi-24px pt-1"></i>
+              <i class="mdi mdi-view-module  mdi-24px pt-2"></i>
             </span>
             <span class="menu-title">Modules</span>
             <i class="menu-arrow"></i>
@@ -326,7 +326,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
               <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li>
               <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Data Validation Scanner</a></li>
+              <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Notice Manager</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li>
@@ -340,7 +340,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#library" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-book-open-page-variant  mdi-24px pt-1"></i>
+              <i class="mdi mdi-book-open-page-variant  mdi-18px pt-1"></i>
             </span>
             <span class="menu-title">Library</span>
             <i class="menu-arrow"></i>
@@ -357,7 +357,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#transport" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-bus mdi-24px pt-1"></i>
+              <i class="mdi mdi-bus mdi-18px pt-1"></i>
             </span>
             <span class="menu-title">Transport</span>
             <i class="menu-arrow"></i>
@@ -373,7 +373,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#hostel" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-hotel mdi-24px pt-1"></i>
+              <i class="mdi mdi-hotel mdi-18px pt-1"></i>
             </span>
             <span class="menu-title">Hostel Management</span>
             <i class="menu-arrow"></i>
@@ -393,7 +393,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#register" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-folder-multiple mdi-24px pt-1"></i>
+              <i class="mdi mdi-folder-multiple mdi-18px pt-1"></i>
             </span>
             <span class="menu-title">Registers</span>
             <i class="menu-arrow"></i>

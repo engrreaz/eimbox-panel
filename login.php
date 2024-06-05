@@ -39,12 +39,12 @@ $authUrl = $gClient->createAuthUrl();
 
 
           <div class="">
-            
+
             <div class="mb-3">
               <div style="float:right; display:none;" class="d-lg-block d-none pr-5 text-right">
-              
-              <!-- <small>Need an assistance?<br></small><i class="mdi mdi-phone"></i> 0152365847 -->
-          </div>
+
+                <!-- <small>Need an assistance?<br></small><i class="mdi mdi-phone"></i> 0152365847 -->
+              </div>
               <!-- <h2 class="mb-3 text-center"> -->
               <table class="" style="text-align:left; margin:auto;">
                 <tr>
@@ -93,7 +93,7 @@ $authUrl = $gClient->createAuthUrl();
                       <div class="col-md-6 col-6">
                         <div class="template-demox mt-2">
 
-                          <button class="btn btn-outline-light btn-icon-text full-width">
+                          <button class="btn btn-outline-light btn-icon-text full-width" onclick="playstore();">
                             <i class="mdi mdi-android-debug-bridge btn-icon-prepend mdi-36px"></i>
                             <span class="d-inline-block text-left">
                               <small class="font-weight-light d-block">Get it on the</small> Google Play </span>
@@ -163,8 +163,7 @@ $authUrl = $gClient->createAuthUrl();
                 <!--<img style="padding: 5px; background:var(--lighter);" src="https://chart.googleapis.com/chart?chs=170x170&cht=qr&chl=<?php echo $lnk; ?>&choe=UTF-8&chld=L|0" />-->
 
                 <div class="text-center">
-                  <img style=" margin-auto;" 
-                    src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=170" />
+                  <img style=" margin-auto;" src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=170" />
                 </div>
 
 
@@ -259,6 +258,12 @@ $authUrl = $gClient->createAuthUrl();
 </script>
 
 
+<script>
+
+  function playstore() {
+    window.location.href = 'https://play.google.com/store/apps/details?id=com.xeneen.eimbox&hl=en&gl=US&pli=1';
+  }
+</script>
 
 <script>
 
@@ -270,8 +275,10 @@ $authUrl = $gClient->createAuthUrl();
 
 
   function proceed() {
+    alert(333);
     window.location.href = 'index.php?email=<?php echo $usr; ?>';
   }
+
 </script>
 
 
