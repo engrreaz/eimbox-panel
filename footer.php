@@ -18,7 +18,7 @@
 <!-- page-body-wrapper ends -->
 </div>
 <div id="logstatus"></div>
-
+<!-- <div ><?php echo filesize($curfile);?></div> -->
 <!-- container-scroller -->
 <!-- plugins:js -->
 <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -82,7 +82,7 @@
 
 <script>
     function loger() {
-        var infor = "page=<?php echo $curfile; ?>" ;
+        var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile);?>" ;
         $("#logstatus").html("----");
         $.ajax({
             type: "POST",
@@ -99,7 +99,7 @@
 
     const element = document.getElementById("logstatus");
     setInterval(function () {
-        var infor = "page=<?php echo $curfile; ?>" ;
+        var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile);?>" ;
 
         $("#logstatus").html("----");
 

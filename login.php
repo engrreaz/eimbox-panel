@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(strlen(isset($_SESSION["user"]))>0){
+if (strlen(isset($_SESSION["user"])) > 0) {
   header("Location:index.php");
 }
 
@@ -15,7 +15,7 @@ $authUrl = $gClient->createAuthUrl();
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Corona Admin</title>
+  <title>EIMBox - Admin Panel</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -27,7 +27,7 @@ $authUrl = $gClient->createAuthUrl();
   <!-- Layout styles -->
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- End layout styles -->
-  <link rel="shortcut icon" href="assets/images/favicon.png" />
+  <link rel="shortcut icon" href="assets/imgs/logo.png" />
 </head>
 
 <body>
@@ -36,20 +36,45 @@ $authUrl = $gClient->createAuthUrl();
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">
         <div class="content-wrapper full-page-wrapper d-flexx align-items-center auth bg-gray-dark ">
-          <div class="row col-12">
-            <h2 class="card-title text-left mb-3 text-center">EIMBox | <small>School Management System</small></h2>
-          </div>
-          <div class="row col-12">
 
+
+          <div class="">
+            
+            <div class="mb-3">
+              <div style="float:right; display:none;" class="d-lg-block d-none pr-5 text-right">
+              
+              <!-- <small>Need an assistance?<br></small><i class="mdi mdi-phone"></i> 0152365847 -->
+          </div>
+              <!-- <h2 class="mb-3 text-center"> -->
+              <table class="" style="text-align:left; margin:auto;">
+                <tr>
+                  <td>
+                    <img class="pr-3" src="assets/imgs/logo.png" style="height:50px;">
+                  </td>
+                  <td>
+                    <div style="font-size:30px;margin:0; line-height:26px; font-weight:700;">EIMBox
+                    </div>
+                    <div style="font-size:14px;margin-top:5px">School Management System</div>
+
+                  </td>
+                </tr>
+              </table>
+
+
+              <!-- </h2> -->
+            </div>
+          </div>
+
+          <div class="row col-12">
             <div class="card col-lg-4  md-4 mx-auto">
               <div class="card-body px-5 py-5">
 
                 <div class="d-flexx">
                   <button class="btn  col full-width m-2 p-2 btn-outline-light" disabled>
                     <i class="mdi mdi-facebook"></i> Facebook </button>
-                  <a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL);?>">
+                  <a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL); ?>">
                     <button class="btn btn-google col full-width m-2 p-2">
-                    <i class="mdi mdi-google-plus"></i> Google plus </button></a>
+                      <i class="mdi mdi-google-plus"></i> Google plus </button></a>
                 </div>
 
                 <div class="row ml-1 mt-3">
@@ -102,7 +127,7 @@ $authUrl = $gClient->createAuthUrl();
                       <label class="form-check-label">
                         <input type="checkbox" name="rememberme" class="form-check-input"> Remember me </label>
                     </div>
-                    <a href="#" class="forgot-pass">Forgot password</a>
+                    <a href="#" class="forgot-pass  ">Forgot password</a>
                   </div>
                   <div class="text-center">
                     <button type="submit" id="btn" onclick="eiin();"
@@ -138,16 +163,16 @@ $authUrl = $gClient->createAuthUrl();
                 <!--<img style="padding: 5px; background:var(--lighter);" src="https://chart.googleapis.com/chart?chs=170x170&cht=qr&chl=<?php echo $lnk; ?>&choe=UTF-8&chld=L|0" />-->
 
                 <div class="text-center">
-                  <img style="padding: 5px; background:var(--lighter); margin-auto;" class="m-2"
+                  <img style=" margin-auto;" 
                     src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=170" />
                 </div>
 
 
                 <div id="japa"></div>
-                <p class="text-center">
- <small >Scan the QR Code with EIMBox Android App <br>or, Your Institute's Custom App.</small>
+                <p class="text-center mt-2">
+                  <small>Scan the QR Code <br>with EIMBox Approved Android App </small>
                 </p>
-               
+
 
 
 

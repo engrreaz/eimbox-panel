@@ -79,7 +79,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" href="#">
             <span class="menu-icon">
-              <i class="mdi mdi-speedometer"></i>
+              <i class="mdi mdi-checkbox-marked-circle-outline mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Institute Profile</span>
           </a>
@@ -87,7 +87,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#academics" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-laptop mdi-24px"></i>
+              <i class="mdi mdi-school mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Academics</span>
             <i class="menu-arrow"></i>
@@ -123,7 +123,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" href="st-payment-setup.php">
             <span class="menu-icon">
-              <i class="mdi mdi-speedometer"></i>
+              <i class="mdi mdi-currency-try mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Payments & Fees</span>
           </a>
@@ -132,7 +132,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" href="#">
             <span class="menu-icon">
-              <i class="mdi mdi-speedometer"></i>
+              <i class="mdi mdi-credit-card  mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Payment Method Setup</span>
           </a>
@@ -140,7 +140,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" href="#">
             <span class="menu-icon">
-              <i class="mdi mdi-speedometer"></i>
+              <i class="mdi mdi-message-text  mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Messaging</span>
           </a>
@@ -148,7 +148,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
         <li class="nav-item menu-items">
           <a class="nav-link" href="users-privileges.php">
             <span class="menu-icon">
-              <i class="mdi mdi-speedometer"></i>
+              <i class="mdi mdi-lock mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Privileges</span>
           </a>

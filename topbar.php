@@ -63,6 +63,11 @@
           <i class="mdi mdi-view-grid"></i>
         </a>
       </li>
+      <!-- <li class="nav-item nav-settings d-nones d-lg-block">
+        <a class="nav-link" href="#">
+          <i class="mdi mdi-youtube"></i>
+        </a>
+      </li> -->
       <li class="nav-item dropdown border-left">
         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown"
           aria-expanded="false">

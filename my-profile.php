@@ -42,6 +42,17 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
+
+
+
+$sql0x = "SELECT sum(duration) as dur, sum(filesize) as fs FROM logbook where sccode='$sccode'  and email = '$usr' ;";
+$result0x = $conn->query($sql0x);
+if ($result0x->num_rows > 0) {
+    while ($row0x = $result0x->fetch_assoc()) {
+        $dur = $row0x["dur"];
+        $fs = $row0x["fs"];
+    }
+}
 ?>
 
 <h3>My Profile </h3>
@@ -52,7 +63,7 @@ if (isset($_GET['addnew'])) {
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group row">
                             <div class="col-12">
                                 <img style="" src="<?php echo $pth; ?>" />
@@ -61,12 +72,20 @@ if (isset($_GET['addnew'])) {
                     </div>
 
 
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <div class="form-group row">
                             <div class="col-12">
                                 <h4><?php echo $fullname; ?></h4>
                                 <h5><?php echo $usr; ?></h5>
                                 <small><?php echo $userlevel; ?></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <!-- <h4><?php echo $dur/3600; ?> HRS.</h4>
+                                <h5><?php echo $fs/(1024*1024); ?> MB</h5> -->
                             </div>
                         </div>
                     </div>

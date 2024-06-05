@@ -7,15 +7,8 @@ ALTER TABLE `financeitem` ADD `payment` INT NOT NULL DEFAULT '1' AFTER `particul
 
 update financeitem set payment=0 where id>80;
 
++ logbok add filesize after duration (float)
 
-
-
-
-coin
-
-checkbox-marked-circle-outline
-
-account
 
 
 

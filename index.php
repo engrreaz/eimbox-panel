@@ -665,7 +665,7 @@
         document.getElementById("st_attnd_main").innerHTML = document.getElementById("st_attnd").innerHTML;
         document.getElementById("t_attnd_main").innerHTML = document.getElementById("t_attnd").innerHTML;
         document.getElementById("users_main").innerHTML = document.getElementById("userstat").innerHTML;
-        document.getElementById("online_main").innerHTML = document.getElementById("online").innerHTML;
+        document.getElementById("online_main").innerHTML = document.getElementById("online").innerHTML + ' Active Today';
         document.getElementById("expense_main").innerHTML = document.getElementById("expense").innerHTML;
 
 

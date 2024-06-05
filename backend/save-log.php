@@ -2,6 +2,7 @@
 date_default_timezone_set('Asia/Dhaka');
 include ('inc2.php');
 $page = $_POST['page'];
+$size = $_POST['size'];
 
 $sql0 = "SELECT * FROM logbook where email = '$usr' and sccode = '$sccode' order by id desc limit 1;";
 $result0rt = $conn->query($sql0);
@@ -14,15 +15,15 @@ if ($result0rt->num_rows == 1) {
         } else {
             $ip = $_SERVER['REMOTE_ADDR'];
             $brs = $_SERVER['HTTP_USER_AGENT'];
-            $query331 = "INSERT INTO logbook (id, email, sccode, pagename, duration, ipaddr, platform, browser, location, entrytime) 
-            VALUES (NULL, '$usr', '$sccode', '$page', '3', '$ip', 'WEB', '$brs', NULL, '$cur');";
+            $query331 = "INSERT INTO logbook (id, email, sccode, pagename, duration, filesize, ipaddr, platform, browser, location, entrytime) 
+            VALUES (NULL, '$usr', '$sccode', '$page', '3', '$size',  '$ip', 'WEB', '$brs', NULL, '$cur');";
         }
     }
 } else {
     $ip = $_SERVER['REMOTE_ADDR'];
     $brs = $_SERVER['HTTP_USER_AGENT'];
-    $query331 = "INSERT INTO logbook (id, email, sccode, pagename, duration, ipaddr, platform, browser, location, entrytime) 
-    VALUES (NULL, '$usr', '$sccode', '$page', '3', '$ip', 'WEB', '$brs', NULL, '$cur');";
+    $query331 = "INSERT INTO logbook (id, email, sccode, pagename, duration, filesize, ipaddr, platform, browser, location, entrytime) 
+    VALUES (NULL, '$usr', '$sccode', '$page', '3', '$size', '$ip', 'WEB', '$brs', NULL, '$cur');";
 }
 
 $conn->query($query331);
