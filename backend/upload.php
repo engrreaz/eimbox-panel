@@ -16,27 +16,27 @@
 // }
 
 
+if (!file_exists("../uploads")) {
+    mkdir("../uploads", 0777, true);
+}
+
+echo $_POST['datam'];
 
 
-$upload = 'err'; 
-if(!empty($_FILES['file'])){ 
-     
-    // File upload configuration 
-    $targetDir = "uploads/"; 
-    $allowTypes = array('pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg', 'gif'); 
-     
-    $fileName = basename($_FILES['file']['name']); 
-    $targetFilePath = $targetDir.$fileName; 
-     
-    // Check whether file type is valid 
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION); 
-    if(in_array($fileType, $allowTypes)){ 
-        // Upload file to the server 
-        if(move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath)){ 
-            $upload = 'ok'; 
-        } 
-    } 
-} 
-echo $upload; 
+for ($i = 0; $i < count($_FILES['files']['tmp_name']); $i++) {
+    // Add your validation here
+    $file = "../uploads/" . $_FILES['files']['name'][$i];
+
+    if (file_exists($file)) {
+        echo $file . " already exists. ";
+    } else {
+
+        // Move temporary files to new specified location
+        move_uploaded_file($_FILES['files']['tmp_name'][$i], $file);
+        // echo $_FILES['files']['tmp_name'][$i] . '/' . $file;
+
+    }
 
 
+}
+;
