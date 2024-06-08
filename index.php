@@ -188,7 +188,7 @@ if ($track < 100) {
           <p class="text-muted mb-1 mt-1">-</p>
         </div>
 
-        <div class="row">
+        <div class="row" style="display:none;">
           <div class="col-12">
             <div class="preview-list">
 
