@@ -45,9 +45,9 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
-<h3 class="d-print-none">Student's List</h3>
+<h3 class="d-print-none">Student's Payment System</h3>
 <p class="d-print-none">
-    <code>Reports <i class="mdi mdi-arrow-right"></i> Students List </code>
+    <code>Students <i class="mdi mdi-arrow-right"></i> Fees & payments </code>
 </p>
 
 <div class="row d-print-none">
@@ -138,10 +138,9 @@ if (isset($_GET['addnew'])) {
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-lg btn-outline-success btn-icon-text btn-block" style=""
+                                    class="btn btn-lg btn-outline-success btn-icon-text btn-block p-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Generate
-                                    Card</button>
+                                    Show Dues List</button>
                             </div>
                         </div>
                     </div>
@@ -171,11 +170,11 @@ if (isset($_GET['addnew'])) {
                                                 </tr>
                                             </thead>
 
-                                            <tbody>
+                                            <tbody id="dues-body">
                                                 <?php
                                                 $cnt = 0;
                                                 $cntamt = 0;
-                                                $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
+                                                $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno LIMIT 1 ";
                                                 $result0 = $conn->query($sql0);
                                                 if ($result0->num_rows > 0) {
                                                     while ($row0 = $result0->fetch_assoc()) {
@@ -253,7 +252,7 @@ if (isset($_GET['addnew'])) {
         <div class="card">
             <div class="card-body">
                 <div class="row-12" id="getdata">
-                    dddd
+                    Select Student First.
                 </div>
 
             </div>
@@ -268,7 +267,8 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Print Testimonials';
+    document.getElementById('defbtn').innerHTML = '';
+    document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         goprint(0);
     }
@@ -311,6 +311,28 @@ include 'footer.php';
 </script>
 
 <script>
+    function getlist() {
+            var infor = "year=<?php echo $year;?>&cls=<?php echo $cls2;?>&sec=<?php echo $sec2;?>" ;
+
+            $("#dues-body").html("");
+
+            $.ajax({
+                type: "POST",
+                url: "backend/fetch-dues-student-dues.php",
+                data: infor,
+                cache: false,
+                beforeSend: function () {
+                    $('#dues-body').html('<small>Retrive Dues List ...</small>');
+                },
+                success: function (html) {
+                    $("#dues-body").html(html);
+                }
+            });
+
+    }
+    getlist();
+
+
     function getdues(stid) {
             var infor = "stid=" + stid;
 

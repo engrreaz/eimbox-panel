@@ -1017,8 +1017,13 @@ echo $dismsg; ?>">
                     </div>
                     <div class="col-md-2">
                         <div class="form-group row">
-
-                            <img src="../students/<?php echo $stid; ?>.jpg" style="height:80px; border-radius:5px;">
+                                    <?php  
+                                    $stphotopath = "../students/<?php echo $stid; ?>.jpg";
+                                    if(! file_exists($stphotopath)){
+                                         $stphotopath = "../students/no-img.jpg";
+                                    }
+                                    ?>
+                            <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -1221,7 +1226,7 @@ include 'footer.php';
                 success: function (html) {
                     $("#batchbatch").html(html);
                     var nextroll = parseInt(rollno) + 1;
-                    // window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
+                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
         }
