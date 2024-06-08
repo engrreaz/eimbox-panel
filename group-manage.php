@@ -22,9 +22,9 @@ if (isset($_GET['sec'])) {
     $sec2 = '';
 }
 if (isset($_GET['ids'])) {
-    $ids2 = $_GET['ids'];
+    $ids2 = $_GET['ids']; $new='block';
 } else {
-    $ids2 = '0';
+    $ids2 = '0'; $new='none';
 }
 
 $sql0 = "SELECT * FROM pibigroup where sessionyear='$sy' and sccode='$sccode' and id='$ids2'";
@@ -169,7 +169,7 @@ if (isset($_GET['addnew'])) {
 
 
 
-<div class="row d-print-none" id="ren">
+<div class="row d-print-none" id="ren" style="display:<?php echo $new;?>">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -269,12 +269,12 @@ if (isset($_GET['addnew'])) {
                                             <div id="btn<?php echo $stid; ?>">
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <button type="button" class="btn btn-inverse-info"
-                                                        onclick="issue(<?php echo $stid; ?>)">
-                                                        <i class="mdi mdi-book-open-page-variant"></i>
+                                                        onclick="issue(<?php echo $id; ?>, 1)">
+                                                        <i class="mdi mdi-pencil"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-inverse-warning"
-                                                        onclick="issuet(<?php echo $stid; ?>)">
-                                                        <i class="mdi mdi-calendar"></i>
+                                                    <button type="button" class="btn btn-inverse-danger"
+                                                        onclick="savegroup(<?php echo $id; ?>, 2)">
+                                                        <i class="mdi mdi-close"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -341,10 +341,13 @@ include 'footer.php';
 </script>
 
 <script>
-    function issue(stid) {
-        window.location.href = 'students-edit.php?stid=' + stid;
+    function issue(id) {
+        var year = document.getElementById('year').value;
+        var cls = document.getElementById('cls').value;
+        var sec = document.getElementById('sec').value;
+        window.location.href = 'group-manage.php?&cls=' + cls + '&sec=' + sec + '&year=' + year + '&ids=' + id;
     }
-    function issuet(stid) {
+    function issuetxx(stid) {
         window.location.href = 'student-profile.php?stid=' + stid;
     }
 </script>
@@ -388,6 +391,9 @@ include 'footer.php';
     }
 
     function savegroup(id, ont) {
+        if(ont == 1){
+             var id = document.getElementById('iid').value;
+        }
         var year = document.getElementById('year').value;
         var cls = document.getElementById('cls').value;
         var sec = document.getElementById('sec').value;
@@ -407,11 +413,7 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#sscspan").html(html);
-                var st = parseInt(document.getElementById("boardroll").value) + 1;
-                document.getElementById("boardroll").value = st;
-                document.getElementById("gpagla").value = '';
-                document.getElementById("boardroll").focus();
-
+                go();
             }
         });
     }

@@ -1,5 +1,5 @@
 <?php 
-$pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manage.php', 'subjects.php', 'st-payment-setup.php'); 
+$pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manage.php', 'subjects.php', 'subjects-list.php', 'st-payment-setup.php'); 
 ?>
 
 <div style="overflow-y:auto; ">
@@ -97,9 +97,10 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
               <li class="nav-item"> <a class="nav-link" href="classes.php">Classes & Sections</a></li>
               <li class="nav-item"> <a class="nav-link" href="group-manage.php">Group Management</a></li>
               <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects Management</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Class Routine</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Syllabus</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Academic Plan</a></li>
+              <li class="nav-item"> <a class="nav-link" href="subjects-list.php">Subjects List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="access-denied.php">Class Routine</a></li>
+              <li class="nav-item"> <a class="nav-link" href="access-denied.php">Syllabus</a></li>
+              <li class="nav-item"> <a class="nav-link" href="access-denied.php">Academic Plan</a></li>
             </ul>
           </div>
         </li>
