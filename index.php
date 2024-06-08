@@ -4,15 +4,15 @@
 
 <?php
 if ($track < 100) {
-?>
+  ?>
 
   <div class="row" style="display:none;">
     <div class="col-12 grid-margin">
       <div class="card  bg-danger">
         <div class="card-body">
           <div style="float:right;">
-          
-          <button type="button" class="btn btn-secondary text-danger pt-2">Find It Now</button>
+
+            <button type="button" class="btn btn-secondary text-danger pt-2">Find It Now</button>
           </div>
           <h4 class="card-title">Detect Issues</h4>
           <div>
@@ -20,7 +20,7 @@ if ($track < 100) {
               <div class="progress-bar bg-secondary" role="progressbar" style="width: 67%" aria-valuenow="67"
                 aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <div class="mr-3" id="fixing-status"></div>  
+            <div class="mr-3" id="fixing-status"></div>
           </div>
         </div>
       </div>
@@ -164,16 +164,17 @@ if ($track < 100) {
                 </div>
                 <div class="preview-item-content d-sm-flex flex-grow">
                   <div class="flex-grow">
+                    <div style="float:right;">
+                      <p class="text-muted">till 00:30:00</p>
+                    </div>
                     <h6 class="preview-subject" id="main-29-main"></h6>
+
                     <div class="progress progress-md portfolio-progress">
                       <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
-                  <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                    <p class="text-muted">till 15:30:00</p>
 
-                  </div>
                 </div>
               </div>
 
@@ -325,7 +326,7 @@ if ($track < 100) {
               </tr>
             </thead>
             <tbody>
-              <tr  style="display:none;">
+              <tr style="display:none;">
                 <td>
                   <div class="form-check form-check-muted m-0">
                     <label class="form-check-label">
@@ -597,6 +598,9 @@ if ($track < 100) {
 <?php include 'footer.php'; ?>
 
 <script>
+
+document.getElementById('defmenu').innerHTML = '';
+
   function statistics() {
     var infor = "";
     $("#statistics").html("");

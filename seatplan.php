@@ -46,9 +46,12 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
-<h3>Expenditure / Execution Expense </h3>
+<h3>Exam Hall Management System </h3>
 
-<div class="row">
+<div class="text-warning">Call for Activate</div>
+
+
+<div class="row" hidden>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -337,7 +340,7 @@ if (isset($_GET['addnew'])) {
     </div>
 </div>
 
-<div class="row">
+<div class="row" hidden>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -449,7 +452,7 @@ if (isset($_GET['addnew'])) {
 
 
 
-<div class="row">
+<div class="row" hidden>
     <div class="col-md-4 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -578,7 +581,7 @@ if (isset($_GET['addnew'])) {
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" hidden>
     <div class="col-sm-8 grid-margin">
         <div class="card">
             <div class="card-body">

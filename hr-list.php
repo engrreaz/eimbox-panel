@@ -29,7 +29,7 @@ if (isset($_GET['hr'])) {
     $hrtype = 'teacher';
 }
 
-if ($hrtype == 'teacher') {
+if ($hrtype == 'teacher' || $hrtype == 'Teacher') {
     $rnk = '<';
 } else {
     $rnk = '>';
@@ -147,6 +147,7 @@ if (isset($_GET['tp'])) {
         } else {
             $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50 and slots='$tp' order by ranks, sl";
         }
+        
         $result0 = $conn->query($sql0);
         if ($result0->num_rows > 0) {
             while ($row0 = $result0->fetch_assoc()) {

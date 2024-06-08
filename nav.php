@@ -286,7 +286,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
           </a>
           <div class="collapse" id="examination">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="exam-list.php">Exam Schedule</a></li>
+              <li class="nav-item"> <a class="nav-link" href="exam-list.php">Exam List</a></li>
               <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
               <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
               <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule & Routine</a></li>
@@ -304,7 +304,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
           </a>
           <div class="collapse" id="result">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href=".php">Marks/Assessment Entry</a></li>
+              <li class="nav-item"> <a class="nav-link" href="access-denied.php">Marks/Assessment Entry</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">PI/BI Sheet</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Result Processing</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">Transcript</a></li>

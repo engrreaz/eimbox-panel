@@ -28,7 +28,7 @@ if ($result0->num_rows > 0) {
 <div class="float-right">
     <button type="button" style="" title="Add New Expenditure" class="btn btn-inverse-success" style=""
         onclick="addnew();">
-        <i class="mdi mdi-library-plus"> Add New Class </i></button>
+        <i class="mdi mdi-library-plus"> Add New Exam </i></button>
 </div>
 <h3>Exam Management Tool</h3>
 
@@ -58,74 +58,55 @@ if ($result0->num_rows > 0) {
                                     </td>
                                     <td></td>
                                 </tr>
+                                <tr>
+                                    <td>Exam Title :
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="examtitle" value="<?php echo $sss; ?>" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>slot :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="slot">
+                                            <option value=""></option>
+                                            <?php
+                                            $sql0 = "SELECT * FROM slots where sccode='$sccode';";
+                                            $result03 = $conn->query($sql0);
+                                            if ($result03->num_rows > 0) {
+                                                while ($row5 = $result03->fetch_assoc()) {
+                                                    $slotname = $row5["slotname"];
+
+                                                    echo '<option value="' . $slotname . '">' . $slotname . '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+
+                                    </td>
+                                    <td></td>
+                                </tr>
+
 
                                 <tr>
                                     <td>Class :
                                     </td>
                                     <td>
-                                        <select class="form-control" id="cls">
-                                            <option value="Play" <?php if ($ccc == 'Play') {
-                                                echo 'selected';
-                                            } ?>>Play
-                                            </option>
-                                            <option value="Nursery" <?php if ($ccc == 'Nursery') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Nursery</option>
-                                            <option value="Pre-School" <?php if ($ccc == 'Pre-School') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Pre-School</option>
-                                            <option value="One" <?php if ($ccc == 'One') {
-                                                echo 'selected';
-                                            } ?>>One</option>
-                                            <option value="Two" <?php if ($ccc == 'Two') {
-                                                echo 'selected';
-                                            } ?>>Two</option>
-                                            <option value="Three" <?php if ($ccc == 'Three') {
-                                                echo 'selected';
-                                            } ?>>Three
-                                            </option>
-                                            <option value="Four" <?php if ($ccc == 'Four') {
-                                                echo 'selected';
-                                            } ?>>Four
-                                            </option>
-                                            <option value="Five" <?php if ($ccc == 'Five') {
-                                                echo 'selected';
-                                            } ?>>Five
-                                            </option>
-                                            <option value="Six" <?php if ($ccc == 'Six') {
-                                                echo 'selected';
-                                            } ?>>Six</option>
-                                            <option value="Seven" <?php if ($ccc == 'Seven') {
-                                                echo 'selected';
-                                            } ?>>Seven
-                                            </option>
-                                            <option value="Eight" <?php if ($ccc == 'Eight') {
-                                                echo 'selected';
-                                            } ?>>Eight
-                                            </option>
-                                            <option value="Nine" <?php if ($ccc == 'Nine') {
-                                                echo 'selected';
-                                            } ?>>Nine
-                                            </option>
-                                            <option value="Ten" <?php if ($ccc == 'Ten') {
-                                                echo 'selected';
-                                            } ?>>Ten</option>
-                                            <option value="SSC" <?php if ($ccc == 'SSC') {
-                                                echo 'selected';
-                                            } ?>>SSC</option>
-                                            <option value="Eleven" <?php if ($ccc == 'Eleven') {
-                                                echo 'selected';
-                                            } ?>>Eleven
-                                            </option>
-                                            <option value="Twelve" <?php if ($ccc == 'Twelve') {
-                                                echo 'selected';
-                                            } ?>>Twelve
-                                            </option>
-                                            <option value="HSC" <?php if ($ccc == 'HSC') {
-                                                echo 'selected';
-                                            } ?>>HSC</option>
+                                    <select class="form-control" id="cls">
+                                            <option value=""></option>
+                                            <?php
+                                            $sql0 = "SELECT * FROM areas where user='$rootuser' group by areaname order by idno;";
+                                            $result03 = $conn->query($sql0);
+                                            if ($result03->num_rows > 0) {
+                                                while ($row5 = $result03->fetch_assoc()) {
+                                                    $clsname = $row5["areaname"];
+
+                                                    echo '<option value="' . $clsname . '">' . $clsname . '</option>';
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </td>
                                     <td></td>
@@ -138,13 +119,20 @@ if ($result0->num_rows > 0) {
                                     </td>
                                     <td></td>
                                 </tr>
+                                <tr>
+                                    <td>Date :
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control" id="date" value="<?php echo $sss; ?>" />
+                                    </td>
+                                    <td></td>
+                                </tr>
 
                                 <tr>
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary"
-                                                onclick="save(0,1);">Save</button>
+                                            <button class="btn btn-primary" onclick="save(0,1);">Save</button>
 
                                             <div id="gex"></div>
                                         </div>
@@ -201,7 +189,7 @@ if ($result0->num_rows > 0) {
                                             <td><?php echo $cls; ?></td>
                                             <td><?php echo $sec; ?></td>
                                             <td><?php echo date('d F, Y', strtotime($datestart)); ?></td>
-                                            
+
 
                                             <td>
                                                 <div id="ssp<?php echo $id; ?>">
@@ -239,6 +227,13 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+    document.getElementById('defbtn').innerHTML = 'New Exam';
+    document.getElementById('defmenu').innerHTML = '';
+    function defbtn() {
+
+    }
+
+
     function go() {
         var m = document.getElementById('month').value;
         var y = document.getElementById('year').value;
@@ -268,28 +263,28 @@ include 'footer.php';
 
 <script>
     function save(ids, ont) {
-        // alert(ids);
-        if(ids == 0 ){
-            var ids = document.getElementById('id').value;
-        }
+        
+        var exam = document.getElementById('examtitle').value;
+        var slot = document.getElementById('slot').value;
         var cls = document.getElementById('cls').value;
         var sec = document.getElementById('sec').value;
-
-        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont;
-        // alert(infor);
-        $("#sspd").html("");
+        var date = document.getElementById('date').value;
+        
+        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont + '&exam=' + exam + '&slot=' + slot + '&date=' + date;
+ 
+        $("#gex").html("");
 
         $.ajax({
             type: "POST",
-            url: "backend/save-class.php",
+            url: "backend/save-exam.php",
             data: infor,
             cache: false,
             beforeSend: function () {
-                $('#sspd').html('<span class="">Saving Data....');
+                $('#gex').html('<span class="">Saving Data....');
             },
             success: function (html) {
-                $("#sspd").html(html);
-                window.location.href = 'classes.php';
+                $("#gex").html(html);
+                window.location.href = 'exam-list.php';
             }
         });
     }
