@@ -42,6 +42,10 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
+$classnamelist = ' playnurseryonetwothreefourfivesixseveneightnineten';
+
+
+
 ?>
 <div id="varvar">
 
@@ -396,20 +400,44 @@ echo $inex . '/' . $btnclr . '/' . $txt; ?>
                                         $slno = $row0x["slno"];
                                         $parteng = $row0x["particulareng"];
                                         $partben = $row0x["particularben"];
+
+
+
+
+
                                         ?>
                                         <tr>
                                             <td><?php echo $slno; ?></td>
-                                            <td><?php echo $parteng . '<br>' . $partben; ?></td>
+                                            <td style="line-height:20px;"><?php echo $parteng . '<br>' . $partben; ?></td>
                                             <td>
                                                 <input type="text" class="form-control" id="" value="" style="width:60px;" />
                                             </td>
                                             <?php
-                                            for ($i = 0; $i < 10; $i++) {
-                                                ?>
-                                                <td class="pl-1 pr-1">
-                                                    <input type="text" class="form-control" id="" value="" style="width:60px;" />
-                                                </td>
-                                            <?php
+
+                                            $sql0x = "SELECT areaname FROM areas where user='$rootuser' group by areaname order by idno ;";
+                                            // echo $sql0x;
+                                            $result0xx = $conn->query($sql0x);
+                                            if ($result0xx->num_rows > 0) {
+                                                while ($row0x = $result0xx->fetch_assoc()) {
+                                                    $clsfld = strtolower($row0x["areaname"]);
+                                                    if (strpos($classnamelist, $clsfld) > 0) {
+                                                        $sql0x = "SELECT * FROM financesetup where sccode='$sccode' and sessionyear='$sy' and particulareng='$parteng' ;";
+                                                        // echo $sql0x;
+                                                        $result0xxx = $conn->query($sql0x);
+                                                        if ($result0xxx->num_rows > 0) {
+                                                            while ($row0x = $result0xxx->fetch_assoc()) {
+                                                                $taka = $row0x[$clsfld];
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                        <td class="pl-1 pr-1">
+                                                            <input type="text" class="form-control" id="" value="<?php echo $taka; ?>"
+                                                                style="width:60px;" />
+                                                        </td>
+                                                        <?php
+                                                    }
+                                                }
                                             }
                                             ?>
 
