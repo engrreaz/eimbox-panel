@@ -77,7 +77,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
       if (in_array($curfile, $pagelist)) {
         ?>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="ins-profile.php">
             <span class="menu-icon">
               <i class="mdi mdi-checkbox-marked-circle-outline mdi-24px pt-1"></i>
             </span>

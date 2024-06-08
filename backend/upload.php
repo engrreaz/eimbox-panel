@@ -21,10 +21,11 @@ $fn = $_POST['destfilename'];
 $dir = '';
 if ($catt == 'student') {
     $dir = '../../students';
-}
-if ($catt == 'teacher') {
+} else if ($catt == 'teacher') {
     $dir = '../../teacher';
-}
+} else if ($catt == 'logo') {
+    $dir = '../../logo';
+} 
 
 //echo '///' . $dir . '****';
 
@@ -44,7 +45,7 @@ for ($i = 0; $i < count($_FILES['files']['tmp_name']); $i++) {
 
 
     move_uploaded_file($_FILES['files']['tmp_name'][$i], $file);
-    echo $_FILES['files']['tmp_name'][$i] . ' Uploaded Successfully';
+    echo 'Uploaded Successfully';
 
 
 

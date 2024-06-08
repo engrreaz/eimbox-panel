@@ -1,10 +1,10 @@
 <?php 
 include 'header.php'; 
-include 'notice.php'; 
+// include 'notice.php'; 
 
 ?>
 
-<div class="row">
+<div class="row" style="display:none;">
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -86,7 +86,7 @@ include 'notice.php';
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row" style="display:none;">
   <div class="col-md-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -215,7 +215,7 @@ include 'notice.php';
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row" style="display:none;">
   <div class="col-sm-4 grid-margin">
     <div class="card">
       <div class="card-body">
@@ -274,7 +274,7 @@ include 'notice.php';
     </div>
   </div>
 </div>
-<div class="row ">
+<div class="row " style="display:none;">
   <div class="col-12 grid-margin">
     <div class="card">
       <div class="card-body">
@@ -412,7 +412,7 @@ include 'notice.php';
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row" style="display:none;">
   <div class="col-md-6 col-xl-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -573,7 +573,7 @@ include 'notice.php';
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row" style="display:none;">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
