@@ -234,8 +234,8 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
           <div class="collapse" id="students">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="students-edit.php">Student's Enrollment</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Online Enrollment</a></li>
-              <li class="nav-item"> <a class="nav-link" href=".php">Fees & Payments</a></li>
+              <li class="nav-item"> <a class="nav-link" href="online-enroll.php">Online Enrollment</a></li>
+              <li class="nav-item"> <a class="nav-link" href="students-payment.php">Fees & Payments</a></li>
             </ul>
           </div>
         </li>

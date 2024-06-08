@@ -1,6 +1,35 @@
 <?php include 'header.php'; ?>
 <?php include 'notice.php'; ?>
 
+
+<?php
+if ($track < 100) {
+?>
+
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card  bg-danger">
+        <div class="card-body">
+          <div style="float:right;">
+          
+          <button type="button" class="btn btn-secondary text-danger pt-2">Find It Now</button>
+          </div>
+          <h4 class="card-title">Detect Issues</h4>
+          <div>
+            <div class="progress progress-md portfolio-progress">
+              <div class="progress-bar bg-secondary" role="progressbar" style="width: 67%" aria-valuenow="67"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="mr-3" id="fixing-status"></div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<?php } ?>
+
+
 <div class="row">
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
@@ -148,7 +177,7 @@
                 </div>
               </div>
 
- 
+
 
             </div>
           </div>
@@ -589,7 +618,7 @@
         document.getElementById("expense_main").innerHTML = document.getElementById("expense").innerHTML;
 
 
-        document.getElementById("main-29-main").innerHTML = 'Current Period : <b>' + document.getElementById("main-29").innerHTML + '</b>' ;
+        document.getElementById("main-29-main").innerHTML = 'Current Period : <b>' + document.getElementById("main-29").innerHTML + '</b>';
       }
     });
   }

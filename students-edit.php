@@ -93,12 +93,18 @@ if ($result7->num_rows > 0) {
         $dopp = $row5["photo_pick_date"];
         // $ = $row5[""];
         $sscyear = $row5["sscpassyear"];
-        if($sscyear<1900){
+        if ($sscyear < 1900) {
             $sscyear = '';
         }
         $sscregd = $row5["regdno"];
         $sscroll = $row5["rollno"];
         $sscresult = $row5["gpa"];
+
+        $bgroup = $row5["bgroup"];
+        $height = $row5["height"];
+        $weight = $row5["weight"];
+        $disables = $row5["disables"];
+        $guarnid = $row5["guarnid"];
     }
 } else {
     $stnameeng = '';
@@ -138,6 +144,12 @@ if ($result7->num_rows > 0) {
     $sscregd = '';
     $sscroll = '';
     $sscresult = '';
+
+    $bgroup = '';
+    $height = '';
+    $weight = '';
+    $disables = '';
+    $guarnid = '';
 }
 
 if ($doa == '') {
@@ -255,6 +267,27 @@ echo $dismsg; ?>">
         </div>
         <?php
     }
+
+    if ($new == 0 && ($religion == '')) {
+        $religion_check_icon = 'close-circle';
+        $religion_check_color = 'danger';
+        ?>
+        <div class="col-12 grid-margin stretch-card mb-1">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn-inverse-danger rounded p-2 ">
+                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing Gender (Important for Result Processing)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    } else {
+        $religion_check_icon = 'checkbox-marked-circle';
+        $religion_check_color = 'success';
+    }
     ?>
 
 
@@ -357,8 +390,9 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" style="padding:4px 10px 3px; border-radius:5px;" name="srchst"
-                                    id="srchst" class="btn btn-outline-primary btn-icon" style=""
-                                    onclick="fetchstudent();"><i class="mdi mdi-eye"></i></button>
+                                    id="srchst" class="btn btn-outline-primary btn-icon text-center" style=""
+                                    title="Get Student Information" onclick="fetchstudent();"><i
+                                        class="mdi mdi-arrow-right"></i></button>
                                 <div id="stinfo" style="display:none;"></div>
                             </div>
                         </div>
@@ -492,10 +526,16 @@ echo $dismsg; ?>">
                                 <input type="text" list="village" class="form-control" id="previll"
                                     value="<?php echo $previll; ?>" />
                                 <datalist id="village">
-                                    <option value="first@example.com">
-                                    <option value="second@example.com">
-                                    <option value="third@example.com">
-                                    <option value="last@example.com">
+                                    <?php
+                                    $sql000 = "SELECT previll FROM students where sccode='$sccode'  group by previll order by previll";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $previll = $row000["previll"];
+                                            echo '<option value="' . $previll . '">';
+                                        }
+                                    }
+                                    ?>
                                 </datalist>
                             </div>
                         </div>
@@ -507,10 +547,16 @@ echo $dismsg; ?>">
                                 <input type="text" list="postoffice" class="form-control" id="prepo"
                                     value="<?php echo $prepo; ?>" />
                                 <datalist id="postoffice">
-                                    <option value="abcde">
-                                    <option value="cdghd">
-                                    <option value="ahtfjrrt sa adrg">
-                                    <option value="sretrrudfg rdgdrhtys  tsr">
+                                    <?php
+                                    $sql000 = "SELECT prepo FROM students where sccode='$sccode'  group by prepo order by prepo";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $prepo = $row000["prepo"];
+                                            echo '<option value="' . $prepo . '">';
+                                        }
+                                    }
+                                    ?>
                                 </datalist>
                             </div>
                         </div>
@@ -519,7 +565,20 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Upazila/Police Station</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="preps" value="<?php echo $preps; ?>" />
+                                <input type="text" list="police" class="form-control" id="preps"
+                                    value="<?php echo $preps; ?>" />
+                                <datalist id="police">
+                                    <?php
+                                    $sql000 = "SELECT preps FROM students where sccode='$sccode'  group by preps order by preps";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $preps = $row000["preps"];
+                                            echo '<option value="' . $preps . '">';
+                                        }
+                                    }
+                                    ?>
+                                </datalist>
                             </div>
                         </div>
                     </div>
@@ -527,7 +586,20 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">District</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="predist" value="<?php echo $predist; ?>" />
+                                <input type="text" list="jila" class="form-control" id="predist"
+                                    value="<?php echo $predist; ?>" />
+                                <datalist id="jila">
+                                    <?php
+                                    $sql000 = "SELECT predist FROM students where sccode='$sccode'  group by predist order by predist";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $predist = $row000["predist"];
+                                            echo '<option value="' . $predist . '">';
+                                        }
+                                    }
+                                    ?>
+                                </datalist>
                             </div>
                         </div>
                     </div>
@@ -596,13 +668,40 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Religion</label>
                             <div class="col-12">
+
+
+
+
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="religion"
-                                            value="<?php echo $religion; ?>" />
+                                        <select id="religion" name="religion" class="form-control text-white">
+                                            <option value=""></option>
+                                            <option value="Islam" <?php if ($religion == 'Islam') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Islam</option>
+                                            <option value="Hindu" <?php if ($religion == 'Hindu') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Hindu</option>
+                                            <option value="Christian" <?php if ($religion == 'Christian') {
+                                                echo 'selected';
+                                            } ?>>Christian</option>
+                                            <option value="Buddist" <?php if ($religion == 'Buddist') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Buddist</option>
+                                            <option value="Others" <?php if ($religion == 'Others') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Others</option>
+                                        </select>
+
+
                                         <div class="input-group-append">
-                                            <button class="btn btn-md btn-inverse-success" type="button">
-                                                <i class="mdi mdi-check-circle"></i>
+                                            <button class="btn btn-md btn-inverse-<?php echo $religion_check_color; ?>"
+                                                type="button">
+                                                <i class="mdi mdi-<?php echo $religion_check_icon; ?>"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -627,7 +726,18 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Gender</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="gender" value="<?php echo $gender; ?>" />
+                                <select id="gender" name="gender" class="form-control text-white">
+                                    <option value=""></option>
+                                    <option value="Boy" <?php if ($gender == 'Boy') {
+                                        echo 'selected';
+                                    } ?>>
+                                        Boy</option>
+                                    <option value="Girl" <?php if ($gender == 'Girl') {
+                                        echo 'selected';
+                                    } ?>>
+                                        Girl</option>
+
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -638,31 +748,58 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Blood Group</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="bgroup" value="<?php echo $rollno; ?>" />
+                                <select id="bgroup" name="bgroup" class="form-control text-white">
+                                    <option value=""></option>
+                                    <option value="A+" <?php if ($bgroup == 'A+') {
+                                        echo 'selected';
+                                    } ?>> A+ </option>
+                                    <option value="A-" <?php if ($bgroup == 'A-') {
+                                        echo 'selected';
+                                    } ?>> A- </option>
+                                    <option value="B+" <?php if ($bgroup == 'B+') {
+                                        echo 'selected';
+                                    } ?>> B+ </option>
+                                    <option value="B-" <?php if ($bgroup == 'B-') {
+                                        echo 'selected';
+                                    } ?>> B- </option>
+                                    <option value="AB+" <?php if ($bgroup == 'AB+') {
+                                        echo 'selected';
+                                    } ?>> AB+ </option>
+                                    <option value="AB-" <?php if ($bgroup == 'AB-') {
+                                        echo 'selected';
+                                    } ?>> AB- </option>
+                                    <option value="O+" <?php if ($bgroup == 'O+') {
+                                        echo 'selected';
+                                    } ?>> O+ </option>
+                                    <option value="O-" <?php if ($bgroup == 'O-') {
+                                        echo 'selected';
+                                    } ?>> O- </option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">---------</label>
+                            <label class="col-form-label pl-3">Disability</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="disables"
+                                    value="<?php echo $disables; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">----------</label>
+                            <label class="col-form-label pl-3">Height (CMs)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="height" value="<?php echo $height; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">---------</label>
+                            <label class="col-form-label pl-3">Weight (KGs)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="weight" value="<?php echo $weight; ?>" />
                             </div>
                         </div>
                     </div>
@@ -732,37 +869,35 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Guardian's NID</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="guarnid" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="guarnid" value="<?php echo $guarnid; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">-----</label>
+                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">----------</label>
+                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">-----------</label>
+                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -880,25 +1015,28 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Photo</label>
+
+                            <img src="../students/<?php echo $stid; ?>.jpg" style="height:80px; border-radius:5px;">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Upload Photo</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="dopp" value="<?php echo $dopp; ?>" />
+
+                                <?php
+                                $datamon = 'student';
+                                $dest_file_name = $stid . '.jpg';
+                                include 'ajax-upload.php';
+                                ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">-------------</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Button...../Save</label>
+                            <label class="col-form-label pl-3 middle"><br><br>&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" id="savest" name="savest" class="btn btn-success"
                                     onclick="savestudent();">Save the Student</button>
@@ -1027,12 +1165,18 @@ include 'footer.php';
         var preinsadd = document.getElementById("preinsadd").value;
         var doa = document.getElementById("doa").value;
         var photoid = document.getElementById("photoid").value;
-        var dopp = document.getElementById("dopp").value;
+        // var dopp = document.getElementById("dopp").value;
 
         var sscyear = document.getElementById("sscyear").value;
         var sscregd = document.getElementById("sscregd").value;
         var sscroll = document.getElementById("sscroll").value;
         var sscresult = document.getElementById("sscresult").value;
+
+        var bgroup = document.getElementById("bgroup").value;
+        var disables = document.getElementById("disables").value;
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var guarnid = document.getElementById("guarnid").value;
 
         if (stid == "") {
             // if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
@@ -1050,8 +1194,21 @@ include 'footer.php';
             //     if (doa == "") { alert("You must select admission date."); } else { }
         }
         else {
-            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll=" + sscroll + "&sscresult=" + sscresult + "&fnid=" + fnid + "&mnid=" + mnid;
-            $("#batchbatch").html("ddd");
+            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben="
+                + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname="
+                + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo="
+                + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo="
+                + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion="
+                + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd="
+                + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno="
+                + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid="
+                + photoid + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll="
+                + sscroll + "&sscresult=" + sscresult + "&fnid=" + fnid + "&mnid=" + mnid
+                + "&bgroup=" + bgroup + "&height=" + height + "&weight=" + weight + "&guarnid=" + guarnid + "&disables=" + disables
+
+
+                ;
+            $("#batchbatch").html("");
 
             $.ajax({
                 type: "POST",
@@ -1064,7 +1221,7 @@ include 'footer.php';
                 success: function (html) {
                     $("#batchbatch").html(html);
                     var nextroll = parseInt(rollno) + 1;
-                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
+                    // window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
         }

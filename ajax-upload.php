@@ -1,13 +1,12 @@
-<?php $datamon = 'xdgf'; ?>
-<form class="upload-form" action="backend/upload.php" method="post" enctype="multipart/form-data">
 
-    <h1>Upload Form</h1>
+<form class="upload-form" action="backend/upload.php" method="post" enctype="multipart/form-data">
     <input type="text" value="<?php echo $datamon; ?>" name="datam" hidden />
+    <input type="text" value="<?php echo $dest_file_name; ?>" name="destfilename" hidden />
     <label for="files"><i class="fa-solid fa-folder-open fa-2x"></i>Select files
         ...</label>
-    <input id="files" type="file" name="files[]" multiple>
+    <input id="files" class="form-control" type="file" name="files[]" multiple>
     <div class="progress"></div>
-    <button type="submit">Upload</button>
+    <button type="submit" class="btn btn-primary mt-2">Upload</button>
     <div class="result"></div>
 </form>
 

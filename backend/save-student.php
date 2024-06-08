@@ -27,7 +27,7 @@ $fnid = $_POST['fnid'];
 $mnid = $_POST['mnid'];
 
 $photoid = $_POST['photoid'];
-$dopp = $_POST['dopp'];
+$dopp = '2000-12-31';
 
 $dob2 = $_POST['dob'];
 $dob2 = str_replace('/', '-', $dob2);
@@ -52,6 +52,13 @@ $sscyear = $_POST['sscyear'];
 $sscregd = $_POST['sscregd'];
 $sscroll = $_POST['sscroll'];
 $sscresult = $_POST['sscresult'];
+
+
+$bgroup = $_POST['bgroup'];
+$disables = $_POST['disables'];
+$height = $_POST['height'];
+$weight = $_POST['weight'];
+$guarnid = $_POST['guarnid'];
 
 if ($sscyear < 1900 && $sscresult>0) {
 	$sscyear = $sy;
@@ -104,7 +111,13 @@ if ($result0->num_rows > 0) {
 					sscpassyear = '$sscyear',
 					regdno = '$sscregd',
 					rollno = '$sscroll',
-					gpa = '$sscresult'
+					gpa = '$sscresult',
+					bgroup = '$bgroup',
+					height = '$height',
+					weight = '$weight',
+					disables = '$disables',
+					guarnid = '$guarnid'
+
 		WHERE stid='$stid' and sccode='$sccode'";
 	// echo $query3;
 } else {
@@ -115,11 +128,13 @@ if ($result0->num_rows > 0) {
 	$conn->query($query33);
 
 	$query3 = "insert into students
-				(id, sccode, stid, stnameeng, stnameben, fname, fprof, fmobile, mname, mprof, mmobile, previll, prepo, preps, predist, pervill, perpo, perps, perdist, dob, religion, brn, gender, guarname, guaradd, guarrelation, guarmobile, tcno, preins, preinsadd, doa, modify, photo_id, photo_pick_date, fnid, mnid)
+				(id, sccode, stid, stnameeng, stnameben, fname, fprof, fmobile, mname, mprof, mmobile, previll, prepo, preps, predist, pervill, perpo, perps, perdist, 
+				dob, religion, brn, gender, guarname, guaradd, guarrelation, guarmobile, tcno, preins, preinsadd, doa, modify, photo_id, photo_pick_date, fnid, mnid,
+				bgroup, height, weight, disables, guarnid)
 		values 	(NULL, '$sccode','$stid','$stnameeng','$stnameben','$fname','$fprof','$fmobile','$mname','$mprof','$mmobile',
 							'$previll','$prepo','$preps','$predist','$pervill','$perpo','$perps','$perdist',
-							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$dt', '$photoid', '$dopp', '$fnid', '$nid'	
-							)";
+							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$dt', '$photoid', '$dopp', '$fnid', '$nid'	,
+							'$bgroup', '$height', '$weight', '$disables', '$guarnid')";
 }
 
 

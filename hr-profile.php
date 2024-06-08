@@ -12,6 +12,7 @@ if (isset($_GET['tid'])) {
 }
 
 
+
 $sql5 = "SELECT * FROM teacher where tid='$tid' and sccode='$sccode' ";
 $result7 = $conn->query($sql5);
 if ($result7->num_rows > 0) {
@@ -71,12 +72,12 @@ if ($dob == '') {
                         <div class="form-group row">
                             <div class="col-12">
                                 <?php
-                                $stpth = "https://www.eimbox.com/student/<?php echo $tid;?>.jpg";
-                                if (!file_exists($stpth)) {
-                                    $stpth = "https://www.eimbox.com/students/noimg.jpg";
+                                $tpath = "../teacher/" . $tid . ".jpg";
+                                if (!file_exists($tpath)) {
+                                    $tpath = "../teacher/no-img.jpg";
                                 }
                                 ?>
-                                <img src="<?php echo $stpth; ?>" style="height:120px;" />
+                                <img src="<?php echo $tpath; ?>" style="height: 100px; border-radius:5px; border:1px solid gray;;">
 
 
 

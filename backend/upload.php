@@ -15,28 +15,45 @@
 //     echo 'Upload Complete!';
 // }
 
-
-if (!file_exists("../uploads")) {
-    mkdir("../uploads", 0777, true);
+$catt = $_POST['datam'];
+$fn = $_POST['destfilename'];
+//echo $catt . $fn;
+$dir = '';
+if ($catt == 'student') {
+    $dir = '../../students';
+}
+if ($catt == 'teacher') {
+    $dir = '../../teacher';
 }
 
-echo $_POST['datam'];
+//echo '///' . $dir . '****';
+
+if (!file_exists($dir)) {
+    mkdir($dir . 'uploads/', 0777, true);
+}
+
 
 
 for ($i = 0; $i < count($_FILES['files']['tmp_name']); $i++) {
     // Add your validation here
-    $file = "../uploads/" . $_FILES['files']['name'][$i];
-
-    if (file_exists($file)) {
-        echo $file . " already exists. ";
+    if ($dir == '') {
+        $file = "../uploads/" . $_FILES['files']['name'][$i];
     } else {
-
-        // Move temporary files to new specified location
-        move_uploaded_file($_FILES['files']['tmp_name'][$i], $file);
-        // echo $_FILES['files']['tmp_name'][$i] . '/' . $file;
-
+        $file = $dir . '/' . $fn;
     }
 
 
+    move_uploaded_file($_FILES['files']['tmp_name'][$i], $file);
+    echo $_FILES['files']['tmp_name'][$i] . ' Uploaded Successfully';
+
+
+
+    // if (file_exists($file)) {
+    //     echo $file . " already exists. ";
+    // } else {
+    //     // Move temporary files to new specified location
+    //     move_uploaded_file($_FILES['files']['tmp_name'][$i], $file);
+    //     // echo $_FILES['files']['tmp_name'][$i] . '/' . $file;
+    //     echo$_FILES['files']['tmp_name'][$i] . ' Uploaded Successfully';
+    // }
 }
-;

@@ -5,57 +5,14 @@ $dismsg = 0;
 $cls2 = $sec2 = $roll2 = $rollno = '';
 $new = 0; // check new entry or not
 
-if (isset($_GET['stid'])) {
-    $stid = $_GET['stid'];
+if (isset($_GET['tid'])) {
+    $stid = $_GET['tid'];
 } else {
-    $stid = 0;
-}
-
-if (isset($_GET['cls'])) {
-    $cls2 = $_GET['cls'];
-}
-if (isset($_GET['sec'])) {
-    $sec2 = $_GET['sec'];
-}
-if (isset($_GET['roll'])) {
-    $roll2 = $_GET['roll'];
-}
-
-if ($cls2 != '' && $sec2 != '' && $roll2 != '') {
-    $sql5 = "SELECT * FROM sessioninfo where classname='$cls2' and sectionname = '$sec2' and rollno='$roll2' and sessionyear = '$sy' and sccode='$sccode';";
-} else {
-    $sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear = '$sy' and sccode='$sccode';";
-}
-$result6 = $conn->query($sql5);
-if ($result6->num_rows > 0) {
-    while ($row5 = $result6->fetch_assoc()) {
-        $cls2 = $row5["classname"];
-        $sec2 = $row5["sectionname"];
-        $rollno = $row5["rollno"];
-        $stid = $row5["stid"];
-    }
-} else {
-    // $cls2 = '';
-    // $sec2 = '';
-    $rollno = $roll2;
-    // $stid = '';
-
-    $sql5 = "SELECT * FROM students where sccode='$sccode' order by stid desc LIMIT 1;";
-    $result6x = $conn->query($sql5);
-    if ($result6x->num_rows > 0) {
-        while ($row5 = $result6x->fetch_assoc()) {
-            $stid = $row5["stid"] + 1;
-            $dismsg += 1;
-            $new = 1;
-        }
-    }
+    $tid = 0;
 }
 
 
-
-
-
-$sql5 = "SELECT * FROM students where stid='$stid' and sccode='$sccode' ";
+$sql5 = "SELECT * FROM teacher where tid='$stid' and sccode='$sccode' ";
 $result7 = $conn->query($sql5);
 if ($result7->num_rows > 0) {
     while ($row5 = $result7->fetch_assoc()) {
@@ -140,9 +97,7 @@ if ($result7->num_rows > 0) {
     $sscresult = '';
 }
 
-if ($doa == '') {
-    $doa = date('Y-01-01');
-}
+
 if ($dob == '') {
     $dob = date('Y-m-d');
 }
@@ -152,7 +107,7 @@ if ($dob == '') {
         color: slategray;
     }
 </style>
-<h3>Student Profile Entry / Editing Window</h3>
+<h3>HR Profile Entry / Editing Window</h3>
 
 <div class="row" style="display:<?php if ($dismsg == 0) {
     $dismsg = 'hide';
