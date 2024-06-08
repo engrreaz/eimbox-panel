@@ -143,8 +143,7 @@ if ($result0->num_rows > 0) {
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary"
-                                                onclick="save(0,1);">Save</button>
+                                            <button class="btn btn-primary" onclick="save(0,1);">Save</button>
 
                                             <div id="gex"></div>
                                         </div>
@@ -216,7 +215,7 @@ if ($result0->num_rows > 0) {
                                                 <div id="ssp<?php echo $id; ?>">
                                                     <label onclick="edit(<?php echo $id; ?>,1);" class="icon-btn btn-info"><i
                                                             class="mdi mdi-grease-pencil"></i></label>
-                                                    <label onclick="savex(<?php echo $id; ?>,2);" class="icon-btn btn-danger"><i
+                                                    <label onclick="save(<?php echo $id; ?>,2);" class="icon-btn btn-danger"><i
                                                             class="mdi mdi-delete"></i></label>
                                                 </div>
                                             </td>
@@ -277,30 +276,29 @@ include 'footer.php';
 
 <script>
     function save(ids, ont) {
-        // alert(ids);
-        if(ids == 0 ){
-            var ids = document.getElementById('id').value;
-        }
-        var cls = document.getElementById('cls').value;
-        var sec = document.getElementById('sec').value;
-
-        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont;
-        // alert(infor);
-        $("#sspd").html("");
-
-        $.ajax({
-            type: "POST",
-            url: "backend/save-class.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#sspd').html('<span class="">Saving Data....');
-            },
-            success: function (html) {
-                $("#sspd").html(html);
-                window.location.href = 'classes.php';
+            if (ids == 0) {
+                var ids = document.getElementById('id').value;
             }
-        });
+            var cls = document.getElementById('cls').value;
+            var sec = document.getElementById('sec').value;
+
+            var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont;
+            // alert(infor);
+            $("#sspd").html("");
+
+            $.ajax({
+                type: "POST",
+                url: "backend/save-class.php",
+                data: infor,
+                cache: false,
+                beforeSend: function () {
+                    $('#sspd').html('<span class="">Saving Data....');
+                },
+                success: function (html) {
+                    $("#sspd").html(html);
+                    window.location.href = 'classes.php';
+                }
+            });
     }
 </script>
 

@@ -1,5 +1,5 @@
 <?php 
-$pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-setup.php'); 
+$pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manage.php', 'subjects.php', 'st-payment-setup.php'); 
 ?>
 
 <div style="overflow-y:auto; ">
@@ -95,7 +95,7 @@ $pagelist = array('settings.php', 'classes.php', 'subjects.php', 'st-payment-set
           <div class="collapse" id="academics">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="classes.php">Classes & Sections</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Group Management</a></li>
+              <li class="nav-item"> <a class="nav-link" href="group-manage.php">Group Management</a></li>
               <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects Management</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Class Routine</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Syllabus</a></li>
