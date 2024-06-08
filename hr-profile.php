@@ -37,14 +37,23 @@ if ($result7->num_rows > 0) {
 
     }
 } else {
-
+    $tnamee = '';
+    $tnameb = '';
+    $position = '';
+    $subject = '';
+    $slot = '';
+    $jdate = '';
+    $fname = '';
+    $mname = '';
+    $preadd = '';
+    $dob = '';
+    $religion = '';
+    $gender = '';
+    $email = '';
+    $phone = '';
 }
 
 
-
-if ($dob == '') {
-    $doa = date('Y-01-01');
-}
 
 ?>
 <style>
@@ -109,7 +118,7 @@ if ($dob == '') {
                         <h6 class=""><i
                                 class="mdi mdi-email-open-outline mdi-18px pr-3"></i><small><?php echo $email; ?>
                             </small></h6>
-                        <h6 class=""><i class="mdi mdi mdi-phone mdi-18px pr-3"></i><small><?php echo $mobile; ?>
+                        <h6 class=""><i class="mdi mdi mdi-phone mdi-18px pr-3"></i><small><?php echo $phone; ?>
                             </small></h6>
                     </div>
                 </div>
@@ -125,9 +134,9 @@ if ($dob == '') {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><i class="mdi mdi-map-marker mdi-12px pr-3"></i> Ramkrishnopur, Bhurbhuria, Homna, Cumilla.
+                        <p><i class="mdi mdi-map-marker mdi-12px pr-3"></i> 
                         </p>
-                        <p><i class="mdi mdi-map-marker mdi-12px pr-3"></i> Ramkrishnopur, Bhurbhuria, Homna, Cumilla.
+                        <p><i class="mdi mdi-map-marker mdi-12px pr-3"></i> 
                         </p>
                     </div>
 
@@ -171,9 +180,9 @@ include 'footer.php';
 </script>
 
 <script>
-    document.getElementById('defbtn').innerHTML = 'Edit Profile';
+    document.getElementById('defbtn').innerHTML = 'Print Profile';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-        window.location.href = 'hr-edit.php?tid=<?php echo $tid; ?>';
+        // window.location.href = 'hr-edit.php?tid=<?php echo $tid; ?>';
     }
 </script>

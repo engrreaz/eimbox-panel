@@ -6,101 +6,26 @@ $cls2 = $sec2 = $roll2 = $rollno = '';
 $new = 0; // check new entry or not
 
 if (isset($_GET['tid'])) {
-    $stid = $_GET['tid'];
+    $tid = $_GET['tid'];
 } else {
     $tid = 0;
 }
 
 
-$sql5 = "SELECT * FROM teacher where tid='$stid' and sccode='$sccode' ";
+$sql5 = "SELECT * FROM teacher where tid='$tid' and sccode='$sccode' ";
 $result7 = $conn->query($sql5);
 if ($result7->num_rows > 0) {
     while ($row5 = $result7->fetch_assoc()) {
-        $stnameeng = $row5["stnameeng"];
-        $stnameben = $row5["stnameben"];
-        $fname = $row5["fname"];
-        $fprof = $row5["fprof"];
-        $fmobile = $row5["fmobile"];
-        $fnid = $row5["fnid"];
-        $mname = $row5["mname"];
-        $mprof = $row5["mprof"];
-        $mmobile = $row5["mmobile"];
-        $mnid = $row5["mnid"];
-        $previll = $row5["previll"];
-        $prepo = $row5["prepo"];
-        $preps = $row5["preps"];
-        $predist = $row5["predist"];
-        $pervill = $row5["pervill"];
-        $perpo = $row5["perpo"];
-        $perps = $row5["perps"];
-        $perdist = $row5["perdist"];
-        $dob = $row5["dob"];
-        $religion = $row5["religion"];
-        $brn = $row5["brn"];
-        $gender = $row5["gender"];
-        $guarname = $row5["guarname"];
-        $guaradd = $row5["guaradd"];
-        $guarrelation = $row5["guarrelation"];
-        $guarmobile = $row5["guarmobile"];
-        $tcno = $row5["tcno"];
-        $preins = $row5["preins"];
-        $preinsadd = $row5["preinsadd"];
-        $doa = $row5["doa"];
-        $photoid = $row5["photo_id"];
-        $dopp = $row5["photo_pick_date"];
-        // $ = $row5[""];
-        $sscyear = $row5["sscpassyear"];
-        if($sscyear<1900){
-            $sscyear = '';
-        }
-        $sscregd = $row5["regdno"];
-        $sscroll = $row5["rollno"];
-        $sscresult = $row5["gpa"];
+        $tnamee = $row5["tname"];
+        
     }
 } else {
-    $stnameeng = '';
-    $stnameben = '';
-    $fname = '';
-    $fprof = '';
-    $fmobile = '';
-    $fnid = '';
-    $mname = '';
-    $mprof = '';
-    $mmobile = '';
-    $mnid = '';
-    $previll = '';
-    $prepo = '';
-    $preps = '';
-    $predist = '';
-    $pervill = '';
-    $perpo = '';
-    $perps = '';
-    $perdist = '';
-    $dob = '';
-    $religion = '';
-    $brn = '';
-    $gender = '';
-    $guarname = '';
-    $guaradd = '';
-    $guarrelation = '';
-    $guarmobile = '';
-    $tcno = '';
-    $preins = '';
-    $preinsadd = '';
-    $doa = '';
-    $photoid = '';
-    $dopp = '';
-    // $ = $row5[""];
-    $sscyear = '';
-    $sscregd = '';
-    $sscroll = '';
-    $sscresult = '';
+    $tnamee = '';
+    
 }
 
+$dob = '1977-11-07';
 
-if ($dob == '') {
-    $dob = date('Y-m-d');
-}
 ?>
 <style>
     .col-form-label {
@@ -132,84 +57,7 @@ echo $dismsg; ?>">
         </div>
         <?php
     }
-    if ($new == 0 && ($guarmobile == '' || strlen($guarmobile) < 11)) {
-        ?>
-        <div class="col-12 grid-margin stretch-card mb-1">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="btn-inverse-info rounded p-2 ">
-                            <i class="mdi mdi-phone p-1 pr-3"></i>Mobile Number Invalid
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-    if ($new == 1) {
-        ?>
-        <div class="col-12 grid-margin stretch-card mb-1">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="btn-inverse-info rounded p-2 ">
-                            <i class="mdi mdi-paperclip p-1 pr-3"></i>Entry New Profile
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-
-    if ($new == 0 && ($stnameeng == '' || strlen($stnameeng) < 5)) {
-        ?>
-        <div class="col-12 grid-margin stretch-card mb-1">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="btn-inverse-danger rounded p-2 ">
-                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing Student's Name in English
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-
-    if ($new == 0 && ($stnameben == '' || strlen($stnameben) < 5)) {
-        ?>
-        <div class="col-12 grid-margin stretch-card mb-1">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="btn-inverse-warning rounded p-2 ">
-                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing Student's Name in Bengali
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-
-    if ($new == 0 && ($fmobile == '' || strlen($fmobile) < 11 || $mmobile == '' || strlen($mmobile) < 11)) {
-        ?>
-        <div class="col-12 grid-margin stretch-card mb-1">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="btn-inverse-info rounded p-2 ">
-                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing / Invalid Father's / Mother's Mobile Number.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
+    
     ?>
 
 
@@ -222,7 +70,7 @@ echo $dismsg; ?>">
         font-weight: bold;
     }
 </style>
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -324,7 +172,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -427,7 +275,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -534,7 +382,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -628,7 +476,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -723,7 +571,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -772,7 +620,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -822,7 +670,7 @@ echo $dismsg; ?>">
 </div>
 
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" style="display:none;"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -892,10 +740,10 @@ include 'footer.php';
 </script>
 
 <script>
-    document.getElementById('defbtn').innerHTML = 'Save The Student';
+    document.getElementById('defbtn').innerHTML = 'Update Profile';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-        savestudent();
+        // savestudent();
     }
 
     function fetchsection() {

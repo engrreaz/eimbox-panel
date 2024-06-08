@@ -25,9 +25,13 @@ include 'header.php';
 
 if (isset($_GET['hr'])) {
     $hrtype = $_GET['hr'];
-    $rnk = '<';
 } else {
     $hrtype = 'teacher';
+}
+
+if ($hrtype == 'teacher') {
+    $rnk = '<';
+} else {
     $rnk = '>';
 }
 
@@ -44,7 +48,7 @@ if (isset($_GET['tp'])) {
 
 <h3 class="d-print-none">Human Resource (<?php echo $hrtype; ?>)</h3>
 <p class="d-print-none">
-    <code>Reports <i class="mdi mdi-arrow-right"></i> Students List </code>
+    <code>Reports <i class="mdi mdi-arrow-right"></i> Teacher's List </code>
 </p>
 
 
@@ -179,19 +183,23 @@ if (isset($_GET['tp'])) {
                         <div class="ooo"><?php echo $mpoindex; ?></div>
                     </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $mobile ; ?></div>
-                        <div class="ooo"><?php echo  $email; ?></div>
+                        <div class="ooo"><?php echo $mobile; ?></div>
+                        <div class="ooo"><?php echo $email; ?></div>
                     </td>
 
                     <td style=" border:1px solid gray;">
                         <div id="btn<?php echo $stid; ?>">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" title="Edit Profile" class="btn btn-inverse-info" onclick="issue(<?php echo $tid; ?>)">
-                                    <i class="mdi mdi-grease-pencil"></i>
-                                </button>
-                                <button type="button"  title="View Profile" class="btn btn-inverse-warning" onclick="issuet(<?php echo $tid; ?>)">
+                            <button type="button" title="View Profile" class="btn btn-inverse-warning"
+                                    onclick="issuet(<?php echo $tid; ?>)">
                                     <i class="mdi mdi-television"></i>
                                 </button>
+                                
+                                <button type="button" title="Edit Profile" class="btn btn-inverse-info"
+                                    onclick="issue(<?php echo $tid; ?>)">
+                                    <i class="mdi mdi-grease-pencil"></i>
+                                </button>
+                                
                             </div>
                         </div>
                     </td>
@@ -209,7 +217,8 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Print Testimonials';
+    document.getElementById('defbtn').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         goprint(0);
     }

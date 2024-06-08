@@ -1,12 +1,12 @@
 <?php include 'header.php'; ?>
-<?php include 'notice.php'; ?>
+<!-- <?php include 'notice.php'; ?> -->
 
 
 <?php
 if ($track < 100) {
 ?>
 
-  <div class="row">
+  <div class="row" style="display:none;">
     <div class="col-12 grid-margin">
       <div class="card  bg-danger">
         <div class="card-body">
@@ -121,7 +121,7 @@ if ($track < 100) {
         <canvas id="transaction-history" class="transaction-chart"></canvas>
         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
           <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">$ 1,24,950</h6>
+            <h6 class="mb-1">৳ 1,24,950</h6>
             <p class="text-muted mb-0">Collection (This Month)</p>
           </div>
           <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
@@ -132,7 +132,7 @@ if ($track < 100) {
         </div>
         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
           <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">$ 31,12,500</h6>
+            <h6 class="mb-1">৳ 31,12,500</h6>
             <p class="text-muted mb-0">Total Dues</p>
           </div>
           <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
@@ -325,7 +325,7 @@ if ($track < 100) {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr  style="display:none;">
                 <td>
                   <div class="form-check form-check-muted m-0">
                     <label class="form-check-label">
@@ -357,7 +357,7 @@ if ($track < 100) {
 
 
 
-<div class="row">
+<div class="row" style="display:none;">
   <div class="col-md-6 col-xl-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
