@@ -36,9 +36,9 @@ if (isset($_GET['id'])) {
 }
 
 if ($schid == 0) {
-    $btntxt = 'Save Schedule';
+    $btntxt = 'Save Subject';
 } else {
-    $btntxt = 'Update Schedule';
+    $btntxt = 'Update Subject';
 }
 
 $examname = $exam;
@@ -52,7 +52,7 @@ if (isset($_GET['id'])) {
 
 ?>
 
-<h3>Subject Management</h3>
+<h3>Subjects Manager</h3>
 
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
@@ -157,8 +157,8 @@ if (isset($_GET['id'])) {
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-danger btn-block" style="" onclick="god();"><i class="mdi mdi-plus"></i>
-                                    Add New</button>
+                                    class="btn-success btn-block" style="" onclick="god();"><i class="mdi mdi-book-open-page-variant"></i>
+                                    Add Subject</button>
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ if (isset($_GET['id'])) {
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Add a schedule
+                    Add a Subject to the selected Class/Section 
                 </h6>
 
                 <?php
@@ -277,7 +277,7 @@ if (isset($_GET['id'])) {
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-success" style="" onclick="setdef(<?php echo $schid; ?>, 3);"><i
+                                    class="btn-warning" style="" onclick="setdef(<?php echo $schid; ?>, 3);"><i
                                         class="mdi mdi-disc"></i>
                                     <?php echo $btntxt; ?></button>
                                 <span id="ssk"></span>
@@ -305,7 +305,7 @@ if (isset($_GET['id'])) {
 
                 <div id="sspd"></div>
                 <h6 class="text-muted font-weight-normal">
-                    Exam list of year <b><?php echo $year; ?></b>
+                    Subject list of the <b><?php echo $cls2 . ' (' . $sec2 . ')'; ?></b>
                     <div id="sspn"></div>
                 </h6>
 
@@ -374,8 +374,8 @@ if (isset($_GET['id'])) {
                                         <td colspan="5">
                                             No Data / Records Found.<br><br>
                                             <div id="sspnx">
-                                                <button onclick="setdef(0, 0);" class="btn btn-inverse-info"><i
-                                                        class="mdi mdi-grease-pencil"></i> Apply Default Settings</button>
+                                                <button onclick="setdef(0, 0);" class="btn btn-inverse-primary"><i
+                                                        class="mdi mdi-book-open-page-variant"></i> Apply Default Settings</button>
 
                                             </div>
 
@@ -400,7 +400,11 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+    document.getElementById('defbtn').innerHTML = '';
+    document.getElementById('defmenu').innerHTML = '';
+    function defbtn() {
 
+    }
 
     function go() {
         var y = document.getElementById('year').value;

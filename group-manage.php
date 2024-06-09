@@ -284,6 +284,8 @@ if (isset($_GET['addnew'])) {
                                     </tr>
                                     <?php
                                 }
+                            } else {
+                                echo '<tr><td></td><td colspan="3">No Group Assigned.</td></tr>';
                             }
                             ?>
                         </tbody>

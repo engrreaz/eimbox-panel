@@ -36,9 +36,9 @@ if (isset($_GET['id'])) {
 }
 
 if ($schid == 0) {
-    $btntxt = 'Save Schedule';
+    $btntxt = 'Save';
 } else {
-    $btntxt = 'Update Schedule';
+    $btntxt = 'Update';
 }
 
 $examname = $exam;
@@ -178,20 +178,24 @@ if (isset($_GET['id'])) {
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Add a schedule
+                    Add a New Subject
                 </h6>
 
                 <?php
-                $sql0x = "SELECT * FROM subsetup where id='$schid' and sccode='$sccode' and sessionyear='$year';";
+                $sql0x = "SELECT * FROM subjects where id='$schid' and sccode='$sccode';";
                 $result0xrbg = $conn->query($sql0x);
                 if ($result0xrbg->num_rows > 0) {
                     while ($row0x = $result0xrbg->fetch_assoc()) {
-                        $scode = $row0x["subject"];
-                        $tid = $row0x["tid"];
+                        $schid = $row0x["id"];
+                        $subcode = $row0x["subcode"];
+                        $sube = $row0x["subject"];
+                        $subb = $row0x["subben"];
                     }
                 } else {
-                    $scode = 0;
-                    $tid = 0;
+                    $schid = 0;
+                    $subcode = '';
+                    $sube = '';
+                    $subb = '';
                 }
                 ?>
 
@@ -209,76 +213,43 @@ if (isset($_GET['id'])) {
                     </div>
 
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Subjects</label>
+                            <label class="col-form-label pl-3">Subject Code</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="subcode">
-                                    <option value="">------</option>
-                                    <?php
 
-                                    $sql0x = "SELECT * FROM subjects order by subcode ;";
-                                    $result0xrb = $conn->query($sql0x);
-                                    if ($result0xrb->num_rows > 0) {
-                                        while ($row0x = $result0xrb->fetch_assoc()) {
-                                            $subname = $row0x["subject"];
-                                            $subcode = $row0x["subcode"];
+                                <input type="text" class="form-control" value="<?php echo $subcode; ?>" id="subcode" />
 
-                                            if ($subcode == $scode) {
-                                                $sld = 'selected';
-                                            } else {
-                                                $sld = '';
-                                            }
-
-                                            if ($subcode == 901) {
-                                                echo '<option value=""  >*****New Curriculum Subjects</option>';
-                                            }
-
-                                            echo '<option value="' . $subcode . '" ' . $sld . ' >' . $subname . '</option>';
-                                        }
-                                    }
-                                    ?>
-
-                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Teacher</label>
+                            <label class="col-form-label pl-3">Subject Name (English)</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="tid">
-                                    <option value="">------</option>
-                                    <?php
-                                    $sql0x = "SELECT * FROM teacher where sccode='$sccode'  order by sl, id;";
-                                    $result0xr2 = $conn->query($sql0x);
-                                    if ($result0xr2->num_rows > 0) {
-                                        while ($row0x = $result0xr2->fetch_assoc()) {
-                                            $tid2 = $row0x["tid"];
-                                            $tname = $row0x["tname"];
+                                <input type="text" class="form-control" value="<?php echo $sube; ?>" id="sube" />
 
-                                            if ($tid2 == $tid) {
-                                                $sld2 = 'selected';
-                                            } else {
-                                                $sld2 = '';
-                                            }
-                                            echo '<option value="' . $tid2 . '" ' . $sld2 . ' >' . $tname . '</option>';
-                                        }
-                                    }
-                                    ?>
+                            </div>
+                        </div>
+                    </div>
 
-                                </select>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Subject Name (Bengali)</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" value="<?php echo $subb; ?>" id="subb" />
+
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-success" style="" onclick="setdef(<?php echo $schid; ?>, 3);"><i
+                                    class="btn-success" style="" onclick="save(<?php echo $schid; ?>, 3);"><i
                                         class="mdi mdi-disc"></i>
                                     <?php echo $btntxt; ?></button>
                                 <span id="ssk"></span>
@@ -326,6 +297,7 @@ if (isset($_GET['id'])) {
                                 $result0xr = $conn->query($sql0x);
                                 if ($result0xr->num_rows > 0) {
                                     while ($row0x = $result0xr->fetch_assoc()) {
+                                        $idn = $row0x["id"];
                                         $subcode = $row0x["subcode"];
                                         $sube = $row0x["subject"];
                                         $subb = $row0x["subben"];
@@ -344,10 +316,10 @@ if (isset($_GET['id'])) {
                                                 <?php if ($sccodes == $sccode) { ?>
 
                                                     <div id="ssp<?php echo $id; ?>">
-                                                        <button onclick="edit(<?php echo $id; ?>);" class="btn btn-inverse-info"><i
+                                                        <button onclick="edit(<?php echo $idn; ?>);" class="btn btn-inverse-info"><i
                                                                 class="mdi mdi-grease-pencil"></i></button>
 
-                                                        <button onclick="setdef(<?php echo $id; ?>,1);"
+                                                        <button onclick="save(<?php echo $idn; ?>,1);"
                                                             class="btn btn-inverse-danger"><i class="mdi mdi-delete"></i></button>
                                                     </div>
                                                 <?php } ?>
@@ -390,7 +362,7 @@ include 'footer.php';
     document.getElementById('defbtn').innerHTML = 'Add New Subject';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-        goprintx(0);
+        window.location.href = 'subjects-list.php?&id';
     }
 
     function go() {
@@ -403,11 +375,9 @@ include 'footer.php';
 
 <script>
     function edit(id) {
-        var y = document.getElementById('year').value;
-        var c = document.getElementById('cls').value;
-        var s = document.getElementById('sec').value;
-        window.location.href = 'subjects.php?&y=' + y + '&c=' + c + '&s=' + s + '&id=' + id;
+        window.location.href = 'subjects-list.php?&id=' + id;
     }
+
     function god() {
         var y = document.getElementById('year').value;
         var c = document.getElementById('cls').value;
@@ -418,36 +388,31 @@ include 'footer.php';
 
 <script>
     function save(id, tail) {
-        var year = document.getElementById('year').value;
-        var cls = document.getElementById('cls').value;
-        var sec = document.getElementById('sec').value;
-        var exam = document.getElementById('exam').value;
-        var date = document.getElementById('exdate').value;
-        var time = document.getElementById('extime').value;
-        var subcode = document.getElementById('subcode').value;
-        var infor = "id=" + id + "&tail=" + tail + "&year=" + year + '&cls=' + cls + '&sec=' + sec + '&exam=' + exam + '&date=' + date + '&time=' + time + "&sub=" + subcode;
+        var subcode = parseInt(document.getElementById('subcode').value);
+        if (subcode < 401 || subcode > 800) {
+            alert('Subject Code Must be between 401 to 800');
+        } else {
+            var sube = document.getElementById('sube').value;
+            var subb = document.getElementById('subb').value;
+            var infor = "id=" + id + "&tail=" + tail + "&subcode=" + subcode + '&sube=' + sube + '&subb=' + subb;
+            // alert(infor);
+            $("#ssk").html("");
 
-        $("#ssk").html("");
+            $.ajax({
+                type: "POST",
+                url: "backend/save-new-subject.php",
+                data: infor,
+                cache: false,
+                beforeSend: function () {
+                    $('#ssk').html('<span class=""><center><small>Updating...</small></center></span>');
+                },
+                success: function (html) {
+                    $("#ssk").html(html);
+                    window.location.href = 'subjects-list.php';
 
-        $.ajax({
-            type: "POST",
-            url: "save-exam-routine.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#ssk').html('<span class=""><center>Check Issue....</center></span>');
-            },
-            success: function (html) {
-                $("#ssk").html(html);
-                if (tail == 0) {
-                    go();
-                } else {
-                    localStorage.setItem("ex-routine-date", date);
-                    localStorage.setItem("ex-routine-time", time);
-                    god();
                 }
-            }
-        });
+            });
+        }
     }
 
 </script>

@@ -105,7 +105,7 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="classes.php">Classes & Sections</a></li>
               <li class="nav-item"> <a class="nav-link" href="group-manage.php">Group Management</a></li>
-              <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects Management</a></li>
+              <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects Manager</a></li>
               <li class="nav-item"> <a class="nav-link" href="subjects-list.php">Subjects List</a></li>
               <li class="nav-item"> <a class="nav-link" href="access-denied.php">Class Routine</a></li>
               <li class="nav-item"> <a class="nav-link" href="access-denied.php">Syllabus</a></li>
