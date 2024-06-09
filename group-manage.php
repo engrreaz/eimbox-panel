@@ -75,7 +75,7 @@ if (isset($_GET['addnew'])) {
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Year</label>
+                            <label class="col-form-label pl-3">Session Year</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="year">
                                     <option value="0"></option>
@@ -155,9 +155,7 @@ if (isset($_GET['addnew'])) {
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
                                     class="btn btn-lg btn-outline-success btn-icon-text btn-block p-2" style=""
-                                    onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Generate
-                                    Card</button>
+                                    onclick="go();"><i class="mdi mdi-eye"></i> Show Group List</button>
                             </div>
                         </div>
                     </div>
@@ -196,7 +194,11 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Assinged Rolls </label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="rolls" value="<?php echo $rolls2; ?>" />
+                                <input type="text" class="form-control" id="rolls" title="Assigned Roll Number e.g. 1.2.3.4 (Roll Separate with full stop)" placeholder="" value="<?php echo $rolls2; ?>" />
+                                <div class="text-small text-muted mt-2">
+                                    Assign Roll Numbers for this group. Roll number must separate with fullstop.
+                                    <br>e.g. 1.16.24.29.61.24 .....
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -309,7 +311,12 @@ include 'footer.php';
         var year = document.getElementById('year').value;
         var cls = document.getElementById('cls').value;
         var sec = document.getElementById('sec').value;
-        window.location.href = 'group-manage.php?&cls=' + cls + '&sec=' + sec + '&year=' + year + '&ids=0' ;
+        if(year== 0 || cls == '' || sec == ''){
+            alert('Please Select Session Year, Class and Section First.');
+        } else {
+            window.location.href = 'group-manage.php?&cls=' + cls + '&sec=' + sec + '&year=' + year + '&ids=0' ;
+        }
+        
     }
     function reload() {
         window.location.href = uri;

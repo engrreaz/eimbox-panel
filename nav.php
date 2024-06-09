@@ -77,6 +77,14 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
       if (in_array($curfile, $pagelist)) {
         ?>
         <li class="nav-item menu-items">
+          <a class="nav-link" href="settings.php">
+            <span class="menu-icon">
+              <i class="mdi mdi-settings mdi-24px pt-1"></i>
+            </span>
+            <span class="menu-title">Settings Home</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
           <a class="nav-link" href="ins-profile.php">
             <span class="menu-icon">
               <i class="mdi mdi-checkbox-marked-circle-outline mdi-24px pt-1"></i>
@@ -84,6 +92,7 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
             <span class="menu-title">Institute Profile</span>
           </a>
         </li>
+        
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#academics" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
@@ -101,7 +110,7 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
               <li class="nav-item"> <a class="nav-link" href="access-denied.php">Class Routine</a></li>
               <li class="nav-item"> <a class="nav-link" href="access-denied.php">Syllabus</a></li>
               <li class="nav-item"> <a class="nav-link" href="access-denied.php">Academic Plan</a></li>
-            </ul>
+            </ul> 
           </div>
         </li>
         <li class="nav-item menu-items">

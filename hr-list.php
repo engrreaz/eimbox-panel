@@ -55,7 +55,7 @@ if (isset($_GET['tp'])) {
 
 
 
-<div class="row d-print-none" id="ren">
+<div class="row d-print-none" id="ren" >
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -69,9 +69,6 @@ if (isset($_GET['tp'])) {
                                     font-family: "Noto Sans Bengali", sans-serif;
                                 }
 
-                                #main-table td {
-                                    border: 1px solid black;
-                                }
 
                                 .txt-right {
                                     text-align: center;
@@ -94,7 +91,23 @@ if (isset($_GET['tp'])) {
                                 }
                             </style>
                         </head>
-                        <div style="text-align: left;">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row d-print-none" id="ren">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" >
+                    <div class="mb-4">
+                    <div style="text-align: left;">
                             <button type="button" onclick="go('all')" class="btn btn-primary">All</button>
                             <?php
                             $sql5 = "SELECT * FROM slots where  sccode='$sccode' order by id ";
@@ -111,6 +124,99 @@ if (isset($_GET['tp'])) {
                             ?>
                         </div>
                     </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped "
+                        style=" border:1px solid gray !important; border-collapse:collapse;" >
+                        <thead>
+                            <tr>
+                                <td class="txt-right">#</td>
+                                <td class="txt-right">Name of Teachers</td>
+                                <td class="txt-right">Position</td>
+                                <td class="txt-right">MPO Index</td>
+                                <td class="txt-right">Mobile | Email</td>
+                                <td class="txt-right"></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+
+
+                            <?php
+                            $cnt = 0;
+                            $cntamt = 0;
+                            if ($tp == 'all') {
+                                $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50  order by ranks, sl";
+                            } else {
+                                $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50 and slots='$tp' order by ranks, sl";
+                            }
+
+                            $result0 = $conn->query($sql0);
+                            if ($result0->num_rows > 0) {
+                                while ($row0 = $result0->fetch_assoc()) {
+                                    $tid = $row0["tid"];
+                                    $neng = $row0["tname"];
+                                    $nben = $row0["tnameb"];
+                                    $position = $row0["position"];
+                                    $ranks = $row0["ranks"];
+                                    $mobile = $row0["mobile"];
+                                    $email = $row0["email"];
+                                    $mpoindex = $row0["mpoindex"];
+                                    ?>
+                                    <tr>
+                                        <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
+                                            <?php
+                                            $tpath = "../teacher/" . $tid . ".jpg";
+                                            if (!file_exists($tpath)) {
+                                                $tpath = "../teacher/no-img.jpg";
+                                            }
+                                            ?>
+                                            <img src="<?php echo $tpath; ?>"
+                                                style="width:30px; height:30px; border-radius:50%;">
+
+                                        </td>
+                                        <td style="padding : 3px 10px; border:1px solid gray;">
+                                            <div class="ooo"><small><?php echo $tid; ?></small></div>
+                                            <div class="ooo"><?php echo $neng; ?></div>
+                                            <div class="ooo"><?php echo $nben; ?></div>
+                                        </td>
+
+                                        <td style="padding : 3px 10px; border:1px solid gray;">
+                                            <div class="ooo"><?php echo $position; ?></div>
+                                        </td>
+                                        <td style="padding : 3px 10px; border:1px solid gray;">
+                                            <div class="ooo"><?php echo $mpoindex; ?></div>
+                                        </td>
+                                        <td style="padding : 3px 10px; border:1px solid gray;">
+                                            <div class="ooo"><?php echo $mobile; ?></div>
+                                            <div class="ooo"><?php echo $email; ?></div>
+                                        </td>
+
+                                        <td style=" border:1px solid gray;">
+                                            <div id="btn<?php echo $stid; ?>">
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <button type="button" title="View Profile" class="btn btn-inverse-warning"
+                                                        onclick="issuet(<?php echo $tid; ?>)">
+                                                        <i class="mdi mdi-television"></i>
+                                                    </button>
+
+                                                    <button type="button" title="Edit Profile" class="btn btn-inverse-info"
+                                                        onclick="issue(<?php echo $tid; ?>)">
+                                                        <i class="mdi mdi-grease-pencil"></i>
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -119,98 +225,6 @@ if (isset($_GET['tp'])) {
 
 
 
-
-
-
-<table class="table table-bordered table-striped " style=" border:1px solid gray !important; border-collapse:collapse;"
-    id="main-table">
-    <thead>
-        <tr>
-            <td class="txt-right">#</td>
-            <td class="txt-right">Name of Teachers</td>
-            <td class="txt-right">Position</td>
-            <td class="txt-right">MPO Index</td>
-            <td class="txt-right">Mobile | Email</td>
-            <td class="txt-right"></td>
-        </tr>
-    </thead>
-
-    <tbody>
-
-
-
-        <?php
-        $cnt = 0;
-        $cntamt = 0;
-        if ($tp == 'all') {
-            $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50  order by ranks, sl";
-        } else {
-            $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50 and slots='$tp' order by ranks, sl";
-        }
-        
-        $result0 = $conn->query($sql0);
-        if ($result0->num_rows > 0) {
-            while ($row0 = $result0->fetch_assoc()) {
-                $tid = $row0["tid"];
-                $neng = $row0["tname"];
-                $nben = $row0["tnameb"];
-                $position = $row0["position"];
-                $ranks = $row0["ranks"];
-                $mobile = $row0["mobile"];
-                $email = $row0["email"];
-                $mpoindex = $row0["mpoindex"];
-                ?>
-                <tr>
-                    <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
-                        <?php
-                        $tpath = "../teacher/" . $tid . ".jpg";
-                        if (!file_exists($tpath)) {
-                            $tpath = "../teacher/no-img.jpg";
-                        }
-                        ?>
-                        <img src="<?php echo $tpath; ?>" style="width:30px; height:30px; border-radius:50%;">
-
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><small><?php echo $tid; ?></small></div>
-                        <div class="ooo"><?php echo $neng; ?></div>
-                        <div class="ooo"><?php echo $nben; ?></div>
-                    </td>
-
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $position; ?></div>
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $mpoindex; ?></div>
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $mobile; ?></div>
-                        <div class="ooo"><?php echo $email; ?></div>
-                    </td>
-
-                    <td style=" border:1px solid gray;">
-                        <div id="btn<?php echo $stid; ?>">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" title="View Profile" class="btn btn-inverse-warning"
-                                    onclick="issuet(<?php echo $tid; ?>)">
-                                    <i class="mdi mdi-television"></i>
-                                </button>
-                                
-                                <button type="button" title="Edit Profile" class="btn btn-inverse-info"
-                                    onclick="issue(<?php echo $tid; ?>)">
-                                    <i class="mdi mdi-grease-pencil"></i>
-                                </button>
-                                
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <?php
-            }
-        }
-        ?>
-    </tbody>
-</table>
 
 <?php
 include 'footer.php';

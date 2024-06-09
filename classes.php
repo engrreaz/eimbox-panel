@@ -26,8 +26,8 @@ if ($result0->num_rows > 0) {
 }
 ?>
 <div class="float-right">
-    <button type="button" style="" title="Add New Expenditure" class="btn btn-inverse-success" style=""
-        onclick="addnew();">
+    <button type="button" style="" title="Add New Expenditure" class="btn btn-inverse-success mb-2" style=""
+        onclick="addnew();" hidden>
         <i class="mdi mdi-library-plus"> Add New Class </i></button>
 </div>
 <h3>Classes & Sections</h3>
@@ -63,7 +63,8 @@ if ($result0->num_rows > 0) {
                                     <td>Class :
                                     </td>
                                     <td>
-                                        <select class="form-control" id="cls">
+                                        <select class="form-control" id="clsx" onchange="setbox();">
+                                            <option value=""></option>
                                             <option value="Play" <?php if ($ccc == 'Play') {
                                                 echo 'selected';
                                             } ?>>Play
@@ -126,10 +127,18 @@ if ($result0->num_rows > 0) {
                                             <option value="HSC" <?php if ($ccc == 'HSC') {
                                                 echo 'selected';
                                             } ?>>HSC</option>
+                                            <option value=""></option>
+                                            <option value="-">Not in the list</option>
                                         </select>
+                                        <div id="clstr" class="mt-2" style="display:none; width:100%;">
+                                            <input type="text" class="form-control" id="cls"
+                                                value="<?php echo $ccc; ?>" />
+                                        </div>
+
                                     </td>
                                     <td></td>
                                 </tr>
+
                                 <tr>
                                     <td>Section :
                                     </td>
@@ -176,7 +185,7 @@ if ($result0->num_rows > 0) {
                                     <th>#</th>
                                     <th>Class</th>
                                     <th>Section</th>
-                                    <th></th>
+                                    <th>SL up/dn</th>
                                     <th style="text-align:right;"></th>
                                 </tr>
                             </thead>
@@ -197,26 +206,41 @@ if ($result0->num_rows > 0) {
                                             <td><?php echo $cls; ?></td>
                                             <td><?php echo $sec; ?></td>
                                             <td style="text-align:right;">
-                                                <div class="button-group">
-                                                    <button type="button" class="btn btn-inverse-primary"
-                                                        onclick="sl(<?php echo $id; ?>,1)">
-                                                        <i class="mdi mdi-arrow-down"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-inverse-primary"
-                                                        onclick="sl(<?php echo $id; ?>,-1)">
-                                                        <i class="mdi mdi-arrow-up"></i>
-                                                    </button>
+                                                <div>
+                                                    <div class="button-group" role="group" aria-label="Basic example">
+
+                                                        <button type="button" class="btn btn-inverse-primary"
+                                                            onclick="sl(<?php echo $id; ?>,1)">
+                                                            <i class="mdi mdi-arrow-down"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-inverse-primary"
+                                                            onclick="sl(<?php echo $id; ?>,-1)">
+                                                            <i class="mdi mdi-arrow-up"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
+
 
                                                 <span id="sspd"></span>
                                             </td>
 
                                             <td>
                                                 <div id="ssp<?php echo $id; ?>">
-                                                    <label onclick="edit(<?php echo $id; ?>,1);" class="icon-btn btn-info"><i
-                                                            class="mdi mdi-grease-pencil"></i></label>
-                                                    <label onclick="save(<?php echo $id; ?>,2);" class="icon-btn btn-danger"><i
-                                                            class="mdi mdi-delete"></i></label>
+
+
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <button type="button" title="View Profile" class="btn btn-inverse-info"
+                                                            onclick="edit(<?php echo $id; ?>,1);">
+                                                            <i class="mdi mdi-grease-pencil"></i>
+                                                        </button>
+
+                                                        <button type="button" title="Edit Profile"
+                                                            class="btn btn-inverse-danger"
+                                                            onclick="save(<?php echo $id; ?>,2);">
+                                                            <i class="mdi mdi-delete"></i>
+                                                        </button>
+
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -247,11 +271,32 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+    document.getElementById('defbtn').innerHTML = 'Add New Class';
+    document.getElementById('defmenu').innerHTML = '';
+    function defbtn() {
+      addnew();
+    }
+
+
     function go() {
         var m = document.getElementById('month').value;
         var y = document.getElementById('year').value;
         window.location.href = 'expenditure.php?&m=' + m + '&y=' + y;
     }
+    function setbox() {
+        var datt = document.getElementById('clsx').value;
+        if (datt == '-') {
+            datt = '<?php echo $ccc; ?>';
+            document.getElementById('clstr').style.display = 'block';
+        } else {
+            document.getElementById('clstr').style.display = 'none';
+        }
+        document.getElementById('cls').value = datt;
+    }
+
+
+
+
     function go2() {
         var m = document.getElementById('ref').value;
         window.location.href = 'expenditure.php?&ref=' + m;
@@ -276,29 +321,29 @@ include 'footer.php';
 
 <script>
     function save(ids, ont) {
-            if (ids == 0) {
-                var ids = document.getElementById('id').value;
+        if (ids == 0) {
+            var ids = document.getElementById('id').value;
+        }
+        var cls = document.getElementById('cls').value;
+        var sec = document.getElementById('sec').value;
+
+        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont;
+        // alert(infor);
+        $("#sspd").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/save-class.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#sspd').html('<span class="">Saving Data....');
+            },
+            success: function (html) {
+                $("#sspd").html(html);
+                window.location.href = 'classes.php';
             }
-            var cls = document.getElementById('cls').value;
-            var sec = document.getElementById('sec').value;
-
-            var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont;
-            // alert(infor);
-            $("#sspd").html("");
-
-            $.ajax({
-                type: "POST",
-                url: "backend/save-class.php",
-                data: infor,
-                cache: false,
-                beforeSend: function () {
-                    $('#sspd').html('<span class="">Saving Data....');
-                },
-                success: function (html) {
-                    $("#sspd").html(html);
-                    window.location.href = 'classes.php';
-                }
-            });
+        });
     }
 </script>
 
