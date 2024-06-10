@@ -18,6 +18,7 @@ if ($tail == 0) { // set default
     } else if ($clsf == 'Ten') {
         $secx = substr($secf, 0, 5);
         $sql242a = "SELECT * FROM subjectsettinglist where classname='$clsf' and sectionname like '%$secx%' order by subject";
+        echo$sql242a;
         $result242a = $conn->query($sql242a);
         if ($result242a->num_rows > 0) {
             while ($row242a = $result242a->fetch_assoc()) {
