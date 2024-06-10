@@ -479,7 +479,7 @@ include 'footer.php';
             var infor = "year=" + year + '&cls=' + cls + '&sec=' + sec + "&tail=" + tail + '&sl=' + sl;
         }
 
-        // alert(infor);
+        alert(infor);
         $("#sspn").html("");
 
         $.ajax({

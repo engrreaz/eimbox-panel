@@ -28,10 +28,8 @@ if ($tail == 0) { // set default
                 $conn->query($qq);
 
                 echo $qq . '<br>';
-
             }
         }
-
     }
 
 } else if ($tail == 1) { // delete
