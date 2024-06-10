@@ -492,7 +492,7 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#sspn").html(html);
-                window.location.href = 'subjects.php?&y=' + year + '&c=' + cls + '&s=' + sec;
+                // window.location.href = 'subjects.php?&y=' + year + '&c=' + cls + '&s=' + sec;
             }
         });
     }

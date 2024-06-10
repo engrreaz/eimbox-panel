@@ -26,6 +26,9 @@ if ($tail == 0) { // set default
 
                 $qq = "INSERT INTO subsetup (sccode, sessionyear, classname, sectionname, subject,fullmarks, subj, obj, pra, ca, camanual, pass_algorithm, cnt, reverse) SELECT '$sccode', '$year', classname, '$secf', subject,fullmarks, subj, obj, pra, 0, camanual, pass_algorithm, cnt, reverse from subjectsettinglist where id = '$idr';";
                 $conn->query($qq);
+
+                echo $qq . '<br>';
+
             }
         }
 
