@@ -414,7 +414,6 @@ include 'footer.php';
             });
         }
     }
-
 </script>
 
 <script>

@@ -55,7 +55,7 @@ if (isset($_GET['tp'])) {
 
 
 
-<div class="row d-print-none" id="ren" >
+<div class="row d-print-none" id="ren">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -91,7 +91,7 @@ if (isset($_GET['tp'])) {
                                 }
                             </style>
                         </head>
-                        
+
                     </div>
                 </div>
             </div>
@@ -105,9 +105,13 @@ if (isset($_GET['tp'])) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="row" >
-                    <div class="mb-4">
-                    <div style="text-align: left;">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div style="float:right;">
+                            <button type="button" onclick="" class="btn btn-outline-danger" disabled>Inactive
+                                <?php echo $hrtype; ?>(s)</button>
+                        </div>
+                        <div style="text-align: left;">
                             <button type="button" onclick="go('all')" class="btn btn-primary">All</button>
                             <?php
                             $sql5 = "SELECT * FROM slots where  sccode='$sccode' order by id ";
@@ -123,100 +127,102 @@ if (isset($_GET['tp'])) {
                             }
                             ?>
                         </div>
+
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped "
-                        style=" border:1px solid gray !important; border-collapse:collapse;" >
-                        <thead>
-                            <tr>
-                                <td class="txt-right">#</td>
-                                <td class="txt-right">Name of Teachers</td>
-                                <td class="txt-right">Position</td>
-                                <td class="txt-right">MPO Index</td>
-                                <td class="txt-right">Mobile | Email</td>
-                                <td class="txt-right"></td>
-                            </tr>
-                        </thead>
+                            style=" border:1px solid gray !important; border-collapse:collapse;">
+                            <thead>
+                                <tr>
+                                    <td class="txt-right">#</td>
+                                    <td class="txt-right">Name of Teachers</td>
+                                    <td class="txt-right">Position</td>
+                                    <td class="txt-right">MPO Index</td>
+                                    <td class="txt-right">Mobile | Email</td>
+                                    <td class="txt-right"></td>
+                                </tr>
+                            </thead>
 
-                        <tbody>
+                            <tbody>
 
 
 
-                            <?php
-                            $cnt = 0;
-                            $cntamt = 0;
-                            if ($tp == 'all') {
-                                $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50  order by ranks, sl";
-                            } else {
-                                $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50 and slots='$tp' order by ranks, sl";
-                            }
-
-                            $result0 = $conn->query($sql0);
-                            if ($result0->num_rows > 0) {
-                                while ($row0 = $result0->fetch_assoc()) {
-                                    $tid = $row0["tid"];
-                                    $neng = $row0["tname"];
-                                    $nben = $row0["tnameb"];
-                                    $position = $row0["position"];
-                                    $ranks = $row0["ranks"];
-                                    $mobile = $row0["mobile"];
-                                    $email = $row0["email"];
-                                    $mpoindex = $row0["mpoindex"];
-                                    ?>
-                                    <tr>
-                                        <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
-                                            <?php
-                                            $tpath = "../teacher/" . $tid . ".jpg";
-                                            if (!file_exists($tpath)) {
-                                                $tpath = "../teacher/no-img.jpg";
-                                            }
-                                            ?>
-                                            <img src="<?php echo $tpath; ?>"
-                                                style="width:30px; height:30px; border-radius:50%;">
-
-                                        </td>
-                                        <td style="padding : 3px 10px; border:1px solid gray;">
-                                            <div class="ooo"><small><?php echo $tid; ?></small></div>
-                                            <div class="ooo"><?php echo $neng; ?></div>
-                                            <div class="ooo"><?php echo $nben; ?></div>
-                                        </td>
-
-                                        <td style="padding : 3px 10px; border:1px solid gray;">
-                                            <div class="ooo"><?php echo $position; ?></div>
-                                        </td>
-                                        <td style="padding : 3px 10px; border:1px solid gray;">
-                                            <div class="ooo"><?php echo $mpoindex; ?></div>
-                                        </td>
-                                        <td style="padding : 3px 10px; border:1px solid gray;">
-                                            <div class="ooo"><?php echo $mobile; ?></div>
-                                            <div class="ooo"><?php echo $email; ?></div>
-                                        </td>
-
-                                        <td style=" border:1px solid gray;">
-                                            <div id="btn<?php echo $stid; ?>">
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" title="View Profile" class="btn btn-inverse-warning"
-                                                        onclick="issuet(<?php echo $tid; ?>)">
-                                                        <i class="mdi mdi-television"></i>
-                                                    </button>
-
-                                                    <button type="button" title="Edit Profile" class="btn btn-inverse-info"
-                                                        onclick="issue(<?php echo $tid; ?>)">
-                                                        <i class="mdi mdi-grease-pencil"></i>
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php
+                                <?php
+                                $cnt = 0;
+                                $cntamt = 0;
+                                if ($tp == 'all') {
+                                    $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50  order by ranks, sl";
+                                } else {
+                                    $sql0 = "SELECT * FROM teacher where sccode='$sccode'  and ranks $rnk 50 and slots='$tp' order by ranks, sl";
                                 }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+
+                                $result0 = $conn->query($sql0);
+                                if ($result0->num_rows > 0) {
+                                    while ($row0 = $result0->fetch_assoc()) {
+                                        $tid = $row0["tid"];
+                                        $neng = $row0["tname"];
+                                        $nben = $row0["tnameb"];
+                                        $position = $row0["position"];
+                                        $ranks = $row0["ranks"];
+                                        $mobile = $row0["mobile"];
+                                        $email = $row0["email"];
+                                        $mpoindex = $row0["mpoindex"];
+                                        ?>
+                                        <tr>
+                                            <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
+                                                <?php
+                                                $tpath = "../teacher/" . $tid . ".jpg";
+                                                if (!file_exists($tpath)) {
+                                                    $tpath = "../teacher/no-img.jpg";
+                                                }
+                                                ?>
+                                                <img src="<?php echo $tpath; ?>"
+                                                    style="width:30px; height:30px; border-radius:50%;">
+
+                                            </td>
+                                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                                <div class="ooo"><small><?php echo $tid; ?></small></div>
+                                                <div class="ooo"><?php echo $neng; ?></div>
+                                                <div class="ooo"><?php echo $nben; ?></div>
+                                            </td>
+
+                                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                                <div class="ooo"><?php echo $position; ?></div>
+                                            </td>
+                                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                                <div class="ooo"><?php echo $mpoindex; ?></div>
+                                            </td>
+                                            <td style="padding : 3px 10px; border:1px solid gray;">
+                                                <div class="ooo"><?php echo $mobile; ?></div>
+                                                <div class="ooo"><?php echo $email; ?></div>
+                                            </td>
+
+                                            <td style=" border:1px solid gray;">
+                                                <div id="btn<?php echo $stid; ?>">
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <button type="button" title="View Profile"
+                                                            class="btn btn-inverse-warning"
+                                                            onclick="issuet(<?php echo $tid; ?>)">
+                                                            <i class="mdi mdi-television"></i>
+                                                        </button>
+
+                                                        <button type="button" title="Edit Profile" class="btn btn-inverse-info"
+                                                            onclick="issue(<?php echo $tid; ?>)">
+                                                            <i class="mdi mdi-grease-pencil"></i>
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -232,10 +238,10 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    document.getElementById('defbtn').innerHTML = 'Add New Teacher/Staff';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-        goprint(0);
+        addnew();
     }
 
     function reload() {
@@ -275,64 +281,22 @@ include 'footer.php';
 </script>
 
 <script>
-    function fetchs(e) {
-        if (e.key == 'Enter') {
-            var br = document.getElementById("boardroll").value;
-            var infor = "br=" + br;
+    function addnew() {
+        var infor = "hrt=<?php echo $hrtype; ?>" ;
 
-            $("#sscspan").html("");
-
-            $.ajax({
-                type: "POST",
-                url: "backend/fetch-board-roll.php",
-                data: infor,
-                cache: false,
-                beforeSend: function () {
-                    $('#sscspan').html('<small>Processing...</small>');
-                },
-                success: function (html) {
-                    $("#sscspan").html(html);
-                    var st = document.getElementById("sscspan").innerHTML;
-
-                    if (st == 'Something went wrong.') {
-                        document.getElementById("sscspan").innerHTML = '<code>' + st + '</code><br>Data Missing or Multiple Entry Found.';
-                    } else {
-                        document.getElementById("stname").value = st;
-                        document.getElementById("sscspan").innerHTML = '';
-                        document.getElementById("gpagla").focus();
-                    }
-                }
-            });
-        }
-    }
-
-    function svs(e) {
-        if (e.key == 'Enter') {
-            savessc();
-        }
-    }
-
-    function savessc() {
-        var br = document.getElementById("boardroll").value;
-        var gpgl = document.getElementById("gpagla").value;
-        var infor = "br=" + br + "&gpgl=" + gpgl;
-
-        $("#sscspan").html("");
+        $("#defbtn").html("");
         $.ajax({
             type: "POST",
-            url: "backend/save-board-result.php",
+            url: "backend/add-new-hr.php",
             data: infor,
             cache: false,
             beforeSend: function () {
-                $('#sscspan').html('<small>Processing...</small>');
+                $('#defbtn').html('Waiting...');
             },
             success: function (html) {
-                $("#sscspan").html(html);
-                var st = parseInt(document.getElementById("boardroll").value) + 1;
-                document.getElementById("boardroll").value = st;
-                document.getElementById("gpagla").value = '';
-                document.getElementById("boardroll").focus();
-
+                $("#defbtn").html(html);
+                var tid = document.getElementById('defbtn').innerHTML;
+                window.location.href = 'hr-edit.php?tid=' + tid;
             }
         });
     }

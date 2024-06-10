@@ -1,5 +1,5 @@
 <?php 
-$pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manage.php', 'subjects.php', 'subjects-list.php', 'st-payment-setup.php'); 
+$pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manage.php', 'subjects.php', 'subjects-list.php', 'class-routine.php', 'st-payment-setup.php', 'access-denied-settings.php'); 
 ?>
 
 <div style="overflow-y:auto; ">
@@ -107,9 +107,9 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
               <li class="nav-item"> <a class="nav-link" href="group-manage.php">Group Management</a></li>
               <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects Manager</a></li>
               <li class="nav-item"> <a class="nav-link" href="subjects-list.php">Subjects List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="access-denied.php">Class Routine</a></li>
-              <li class="nav-item"> <a class="nav-link" href="access-denied.php">Syllabus</a></li>
-              <li class="nav-item"> <a class="nav-link" href="access-denied.php">Academic Plan</a></li>
+              <li class="nav-item"> <a class="nav-link" href="class-routine.php">Class Routine</a></li>
+              <li class="nav-item"> <a class="nav-link" href="access-denied-settings.php">Syllabus</a></li>
+              <li class="nav-item"> <a class="nav-link" href="access-denied-settings.php">Academic Plan</a></li>
             </ul> 
           </div>
         </li>
@@ -194,7 +194,7 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
 
 
 
-        <li class="nav-item menu-items">
+        <li class="nav-item menu-items" hidden>
           <a class="nav-link" data-toggle="collapse" href="#tttax" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
               <i class="mdi mdi-laptop mdi-18px pt-1 "></i>
@@ -225,8 +225,8 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
           </a>
           <div class="collapse" id="hrd">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Teacher">Teaching Staffs</a></li>
-              <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff">Management Staffs</a></li>
+              <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Teacher"><i class="mdi mdi-account-box"></i>&nbsp; Teaching Staffs</a></li>
+              <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff"><i class="mdi mdi-account-box-outline"></i>&nbsp; Management Staffs</a></li>
               <li class="nav-item"> <a class="nav-link" href="hr-profile.php">View Profile</a></li>
               <li class="nav-item"> <a class="nav-link" href="hr-edit.php">Profile Editor</a></li>
               <li class="nav-item"> <a class="nav-link" href="tattnd.php">HRD Attendance</a></li>
@@ -259,7 +259,6 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
           </a>
           <div class="collapse" id="finance">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
               <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li>
               <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
               <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
@@ -269,6 +268,23 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
             </ul>
           </div>
         </li>
+
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#finance-sal" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-icon">
+              <i class="mdi mdi-coin mdi-24px pt-1"></i>
+            </span>
+            <span class="menu-title">Salary Management</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="finance-sal">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
+            </ul>
+          </div>
+        </li>
+
+
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#bank-management" aria-expanded="false"
             aria-controls="ui-basic">
