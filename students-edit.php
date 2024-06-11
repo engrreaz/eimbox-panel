@@ -1230,7 +1230,7 @@ include 'footer.php';
                 success: function (html) {
                     $("#batchbatch").html(html);
                     var nextroll = parseInt(rollno) + 1;
-                    // window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
+                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
         }

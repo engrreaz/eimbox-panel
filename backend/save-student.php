@@ -123,7 +123,7 @@ if ($result0->num_rows > 0) {
 					guarnid = '$guarnid'
 
 		WHERE stid='$stid' and sccode='$sccode'";
-	echo $query3;
+	// echo $query3;
 } else {
 	$query33 = "insert into sessioninfo
 				(id, stid, sessionyear, classname, sectionname, rollno, sccode)
