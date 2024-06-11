@@ -35,10 +35,10 @@ if ($result6->num_rows > 0) {
         $stid = $row5["stid"];
     }
 } else {
-    // $cls2 = '';
-    // $sec2 = '';
+    $cls2 = '';
+    $sec2 = '';
     $rollno = $roll2;
-    // $stid = '';
+    $stid = '';
 
     $sql5 = "SELECT * FROM students where sccode='$sccode' order by stid desc LIMIT 1;";
     $result6x = $conn->query($sql5);
