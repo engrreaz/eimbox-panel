@@ -49,6 +49,7 @@ $doa = date('y-m-d', strtotime($doa));
 $sessionyear = $sy;
 
 $sscyear = $_POST['sscyear'];
+if($sscyear == '') $sscyear = '0';
 $sscregd = $_POST['sscregd'];
 $sscroll = $_POST['sscroll'];
 $sscresult = $_POST['sscresult'];
@@ -58,6 +59,9 @@ $bgroup = $_POST['bgroup'];
 $disables = $_POST['disables'];
 $height = $_POST['height'];
 $weight = $_POST['weight'];
+if($height == '') $height = '0';
+if($weight == '') $weight = '0';
+
 $guarnid = $_POST['guarnid'];
 
 if ($sscyear < 1900 && $sscresult>0) {
