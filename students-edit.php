@@ -25,7 +25,7 @@ if ($cls2 != '' && $sec2 != '' && $roll2 != '') {
     $sql5 = "SELECT * FROM sessioninfo where classname='$cls2' and sectionname = '$sec2' and rollno='$roll2' and sessionyear = '$sy' and sccode='$sccode';";
 } else {
     $sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear = '$sy' and sccode='$sccode';";
-}
+}echo $sql5;
 $result6 = $conn->query($sql5);
 if ($result6->num_rows > 0) {
     while ($row5 = $result6->fetch_assoc()) {
