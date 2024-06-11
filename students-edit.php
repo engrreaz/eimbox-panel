@@ -1029,9 +1029,9 @@ echo $dismsg; ?>">
                             <?php
                             $stphotopath = "https://eimbox.com/students/<?php echo $stid; ?>.jpg";
                             if (!file_exists($stphotopath)) {
-                                $stphotopath = "../students/no-img.jpg";
+                                $stphotopath = "https://eimbox.com/students/no-img.jpg";
                             }
-                            
+
                             echo $stphotopath;
                             ?>
 
