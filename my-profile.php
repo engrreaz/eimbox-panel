@@ -66,7 +66,7 @@ if ($result0x->num_rows > 0) {
                     <div class="col-md-2">
                         <div class="form-group row">
                             <div class="col-12">
-                                <img style="" src="<?php echo $pth; ?>" style="width:150px;" />
+                                <img src="<?php echo $pth; ?>" style="width:120px; border-radius:5px; border:1px solid gray;" />
                             </div>
                         </div>
                     </div>
