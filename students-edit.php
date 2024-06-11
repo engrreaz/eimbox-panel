@@ -1220,7 +1220,7 @@ include 'footer.php';
             $("#batchbatch").html("");
 
             $.ajax({
-                type: "POST",
+                type: "POST", 
                 url: "backend/save-student.php",
                 data: infor,
                 cache: false,
