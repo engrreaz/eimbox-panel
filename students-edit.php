@@ -26,6 +26,7 @@ if ($cls2 != '' && $sec2 != '' && $roll2 != '') {
 } else {
     $sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear = '$sy' and sccode='$sccode';";
 }
+echo $sql5;
 $result6 = $conn->query($sql5);
 if ($result6->num_rows > 0) {
     while ($row5 = $result6->fetch_assoc()) {
@@ -54,13 +55,14 @@ if ($result6->num_rows > 0) {
             $new = 1;
             echo '<script>alert('.$stid. ');</script>';
     }
+    echo $sql5;
 }
 
 
 
 
 
-$sql5 = "SELECT * FROM students where stid='$stid' and sccode='$sccode' ";
+$sql5 = "SELECT * FROM students where stid='$stid' and sccode='$sccode' ";echo $sql5;
 $result7 = $conn->query($sql5);
 if ($result7->num_rows > 0) {
     while ($row5 = $result7->fetch_assoc()) {
