@@ -1031,7 +1031,7 @@ echo $dismsg; ?>">
                             $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
                             echo $stphotopath;
                             if (!file_exists($stphotopath)) {
-                                $stphotopath = "https://eimbox.com/students/no-img.jpg";
+                                // $stphotopath = "https://eimbox.com/students/no-img.jpg";
                             } 
                             ?>
 
