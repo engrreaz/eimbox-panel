@@ -54,7 +54,6 @@ if ($result6->num_rows > 0) {
         $stid = $sccode * 10000 + 1;
             $dismsg += 1;
             $new = 1;
-            echo '<script>alert('.$stid. ');</script>';
     }
 
 }
