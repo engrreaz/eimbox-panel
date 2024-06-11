@@ -55,6 +55,11 @@ if ($result6->num_rows > 0) {
 
 }
 
+if($new == 1) {
+    $btntext = 'Save the Student';
+} else {
+    $btntext = 'Update Info';
+}
 
 
 
@@ -1022,7 +1027,7 @@ echo $dismsg; ?>">
                     <div class="col-md-2">
                         <div class="form-group row">
                             <?php
-                            $stphotopath = "../students/<?php echo $stid; ?>.jpg";
+                            $stphotopath = "https://eimbox.com/students/<?php echo $stid; ?>.jpg";
                             if (!file_exists($stphotopath)) {
                                 $stphotopath = "../students/no-img.jpg";
                             }
@@ -1048,7 +1053,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3 middle"><br><br>&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" id="savest" name="savest" class="btn btn-success"
-                                    onclick="savestudent();">Save the Student</button>
+                                    onclick="savestudent();"><?php echo $btntext;?></button>
                                 <div id="batchbatch"></div>
                             </div>
                         </div>
@@ -1084,7 +1089,7 @@ include 'footer.php';
 </script>
 
 <script>
-    document.getElementById('defbtn').innerHTML = 'Save The Student';
+    document.getElementById('defbtn').innerHTML = '<?php echo $btntext;?>';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         savestudent();
