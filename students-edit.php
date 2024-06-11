@@ -1026,6 +1026,7 @@ echo $dismsg; ?>">
                     </div>
                     <div class="col-md-2">
                         <div class="form-group row">
+                            
                             <?php
                             $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
                             if (!file_exists($stphotopath)) {
