@@ -38,7 +38,7 @@ if ($result6->num_rows > 0) {
 } else {
 
     $rollno = $roll2;
-  
+
     $sql5 = "SELECT * FROM students where sccode='$sccode' order by stid desc LIMIT 1;";
     $result6x = $conn->query($sql5);
     if ($result6x->num_rows > 0) {
@@ -49,13 +49,13 @@ if ($result6->num_rows > 0) {
         }
     } else {
         $stid = $sccode * 10000 + 1;
-            $dismsg += 1;
-            $new = 1;
+        $dismsg += 1;
+        $new = 1;
     }
 
 }
 
-if($new == 1) {
+if ($new == 1) {
     $btntext = 'Save the Student';
 } else {
     $btntext = 'Update Info';
@@ -669,7 +669,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date of Birth</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="dob" value="<?php echo $dob; ?>" />
+                                <input type="text" class="form-control" id="dob" placeholder="YYYY-MM-DD"
+                                    value="<?php echo $dob; ?>" />
                             </div>
                         </div>
                     </div>
@@ -1025,17 +1026,22 @@ echo $dismsg; ?>">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="form-group row">
+                        <div class="form-group row text-center">
 
                             <?php
                             $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
-                            echo $stphotopath;
-                            if (!file_exists($stphotopath)) {
-                                // $stphotopath = "https://eimbox.com/students/no-img.jpg";
-                            } 
+                            // $file_headers = @get_headers($stphotopath);
+                            // if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
+                            //     $stphotopath = "https://eimbox.com/students/noimg.jpg";
+                            // } else {
+                            //     $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
+                            // }
+
+
+
                             ?>
 
-                            <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;">
+                            <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;"  alt="">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -1056,7 +1062,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3 middle"><br><br>&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" id="savest" name="savest" class="btn btn-success"
-                                    onclick="savestudent();"><?php echo $btntext;?></button>
+                                    onclick="savestudent();"><?php echo $btntext; ?></button>
                                 <div id="batchbatch"></div>
                             </div>
                         </div>
@@ -1092,7 +1098,7 @@ include 'footer.php';
 </script>
 
 <script>
-    document.getElementById('defbtn').innerHTML = '<?php echo $btntext;?>';
+    document.getElementById('defbtn').innerHTML = '<?php echo $btntext; ?>';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         savestudent();
@@ -1228,7 +1234,7 @@ include 'footer.php';
             $("#batchbatch").html("");
 
             $.ajax({
-                type: "POST", 
+                type: "POST",
                 url: "backend/save-student.php",
                 data: infor,
                 cache: false,
