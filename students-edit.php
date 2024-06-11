@@ -36,12 +36,9 @@ if ($result6->num_rows > 0) {
 
     }
 } else {
-    $cls2 = '';
-    $sec2 = '';
+
     $rollno = $roll2;
-    $stid = '';
-
-
+  
     $sql5 = "SELECT * FROM students where sccode='$sccode' order by stid desc LIMIT 1;";
     $result6x = $conn->query($sql5);
     if ($result6x->num_rows > 0) {

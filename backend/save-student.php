@@ -133,7 +133,7 @@ if ($result0->num_rows > 0) {
 				bgroup, height, weight, disables, guarnid)
 		values 	(NULL, '$sccode','$stid','$stnameeng','$stnameben','$fname','$fprof','$fmobile','$mname','$mprof','$mmobile',
 							'$previll','$prepo','$preps','$predist','$pervill','$perpo','$perps','$perdist',
-							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$dt', '$photoid', '$dopp', '$fnid', '$mnid'	,
+							'$dob','$religion','$brn','$gender','$guarname','$guaradd','$guarrelation','$guarmobile','$tcno','$preins','$preinsadd','$doa', '$td', '$photoid', '$dopp', '$fnid', '$mnid'	,
 							'$bgroup', '$height', '$weight', '$disables', '$guarnid')";
 }
 
