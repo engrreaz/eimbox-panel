@@ -1032,6 +1032,7 @@ echo $dismsg; ?>">
                                 $stphotopath = "../students/no-img.jpg";
                             }
                             ?>
+                            
                             <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;">
                         </div>
                     </div>
