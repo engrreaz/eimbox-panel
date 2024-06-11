@@ -1027,11 +1027,11 @@ echo $dismsg; ?>">
                     <div class="col-md-2">
                         <div class="form-group row">
                             <?php
+                            echo '...' . $stid . '***';
                             $stphotopath = "https://eimbox.com/students/<?php echo $stid; ?>.jpg";echo $stphotopath;
                             if (!file_exists($stphotopath)) {
                                 $stphotopath = "https://eimbox.com/students/no-img.jpg";
-                            }
-                            echo $stphotopath;
+                            } 
                             ?>
 
                             <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;">
