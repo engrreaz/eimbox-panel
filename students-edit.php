@@ -50,6 +50,8 @@ if ($result6->num_rows > 0) {
         }
     } else {
         $stid = $sccode * 10000 + 1;
+            $dismsg += 1;
+            $new = 1;
     }
 }
 
@@ -1019,12 +1021,12 @@ echo $dismsg; ?>">
                     </div>
                     <div class="col-md-2">
                         <div class="form-group row">
-                                    <?php  
-                                    $stphotopath = "../students/<?php echo $stid; ?>.jpg";
-                                    if(! file_exists($stphotopath)){
-                                         $stphotopath = "../students/no-img.jpg";
-                                    }
-                                    ?>
+                            <?php
+                            $stphotopath = "../students/<?php echo $stid; ?>.jpg";
+                            if (!file_exists($stphotopath)) {
+                                $stphotopath = "../students/no-img.jpg";
+                            }
+                            ?>
                             <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;">
                         </div>
                     </div>
