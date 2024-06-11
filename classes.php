@@ -13,10 +13,11 @@ if (isset($_GET['addnew'])) {
 }
 
 
-$sql0 = "SELECT * FROM areas where id='$exid' and user='$rootuser' and sessionyear='$sy';";
+$sql0 = "SELECT * FROM areas where id='$exid' and user='$rootuser';";
 $result0 = $conn->query($sql0);
 if ($result0->num_rows > 0) {
     while ($row5 = $result0->fetch_assoc()) {
+        $yyy = $row5["sessionyear"];
         $ccc = $row5["areaname"];
         $sss = $row5["subarea"];
         $exid = $row5["id"];
@@ -149,6 +150,32 @@ if ($result0->num_rows > 0) {
                                 </tr>
 
                                 <tr>
+                                    <td>Session : 
+                                    </td>
+                                    <td>
+                                        <?php $y1 = date('Y'); $y2 = date('Y') . '-' . date('y') + 1; ?>
+                                        <select class="form-control" id="syx" onchange="setbox();">
+                                            <option value=""></option>
+                                            <option value="<?php echo $y1;?>" <?php if ($yyy == $y1) {
+                                                echo 'selected';
+                                            } ?>><?php echo $y1;?>
+                                            </option>
+                                            <option value="<?php echo $y2;?>" <?php if ($yyy == $y2) {
+                                                echo 'selected';
+                                            } ?>><?php echo $y2;?>
+                                            </option>
+                                            
+                                        </select>
+                                        <div id="clstr" class="mt-2" style="display:none; width:100%;">
+                                            <input type="text" class="form-control" id="cls"
+                                                value="<?php echo $ccc; ?>" />
+                                        </div>
+
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
                                     <td></td>
                                     <td>
                                         <div id="">
@@ -185,14 +212,15 @@ if ($result0->num_rows > 0) {
                                     <th>#</th>
                                     <th>Class</th>
                                     <th>Section</th>
-                                    <th>SL up/dn</th>
+                                    <th>Session</th>
+                                    <th style="text-align:center;">SL up/dn</th>
                                     <th style="text-align:right;"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $slx = 1;
-                                $sql0x = "SELECT * FROM areas where user='$rootuser' and sessionyear='$sy'  order by idno, id;";
+                                $sql0x = "SELECT * FROM areas where user='$rootuser' and sessionyear LIKE '$sy%'  order by idno, id;";
                                 $result0x = $conn->query($sql0x);
                                 if ($result0x->num_rows > 0) {
                                     while ($row0x = $result0x->fetch_assoc()) {
@@ -200,12 +228,14 @@ if ($result0->num_rows > 0) {
                                         $cls = $row0x["areaname"];
                                         $sec = $row0x["subarea"];
                                         $slno = $row0x["idno"];
+                                        $syear = $row0x["sessionyear"];
                                         ?>
                                         <tr>
                                             <td><?php echo $slx; ?></td>
                                             <td><?php echo $cls; ?></td>
                                             <td><?php echo $sec; ?></td>
-                                            <td style="text-align:right;">
+                                            <td><?php echo $syear; ?></td>
+                                            <td style="text-align:center;">
                                                 <div>
                                                     <div class="button-group" role="group" aria-label="Basic example">
 
@@ -326,8 +356,9 @@ include 'footer.php';
         }
         var cls = document.getElementById('cls').value;
         var sec = document.getElementById('sec').value;
+        var syx = document.getElementById('syx').value;
 
-        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont;
+        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont + '&sy=' + syx ;
         // alert(infor);
         $("#sspd").html("");
 

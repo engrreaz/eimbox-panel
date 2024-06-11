@@ -386,6 +386,16 @@ echo $inex . '/' . $btnclr . '/' . $txt; ?>
                                     <th>Date</th>
                                     <th>Particulars</th>
                                     <th>All</th>
+                                    <?php
+                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' group by areaname order by idno ;";
+                                    $result0xxt = $conn->query($sql0x);
+                                    if ($result0xxt->num_rows > 0) {
+                                        while ($row0x = $result0xxt->fetch_assoc()) {
+                                            $cname = strtoupper($row0x["areaname"]);
+                                            echo '<th>' . $cname . '</th>';
+                                        }
+                                    }
+                                    ?>
                                     <th style="text-align:right;"></th>
                                 </tr>
                             </thead>
@@ -421,19 +431,32 @@ echo $inex . '/' . $btnclr . '/' . $txt; ?>
                                                 while ($row0x = $result0xx->fetch_assoc()) {
                                                     $clsfld = strtolower($row0x["areaname"]);
                                                     if (strpos($classnamelist, $clsfld) > 0) {
+                                                  
                                                         $sql0x = "SELECT * FROM financesetup where sccode='$sccode' and sessionyear='$sy' and particulareng='$parteng' ;";
                                                         // echo $sql0x;
-                                                        $result0xxx = $conn->query($sql0x);
-                                                        if ($result0xxx->num_rows > 0) {
-                                                            while ($row0x = $result0xxx->fetch_assoc()) {
+                                                        $result0xxxr = $conn->query($sql0x);
+                                                        if ($result0xxxr->num_rows > 0) {
+                                                            while ($row0x = $result0xxxr->fetch_assoc()) {
                                                                 $taka = $row0x[$clsfld];
+                                                                $idfin = $row0x['id'];
                                                             }
+                                                        } else {
+                                                            $taka = '-';
+                                                            $idfin = 0;
                                                         }
                                                         ?>
 
                                                         <td class="pl-1 pr-1">
-                                                            <input type="text" class="form-control" id="" value="<?php echo $taka; ?>"
+                                                            <input type="text" class="form-control" id="<?php echo $clsfld.$idfin;?>" value="<?php echo $taka; ?>"
                                                                 style="width:60px;" />
+                                                        </td>
+                                                        <?php
+                                                    } else {
+                                                        ?>
+
+                                                        <td class="pl-1 pr-1">
+                                                            <input type="text" class="form-control bg-dark" id="" value=""
+                                                                style="width:60px;" disabled />
                                                         </td>
                                                         <?php
                                                     }
@@ -444,9 +467,10 @@ echo $inex . '/' . $btnclr . '/' . $txt; ?>
 
                                             <td>
                                                 <div id="ssp<?php echo $id; ?>">
-                                                    <label onclick="edit(<?php echo $id; ?>,1);" class="icon-btn btn-info"><i
-                                                            class="mdi mdi-arrow-right"></i></label>
-                                                </div>
+                                                    <button  onclick="push(<?php echo $idfin; ?>,1);" class="btn btn-inverse-info"><i
+                                                            class="mdi mdi-arrow-right"></i></button>
+                                                          
+                                                </div><div id="sspp<?php echo $id; ?>">Remaining</div>
                                                 <!-- <label class="badge badge-success">Issued</label> -->
                                             </td>
                                         </tr>
@@ -476,106 +500,36 @@ include 'footer.php';
         var y = document.getElementById('year').value;
         window.location.href = 'expenditure.php?&m=' + m + '&y=' + y;
     }
-    function go2() {
-        var m = document.getElementById('ref').value;
-        window.location.href = 'expenditure.php?&ref=' + m;
-    }
-    function go3() {
-        var m = document.getElementById('ref').value;
-        window.location.href = 'expenditure.php?&undef';
-    }
-    function go4() {
-        document.getElementById('search').style.display = 'block';
-    }
-    function addnew() {
-        var und = '<?php echo $undef; ?>';
-        var mmm = '<?php echo $month; ?>';
-        var yyy = '<?php echo $year; ?>';
-        var rrr = '<?php echo $refno; ?>';
-        var tail = '';
-
-        if (und == '') tail = '&undef';
-        if (mmm > 0 || yyy > 0) tail = '&m=' + mmm + '&y=' + yyy;
-        if (rrr > 0) tail = '&ref=' + rrr;
-
-        window.location.href = 'expenditure.php?addnew' + tail;
-    }
-
-
-    function edit(id, taill) {
-        var und = '<?php echo $undef; ?>';
-        var mmm = '<?php echo $month; ?>';
-        var yyy = '<?php echo $year; ?>';
-        var rrr = '<?php echo $refno; ?>';
-        var tail = '';
-
-        if (und == '') tail = '&undef';
-        if (mmm > 0 || yyy > 0) tail = '&m=' + mmm + '&y=' + yyy;
-        if (rrr > 0) tail = '&ref=' + rrr;
-
-        window.location.href = 'expenditure.php?addnew=' + id + tail;
-    }
-
 </script>
 
-<script>
-    function save(id, tail) {
-        // alert(tail);
-        if (id == 0) tail = 0;
-        if (tail == 0 || tail == 1) {
-            var dept = document.getElementById('dept').value;
-            var date = document.getElementById('date').value;
-            var cate = document.getElementById('cate').value;
-            var descrip = document.getElementById('descrip').value;
-            var amt = document.getElementById('amt').value;
-
-            var infor = "dept=" + dept + '&date=' + date + '&cate=' + cate + '&descrip=' + descrip + '&amt=' + amt + '&id=' + id + "&tail=" + tail;
-        } else if (tail == 2 || tail == 3) {
-            var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
-        }
-
-        // alert(infor);
-        $("#sspd").html("");
-
-        $.ajax({
-            type: "POST",
-            url: "backend/savecash.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#sspd').html('<span class=""><center>Check Issue....</center></span>');
-            },
-            success: function (html) {
-                $("#sspd").html(html);
-
-                var und = '<?php echo $undef; ?>';
-                var mmm = '<?php echo $month; ?>';
-                var yyy = '<?php echo $year; ?>';
-                var rrr = '<?php echo $refno; ?>';
-                var taild = '';
-
-                if (und == '') taild = '&undef';
-                if (mmm > 0 || yyy > 0) taild = '&m=' + mmm + '&y=' + yyy;
-                if (rrr > 0) taild = '&ref=' + rrr;
-
-                if (tail == 1) {
-                    window.location.href = 'expenditure.php?addnews=' + taild;
-                } else if (tail == 2 || tail == 3) {
-                    window.location.href = 'expenditure.php?q=' + taild;
-                } else if (tail == 0) {
-                    document.getElementById('gex').innerHTML = document.getElementById('sspd').innerHTML;
-                    document.getElementById('sspd').innerHTML = '';
-                    window.location.href = 'expenditure.php?addnew' + taild;
-                }
-            }
-        });
-    }
-
-</script>
 
 <script>
     function catt(tu) {
         localStorage.setItem("inex-category", tu);
         window.location.reload(true);
+    }
+</script>
+
+
+<script>
+    function push(id, tail) {
+        var infor="id=" + id + "&pp=" + tail; 
+        $("#ssp"+id).html( "" );
+    
+        $.ajax({
+            url: "backend/set-finance-setup-single.php", type: "POST", data: infor, cache: false,
+            beforeSend: function () {
+                $("#ssp"+id).html('<span class=""><small>***</small></span>');
+            },
+            success: function(html) {
+                $("#ssp"+id).html( html );
+                // let k = document.getElementById('ssp'+id).innerHTML;
+                // if(k != 'Done !'){
+                //     document.getElementById('sspp'+id).innerHTML = k;
+                //     document.getElementById('ssp'+id).innerHTML = '';
+                //      push(id, 0);
+                // }
+            }
+        });
     }
 </script>
