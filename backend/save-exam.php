@@ -15,10 +15,10 @@ if ($ont == 1) {
         $query331 = "INSERT INTO examlist (id, sccode, sessionyear, slot, examtitle, classname, sectionname, datestart, createdby, createtime, status) 
                 VALUES (NULL, '$sccode', '$sy', '$slot', '$exam', '$cls', '$sec', '$date', '$usr', '$cur', '1');";
     } else {
-        // $query331 = "UPDATE areas SET areaname = '$cls', subarea = '$sec' where id = '$id' and user='$rootuser'";
+        $query331 = "UPDATE examlist SET examtitle = '$exam', classname = '$cls', sectionname='$sec', datestart='$date' where id = '$id' and sccode='$sccode'";
     }
 } else {
-    // $query331 = "DELETE FROM areas where id = '$id' and user='$rootuser'";
+    $query331 = "DELETE FROM examlist where id = '$id' and sccode='$sccode'";
 }
 
 // echo $query331;

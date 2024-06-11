@@ -93,7 +93,7 @@ include 'header.php';
     <div class="card">
       <div class="card-body">
         <h4 class="card-title"><i class="mdi mdi-settings mdi-24px text-warning p-2"></i> Settings</h4>
-        <div class="bg-gray-dark d-flex d-md-block d-xl-flexs flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+        <div class="bg-gray-dark d-flexx d-md-block d-xl-flexx flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
           <div>You may control your entire system from here. To do this use the left navigation pan according to your
             privileges. </div>
 

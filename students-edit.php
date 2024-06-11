@@ -48,6 +48,8 @@ if ($result6->num_rows > 0) {
             $dismsg += 1;
             $new = 1;
         }
+    } else {
+        $stid = $sccode * 10000 + 1;
     }
 }
 

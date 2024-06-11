@@ -6,7 +6,7 @@
     <td valign="top" class="backpic" background="assets/admit/sample_02.png"
         style="width:210mm; height:147.5mm; padding:3mm;   font-family:'Segoe UI'; ">
 
-        <table style="font-size:10px; width:100%; border:0;">
+        <table style="font-size:10px; width:100%; border:0;" class="hideshow">
             <tr>
                 <td height="1px"></td>
                 <td></td>

@@ -13,16 +13,18 @@ if (isset($_GET['addnew'])) {
 }
 
 
-$sql0 = "SELECT * FROM areas where id='$exid' and user='$rootuser' and sessionyear='$sy';";
+$sql0 = "SELECT * FROM examlist where id='$exid' and sccode='$sccode' ;";
 $result0 = $conn->query($sql0);
 if ($result0->num_rows > 0) {
     while ($row5 = $result0->fetch_assoc()) {
-        $ccc = $row5["areaname"];
-        $sss = $row5["subarea"];
-        $exid = $row5["id"];
+        $ex = $row5["examtitle"];
+        $sl = $row5["slot"];
+        $cl = $row5["classname"];
+        $se = $row5["sectionname"];
+        $ds = $row5["datestart"];
     }
 } else {
-    $exid = $ccc = $sss = '';
+    $exid = $ex = $sl = $cl = $se = $ds = '';
 }
 ?>
 <div class="float-right">
@@ -62,7 +64,8 @@ if ($result0->num_rows > 0) {
                                     <td>Exam Title :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" id="examtitle" value="<?php echo $sss; ?>" />
+                                        <input type="text" class="form-control" id="examtitle"
+                                            value="<?php echo $ex; ?>" />
                                     </td>
                                     <td></td>
                                 </tr>
@@ -70,7 +73,7 @@ if ($result0->num_rows > 0) {
                                     <td>slot :
                                     </td>
                                     <td>
-                                        <select class="form-control" id="slot">
+                                        <select class="form-control text-white" id="slot">
                                             <option value=""></option>
                                             <?php
                                             $sql0 = "SELECT * FROM slots where sccode='$sccode';";
@@ -78,8 +81,12 @@ if ($result0->num_rows > 0) {
                                             if ($result03->num_rows > 0) {
                                                 while ($row5 = $result03->fetch_assoc()) {
                                                     $slotname = $row5["slotname"];
-
-                                                    echo '<option value="' . $slotname . '">' . $slotname . '</option>';
+                                                    if ($slotname == $sl) {
+                                                        $a1 = 'selected';
+                                                    } else {
+                                                        $a1 = '';
+                                                    }
+                                                    echo '<option value="' . $slotname . '"' . $a1 . '>' . $slotname . '</option>';
                                                 }
                                             }
                                             ?>
@@ -94,7 +101,7 @@ if ($result0->num_rows > 0) {
                                     <td>Class :
                                     </td>
                                     <td>
-                                    <select class="form-control" id="cls">
+                                        <select class="form-control text-white" id="cls">
                                             <option value=""></option>
                                             <?php
                                             $sql0 = "SELECT * FROM areas where user='$rootuser' group by areaname order by idno;";
@@ -102,8 +109,12 @@ if ($result0->num_rows > 0) {
                                             if ($result03->num_rows > 0) {
                                                 while ($row5 = $result03->fetch_assoc()) {
                                                     $clsname = $row5["areaname"];
-
-                                                    echo '<option value="' . $clsname . '">' . $clsname . '</option>';
+                                                    if ($clsname == $cl) {
+                                                        $a2 = 'selected';
+                                                    } else {
+                                                        $a2 = '';
+                                                    }
+                                                    echo '<option value="' . $clsname . '"' . $a2 . '>' . $clsname . '</option>';
                                                 }
                                             }
                                             ?>
@@ -115,7 +126,7 @@ if ($result0->num_rows > 0) {
                                     <td>Section :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" id="sec" value="<?php echo $sss; ?>" />
+                                        <input type="text" class="form-control" id="sec" value="<?php echo $se; ?>" />
                                     </td>
                                     <td></td>
                                 </tr>
@@ -123,7 +134,7 @@ if ($result0->num_rows > 0) {
                                     <td>Date :
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" id="date" value="<?php echo $sss; ?>" />
+                                        <input type="date" class="form-control" id="date" value="<?php echo $ds; ?>" />
                                     </td>
                                     <td></td>
                                 </tr>
@@ -132,7 +143,8 @@ if ($result0->num_rows > 0) {
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary" onclick="save(0,1);">Save</button>
+                                            <button class="btn btn-primary"
+                                                onclick="save(<?php echo $exid; ?>,1);">Save</button>
 
                                             <div id="gex"></div>
                                         </div>
@@ -193,10 +205,22 @@ if ($result0->num_rows > 0) {
 
                                             <td>
                                                 <div id="ssp<?php echo $id; ?>">
-                                                    <label onclick="edit(<?php echo $id; ?>,1);" class="icon-btn btn-info"><i
-                                                            class="mdi mdi-grease-pencil"></i></label>
-                                                    <label onclick="savex(<?php echo $id; ?>,2);" class="icon-btn btn-danger"><i
-                                                            class="mdi mdi-delete"></i></label>
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <button type="button" title="View Profile"
+                                                            class="btn btn-inverse-primary"
+                                                            onclick="edit(<?php echo $id; ?>,1);">
+                                                            <i class="mdi mdi-grease-pencil"></i>
+                                                        </button>
+
+                                                        <button type="button" title="Edit Profile" class="btn btn-inverse-danger"
+                                                            onclick="save(<?php echo $id; ?>,2);">
+                                                            <i class="mdi mdi-delete"></i>
+                                                        </button>
+
+                                                    </div>
+
+
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -256,22 +280,22 @@ include 'footer.php';
     }
 
     function edit(id, taill) {
-        window.location.href = 'classes.php?addnew=' + id;
+        window.location.href = 'exam-list.php?addnew=' + id;
     }
 
 </script>
 
 <script>
     function save(ids, ont) {
-        
+
         var exam = document.getElementById('examtitle').value;
         var slot = document.getElementById('slot').value;
         var cls = document.getElementById('cls').value;
         var sec = document.getElementById('sec').value;
         var date = document.getElementById('date').value;
-        
+
         var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont + '&exam=' + exam + '&slot=' + slot + '&date=' + date;
- 
+
         $("#gex").html("");
 
         $.ajax({

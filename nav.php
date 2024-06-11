@@ -243,8 +243,8 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
           </a>
           <div class="collapse" id="students">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="students-edit.php">Student's Enrollment</a></li>
-              <li class="nav-item"> <a class="nav-link" href="online-enroll.php">Online Enrollment</a></li>
+              <li class="nav-item"> <a class="nav-link" href="students-edit.php"><i class="mdi mdi-account"></i>&nbsp; Student Enrollment</a></li>
+              <li class="nav-item"> <a class="nav-link" href="online-enroll.php"><i class="mdi mdi-account-star"></i>&nbsp; Online Enrollment</a></li>
               <li class="nav-item"> <a class="nav-link" href="students-payment.php">Fees & Payments</a></li>
             </ul>
           </div>
@@ -312,9 +312,9 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
           </a>
           <div class="collapse" id="examination">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="exam-list.php">Exam List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="seat.php">Seat Card</a></li>
-              <li class="nav-item"> <a class="nav-link" href="admit-card.php">Admit Card</a></li>
+              <li class="nav-item"> <a class="nav-link" href="exam-list.php"><i class="mdi mdi-grease-pencil"></i>&nbsp; Exam List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="seat.php"><i class="mdi mdi-note"></i>&nbsp; Seat Card</a></li>
+              <li class="nav-item"> <a class="nav-link" href="admit-card.php"><i class="mdi mdi-account-card-details"></i>&nbsp; Admit Card</a></li>
               <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule & Routine</a></li>
               <li class="nav-item"> <a class="nav-link" href="seatplan.php">Hall Setup</a></li>
             </ul>

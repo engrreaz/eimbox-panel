@@ -58,7 +58,7 @@ if (isset($_GET['addnew'])) {
 </style>
 
 
-<h3 class="d-print-none">Admit Card of <?php echo $exam2 . ' Examination - ' . $sy; ?> </h3>
+<h3 class="d-print-none">Admit Card <small> of <?php echo $exam2 . ' Examination - ' . $sy; ?></small> </h3>
 
 <div class="row d-print-none">
     <div class="col-12 grid-margin stretch-card">
@@ -94,7 +94,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls"  onchange="go();">
+                                <select class="form-control text-white" id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$sy' group by areaname order by idno;";
@@ -123,7 +123,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec"  onchange="go();">
+                                <select class="form-control text-white" id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and areaname='$cls2' and sessionyear='$sy' group by subarea order by idno;";
@@ -173,7 +173,8 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary btn-block " style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    class="btn btn-outline-primary btn-block p-2" style="" onclick="go();"><i
+                                        class="mdi mdi-eye"></i>
                                     Generate
                                     Card</button>
                             </div>
@@ -185,7 +186,7 @@ if (isset($_GET['addnew'])) {
                             <div class="col-12">
 
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-info btn-block" style="" onclick="goprint();"><i
+                                    class="btn btn-outline-info btn-block p-2" style="" onclick="goprint();"><i
                                         class="mdi mdi-eye"></i> Print View</button>
 
                             </div>
@@ -201,6 +202,40 @@ if (isset($_GET['addnew'])) {
 </div>
 
 
+
+<div class="row d-print-none">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="text-muted font-weight-normal">
+                    Select Students (Tap/Click to Active/Inactive)
+                </h6>
+                <div class="row">
+
+                    <?php for ($i = 1; $i < 90; $i++) { ?>
+
+                        <div class="col-md-3">
+                            <div
+                                class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-2 px-1 px-md-1 px-xl-2 rounded mt-3 d-block">
+                                <div class="text-md-center text-xl-left">
+                                    <p class="text-muted mb-0">Mohammad Azizur Rahman kHan</p>
+                                </div>
+                                <div
+                                    class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                                    <div  style="float:right;">
+                                        <button id="btn<?php echo $i;?>" class="btn btn-inverse-success p-2"><?php echo $i;?></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -241,12 +276,16 @@ $pgm = $pgl * $col;
                 padding: 5px;
             }
 
+
             @media print {
 
                 .d-print-nones,
                 #nono {
                     display: none;
                 }
+
+
+
             }
         </style>
     </head>
@@ -256,7 +295,7 @@ $pgm = $pgl * $col;
     <table>
         <?php
 
-        $sqlcccd = "SELECT * from sessioninfo WHERE  sccode='$sccode'  and sessionyear = '$sy' and classname='$cls2' and sectionname='$sec2' order by rollno ";
+        $sqlcccd = "SELECT * from sessioninfo WHERE  sccode='$sccode'  and sessionyear = '$sy' and classname='$cls2' and sectionname='$sec2' order by rollno LIMIT 0";
         //	echo $sqlcccd;
         $resultcccd = $conn->query($sqlcccd);
         if ($resultcccd->num_rows > 0) {

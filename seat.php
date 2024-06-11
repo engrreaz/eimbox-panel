@@ -47,7 +47,7 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
-<h3 class="d-print-none">Seat Card of <?php echo $exam2 . ' Examination - ' . $sy; ?> </h3>
+<h3 class="d-print-none">Seat Card <small>of <?php echo $exam2 . ' Examination - ' . $sy; ?> </small></h3>
 
 <div class="row d-print-none">
     <div class="col-12 grid-margin stretch-card">
@@ -176,7 +176,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    class="btn btn-outline-primary btn-block p-2" style="" onclick="go();"><i class="mdi mdi-eye"></i>
                                     Generate Card</button>
                             </div>
                         </div>
@@ -186,7 +186,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-info btn-block" style="" onclick="goprint();"><i
+                                    class="btn btn-outline-info btn-block p-2" style="" onclick="goprint();"><i
                                         class="mdi mdi-eye"></i> Print
                                     View</button>
                             </div>
