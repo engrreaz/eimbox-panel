@@ -1031,8 +1031,10 @@ echo $dismsg; ?>">
                             if (!file_exists($stphotopath)) {
                                 $stphotopath = "../students/no-img.jpg";
                             }
-                            ?>
                             
+                            echo $stphotopath;
+                            ?>
+
                             <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;">
                         </div>
                     </div>
