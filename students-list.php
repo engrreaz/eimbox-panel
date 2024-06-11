@@ -334,10 +334,10 @@ if (isset($_GET['addnew'])) {
                         <div id="btn<?php echo $stid; ?>">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $stid; ?>)">
-                                    <i class="mdi mdi-book-open-page-variant"></i>
+                                    <i class="mdi mdi-grease-pencil"></i>
                                 </button>
                                 <button type="button" class="btn btn-inverse-warning" onclick="issuet(<?php echo $stid; ?>)">
-                                    <i class="mdi mdi-calendar"></i>
+                                    <i class="mdi mdi-eye"></i>
                                 </button>
                             </div>
                         </div>
