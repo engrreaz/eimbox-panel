@@ -66,7 +66,8 @@ if ($result0x->num_rows > 0) {
                     <div class="col-md-2">
                         <div class="form-group row">
                             <div class="col-12">
-                                <img src="<?php echo $pth; ?>" style="width:120px; border-radius:5px; border:1px solid gray;" />
+                                <img src="<?php echo $pth; ?>"
+                                    style="width:120px; border-radius:5px; border:1px solid gray;" />
                             </div>
                         </div>
                     </div>
@@ -84,8 +85,8 @@ if ($result0x->num_rows > 0) {
                     <div class="col-md-4">
                         <div class="form-group row">
                             <div class="col-12">
-                                <!-- <h4><?php echo $dur/3600; ?> HRS.</h4>
-                                <h5><?php echo $fs/(1024*1024); ?> MB</h5> -->
+                                <!-- <h4><?php echo $dur / 3600; ?> HRS.</h4>
+                                <h5><?php echo $fs / (1024 * 1024); ?> MB</h5> -->
                             </div>
                         </div>
                     </div>
@@ -110,47 +111,46 @@ if ($result0x->num_rows > 0) {
                             <tbody>
                                 <?php
                                 $sccodes = $sccode * 10;
-                                $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and id = '$exid' ;";
+                                $sql0x = "SELECT * FROM usersapp where sccode='$sccode'  and email = '$usr' ;";
                                 $result0x = $conn->query($sql0x);
                                 if ($result0x->num_rows > 0) {
                                     while ($row0x = $result0x->fetch_assoc()) {
-                                        $date = $row0x["date"];
-                                        $pid = $row0x["partid"];
-                                        $descrip = $row0x["particulars"];
-                                        $amount = $row0x["amount"];
+                                        $fullname = $row0x["profilename"];
+                                        $cellno = $row0x["mobile"];
                                     }
-                                } else {
-                                    $date = '';
-                                    $slots = 'school';
-                                    $amount = '';
-                                    $descrip = '';
-
-                                }
+                                } 
                                 // $ = $row0x[""];
                                 ?>
                                 <tr>
                                     <td>Display Name :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" id="date"
+                                        <input type="text" class="form-control" id="dispname"
                                             value="<?php echo $fullname; ?>" />
                                     </td>
                                     <td></td>
                                 </tr>
-                          
-                 
-                   
+
+                                <tr>
+                                    <td>Mobile Number :
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="cellno"
+                                            value="<?php echo $cellno; ?>" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+
+
                                 <tr>
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary"
-                                                onclick="savex(<?php echo $exid; ?>, 1);" disabled>Save</button>
-
-                                            <div id="gex"></div>
+                                            <button class="btn btn-primary" onclick="save();">Update Info</button>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <span id="gex"></span>
                                         </div>
-
-
                                     </td>
                                     <td></td>
                                 </tr>
@@ -194,62 +194,26 @@ include 'footer.php';
         var y = document.getElementById('year').value;
         window.location.href = 'expenditure.php?&m=' + m + '&y=' + y;
     }
-
-
-
 </script>
 
 <script>
-    function save(id, tail) {
-        alert(tail);
-        if (id == 0) tail = 0;
-        if (tail == 0 || tail == 1) {
-            var dept = document.getElementById('dept').value;
-            var date = document.getElementById('date').value;
-            var cate = document.getElementById('cate').value;
-            var descrip = document.getElementById('descrip').value;
-            var amt = document.getElementById('amt').value;
+    function save() {
+        var dispname = document.getElementById('dispname').value;
+        var cellno = document.getElementById('cellno').value;
+        var infor = "dispname=" + dispname + "&cellno=" + cellno;
 
-            var infor = "dept=" + dept + '&date=' + date + '&cate=' + cate + '&descrip=' + descrip + '&amt=' + amt + '&id=' + id + "&tail=" + tail;
-        } else if (tail == 2 || tail == 3) {
-            var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
-        }
-
-        alert(infor);
-        $("#sspd").html("");
-
+        $("#gex").html("");
         $.ajax({
             type: "POST",
-            url: "savecash.php",
+            url: "backend/update-my-profile.php",
             data: infor,
             cache: false,
             beforeSend: function () {
-                $('#sspd').html('<span class=""><center>Check Issue....</center></span>');
+                $('#gex').html('Updating...');
             },
             success: function (html) {
-                $("#sspd").html(html);
-
-                var und = '<?php echo $undef; ?>';
-                var mmm = '<?php echo $month; ?>';
-                var yyy = '<?php echo $year; ?>';
-                var rrr = '<?php echo $refno; ?>';
-                var taild = '';
-
-                if (und == '') taild = '&undef';
-                if (mmm > 0 || yyy > 0) taild = '&m=' + mmm + '&y=' + yyy;
-                if (rrr > 0) taild = '&ref=' + rrr;
-
-                if (tail == 1) {
-                    window.location.href = 'expenditure.php?addnews=' + taild;
-                } else if (tail == 2 || tail == 3) {
-                    window.location.href = 'expenditure.php?q=' + taild;
-                } else if (tail == 0) {
-                    document.getElementById('gex').innerHTML = document.getElementById('sspd').innerHTML;
-                    document.getElementById('sspd').innerHTML = '';
-                    window.location.href = 'expenditure.php?addnew' + taild;
-                }
+                $("#gex").html(html);
             }
         });
     }
-
 </script>
