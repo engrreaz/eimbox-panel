@@ -6,7 +6,7 @@
         ...</label>
     <input id="files" class="form-control" type="file" name="files[]" multiple>
     <div class="progress"></div>
-    <button type="submit" class="btn btn-primary mt-2">Upload</button>
+    <button type="submit" class="btn btn-inverse-primary mt-2 pt-2">Upload</button>
     <div class="result"></div>
 </form>
 

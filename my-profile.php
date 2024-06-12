@@ -56,7 +56,6 @@ if ($result0x->num_rows > 0) {
 ?>
 
 <h3>My Profile </h3>
-<code>Page Under Contruction</code>
 
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
@@ -79,6 +78,8 @@ if ($result0x->num_rows > 0) {
                                 <h4><?php echo $fullname; ?></h4>
                                 <h5><?php echo $usr; ?></h5>
                                 <small><?php echo $userlevel; ?></small>
+                                <br>
+                                <small>Linked ID # </small><code><?php echo $userid; ?></code>
                             </div>
                         </div>
                     </div>

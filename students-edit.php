@@ -1040,10 +1040,14 @@ echo $dismsg; ?>">
 
 
                             ?>
-
-                            <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;"  alt="">
+                            <div style="width:90px; min-height:90px; padding: 3px; border:1px solid gray; border-radius:4px;">
+                                <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;"  alt="">
+                                <br><small class="pt-3"><center>Photo</center></small>
+                            </div>
+                            
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Upload Photo</label>
@@ -1061,7 +1065,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3 middle"><br><br>&nbsp;</label>
                             <div class="col-12">
-                                <button type="submit" id="savest" name="savest" class="btn btn-success"
+                                <button type="submit" id="savest" name="savest" class="btn btn-inverse-success pt-2"
                                     onclick="savestudent();"><?php echo $btntext; ?></button>
                                 <div id="batchbatch"></div>
                             </div>
