@@ -121,7 +121,7 @@ if ($track < 100) {
         <canvas id="transaction-history" class="transaction-chart"></canvas>
         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
           <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">৳ 1,24,950</h6>
+            <h6 class="mb-1">৳ 0</h6>
             <p class="text-muted mb-0">Collection (This Month)</p>
           </div>
           <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
@@ -132,7 +132,7 @@ if ($track < 100) {
         </div>
         <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
           <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">৳ 31,12,500</h6>
+            <h6 class="mb-1">৳ 0</h6>
             <p class="text-muted mb-0">Total Dues</p>
           </div>
           <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">

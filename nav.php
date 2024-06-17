@@ -451,6 +451,7 @@ $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manag
               <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li>
               <li class="nav-item"> <a class="nav-link" href="students-list.php">Student's List</a></li>
               <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Student's Dues List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Monthly Income-Expenditure</a></li>
 
 
 

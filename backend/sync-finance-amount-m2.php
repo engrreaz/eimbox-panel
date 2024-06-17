@@ -1,31 +1,5 @@
-document.getElementById('defbtn').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-    document.getElementById('defmenu').innerHTML = '';
-    function defbtn() {
-        goprint(0);
-    }
-
-Table : profile-track 
-ALTER TABLE `financesetup` ADD `custom` INT NOT NULL DEFAULT '0' AFTER `inexex`;
-ALTER TABLE `financeitem` ADD `sccode` INT NOT NULL DEFAULT '0' AFTER `expenditure`;
-ALTER TABLE `financesetup` ADD `play_update` DATETIME NULL DEFAULT NULL AFTER `ten`, ADD `nursery_update` DATETIME NULL DEFAULT NULL AFTER `play_update`, ADD `one_update` DATETIME NULL DEFAULT NULL AFTER `nursery_update`, ADD `two_update` DATETIME NULL DEFAULT NULL AFTER `one_update`, ADD `three_update` DATETIME NULL DEFAULT NULL AFTER `two_update`, ADD `four_update` DATETIME NULL DEFAULT NULL AFTER `three_update`, ADD `five_update` DATETIME NULL DEFAULT NULL AFTER `four_update`, ADD `six_update` DATETIME NULL DEFAULT NULL AFTER `five_update`, ADD `seven_update` DATETIME NULL DEFAULT NULL AFTER `six_update`, ADD `eight_update` DATETIME NULL DEFAULT NULL AFTER `seven_update`, ADD `nine_update` DATETIME NULL DEFAULT NULL AFTER `eight_update`, ADD `ten_update` DATETIME NULL DEFAULT NULL AFTER `nine_update`;
-
-ALTER TABLE `stfinance` ADD `last_update` DATE NULL DEFAULT NULL AFTER `extra`;
-ALTER TABLE `sessioninfo` CHANGE `rate` `rate` INT(11) NOT NULL DEFAULT '100';
-update sessioninfo set rate = 100;
-
-ALTER TABLE `financesetup` ADD `last_update` DATETIME NULL DEFAULT NULL AFTER `custom`, ADD `need_update` INT NOT NULL DEFAULT '1' AFTER `last_update`;
-
----------- Finance Item Month SETUP -------------------
-ALTER TABLE `financesetup` CHANGE `sessionyear` `sessionyear` VARCHAR(7) NOT NULL;
-ALTER TABLE `sessioninfo` CHANGE `sessionyear` `sessionyear` VARCHAR(9) NOT NULL;
-
-
-
-
-
-
 <?php
-
+if($mmm >12) { $step = round($mmm/11); }
 
 if ($ind != '') {
 
@@ -42,35 +16,36 @@ if ($ind != '') {
     //     $datam = array();
     // }
 
-    $yx = array_values(array_filter($finlist, fn($bb) => $bb['stid'] == $stid2 && $bb['month'] == 3));
-    // array_push($yx, array('stid' => $stid2, 'rollno' => $roll2));
-    echo '<hr>';
-    echo var_dump($yx);
 
-
-    echo $yx[0]['stid'];
-    echo '<hr>';
 
 
     
-    for ($z = 1; $z <= 12; $z++) {
+    for ($z = $step; $z <= 12; $z = $z + $step) {
         $tarikh = '2024-' . $z . '-01';
         $mx = ' : ' . date('F/Y', strtotime($tarikh));
 
-        $indz = array_search($z, array_column($datam, 'month'));
+        $yx = array_values(array_filter($finlist, fn($bb) => $bb['stid'] == $stid2 && $bb['month'] == $z));
+        // array_push($yx, array('stid' => $stid2, 'rollno' => $roll2));
+        // echo '<hr>';
+        // echo var_dump($yx);
+    
+    
+        $indz = $yx[0]['id'];
+        
+        // echo '<hr>';
 
 
         if ($indz != '') {
-            $modi = $datam[$indz]['modifieddate'];
+            $modi = $yx[0]['modifieddate'];
 
             if ($modi == NULL) {
                 $modi = '2024-01-01 00:00:00';
             }
-            $uuuid = $datam[$indz]['id'];
+            $uuuid = $yx[0]['id'];
             if (strtotime($modi) < strtotime($update_time)) {
 
                 $pamt = $taka * $rate2 / 100;
-                $joma = $pamt - $datam[$indz]['paid'];
+                $joma = $pamt - $yx[0]['paid'];
                 // $disp .= '{' . $cls2 . '-' . $sec2 . '-' . $roll2 . '-' . $z . '--' . $uuuid . ' ------- }';
                 $query3px = "UPDATE stfinance set amount='$taka', payableamt='$pamt', modifieddate = '$cur', dues = '$joma' where id='$uuuid' and sccode='$sccode' ;";
                 // if($stid2 == '1031872887') {
@@ -82,7 +57,7 @@ if ($ind != '') {
                 // }
             } else {
 
-                echo '[' . $roll2 . ']'; // No need to update
+                // echo '[' . $roll2 . ']'; // No need to update
                 $noneed++;
                 // $count++;
             }
@@ -125,7 +100,7 @@ if ($ind != '') {
 
 
 
-    for ($z = 1; $z <= 12; $z++) {
+    for ($z = $step; $z <= 12; $z = $z + $step) {
         $tarikh = '2024-' . $z . '-01';
         $mx = ' : ' . date('F', strtotime($tarikh)) . '/' . date('Y');
 
@@ -143,4 +118,3 @@ if ($ind != '') {
 
     array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2));
 }
-

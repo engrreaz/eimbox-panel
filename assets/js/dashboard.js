@@ -69,9 +69,9 @@
 
     if ($("#transaction-history").length) {
       var areaData = {
-        labels: ["Six/Joba", "Eight/Bokul", "Nine/Tagor", "Ten/Science", "Ten/Business",],
+        labels: ["Six",],
         datasets: [{
-            data: [1800,1400,1000,3000,2600,100,],
+            data: [1],
             backgroundColor: [
               "black","lavendar","cyan","gray","lightpink", "silver",  "crimson",  "blue",  "white",  "lime", 
             ]
@@ -108,7 +108,7 @@
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#ffffff";
       
-          var text = "৳ 4600", 
+          var text = "৳ 0", 
               textX = Math.round((width - ctx.measureText(text).width) / 2),
               textY = height / 2.4;
       
@@ -117,7 +117,7 @@
           ctx.restore();
           var fontSize = 0.75;
           ctx.font = fontSize + "rem sans-serif";
-          ctx.textAlign = 'left';
+          ctx.textAlign = 'center';
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#6c7293";
 
