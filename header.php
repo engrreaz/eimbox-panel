@@ -45,6 +45,9 @@ include 'auth/gpConfig.php';
         * {
             font-family: "Noto Sans Bengali", sans-serif;
         }
+        .bg-trans {
+            background-color: #333333;
+        }
     </style>
 </head>
 

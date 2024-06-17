@@ -50,6 +50,8 @@ if (isset($_GET['addnew'])) {
     <code>Students <i class="mdi mdi-arrow-right"></i> Fees & payments </code>
 </p>
 
+
+
 <div class="row d-print-none">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
@@ -155,94 +157,91 @@ if (isset($_GET['addnew'])) {
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-               
-                            <div class="form-group row">
-                                <div class="col-12 ">
-                                    <div class="tabel-responsive">
-                                        <table style=""
-                                            class="table table-stripe">
-                                            <thead>
-                                                <tr>
-                                                    <td class="txt-right">Roll</td>
-                                                    <td class="txt-right">Name of Student</td>
-                                                    <td class="txt-right">Dues</td>
-                                                    <td class="txt-right"></td>
-                                                </tr>
-                                            </thead>
 
-                                            <tbody id="dues-body">
-                                                <?php
-                                                $cnt = 0;
-                                                $cntamt = 0;
-                                                $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno LIMIT 1 ";
-                                                $result0 = $conn->query($sql0);
-                                                if ($result0->num_rows > 0) {
-                                                    while ($row0 = $result0->fetch_assoc()) {
-                                                        $stid = $row0["stid"];
-                                                        $rollno = $row0["rollno"];
-                                                        $card = $row0["icardst"];
-                                                        $dtid = $row0["id"];
-                                                        $status = $row0["status"];
-                                                        $rel = $row0["religion"];
-                                                        $four = $row0["fourth_subject"];
+                <div class="form-group row">
+                    <div class="col-12 ">
+                        <div class="tabel-responsive">
+                            <table style="" class="table table-stripe">
+                                <thead>
+                                    <tr class="" style="background:black;">
+                                        <td class="text-right font-weight-bold">Roll</td>
+                                        <td class=" font-weight-bold">Name of Student</td>
+                                        <td class="text-right  font-weight-bold">Dues</td>
+                                        <td class="text-right"></td>
+                                    </tr>
+                                </thead>
 
-                                                        $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid' LIMIT 1";
-                                                        $result00 = $conn->query($sql00);
-                                                        if ($result00->num_rows > 0) {
-                                                            while ($row00 = $result00->fetch_assoc()) {
-                                                                $neng = $row00["stnameeng"];
-                                                                $nben = $row00["stnameben"];
-                                                                $vill = $row00["previll"];
-                                                            }
-                                                        }
+                                <tbody id="dues-body">
+                                    <?php
+                                    $cnt = 0;
+                                    $cntamt = 0;
+                                    $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno LIMIT 1 ";
+                                    $result0 = $conn->query($sql0);
+                                    if ($result0->num_rows > 0) {
+                                        while ($row0 = $result0->fetch_assoc()) {
+                                            $stid = $row0["stid"];
+                                            $rollno = $row0["rollno"];
+                                            $card = $row0["icardst"];
+                                            $dtid = $row0["id"];
+                                            $status = $row0["status"];
+                                            $rel = $row0["religion"];
+                                            $four = $row0["fourth_subject"];
 
-                                                        //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
-                                                
-                                                        $month = date('m');
-                                                        $sql0 = "SELECT sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' and stid='$stid'";
-                                                        $result01x = $conn->query($sql0);
-                                                        if ($result01x->num_rows > 0) {
-                                                            while ($row0 = $result01x->fetch_assoc()) {
-                                                                $totaldues = $row0["dues"];
-                                                                $tpaya = $row0["paya"];
-                                                                $tpaid = $row0["paid"];
-                                                            }
-                                                        }
-                                                        ?>
-                                                        <tr>
-                                                            <td style="text-align:center; padding : 3px 5px;" class="">
-                                                                <?php
-                                                                $rl = $rollno;
-                                                                echo $rl; //str_replace($enum, $bnum, $rl);
-                                                                ?>
-                                                            </td>
-                                                            <td style="padding : 3px 10px;"><?php echo $nben; ?></td>
-                                                            <td style="text-align:right; padding : 3px 5px;" class="text-right">
-                                                                <?php
-                                                                $tt = number_format($totaldues, 2, ".", ",");
-                                                                // echo $tt;
-                                                                echo $tt;//str_replace($enum, $bnum, $tt);
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <bttton class="btn btn-inverse-primary"
-                                                                    onclick="getdues(<?php echo $stid; ?>);"><i
-                                                                        class="mdi mdi-television"></i></bttton>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                        $cnt++;
-                                                        $cntamt = $cntamt + $totaldues;
-                                                    }
+                                            $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid' LIMIT 1";
+                                            $result00 = $conn->query($sql00);
+                                            if ($result00->num_rows > 0) {
+                                                while ($row00 = $result00->fetch_assoc()) {
+                                                    $neng = $row00["stnameeng"];
+                                                    $nben = $row00["stnameben"];
+                                                    $vill = $row00["previll"];
                                                 }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            }
 
-                                </div>
-                            </div>
-       
+                                            //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
+                                    
+                                            $month = date('m');
+                                            $sql0 = "SELECT sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' and stid='$stid'";
+                                            $result01x = $conn->query($sql0);
+                                            if ($result01x->num_rows > 0) {
+                                                while ($row0 = $result01x->fetch_assoc()) {
+                                                    $totaldues = $row0["dues"];
+                                                    $tpaya = $row0["paya"];
+                                                    $tpaid = $row0["paid"];
+                                                }
+                                            }
+                                            ?>
+                                            <tr>
+                                                <td style="text-align:center; padding : 3px 5px;" class="">
+                                                    <?php
+                                                    $rl = $rollno;
+                                                    echo $rl; //str_replace($enum, $bnum, $rl);
+                                                    ?>
+                                                </td>
+                                                <td style="padding : 3px 10px;"><?php echo $nben; ?></td>
+                                                <td style="text-align:right; padding : 3px 5px;" class="text-right">
+                                                    <?php
+                                                    $tt = number_format($totaldues, 2, ".", ",");
+                                                    // echo $tt;
+                                                    echo $tt;//str_replace($enum, $bnum, $tt);
+                                                    ?>
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            $cnt++;
+                                            $cntamt = $cntamt + $totaldues;
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -251,13 +250,15 @@ if (isset($_GET['addnew'])) {
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="row-12" id="getdata">
-                    Select Student First.
+                <div class="row-12 text-small" id="getdata">
+                    Select a student to view dues.
                 </div>
 
             </div>
         </div>
     </div>
+
+
 </div>
 
 
@@ -312,46 +313,163 @@ include 'footer.php';
 
 <script>
     function getlist() {
-            var infor = "year=<?php echo $year;?>&cls=<?php echo $cls2;?>&sec=<?php echo $sec2;?>" ;
+        var infor = "year=<?php echo $year; ?>&cls=<?php echo $cls2; ?>&sec=<?php echo $sec2; ?>";
 
-            $("#dues-body").html("");
+        $("#dues-body").html("");
 
-            $.ajax({
-                type: "POST",
-                url: "backend/fetch-dues-student-dues.php",
-                data: infor,
-                cache: false,
-                beforeSend: function () {
-                    $('#dues-body').html('<small>Retrive Dues List ...</small>');
-                },
-                success: function (html) {
-                    $("#dues-body").html(html);
-                }
-            });
+        $.ajax({
+            type: "POST",
+            url: "backend/fetch-dues-student-dues.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#dues-body').html('<small>Retrive Dues List ...</small>');
+            },
+            success: function (html) {
+                $("#dues-body").html(html);
+            }
+        });
 
     }
     getlist();
 
 
-    function getdues(stid) {
-            var infor = "stid=" + stid;
+    function getdues(stid, lastpr, datam) {
+        var pak = document.getElementById("btn" + stid);
+        
+        pak.classList.remove("btn-inverse-primary");
+        pak.classList.add("btn-inverse-danger");
+        pak.removeAttribute("onclick");
 
-            $("#getdata").html("");
+        // pak.style.display = 'none';
+        var infor = "stid=" + stid + "&lastpr=" + lastpr + "&datam=" + datam;
 
-            $.ajax({
-                type: "POST",
-                url: "backend/fetch-indivisual-dues.php",
-                data: infor,
-                cache: false,
-                beforeSend: function () {
-                    $('#getdata').html('<small>Processing...</small>');
-                },
-                success: function (html) {
-                    $("#getdata").html(html);
-                }
-            });
+        $("#getdata").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/fetch-indivisual-dues.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#getdata').html('<small>Processing...</small>');
+            },
+            success: function (html) {
+                $("#getdata").html(html);
+                document.getElementById("prdate").focus();
+            }
+        });
 
     }
 
 
+</script>
+
+
+<script>
+
+
+    function epos() {
+        let lastpr = document.getElementById("mylastpr").value;
+        infor = "prno=" + lastpr;
+        $("#eposlink").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "getprinfo.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $("#eposlink").html('.....');
+            },
+            success: function (html) {
+                $("#eposlink").html(html);
+            }
+        });
+    }
+</script>
+<script>
+    function save(stid) {
+
+        let cnto = document.getElementById("cntp").value;
+        cnto = parseInt(cnto) * 1;
+        let chk = document.getElementById("chk").value;
+
+        //chk, rollno, cls, sec, nameeng, nameben, mobile
+        let prno = document.getElementById("prno").value;
+        let prdate = document.getElementById("prdate").value;
+        let aaa = parseInt(document.getElementById("amt").value);
+
+        if (aaa >= 0) {
+            let tail = "count=" + chk + "&stid=" + stid + "&prno=" + prno + "&prdate=" + prdate;
+            let run = 0;
+            for (let x = 0; x < cnto; x++) {
+                let ch = document.getElementById("rex" + x).checked;
+                if (ch === true) {
+                    let fid = document.getElementById("fid" + x).innerHTML;
+                    let amt = document.getElementById("amt" + x).innerHTML;
+                    tail += "&fid" + run + "=" + fid + "&amt" + run + "=" + amt;
+                    run++;
+                }
+            }
+
+            var infor = tail;
+            // alert(tail);
+
+            $("#btnblock").html("");
+
+            $.ajax({
+                type: "POST",
+                url: "backend/save-pr.php",
+                data: infor,
+                cache: false,
+                beforeSend: function () {
+                    $("#btnblock").html('<span class=""><center></span>');
+                },
+                success: function (html) {
+                    $("#btnblock").html(html);
+
+                }
+            });
+        }
+
+    }
+
+</script>
+
+
+<script>
+    function sell(id) {
+        let ch = document.getElementById("rex" + id).checked;
+        if (ch === true) {
+            document.getElementById("rex" + id).checked = false;
+        } else {
+            document.getElementById("rex" + id).checked = true;
+        }
+        sel(id);
+
+    }
+
+
+    function sel(id) {
+        // alert(id + 'SEL');
+        let ch = document.getElementById("rex" + id).checked;
+
+        let amt = document.getElementById("amt" + id).innerHTML;
+        amt = parseInt(amt) * 1;
+        let amtt = parseInt(document.getElementById("amt").value) * 1;
+        let chk = parseInt(document.getElementById("chk").value) * 1;
+
+        if (ch === true) {
+            //document.getElementById("rex"+id).checked = true;
+            amtt = amtt + amt;
+            chk++;
+        } else {
+            //document.getElementById("rex"+id).checked = false;
+            amtt = amtt - amt;
+            chk--
+        }
+        document.getElementById("amt").value = amtt + '.00';
+        document.getElementById("chk").value = chk;
+    }
 </script>

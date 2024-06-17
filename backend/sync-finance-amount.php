@@ -97,12 +97,12 @@ foreach ($vcl as $cls) {
             } else if ($mmm == 0) {
                 include 'sync-finance-amount-m0.php';
 
-               
 
 
 
 
-                
+
+
             } else {
                 include 'sync-finance-amount-m2.php';
             }
@@ -166,11 +166,7 @@ foreach ($vcl as $cls) {
 }
 
 
-//UPDATE update information
-$tim = date('Y-m-d H:i:s');
-$query3p = "UPDATE financesetup set last_update = '$tim', need_update = '0' where id='$id' and sccode='$sccode' and sessionyear='$sy' ;";
-// echo $query3p . '<hr>';
-$conn->query($query3p);
+
 
 
 // echo $new . ' -- ' . $update . ' -- ' . $noneed . ' ||| ' . $student_count;
@@ -179,9 +175,15 @@ echo $new + $update + $noneed . ' Payment Updated ......... ';
 if ($count > 0 || $new + $update == 0) {
     ?>
     <script>
-        document.getElementById("more").innerHTML = parseInt(document.getElementById("more").innerHTML) + parseInt(<?php echo $count; ?>)  + ' Done!';
+        document.getElementById("more").innerHTML = parseInt(document.getElementById("more").innerHTML) + parseInt(<?php echo $count; ?>) + ' Done!';
     </script>
     <?php
+
+    //UPDATE update information
+    $tim = date('Y-m-d H:i:s');
+    $query3p = "UPDATE financesetup set last_update = '$tim', need_update = '0' where id='$id' and sccode='$sccode' and sessionyear='$sy' ;";
+    // echo $query3p . '<hr>';
+    $conn->query($query3p);
 }
 
 /*
