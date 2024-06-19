@@ -79,31 +79,63 @@ $month = date('m');
         <tbody>
 
             <?php
+            $upd = $ccc . '_update';
+            $sql5 = "SELECT id, $ccc, $upd FROM financesetup where sessionyear LIKE '$sy%' and sccode='$sccode'  order by id";
+            // echo $sql5; 
+            $result5r = $conn->query($sql5);
+            if ($result5r->num_rows > 0) {
+                while ($row5 = $result5r->fetch_assoc()) {
+                    $finset[] = $row5;
+                }
+            }
+            // echo var_dump($finset);
+            
             $sql5 = "SELECT * FROM stfinance where sessionyear = '$sy' and sccode='$sccode' and stid='$stid' and dues > 0 and month<='$month' order by partid";
             $result5 = $conn->query($sql5);
             if ($result5->num_rows > 0) {
                 while ($row5 = $result5->fetch_assoc()) {
                     $fid = $row5["id"];
+                    $partid = $row5["partid"];
                     $particulareng = $row5["particulareng"];
                     $dues = $row5["dues"];
-                    $tamt = $tamt + $dues;
+
+
+                    $src = array_search($partid, array_column($finset, 'id'));
+                    $upddate = $finset[$src][$upd];
+                    $updtaka = $finset[$src][$ccc];
+
+
                     ?>
 
                     <tr onclick="sell(<?php echo $cnt; ?>);">
                         <td class="p-0 m-0">
                             <div id="fid<?php echo $cnt; ?>" hidden><?php echo $fid; ?></div>
 
-
-
                             <div class="form-check">
                                 <input class="form-check-input success" type="checkbox" value="" id="rex<?php echo $cnt; ?>"
-                                    style="width:20px; height:20px; top:-10px; border-radius:50%; accent-color: lime; " onclick="sel(<?php echo $cnt; ?>);">
+                                    style="width:20px; height:20px; top:-10px; border-radius:50%; accent-color: lime; "
+                                    onclick="sel(<?php echo $cnt; ?>);">
                             </div>
                         </td>
                         <td><?php echo $particulareng; ?></td>
-                        <td class="text-right" id="amt<?php echo $cnt; ?>"><?php echo $dues; ?>.00</td>
+                        <td class="text-right">
+                            <?php
+                            if ($updtaka != $dues) {
+                                
+                                ?><del class="text-danger"><?php echo $dues; ?></del><?php
+                                $dues = $updtaka;
+                            } 
+                                ?>
+                                
+                                <span id="amt<?php echo $cnt; ?>"><?php echo $updtaka; ?></span>
+                                <?php 
+                            
+
+                            ?>.00
+                        </td>
                     </tr>
                     <?php
+                    $tamt = $tamt + $dues;
                     $cnt++;
                 }
             }

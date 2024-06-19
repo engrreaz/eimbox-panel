@@ -84,7 +84,7 @@ if (isset($_GET['addnew'])) {
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="cls" onchange="go();">
-                                    <option value=" ">---</option>
+                                    <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
                                     $result0x = $conn->query($sql0x);
@@ -247,6 +247,7 @@ if (isset($_GET['addnew'])) {
     </div>
 
 
+
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -268,10 +269,12 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = '';
+    document.getElementById('defbtn').innerHTML = "Today's Collection";
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-        goprint(0);
+        var cls = document.getElementById('cls').value;
+        var sec = document.getElementById('sec').value;
+        window.location.href = 'report-today-collection.php?&cls=' + cls + '&sec=' + sec;
     }
     function reload() {
         window.location.href = uri;
@@ -336,7 +339,7 @@ include 'footer.php';
 
     function getdues(stid, lastpr, datam) {
         var pak = document.getElementById("btn" + stid);
-        
+
         pak.classList.remove("btn-inverse-primary");
         pak.classList.add("btn-inverse-danger");
         pak.removeAttribute("onclick");

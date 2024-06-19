@@ -113,3 +113,15 @@ Tools .......
     religion icon button 
     guar name missing --- warning
     guar name missing/invalid --- danger 
+
+
+
+
+
+    Payment System
+    Collect Fee, Print PR, View Collection Report
+    Attendance
+    Examination
+    Result System
+    Accounts 
+    Library

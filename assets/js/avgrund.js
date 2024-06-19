@@ -4,7 +4,7 @@
     $('#show').avgrund({
       height: 500,
       holderClass: 'custom',
-      showClose: true,
+      showClose: true, 
       showCloseText: 'x',
       onBlurContainer: '.container-scroller',
       template: '<p>So implement your design and place content here! If you want to close modal, please hit "Esc", click somewhere on the screen or use special button.</p>' +

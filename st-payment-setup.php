@@ -512,7 +512,7 @@ include 'footer.php';
         var tsc = parseInt(<?php echo $tsc; ?>);
         var freq = parseInt(document.getElementById("freq" + id).innerHTML);
         if (freq == 0) {
-            document.getElementById("tsc").innerHTML = tsc * 12;
+            // document.getElementById("tsc").innerHTML = tsc * 12;
         }
         document.getElementById("progx").focus();
         // document.getElementById("prog").style.opacity = "1";
