@@ -32,8 +32,12 @@ include 'auth/gpConfig.php';
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
+
+
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css"> -->
+     -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -45,6 +49,7 @@ include 'auth/gpConfig.php';
         * {
             font-family: "Noto Sans Bengali", sans-serif;
         }
+
         .bg-trans {
             background-color: #333333;
         }

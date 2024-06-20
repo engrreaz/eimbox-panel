@@ -15,8 +15,8 @@
     </ul>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown d-none d-lg-block">
-        <button class="nav-link btn  btn-inverse-success create-new-button" id="defbtn" data-toggle="dropdown" onclick="defbtn();"
-          aria-expanded="false" ></button>
+        <button class="nav-link btn  btn-inverse-success create-new-button" id="defbtn" data-toggle="dropdown"
+          onclick="defbtn();" aria-expanded="false"></button>
 
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
           aria-labelledby="createbuttonDropdown" id="defmenu">
@@ -179,7 +179,20 @@
             </div>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item" href="sout.php" >
+          <?php if ($admin > 0) { ?>
+            <a class="dropdown-item preview-item" href="admin.php">
+              <div class="preview-thumbnail">
+                <div class="preview-icon bg-dark rounded-circle">
+                  <i class="mdi mdi-logout text-danger"></i>
+                </div>
+              </div>
+              <div class="preview-item-content">
+                <p class="preview-subject mb-1">Admin Panel</p>
+              </div>
+            </a>
+            <div class="dropdown-divider"></div>
+          <?php } ?>
+          <a class="dropdown-item preview-item" href="sout.php">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-logout text-danger"></i>

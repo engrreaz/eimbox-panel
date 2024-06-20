@@ -19,6 +19,15 @@ ALTER TABLE `financesetup` ADD `last_update` DATETIME NULL DEFAULT NULL AFTER `c
 ALTER TABLE `financesetup` CHANGE `sessionyear` `sessionyear` VARCHAR(7) NOT NULL;
 ALTER TABLE `sessioninfo` CHANGE `sessionyear` `sessionyear` VARCHAR(9) NOT NULL;
 
+usersapp table e "admin" field toiri korte hobe....
+ALTER TABLE `usersapp` CHANGE `admin` `admin` INT(11) NOT NULL DEFAULT '0' COMMENT '0- No Admin, 1- 2-, 3-Admin, 4-, 5\r\n-Super Admin';
+...Modify inc.php file -----------$admin = $row0["admin"];
+
++inc.php file er privileges er nicher ongsho lagbe....
+
+Table Filelist ..............
+ALTER TABLE `filelist` ADD `admin` INT NOT NULL DEFAULT '0' AFTER `result`;
 
 
-
+-------------------
+Manage staff recruitment, payroll, attendance, and professional development.

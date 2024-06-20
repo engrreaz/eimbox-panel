@@ -2,8 +2,58 @@
 include 'header.php';
 $role = array("headteacher", "clsteacher", "teacher", "accountants", "officeasstt", "labasstt", "librarian", "guardian", "student", "smcchairman", "smcmember", "staff");
 $role2 = array("Head Teacher", "Class Teacher", "Teacher", "Accountants", "Office Asstissant", "Lab Assisstant", "Librarian", "Guardian", "Student", "SMC Chairman", "SMC Member", "Staff");
-?>
 
+$c1 = $c2 = 0;
+$sql0x = "SELECT sccode, count(*) as cnt FROM permissions_role where sccode='$sccode' or sccode = '999999'  group by sccode order by sccode;";
+$result0x3ny = $conn->query($sql0x);
+if ($result0x3ny->num_rows > 0) {
+    while ($row0x = $result0x3ny->fetch_assoc()) {
+        if ($c1 == 0) {
+            $c1 = $row0x["cnt"];
+        } else {
+            $c2 = $row0x["cnt"];
+        }
+    }
+}
+
+
+
+
+if ($c1 != $c2) {
+
+
+    $talika = array();
+    $sql0x = "SELECT * FROM permissions_role where sccode = '$sccode'  order by id;";
+    $result0x3nyd = $conn->query($sql0x);
+    if ($result0x3nyd->num_rows > 0) {
+        while ($row0x = $result0x3nyd->fetch_assoc()) {
+            $talika[] = $row0x;
+        }
+    }
+    $sql0x = "SELECT * FROM permissions_role where sccode = '999999'  order by id;";
+    $result0x3nydd = $conn->query($sql0x);
+    if ($result0x3nydd->num_rows > 0) {
+        while ($row0x = $result0x3nydd->fetch_assoc()) {
+            $filename0 = $row0x['filename'];
+            $ind0 = array_search($filename0, array_column($talika, 'filename'));
+            if ($ind0 == '') {
+                $id0 = $row0x['id'];
+                echo $filename0 . 'id # ' . $id0 . ' need insert.';
+
+                $jakkas = "INSERT INTO permissions_role (sl, pagetitle, pagedescrip, filename, sadmin, admin, headteacher, clsteacher, teacher, accountants, officeasstt, labasstt, librarian, student, guardian, guest, smcchairman, smcmember, staff, sccode) 
+                                        SELECT sl, pagetitle, pagedescrip, filename, sadmin, admin, headteacher, clsteacher, teacher, accountants, officeasstt, labasstt, librarian, student, guardian, guest, smcchairman, smcmember, staff, '$sccode' FROM permissions_role WHERE id = '$id0';";
+
+                $conn->query($jakkas);
+            }
+        }
+    }
+
+    ?>
+    <script>window.location.href = 'users-privileges.php';</script>
+    <?php
+}
+
+?>
 <h3>Users Permission / Restriction Management</h3>
 <code>Page Under Contruction</code>
 <div class="row">
@@ -84,6 +134,8 @@ $role2 = array("Head Teacher", "Class Teacher", "Teacher", "Accountants", "Offic
 
 
 <?php
+
+
 $sql0x = "SELECT * FROM permissions_role where sccode='$sccode' order by sl, id;";
 $result0x3n = $conn->query($sql0x);
 if ($result0x3n->num_rows > 0) {
@@ -217,22 +269,12 @@ if ($result0x3n->num_rows > 0) {
 
 
 
-
-
-
-
-
-
-
 <!-- ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
 *************************************************************************************************** -->
-
-
-
 
 <?php
 include 'footer.php';

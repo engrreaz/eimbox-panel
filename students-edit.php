@@ -1036,15 +1036,18 @@ echo $dismsg; ?>">
                             // } else {
                             //     $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
                             // }
-
+                            
 
 
                             ?>
-                            <div style="width:90px; min-height:90px; padding: 3px; border:1px solid gray; border-radius:4px;">
-                                <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;"  alt="">
-                                <br><small class="pt-3"><center>Photo</center></small>
+                            <div
+                                style="width:90px; min-height:90px; padding: 3px; border:1px solid gray; border-radius:4px;">
+                                <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;" alt="">
+                                <br><small class="pt-3">
+                                    <center>Photo</center>
+                                </small>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -1150,6 +1153,18 @@ include 'footer.php';
 
 <script>
     function savestudent() {
+
+        // Including Photo Upload Function
+        var filelist = document.getElementById("files").value;
+        if (filelist == '') {
+            console.log("file not uploaded");
+        } else {
+            var btn = document.getElementById("uploadfile");
+            btn.click();
+        }
+
+        //    document.uploadform.submit();
+
         var classname = document.getElementById("classname").value;
         var sectionname = document.getElementById("sectionname").value;
         var rollno = document.getElementById("rollno").value;

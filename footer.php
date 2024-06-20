@@ -18,7 +18,7 @@
 <!-- page-body-wrapper ends -->
 </div>
 <div id="logstatus"></div>
-<!-- <div ><?php echo filesize($curfile);?></div> -->
+<!-- <div ><?php echo filesize($curfile); ?></div> -->
 <!-- container-scroller -->
 <!-- plugins:js -->
 <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -47,34 +47,37 @@
 <script src="assets/js/select2.js"></script>
 
 
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
-<script>
-    new DataTable('#example');
-</script>
+
+<!-- <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script> -->
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="assets/js/upload.js"></script>
 
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 
 <?php
 // } else {
 //         include 'access-denied.php';
 // }
 ?>
-    <script>
-        if (<?php echo $permission*1; ?> == 0) {
-            document.getElementById("full-page").style.display = "none";
-            document.write('<div>Access-Denied</div>');
-            document.write('<div><?php echo $permission . '...' . $key . '///';?></div>');
+<script>
+    if (<?php echo $permission * 1; ?> == 0) {
+        document.getElementById("full-page").style.display = "none";
+        document.write('<div>Access-Denied</div>');
+        document.write('<div><?php echo $permission . '...' . $key . '///'; ?></div>');
 
-        } else {
-            document.getElementById("full-page").style.display = "flex";
+    } else {
+        document.getElementById("full-page").style.display = "flex";
 
-        }
-        document.write('<div><?php echo $permission . '...' . $key ;?></div>');
-    </script>
+    }
+    document.write('<div><?php echo $permission . '...' . $key; ?></div>');
+</script>
 </body>
 
 </html>
@@ -83,7 +86,7 @@
 
 <script>
     function loger() {
-        var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile);?>" ;
+        var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile); ?>";
         $("#logstatus").html("----");
         $.ajax({
             type: "POST",
@@ -100,7 +103,7 @@
 
     const element = document.getElementById("logstatus");
     setInterval(function () {
-        var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile);?>" ;
+        var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile); ?>";
 
         $("#logstatus").html("----");
 
@@ -117,6 +120,7 @@
             }
         });
     }, 1000);
+
+
+
 </script>
-
-
