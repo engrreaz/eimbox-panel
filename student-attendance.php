@@ -79,9 +79,9 @@ if ($result0xw->num_rows > 0) {
 
 ?>
 
-<h3 class="d-print-none">Payment Receipts</h3>
+<h3 class="d-print-none">Student's Attendance</h3>
 <p class="d-print-none">
-    <code>Reports <i class="mdi mdi-arrow-right"></i> Payment Receipt </code>
+    <code>Student <i class="mdi mdi-arrow-right"></i> Attendance </code>
 </p>
 
 <div class="row d-print-none">
@@ -180,7 +180,8 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date From</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" id="datefrom" value="<?php echo $datefrom; ?>">
+                                <input type="date" onchange="go();" class="form-control" id="datefrom"
+                                    value="<?php echo $datefrom; ?>">
                             </div>
                         </div>
                     </div>
@@ -189,7 +190,8 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date To</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" id="dateto" value="<?php echo $dateto; ?>">
+                                <input type="date" onchange="go();" class="form-control" id="dateto"
+                                    value="<?php echo $dateto; ?>">
                             </div>
                         </div>
                     </div>
@@ -230,8 +232,7 @@ if ($result0xw->num_rows > 0) {
                                 <button type="button" style="padding:4px 10px 6px; border-radius:5px;"
                                     class="btn btn-lg btn-outline-primary btn-icon-text btn-block pt-2 pb-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Generate
-                                    Receipt</button>
+                                    Generate Receipt</button>
                             </div>
                         </div>
                     </div>
@@ -242,7 +243,7 @@ if ($result0xw->num_rows > 0) {
 </div>
 
 <style>
-    #main-table thead tr th {
+    #main-table-search thead tr th {
         border: 1px solid gray;
         font-weight: 700;
     }
@@ -281,20 +282,18 @@ if ($result0xw->num_rows > 0) {
     </div>
 </div>
 
-
-<table class="table table-bordered table-striped " style=" border:1px solid gray !important; border-collapse:collapse;"
-    id="main-table">
+<!-- style=" border:1px solid gray !important; border-collapse:collapse;" -->
+<table class="table table-bordered table-striped " id="main-table-search">
     <thead>
         <tr>
             <th class="txt-right text-center">#</th>
-            <th class="txt-right">PR No.</th>
+            <th class="txt-right">Date</th>
             <th class="txt-right">Class</th>
             <th class="txt-right">Section</th>
-            <th class="txt-right text-center">Roll</th>
+            <th class="txt-right">Roll</th>
             <th class="txt-right">Name of Student</th>
 
-            <th class="txt-right text-right">Amount</th>
-            <th class="txt-right">Collection By</th>
+            <th class="txt-right">Time</th>
             <th class="txt-right"></th>
         </tr>
     </thead>
@@ -314,12 +313,12 @@ if ($result0xw->num_rows > 0) {
         }
         if ($cls2 != '') {
             if ($sec2 != '') {
-                $sql0 = "SELECT * FROM stpr where sessionyear LIKE '$sy%' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and prdate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
+                $sql0 = "SELECT * FROM stattnd where sessionyear LIKE '$sy%' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and adate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
             } else {
-                $sql0 = "SELECT * FROM stpr where sessionyear LIKE '$sy%' and sccode='$sccode' and classname='$cls2' and prdate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
+                $sql0 = "SELECT * FROM stattnd where sessionyear LIKE '$sy%' and sccode='$sccode' and classname='$cls2' and adate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
             }
         } else {
-            $sql0 = "SELECT * FROM stpr where sessionyear LIKE '$sy%' and sccode='$sccode' and prdate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
+            $sql0 = "SELECT * FROM stattnd where sessionyear LIKE '$sy%' and sccode='$sccode' and adate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
         }
 
         $result0 = $conn->query($sql0);
@@ -331,8 +330,9 @@ if ($result0xw->num_rows > 0) {
                 $secd = $row0["sectionname"];
                 $roll = $row0["rollno"];
                 $entryby = $row0["entryby"];
-                $prno = $row0["prno"];
-                $amount = $row0["amount"];
+                $stname = $row0["stname"];
+                $adate = $row0["adate"];
+                $etime = $row0["entrytime"];
 
                 $ind = array_search($stid, array_column($stlist, 'stid'));
 
@@ -347,8 +347,9 @@ if ($result0xw->num_rows > 0) {
                         echo $cnt + 1;
                         ?>
                     </td>
+             
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $prno; ?></div>
+                        <div class="ooo"><?php echo date('d/m/Y', strtotime($adate)); ?></div>
                     </td>
 
                     <td style="padding : 3px 10px; border:1px solid gray;">
@@ -363,14 +364,13 @@ if ($result0xw->num_rows > 0) {
                     <td style="padding : 3px 10px; border:1px solid gray;">
                         <div class="ooo"><?php echo $stlist[$ind]['stnameeng']; ?></div>
                     </td>
-
-
-                    <td class="text-right" style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $amount; ?>.00</div>
-                    </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $entryby; ?></div>
+                        <div class="ooo"><?php echo $etime; ?></div>
                     </td>
+
+
+           
+              
 
                     <td style=" border:1px solid gray;" class="m-0 p-1 text-center">
                         <div class="p-3"></div>
@@ -388,12 +388,14 @@ if ($result0xw->num_rows > 0) {
                 </tr>
                 <?php
                 $cnt++;
-                $tamt += $amount;
+    
             }
         }
         ?>
     </tbody>
 </table>
+
+
 
 
 <?php
@@ -402,29 +404,21 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Print Receipt';
+    document.getElementById('defbtn').innerHTML = 'Attendance Report';
     document.getElementById('defmenu').innerHTML = '';
 
-    document.getElementById('cnt').innerHTML = '<?php echo $cnt; ?>';
-    document.getElementById('tamt').innerHTML = '<?php echo $tamt; ?>';
+
+    // let table = new DataTable('#main-table-search');
 
 
     function defbtn() {
-        goprint(0);
+        // goprint(0);
+        alert('Not Available now.');
     }
     function reload() {
         window.location.href = uri;
     }
-    function resultentry(roll) {
-        if (roll == 0) {
-            document.getElementById('boardroll').value = '';
-        } else {
-            document.getElementById('boardroll').value = roll;
-        }
 
-        document.getElementById('ren').style.display = 'block';
-        document.getElementById('boardroll').focus();
-    }
 
     function goprint(stid) {
         var year = document.getElementById('year').value;
@@ -443,16 +437,18 @@ include 'footer.php';
         var datefrom = document.getElementById('datefrom').value;
         var dateto = document.getElementById('dateto').value;
         var collector = document.getElementById('collector').value;
-        window.location.href = 'payment-receipt.php?sec=' + sec + '&cls=' + cls + '&year=' + year + '&datefrom=' + datefrom + '&dateto=' + dateto + '&collector=' + collector;
+        window.location.href = 'student-attendance.php?sec=' + sec + '&cls=' + cls + '&year=' + year + '&datefrom=' + datefrom + '&dateto=' + dateto + '&collector=' + collector;
     }
+
+
 </script>
 
 <script>
     function issue(stid) {
-        window.location.href = 'students-edit.php?stid=' + stid;
+        // window.location.href = 'students-edit.php?stid=' + stid;
     }
     function issuet(stid) {
-        window.location.href = 'student-profile.php?stid=' + stid;
+        // window.location.href = 'student-profile.php?stid=' + stid;
     }
 </script>
 
@@ -494,28 +490,14 @@ include 'footer.php';
         }
     }
 
-    function savessc() {
-        var br = document.getElementById("boardroll").value;
-        var gpgl = document.getElementById("gpagla").value;
-        var infor = "br=" + br + "&gpgl=" + gpgl;
 
-        $("#sscspan").html("");
-        $.ajax({
-            type: "POST",
-            url: "backend/save-board-result.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#sscspan').html('<small>Processing...</small>');
-            },
-            success: function (html) {
-                $("#sscspan").html(html);
-                var st = parseInt(document.getElementById("boardroll").value) + 1;
-                document.getElementById("boardroll").value = st;
-                document.getElementById("gpagla").value = '';
-                document.getElementById("boardroll").focus();
 
-            }
-        });
-    }
+
+    $(document).ready(function () {
+        $('#main-table-search').DataTable();
+    });
+
+
+
+
 </script>

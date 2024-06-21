@@ -59,7 +59,7 @@ if (isset($_GET['id'])) {
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Fill out the form below to show routine 
+                    Fill out the form below to show routine
                 </h6>
                 <div class="row">
 
@@ -143,7 +143,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Examination</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="exam">
+                                <select class="form-control text-white" id="exam" onchange="go();">
 
                                     <option value="">---</option>
                                     <?php
@@ -178,8 +178,8 @@ if (isset($_GET['id'])) {
                     <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                <button type="button" style="" class="btn btn-inverse-primary btn-block p-2" style=""
+                                    onclick="go();"><i class="mdi mdi-eye"></i>
                                     View</button>
                             </div>
                         </div>
@@ -189,8 +189,8 @@ if (isset($_GET['id'])) {
                     <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-danger btn-block" style="" onclick="god();"><i class="mdi mdi-plus"></i>
+                                <button type="button" style="" class="btn btn-inverse-warning btn-block p-2" style=""
+                                    onclick="god();"><i class="mdi mdi-plus"></i>
                                     Add New</button>
                             </div>
                         </div>
@@ -289,9 +289,8 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-success" style="" onclick="save(<?php echo $schid; ?>, 1);"><i
-                                        class="mdi mdi-disc"></i>
+                                <button type="button" style="" class="btn btn-inverse-success p-2" style=""
+                                    onclick="save(<?php echo $schid; ?>, 1);"><i class="mdi mdi-disc"></i>
                                     <?php echo $btntxt; ?></button>
                                 <span id="ssk"></span>
                             </div>
@@ -447,8 +446,8 @@ if (isset($_GET['id'])) {
             <div class="card-body">
 
                 <div id="sspd"></div>
-                <h6 class="text-muted font-weight-normal">
-                    Exam list of year <b><?php echo $year; ?></b>
+                <h6 class="text-warning font-weight-normal">
+                    Exam routine of <b><?php echo $exam2 . ' / ' . $year . ' (' . $cls2 . ' - ' . $sec2 . ')'; ?></b>
                 </h6>
 
                 <div class="row">
@@ -483,12 +482,16 @@ if (isset($_GET['id'])) {
                                             <td>
 
                                                 <div id="ssp<?php echo $id; ?>">
-                                                    <label onclick="edit(<?php echo $id; ?>,1);" class="icon-btn btn-info"><i
-                                                            class="mdi mdi-grease-pencil"></i></label>
-                                                    <label onclick="save(<?php echo $id; ?>,0);" class="icon-btn btn-danger"><i
-                                                            class="mdi mdi-delete"></i></label>
-                                                    <label onclick="save(<?php echo $id; ?>,3);" class="icon-btn btn-success"><i
-                                                            class="mdi mdi-receipt"></i></label>
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <button type="button" class="btn btn-inverse-primary"
+                                                            onclick="edit(<?php echo $id; ?>,1);">
+                                                            <i class="mdi mdi-grease-pencil"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-inverse-danger"
+                                                            onclick="save(<?php echo $id; ?>,0);">
+                                                            <i class="mdi mdi-delete"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
 
                                             </td>
@@ -578,6 +581,8 @@ include 'footer.php';
                     localStorage.setItem("ex-routine-time", time);
                     god();
                 }
+
+                if (id > 0) { go(); }
             }
         });
     }

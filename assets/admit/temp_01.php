@@ -3,8 +3,8 @@
     </style>
 
 <tr>
-    <td valign="top" class="backpic" background="assets/admit/sample_02.png"
-        style="width:210mm; height:147.5mm; padding:3mm;   font-family:'Segoe UI'; ">
+    <td valign="top" class="backpic" background="assets/admit/sample_01.png"
+        style="width:210mm;  max-height:140mm; padding:3mm;   font-family:'Segoe UI';">
 
         <table style="font-size:10px; width:100%; border:0;" class="hideshow">
             <tr>
@@ -62,7 +62,7 @@
                     $file_pointer = "../students/" . $stid . ".jpg";
                     if (file_exists($file_pointer) === TRUE) {
                         ?>
-                    <img src="<?php echo $domain; ?>/students/<?php echo $stid; ?>.jpg" alt="" height="90px"
+                    <img src="<?php echo $domain; ?>/students/<?php echo $stid; ?>.jpg" alt="" height="85px"
                         style="border-radius:0%; border : 1px solid black; padding:3px; " />
                     <?php } else { ?>
                     <img src="http://www.eimbox.com/admit/noimg.jpg" alt="" height="90px"
@@ -137,7 +137,7 @@
                                         </td style="font-size:12px;">
                                         <td style="font-size:12px;">
                                             <img src="<?php echo 'https://eimbox.com/sign/' . $sccode; ?>.png"
-                                                width="90px" /><br>
+                                                height="42px" /><br>
                                             <?php echo '<b>' . $headname . '</b><br>' . $headtitle; ?>
                                         </td>
                                     </tr>

@@ -154,8 +154,29 @@ if (isset($_GET['addnew'])) {
                             <div class="col-12">
                                 <select class="form-control text-white" id="exam" onchange="go();">
 
-                                    <!-- <option value="">---</option> -->
-                                    <option value="Half-Yearly">Half-Yearly</option>
+                                    <option value="">---</option>
+                                    <!-- <option value="Half-Yearly">Half-Yearly</option> -->
+
+                                    <?php
+                                    $sql0x = "SELECT * FROM examlist where sessionyear LIKE '$sy%' and sccode='$sccode' order by id;";
+                                    // echo $sql0x;
+                                    $result0rv = $conn->query($sql0x);
+                                    if ($result0rv->num_rows > 0) {
+                                        while ($row0x = $result0rv->fetch_assoc()) {
+                                            $exam = $row0x["examtitle"];
+                                            if ($exam == $exam2) {
+                                                $selex = 'selected';
+                                            } else {
+                                                $selex = '';
+                                            }
+                                            echo '<option value="' . $exam . '" ' . $selex . ' >' . $exam . '</option>';
+                                        }
+                                    }
+                                    ?>
+
+
+
+
                                 </select>
                             </div>
                         </div>
@@ -173,7 +194,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-outline-primary btn-block p-2" style="" onclick="go();"><i
+                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i
                                         class="mdi mdi-eye"></i>
                                     Generate
                                     Card</button>
@@ -186,7 +207,7 @@ if (isset($_GET['addnew'])) {
                             <div class="col-12">
 
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-outline-info btn-block p-2" style="" onclick="goprint();"><i
+                                    class="btn btn-inverse-warning btn-block p-2" style="" onclick="goprint();"><i
                                         class="mdi mdi-eye"></i> Print View</button>
 
                             </div>
@@ -203,7 +224,7 @@ if (isset($_GET['addnew'])) {
 
 
 
-<div class="row d-print-none">
+<div class="row d-print-none" hidden>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -292,11 +313,11 @@ $pgm = $pgl * $col;
 
 
 
-    <table>
+    <table class="" id="hides">
         <?php
 
-        $sqlcccd = "SELECT * from sessioninfo WHERE  sccode='$sccode'  and sessionyear = '$sy' and classname='$cls2' and sectionname='$sec2' order by rollno LIMIT 0";
-        //	echo $sqlcccd;
+        $sqlcccd = "SELECT * from sessioninfo WHERE  sccode='$sccode'  and sessionyear LIKE '$sy%' and classname='$cls2' and sectionname='$sec2' order by rollno";
+        	// echo $sqlcccd;
         $resultcccd = $conn->query($sqlcccd);
         if ($resultcccd->num_rows > 0) {
             while ($rowcccd = $resultcccd->fetch_assoc()) {
@@ -336,7 +357,7 @@ $pgm = $pgl * $col;
                     }
                 }
 
-
+         
                 include 'assets/admit/temp_01.php';
 
 
@@ -359,6 +380,13 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+
+
+
+
+
+    document.getElementById('hides').style.display = 'none';
+
     function reload() {
         window.location.href = uri;
     }
@@ -367,7 +395,7 @@ include 'footer.php';
         // document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:100px; background: seagreen;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button><div>');
         // document.write(txt);
 
-
+        document.getElementById('hides').style.display = 'block';
         var txt = document.getElementById("alladmit").innerHTML;
         document.write('<title>Eimbox</title>');
         document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:50px; background: black;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to Admit</button></div>');
@@ -375,6 +403,7 @@ include 'footer.php';
         // document.write(pad);
         document.getElementById("margin").innerHTML = txt;
         // document.write(txt);
+        // document.getElementById('hides').style.display = 'none';
     }
     function go() {
         var year = document.getElementById('year').value;
@@ -479,5 +508,5 @@ include 'footer.php';
             }
         });
     }
-
+    
 </script>

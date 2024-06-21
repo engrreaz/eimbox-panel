@@ -1,7 +1,7 @@
 <?php
 $pagelist = array('settings.php', 'ins-profile.php', 'classes.php', 'group-manage.php', 'subjects.php', 'subjects-list.php', 'class-routine.php', 'st-payment-setup.php', 'access-denied-settings.php');
 $accnav = array('account-settings.php');
-$adminnav = array('admin.php', 'filelist.php');
+$adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
 $supernav = array('account-settings.php');
 ?>
 
@@ -62,8 +62,27 @@ $supernav = array('account-settings.php');
             </a>
           </div>
         </div>
-        <div class="profile-desc text-small menu-items"><?php echo $scname; ?></div>
       </li>
+
+      <li class="nav-item profile">
+        <div class="profile-desc">
+          <div class="profile-pic">
+            <div class="count-indicator">
+              <img class="img-xs rounded-circle " src="<?php echo 'https://eimbox.com/logo/' . $sccode. '.png'; ?>" alt="">
+            </div>
+            <div class="profile-namex" style="word-wrap: break-word; " >
+              <h6 class="mb-0 font-weight-normal"><small><?php echo $scname; ?></small></h6>
+
+            </div>
+          </div>
+
+ 
+        </div>
+
+      </li>
+
+
+
       <li class="nav-item nav-category">
         <span class="nav-link"></span>
       </li>
@@ -200,6 +219,15 @@ $supernav = array('account-settings.php');
                 <span class="menu-title">Admin Home</span>
               </a>
             </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="admin-pibi-topic.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">PI/BI Topics</span>
+              </a>
+            </li>
+
 
 
 
@@ -344,6 +372,9 @@ $supernav = array('account-settings.php');
                       Print Receipt</a></li>
                   <li class="nav-item"> <a class="nav-link" href="search-receipt.php"><i
                         class="mdi mdi-file-document-box"></i>&nbsp; Search Receipt</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="student-attendance.php">
+                      <i class="mdi mdi-account-multiple"></i>
+                      &nbsp; Query Attendance</a></li>
                 </ul>
               </div>
             </li>
@@ -414,9 +445,11 @@ $supernav = array('account-settings.php');
                       Exam List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="seat.php"><i class="mdi mdi-note"></i>&nbsp; Seat Card</a>
                   </li>
-                  <li class="nav-item"> <a class="nav-link" href="admit-card.php"><i
-                        class="mdi mdi-account-card-details"></i>&nbsp; Admit Card</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="exam-routine.php">Exam Schedule & Routine</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="admit-card.php">
+                      <i class="mdi mdi-account-card-details"></i>&nbsp;
+                      Admit Card</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="exam-routine.php"><i class="mdi mdi-timer"></i>&nbsp; Exam
+                      Routine</a></li>
                   <li class="nav-item"> <a class="nav-link" href="seatplan.php">Hall Setup</a></li>
                 </ul>
               </div>
@@ -432,8 +465,9 @@ $supernav = array('account-settings.php');
               <div class="collapse" id="result">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="access-denied.php">Marks/Assessment Entry</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">PI/BI Sheet</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="result-pibi-sheet.php"><i class="mdi mdi-triangle"></i>&nbsp; PI/BI Sheet</a></li>
                   <li class="nav-item"> <a class="nav-link" href=".php">Result Processing</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Tabulating Sheet</a></li>
                   <li class="nav-item"> <a class="nav-link" href=".php">Transcript</a></li>
                   <li class="nav-item"> <a class="nav-link" href=".php">Report Card</a></li>
                 </ul>

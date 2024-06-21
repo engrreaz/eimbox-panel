@@ -2,6 +2,15 @@
 date_default_timezone_set('Asia/Dhaka');
 include ('inc2.php');
 
+
+$today_st_attnd = 0;
+$today_t_attnd = 0;
+$total_user = 0;
+$user_active = 0;
+$expense_month = 0;
+
+
+
 // Count Students
 $sql0 = "SELECT count(*) as stcnt FROM sessioninfo where sccode = '$sccode' and sessionyear='$sy' ;";
 $result0rt = $conn->query($sql0);
@@ -10,13 +19,31 @@ if ($result0rt->num_rows > 0) {
         $total_students = $row0["stcnt"];
     }
 }
+$sql0 = "SELECT count(*) as attndcnt FROM stattnd where sccode = '$sccode' and adate='$td' ;";
+$result0rtt = $conn->query($sql0);
+if ($result0rtt->num_rows > 0) {
+    while ($row0 = $result0rtt->fetch_assoc()) {
+        $today_st_attnd = $row0["attndcnt"];
+    }
+}
+$sql0 = "SELECT sum(amount) as taka FROM cashbook where sccode = '$sccode' and month=date('m') and year=date('Y') and category='Expenditure' ;";
+$result0rtt = $conn->query($sql0);
+if ($result0rtt->num_rows > 0) {
+    while ($row0 = $result0rtt->fetch_assoc()) {
+        $expense_month = $row0["taka"] + 70;
+    }
+}
+
+$sql0 = "SELECT sum(amount) as takas FROM stpr where sccode = '$sccode' and prdate='$td' ;";
+$result0rttf = $conn->query($sql0);
+if ($result0rttf->num_rows > 0) {
+    while ($row0 = $result0rttf->fetch_assoc()) {
+        $takas = $row0["takas"] + 70;
+    }
+}
 
 
-$today_st_attnd = 0;
-$today_t_attnd = 0;
-$total_user = 0;
-$user_active = 0;
-$expense_month = 0;
+
 
 
 $sql0 = "SELECT * FROM classschedule where sccode = '$sccode' and sessionyear='$sy' and timestart<'$cur' and timeend>'$cur';";

@@ -30,27 +30,22 @@ if (isset($_GET['exam'])) {
 $cls2 = trim($cls2);
 $sec2 = trim($sec2);
 
-if (isset($_GET['datefrom'])) {
-    $datefrom = $_GET['datefrom'];
+if (isset($_GET['subj'])) {
+    $subj = $_GET['subj'];
 } else {
-    $datefrom = date('Y-m-d');
+    $subj = '';
 }
-if (isset($_GET['dateto'])) {
-    $dateto = $_GET['dateto'];
+if (isset($_GET['assess'])) {
+    $assess = $_GET['assess'];
 } else {
-    $dateto = date('Y-m-d');
+    $assess = '';
+}
+if (isset($_GET['sheet'])) {
+    $sheet2 = $_GET['sheet'];
+} else {
+    $sheet2 = 'Blank';
 }
 
-if ($datefrom == '')
-    $datefrom = date('Y-m-d');
-if ($dateto == '')
-    $dateto = date('Y-m-d');
-
-if (isset($_GET['collector'])) {
-    $collector = $_GET['collector'];
-} else {
-    $collector = '';
-}
 
 
 
@@ -79,9 +74,9 @@ if ($result0xw->num_rows > 0) {
 
 ?>
 
-<h3 class="d-print-none">Payment Receipts</h3>
+<h3 class="d-print-none">PI/BI Sheet</h3>
 <p class="d-print-none">
-    <code>Reports <i class="mdi mdi-arrow-right"></i> Payment Receipt </code>
+    <code>Gradebook <i class="mdi mdi-arrow-right"></i> PI/BI Sheet </code>
 </p>
 
 <div class="row d-print-none">
@@ -109,11 +104,40 @@ if ($result0xw->num_rows > 0) {
                         </div>
                     </div>
 
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Examination</label>
+                            <div class="col-12">
+                                <select class="form-control text-white" id="exam" onchange="go();">
+
+                                    <option value="">---</option>
+                                    <?php
+                                    $sql0x = "SELECT examtitle FROM examlist where sccode='$sccode' and sessionyear='$year'   order by id;";
+                                    echo $sql0x;
+                                    $result0rt = $conn->query($sql0x);
+                                    if ($result0rt->num_rows > 0) {
+                                        while ($row0x = $result0rt->fetch_assoc()) {
+                                            $exname = $row0x["examtitle"];
+                                            if ($exname == $exam2) {
+                                                $selex = 'selected';
+                                            } else {
+                                                $selex = '';
+                                            }
+                                            echo '<option value="' . $exname . '" ' . $selex . ' >' . $exname . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control text-white" id="classname" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -140,7 +164,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control text-white" id="sectionname" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -165,57 +189,40 @@ if ($result0xw->num_rows > 0) {
 
 
 
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <label class="col-form-label pl-3">Roll No.</label>
-                                <input type="text" class="form-control bg-transparent" value="" disabled>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Date From</label>
+                            <label class="col-form-label pl-3">Subjects</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" id="datefrom" value="<?php echo $datefrom; ?>">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Date To</label>
-                            <div class="col-12">
-                                <input type="date" class="form-control" id="dateto" value="<?php echo $dateto; ?>">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Collector ID/Email</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="collector" onchange="go();">
-                                    <option value="">---</option>
+                                <select class="form-control text-white" id="subject">
+                                    <option value="">------</option>
                                     <?php
-                                    $sql0x = "SELECT entryby FROM stpr where sccode='$sccode' and sessionyear LIKE '$year%'  group by entryby order by entryby;";
-                                    // echo $sql0x;
-                                    $result0r = $conn->query($sql0x);
-                                    if ($result0r->num_rows > 0) {
-                                        while ($row0x = $result0r->fetch_assoc()) {
-                                            $eby = $row0x["entryby"];
-                                            if ($eby == $collector) {
-                                                $ebyby = 'selected';
-                                            } else {
-                                                $ebyby = '';
+                                    $sql0x = "SELECT * FROM subsetup where sccode='$sccode' and sessionyear = '$year' and classname='$cls2' and sectionname='$sec2' order by subject;";
+                                    $result0xr = $conn->query($sql0x);
+                                    if ($result0xr->num_rows > 0) {
+                                        while ($row0x = $result0xr->fetch_assoc()) {
+                                            $subcode = $row0x["subject"];
+
+                                            $sql0x = "SELECT * FROM subjects where subcode='$subcode' ;";
+                                            $result0xrb = $conn->query($sql0x);
+                                            if ($result0xrb->num_rows > 0) {
+                                                while ($row0x = $result0xrb->fetch_assoc()) {
+                                                    $subname = $row0x["subject"];
+                                                }
                                             }
-                                            echo '<option value="' . $eby . '" ' . $ebyby . ' >' . $eby . '</option>';
+                                            if ($subcode == $subj) {
+                                                $sld = 'selected';
+                                            } else {
+                                                $sld = '';
+                                            }
+                                            echo '<option value="' . $subcode . '" ' . $sld . ' >' . $subname . '</option>';
                                         }
                                     }
                                     ?>
+
                                 </select>
                             </div>
                         </div>
@@ -225,16 +232,50 @@ if ($result0xw->num_rows > 0) {
 
                     <div class="col-md-3">
                         <div class="form-group row">
+                            <label class="col-form-label pl-3">Assessment</label>
                             <div class="col-12">
-                                <label class="col-form-label pl-3">&nbsp;</label>
-                                <button type="button" style="padding:4px 10px 6px; border-radius:5px;"
-                                    class="btn btn-lg btn-outline-primary btn-icon-text btn-block pt-2 pb-2" style=""
-                                    onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Generate
-                                    Receipt</button>
+                                <select class="form-control text-white" id="assessment" onchange="go();">
+                                    <option value="Continious Assessment" <?php if($assess == 'Continious Assessment') echo 'selected';?>>Continious Assessment (PI)</option>
+                                    <option value="Total Assessment"  <?php if($assess == 'Total Assessment') echo 'selected';?>>Total Assessment (PI)</option>
+                                    <option value="Behavioural Assessment" <?php if($assess == 'Behavioural Assessment') echo 'selected';?>>Behavioural Assessment (BI)</option>
+
+                                    <option value="Merged PI" <?php if($assess == 'Merged PI') echo 'selected';?>>Merged PI (Total)</option>
+                                    <option value="Merged BI" <?php if($assess == 'Merged BI') echo 'selected';?>>Merged BI (Total)</option>
+
+                                </select>
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Sheet Type</label>
+                            <div class="col-12">
+                                <select class="form-control text-white" id="sheet" onchange="go();">
+                                    <option value="Blank" <?php if($sheet2 == 'Blank') echo 'selected';?>>Blank Sheet</option>
+                                    <option value="Result"  <?php if($sheet2 == 'Result') echo 'selected';?>>Sheet with Result</option>
+                                    
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="col-form-label pl-3">&nbsp;</label>
+                                <button type="button" style="padding:4px 10px 6px; border-radius:5px;"
+                                    class="btn btn-lg btn-inverse-primary btn-icon-text btn-block pt-2 pb-2" style=""
+                                    onclick="go();"><i class="mdi mdi-eye"></i>
+                                    Generate PI/BI (Result)</button>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -248,7 +289,7 @@ if ($result0xw->num_rows > 0) {
     }
 </style>
 
-<div class="row d-print-none" id="ren">
+<div class="row d-print-none" id="ren" hidden>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body p-0 p-3">
@@ -286,16 +327,20 @@ if ($result0xw->num_rows > 0) {
     id="main-table">
     <thead>
         <tr>
-            <th class="txt-right text-center">#</th>
-            <th class="txt-right">PR No.</th>
-            <th class="txt-right">Class</th>
-            <th class="txt-right">Section</th>
-            <th class="txt-right text-center">Roll</th>
-            <th class="txt-right">Name of Student</th>
+            <th class="txt-right text-center" rowspan="2">#</th>
+            <th class="txt-right" colspan="2">Skill</th>
+            <th class="txt-right" colspan="2">Indicator</th>
+            <th class="txt-right" rowspan="2">Level 1</th>
+            <th class="txt-right text-center" rowspan="2">Level 2</th>
+            <th class="txt-right" rowspan="2">level 3</th>
 
-            <th class="txt-right text-right">Amount</th>
-            <th class="txt-right">Collection By</th>
-            <th class="txt-right"></th>
+            <th class="txt-right" rowspan="2"></th>
+        </tr>
+        <tr>
+        <th class="txt-right">Code</th>
+        <th class="txt-right">Title</th>
+        <th class="txt-right">Code</th>
+        <th class="txt-right">Title</th>
         </tr>
     </thead>
 
@@ -305,36 +350,28 @@ if ($result0xw->num_rows > 0) {
 
         <?php
         $cnt = 0;
-        $tamt = 0;
 
-        if ($collector != "") {
-            $uu = " and entryby='$collector' ";
+        if ($assess == 'Behavioural Assessment') {
+            $sql0 = "SELECT * FROM pibitopics where sessionyear = '$year' and exam='$exam2'  and behave=1  order by topiccode";
         } else {
-            $uu = '';
-        }
-        if ($cls2 != '') {
-            if ($sec2 != '') {
-                $sql0 = "SELECT * FROM stpr where sessionyear LIKE '$sy%' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and prdate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
-            } else {
-                $sql0 = "SELECT * FROM stpr where sessionyear LIKE '$sy%' and sccode='$sccode' and classname='$cls2' and prdate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
-            }
-        } else {
-            $sql0 = "SELECT * FROM stpr where sessionyear LIKE '$sy%' and sccode='$sccode' and prdate between '$datefrom' and '$dateto' $uu order by entrytime desc, id desc";
+            $sql0 = "SELECT * FROM pibitopics where sessionyear = '$year' and class='$cls2' and subcode='$subj' and exam='$exam2'  and behave=0   order by topiccode";
         }
 
         $result0 = $conn->query($sql0);
         if ($result0->num_rows > 0) {
             while ($row0 = $result0->fetch_assoc()) {
-                $stid = $row0["stid"];
                 // $stname = $row0["stname"];
-                $clsd = $row0["classname"];
-                $secd = $row0["sectionname"];
-                $roll = $row0["rollno"];
-                $entryby = $row0["entryby"];
-                $prno = $row0["prno"];
-                $amount = $row0["amount"];
+                $skillcode = $row0["skillcode"];
+                $skilltitle = $row0["skilltitle"];
 
-                $ind = array_search($stid, array_column($stlist, 'stid'));
+                $topiccode = $row0["topiccode"];
+                $topictitle = $row0["topictitle"];
+                $level1 = $row0["level1"];
+                $level2 = $row0["level2"];
+                $level3 = $row0["level3"];
+      
+
+                // $ind = array_search($stid, array_column($stlist, 'stid'));
 
                 //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
         
@@ -348,29 +385,29 @@ if ($result0xw->num_rows > 0) {
                         ?>
                     </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $prno; ?></div>
-                    </td>
-
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $clsd; ?></div>
+                        <div class="ooo"><?php echo $skillcode; ?></div>
                     </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $secd; ?></div>
+                        <div class="ooo"><?php $skilltitle; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php echo $topiccode; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php $topictitle; ?></div>
+                    </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;">
+                        <div class="ooo"><?php $level1; ?></div>
                     </td>
                     <td class="text-center" style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $roll; ?></div>
+                        <div class="ooo"><?php $level2; ?></div>
                     </td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $stlist[$ind]['stnameeng']; ?></div>
+                        <div class="ooo"><?php $level3; ?></div>
                     </td>
 
 
-                    <td class="text-right" style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $amount; ?>.00</div>
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $entryby; ?></div>
-                    </td>
+             
 
                     <td style=" border:1px solid gray;" class="m-0 p-1 text-center">
                         <div class="p-3"></div>
@@ -388,7 +425,7 @@ if ($result0xw->num_rows > 0) {
                 </tr>
                 <?php
                 $cnt++;
-                $tamt += $amount;
+  
             }
         }
         ?>
@@ -402,11 +439,11 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Print Receipt';
+    document.getElementById('defbtn').innerHTML = 'PI/BI Sheet Print View';
     document.getElementById('defmenu').innerHTML = '';
 
     document.getElementById('cnt').innerHTML = '<?php echo $cnt; ?>';
-    document.getElementById('tamt').innerHTML = '<?php echo $tamt; ?>';
+
 
 
     function defbtn() {
@@ -428,22 +465,28 @@ include 'footer.php';
 
     function goprint(stid) {
         var year = document.getElementById('year').value;
-        var sec = document.getElementById('sec').value;
-        var cls = document.getElementById('cls').value;
-        var datefrom = document.getElementById('datefrom').value;
-        var dateto = document.getElementById('dateto').value;
-        var collector = document.getElementById('collector').value;
-        window.location.href = 'report-print-pr.php?sec=' + sec + '&cls=' + cls + '&year=' + year + '&datefrom=' + datefrom + '&dateto=' + dateto + '&collector=' + collector;
+        var exam = document.getElementById('exam').value;
+        var cls = document.getElementById('classname').value;
+        var sec = document.getElementById('sectionname').value;
+
+        var subj = document.getElementById('subject').value;
+        var assess = document.getElementById('assessment').value;
+        var sheet = document.getElementById('sheet').value;
+
+        window.location.href = 'result-pibi-print.php?sec=' + sec + '&cls=' + cls + '&year=' + year + '&exam=' + exam + '&subj=' + subj + '&assess=' + assess + '&sheet=' + sheet;
     }
 
     function go() {
         var year = document.getElementById('year').value;
-        var sec = document.getElementById('sec').value;
-        var cls = document.getElementById('cls').value;
-        var datefrom = document.getElementById('datefrom').value;
-        var dateto = document.getElementById('dateto').value;
-        var collector = document.getElementById('collector').value;
-        window.location.href = 'payment-receipt.php?sec=' + sec + '&cls=' + cls + '&year=' + year + '&datefrom=' + datefrom + '&dateto=' + dateto + '&collector=' + collector;
+        var exam = document.getElementById('exam').value;
+        var cls = document.getElementById('classname').value;
+        var sec = document.getElementById('sectionname').value;
+
+        var subj = document.getElementById('subject').value;
+        var assess = document.getElementById('assessment').value;
+        var sheet = document.getElementById('sheet').value;
+
+        window.location.href = 'result-pibi-sheet.php?sec=' + sec + '&cls=' + cls + '&year=' + year + '&exam=' + exam + '&subj=' + subj + '&assess=' + assess + '&sheet=' + sheet;
     }
 </script>
 

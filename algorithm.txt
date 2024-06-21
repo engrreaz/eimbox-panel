@@ -125,3 +125,11 @@ Tools .......
     Result System
     Accounts 
     Library
+
+
+Manage staff recruitment, payroll, attendance, and professional development.
+
+    ERROR SCANNING.................
+    exam-routine : check duplicate schedule
+
+

@@ -24,7 +24,7 @@ if ($result0->num_rows > 0) {
         $ds = $row5["datestart"];
     }
 } else {
-    $exid = $ex = $sl = $cl = $se = $ds = '';
+    $ex = $sl = $cl = $se = $ds = '';
 }
 ?>
 <div class="float-right">
@@ -36,7 +36,7 @@ if ($result0->num_rows > 0) {
 
 
 
-<div class="row" style="display:<?php echo $newblock; ?>;">
+<div class="row" style="display:<?php echo $newblock; ?>;" id="no-block">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -142,8 +142,12 @@ if ($result0->num_rows > 0) {
                                 <tr>
                                     <td></td>
                                     <td>
+                                        <div id="" class="float-right">
+                                            <button class="btn btn-inverse-danger " onclick="cancel();">Canceel</button>
+                                        </div>
+
                                         <div id="">
-                                            <button class="btn btn-primary"
+                                            <button class="btn btn-inverse-success"
                                                 onclick="save(<?php echo $exid; ?>,1);">Save</button>
 
                                             <div id="gex"></div>
@@ -212,7 +216,8 @@ if ($result0->num_rows > 0) {
                                                             <i class="mdi mdi-grease-pencil"></i>
                                                         </button>
 
-                                                        <button type="button" title="Edit Profile" class="btn btn-inverse-danger"
+                                                        <button type="button" title="Edit Profile"
+                                                            class="btn btn-inverse-danger"
                                                             onclick="save(<?php echo $id; ?>,2);">
                                                             <i class="mdi mdi-delete"></i>
                                                         </button>
@@ -254,7 +259,7 @@ include 'footer.php';
     document.getElementById('defbtn').innerHTML = 'New Exam';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-
+        addnew();
     }
 
 
@@ -278,6 +283,9 @@ include 'footer.php';
         var tail = '';
         window.location.href = 'exam-list.php?addnew' + tail;
     }
+    function cancel() {
+        document.getElementById('no-block').style.display = 'none';
+    }
 
     function edit(id, taill) {
         window.location.href = 'exam-list.php?addnew=' + id;
@@ -295,7 +303,7 @@ include 'footer.php';
         var date = document.getElementById('date').value;
 
         var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont + '&exam=' + exam + '&slot=' + slot + '&date=' + date;
-
+        // alert(infor);
         $("#gex").html("");
 
         $.ajax({

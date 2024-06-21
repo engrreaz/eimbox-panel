@@ -27600,6 +27600,10 @@ div.tagsinput span.tag a {
   white-space: nowrap;
   margin-left: 1rem;
 }
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link .navbar-profile .navbar-profile-namex {
+  white-space: normal;
+  margin-left: 1rem;
+}
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link .navbar-profile i {
   color: #a7afb7;
@@ -28057,8 +28061,15 @@ div.tagsinput span.tag a {
 .sidebar .nav .nav-item.profile .profile-desc .profile-name {
   margin-left: 1rem;
 }
+.sidebar .nav .nav-item.profile .profile-desc .profile-namex {
+  margin-left: 1rem;
+}
 
 .rtl .sidebar .nav .nav-item.profile .profile-desc .profile-name {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+.rtl .sidebar .nav .nav-item.profile .profile-desc .profile-namex {
   margin-left: 0;
   margin-right: 1rem;
 }
@@ -28068,9 +28079,17 @@ div.tagsinput span.tag a {
   color: #6c7293;
   white-space: nowrap;
 }
+.sidebar .nav .nav-item.profile .profile-desc .profile-namex span {
+  font-size: 12px;
+  color: #6c7293;
+  white-space: normal;
+}
 
 .sidebar .nav .nav-item.profile .profile-desc .profile-name h5 {
   white-space: nowrap;
+}
+.sidebar .nav .nav-item.profile .profile-desc .profile-namex h5 {
+  white-space: normal;
 }
 
 .sidebar .nav .nav-item.profile .profile-desc .profile-pic {
@@ -28301,6 +28320,9 @@ div.tagsinput span.tag a {
 .sidebar-tinted .sidebar .nav .nav-item.profile .profile-desc .profile-name span {
   color: #ffffff;
 }
+.sidebar-tinted .sidebar .nav .nav-item.profile .profile-desc .profile-namex span {
+  color: #ffffff;
+}
 
 .sidebar-tinted .sidebar .nav .nav-item.profile .profile-desc .mdi-dots-vertical {
   color: #ffffff;
@@ -28359,6 +28381,9 @@ div.tagsinput span.tag a {
   }
 
   .sidebar-icon-only .sidebar .nav .nav-item .profile-name {
+    display: none;
+  }
+  .sidebar-icon-only .sidebar .nav .nav-item .profile-namex {
     display: none;
   }
 

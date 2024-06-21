@@ -3,31 +3,10 @@
 
 
 <?php
-if ($track < 100) {
-  ?>
-
-  <div class="row" style="display:none;">
-    <div class="col-12 grid-margin">
-      <div class="card  bg-danger">
-        <div class="card-body">
-          <div style="float:right;">
-
-            <button type="button" class="btn btn-secondary text-danger pt-2">Find It Now</button>
-          </div>
-          <h4 class="card-title">Detect Issues</h4>
-          <div>
-            <div class="progress progress-md portfolio-progress">
-              <div class="progress-bar bg-secondary" role="progressbar" style="width: 67%" aria-valuenow="67"
-                aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="mr-3" id="fixing-status"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<?php } ?>
+if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
+  include 'track-line.php';
+}
+?>
 
 
 <div class="row">
@@ -599,7 +578,7 @@ if ($track < 100) {
 
 <script>
 
-document.getElementById('defmenu').innerHTML = '';
+  document.getElementById('defmenu').innerHTML = '';
 
   function statistics() {
     var infor = "";

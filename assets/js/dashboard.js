@@ -1,9 +1,10 @@
 (function($) {
+  // alert('<?php echo $takas;?>'); // Last finance total value
   'use strict';
   $.fn.andSelf = function() {
     return this.addBack.apply(this, arguments);
   }
-  $(function() {
+  $(function() { 
     if ($("#currentBalanceCircle").length) {
       var bar = new ProgressBar.Circle(currentBalanceCircle, {
         color: '#000',
