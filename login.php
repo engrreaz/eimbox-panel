@@ -28,6 +28,60 @@ $authUrl = $gClient->createAuthUrl();
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="assets/imgs/logo.png" />
+
+  <style>
+    #bgn {
+      background: url('assets/images/auth/Login_bg.jpg') no-repeat;
+      background-size: cover;
+      background-position: center bottom
+    }
+
+    #main-box {
+      background: transparent;
+    }
+
+    .formm {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    input {
+      padding-bottom: 3px;
+      background: transparent !important;
+      color: white;
+    }
+
+    .input-group-prepend,
+    input {
+      border: 1px solid rgba(255, 255, 255, .3) !important;
+      background: transparent;
+      color: white;
+    }
+
+    .btn-inverse-danger {
+      border: 1px solid rgba(255, 0, 0, .4) !important;
+    }
+
+    .btn-inverse-primary {
+      border: 1px solid rgba(30, 144, 255, .4) !important;
+    }
+
+    .btn-inverse-warning {
+      border: 1px solid rgba(255, 165, 0, .4) !important;
+    }
+
+    .btn-inverse-info {
+      border: 1px solid rgba(148, 0, 211, .4) !important;
+    }
+
+    #bottim {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      color: gray;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
@@ -35,157 +89,143 @@ $authUrl = $gClient->createAuthUrl();
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">
-        <div class="content-wrapper full-page-wrapper d-flexx align-items-center auth bg-gray-dark ">
+        <div id="bgn" class="content-wrapper full-page-wrapper d-flexx align-items-center auth bg-gray-dark ">
 
 
-          <div class="">
 
-            <div class="mb-3">
-              <div style="float:right; display:none;" class="d-lg-block d-none pr-5 text-right">
+          <div id="main-box">
+            <div class="row col-12">
 
-                <!-- <small>Need an assistance?<br></small><i class="mdi mdi-phone"></i> 0152365847 -->
-              </div>
-              <!-- <h2 class="mb-3 text-center"> -->
-              <table class="" style="text-align:left; margin:auto;">
-                <tr>
-                  <td>
-                    <img class="pr-3" src="assets/imgs/logo.png" style="height:50px;">
-                  </td>
-                  <td>
+
+
+
+              <div class="card col-lg-4 md-4 mx-auto formm">
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="mb-3" src="assets/imgs/logo.png" style="height:50px;">
                     <div style="font-size:30px;margin:0; line-height:26px; font-weight:700;">EIMBox
                     </div>
-                    <div style="font-size:14px;margin-top:5px">School Management System</div>
+                    <div class="pb-2" style="font-size:14px;margin-top:5px">School Management System</div>
+                  </div>
 
-                  </td>
-                </tr>
-              </table>
+                  <form id="loginform" class="mt-3" onsubmit="eiin(this);" autocomplete="on">
 
-
-              <!-- </h2> -->
-            </div>
-          </div>
-
-          <div class="row col-12">
-            <div class="card col-lg-4  md-4 mx-auto">
-              <div class="card-body px-5 py-5">
-
-                <div class="d-flexx">
-                  <button class="btn  col full-width m-2 p-2 btn-outline-light" disabled>
-                    <i class="mdi mdi-facebook"></i> Facebook </button>
-                  <a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL); ?>">
-                    <button class="btn btn-google col full-width m-2 p-2">
-                      <i class="mdi mdi-google-plus"></i> Google plus </button></a>
-                </div>
-
-                <div class="row ml-1 mt-3">
-                  <div class="col-12">
-                    <div class="row">
-                      <div class="col-md-6 col-6">
-                        <div class="template-demox mt-2">
-                          <button class="btn btn-outline-light btn-icon-text full-width" disabled>
-                            <i class="mdi mdi-apple btn-icon-prepend mdi-36px"></i>
-                            <span class="d-inline-block text-left">
-                              <small class="font-weight-light d-block">Available on the</small> App Store </span>
-                          </button>
-
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="mdi mdi-account text-secondary"></i></span>
                         </div>
+                        <input type="text" id="username" name="username" class="form-control bg-transparent text-white" placeholder="Username"
+                          aria-label="Username" aria-describedby="basic-addon1">
+
                       </div>
-                      <div class="col-md-6 col-6">
-                        <div class="template-demox mt-2">
-
-                          <button class="btn btn-outline-light btn-icon-text full-width" onclick="playstore();">
-                            <i class="mdi mdi-android-debug-bridge btn-icon-prepend mdi-36px"></i>
-                            <span class="d-inline-block text-left">
-                              <small class="font-weight-light d-block">Get it on the</small> Google Play </span>
-                          </button>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="mdi mdi-lock-open text-secondary"></i></span>
                         </div>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                          aria-label="Password" aria-describedby="basic-addon1">
+
                       </div>
                     </div>
 
-                  </div>
-
-                </div>
-
-
-
-
-              </div>
-            </div>
-            <div class="card col-lg-4 md-4 mx-auto">
-              <div class="card-body px-5 py-5">
-                <form id="loginform" onsubmit="eiin(this);" autocomplete="on">
-                  <div class="form-group">
-                    <label>Username or email *</label>
-                    <input type="text" id="username" name="username" class="form-control p_input">
-                  </div>
-                  <div class="form-group">
-                    <label>Password *</label>
-                    <input type="password" id="password" name="password" class="form-control p_input">
-                  </div>
-                  <div class="form-group d-flex align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input type="checkbox" name="rememberme" class="form-check-input"> Remember me </label>
+                    <div class="text-center">
+                      <button type="submit" id="btn" onclick="eiin();"
+                        class="btn btn-inverse-primary btn-block enter-btn">Login</button>
+                      <div id="status"></div>
                     </div>
-                    <a href="#" class="forgot-pass  ">Forgot password</a>
+
+                    <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
+                  </form>
+
+                  <div class="card-body" id="qrcodeblock" style="display:none;">
+
+                    <?php
+                    // $key = 'sfdgsht5yryfyfhfgjgjtrfhfhfhfhf1234567890';
+                    $qrtoken = '';
+                    $keys = array_merge(range(0, 9), range('a', 'z'));
+                    for ($i = 0; $i < 30; $i++) {
+                      $qrtoken .= $keys[array_rand($keys)];
+                    }
+                    //echo $qrtoken ;
+                    // include ('../db.php');
+                    $cur = date('Y-m-d H:i:s');
+                    $query35 = "INSERT INTO qrcodelogin (id, token, email, generatetime, logintime, status) VALUES (NULL, '$qrtoken', NULL, '$cur', NULL, 0)";//echo $query35;
+                    $conn->query($query35);
+
+
+                    $lnk = 'http://android.eimbox.com/qrlogin.php?qr=' . $qrtoken;
+                    // https://quickchart.io/documentation/qr-codes/
+                    ?>
+
+                    <!--<img style="padding: 5px; background:var(--lighter);" src="https://chart.googleapis.com/chart?chs=170x170&cht=qr&chl=<?php echo $lnk; ?>&choe=UTF-8&chld=L|0" />-->
+
+                    <div class="text-center">
+                      <img style=" margin-auto;" src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=170" />
+                    </div>
+
+
+                    <div id="japa"></div>
+
+
+                    <div class="text-center mt-2 w-100">
+                      <small>Scan the QR Code <br>with EIMBox Approved Android App </small>
+                    </div>
+
+
+
+
                   </div>
-                  <div class="text-center">
-                    <button type="submit" id="btn" onclick="eiin();"
-                      class="btn btn-primary btn-block enter-btn">Login</button>
-                    <div id="status"></div>
+
+
+                  <div class="m-0 p-0">
+                    <button type="button"
+                      class="btn btn-inverse-secondary bg-secondary text-dark font-weight-bold  btn-rounded btn-icon"
+                      disabled>
+                      OR
+                    </button>
+                    <span class="p-2"></span>
+                    <button type="button" class="btn btn-inverse-info  btn-rounded btn-icon float-right pt-1"
+                      onclick="logins(0)">
+                      <i class="mdi mdi-textbox pl-1 mdi-24px"></i>
+                    </button>
+                    <span class="p-2 float-right"></span>
+                    <button type="button" class="btn btn-inverse-primary  btn-rounded btn-icon float-right pt-1"
+                      onclick="logins(1)">
+                      <i class="mdi mdi-facebook pl-1 mdi-24px"></i>
+                    </button>
+                    <span class="p-2 float-right"></span>
+
+
+                    <a href="<?php echo filter_var($authUrl, FILTER_SANITIZE_URL); ?>">
+                      <button type="button" class="btn btn-inverse-danger btn-rounded btn-icon float-right pt-1"
+                        onclick="loginsx(2)">
+                        <i class="mdi mdi-google-plus pl-2 mdi-24px"></i>
+                      </button>
+                    </a>
+
+                    <span class="p-2 float-right"></span>
+                    <button type="button" class="btn btn-inverse-warning btn-rounded btn-icon float-right pt-1"
+                      onclick="logins(3)">
+                      <i class="mdi mdi-qrcode pl-1 mdi-24px"></i>
+                    </button>
                   </div>
-
-                  <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
-                </form>
-              </div>
-            </div>
-            <div class="card col-lg-4  md-4 mx-auto">
-              <div class="card-body px-5 py-5">
-
-                <?php
-                // $key = 'sfdgsht5yryfyfhfgjgjtrfhfhfhfhf1234567890';
-                $qrtoken = '';
-                $keys = array_merge(range(0, 9), range('a', 'z'));
-                for ($i = 0; $i < 30; $i++) {
-                  $qrtoken .= $keys[array_rand($keys)];
-                }
-                //echo $qrtoken ;
-                // include ('../db.php');
-                $cur = date('Y-m-d H:i:s');
-                $query35 = "INSERT INTO qrcodelogin (id, token, email, generatetime, logintime, status) VALUES (NULL, '$qrtoken', NULL, '$cur', NULL, 0)";//echo $query35;
-                $conn->query($query35);
-
-
-                $lnk = 'http://android.eimbox.com/qrlogin.php?qr=' . $qrtoken;
-                // https://quickchart.io/documentation/qr-codes/
-                ?>
-
-                <!--<img style="padding: 5px; background:var(--lighter);" src="https://chart.googleapis.com/chart?chs=170x170&cht=qr&chl=<?php echo $lnk; ?>&choe=UTF-8&chld=L|0" />-->
-
-                <div class="text-center">
-                  <img style=" margin-auto;" src="https://quickchart.io/qr?text=<?php echo $lnk; ?>&size=170" />
                 </div>
 
 
-                <div id="japa"></div>
-                <p class="text-center mt-2">
-                  <small>Scan the QR Code <br>with EIMBox Approved Android App </small>
-                </p>
-
-
 
 
               </div>
+
+
+
+
+
             </div>
-
-
-            <div class="row text-center pt-4">
-              <h6>Login</h6>
-            </div>
-
-
-
           </div>
+
 
 
 
@@ -196,22 +236,33 @@ $authUrl = $gClient->createAuthUrl();
       <!-- row ends -->
     </div>
     <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="assets/js/off-canvas.js"></script>
-  <script src="assets/js/hoverable-collapse.js"></script>
-  <script src="assets/js/misc.js"></script>
-  <script src="assets/js/settings.js"></script>
-  <script src="assets/js/todolist.js"></script>
-  <!-- endinject -->
 
-  <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+
+
+
+  </div>
+
+
+  <div id="bottim" class="d-block">
+    <small>http://www.eimbox.com</small>
+    </div>
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/todolist.js"></script>
+    <!-- endinject -->
+
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -274,13 +325,34 @@ $authUrl = $gClient->createAuthUrl();
 
 
 
+
   function proceed() {
-    alert(333);
-    window.location.href = 'index.php?email=<?php echo $usr; ?>';
+    // alert(333);
+    window.location.href = 'index.php?email=<?php ; ?>';
   }
 
 </script>
 
+<script>
+
+  function logins(param) {
+    if (param == 0) {
+      document.getElementById("loginform").style.display = 'block';
+      document.getElementById("qrcodeblock").style.display = 'none';
+    }
+    else if (param == 1) {
+      alert('Facebook login is unavailable now.');
+    }
+    else if (param == 2) {
+      document.getElementById("loginform").style.display = 'block';
+      document.getElementById("qrcodeblock").style.display = 'none';
+    }
+    else if (param == 3) {
+      document.getElementById("loginform").style.display = 'none';
+      document.getElementById("qrcodeblock").style.display = 'flex';
+    }
+  }
+</script>
 
 
 
