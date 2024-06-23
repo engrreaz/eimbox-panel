@@ -1,9 +1,12 @@
 <?php
 include 'header.php';
 // include 'notice.php'; 
-
 ?>
-
+<?php
+if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
+  // include 'track-line.php';
+}
+?>
 <div class="row" style="display:none;">
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
@@ -90,86 +93,164 @@ include 'header.php';
 
 <div class="row" style="">
   <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title"><i class="mdi mdi-settings mdi-24px text-warning p-2"></i> Settings</h4>
-        <div class="bg-gray-dark d-flexx d-md-block d-xl-flexx flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-          <div>You may control your entire system from here. To do this use the left navigation pan according to your
-            privileges. </div>
-
-            <div class="text-info mt-3 text-small">
-              
-                As a/an <?php echo $userlevel;?> of the system. You've some restriction to access module.%
-                <br>
-                Contact with your administrator/institute head for more privileges.
-            </div>
-        </div>
-      </div>
-    </div>
+    <h3 class="card-title"><i class="mdi mdi-settings mdi-24px text-warning p-2"></i> Settings</h3>
   </div>
 </div>
 
 
 
-<div class="row" style="display:none;">
-  <div class="col-sm-4 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h5>Revenue</h5>
-        <div class="row">
-          <div class="col-8 col-sm-12 col-xl-8 my-auto">
-            <div class="d-flex d-sm-block d-md-flex align-items-center">
-              <h2 class="mb-0">$32123</h2>
-              <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
-            </div>
-            <h6 class="text-muted font-weight-normal">11.38% Since last month</h6>
-          </div>
-          <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-            <i class="icon-lg mdi mdi-codepen text-primary ml-auto"></i>
-          </div>
+<div class="row">
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-checkbox-marked-circle-outline mdi-24px "></i>
         </div>
+        <h4 class="mb-0 text-center text-small">Institute Settings</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Setup your institute details</h5>
       </div>
     </div>
   </div>
-  <div class="col-sm-4 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h5>Sales</h5>
-        <div class="row">
-          <div class="col-8 col-sm-12 col-xl-8 my-auto">
-            <div class="d-flex d-sm-block d-md-flex align-items-center">
-              <h2 class="mb-0">$45850</h2>
-              <p class="text-success ml-2 mb-0 font-weight-medium">+8.3%</p>
-            </div>
-            <h6 class="text-muted font-weight-normal"> 9.61% Since last month</h6>
-          </div>
-          <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-            <i class="icon-lg mdi mdi-wallet-travel text-danger ml-auto"></i>
-          </div>
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-checkbox-multiple-blank-circle mdi-24px "></i>
         </div>
+        <h4 class="mb-0 text-center text-small">Slot Manager</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">e.g. School/College/Day-shift etc.
+        </h5>
       </div>
     </div>
   </div>
-  <div class="col-sm-4 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h5>Purchase</h5>
-        <div class="row">
-          <div class="col-8 col-sm-12 col-xl-8 my-auto">
-            <div class="d-flex d-sm-block d-md-flex align-items-center">
-              <h2 class="mb-0">$2039</h2>
-              <p class="text-danger ml-2 mb-0 font-weight-medium">-2.1% </p>
-            </div>
-            <h6 class="text-muted font-weight-normal">2.27% Since last month</h6>
-          </div>
-          <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-            <i class="icon-lg mdi mdi-monitor text-success ml-auto"></i>
-          </div>
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-account-multiple mdi-24px "></i>
         </div>
+        <h4 class="mb-0 text-center text-small">Class/Section</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Setup Class/Section</h5>
       </div>
     </div>
   </div>
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-book-open-variant mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">Subject Management</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Manage Subject with Marks Setup
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-mdi-calendar-multiple-check mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">Academic Calendar</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Manage Holidays, Events ...</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-currency-try mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">Fees Setup</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Setup Payment Settings</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-account-card-details mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">Attendance Manager</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Manage Card, Fingerprint etc.</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-receipt mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">Grading System</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Both Previous/New Curriculam </h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-message-text mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">SMS</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Manage your SMS/Notification</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-security mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">User Privileges</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Manage user access</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-coin mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">Payment Method</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Bkash, Rocket, Nagod, Bank setup
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card p-0 m-0">
+      <div class="card-body p-3 m-0">
+        <div class="text-center">
+          <i class="mdi mdi-account-switch mdi-24px "></i>
+        </div>
+        <h4 class="mb-0 text-center text-small">Techers Bindings</h4>
+        <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Binding teacher with their account
+        </h5>
+      </div>
+    </div>
+  </div>
+
+
+
 </div>
+
+
+
 <div class="row " style="display:none;">
   <div class="col-12 grid-margin">
     <div class="card">

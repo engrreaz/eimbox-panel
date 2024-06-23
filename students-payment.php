@@ -140,7 +140,7 @@ if (isset($_GET['addnew'])) {
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-lg btn-outline-success btn-icon-text btn-block p-2" style=""
+                                    class="btn btn-lg btn-inverse-success btn-icon-text btn-block p-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
                                     Show Dues List</button>
                             </div>

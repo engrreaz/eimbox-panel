@@ -8,9 +8,6 @@ if (isset($_GET['level'])) {
     $level = 'teacher';
 }
 
-
-
-
 ?>
 
 <h3 class="d-print-none">Users Management Tool</h3>
@@ -166,7 +163,7 @@ if (isset($_GET['level'])) {
                                                         <i class="mdi mdi-clock"></i></button>
 
 
-                                                        <span class="mdi mdi-arrow-top-right icon-item"></span>
+                                                    <span class="mdi mdi-arrow-top-right icon-item"></span>
                                                 </td>
 
 
@@ -212,7 +209,7 @@ include 'footer.php';
         else if (cat == 6) { b = 'guest'; }
         window.location.href = 'users.php?&level=' + b;
     }
-    function perm(email){
+    function perm(email) {
         window.location.href = 'users-permission.php?&useremail=' + email;
     }
 </script>
@@ -306,4 +303,8 @@ include 'footer.php';
             }
         });
     }
+
+    $(document).ready(function () {
+        $('#main-table').DataTable();
+    });
 </script>

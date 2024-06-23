@@ -32,7 +32,7 @@ if ($result0->num_rows > 0) {
         onclick="addnew();">
         <i class="mdi mdi-library-plus"> Add New Exam </i></button>
 </div>
-<h3>Exam Management Tool</h3>
+<h3>Exam List </h3>
 
 
 

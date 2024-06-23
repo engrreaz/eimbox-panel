@@ -11,20 +11,20 @@ if (isset($_GET['tid'])) {
     $tid = 0;
 }
 
-
-$sql5 = "SELECT * FROM teacher where tid='$tid' and sccode='$sccode' ";
-$result7 = $conn->query($sql5);
-if ($result7->num_rows > 0) {
-    while ($row5 = $result7->fetch_assoc()) {
-        $tnamee = $row5["tname"];
-        
+$tinfo = array();
+$sql5 = "SELECT * FROM teacher where sccode='$sccode' and tid = '$tid' ;";
+$result6 = $conn->query($sql5);
+if ($result6->num_rows > 0) {
+    while ($row5 = $result6->fetch_assoc()) {
+        $tinfo[] = $row5;
     }
-} else {
-    $tnamee = '';
-    
 }
 
-$dob = '1977-11-07';
+if ($new == 1) {
+    $btntext = 'Save the Teacher/Staff';
+} else {
+    $btntext = 'Update Info';
+}
 
 ?>
 <style>
@@ -32,7 +32,7 @@ $dob = '1977-11-07';
         color: slategray;
     }
 </style>
-<h3>HR Profile Entry / Editing Window</h3>
+<h3>Student Profile Entry / Editing Window</h3>
 
 <div class="row" style="display:<?php if ($dismsg == 0) {
     $dismsg = 'hide';
@@ -41,28 +41,6 @@ $dob = '1977-11-07';
 }
 echo $dismsg; ?>">
 
-    <?php
-    if ($new == 0 && ($dob == '' || $dob == '1970-01-01')) {
-        ?>
-        <div class="col-12 grid-margin stretch-card mb-1">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="btn-inverse-danger rounded p-2 ">
-                            <i class="mdi mdi-calendar p-1 pr-3"></i>Missing Date of Birth
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-    
-    ?>
-
-
-
-
 </div>
 
 <style>
@@ -70,86 +48,23 @@ echo $dismsg; ?>">
         font-weight: bold;
     }
 </style>
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="text-muted font-weight-normal">
-                    Session Information
+                    Teacher Information
                 </h4>
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Class</label>
-                            <div class="col-12">
-                                <select id="classname" name="classname" class="form-control text-white"
-                                    onchange="fetchsection();">
-                                    <option value="">Select a class</option>
-                                    <?php
-                                    $sql000 = "SELECT * FROM areas where user='$rootuser' group by areaname order by idno";
-                                    $result000 = $conn->query($sql000);
-                                    if ($result000->num_rows > 0) {
-                                        while ($row000 = $result000->fetch_assoc()) {
-                                            $clsname = $row000["areaname"];
-                                            if ($cls2 == $clsname) {
-                                                $selcls = 'selected';
-                                            } else {
-                                                $selcls = '';
-                                            }
-                                            echo '<option value="' . $clsname . '" ' . $selcls . ' >' . $clsname . '</option>';
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+  
 
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Section</label>
-                            <div class="col-12">
-                                <div id="secn" class="input-control select full-size error">
-                                    <select id="sectionname" name="sectionname" class="form-control text-white">
-                                        <option value="">Select a Section</option>
-                                        <?php
-                                        $sql000 = "SELECT * FROM areas where user='$rootuser' and areaname = '$cls2' group by subarea order by idno";
-                                        $result000 = $conn->query($sql000);
-                                        if ($result000->num_rows > 0) {
-                                            while ($row000 = $result000->fetch_assoc()) {
-                                                $secname = $row000["subarea"];
-                                                if ($sec2 == $secname) {
-                                                    $selsec = 'selected';
-                                                } else {
-                                                    $selsec = '';
-                                                }
-                                                echo '<option value="' . $secname . '" ' . $selsec . ' >' . $secname . '</option>';
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Roll. No.</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="rollno" value="<?php echo $rollno; ?>"
-                                    onkeydown="if(event.keyCode==13) document.getElementById('srchst').click()" />
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div class="col-md-2">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Student's ID.</label>
+                            <label class="col-form-label pl-3">Teacher's / Staff's ID.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="stid" value="<?php echo $stid; ?>"
+                                <input type="text" class="form-control bg-dark" id="stid" value="<?php echo $tid; ?>"
                                     disabled />
                             </div>
                         </div>
@@ -160,8 +75,9 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" style="padding:4px 10px 3px; border-radius:5px;" name="srchst"
-                                    id="srchst" class="btn btn-outline-primary btn-icon" style=""
-                                    onclick="fetchstudent();"><i class="mdi mdi-eye"></i></button>
+                                    id="srchst" class="btn btn-outline-primary btn-icon text-center" style=""
+                                    title="Get Student Information" onclick="fetchstudent();"><i
+                                        class="mdi mdi-arrow-right"></i></button>
                                 <div id="stinfo" style="display:none;"></div>
                             </div>
                         </div>
@@ -172,7 +88,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -182,7 +98,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Student's Name (In English)</label>
                             <div class="col-12">
                                 <input type="text" class="form-control" id="stnameeng" onblur="ucword(this.id);"
-                                    value="<?php echo $stnameeng; ?>" />
+                                    value="<?php echo $tinfo[0]['tname']; ?>" />
                             </div>
                         </div>
                     </div>
@@ -191,7 +107,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Student's Name (In Bengali)</label>
                             <div class="col-12">
                                 <input type="text" class="form-control" id="stnameben"
-                                    value="<?php echo $stnameben; ?>" />
+                                    value="<?php echo $tinfo[0]['tnameb']; ?>" />
                             </div>
                         </div>
                     </div>
@@ -275,7 +191,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -295,10 +211,16 @@ echo $dismsg; ?>">
                                 <input type="text" list="village" class="form-control" id="previll"
                                     value="<?php echo $previll; ?>" />
                                 <datalist id="village">
-                                    <option value="first@example.com">
-                                    <option value="second@example.com">
-                                    <option value="third@example.com">
-                                    <option value="last@example.com">
+                                    <?php
+                                    $sql000 = "SELECT previll FROM students where sccode='$sccode'  group by previll order by previll";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $previll = $row000["previll"];
+                                            echo '<option value="' . $previll . '">';
+                                        }
+                                    }
+                                    ?>
                                 </datalist>
                             </div>
                         </div>
@@ -310,10 +232,16 @@ echo $dismsg; ?>">
                                 <input type="text" list="postoffice" class="form-control" id="prepo"
                                     value="<?php echo $prepo; ?>" />
                                 <datalist id="postoffice">
-                                    <option value="abcde">
-                                    <option value="cdghd">
-                                    <option value="ahtfjrrt sa adrg">
-                                    <option value="sretrrudfg rdgdrhtys  tsr">
+                                    <?php
+                                    $sql000 = "SELECT prepo FROM students where sccode='$sccode'  group by prepo order by prepo";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $prepo = $row000["prepo"];
+                                            echo '<option value="' . $prepo . '">';
+                                        }
+                                    }
+                                    ?>
                                 </datalist>
                             </div>
                         </div>
@@ -322,7 +250,20 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Upazila/Police Station</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="preps" value="<?php echo $preps; ?>" />
+                                <input type="text" list="police" class="form-control" id="preps"
+                                    value="<?php echo $preps; ?>" />
+                                <datalist id="police">
+                                    <?php
+                                    $sql000 = "SELECT preps FROM students where sccode='$sccode'  group by preps order by preps";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $preps = $row000["preps"];
+                                            echo '<option value="' . $preps . '">';
+                                        }
+                                    }
+                                    ?>
+                                </datalist>
                             </div>
                         </div>
                     </div>
@@ -330,7 +271,20 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">District</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="predist" value="<?php echo $predist; ?>" />
+                                <input type="text" list="jila" class="form-control" id="predist"
+                                    value="<?php echo $predist; ?>" />
+                                <datalist id="jila">
+                                    <?php
+                                    $sql000 = "SELECT predist FROM students where sccode='$sccode'  group by predist order by predist";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $predist = $row000["predist"];
+                                            echo '<option value="' . $predist . '">';
+                                        }
+                                    }
+                                    ?>
+                                </datalist>
                             </div>
                         </div>
                     </div>
@@ -382,7 +336,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -391,7 +345,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date of Birth</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="dob" value="<?php echo $dob; ?>" />
+                                <input type="text" class="form-control" id="dob" placeholder="YYYY-MM-DD"
+                                    value="<?php echo $dob; ?>" />
                             </div>
                         </div>
                     </div>
@@ -399,13 +354,40 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Religion</label>
                             <div class="col-12">
+
+
+
+
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="religion"
-                                            value="<?php echo $religion; ?>" />
+                                        <select id="religion" name="religion" class="form-control text-white">
+                                            <option value=""></option>
+                                            <option value="Islam" <?php if ($religion == 'Islam') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Islam</option>
+                                            <option value="Hindu" <?php if ($religion == 'Hindu') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Hindu</option>
+                                            <option value="Christian" <?php if ($religion == 'Christian') {
+                                                echo 'selected';
+                                            } ?>>Christian</option>
+                                            <option value="Buddist" <?php if ($religion == 'Buddist') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Buddist</option>
+                                            <option value="Others" <?php if ($religion == 'Others') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Others</option>
+                                        </select>
+
+
                                         <div class="input-group-append">
-                                            <button class="btn btn-md btn-inverse-success" type="button">
-                                                <i class="mdi mdi-check-circle"></i>
+                                            <button class="btn btn-md btn-inverse-<?php echo $religion_check_color; ?>"
+                                                type="button">
+                                                <i class="mdi mdi-<?php echo $religion_check_icon; ?>"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -430,7 +412,18 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Gender</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="gender" value="<?php echo $gender; ?>" />
+                                <select id="gender" name="gender" class="form-control text-white">
+                                    <option value=""></option>
+                                    <option value="Boy" <?php if ($gender == 'Boy') {
+                                        echo 'selected';
+                                    } ?>>
+                                        Boy</option>
+                                    <option value="Girl" <?php if ($gender == 'Girl') {
+                                        echo 'selected';
+                                    } ?>>
+                                        Girl</option>
+
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -441,31 +434,58 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Blood Group</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="bgroup" value="<?php echo $rollno; ?>" />
+                                <select id="bgroup" name="bgroup" class="form-control text-white">
+                                    <option value=""></option>
+                                    <option value="A+" <?php if ($bgroup == 'A+') {
+                                        echo 'selected';
+                                    } ?>> A+ </option>
+                                    <option value="A-" <?php if ($bgroup == 'A-') {
+                                        echo 'selected';
+                                    } ?>> A- </option>
+                                    <option value="B+" <?php if ($bgroup == 'B+') {
+                                        echo 'selected';
+                                    } ?>> B+ </option>
+                                    <option value="B-" <?php if ($bgroup == 'B-') {
+                                        echo 'selected';
+                                    } ?>> B- </option>
+                                    <option value="AB+" <?php if ($bgroup == 'AB+') {
+                                        echo 'selected';
+                                    } ?>> AB+ </option>
+                                    <option value="AB-" <?php if ($bgroup == 'AB-') {
+                                        echo 'selected';
+                                    } ?>> AB- </option>
+                                    <option value="O+" <?php if ($bgroup == 'O+') {
+                                        echo 'selected';
+                                    } ?>> O+ </option>
+                                    <option value="O-" <?php if ($bgroup == 'O-') {
+                                        echo 'selected';
+                                    } ?>> O- </option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">---------</label>
+                            <label class="col-form-label pl-3">Disability</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="disables"
+                                    value="<?php echo $disables; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">----------</label>
+                            <label class="col-form-label pl-3">Height (CMs)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="height" value="<?php echo $height; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">---------</label>
+                            <label class="col-form-label pl-3">Weight (KGs)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="weight" value="<?php echo $weight; ?>" />
                             </div>
                         </div>
                     </div>
@@ -476,7 +496,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -535,43 +555,41 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Guardian's NID</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="guarnid" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control" id="guarnid" value="<?php echo $guarnid; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">-----</label>
+                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">----------</label>
+                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">-----------</label>
+                            <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
+                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
 
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -620,7 +638,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -670,7 +688,7 @@ echo $dismsg; ?>">
 </div>
 
 
-<div class="row" style="display:none;"> <!--   Class/Roll Block -->
+<div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -683,28 +701,51 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <div class="form-group row text-center">
+
+                            <?php
+                            $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
+                            // $file_headers = @get_headers($stphotopath);
+                            // if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
+                            //     $stphotopath = "https://eimbox.com/students/noimg.jpg";
+                            // } else {
+                            //     $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
+                            // }
+                            
+
+
+                            ?>
+                            <div
+                                style="width:90px; min-height:90px; padding: 3px; border:1px solid gray; border-radius:4px;">
+                                <img src="<?php echo $stphotopath; ?>" style="height:80px; border-radius:5px;" alt="">
+                                <br><small class="pt-3">
+                                    <center>Photo</center>
+                                </small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Photo</label>
+                            <label class="col-form-label pl-3">Upload Photo</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="dopp" value="<?php echo $dopp; ?>" />
+
+                                <?php
+                                $datamon = 'student';
+                                $dest_file_name = $stid . '.jpg';
+                                include 'ajax-upload.php';
+                                ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">-------------</label>
+                            <label class="col-form-label pl-3 middle"><br><br>&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="ref" value="<?php echo $rollno; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Button...../Save</label>
-                            <div class="col-12">
-                                <button type="submit" id="savest" name="savest" class="btn btn-success"
-                                    onclick="savestudent();">Save the Student</button>
+                                <button type="submit" id="savest" name="savest" class="btn btn-inverse-success pt-2"
+                                    onclick="savestudent();"><?php echo $btntext; ?></button>
                                 <div id="batchbatch"></div>
                             </div>
                         </div>
@@ -740,10 +781,10 @@ include 'footer.php';
 </script>
 
 <script>
-    document.getElementById('defbtn').innerHTML = 'Update Profile';
+    document.getElementById('defbtn').innerHTML = '<?php echo $btntext; ?>';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-        // savestudent();
+        savestudent();
     }
 
     function fetchsection() {
@@ -788,6 +829,18 @@ include 'footer.php';
 
 <script>
     function savestudent() {
+
+        // Including Photo Upload Function
+        var filelist = document.getElementById("files").value;
+        if (filelist == '') {
+            console.log("file not uploaded");
+        } else {
+            var btn = document.getElementById("uploadfile");
+            btn.click();
+        }
+
+        //    document.uploadform.submit();
+
         var classname = document.getElementById("classname").value;
         var sectionname = document.getElementById("sectionname").value;
         var rollno = document.getElementById("rollno").value;
@@ -830,12 +883,18 @@ include 'footer.php';
         var preinsadd = document.getElementById("preinsadd").value;
         var doa = document.getElementById("doa").value;
         var photoid = document.getElementById("photoid").value;
-        var dopp = document.getElementById("dopp").value;
+        // var dopp = document.getElementById("dopp").value;
 
         var sscyear = document.getElementById("sscyear").value;
         var sscregd = document.getElementById("sscregd").value;
         var sscroll = document.getElementById("sscroll").value;
         var sscresult = document.getElementById("sscresult").value;
+
+        var bgroup = document.getElementById("bgroup").value;
+        var disables = document.getElementById("disables").value;
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var guarnid = document.getElementById("guarnid").value;
 
         if (stid == "") {
             // if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
@@ -853,8 +912,21 @@ include 'footer.php';
             //     if (doa == "") { alert("You must select admission date."); } else { }
         }
         else {
-            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben=" + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname=" + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion=" + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd=" + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno=" + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid=" + photoid + "&dopp=" + dopp + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll=" + sscroll + "&sscresult=" + sscresult + "&fnid=" + fnid + "&mnid=" + mnid;
-            $("#batchbatch").html("ddd");
+            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben="
+                + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname="
+                + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo="
+                + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo="
+                + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion="
+                + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd="
+                + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno="
+                + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid="
+                + photoid + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll="
+                + sscroll + "&sscresult=" + sscresult + "&fnid=" + fnid + "&mnid=" + mnid
+                + "&bgroup=" + bgroup + "&height=" + height + "&weight=" + weight + "&guarnid=" + guarnid + "&disables=" + disables
+
+
+                ;
+            $("#batchbatch").html("");
 
             $.ajax({
                 type: "POST",

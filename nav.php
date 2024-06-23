@@ -68,15 +68,16 @@ $supernav = array('account-settings.php');
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="<?php echo 'https://eimbox.com/logo/' . $sccode. '.png'; ?>" alt="">
+              <img class="img-xs rounded-circle " src="<?php echo 'https://eimbox.com/logo/' . $sccode . '.png'; ?>"
+                alt="">
             </div>
-            <div class="profile-namex" style="word-wrap: break-word; " >
+            <div class="profile-namex" style="word-wrap: break-word; ">
               <h6 class="mb-0 font-weight-normal"><small><?php echo $scname; ?></small></h6>
 
             </div>
           </div>
 
- 
+
         </div>
 
       </li>
@@ -153,14 +154,24 @@ $supernav = array('account-settings.php');
           </div>
         </li>
 
+
         <li class="nav-item menu-items">
-          <a class="nav-link" href="st-payment-setup.php">
+          <a class="nav-link" data-toggle="collapse" href="#fees" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
               <i class="mdi mdi-currency-try mdi-24px pt-1"></i>
             </span>
             <span class="menu-title">Payments & Fees</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="fees">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="st-payment-setup.php">Fees Setting</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Fine</a></li>
+            </ul>
+          </div>
         </li>
+
+
 
         <li class="nav-item menu-items">
           <a class="nav-link" href="#">
@@ -332,26 +343,7 @@ $supernav = array('account-settings.php');
 -----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------- -->
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-account-circle mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Human Resources</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="hrd">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Teacher"><i
-                        class="mdi mdi-account-box"></i>&nbsp; Teaching Staffs</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff"><i
-                        class="mdi mdi-account-box-outline"></i>&nbsp; Management Staffs</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-profile.php">View Profile</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-edit.php">Profile Editor</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="tattnd.php">HRD Attendance</a></li>
-                </ul>
-              </div>
-            </li>
+
             <li class="nav-item menu-items">
               <a class="nav-link" data-toggle="collapse" href="#students" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
@@ -375,59 +367,6 @@ $supernav = array('account-settings.php');
                   <li class="nav-item"> <a class="nav-link" href="student-attendance.php">
                       <i class="mdi mdi-account-multiple"></i>
                       &nbsp; Query Attendance</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#finance" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-coin mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Finance</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="finance">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#finance-sal" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-coin mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Salary Management</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="finance-sal">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
-                </ul>
-              </div>
-            </li>
-
-
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#bank-management" aria-expanded="false"
-                aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-currency-try  mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Bank Management</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="bank-management">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Accounts</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="bank-account.php">Accounts Transactions</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li>
                 </ul>
               </div>
             </li>
@@ -465,7 +404,8 @@ $supernav = array('account-settings.php');
               <div class="collapse" id="result">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="access-denied.php">Marks/Assessment Entry</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="result-pibi-sheet.php"><i class="mdi mdi-triangle"></i>&nbsp; PI/BI Sheet</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="result-pibi-sheet.php"><i
+                        class="mdi mdi-triangle"></i>&nbsp; PI/BI Sheet</a></li>
                   <li class="nav-item"> <a class="nav-link" href=".php">Result Processing</a></li>
                   <li class="nav-item"> <a class="nav-link" href=".php">Tabulating Sheet</a></li>
                   <li class="nav-item"> <a class="nav-link" href=".php">Transcript</a></li>
@@ -474,30 +414,85 @@ $supernav = array('account-settings.php');
               </div>
             </li>
             <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#modules" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
-                  <i class="mdi mdi-view-module  mdi-24px pt-2"></i>
+                  <i class="mdi mdi-account-circle mdi-24px pt-1"></i>
                 </span>
-                <span class="menu-title">Modules</span>
+                <span class="menu-title">Teachers/Staffs</span>
                 <i class="menu-arrow"></i>
               </a>
-              <div class="collapse" id="modules">
+              <div class="collapse" id="hrd">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Notice Manager</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Voter List for SMC</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Voter List for St. Cabinet</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Teacher"><i
+                        class="mdi mdi-account-box"></i>&nbsp; Teaching Staffs</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff"><i
+                        class="mdi mdi-account-box-outline"></i>&nbsp; Management Staffs</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="hr-profile.php">View Profile</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="hr-edit.php">Profile Editor</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="tattnd.php">HRD Attendance</a></li>
                 </ul>
               </div>
             </li>
+
+
+
+            <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#finance" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                  <i class="mdi mdi-coin mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Finance</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="finance">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li>
+                </ul>
+              </div>
+            </li>
+
+
+
+
+            <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#bank-management" aria-expanded="false"
+                aria-controls="ui-basic">
+                <span class="menu-icon">
+                  <i class="mdi mdi-currency-try  mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Bank Management</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="bank-management">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Accounts</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="bank-account.php">Accounts Transactions</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#finance-sal" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                  <i class="mdi mdi-coin mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Salary Management</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="finance-sal">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
+                </ul>
+              </div>
+            </li>
+
+
             <li class="nav-item menu-items">
               <a class="nav-link" data-toggle="collapse" href="#library" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
@@ -551,6 +546,34 @@ $supernav = array('account-settings.php');
                 </ul>
               </div>
             </li>
+
+            <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#modules" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                  <i class="mdi mdi-view-module  mdi-24px pt-2"></i>
+                </span>
+                <span class="menu-title">Modules</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="modules">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Notice Manager</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Voter List for SMC</a></li>
+                  <li class="nav-item"> <a class="nav-link" href=".php">Voter List for St. Cabinet</a></li>
+                </ul>
+              </div>
+            </li>
+
+
             <li class="nav-item menu-items">
               <a class="nav-link" data-toggle="collapse" href="#register" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">

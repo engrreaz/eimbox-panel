@@ -13,13 +13,17 @@ if ($tail == 5) {
     $skill = $_POST['skill'];
     $code = $_POST['code'];
     $titlex = $_POST['titles'];
+
+    $lvl1 = $_POST['level1'];
+    $lvl2 = $_POST['level2'];
+    $lvl3 = $_POST['level3'];
     if ($id == 0) {
         //add topic
         $query331 = "INSERT INTO pibitopics (id, sessionyear, class, exam, subcode, skillcode, topiccode, topictitle, level1, level2, level3, continious, total, behave, half_yearly, entrytime) 
-                     VALUES (NULL, '$year', '$cls', '$exam', '$sub', '$skill', '$code', '$titlex', '', '', '', '1', '1', '0', '1', '$cur' );";
+                     VALUES (NULL, '$year', '$cls', '$exam', '$sub', '$skill', '$code', '$titlex', '$lvl1', '$lvl2', '$lvl3', '1', '1', '0', '1', '$cur' );";
     } else {
         //edit topic
-         $query331 = "UPDATE pibitopics set skillcode='$skill', topiccode='$code', topictitle='$titlex' where id='$id'";
+         $query331 = "UPDATE pibitopics set skillcode='$skill', topiccode='$code', topictitle='$titlex', level1 = '$lvl1',  level2 = '$lvl2',  level3 = '$lvl3'  where id='$id'";
     }
 
 } else if ($tail == 6) {

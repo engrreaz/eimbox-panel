@@ -228,7 +228,7 @@ if ($result0xw->num_rows > 0) {
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 6px; border-radius:5px;"
-                                    class="btn btn-lg btn-outline-primary btn-icon-text btn-block pt-2 pb-2" style=""
+                                    class="btn btn-lg btn-inverse-primary btn-icon-text btn-block pt-2 pb-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
                                     Generate
                                     Receipt</button>

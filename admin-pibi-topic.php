@@ -253,11 +253,15 @@ if (isset($_GET['addnew2'])) {
                         $sid = $row0x["skillid"];
                         $sno = $row0x["skillno"];
                         $stitle = $row0x["title"];
+
+
                     }
                 } else {
                     $sid = 0;
                     $sno = '';
                     $stitle = '';
+
+
                 }
                 ?>
 
@@ -334,9 +338,13 @@ if (isset($_GET['addnew2'])) {
                         $skillx = $row0x["skillcode"];
                         $codex = $row0x["topiccode"];
                         $titlex = $row0x["topictitle"];
+                        $level1 = $row0x["level1"];
+                        $level2 = $row0x["level2"];
+                        $level3 = $row0x["level3"];
                     }
                 } else {
                     $skillx = $codex = $titlex = '';
+                    $level1 = $level2 = $level3 = '';
                 }
                 ?>
 
@@ -362,11 +370,36 @@ if (isset($_GET['addnew2'])) {
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">PI/BI Topic</label>
                             <div class="col-12">
                                 <input type="text" class="form-control" value="<?php echo $titlex; ?>" id="ttitle2" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Indicator Level - 1</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" value="<?php echo $level1; ?>" id="level1" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Indicator Level - 2</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" value="<?php echo $level2; ?>" id="level2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Indicator Level - 3</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" value="<?php echo $level3; ?>" id="level3" />
                             </div>
                         </div>
                     </div>
@@ -471,6 +504,10 @@ if (isset($_GET['addnew2'])) {
 
                 $title = $row0["topictitle"];
 
+                $ll1 = $row0["level1"];
+                $ll2 = $row0["level2"];
+                $ll3 = $row0["level3"];
+
                 ?>
                 <tr>
                     <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
@@ -487,7 +524,27 @@ if (isset($_GET['addnew2'])) {
 
 
                     <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $title; ?></div>
+                        <div class="ooo pt-2 pb-1"><b><?php echo $title; ?></b></div>
+                        <?php if ($ll1 != '') {
+                            ?>
+                            <div class="ooo"><small><?php echo $ll1; ?></small></div>
+                            <?php
+                        }
+                        ?>
+
+                        <?php if ($ll2 != '') {
+                            ?>
+                            <div class="ooo"><small><?php echo $ll2; ?></small></div>
+                            <?php
+                        }
+                        ?>
+
+                        <?php if ($ll3 != '') {
+                            ?>
+                            <div class="ooo"><small><?php echo $ll3; ?></small></div>
+                            <?php
+                        }
+                        ?>
                     </td>
 
                     <td style=" border:1px solid gray;" class="m-0 p-1 text-center">
@@ -611,10 +668,14 @@ include 'footer.php';
         var e = '<?php echo $exam2; ?>';
         var c = '<?php echo $cls2; ?>';
 
+        var l1 = document.getElementById("level1").value;
+        var l2 = document.getElementById("level2").value;
+        var l3 = document.getElementById("level3").value;
+
         var sk = document.getElementById("skcode2").value;
         var top = document.getElementById("tcode2").value;
         var tit = document.getElementById("ttitle2").value;
-        var infor = "skill=" + sk + "&code=" + top + "&titles=" + tit + "&id=" + id + "&tail=" + tail + '&year=' + y + "&cls=" + c + "&sub=" + s + "&exam=" + e;
+        var infor = "skill=" + sk + "&code=" + top + "&titles=" + tit + "&id=" + id + "&tail=" + tail + '&year=' + y + "&cls=" + c + "&sub=" + s + "&exam=" + e + "&level1=" + l1 + "&level2=" + l2 + "&level3=" + l3;
         // alert(infor);
         $("#ssk" + tail).html("");
 

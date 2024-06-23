@@ -108,7 +108,7 @@ $authUrl = $gClient->createAuthUrl();
                     <div class="pb-2" style="font-size:14px;margin-top:5px">School Management System</div>
                   </div>
 
-                  <form id="loginform" class="mt-3" onsubmit="eiin(this);" autocomplete="on">
+                  <form id="loginform" class="mt-3" method="POST" onsubmit="eiin(this);" autocomplete="on">
 
                     <div class="form-group">
                       <div class="input-group">
@@ -304,13 +304,11 @@ $authUrl = $gClient->createAuthUrl();
       }
     });
   }
-
   const myInterval = setInterval(qrcodecheck, 500);
 </script>
 
 
 <script>
-
   function playstore() {
     window.location.href = 'https://play.google.com/store/apps/details?id=com.xeneen.eimbox&hl=en&gl=US&pli=1';
   }
@@ -322,9 +320,6 @@ $authUrl = $gClient->createAuthUrl();
     // alert(qr+email);
     window.location.href = 'cchlogin.php?token=' + qr + qr + qr + "&em=" + email;
   }
-
-
-
 
   function proceed() {
     // alert(333);
