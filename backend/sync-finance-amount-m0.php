@@ -94,7 +94,7 @@ if ($ind != '') {
 
 
     //$disp .= $cls2 . ' ' . $sec2 . ' ' . $roll2 . ' (' . $stid2 . ') ';
-    $disp .= '###' . $roll2 . '###'; // Inser new record
+    $disp .= '' . $roll2 . ''; // Inser new record
     $new++;
     $count++;
 
