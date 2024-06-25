@@ -184,7 +184,7 @@ if ($umail != '') {
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" hidden>
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -209,7 +209,7 @@ if ($umail != '') {
 
 
 
-    <div class="row">
+    <div class="row" hidden>
         <div class="col-md-4 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -338,7 +338,7 @@ if ($umail != '') {
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" hidden>
         <div class="col-sm-8 grid-margin">
             <div class="card">
                 <div class="card-body">

@@ -83,7 +83,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls"  onchange="go();">
+                                <select class="form-control text-white" id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -194,128 +194,129 @@ if (isset($_GET['addnew'])) {
 </div>
 
 <div>
-    
-<div id="alladmit">
 
-    <head>
-        <style>
-            * {
-                font-family: "Noto Sans Bengali", sans-serif;
-            }
+    <div id="alladmit">
 
-            #main-table td {
-                border: 1px solid black;
-            }
-
-            .txt-right {
-                text-align: center;
-                font-weight: bold;
-                font-size: 14px;
-                padding: 5px;
-            }
-
-            @media print {
-                .d-print-nones,
-                #nono {
-                    display: none;
+        <head>
+            <style>
+                * {
+                    font-family: "Noto Sans Bengali", sans-serif;
                 }
-            }
-        </style>
-    </head>
-    <div style="text-align: center;">
-        Class : <b><?php echo $cls2;?></b> 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-:|:-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Section : <b><?php echo $sec2;?></b> 
-        <hr style="width:75%"/>
-    </div>
 
-    <table style="width:100%; border:1px solid black; border-collapse:collapse;" class="table table-bordered" 
-        id="main-table">
-        <thead>
-            <tr>
-                <td class="txt-right">Roll</td>
-                <td class="txt-right">Name of Student</td>
-                <td class="txt-right">Dues</td>
-                <td class="txt-right" style="width:100px;">Pay Amount</td>
-                <td class="txt-right" style="width:120px;">Date</td>
-            </tr>
-        </thead>
-
-        <tbody>
-
-
-
-            <?php
-            $cnt = 0;
-            $cntamt = 0;
-            $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
-            $result0 = $conn->query($sql0);
-            if ($result0->num_rows > 0) {
-                while ($row0 = $result0->fetch_assoc()) {
-                    $stid = $row0["stid"];
-                    $rollno = $row0["rollno"];
-                    $card = $row0["icardst"];
-                    $dtid = $row0["id"];
-                    $status = $row0["status"];
-                    $rel = $row0["religion"];
-                    $four = $row0["fourth_subject"];
-
-
-                    $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid' LIMIT 1";
-                    $result00 = $conn->query($sql00);
-                    if ($result00->num_rows > 0) {
-                        while ($row00 = $result00->fetch_assoc()) {
-                            $neng = $row00["stnameeng"];
-                            $nben = $row00["stnameben"];
-                            $vill = $row00["previll"];
-                        }
-                    }
-
-                    //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
-            
-                    $month = date('m');
-                    $sql0 = "SELECT sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' and stid='$stid'";
-                    $result01x = $conn->query($sql0);
-                    if ($result01x->num_rows > 0) {
-                        while ($row0 = $result01x->fetch_assoc()) {
-                            $totaldues = $row0["dues"];
-                            $tpaya = $row0["paya"];
-                            $tpaid = $row0["paid"];
-                        }
-                    }
-
-                    ?>
-                    <tr>
-                        <td style="text-align:center; padding : 3px 5px;" class="">
-                            <?php
-                            $rl = $rollno;
-                            echo str_replace($enum, $bnum, $rl);
-                            ?>
-                        </td>
-                        <td style="padding : 3px 10px;"><?php echo $nben; ?></td>
-                        <td style="text-align:right; padding : 3px 5px;" class="text-right">
-                            <?php
-                            $tt = number_format($totaldues, 2, ".", ",");
-                            // echo $tt;
-                            echo str_replace($enum, $bnum, $tt);
-                            ?>
-
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <?php
-                    $cnt++;
-                    $cntamt = $cntamt + $totaldues;
+                #main-table td {
+                    border: 1px solid black;
                 }
-            }
 
-            ?>
+                .txt-right {
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 14px;
+                    padding: 5px;
+                }
+
+                @media print {
+
+                    .d-print-nones,
+                    #nono {
+                        display: none;
+                    }
+                }
+            </style>
+        </head>
+        <div style="text-align: center;">
+            Class : <b><?php echo $cls2; ?></b>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-:|:-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Section : <b><?php echo $sec2; ?></b>
+            <hr style="width:75%" />
+        </div>
+
+        <table style="width:100%; border:1px solid black; border-collapse:collapse;" class="table table-bordered"
+            id="main-table">
+            <thead>
+                <tr>
+                    <td class="txt-right">Roll</td>
+                    <td class="txt-right">Name of Student</td>
+                    <td class="txt-right">Dues</td>
+                    <td class="txt-right" style="width:100px;">Pay Amount</td>
+                    <td class="txt-right" style="width:120px;">Date</td>
+                </tr>
+            </thead>
+
+            <tbody>
 
 
-        </tbody>
-    </table>
+
+                <?php
+                $cnt = 0;
+                $cntamt = 0;
+                $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
+                $result0 = $conn->query($sql0);
+                if ($result0->num_rows > 0) {
+                    while ($row0 = $result0->fetch_assoc()) {
+                        $stid = $row0["stid"];
+                        $rollno = $row0["rollno"];
+                        $card = $row0["icardst"];
+                        $dtid = $row0["id"];
+                        $status = $row0["status"];
+                        $rel = $row0["religion"];
+                        $four = $row0["fourth_subject"];
+
+
+                        $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid' LIMIT 1";
+                        $result00 = $conn->query($sql00);
+                        if ($result00->num_rows > 0) {
+                            while ($row00 = $result00->fetch_assoc()) {
+                                $neng = $row00["stnameeng"];
+                                $nben = $row00["stnameben"];
+                                $vill = $row00["previll"];
+                            }
+                        }
+
+                        //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
+                
+                        $month = date('m');
+                        $sql0 = "SELECT sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' and stid='$stid'";
+                        $result01x = $conn->query($sql0);
+                        if ($result01x->num_rows > 0) {
+                            while ($row0 = $result01x->fetch_assoc()) {
+                                $totaldues = $row0["dues"];
+                                $tpaya = $row0["paya"];
+                                $tpaid = $row0["paid"];
+                            }
+                        }
+
+                        ?>
+                        <tr>
+                            <td style="text-align:center; padding : 3px 5px;" class="">
+                                <?php
+                                $rl = $rollno;
+                                echo str_replace($enum, $bnum, $rl);
+                                ?>
+                            </td>
+                            <td style="padding : 3px 10px;"><?php echo $nben; ?></td>
+                            <td style="text-align:right; padding : 3px 5px;" class="text-right">
+                                <?php
+                                $tt = number_format($totaldues, 2, ".", ",");
+                                // echo $tt;
+                                echo str_replace($enum, $bnum, $tt);
+                                ?>
+
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <?php
+                        $cnt++;
+                        $cntamt = $cntamt + $totaldues;
+                    }
+                }
+
+                ?>
+
+
+            </tbody>
+        </table>
 
 
 

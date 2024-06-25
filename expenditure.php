@@ -65,13 +65,14 @@ if (isset($_GET['addnew'])) {
 <?php $inex = $_COOKIE['inex'];
 $btnclr = $_COOKIE['clr'];
 $txt = $_COOKIE['txt'];
-echo $inex . '/' . $btnclr . '/' . $txt; ?>
+// echo $inex . '/' . $btnclr . '/' . $txt; ?>
 
 <div style="float:right;" id="inex">
     <button type="button" class="btn btn-<?php echo $btnclr; ?>"
         onclick="catt('<?php echo $txt; ?>');"><?php echo $txt; ?></button>
 </div>
-<h3 id="lbl-inex"><?php echo $inex . ' Management'; ?></h3>
+<h3 id="">Income/Expenditure Manager</h3>
+<h6 id="lbl-inex"><b><?php echo $inex . ' Management Module'; ?></b></h6>
 
 
 <div class="row">
@@ -304,7 +305,7 @@ echo $inex . '/' . $btnclr . '/' . $txt; ?>
                                     <td>
                                         <select class="form-control" id="cate">
                                             <?php
-                                            $sql0x = "SELECT * FROM financesetup where sccode='$sccode' and (sessionyear='$sy' || sessionyear=0) and inexex=1 ;";
+                                            $sql0x = "SELECT * FROM financesetup where sccode='$sccode' and (sessionyear='$sy' || sessionyear=0) and inexex=1 order by particulareng;";
                                             $result0x3 = $conn->query($sql0x);
                                             if ($result0x3->num_rows > 0) {
                                                 while ($row0x = $result0x3->fetch_assoc()) {
@@ -326,8 +327,21 @@ echo $inex . '/' . $btnclr . '/' . $txt; ?>
                                     <td>Description :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" id="descrip"
+                                        <input type="text" class="form-control" id="descrip"  list="itemname"
                                             value="<?php echo $descrip; ?>" />
+
+                                            <datalist id="itemname">
+                                    <?php
+                                    $sql000 = "SELECT particulars FROM cashbook where sccode='$sccode' or sccode='$sccodes' group by particulars order by particulars";
+                                    $result0001 = $conn->query($sql000);
+                                    if ($result0001->num_rows > 0) {
+                                        while ($row000 = $result0001->fetch_assoc()) {
+                                            $partpart = $row000["particulars"];
+                                            echo '<option value="' . $partpart . '">';
+                                        }
+                                    }
+                                    ?>
+                                </datalist>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -396,7 +410,7 @@ echo $inex . '/' . $btnclr . '/' . $txt; ?>
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno'  order by memono, id;";
                                 } else if ($month > 0) {
                                     // echo 'month<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  order by memono, id;";
                                 } else if ($undef == '' || $undef == NULL) {
                                     // echo 'undef<br>';
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0 and type='Expenditure'  order by memono, id;";

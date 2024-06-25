@@ -42,6 +42,14 @@ if (isset($_GET['addnew'])) {
 }
 
 
+$stprofile = array();
+$sql00 = "SELECT * FROM students where  sccode='$sccode'";
+$result00 = $conn->query($sql00);
+if ($result00->num_rows > 0) {
+    while ($row00 = $result00->fetch_assoc()) {
+        $stprofile[] = $row00;
+    }
+}
 
 ?>
 
@@ -137,8 +145,8 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-lg btn-outline-success btn-icon-text btn-block" style=""
+                                <button type="button" 
+                                    class="btn btn-inverse-success btn-block p-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
                                     Generate
                                     Card</button>
@@ -159,6 +167,15 @@ if (isset($_GET['addnew'])) {
             <div class="card-body">
 
                 <div class="row">
+
+
+                    <div id="pad" style="display:none;">
+                        <div style="font-size:10px; font-style:italic;">
+                            <?php include ('assets/pad/temp-01.php'); ?>
+                        </div>
+                    </div>
+
+
                     <div id="alladmit">
 
                         <head>
@@ -193,7 +210,7 @@ if (isset($_GET['addnew'])) {
                             </style>
                         </head>
                         <div style="text-align: left;">
-                            Class : <b><?php echo $cls2; ?></b>
+                            Class : <b><?php echo $cls2; ?></b>.............
                             Section : <b><?php echo $sec2; ?></b>
 
                         </div>
@@ -209,147 +226,131 @@ if (isset($_GET['addnew'])) {
 
 
 
+<div id="datam">
 
+    <table class="table table-bordered table-striped "
+        style=" border:1px solid gray !important; border-collapse:collapse; width:100%;" id="main-table">
+        <thead>
+            <tr>
+                <th class="txt-right">#</th>
+                <th class="txt-right">Name of Student</th>
+                <th class="txt-right">Parents</th>
+                <th class="txt-right">Address</th>
+                <th class="txt-right">Roll/Regd</th>
+                <th class="txt-right">Result</th>
+                <th class="txt-right d-print-none"></th>
+            </tr>
+        </thead>
 
-<table class="table table-bordered table-striped " style=" border:1px solid gray !important; border-collapse:collapse;"
-    id="main-table">
-    <thead>
-        <tr>
-            <td class="txt-right">#</td>
-            <td class="txt-right">Name of Student</td>
-            <td class="txt-right">Parents</td>
-            <td class="txt-right">Address</td>
-            <td class="txt-right">Roll/Regd</td>
-            <td class="txt-right">Result</td>
-            <td class="txt-right"></td>
-        </tr>
-    </thead>
-
-    <tbody>
-
-
-
-        <?php
-        $cnt = 0;
-        $cntamt = 0;
-        $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
-        $result0 = $conn->query($sql0);
-        if ($result0->num_rows > 0) {
-            while ($row0 = $result0->fetch_assoc()) {
-                $stid = $row0["stid"];
-                $rollno = $row0["rollno"];
-                $card = $row0["icardst"];
-                $dtid = $row0["id"];
-                $status = $row0["status"];
-                $rel = $row0["religion"];
-                $four = $row0["fourth_subject"];
-
-
-                $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid' LIMIT 1";
-                $result00 = $conn->query($sql00);
-                if ($result00->num_rows > 0) {
-                    while ($row00 = $result00->fetch_assoc()) {
-                        $neng = $row00["stnameeng"];
-                        $nben = $row00["stnameben"];
-
-                        $fname = $row00["fname"];
-                        $mname = $row00["mname"];
-                        $vill = $row00["pervill"];
-                        $po = $row00["perpo"];
-                        $ps = $row00["perps"];
-                        $dist = $row00["perdist"];
-                        $dob = $row00["dob"];
+        <tbody>
 
 
 
-                        $regdno = $row00["regdno"];
-                        $sscroll = $row00["rollno"];
-                        $gpa = $row00["gpa"];
-                        $gla = $row00["gla"];
+            <?php
+            $cnt = 0;
+            $cntamt = 0;
+            $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
+            $result0 = $conn->query($sql0);
+            if ($result0->num_rows > 0) {
+                while ($row0 = $result0->fetch_assoc()) {
+                    $stid = $row0["stid"];
+                    $rollno = $row0["rollno"];
+                    $card = $row0["icardst"];
+                    $dtid = $row0["id"];
+                    $status = $row0["status"];
+                    $rel = $row0["religion"];
+                    $four = $row0["fourth_subject"];
 
 
+                    $ind = array_search($stid, array_column($stprofile, 'stid'));
+                    if ($ind != '') {
+                        $neng = $stprofile[$ind]["stnameeng"];
+                        $nben = $stprofile[$ind]["stnameben"];
+                        $fname = $stprofile[$ind]["fname"];
+                        $mname = $stprofile[$ind]["mname"];
+                        $vill = $stprofile[$ind]["pervill"];
+                        $po = $stprofile[$ind]["perpo"];
+                        $ps = $stprofile[$ind]["perps"];
+                        $dist = $stprofile[$ind]["perdist"];
+                        $dob = $stprofile[$ind]["dob"];
 
+                    } else {
+                        $neng = '';
+                        $nben = '';
+                        $fname = '';
+                        $mname = '';
+                        $vill = '';
+                        $po = '';
+                        $ps = '';
+                        $dist = '';
+                        $dob = '';
                     }
-                } else {
-                    $neng = '';
-                    $nben = '';
-
-                    $fname = '';
-                    $mname = '';
-                    $vill = '';
-                    $po = '';
-                    $ps = '';
-                    $dist = '';
-                    $dob = '';
-
-                    $regdno = '';
-                    $sscroll = '';
-                    $gpa = '';
-                    $gla = '';
-                }
 
 
 
 
-                //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
-        
 
 
-                ?>
-                <tr>
-                    <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
-                        <?php
-                        echo $rollno;
-                        ?>
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><small><?php echo $stid; ?></small></div>
-                        <div class="ooo"><?php echo $neng; ?></div>
-                        <div class="ooo"><?php echo $nben; ?></div>
-                        <?php if ($dob != "") { ?>
-                            <div class="ooo">DOB : <?php echo date('d / m / Y', strtotime($dob)); ?></div>
-                        <?php } ?>
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $fname; ?></div>
-                        <div class="ooo"><?php echo $mname; ?></div>
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $vill; ?></div>
-                        <div class="ooo"><?php echo $po; ?></div>
-                        <div class="ooo"><?php echo $ps; ?></div>
-                        <div class="ooo"><?php echo $dist; ?></div>
-                    </td>
-                    <td style="padding : 3px 10px; border:1px solid gray;">
-                        <div class="ooo"><?php echo $sscroll; ?></div>
-                        <div class="ooo"><?php echo $regdno; ?></div>
-                    </td>
+                    //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
+            
 
-                    <td style=" border:1px solid gray;">
-                        <?php if ($gpa != "") { ?>
-                            <?php echo $gpa . ' / ' . $gla; ?>
-                        <?php } ?>
-                    </td>
-                    <td style=" border:1px solid gray;">
-                        <div id="btn<?php echo $stid; ?>">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $stid; ?>)">
-                                    <i class="mdi mdi-grease-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-inverse-warning" onclick="issuet(<?php echo $stid; ?>)">
-                                    <i class="mdi mdi-eye"></i>
-                                </button>
+
+                    ?>
+                    <tr>
+                        <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
+                            <?php
+                            echo $rollno;
+                            ?>
+                        </td>
+                        <td style="padding : 3px 10px; border:1px solid gray;">
+                            <div class="ooo"><small><?php echo $stid; ?></small></div>
+                            <div class="ooo"><?php echo $neng; ?></div>
+                            <div class="ooo"><?php echo $nben; ?></div>
+                            <?php if ($dob != "") { ?>
+                                <div class="ooo">DOB : <?php echo date('d / m / Y', strtotime($dob)); ?></div>
+                            <?php } ?>
+                        </td>
+                        <td style="padding : 3px 10px; border:1px solid gray;">
+                            <div class="ooo"><?php echo $fname; ?></div>
+                            <div class="ooo"><?php echo $mname; ?></div>
+                        </td>
+                        <td style="padding : 3px 10px; border:1px solid gray;">
+                            <div class="ooo"><?php echo $vill; ?></div>
+                            <div class="ooo"><?php echo $po; ?></div>
+                            <div class="ooo"><?php echo $ps; ?></div>
+                            <div class="ooo"><?php echo $dist; ?></div>
+                        </td>
+                        <td style="padding : 3px 10px; border:1px solid gray;">
+                            <div class="ooo"><?php echo ''; ?></div>
+                            <div class="ooo"><?php echo ''; ?></div>
+                        </td>
+
+                        <td style=" border:1px solid gray;">
+                           
+                                <?php echo ''; ?>
+                           
+                        </td>
+                        <td style=" border:1px solid gray;" class="d-print-none">
+                            <div id="btn<?php echo $stid; ?>">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $stid; ?>)">
+                                        <i class="mdi mdi-grease-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-inverse-warning"
+                                        onclick="issuet(<?php echo $stid; ?>)">
+                                        <i class="mdi mdi-eye"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                <?php
+                        </td>
+                    </tr>
+                    <?php
+                }
             }
-        }
-        ?>
-    </tbody>
-</table>
-
+            ?>
+        </tbody>
+    </table>
+</div>
 
 <?php
 include 'footer.php';
@@ -357,7 +358,8 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Print Testimonials';
+    document.getElementById('defbtn').innerHTML = 'Print Student List';
+    document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         goprint(0);
     }
@@ -375,11 +377,16 @@ include 'footer.php';
         document.getElementById('boardroll').focus();
     }
 
-    function goprint(stid) {
-        var year = document.getElementById('year').value;
-        var sec = document.getElementById('sec').value;
-        var exam = document.getElementById('exam').value;
-        window.location.href = 'testimonial-print.php?sec=' + sec + '&exam=' + exam + '&year=' + year + '&stid=' + stid;
+    function goprint() {
+        var txt = document.getElementById("alladmit").innerHTML;
+        var pad = document.getElementById("pad").innerHTML;
+        var datam = document.getElementById("datam").innerHTML;
+        document.write('<title>Eimbox</title>');
+        document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:50px; background: black;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to  List</button></div>');
+        document.write('<div id="margin" style="padding:  15mm;"></div>');
+        // document.write(pad);
+        document.getElementById("margin").innerHTML = pad + txt + datam;
+        // document.write(txt);
     }
 
     function go() {

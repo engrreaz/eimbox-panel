@@ -142,7 +142,7 @@ if (isset($_GET['addnew'])) {
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:8px 10px 7px; border-radius:5px;"
-                                    class="btn btn-lg btn-outline-success btn-icon-text btn-block" style=""
+                                    class="btn btn-lg btn-inverse-success btn-icon-text btn-block" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
                                     Generate
                                     Card</button>

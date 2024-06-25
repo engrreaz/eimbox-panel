@@ -3,6 +3,22 @@ include 'header.php';
 // include 'notice.php'; 
 ?>
 <?php
+
+
+// Check Slots
+$sql0 = "SELECT * FROM slots where sccode='$sccode'";
+$result0 = $conn->query($sql0);
+if ($result0->num_rows > 0) {
+    // while ($row0 = $result0->fetch_assoc()) {
+    //     $id2 = $row0["id"];
+    //     $sname2 = $row0["slotname"];
+    // }
+    $slot = 'success';
+} else {
+  $slot = 'danger';
+}
+
+
 if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
   // include 'track-line.php';
 }
@@ -113,7 +129,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
     </div>
   </div>
 
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card text-<?php echo $slot;?>">
     <div class="card p-0 m-0">
       <div class="card-body p-3 m-0">
         <div class="text-center">
@@ -155,7 +171,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
     <div class="card p-0 m-0">
       <div class="card-body p-3 m-0">
         <div class="text-center">
-          <i class="mdi mdi-mdi-calendar-multiple-check mdi-24px "></i>
+          <i class="mdi mdi-calendar-multiple-check mdi-24px "></i>
         </div>
         <h4 class="mb-0 text-center text-small">Academic Calendar</h4>
         <h5 class="text-muted font-weight-normal text-center d-block text-small m-1">Manage Holidays, Events ...</h5>

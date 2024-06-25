@@ -617,7 +617,7 @@ echo $dismsg; ?>">
 
 
                 <h4 class="text-muted font-weight-normal">
-                    Present Address
+                    Permanent Address
                 </h4>
 
                 <div class="row">

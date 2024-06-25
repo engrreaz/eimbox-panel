@@ -4,12 +4,58 @@ include 'header.php';
 $dismsg = 0;
 $cls2 = $sec2 = $roll2 = $rollno = '';
 $new = 0; // check new entry or not
+?>
+<button type="button" id="modalbox" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" hidden>
+    Launch demo modal
+</button>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Teachers/Staffs List</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="" class="input-control select full-size error">
+                    <select id="modaldata" name="modaldata" class="form-control text-white" onchange="modal();">
+                        <option value="">Select a Teacher/Staff to Edit</option>
+                        <?php
+                        $sql000 = "SELECT * FROM teacher where sccode='$sccode'  order by ranks";
+                        $resultix = $conn->query($sql000);
+                        // $conn -> close();
+                        if ($resultix->num_rows > 0) {
+                            while ($row000 = $resultix->fetch_assoc()) {
+                                $tid = $row000["tid"];
+                                $tname = $row000["tname"];
+                                echo '<option value="' . $tid . '"  >' . $tname . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<?php
 if (isset($_GET['tid'])) {
     $tid = $_GET['tid'];
 } else {
     $tid = 0;
 }
+
+
+
 
 $tinfo = array();
 $sql5 = "SELECT * FROM teacher where sccode='$sccode' and tid = '$tid' ;";
@@ -32,7 +78,7 @@ if ($new == 1) {
         color: slategray;
     }
 </style>
-<h3>Student Profile Entry / Editing Window</h3>
+<h3>Teacher's / Staff's Profile Editor</h3>
 
 <div class="row" style="display:<?php if ($dismsg == 0) {
     $dismsg = 'hide';
@@ -56,27 +102,27 @@ echo $dismsg; ?>">
                     Teacher Information
                 </h4>
                 <div class="row">
-  
 
 
 
-                    <div class="col-md-2">
+
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Teacher's / Staff's ID.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="stid" value="<?php echo $tid; ?>"
+                                <input type="text" class="form-control bg-dark" id="tid" value="<?php echo $tid; ?>"
                                     disabled />
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" style="padding:4px 10px 3px; border-radius:5px;" name="srchst"
-                                    id="srchst" class="btn btn-outline-primary btn-icon text-center" style=""
-                                    title="Get Student Information" onclick="fetchstudent();"><i
+                                    id="srchst" class="btn btn-inverse-success full-width text-center p-2" style=""
+                                    title="Get Student Information" onclick="fetchstudentx();"><i
                                         class="mdi mdi-arrow-right"></i></button>
                                 <div id="stinfo" style="display:none;"></div>
                             </div>
@@ -95,97 +141,326 @@ echo $dismsg; ?>">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Student's Name (In English)</label>
+                            <label class="col-form-label pl-3">Teacher's/Staff's Name (In English)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="stnameeng" onblur="ucword(this.id);"
-                                    value="<?php echo $tinfo[0]['tname']; ?>" />
+                                <input type="text" class="form-control" id="tnamee" onblur="ucword(this.id);"
+                                    value="<?php echo $tinfo[0]['tname'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Student's Name (In Bengali)</label>
+                            <label class="col-form-label pl-3">Teacher's/Staff's Name (In Bengali)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="stnameben"
-                                    value="<?php echo $tinfo[0]['tnameb']; ?>" />
+                                <input type="text" class="form-control" id="tnameb"
+                                    value="<?php echo $tinfo[0]['tnameb'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Slot</label>
+                            <div class="col-12">
+                                <div id="secn" class="input-control select full-size error">
+                                    <select id="slot" name="sectionname" class="form-control text-white">
+                                        <option value=""></option>
+                                        <?php
+                                        $sql000 = "SELECT * FROM slots where sccode='$sccode'  order by slotname";
+                                        $resulti = $conn->query($sql000);
+                                        if ($resulti->num_rows > 0) {
+                                            while ($row000 = $resulti->fetch_assoc()) {
+                                                $slotname = $row000["slotname"];
+                                                if ($slotname == $tinfo[0]['slots'] ?? '') {
+                                                    $selsl = 'selected';
+                                                } else {
+                                                    $selsl = '';
+                                                }
+                                                echo '<option value="' . $slotname . '" ' . $selsl . ' >' . $slotname . '</option>';
+                                            }
+                                        }
+
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Disignation</label>
+                            <div class="col-12">
+                                <div id="" class="input-control select full-size error">
+                                    <select id="desig" name="sectionname" class="form-control text-white">
+                                        <option value=""></option>
+                                        <?php
+                                        $sql000 = "SELECT * FROM designation  order by ranks";
+                                        $resulti = $conn->query($sql000);
+                                        // $conn -> close();
+                                        if ($resulti->num_rows > 0) {
+                                            while ($row000 = $resulti->fetch_assoc()) {
+                                                $destitle = $row000["title"];
+                                                if ($destitle == $tinfo[0]['position'] ?? '') {
+                                                    $selsec = 'selected';
+                                                } else {
+                                                    $selsec = '';
+                                                }
+                                                echo '<option value="' . $destitle . '" ' . $selsec . ' >' . $destitle . '</option>';
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Subject</label>
+                            <div class="col-12">
+                                <div id="secn" class="input-control select full-size error">
+                                    <select id="subj" name="sectionname" class="form-control text-white">
+                                        <option value=""></option>
+                                        <?php
+                                        $sql000 = "SELECT * FROM subjects  order by subcode";
+                                        $resulti = $conn->query($sql000);
+                                        // $conn -> close();
+                                        if ($resulti->num_rows > 0) {
+                                            while ($row000 = $resulti->fetch_assoc()) {
+                                                $subname = $row000["subject"];
+                                                if ($subname == $tinfo[0]['subjects'] ?? '') {
+                                                    $selsub = 'selected';
+                                                } else {
+                                                    $selsub = '';
+                                                }
+                                                echo '<option value="' . $subname . '" ' . $selsub . ' >' . $subname . '</option>';
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Gender</label>
+                            <div class="col-12">
+                                <select id="gender" name="gender" class="form-control text-white">
+                                    <option value=""></option>
+                                    <option value="Male" <?php if ($tinfo[0]['gender'] == 'Male') {
+                                        echo 'selected';
+                                    } ?>>
+                                        Male</option>
+                                    <option value="Female" <?php if ($tinfo[0]['gender'] == 'Female') {
+                                        echo 'selected';
+                                    } ?>>
+                                        Femal</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Mobile Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="mob"
+                                    value="<?php echo $tinfo[0]['mobile'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Email Address</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="email"
+                                    value="<?php echo $tinfo[0]['email'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row"> <!--   Class/Roll Block -->
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
                 <div class="row">
+
+
+
+
+
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">NID Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="nid"
+                                    value="<?php echo $tinfo[0]['nid'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Date of Birth</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="dob" placeholder="YYYY-MM-DD"
+                                    value="<?php echo $tinfo[0]['dob'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Religion</label>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select id="religion" name="religion" class="form-control text-white">
+                                            <option value=""></option>
+                                            <option value="Islam" <?php if ($tinfo[0]['religion'] == 'Islam') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Islam</option>
+                                            <option value="Hindu" <?php if ($tinfo[0]['religion'] == 'Hindu') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Hindu</option>
+                                            <option value="Christian" <?php if ($tinfo[0]['religion'] == 'Christian') {
+                                                echo 'selected';
+                                            } ?>>Christian</option>
+                                            <option value="Buddist" <?php if ($tinfo[0]['religion'] == 'Buddist') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Buddist</option>
+                                            <option value="Others" <?php if ($tinfo[0]['religion'] == 'Others') {
+                                                echo 'selected';
+                                            } ?>>
+                                                Others</option>
+                                        </select>
+
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-md btn-inverse-<?php echo $religion_check_color; ?>"
+                                                type="button">
+                                                <i class="mdi mdi-<?php echo $religion_check_icon; ?>"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Hide  -->
+                                <!-- <div id="the-basics" style="display:none;">
+                                    <input class="typeahead" type="text" placeholder="">
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Blood Group</label>
+                            <div class="col-12">
+                                <select id="bgroup" name="bgroup" class="form-control text-white">
+                                    <option value=""></option>
+
+
+                                    <option value="A+" <?php if ($tinfo[0]['bgroup'] == 'A+') {
+                                        echo 'selected';
+                                    } ?>> A+
+                                    </option>
+
+
+                                    <option value="A-" <?php if ($tinfo[0]['bgroup'] == 'A-') {
+                                        echo 'selected';
+                                    } ?>> A-
+                                    </option>
+                                    <option value="B+" <?php if ($tinfo[0]['bgroup'] == 'B+') {
+                                        echo 'selected';
+                                    } ?>> B+
+                                    </option>
+                                    <option value="B-" <?php if ($tinfo[0]['bgroup'] == 'B-') {
+                                        echo 'selected';
+                                    } ?>> B-
+                                    </option>
+                                    <option value="AB+" <?php if ($tinfo[0]['bgroup'] == 'AB+') {
+                                        echo 'selected';
+                                    } ?>>
+                                        AB+ </option>
+                                    <option value="AB-" <?php if ($tinfo[0]['bgroup'] == 'AB-') {
+                                        echo 'selected';
+                                    } ?>>
+                                        AB- </option>
+                                    <option value="O+" <?php if ($tinfo[0]['bgroup'] == 'O+') {
+                                        echo 'selected';
+                                    } ?>> O+
+                                    </option>
+                                    <option value="O-" <?php if ($tinfo[0]['bgroup'] == 'O-') {
+                                        echo 'selected';
+                                    } ?>> O-
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Father's Name</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="fname" value="<?php echo $fname; ?>"
-                                    onblur="ucword(this.id);" />
+                                <input type="text" class="form-control" id="fname"
+                                    value="<?php echo $tinfo[0]['fname'] ?? ''; ?>" onblur="ucword(this.id);" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Profession</label>
+                            <label class="col-form-label pl-3">Mother's Name</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="fprof" value="<?php echo $fprof; ?>"
-                                    onblur="ucword(this.id);" />
+                                <input type="text" class="form-control" id="mname"
+                                    value="<?php echo $tinfo[0]['mname'] ?? ''; ?>" onblur="ucword(this.id);" />
                             </div>
                         </div>
                     </div>
+
+
+
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Mobile Number</label>
+                            <label class="col-form-label pl-3">Spouse</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="fmobile" value="<?php echo $fmobile; ?>" />
+                                <input type="text" class="form-control" id="sname"
+                                    value="<?php echo $tinfo[0]['spouse'] ?? ''; ?>" onblur="ucword(this.id);" />
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">NID Number</label>
+                            <label class="col-form-label pl-3">Emergency Mobile Number</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="fnid" value="<?php echo $fnid; ?>" />
+                                <input type="text" class="form-control" id="emergency"
+                                    value="<?php echo $tinfo[0]['emergency'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Mother's Name</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="mname" value="<?php echo $mname; ?>"
-                                    onblur="ucword(this.id);" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Profession</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="mprof" value="<?php echo $mprof; ?>"
-                                    onblur="ucword(this.id);" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Mobile Number</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="mmobile" value="<?php echo $mmobile; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">NID Number</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="mnid" value="<?php echo $mnid; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -209,7 +484,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Addree Line 1 / Village</label>
                             <div class="col-12">
                                 <input type="text" list="village" class="form-control" id="previll"
-                                    value="<?php echo $previll; ?>" />
+                                    value="<?php echo $tinfo[0]['previll'] ?? ''; ?>" />
                                 <datalist id="village">
                                     <?php
                                     $sql000 = "SELECT previll FROM students where sccode='$sccode'  group by previll order by previll";
@@ -230,7 +505,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Address Line 2 / PO</label>
                             <div class="col-12">
                                 <input type="text" list="postoffice" class="form-control" id="prepo"
-                                    value="<?php echo $prepo; ?>" />
+                                    value="<?php echo $tinfo[0]['prepo'] ?? ''; ?>" />
                                 <datalist id="postoffice">
                                     <?php
                                     $sql000 = "SELECT prepo FROM students where sccode='$sccode'  group by prepo order by prepo";
@@ -251,7 +526,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Upazila/Police Station</label>
                             <div class="col-12">
                                 <input type="text" list="police" class="form-control" id="preps"
-                                    value="<?php echo $preps; ?>" />
+                                    value="<?php echo $tinfo[0]['preps'] ?? ''; ?>" />
                                 <datalist id="police">
                                     <?php
                                     $sql000 = "SELECT preps FROM students where sccode='$sccode'  group by preps order by preps";
@@ -272,7 +547,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">District</label>
                             <div class="col-12">
                                 <input type="text" list="jila" class="form-control" id="predist"
-                                    value="<?php echo $predist; ?>" />
+                                    value="<?php echo $tinfo[0]['predist'] ?? ''; ?>" />
                                 <datalist id="jila">
                                     <?php
                                     $sql000 = "SELECT predist FROM students where sccode='$sccode'  group by predist order by predist";
@@ -293,7 +568,7 @@ echo $dismsg; ?>">
 
 
                 <h4 class="text-muted font-weight-normal">
-                    Present Address
+                    Permanent Address
                 </h4>
 
                 <div class="row">
@@ -301,7 +576,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Addree Line 1 / Village</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="pervill" value="<?php echo $pervill; ?>" />
+                                <input type="text" class="form-control" id="pervill"
+                                    value="<?php echo $tinfo[0]['pervill'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
@@ -309,7 +585,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Address Line 2 / PO</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="perpo" value="<?php echo $perpo; ?>" />
+                                <input type="text" class="form-control" id="perpo"
+                                    value="<?php echo $tinfo[0]['perpo'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
@@ -317,7 +594,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Upazila/Police Station</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="perps" value="<?php echo $perps; ?>" />
+                                <input type="text" class="form-control" id="perps"
+                                    value="<?php echo $tinfo[0]['perps'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
@@ -325,7 +603,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">District</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="perdist" value="<?php echo $perdist; ?>" />
+                                <input type="text" class="form-control" id="perdist"
+                                    value="<?php echo $tinfo[0]['perdist'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
@@ -341,151 +620,43 @@ echo $dismsg; ?>">
         <div class="card">
             <div class="card-body">
                 <div class="row">
+
+
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Date of Birth</label>
+                            <label class="col-form-label pl-3">MPO Index</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="dob" placeholder="YYYY-MM-DD"
-                                    value="<?php echo $dob; ?>" />
+                                <input type="text" class="form-control" id="mpoindex"
+                                    value="<?php echo $tinfo[0]['mpoindex'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">TIN Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="tin"
+                                    value="<?php echo $tinfo[0]['tin'] ?? ''; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Religion</label>
+                            <label class="col-form-label pl-3">First Joining Date</label>
                             <div class="col-12">
-
-
-
-
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select id="religion" name="religion" class="form-control text-white">
-                                            <option value=""></option>
-                                            <option value="Islam" <?php if ($religion == 'Islam') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Islam</option>
-                                            <option value="Hindu" <?php if ($religion == 'Hindu') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Hindu</option>
-                                            <option value="Christian" <?php if ($religion == 'Christian') {
-                                                echo 'selected';
-                                            } ?>>Christian</option>
-                                            <option value="Buddist" <?php if ($religion == 'Buddist') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Buddist</option>
-                                            <option value="Others" <?php if ($religion == 'Others') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Others</option>
-                                        </select>
-
-
-                                        <div class="input-group-append">
-                                            <button class="btn btn-md btn-inverse-<?php echo $religion_check_color; ?>"
-                                                type="button">
-                                                <i class="mdi mdi-<?php echo $religion_check_icon; ?>"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Hide  -->
-                                <!-- <div id="the-basics" style="display:none;">
-                                    <input class="typeahead" type="text" placeholder="">
-                                </div> -->
+                                <input type="date" class="form-control" id="firstjoin"
+                                    value="<?php echo $tinfo[0]['fjdate']; ?>" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Birth Registration Number</label>
+                            <label class="col-form-label pl-3">Joining Date (This Institute)</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="brn" value="<?php echo $brn; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Gender</label>
-                            <div class="col-12">
-                                <select id="gender" name="gender" class="form-control text-white">
-                                    <option value=""></option>
-                                    <option value="Boy" <?php if ($gender == 'Boy') {
-                                        echo 'selected';
-                                    } ?>>
-                                        Boy</option>
-                                    <option value="Girl" <?php if ($gender == 'Girl') {
-                                        echo 'selected';
-                                    } ?>>
-                                        Girl</option>
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Blood Group</label>
-                            <div class="col-12">
-                                <select id="bgroup" name="bgroup" class="form-control text-white">
-                                    <option value=""></option>
-                                    <option value="A+" <?php if ($bgroup == 'A+') {
-                                        echo 'selected';
-                                    } ?>> A+ </option>
-                                    <option value="A-" <?php if ($bgroup == 'A-') {
-                                        echo 'selected';
-                                    } ?>> A- </option>
-                                    <option value="B+" <?php if ($bgroup == 'B+') {
-                                        echo 'selected';
-                                    } ?>> B+ </option>
-                                    <option value="B-" <?php if ($bgroup == 'B-') {
-                                        echo 'selected';
-                                    } ?>> B- </option>
-                                    <option value="AB+" <?php if ($bgroup == 'AB+') {
-                                        echo 'selected';
-                                    } ?>> AB+ </option>
-                                    <option value="AB-" <?php if ($bgroup == 'AB-') {
-                                        echo 'selected';
-                                    } ?>> AB- </option>
-                                    <option value="O+" <?php if ($bgroup == 'O+') {
-                                        echo 'selected';
-                                    } ?>> O+ </option>
-                                    <option value="O-" <?php if ($bgroup == 'O-') {
-                                        echo 'selected';
-                                    } ?>> O- </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Disability</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="disables"
-                                    value="<?php echo $disables; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Height (CMs)</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="height" value="<?php echo $height; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Weight (KGs)</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="weight" value="<?php echo $weight; ?>" />
+                                <input type="date" class="form-control" id="thisjoin"
+                                    value="<?php echo $tinfo[0]['jdate']; ?>" />
                             </div>
                         </div>
                     </div>
@@ -496,7 +667,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" hidden> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -589,7 +760,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" hidden> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -638,7 +809,7 @@ echo $dismsg; ?>">
     </div>
 </div>
 
-<div class="row"> <!--   Class/Roll Block -->
+<div class="row" hidden> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -697,7 +868,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Photo ID</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="photoid" value="<?php echo $photoid; ?>" />
+                                <input type="text" class="form-control" id="photoid" value="<?php ; ?>" disabled />
                             </div>
                         </div>
                     </div>
@@ -705,7 +876,8 @@ echo $dismsg; ?>">
                         <div class="form-group row text-center">
 
                             <?php
-                            $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
+                            $stphotopath = "https://eimbox.com/teacher/" . $tid . ".jpg";
+                            $stphotopath = "../teacher/" . $tid . ".jpg";
                             // $file_headers = @get_headers($stphotopath);
                             // if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
                             //     $stphotopath = "https://eimbox.com/students/noimg.jpg";
@@ -733,8 +905,8 @@ echo $dismsg; ?>">
                             <div class="col-12">
 
                                 <?php
-                                $datamon = 'student';
-                                $dest_file_name = $stid . '.jpg';
+                                $datamon = 'teacher';
+                                $dest_file_name = $tid . '.jpg';
                                 include 'ajax-upload.php';
                                 ?>
                             </div>
@@ -744,9 +916,11 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3 middle"><br><br>&nbsp;</label>
                             <div class="col-12">
+                                <?php if($tid > 0) { ?>
                                 <button type="submit" id="savest" name="savest" class="btn btn-inverse-success pt-2"
-                                    onclick="savestudent();"><?php echo $btntext; ?></button>
-                                <div id="batchbatch"></div>
+                                    onclick="upd();"><?php echo $btntext; ?></button>
+                                <div id="px"></div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -768,6 +942,18 @@ echo $dismsg; ?>">
 <?php
 include 'footer.php';
 ?>
+<script>
+    var tidd = '<?php echo $tid; ?>';
+    if (tidd == 0) {
+        $("#modalbox").click();
+    }
+
+    function modal() {
+        var x = document.getElementById("modaldata").value;
+        window.location.href = 'hr-edit.php?tid=' + x;
+    }
+</script>
+
 
 <script>
     document.getElementById('stnameeng').focus();
@@ -787,24 +973,6 @@ include 'footer.php';
         savestudent();
     }
 
-    function fetchsection() {
-        var classname = document.getElementById("classname").value;
-        var infor = "classname=" + classname;
-        $("#secn").html("");
-        $.ajax({
-            type: "POST",
-            url: "backend/fetch-section.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#secn').html('<span class="mif-spinner3 mif-ani-pulse"></span>');
-            },
-            success: function (html) {
-                $("#secn").html(html);
-            }
-        });
-    }
-
     function sameadd() {//*********************************************** */
         document.getElementById("pervill").value = document.getElementById("previll").value;
         document.getElementById("perpo").value = document.getElementById("prepo").value;
@@ -812,139 +980,12 @@ include 'footer.php';
         document.getElementById("perdist").value = document.getElementById("predist").value;
     }
 
-    function guarf() {//******************************************** */
-        document.getElementById("guarname").value = document.getElementById("fname").value;
-        document.getElementById("guaradd").value = document.getElementById("previll").value;
-        document.getElementById("guarrelation").value = "Father";
-        document.getElementById("guarmobile").value = document.getElementById("fmobile").value;
-    }
 
-    function guarm() {//************************************ */
-        document.getElementById("guarname").value = document.getElementById("mname").value;
-        document.getElementById("guaradd").value = document.getElementById("previll").value;
-        document.getElementById("guarrelation").value = "Mother";
-        document.getElementById("guarmobile").value = document.getElementById("mmobile").value;
-    }
+
+
 </script>
 
-<script>
-    function savestudent() {
 
-        // Including Photo Upload Function
-        var filelist = document.getElementById("files").value;
-        if (filelist == '') {
-            console.log("file not uploaded");
-        } else {
-            var btn = document.getElementById("uploadfile");
-            btn.click();
-        }
-
-        //    document.uploadform.submit();
-
-        var classname = document.getElementById("classname").value;
-        var sectionname = document.getElementById("sectionname").value;
-        var rollno = document.getElementById("rollno").value;
-        var stid = document.getElementById("stid").value;
-        var stnameeng = document.getElementById("stnameeng").value;
-        var stnameben = document.getElementById("stnameben").value;
-
-        var fname = document.getElementById("fname").value;
-        var fprof = document.getElementById("fprof").value;
-        var fmobile = document.getElementById("fmobile").value;
-        var fnid = document.getElementById("fnid").value;
-
-        var mname = document.getElementById("mname").value;
-        var mprof = document.getElementById("mprof").value;
-        var mmobile = document.getElementById("mmobile").value;
-        var mnid = document.getElementById("mnid").value;
-
-        var previll = document.getElementById("previll").value;
-        var prepo = document.getElementById("prepo").value;
-        var preps = document.getElementById("preps").value;
-        var predist = document.getElementById("predist").value;
-
-        var pervill = document.getElementById("pervill").value;
-        var perpo = document.getElementById("perpo").value;
-        var perps = document.getElementById("perps").value;
-        var perdist = document.getElementById("perdist").value;
-
-        var dob = document.getElementById("dob").value;
-        var religion = document.getElementById("religion").value;
-        var brn = document.getElementById("brn").value;
-        var gender = document.getElementById("gender").value;
-
-        var guarname = document.getElementById("guarname").value;
-        var guaradd = document.getElementById("guaradd").value;
-        var guarrelation = document.getElementById("guarrelation").value;
-        var guarmobile = document.getElementById("guarmobile").value;
-
-        var tcno = document.getElementById("tcno").value;
-        var preins = document.getElementById("preins").value;
-        var preinsadd = document.getElementById("preinsadd").value;
-        var doa = document.getElementById("doa").value;
-        var photoid = document.getElementById("photoid").value;
-        // var dopp = document.getElementById("dopp").value;
-
-        var sscyear = document.getElementById("sscyear").value;
-        var sscregd = document.getElementById("sscregd").value;
-        var sscroll = document.getElementById("sscroll").value;
-        var sscresult = document.getElementById("sscresult").value;
-
-        var bgroup = document.getElementById("bgroup").value;
-        var disables = document.getElementById("disables").value;
-        var height = document.getElementById("height").value;
-        var weight = document.getElementById("weight").value;
-        var guarnid = document.getElementById("guarnid").value;
-
-        if (stid == "") {
-            // if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
-            //     if (stid == "") { alert("You must search a student first after input class and roll no."); } else { }
-            //     if (classname == "") { alert("You must select a class first."); } else { }
-            //     if (isNaN(rollno) || rollno == "") { alert("You must enter a numeric value as roll."); } else { }
-            //     if (stnameeng == "") { alert("You must enter Student Name in English."); } else { }
-            //     if (dob == "") { alert("You must select his/her Birth Date."); } else { }
-            //     if (religion == "") { alert("You must select his/her religion"); } else { }
-            //     if (gender == "") { alert("You must select his/her gender"); } else { }
-            //     if (guarname == "") { alert("You must enter his/her guardian's name."); } else { }
-            //     if (guaradd == "") { alert("You must enter guardian's address."); } else { }
-            //     if (guarrelation == "") { alert("You must enter guardian's relation"); } else { }
-            //     if (guarmobile == "") { alert("You must enter a 11 digits valid guardian's mobile number."); } else { }
-            //     if (doa == "") { alert("You must select admission date."); } else { }
-        }
-        else {
-            var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben="
-                + stnameben + "&fname=" + fname + "&fprof=" + fprof + "&fmobile=" + fmobile + "&mname="
-                + mname + "&mprof=" + mprof + "&mmobile=" + mmobile + "&previll=" + previll + "&prepo="
-                + prepo + "&preps=" + preps + "&predist=" + predist + "&pervill=" + pervill + "&perpo="
-                + perpo + "&perps=" + perps + "&perdist=" + perdist + "&dob=" + dob + "&religion="
-                + religion + "&brn=" + brn + "&gender=" + gender + "&guarname=" + guarname + "&guaradd="
-                + guaradd + "&guarrelation=" + guarrelation + "&guarmobile=" + guarmobile + "&tcno="
-                + tcno + "&preins=" + preins + "&preinsadd=" + preinsadd + "&doa=" + doa + "&photoid="
-                + photoid + "&sscyear=" + sscyear + "&sscregd=" + sscregd + "&sscroll="
-                + sscroll + "&sscresult=" + sscresult + "&fnid=" + fnid + "&mnid=" + mnid
-                + "&bgroup=" + bgroup + "&height=" + height + "&weight=" + weight + "&guarnid=" + guarnid + "&disables=" + disables
-
-
-                ;
-            $("#batchbatch").html("");
-
-            $.ajax({
-                type: "POST",
-                url: "backend/save-student.php",
-                data: infor,
-                cache: false,
-                beforeSend: function () {
-                    $('#batchbatch').html('<span class="">...</span>');
-                },
-                success: function (html) {
-                    $("#batchbatch").html(html);
-                    var nextroll = parseInt(rollno) + 1;
-                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
-                }
-            });
-        }
-    }
-</script>
 <script>
     function fetchstudent() {
         var classname = document.getElementById("classname").value;
@@ -992,66 +1033,206 @@ include 'footer.php';
     }
 </script>
 
+
 <script>
-    // Typeahead Javascript Select......................................
-    (function ($) {
-        'use strict';
-        var substringMatcher = function (strs) {
-            return function findMatches(q, cb) {
-                var matches, substringRegex;
+    function upd() {
 
-                // an array that will be populated with substring matches
-                matches = [];
+        var filelist = document.getElementById("files").value;
+        if (filelist == '') {
+            console.log("file not uploaded");
+        } else {
+            var btn = document.getElementById("uploadfile");
+            btn.click();
+        }
 
-                // regex used to determine if a string contains the substring `q`
-                var substrRegex = new RegExp(q, 'i');
 
-                // iterate through the pool of strings and for any string that
-                // contains the substring `q`, add it to the `matches` array
-                for (var i = 0; i < strs.length; i++) {
-                    if (substrRegex.test(strs[i])) {
-                        matches.push(strs[i]);
-                    }
-                }
 
-                cb(matches);
-            };
-        };
+        // 		var = document.getElementById("").value;
+        var tid = document.getElementById("tid").value;
+        var tnamee = document.getElementById("tnamee").value;
+        var tnameb = document.getElementById("tnameb").value;
+        var des = document.getElementById("desig").value;
+        var slot = document.getElementById("slot").value;
+        var subj = document.getElementById("subj").value;
+        var gender = document.getElementById("gender").value;
+        var mob = document.getElementById("mob").value;
+        var email = document.getElementById("email").value;
 
-        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-            'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-            'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-            'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-            'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-            'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-            'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-            'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-            'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ];
 
-        $('#the-basics .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'states',
-            source: substringMatcher(states)
+        var nid = document.getElementById("nid").value; ///
+        var dob = document.getElementById("dob").value;
+        var religion = document.getElementById("religion").value;//
+        var bgroup = document.getElementById("bgroup").value;//
+
+        var fname = document.getElementById("fname").value;//
+        var mname = document.getElementById("mname").value;//
+        var sname = document.getElementById("sname").value;//
+        var emergency = document.getElementById("emergency").value;//
+
+        var previll = document.getElementById("previll").value;//
+        var prepo = document.getElementById("prepo").value;//
+        var preps = document.getElementById("preps").value;//
+        var predist = document.getElementById("predist").value;//
+
+        var pervill = document.getElementById("pervill").value;//
+        var perpo = document.getElementById("perpo").value;//
+        var perps = document.getElementById("perps").value;//
+        var perdist = document.getElementById("perdist").value;//
+
+
+        var mpoindex = document.getElementById("mpoindex").value;
+        var tin = document.getElementById("tin").value;//
+        var thisjoin = document.getElementById("thisjoin").value;
+        var firstjoin = document.getElementById("firstjoin").value;
+
+
+
+
+
+        /*
+                var accno = document.getElementById("accno").value;
+                var bname = document.getElementById("bname").value;
+                var bbr = document.getElementById("bbr").value;
+                var rno = document.getElementById("rno").value;
+        
+                var accno2 = document.getElementById("accnosch").value;
+                var bname2 = document.getElementById("bnamesch").value;
+                var bbr2 = document.getElementById("bbrsch").value;
+                var rno2 = document.getElementById("rnosch").value;
+        
+                var accno3 = document.getElementById("accnopf").value;
+                var bname3 = document.getElementById("bnamepf").value;
+                var bbr3 = document.getElementById("bbrpf").value;
+                var rno3 = document.getElementById("rnopf").value;
+        
+        
+                var paycode = document.getElementById("paycode").value;
+                var pscale = document.getElementById("pscale").value;
+                var basic = document.getElementById("basic").value;
+                var inten = document.getElementById("inten").value;
+                var hra = document.getElementById("hra").value;
+                var ma = document.getElementById("ma").value;
+                var arrea = document.getElementById("arrea").value;
+                var welfare = document.getElementById("welfare").value;
+                var retire = document.getElementById("retire").value;
+                var net = document.getElementById("net").value;
+                var salary = document.getElementById("salary").value;
+                var mpa = document.getElementById("mpa").value;
+                var travel = document.getElementById("travel").value;
+                var ma2 = document.getElementById("ma2").value;
+                var exam = document.getElementById("exam").value;
+                var fest = document.getElementById("fest").value;
+        
+                var pf = document.getElementById("pf").value;
+                var net2 = document.getElementById("net2").value;
+        */
+
+
+
+        var infor = "tid=" + tid
+            + "&tnamee=" + tnamee + "&tnameb=" + tnameb + "&des=" + des + "&slot=" + slot + "&subj=" + subj + "&gender=" + gender + "&mob=" + mob + "&email=" + email
+            + "&nid=" + nid + "&dob=" + dob + "&religion=" + religion + "&bgroup=" + bgroup
+            + "&fname=" + fname + "&mname=" + mname + "&sname=" + sname + "&emergency=" + emergency
+            + "&previll=" + previll + "&prepo=" + prepo + "&preps=" + preps + "&predist=" + predist
+            + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist
+            + "&mpoindex=" + mpoindex + "&tin=" + tin + "&thisjoin=" + thisjoin + "&firstjoin=" + firstjoin
+
+            //+ "&dob=" + dob
+            // + "&paycode=" + paycode + "&pscale=" + pscale + "&basic=" + basic + "&inten=" + inten + "&hra=" + hra + "&ma=" + ma + "&arrea=" + arrea + "&welfare=" + welfare + "&retire=" + retire + "&net=" + net
+            // + "&salary=" + salary + "&mpa=" + mpa + "&travel=" + travel + "&ma2=" + ma2 + "&exam=" + exam + "&fest=" + fest + "&pf=" + pf + "&net2=" + net2
+
+            // + "&accno=" + accno + "&bname=" + bname + "&bbr=" + bbr + "&rno=" + rno
+            // + "&accno2=" + accno2 + "&bname2=" + bname2 + "&bbr2=" + bbr2 + "&rno2=" + rno2
+            // + "&accno3=" + accno3 + "&bname3=" + bname3 + "&bbr3=" + bbr3 + "&rno3=" + rno3
+
+
+
+
+            ;
+        // alert(infor);
+        $("#px").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/update-teacher.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#px').html('<span class="">Updating...</span>');
+            },
+            success: function (html) {
+                $("#px").html(html);
+                window.location.href = 'hr-list.php';
+            }
         });
-        // constructs the suggestion engine
-        var states = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            // `states` is an array of state names defined in "The Basics"
-            local: states
-        });
+    }
+</script>
 
-        $('#bloodhound .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'states',
-            source: states
-        });
-    })(jQuery);
+
+<script>
+    function calc() {
+        var paycode = parseInt(document.getElementById("paycode").value);
+        var pscale = parseInt(document.getElementById("pscale").value) * 1;
+
+        var basic = parseInt(document.getElementById("basic").value);
+        var inten = parseInt(document.getElementById("inten").value);
+        var hra = parseInt(document.getElementById("hra").value);
+        var ma = parseInt(document.getElementById("ma").value);
+        var arrea = parseInt(document.getElementById("arrea").value);
+
+        var wel = basic * 0.04;
+        var ret = basic * 0.06;
+        document.getElementById("welfare").value = wel;
+        document.getElementById("retire").value = ret;
+
+        var welfare = parseInt(document.getElementById("welfare").value);
+        var retire = parseInt(document.getElementById("retire").value);
+
+        var mot = basic + inten + hra + ma + arrea - wel - ret;
+        document.getElementById("net").value = Math.round(mot);
+
+        var net = parseInt(document.getElementById("net").value);
+
+
+        var salary = parseInt(document.getElementById("salary").value);
+        var mpa = parseInt(document.getElementById("mpa").value);
+        var travel = parseInt(document.getElementById("travel").value);
+        var ma2 = parseInt(document.getElementById("ma2").value);
+        var exam = parseInt(document.getElementById("exam").value);
+        var fest = parseInt(document.getElementById("fest").value);
+
+        var thisjoin = document.getElementById("thisjoin").value;
+        thisjoin = new Date(thisjoin);
+        const aj = new Date();
+        var year1 = aj.getFullYear();
+        var month1 = aj.getMonth();
+
+        var year2 = thisjoin.getFullYear();
+
+        var month2 = thisjoin.getMonth();
+        var mon = (year2 - year1) * 12 + (month2 - month1) + 1;
+        mon = mon * -1;
+        var ppf = 0;
+        if (mon >= 24) {
+            var ppf = pscale * 0.05;
+        }
+        // 		alert(mon);
+        document.getElementById("pf").value = ppf;
+        var pf = parseInt(document.getElementById("pf").value);
+
+        var scmot = parseInt(salary + mpa + travel + ma2 + exam + fest - pf);
+        document.getElementById("net2").value = scmot;
+        // 		var net2 = document.getElementById("net2").value;
+
+
+
+
+    }
+
+    function calc2() {
+        var ppp = document.getElementById("paycode").value;
+        var tk = document.getElementById("pcs" + ppp).innerHTML;
+        document.getElementById("pscale").value = tk;
+        calc();
+    }
 </script>

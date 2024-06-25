@@ -45,8 +45,8 @@ if ($result0rttf->num_rows > 0) {
 
 
 
-
-$sql0 = "SELECT * FROM classschedule where sccode = '$sccode' and sessionyear='$sy' and timestart<'$cur' and timeend>'$cur';";
+$ccur = date('H:i:s');
+$sql0 = "SELECT * FROM classschedule where sccode = '$sccode' and sessionyear='$sy' and timestart<='$ccur' and timeend>='$ccur';";
 $result0rtx = $conn->query($sql0);
 if ($result0rtx->num_rows > 0) {
     while ($row0 = $result0rtx->fetch_assoc()) {
