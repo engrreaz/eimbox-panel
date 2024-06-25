@@ -414,7 +414,7 @@ $supernav = array('account-settings.php');
                       Admit Card</a></li>
                   <li class="nav-item"> <a class="nav-link" href="exam-routine.php"><i class="mdi mdi-timer"></i>&nbsp; Exam
                       Routine</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="seatplan.php">Hall Setup</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="seatplan.php">Hall Setup</a></li> -->
                 </ul>
               </div>
             </li>
@@ -428,13 +428,13 @@ $supernav = array('account-settings.php');
               </a>
               <div class="collapse" id="result">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="access-denied.php">Marks/Assessment Entry</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="access-denied.php">Marks/Assessment Entry</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="result-pibi-sheet.php"><i
                         class="mdi mdi-triangle"></i>&nbsp; PI/BI Sheet</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Result Processing</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Tabulating Sheet</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Transcript</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Report Card</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Result Processing</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Tabulating Sheet</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transcript</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Report Card</a></li> -->
                 </ul>
               </div>
             </li>
@@ -473,12 +473,12 @@ $supernav = array('account-settings.php');
               </a>
               <div class="collapse" id="finance">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
                   <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li> -->
                 </ul>
               </div>
             </li>
@@ -499,7 +499,7 @@ $supernav = array('account-settings.php');
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Accounts</a></li>
                   <li class="nav-item"> <a class="nav-link" href="bank-account.php">Accounts Transactions</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li> -->
                 </ul>
               </div>
             </li>
@@ -530,10 +530,10 @@ $supernav = array('account-settings.php');
               </a>
               <div class="collapse" id="library">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href=".php">Book Issue & Return</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Book Tracker</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Catalogue management</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Fine/Overdue Settings</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Book Issue & Return</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Book Tracker</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Catalogue management</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Fine/Overdue Settings</a></li> -->
                 </ul>
               </div>
             </li>
@@ -547,9 +547,9 @@ $supernav = array('account-settings.php');
               </a>
               <div class="collapse" id="transport">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href=".php">Student Route Manager</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Location Tracking</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Transport Management</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Student Route Manager</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Location Tracking</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transport Management</a></li> -->
                 </ul>
               </div>
             </li>
@@ -563,13 +563,13 @@ $supernav = array('account-settings.php');
               </a>
               <div class="collapse" id="hostel">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="under-construction.php">Room Allocation</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Hostel Attendance</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Meal Management</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Event & Activities</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Room Settings</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Management Authority</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Payments & Other Setup</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="under-construction.php">Room Allocation</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Hostel Attendance</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Meal Management</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Event & Activities</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Room Settings</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Management Authority</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Payments & Other Setup</a></li> -->
                 </ul>
               </div>
             </li>
@@ -585,17 +585,17 @@ $supernav = array('account-settings.php');
               <div class="collapse" id="modules">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
                   <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Notice Manager</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Voter List for SMC</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Voter List for St. Cabinet</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Notice Manager</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Voter List for SMC</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Voter List for St. Cabinet</a></li> -->
                 </ul>
               </div>
             </li>
@@ -614,7 +614,7 @@ $supernav = array('account-settings.php');
                   <li class="nav-item"> <a class="nav-link" href="regdbook.php">Register List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="refbook.php">Reference Book</a></li>
                   <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columnar Cash Book</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Transfer Certificate</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transfer Certificate</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>
                 </ul>
               </div>
@@ -632,28 +632,28 @@ $supernav = array('account-settings.php');
                   <li class="nav-item"> <a class="nav-link" href="live-attendance.php">Live Attendance</a></li>
                   <li class="nav-item"> <a class="nav-link" href="report-daily.php">Daily Report</a></li>
                   <li class="nav-item"> <a class="nav-link" href="report-today-collection.php">Today's Collection</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Monthly Collection</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Monthly Collection</a></li> -->
 
-                  <li class="nav-item"> <a class="nav-link" href="#">Monthly Balance Sheet</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="#">Monthly Balance Sheet</a></li> -->
 
-                  <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="students-list.php"><i
                   class="mdi mdi-account"></i>&nbsp; Student's List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="student-dues-list.php"><i
                   class="mdi mdi-currency-try"></i>&nbsp; Student's Dues List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="#">Monthly Income-Expenditure</a></li>
 
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">All Transactions</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Collection</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Bank Report</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">Attendance Report</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">MPO Statement</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">All Transactions</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Collection</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Bank Report</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Attendance Report</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">MPO Statement</a></li> -->
 
-                  <li class="nav-item"> <a class="nav-link" href=".php">MY --------- </a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Collections</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">My Classes</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">MY --------- </a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Collections</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li> -->
+                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Classes</a></li> -->
                 </ul>
               </div>
             </li>
