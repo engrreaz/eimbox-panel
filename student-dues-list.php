@@ -44,7 +44,24 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
+$stprofile = array();
+$sql00 = "SELECT * FROM students where  sccode='$sccode' ";
+$result00 = $conn->query($sql00);
+if ($result00->num_rows > 0) {
+    while ($row00 = $result00->fetch_assoc()) {
+        $stprofile[] = $row00;
+    }
+}
 
+$stdues = array();
+$month = date('m');
+$sql0 = "SELECT stid, sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' group by stid";
+$result01x = $conn->query($sql0);
+if ($result01x->num_rows > 0) {
+    while ($row0 = $result01x->fetch_assoc()) {
+        $stdues[] = $row0;
+    }
+}
 
 ?>
 
@@ -111,7 +128,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="gox();">
+                                <select class="form-control text-white" id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -136,7 +153,7 @@ if (isset($_GET['addnew'])) {
 
 
 
-                    <div class="col-md-3">
+                    <div class="col-md-3" hidden>
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
@@ -161,9 +178,8 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Generate
-                                    Card</button>
+                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    Show Dues</button>
                             </div>
                         </div>
                     </div>
@@ -172,9 +188,8 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-info btn-block" style="" onclick="goprint();"><i
-                                        class="mdi mdi-eye"></i> Print
-                                    View</button>
+                                    class="btn btn-inverse-info btn-block p-2" style="" onclick="goprint();"><i
+                                        class="mdi mdi-printer"></i> Print  View</button>
                             </div>
                         </div>
                     </div>
@@ -204,7 +219,7 @@ if (isset($_GET['addnew'])) {
                 }
 
                 #main-table td {
-                    border: 1px solid black;
+                    border: 1px solid gray;
                 }
 
                 .txt-right {
@@ -262,28 +277,31 @@ if (isset($_GET['addnew'])) {
                         $four = $row0["fourth_subject"];
 
 
-                        $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid' LIMIT 1";
-                        $result00 = $conn->query($sql00);
-                        if ($result00->num_rows > 0) {
-                            while ($row00 = $result00->fetch_assoc()) {
-                                $neng = $row00["stnameeng"];
-                                $nben = $row00["stnameben"];
-                                $vill = $row00["previll"];
-                            }
+                        $indst = array_search($stid, array_column($stprofile, 'stid'));
+                        if ($indst != '') {
+                            $neng = $stprofile[$indst]["stnameeng"];
+                            $nben = $stprofile[$indst]["stnameben"];
+                            $vill = $stprofile[$indst]["previll"];
+                        } else {
+                            $neng = '';
+                            $nben = '';
+                            $vill = '';
+                        }
+
+                        $inddue = array_search($stid, array_column($stdues, 'stid'));
+                        if ($inddue != '') {
+                            $totaldues = $stdues[$inddue]["dues"];
+                            $tpaya = $stdues[$inddue]["paya"];
+                            $tpaid = $stdues[$inddue]["paid"];
+                        } else {
+                            $totaldues = 0;
+                            $tpaya = 0;
+                            $tpaid = 0;
                         }
 
                         //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
                 
-                        $month = date('m');
-                        $sql0 = "SELECT sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' and stid='$stid'";
-                        $result01x = $conn->query($sql0);
-                        if ($result01x->num_rows > 0) {
-                            while ($row0 = $result01x->fetch_assoc()) {
-                                $totaldues = $row0["dues"];
-                                $tpaya = $row0["paya"];
-                                $tpaid = $row0["paid"];
-                            }
-                        }
+                        
 
                         ?>
                         <tr>
@@ -330,6 +348,12 @@ if (isset($_GET['addnew'])) {
 
     <script>
         var uri = window.location.href;
+        document.getElementById('defbtn').innerHTML = 'Print Report';
+        document.getElementById('defmenu').innerHTML = '';
+        function defbtn() {
+            goprint();
+        }
+
         function reload() {
             window.location.href = uri;
         }

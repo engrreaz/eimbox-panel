@@ -17,6 +17,7 @@ if (isset($_GET['y'])) {
 } else {
     $year = 0;
 }
+
 if (isset($_GET['ref'])) {
     $refno = $_GET['ref'];
 } else {
@@ -27,7 +28,6 @@ if (isset($_GET['undef'])) {
 } else {
     $undef = 99;
 }
-
 
 $status = 0;
 
@@ -75,8 +75,8 @@ if ($result0x->num_rows > 0) {
                     <div class="col-md-6">
                         <div class="form-group row">
                             <div class="col-12">
-                                <h4><?php echo $fullname; ?></h4>
-                                <h5><?php echo $usr; ?></h5>
+                                <h4 class="text-primary"><?php echo $fullname; ?></h4>
+                                <h5 class="mb-0"><?php echo $usr; ?></h5>
                                 <small><?php echo $userlevel; ?></small>
                                 <br>
                                 <small>Linked ID # </small><code><?php echo $userid; ?></code>
@@ -102,11 +102,11 @@ if ($result0x->num_rows > 0) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h3 class="text-muted font-weight-normal text-center">
-                    Basic Information
+                <h3 class="text-muted font-weight-normal font-weight-bold">
+                    User Information
                 </h3>
                 <div class="row">
-                    <div class="table-responsive">
+                    <div class="table-responsive full-width">
                         <table class="table table-hover text-white">
 
                             <tbody>
@@ -118,8 +118,9 @@ if ($result0x->num_rows > 0) {
                                     while ($row0x = $result0x->fetch_assoc()) {
                                         $fullname = $row0x["profilename"];
                                         $cellno = $row0x["mobile"];
+                                        $pin = $row0x["fixedpin"];
                                     }
-                                } 
+                                }
                                 // $ = $row0x[""];
                                 ?>
                                 <tr>
@@ -143,12 +144,91 @@ if ($result0x->num_rows > 0) {
                                 </tr>
 
 
+                                <tr>
+                                    <td>Password :
+                                    </td>
+                                    <td>
+                                        <input type="password" class="form-control" id="pin" 
+                                            value="" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr hidden>
+                                    <td>Login Method :
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class=" d-flex">
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="" class="font-control " /> Gmail
+                                                            Login
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="" class="font-control " />
+                                                            Facebook
+                                                            Login
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="" class="font-control " /> QR
+                                                            Code
+                                                            Login
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="" class="font-control " /> Login
+                                                            with
+                                                            Token
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class=" d-flex">
+
+                                                    
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="" class="font-control " /> Login
+                                                            with
+                                                            Password
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="cellno"
+                                                                value="<?php echo $cellno; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+
 
                                 <tr>
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary" onclick="save();">Update Info</button>
+                                            <button class="btn btn-inverse-primary" onclick="save();">Update Info</button>
                                             &nbsp;&nbsp;&nbsp;
                                             <span id="gex"></span>
                                         </div>
@@ -201,7 +281,8 @@ include 'footer.php';
     function save() {
         var dispname = document.getElementById('dispname').value;
         var cellno = document.getElementById('cellno').value;
-        var infor = "dispname=" + dispname + "&cellno=" + cellno;
+        var pin = document.getElementById('pin').value;
+        var infor = "dispname=" + dispname + "&cellno=" + cellno + "&pin=" + pin;
 
         $("#gex").html("");
         $.ajax({

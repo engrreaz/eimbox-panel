@@ -74,7 +74,7 @@
           <i class="mdi mdi-email"></i>
           <span class="count bg-success"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown" hidden>
           <h6 class="p-3 mb-0">Messages</h6>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item preview-item">
@@ -116,7 +116,7 @@
           <span class="count bg-danger"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-          aria-labelledby="notificationDropdown">
+          aria-labelledby="notificationDropdown" hidden>
           <h6 class="p-3 mb-0">Notifications</h6>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item preview-item">
@@ -161,7 +161,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
           <div class="navbar-profile">
-            <img class="img-xs rounded-circle" src="<?php echo $pth; ?>" alt="">
+            <img class="img-xs rounded-circle" src="<?php echo $pth; ?>" alt="&nbsp;">
             <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php echo $fullname; ?></p>
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
@@ -170,8 +170,8 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item preview-item" href="my-profile.php">
             <div class="preview-thumbnail">
-              <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-settings text-success"></i>
+              <div class="preview-icon bg-dark rounded-circle p-2">
+                <i class="mdi mdi-account-circle mdi-24px p-2 mt-2 text-success"></i>
               </div>
             </div>
             <div class="preview-item-content">

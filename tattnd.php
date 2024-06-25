@@ -1,9 +1,6 @@
 <?php
 include 'header.php';
 
-
-
-
 if (isset($_GET['date'])) {
     $date = $_GET['date'];
 } else {
@@ -13,11 +10,8 @@ if (isset($_GET['date'])) {
 if (isset($_GET['tid'])) {
     $tid = $_GET['tid'];
 } else {
-    $tid = '';
+    $tid = '0';
 }
-
-
-
 ?>
 
 <h3 class="d-print-none">HRD Attendance</h3>
@@ -36,7 +30,8 @@ if (isset($_GET['tid'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" value="<?php echo $date;?>" >
+                                <input id="date" type="date" class="form-control" onchange="go();"
+                                    value="<?php echo $date; ?>">
                             </div>
                         </div>
                     </div>
@@ -45,21 +40,21 @@ if (isset($_GET['tid'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Teacher/Staff</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="tid" onchange="go();">
+                                <select class="form-control text-white" id="tidl" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT * FROM teacher where sccode='$sccode'  order by ranks, sl;";
                                     $result0x = $conn->query($sql0x);
                                     if ($result0x->num_rows > 0) {
                                         while ($row0x = $result0x->fetch_assoc()) {
-                                            $tids = $row0x["tids"];
+                                            $tids = $row0x["tid"];
                                             $tname = $row0x["tname"];
                                             if ($tid == $tids) {
                                                 $selcls = 'selected';
                                             } else {
                                                 $selcls = '';
                                             }
-                                            echo '<option value="' . $tid . '" ' . $selcls . ' >' . $tname . '</option>';
+                                            echo '<option value="' . $tids . '" ' . $selcls . ' >' . $tname . '</option>';
                                         }
                                     }
                                     ?>
@@ -69,32 +64,6 @@ if (isset($_GET['tid'])) {
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="form-group row" hidden>
-                            <label class="col-form-label pl-3">Section</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
-                                    <option value="">------</option>
-                                    <?php
-                                    $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
-                                    // echo $sql0x;
-                                    $result0r = $conn->query($sql0x);
-                                    if ($result0r->num_rows > 0) {
-                                        while ($row0x = $result0r->fetch_assoc()) {
-                                            $sec = $row0x["subarea"];
-                                            if ($sec == $sec2) {
-                                                $selsec = 'selected';
-                                            } else {
-                                                $selsec = '';
-                                            }
-                                            echo '<option value="' . $sec . '" ' . $selsec . ' >' . $sec . '</option>';
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
 
 
 
@@ -103,7 +72,7 @@ if (isset($_GET['tid'])) {
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-lg btn-outline-success btn-icon-text btn-block p-2" style=""
+                                    class="btn btn-lg btn-inverse-success btn-icon-text btn-block p-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye mdi-18px mt-2"></i> View Attendance</button>
                             </div>
                         </div>
@@ -194,39 +163,43 @@ if (isset($_GET['tid'])) {
 
 
         <?php
-        $cnt = 0;
-        $cntamt = 0;
-        $sql0 = "SELECT * FROM teacherattnd where adate='$date' and sccode='$sccode'  order by  id desc ";
+        $cnt = 1;
+        if ($tid > 0) {
+            $sql0 = "SELECT * FROM teacherattnd where tid='$tid' and sccode='$sccode'  order by  adate desc ";
+        } else {
+            $sql0 = "SELECT * FROM teacherattnd where adate='$date' and sccode='$sccode'  order by  id desc ";
+        }
         $result0 = $conn->query($sql0);
         if ($result0->num_rows > 0) {
             while ($row0 = $result0->fetch_assoc()) {
+                $id = $row0["id"];
                 $tid = $row0["tid"];
-
-
-
-                //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
-        
-
-
                 ?>
+                
                 <tr>
                     <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                         <?php
-                        echo $roll;
+                        echo $cnt;
                         ?>
                     </td>
+                    <td style="padding : 3px 10px; border:1px solid gray;"></td>
                     <td style="padding : 3px 10px; border:1px solid gray;">
                         <div class="ooo"><small><?php echo $tid; ?></small></div>
-                        <div class="ooo"><?php echo $stname; ?></div>
+                        <div class="ooo"><?php ; ?></div>
                     </td>
-                    
+                    <td style="padding : 3px 10px; border:1px solid gray;"></td>
+                    <td style="padding : 3px 10px; border:1px solid gray;"></td>
+                    <td style="padding : 3px 10px; border:1px solid gray;"></td>
+                    <td style="padding : 3px 10px; border:1px solid gray;"></td>
+                    <td style="padding : 3px 10px; border:1px solid gray;"></td>
+
                     <td style=" border:1px solid gray;">
-                        <div id="btn<?php echo $stid; ?>">
+                        <div id="btn<?php echo $id; ?>" hidden>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $stid; ?>)">
+                                <button type="button" class="btn btn-inverse-info" onclick="issue(<?php echo $id; ?>)">
                                     <i class="mdi mdi-book-open-page-variant"></i>
                                 </button>
-                                <button type="button" class="btn btn-inverse-warning" onclick="issuet(<?php echo $stid; ?>)">
+                                <button type="button" class="btn btn-inverse-warning" onclick="issuet(<?php echo $id; ?>)">
                                     <i class="mdi mdi-calendar"></i>
                                 </button>
                             </div>
@@ -234,6 +207,7 @@ if (isset($_GET['tid'])) {
                     </td>
                 </tr>
                 <?php
+                $cnt++;
             }
         } else {
             echo '<tr><td colspan="9"><i class="mdi mdi-close mdi-32px text-warning"></i> Data Not Found.</td></tr>';
@@ -276,10 +250,11 @@ include 'footer.php';
     }
 
     function go() {
-        var year = document.getElementById('year').value;
-        var cls = document.getElementById('cls').value;
-        var sec = document.getElementById('sec').value;
-        window.location.href = 'students-list.php?&cls=' + cls + '&sec=' + sec + '&year=' + year;
+        var date = document.getElementById('date').value;
+        var tid = document.getElementById('tidl').value;
+        var tail = '?date=' + date + '&tid=' + tid;
+        // alert(tail);
+        window.location.href = 'tattnd.php' + tail;
     }
 </script>
 

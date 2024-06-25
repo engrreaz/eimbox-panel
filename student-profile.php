@@ -181,7 +181,7 @@ echo $dismsg; ?>">
         <?php
     }
 
-    
+
 
 
 
@@ -253,7 +253,9 @@ echo $dismsg; ?>">
                     <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
-                                dddddddd
+                                <button class="btn btn-inverse-danger" onclick="del(<?php echo $stid; ?>);"  > Delete This
+                                    Student (<b>Permanent Delete</b>)</button>
+                                <span id="ssd"></span>
                             </div>
                         </div>
                     </div>
@@ -552,7 +554,7 @@ include 'footer.php';
                 success: function (html) {
                     $("#batchbatch").html(html);
                     var nextroll = parseInt(rollno) + 0;
-                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
+                    window.location.reload(); = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + nextroll;
                 }
             });
         }
@@ -562,34 +564,30 @@ include 'footer.php';
 </script>
 <script>
 
-    function fetchstudent() {
-        var classname = document.getElementById("classname").value;
-        var sectionname = document.getElementById("sectionname").value;
-        var rollno = document.getElementById("rollno").value;
-        var infor = "classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno;
-        //alert(infor);
-        $("#stinfo").html("");
+    function del(stid) {
+        var infor = "stid=" + stid;
+        // alert(infor);
+        $("#ssd").html("");
 
         $.ajax({
             type: "POST",
-            url: "backend/fetch-stid.php",
+            url: "backend/delete-student-record.php",
             data: infor,
             cache: false,
             beforeSend: function () {
-                $('#stinfo').html('<span class="mif-spinner4 mif-ani-pulse"></span>');
+                $('#ssd').html('<span class="mif-spinner4 mif-ani-pulse"></span>');
             },
             success: function (html) {
-                $("#stinfo").html(html);
-                var stid = document.getElementById("stinfo").innerHTML;
-                if (stid == '0') {
-                    window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + rollno;
-                } else {
-                    window.location.href = 'students-edit.php?stid=' + stid;
-                }
+                $("#ssd").html(html);
+                history.back()
+
 
             }
         });
     }
+
+</script>
+<script>
 
     function lastadd() {
         document.getElementById("previll").value = document.getElementById("vill").innerHTML;

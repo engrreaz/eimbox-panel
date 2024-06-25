@@ -145,11 +145,10 @@ if ($result00->num_rows > 0) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
-                                <button type="button" 
-                                    class="btn btn-inverse-success btn-block p-2" style=""
+                                <button type="button" class="btn btn-inverse-success btn-block p-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Generate
-                                    Card</button>
+                                    Show List
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -210,8 +209,12 @@ if ($result00->num_rows > 0) {
                             </style>
                         </head>
                         <div style="text-align: left;">
-                            Class : <b><?php echo $cls2; ?></b>.............
+
+                            Class : <b><?php echo $cls2; ?></b>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             Section : <b><?php echo $sec2; ?></b>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Total <b><span id="cnt"></span> </b>Students Found.
 
                         </div>
 
@@ -326,9 +329,9 @@ if ($result00->num_rows > 0) {
                         </td>
 
                         <td style=" border:1px solid gray;">
-                           
-                                <?php echo ''; ?>
-                           
+
+                            <?php echo ''; ?>
+
                         </td>
                         <td style=" border:1px solid gray;" class="d-print-none">
                             <div id="btn<?php echo $stid; ?>">
@@ -337,14 +340,18 @@ if ($result00->num_rows > 0) {
                                         <i class="mdi mdi-grease-pencil"></i>
                                     </button>
                                     <button type="button" class="btn btn-inverse-warning"
-                                        onclick="issuet(<?php echo $stid; ?>)">
+                                        onclick="issuet(<?php echo $stid; ?>)"  >
                                         <i class="mdi mdi-eye"></i>
                                     </button>
+
+                      
+
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <?php
+                    $cnt++;
                 }
             }
             ?>
@@ -360,6 +367,7 @@ include 'footer.php';
     var uri = window.location.href;
     document.getElementById('defbtn').innerHTML = 'Print Student List';
     document.getElementById('defmenu').innerHTML = '';
+    document.getElementById("cnt").innerHTML = '<?php echo $cnt-1; ?>';
     function defbtn() {
         goprint(0);
     }

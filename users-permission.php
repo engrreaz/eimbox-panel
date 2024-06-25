@@ -27,6 +27,7 @@ if ($umail != '') {
             $mobile = $row0x["mobile"];
             $userlevel = $row0x["userlevel"];
             $photourl = $row0x["photourl"];
+            $userid = $row0x["userid"];
 
         }
     }
@@ -57,17 +58,20 @@ if ($umail != '') {
                                     <h6><?php echo $mobile; ?></h6>
                                     <h5><?php echo $umail; ?></h5>
                                     <small><?php echo $userlevel; ?></small>
+                                    <br>
+                                    <small>Account Link with <?php echo $userid; ?></small>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group row">
                                 <div class="col-12">
-                                    <button type="button" class="btn btn-danger btn-icon-text">
+                                    <button type="button" class="btn btn-danger btn-icon-text" disabled>
                                         <i class="mdi mdi-upload btn-icon-prepend"></i> Inactive </button>
                                 </div>
                                 <div class="col-12">
-                                    <select class="form-control d-block mt-3" onchange="save('<?php echo $umail; ?>', 2);" id="ulevel">
+                                    <select class="form-control d-block mt-3" onchange="save('<?php echo $umail; ?>', 2);"
+                                        id="ulevel">
                                         <?php
                                         $sql0x = "SELECT * FROM user_level where levelname !='' and levelrank>5 order by levelrank;";
                                         $result0x3ng = $conn->query($sql0x);
@@ -112,37 +116,37 @@ if ($umail != '') {
                                         <td>Display Name :
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="date"
+                                            <input type="text" class="form-control" id="dispname"
                                                 value="<?php echo $profilename; ?>" />
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Date :
+                                        <td>Mobile Number :
                                         </td>
                                         <td>
-                                            <input type="date" class="form-control" id="date"
-                                                value="<?php echo $date; ?>" />
+                                            <input type="text" class="form-control" id="cell"
+                                                value="<?php echo $mobile; ?>" />
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Category :
+                                        <td>Teacher/Staff (If Applicable) :
                                         </td>
                                         <td>
-                                            <select class="form-control" id="cate">
+                                            <select class="form-control" id="userid">
                                                 <?php
-                                                $sql0x = "SELECT * FROM financesetup where sccode='$sccode' and (sessionyear='$sy' || sessionyear=0) and inexex=1 ;";
+                                                $sql0x = "SELECT * FROM teacher where sccode='$sccode' order by ranks ;";
                                                 $result0x3 = $conn->query($sql0x);
                                                 if ($result0x3->num_rows > 0) {
                                                     while ($row0x = $result0x3->fetch_assoc()) {
-                                                        $partid = $row0x["id"];
-                                                        $parteng = $row0x["particulareng"];
+                                                        $tid = $row0x["tid"];
+                                                        $tname = $row0x["tname"];
                                                         $sele = '';
-                                                        if ($partid == $pid) {
+                                                        if ($tid == $userid) {
                                                             $sele = 'selected';
                                                         }
-                                                        echo '<option value="' . $partid . '" ' . $sele . ' >' . $parteng . '</option>';
+                                                        echo '<option value="' . $tid . '" ' . $sele . ' >' . $tname . '</option>';
                                                     }
                                                 }
                                                 ?>
@@ -150,7 +154,7 @@ if ($umail != '') {
                                         </td>
                                         <td></td>
                                     </tr>
-                                    <tr>
+                                    <tr hidden>
                                         <td>Description :
                                         </td>
                                         <td>
@@ -167,8 +171,8 @@ if ($umail != '') {
                                         <td></td>
                                         <td>
                                             <div id="">
-                                                <button class="btn btn-primary"
-                                                    onclick="save('<?php echo $umail; ?>', 1);">Save</button>
+                                                <button class="btn btn-inverse-primary"
+                                                    onclick="save('<?php echo $umail; ?>', 3);">Save</button>
 
                                                 <div id="gex"></div>
                                             </div>
@@ -454,8 +458,17 @@ include 'footer.php';
 
 <script>
     function save(mail, tail) {
-        var lvl = document.getElementById("ulevel").value;
-        var infor = 'mail=' + mail + "&tail=" + tail + "&ulevel=" + lvl;
+        //2 == user level, 3 -- profile;
+        if (tail == 2) {
+            var lvl = document.getElementById("ulevel").value;
+            var infor = 'mail=' + mail + "&tail=" + tail + "&ulevel=" + lvl;
+        } else if (tail == 3) {
+            var dispname = document.getElementById("dispname").value;
+            var cell = document.getElementById("cell").value;
+            var userid = document.getElementById("userid").value;
+            var infor = 'mail=' + mail + "&tail=" + tail + "&dispname=" + dispname + "&cell=" + cell + "&userid=" + userid;
+        }
+
         // alert(infor);
         $("#ssd").html("");
 

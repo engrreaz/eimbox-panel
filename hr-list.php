@@ -202,8 +202,8 @@ if (isset($_GET['tp'])) {
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <button type="button" title="View Profile"
                                                             class="btn btn-inverse-warning"
-                                                            onclick="issuet(<?php echo $tid; ?>)">
-                                                            <i class="mdi mdi-television"></i>
+                                                            onclick="issuet(<?php echo $tid; ?>)" hidden>
+                                                            <i class="mdi mdi-television" ></i>
                                                         </button>
 
                                                         <button type="button" title="Edit Profile" class="btn btn-inverse-info"

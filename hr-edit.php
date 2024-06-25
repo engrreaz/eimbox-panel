@@ -970,7 +970,7 @@ include 'footer.php';
     document.getElementById('defbtn').innerHTML = '<?php echo $btntext; ?>';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-        savestudent();
+        upd();
     }
 
     function sameadd() {//*********************************************** */

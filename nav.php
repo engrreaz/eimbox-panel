@@ -90,7 +90,7 @@ $supernav = array('account-settings.php');
         <span class="nav-link"></span>
       </li>
 
-      <li class="nav-item menu-items mb-3">
+      <li class="nav-item menu-items mb-3" hidden>
         <a class="nav-link  bg-warning" href="whats-new.php">
           <span class="menu-icon bg-dark">
             <i class="mdi mdi-help mdi-24px pt-1"></i>
@@ -452,9 +452,11 @@ $supernav = array('account-settings.php');
                         class="mdi mdi-account-box"></i>&nbsp; Teaching Staffs</a></li>
                   <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff"><i
                         class="mdi mdi-account-box-outline"></i>&nbsp; Management Staffs</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-profile.php">View Profile</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-edit.php">Profile Editor</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="tattnd.php">HRD Attendance</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="hr-profile.php">View Profile</a></li> -->
+                  <li class="nav-item"> <a class="nav-link" href="hr-edit.php"><i
+                  class="mdi mdi-account-box "></i>&nbsp; Profile Editor</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="tattnd.php"><i
+                  class="mdi mdi-cards-outline "></i>&nbsp; HRD Attendance</a></li>
                 </ul>
               </div>
             </li>
@@ -635,8 +637,10 @@ $supernav = array('account-settings.php');
                   <li class="nav-item"> <a class="nav-link" href="#">Monthly Balance Sheet</a></li>
 
                   <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="students-list.php">Student's List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="student-dues-list.php">Student's Dues List</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="students-list.php"><i
+                  class="mdi mdi-account"></i>&nbsp; Student's List</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="student-dues-list.php"><i
+                  class="mdi mdi-currency-try"></i>&nbsp; Student's Dues List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="#">Monthly Income-Expenditure</a></li>
 
                   <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li>
@@ -663,9 +667,11 @@ $supernav = array('account-settings.php');
               </a>
               <div class="collapse" id="users">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="users.php">User List</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="users.php"><i
+                  class="mdi mdi-account-circle"></i>&nbsp; User List</a></li>
                   <li class="nav-item"> <a class="nav-link" href=".php">User Profile</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="users-permission.php">Access Permission</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="users-permission.php"><i
+                  class="mdi mdi-key"></i>&nbsp; Access Permission</a></li>
                 </ul>
               </div>
             </li>

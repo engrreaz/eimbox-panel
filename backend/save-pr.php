@@ -12,7 +12,9 @@ $sql00 = "SELECT * FROM sessioninfo where  sccode='$sccode' and stid='$stid' and
 $result00g = $conn->query($sql00);
 if ($result00g->num_rows > 0) {
     while ($row00 = $result00g->fetch_assoc()) {
-        $sessioninfo[] = $row00;
+        $rollno = $row00['rollno'];
+        $cls = $row00['classname'];
+        $sec = $row00['sectionname'];
     }
 }
 
@@ -20,21 +22,11 @@ $sql00 = "SELECT * FROM students where  sccode='$sccode' and stid='$stid'";
 $result00d = $conn->query($sql00);
 if ($result00d->num_rows > 0) {
     while ($row00 = $result00d->fetch_assoc()) {
-        $profileinfo[] = $row00;
+        $neng = $row00['stnameeng'];
+        $nben = $row00['stnameben'];
+        $mobile = $row00['guarmobile'];
     }
 }
-// echo var_dump($sessioninfo);
-// echo var_dump($profileinfo);
-
-$rollno = $sessioninfo[0]['rollno'];
-$cls = $sessioninfo[0]['classname'];
-$sec = $sessioninfo[0]['sectionname'];
-$neng = $profileinfo[0]['stnameeng'];
-$nben = $profileinfo[0]['stnameben'];
-$mobile = $profileinfo[0]['guarmobile'];
-
-
-
 
 
 

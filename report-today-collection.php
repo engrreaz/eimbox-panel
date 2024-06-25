@@ -144,8 +144,7 @@ if (isset($_GET['addnew'])) {
                                 <button type="button" style="padding:8px 10px 7px; border-radius:5px;"
                                     class="btn btn-lg btn-inverse-success btn-icon-text btn-block" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Generate
-                                    Card</button>
+                                    Show Collection</button>
                             </div>
                         </div>
                     </div>
@@ -325,7 +324,9 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Print Testimonials';
+    document.getElementById('defbtn').innerHTML = 'Print Report';
+    document.getElementById('defbtn').disabled = true;
+    document.getElementById('defmenu').innerHTML = '';
 
     document.getElementById('cnt').innerHTML = '<?php echo $cnt; ?>';
     document.getElementById('tamt').innerHTML = '<?php echo $tamt; ?>.00';
