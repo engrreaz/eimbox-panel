@@ -2,7 +2,7 @@
 $pagelist = array(
   'settings.php', 'ins-profile.php', 'classes.php', 'group-manage.php', 'subjects.php', 
   'subjects-list.php', 'class-routine.php', 'st-payment-setup.php', 'access-denied-settings.php',
-  'slot.php', 'basic-settings.php'
+  'slot.php', 'basic-settings.php', 'class-schedule.php'
  );
 $accnav = array('account-settings.php');
 $adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
@@ -150,12 +150,12 @@ $supernav = array('account-settings.php');
           </a>
           <div class="collapse" id="academics">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="classes.php">Classes & Sections</a></li>
-              <li class="nav-item"> <a class="nav-link" href="group-manage.php">Group Management</a></li>
-              <li class="nav-item"> <a class="nav-link" href="subjects.php">Subjects Manager</a></li>
-              <li class="nav-item"> <a class="nav-link" href="subjects-list.php">Subjects List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="class-schedule.php">Class Schedule</a></li>
-              <li class="nav-item"> <a class="nav-link" href="class-routine.php">Class Routine</a></li>
+              <li class="nav-item"> <a class="nav-link" href="classes.php"><i class="mdi mdi-account-multiple"></i>&nbsp; Classes & Sections</a></li>
+              <li class="nav-item"> <a class="nav-link" href="group-manage.php"><i class="mdi mdi-group"></i>&nbsp; Group Management</a></li>
+              <li class="nav-item"> <a class="nav-link" href="subjects.php"><i class="mdi mdi-book-open-variant"></i>&nbsp; Subjects Manager</a></li>
+              <li class="nav-item"> <a class="nav-link" href="subjects-list.php"><i class="mdi mdi-book-open-page-variant"></i>&nbsp; Subjects List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="class-schedule.php"><i class="mdi mdi-timer"></i>&nbsp; Class Schedule</a></li>
+              <li class="nav-item"> <a class="nav-link" href="class-routine.php"><i class="mdi mdi-timelapse"></i>&nbsp; Class Routine</a></li>
               <li class="nav-item"> <a class="nav-link" href="access-denied-settings.php">Syllabus</a></li>
               <li class="nav-item"> <a class="nav-link" href="access-denied-settings.php">Academic Plan</a></li>
             </ul>
@@ -190,7 +190,7 @@ $supernav = array('account-settings.php');
           </a>
           <div class="collapse" id="fees">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="st-payment-setup.php">Fees Setting</a></li>
+              <li class="nav-item"> <a class="nav-link" href="st-payment-setup.php"><i class="mdi mdi-coin"></i>&nbsp; Fees Setting</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Fine</a></li>
             </ul>
           </div>

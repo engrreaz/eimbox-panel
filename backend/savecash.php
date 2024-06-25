@@ -11,7 +11,7 @@ $date = $_POST['date'];
 $cate = $_POST['cate'];
 $descrip = $_POST['descrip'];
 $amt = $_POST['amt'];
-$amt = str_replace($enum, $bnum, $amt);
+
 
 
 if ($tail == 0) {

@@ -290,7 +290,7 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Add New Group';
+    document.getElementById('defbtn').innerHTML = 'New Schedule';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         addnew();

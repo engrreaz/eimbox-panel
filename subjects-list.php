@@ -146,7 +146,7 @@ if (isset($_GET['id'])) {
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    class="btn btn-inverse-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
                                     View</button>
                             </div>
                         </div>
@@ -249,7 +249,7 @@ if (isset($_GET['id'])) {
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-success" style="" onclick="save(<?php echo $schid; ?>, 3);"><i
+                                    class="btn btn-inverse-success p-2 btn-block " style="" onclick="save(<?php echo $schid; ?>, 3);"><i
                                         class="mdi mdi-disc"></i>
                                     <?php echo $btntxt; ?></button>
                                 <span id="ssk"></span>

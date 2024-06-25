@@ -71,7 +71,7 @@ if ($ind != '') {
                             VALUES (NULL, '$sccode', '$sy', '$cls2', '$sec2', '$stid2', '$roll2', '$id',  '$mxe', '$mxb', '$taka', '$z', '$cur', '$usr', '$pamt', '$cur', '$usr', '0', '$pamt') ;";
             // $disp .= $stid2 . '/' . $z . '<br>';
             // $newsl++;
-            $disp .= $cls2 . $sec2 . $roll2 . $stid2 . $z;
+            //$disp .= $cls2 . $sec2 . $roll2 . $stid2 . $z;
             $new++;
             $count++;
             $conn->query($query3plo);
@@ -93,8 +93,8 @@ if ($ind != '') {
 } else {
 
 
-    $disp .= $cls2 . ' ' . $sec2 . ' ' . $roll2 . ' (' . $stid2 . ') ';
-    $disp .= '###' . $roll2 . '###'; // Inser new record
+    //$disp .= $cls2 . ' ' . $sec2 . ' ' . $roll2 . ' (' . $stid2 . ') ';
+    //$disp .= '###' . $roll2 . '###'; // Inser new record
     $new++;
     $count++;
 

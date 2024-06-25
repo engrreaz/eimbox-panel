@@ -179,7 +179,7 @@ if ($result0->num_rows > 0) {
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary" onclick="save(0,1);">Save</button>
+                                            <button class="btn btn-inverse-primary" onclick="save(0,1);">Save</button>
 
                                             <div id="gex"></div>
                                         </div>

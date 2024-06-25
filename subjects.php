@@ -144,8 +144,8 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-primary btn-block" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                <button type="button" style=""
+                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i class="mdi mdi-eye"></i>
                                     View</button>
                             </div>
                         </div>
@@ -156,8 +156,8 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-success btn-block" style="" onclick="god();"><i class="mdi mdi-book-open-page-variant"></i>
+                                <button type="button" style=""
+                                    class="btn btn-inverse-success btn-block p-2" style="" onclick="god();"><i class="mdi mdi-book-open-page-variant"></i>
                                     Add Subject</button>
                             </div>
                         </div>
@@ -276,8 +276,8 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn-warning" style="" onclick="setdef(<?php echo $schid; ?>, 3);"><i
+                                <button type="button" style=""
+                                    class="btn btn-inverse-warning" style="" onclick="setdef(<?php echo $schid; ?>, 3);"><i
                                         class="mdi mdi-disc"></i>
                                     <?php echo $btntxt; ?></button>
                                 <span id="ssk"></span>
