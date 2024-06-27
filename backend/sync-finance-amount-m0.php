@@ -51,12 +51,24 @@ if ($ind != '') {
                 $update++;
                 $count++;
                 $query3px = '';
+
+                $fld1 = $stid2 . ' - ' . $z;
+                $fld2 = 'STID found, Month Found, Update Need';
+                $fld3 = $pamt . ' / ' . $joma;
+                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
+                $conn->query($queryhero);
                 // }
             } else {
 
                 // echo '[' . $roll2 . ']'; // No need to update
                 $noneed++;
                 // $count++;
+                $fld1 = $stid2 . ' - ' . $z;
+                $fld2 = 'STID found, Month Found, Update Not Need';
+                $fld3 = $pamt . ' / ' . $joma;
+                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
+                $conn->query($queryhero);
+
             }
 
         } else {
@@ -74,6 +86,12 @@ if ($ind != '') {
             $count++;
             $conn->query($query3plo);
             $query3plo = '';
+
+            $fld1 = $stid2 . ' - ' . $z;
+                $fld2 = 'STID found, Month Not Found, Insert';
+                $fld3 = $pamt . ' / ' . $joma;
+                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
+                $conn->query($queryhero);
 
         }
 
@@ -110,6 +128,12 @@ if ($ind != '') {
         $newsl++;
         $count++;
         $conn->query($query3plo);
+
+        $fld1 = $stid2 . ' - ' . $z;
+                $fld2 = 'STID Not found, Insert 12 Record';
+                $fld3 = $pamt . ' / ' . $joma;
+                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
+                $conn->query($queryhero);
     }
 
     array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2));
