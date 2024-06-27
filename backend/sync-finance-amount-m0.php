@@ -113,7 +113,8 @@ if ($ind != '') {
 
     $xyz = array('stid' => $stid2, 'rollno' => $roll2, 'classname' => $cls2, 'sccode' => $sccode);
     // array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2));
-    $finlist[] = $xyz;
+    array_push($finlist, $xyz);
+    // $finlist[] = $xyz;
 
     $fld1 = $stid2;
     $fld2 = $cls2 . '/' . $sec2 . '/' . $roll2 . '/' . array_search($stid2, array_column($finlist, 'stid'));
