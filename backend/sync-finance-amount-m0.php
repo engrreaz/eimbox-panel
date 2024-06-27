@@ -104,9 +104,9 @@ if ($ind != '') {
                                            VALUES (NULL, '$sccode', '$sy', '$cls2', '$sec2', '$stid2', '$roll2', '$id',  '$mxe', '$mxb', '$taka', '$z', '$cur', '$usr', '$pamt', '$cur', '$usr', '0', '$pamt') ;";
 
 
-        $newsl++;
-        $count++;
-        $conn->query($query3plo);
+        // $newsl++;
+        // $count++;
+        // $conn->query($query3plo);
 
 
     }
