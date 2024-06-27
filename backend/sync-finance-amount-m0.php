@@ -56,7 +56,7 @@ if ($ind != '') {
                 $fld1 = $stid2 . ' - ' . $z;
                 $fld2 = 'STID found, Month Found, Update Need';
                 $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
+                $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
                 $conn->query($queryhero);
                 // }
             } else {
@@ -67,7 +67,7 @@ if ($ind != '') {
                 $fld1 = $stid2 . ' - ' . $z;
                 $fld2 = 'STID found, Month Found, Update Not Need';
                 $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
+                $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
                 $conn->query($queryhero);
 
             }
@@ -91,7 +91,7 @@ if ($ind != '') {
             $fld1 = $stid2 . ' - ' . $z;
             $fld2 = 'STID found, Month Not Found, Insert';
             $fld3 = $pamt . ' / ' . $joma;
-            $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
+            $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
             $conn->query($queryhero);
 
         }
@@ -133,7 +133,7 @@ if ($ind != '') {
         $fld1 = $stid2 . ' - ' . $z;
         $fld2 = 'STID Not found, Insert 12 Record';
         $fld3 = $pamt . ' / ' . $joma;
-        $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
+        $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
         $conn->query($queryhero);
     }
 
