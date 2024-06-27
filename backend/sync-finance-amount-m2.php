@@ -24,7 +24,8 @@ if ($ind != '') {
         $tarikh = '2024-' . $z . '-01';
         $mx = ' : ' . date('F/Y', strtotime($tarikh));
 
-        $yx = array_values(array_filter($finlist, fn($bb) => $bb['stid'] == $stid2 && $bb['month'] == $z));
+        // $yx = array_values(array_filter($finlist, fn($bb) => $bb['stid'] == $stid2 && $bb['month'] == $z));
+        $yx = array_values(array_filter($finlist, function($bb)  {return $bb['stid'] == '$stid2' && $bb['month'] == '$z';}));
         // array_push($yx, array('stid' => $stid2, 'rollno' => $roll2));
         // echo '<hr>';
         // echo var_dump($yx);
