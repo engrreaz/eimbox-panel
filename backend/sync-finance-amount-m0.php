@@ -47,7 +47,7 @@ if ($ind != '') {
                 $query3px = "UPDATE stfinance set amount='$taka', payableamt='$pamt', modifieddate = '$cur', dues = '$joma' where id='$uuuid' and sccode='$sccode' ;";
                 // if($stid2 == '1031872887') {
                 // echo '<br>' . $query3px . '<br>';
-                // $conn->query($query3px);
+                $conn->query($query3px);
                 $update++;
                 $count++;
                 $query3px = '';
@@ -107,8 +107,8 @@ if ($ind != '') {
                                            VALUES (NULL, '$sccode', '$sy', '$cls2', '$sec2', '$stid2', '$roll2', '$id',  '$mxe', '$mxb', '$taka', '$z', '$cur', '$usr', '$pamt', '$cur', '$usr', '0', '$pamt') ;";
 
 
-        // $newsl++;
-        // $count++;
+        $newsl++;
+        $count++;
         $conn->query($query3plo);
     }
 
