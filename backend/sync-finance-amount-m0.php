@@ -114,7 +114,7 @@ if ($ind != '') {
 
 
     $fld1 = $stid2;
-    $fld2 = 'STID Not found, Insert 12 Record' . '/' . array_search($stid, array_column($finlist, 'stid'));
+    $fld2 = 'STID Not found, Insert 12 Record' . '/' . array_search($stid2, array_column($finlist, 'stid'));
     $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$cur') ;";
     $conn->query($queryhero);
 
