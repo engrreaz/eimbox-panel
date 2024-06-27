@@ -69,8 +69,8 @@ if ($ind != '') {
             // $disp .= $stid2 . '/' . $z . '<br>';
             // $newsl++;
             //$disp .= $cls2 . $sec2 . $roll2 . $stid2 . $z;
-            $new++;
-            $count++;
+            // $new++;
+            // $count++;
             $conn->query($query3plo);
             $query3plo = '';
 
