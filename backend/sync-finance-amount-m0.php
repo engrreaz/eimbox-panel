@@ -1,5 +1,7 @@
 <?php
 
+$queryheros = "DELETE FROM datatest  ;";
+$conn->query($queryheros);
 
 if ($ind != '') {
     for ($z = 1; $z <= 12; $z++) {
