@@ -65,7 +65,7 @@ foreach ($vcl as $cls) {
                 $finlist[] = $row0x;
             }
         } else {
-            $finlist[] = '';
+            $finlist = array();
         }
 
         // echo var_dump($finlist);

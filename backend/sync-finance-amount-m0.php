@@ -108,12 +108,15 @@ if ($ind != '') {
         $count++;
         $conn->query($query3plo);
 
-        $fld1 = $stid2 . ' - ' . $z;
-        $fld2 = 'STID Not found, Insert 12 Record';
-        $fld3 = $pamt . ' / ' . $joma;
-        $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$cur') ;";
-        $conn->query($queryhero);
+
     }
+
+    $fld1 = $stid2;
+    $fld2 = 'STID Not found, Insert 12 Record';
+    $fld3 = $pamt . ' / ' . $joma;
+    $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$cur') ;";
+    $conn->query($queryhero);
+
 
     array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2));
 }
