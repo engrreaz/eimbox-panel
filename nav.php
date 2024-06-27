@@ -590,7 +590,7 @@ $supernav = array('account-settings.php');
                   <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
                   <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Notice Manager</a></li> -->
+                  <li class="nav-item"> <a class="nav-link" href="notice-manager.php">Notice Manager</a></li>
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li> -->
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li> -->
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li> -->
@@ -639,6 +639,8 @@ $supernav = array('account-settings.php');
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="students-list.php"><i
                   class="mdi mdi-account"></i>&nbsp; Student's List</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="admission-form.php"><i
+                  class="mdi mdi-accountx"></i>&nbsp; Admission Form</a></li>
                   <li class="nav-item"> <a class="nav-link" href="student-dues-list.php"><i
                   class="mdi mdi-currency-try"></i>&nbsp; Student's Dues List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="#">Monthly Income-Expenditure</a></li>

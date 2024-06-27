@@ -192,12 +192,9 @@ $txt = $_COOKIE['txt'];
                                                 Caution ! Update Payment Item Information after synced payment setting
                                                 at your own risk.
                                                 <br>Please Contact with your system administrator to do this.
-
                                             </div>
                                             <div id="gex"></div>
                                         </div>
-
-
                                     </td>
                                 </tr>
                             </tbody>
@@ -266,7 +263,7 @@ $txt = $_COOKIE['txt'];
                                     <th>All</th>
                                     <?php
                                     $valid_class_list = '';
-                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' group by areaname order by idno ;";
+                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear like '$sy%' group by areaname order by idno ;";
                                     $result0xxt = $conn->query($sql0x);
                                     if ($result0xxt->num_rows > 0) {
                                         while ($row0x = $result0xxt->fetch_assoc()) {
@@ -316,7 +313,7 @@ $txt = $_COOKIE['txt'];
                                             </td>
                                             <?php
                                             $exp = '';
-                                            $sql0x = "SELECT areaname FROM areas where user='$rootuser' group by areaname order by idno ;";
+                                            $sql0x = "SELECT areaname FROM areas where user='$rootuser'  and sessionyear like '$sy%' group by areaname order by idno ;";
                                             // echo $sql0x;
                                             $result0xx = $conn->query($sql0x);
                                             if ($result0xx->num_rows > 0) {

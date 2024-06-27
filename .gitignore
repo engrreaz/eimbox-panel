@@ -8,3 +8,4 @@ admin/temp
 auth/
 vendor/
 nav.php
+server-merge.php
