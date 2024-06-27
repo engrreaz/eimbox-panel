@@ -96,13 +96,6 @@ foreach ($vcl as $cls) {
                 include 'sync-finance-amount-m1.php';
             } else if ($mmm == 0) {
                 include 'sync-finance-amount-m0.php';
-
-
-
-
-
-
-
             } else {
                 include 'sync-finance-amount-m2.php';
             }

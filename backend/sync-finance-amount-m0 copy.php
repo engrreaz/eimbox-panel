@@ -2,16 +2,36 @@
 
 
 if ($ind != '') {
+
+
+    // $datam = array();
+    // $pick = "SELECT * FROM stfinance where partid='$id'  and sccode='$sccode' and sessionyear LIKE '$sy%' and stid = '$stid2' order by month ;";
+
+    // $result0xx21 = $conn->query($pick);
+    // if ($result0xx21->num_rows > 0) {
+    //     while ($row0xn = $result0xx21->fetch_assoc()) {
+    //         $datam[] = $row0xn;
+    //     }
+    // } else {
+    //     $datam = array();
+    // }
+
     for ($z = 1; $z <= 12; $z++) {
         $tarikh = '2024-' . $z . '-01';
         $mx = ' : ' . date('F/Y', strtotime($tarikh));
 
+        // $yx = array_values(array_filter($finlist, fn($bb) =>          $bb['stid'] == $stid2 && $bb['month'] == $z));
         $yx = array_values(array_filter($finlist, function ($bb) {
-            return $bb['stid'] == '$stid2' && $bb['month'] == '$z';
-        }));
+            return $bb['stid'] == '$stid2' && $bb['month'] == '$z'; }));
+        // array_push($yx, array('stid' => $stid2, 'rollno' => $roll2));
+        // echo '<hr>';
+        // echo var_dump($yx);
 
 
         $indz = $yx[0]['id'];
+
+        // echo '<hr>';
+
 
         if ($indz != '') {
             $modi = $yx[0]['modifieddate'];
@@ -24,9 +44,10 @@ if ($ind != '') {
 
                 $pamt = $taka * $rate2 / 100;
                 $joma = $pamt - $yx[0]['paid'];
-
+                // $disp .= '{' . $cls2 . '-' . $sec2 . '-' . $roll2 . '-' . $z . '--' . $uuuid . ' ------- }';
                 $query3px = "UPDATE stfinance set amount='$taka', payableamt='$pamt', modifieddate = '$cur', dues = '$joma' where id='$uuuid' and sccode='$sccode' ;";
-
+                // if($stid2 == '1031872887') {
+                // echo '<br>' . $query3px . '<br>';
                 $conn->query($query3px);
                 $update++;
                 $count++;
@@ -35,18 +56,18 @@ if ($ind != '') {
                 $fld1 = $stid2 . ' - ' . $z;
                 $fld2 = 'STID found, Month Found, Update Need';
                 $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$cur') ;";
+                $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
                 $conn->query($queryhero);
                 // }
             } else {
 
-
+                // echo '[' . $roll2 . ']'; // No need to update
                 $noneed++;
-
+                // $count++;
                 $fld1 = $stid2 . ' - ' . $z;
                 $fld2 = 'STID found, Month Found, Update Not Need';
                 $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$cur') ;";
+                $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
                 $conn->query($queryhero);
 
             }
@@ -58,17 +79,19 @@ if ($ind != '') {
             $mxb = $partb . $mx;
             $query3plo = "INSERT INTO stfinance (id, sccode, sessionyear, classname, sectionname, stid, rollno, partid, particulareng, particularben, amount, month, setupdate, setupby, payableamt, modifieddate, modifiedby, paid, dues)
                             VALUES (NULL, '$sccode', '$sy', '$cls2', '$sec2', '$stid2', '$roll2', '$id',  '$mxe', '$mxb', '$taka', '$z', '$cur', '$usr', '$pamt', '$cur', '$usr', '0', '$pamt') ;";
+            // $disp .= $stid2 . '/' . $z . '<br>';
+            // $newsl++;
+            //$disp .= $cls2 . $sec2 . $roll2 . $stid2 . $z;
 
-
-
-            $conn->query($query3plo);
-            $query3plo = '';
             $new++;
             $count++;
+            $conn->query($query3plo);
+            $query3plo = '';
+
             $fld1 = $stid2 . ' - ' . $z;
             $fld2 = 'STID found, Month Not Found, Insert';
             $fld3 = $pamt . ' / ' . $joma;
-            $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$cur') ;";
+            $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
             $conn->query($queryhero);
 
         }
@@ -110,7 +133,7 @@ if ($ind != '') {
         $fld1 = $stid2 . ' - ' . $z;
         $fld2 = 'STID Not found, Insert 12 Record';
         $fld3 = $pamt . ' / ' . $joma;
-        $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$cur') ;";
+        $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
         $conn->query($queryhero);
     }
 
