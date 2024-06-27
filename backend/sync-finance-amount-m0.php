@@ -15,20 +15,21 @@ if ($ind != '') {
     // } else {
     //     $datam = array();
     // }
-    
+
     for ($z = 1; $z <= 12; $z++) {
         $tarikh = '2024-' . $z . '-01';
         $mx = ' : ' . date('F/Y', strtotime($tarikh));
 
         // $yx = array_values(array_filter($finlist, fn($bb) =>          $bb['stid'] == $stid2 && $bb['month'] == $z));
-        $yx = array_values(array_filter($finlist, function($bb)  {return $bb['stid'] == '$stid2' && $bb['month'] == '$z';}));
+        $yx = array_values(array_filter($finlist, function ($bb) {
+            return $bb['stid'] == '$stid2' && $bb['month'] == '$z'; }));
         // array_push($yx, array('stid' => $stid2, 'rollno' => $roll2));
         // echo '<hr>';
         // echo var_dump($yx);
-    
-    
+
+
         $indz = $yx[0]['id'];
-        
+
         // echo '<hr>';
 
 
@@ -55,7 +56,7 @@ if ($ind != '') {
                 $fld1 = $stid2 . ' - ' . $z;
                 $fld2 = 'STID found, Month Found, Update Need';
                 $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
+                $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
                 $conn->query($queryhero);
                 // }
             } else {
@@ -66,7 +67,7 @@ if ($ind != '') {
                 $fld1 = $stid2 . ' - ' . $z;
                 $fld2 = 'STID found, Month Found, Update Not Need';
                 $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
+                $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
                 $conn->query($queryhero);
 
             }
@@ -88,10 +89,10 @@ if ($ind != '') {
             $query3plo = '';
 
             $fld1 = $stid2 . ' - ' . $z;
-                $fld2 = 'STID found, Month Not Found, Insert';
-                $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
-                $conn->query($queryhero);
+            $fld2 = 'STID found, Month Not Found, Insert';
+            $fld3 = $pamt . ' / ' . $joma;
+            $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
+            $conn->query($queryhero);
 
         }
 
@@ -107,7 +108,7 @@ if ($ind != '') {
 
     //************************************************************************************************************************** */
 } else {
-    
+
 
     //$disp .= $cls2 . ' ' . $sec2 . ' ' . $roll2 . ' (' . $stid2 . ') '; //
     $disp .= ' '; // Inser new record
@@ -130,10 +131,10 @@ if ($ind != '') {
         $conn->query($query3plo);
 
         $fld1 = $stid2 . ' - ' . $z;
-                $fld2 = 'STID Not found, Insert 12 Record';
-                $fld3 = $pamt . ' / ' . $joma;
-                $queryhero = "INSERT INTO datatest(NULL, '$fld1', '$fld2', '$fld3' ;";
-                $conn->query($queryhero);
+        $fld2 = 'STID Not found, Insert 12 Record';
+        $fld3 = $pamt . ' / ' . $joma;
+        $queryhero = "INSERT INTO datatest VALUES (NULL, '$fld1', '$fld2', '$fld3' ;";
+        $conn->query($queryhero);
     }
 
     array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2));
