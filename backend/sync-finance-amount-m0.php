@@ -140,3 +140,4 @@ if ($ind != '') {
     array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2));
 }
 
+echo $queryhero;
