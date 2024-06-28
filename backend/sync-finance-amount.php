@@ -21,7 +21,7 @@ foreach ($vcl as $cls) {
         $stlist = array();
         $count = 0;
         $lmt = rand(5, 10);
-        $sql0x = "SELECT * FROM sessioninfo where classname='$cls' and sccode='$sccode' and sessionyear LIKE '$sy%' order by sectionname, rollno ;";
+        $sql0x = "SELECT * FROM sessioninfo where classname='$cls' and sccode='$sccode' and sessionyear LIKE '$sy%' order by sectionname, rollno LIMIT 15 ;";
         $result0xx = $conn->query($sql0x);
         if ($result0xx->num_rows > 0) {
             while ($row0x = $result0xx->fetch_assoc()) {

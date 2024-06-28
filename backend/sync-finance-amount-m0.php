@@ -44,7 +44,7 @@ if ($ind != '') {
                 $modi = '2024-01-01 00:00:00';
             }
             $uuuid = $finlist[$indz]['id'];
-            if (strtotime($modi) < strtotime($update_time)) {
+            if (strtotime($modi) <= strtotime($update_time)) {
                 $disp .= '.';
                 $pamt = $taka * $rate2 / 100;
                 $joma = $pamt - $finlist[$indz]['paid'];
@@ -57,11 +57,7 @@ if ($ind != '') {
 
                 $query3px = '';
 
-                // $fld1 = $stid2 . ' - ' . $z;
-                // $fld2 = 'STID found, Month Found, Update Need';
-                // $fld3 = $pamt . ' / ' . $joma;
-                // $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3') ;";
-                // $conn->query($queryhero);
+                array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2, 'idmon' => $idmon));
 
                 $update++;
                 $count++;
@@ -77,6 +73,8 @@ if ($ind != '') {
                 // $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3') ;";
                 // $conn->query($queryhero);
 
+                array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2, 'idmon' => $idmon));
+
             }
 
         } else {
@@ -87,7 +85,7 @@ if ($ind != '') {
             $idmon = $stid2 . $z;
             $query3plo = "INSERT INTO stfinance (id, sccode, sessionyear, classname, sectionname, stid, rollno, partid, particulareng, particularben, amount, month, idmon, setupdate, setupby, payableamt, modifieddate, modifiedby, paid, dues)
                             VALUES (NULL, '$sccode', '$sy', '$cls2', '$sec2', '$stid2', '$roll2', '$id',  '$mxe', '$mxb', '$taka', '$z', '$idmon', '$cur', '$usr', '$pamt', '$cur', '$usr', '0', '$pamt') ;";
-            // $disp .= $stid2 . '/' . $z . ' **************** ';
+            $disp .= $stid2 . '/' . $z . ' **************** ';
             $newsl++;
 
             // $disp .= $z . ' - ';
@@ -96,14 +94,8 @@ if ($ind != '') {
             $conn->query($query3plo);
             $query3plo = '';
 
-            $fld1 = $stid2 . ' - ' . $z;
-            $fld2 = 'STID found, Month Not Found, Insert';
-            $fld3 = $pamt . ' / ' . $joma;
-            $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3') ;";
-            // $conn->query($queryhero);
 
-
-            array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2 , 'idmon' => $idmon));
+            array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2, 'idmon' => $idmon));
         }
 
         // for.......................
@@ -118,15 +110,15 @@ if ($ind != '') {
 } else {
 
     // $disp .= $cls2 . ' ' . $sec2 . ' ' . $roll2 . ' (' . $stid2 . ') *** '; //
-    // $disp .=  $roll2 . ' * '; //
-    $disp .= ' '; // Inser new record
+
+    $disp .= ' new '; // Inser new record
     $new++;
     $count++;
 
     for ($z = 1; $z <= 12; $z++) {
         $tarikh = '2024-' . $z . '-01';
         $mx = ' : ' . date('F', strtotime($tarikh)) . '/' . date('Y');
-
+        $disp .= $stid2 . ' * '; //
         $pamt = $taka * $rate2 / 100;
         $mxe = $parte . $mx;
         $mxb = $partb . $mx;
