@@ -102,6 +102,8 @@ if ($ind != '') {
             $queryhero = "INSERT INTO datatest (id, fld1, fld2, fld3) VALUES (NULL, '$fld1', '$fld2', '$fld3') ;";
             // $conn->query($queryhero);
 
+
+            array_push($finlist, array('stid' => $stid2, 'rollno' => $roll2 , 'idmon' => $idmon));
         }
 
         // for.......................
