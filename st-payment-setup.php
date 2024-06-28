@@ -42,9 +42,7 @@ $txt = $_COOKIE['txt'];
 </style>
 
 
-<h3 id="lbl-inex">Student's Payment Setting</h3>
-
-
+<h3 id="lbl-inex">Student's Payment Setup</h3>
 
 <style>
     #prog.fade {

@@ -162,68 +162,109 @@ if (isset($_GET['addnew'])) {
                     <div class="col-12">
                         <div id="alladmit">
 
-                        <head>
-                            <style>
-                                * {
-                                    font-family: "Noto Sans Bengali", sans-serif;
-                                }
-
-                                #main-table td {
-                                    border: 1px solid black;
-                                }
-
-                                .txt-right {
-                                    text-align: center;
-                                    font-weight: bold;
-                                    font-size: 14px;
-                                    padding: 5px;
-                                    border: 1px solid gray !important;
-                                }
-
-                                .ooo {
-                                    padding: 3px 0;
-                                }
-
-                                @media print {
-
-                                    .d-print-nones,
-                                    #nono {
-                                        display: none;
+                            <head>
+                                <style>
+                                    * {
+                                        font-family: "Noto Sans Bengali", sans-serif;
                                     }
-                                }
-                            </style>
-                        </head>
-                        <div style="" class="table-responsive">
-                            <table class="table table-border  ">
-                                <tbody>
-                                    <tr>
-                                        <td><i class="mdi mdi-eye text-warning mdi-24px"></i></td>
-                                        <td>
-                                            Student's Profile
-                                        </td>
-                                        <td><i class="mdi mdi-check-outline text-warning mdi-24px"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="mdi mdi-eye text-warning mdi-24px"></i></td>
-                                        <td>
 
-                                        </td>
-                                        <td><i class="mdi mdi-checkbox-marked-circle-outline text-success mdi-24px"></i></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    #main-table td {
+                                        border: 1px solid black;
+                                    }
+
+                                    .txt-right {
+                                        text-align: center;
+                                        font-weight: bold;
+                                        font-size: 14px;
+                                        padding: 5px;
+                                        border: 1px solid gray !important;
+                                    }
+
+                                    .ooo {
+                                        padding: 3px 0;
+                                    }
+
+                                    @media print {
+
+                                        .d-print-nones,
+                                        #nono {
+                                            display: none;
+                                        }
+                                    }
+                                </style>
+                            </head>
+                            <div style="" class="table-responsive">
+                                <table class="table table-border  ">
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="mdi mdi-eye text-warning mdi-24px"></i></td>
+                                            <td>
+                                                Student's Profile
+                                            </td>
+                                            <td><i class="mdi mdi-check-outline text-warning mdi-24px"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="mdi mdi-eye text-warning mdi-24px"></i></td>
+                                            <td>
+
+                                            </td>
+                                            <td><i
+                                                    class="mdi mdi-checkbox-marked-circle-outline text-success mdi-24px"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
 
                         </div>
-
-
                     </div>
-                    </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<?php
+$rsl = 1;
+$sql0x = "SELECT stid, partid, particulareng, count(*) FROM `stfinance` WHERE sccode='$sccode' and sessionyear LIKE '$sy%' group by stid, partid, particulareng having count(*)>1 order by classname, sectionname, rollno LIMIT 50;";
+echo $sql0x;
+$result0x = $conn->query($sql0x);
+if ($result0x->num_rows > 0) {
+    while ($row0x = $result0x->fetch_assoc()) {
+        $stid = $row0x['stid'];
+        $partid = $row0x['partid'];
+        $particulareng = $row0x['particulareng'];
+
+        $sl =1;
+        $sql0x = "SELECT * FROM `stfinance` WHERE sccode='$sccode' and sessionyear LIKE '$sy%' and stid='$stid' and partid='$partid' and particulareng = '$particulareng' order by pr1, id;";
+        $result0x2 = $conn->query($sql0x);
+        if ($result0x2->num_rows > 0) {
+            while ($row0x = $result0x2->fetch_assoc()) {
+                $ids = $row0x['id'];
+                $pr1 = $row0x['pr1'];
+                echo $rsl . ' --- ' . $ids . ' | ' . $stid . ' | ' . $partid . ' | ' . $particulareng . ' | ' .  $pr1 . ' | ';
+                if($pr1 == 0 && $sl == 1){
+                    $query331x = "DELETE from stfinance where id='$ids';";
+                    $conn->query($query331x);
+                    $sl++;
+                    echo ' Deleted <br>';
+                } else {
+                    echo 'Saved <br>';
+                }
+            }
+        }
+        $rsl++;
+    }
+}
+
+
+
+?>
+
+
 
 
 

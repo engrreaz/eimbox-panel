@@ -47,8 +47,6 @@ foreach ($vcl as $cls) {
                 $parte = $row0x['particulareng'];
                 $partb = $row0x['particularben'];
                 $mmm = $row0x['month'];
-
-
                 // echo $taka . ' | ' . $update_time;
             }
         }
@@ -64,18 +62,17 @@ foreach ($vcl as $cls) {
             while ($row0x = $result0xx2->fetch_assoc()) {
                 $finlist[] = $row0x;
             }
-        } else {
-            $finlist = array();
         }
+
+
 
         // echo var_dump($finlist);
 
-
+        $round = 1;
         foreach ($stlist as $stu) {
 
             $stid2 = $stu['stid'];
             // echo $stnumber . '% ';
-
 
             if ($stnumber < 1) {
                 $stnumber++;
@@ -120,10 +117,12 @@ foreach ($vcl as $cls) {
                     var b = parseInt(<?php echo $lmt; ?>);
                     // alert(a);
                     // alert(b);
-                    document.getElementById("more").innerHTML = a + b + ' Data Synced. Process Continue .....' + '<br><?php echo $disp; ?>';
+
+                    document.getElementById("more").innerHTML = a + b + ' Data Synced. Process Continue .....' + '<br><?php echo '<hr>Round : ' . $round . '<hr>' . $disp; ?>';
 
 
                     var curval = parseInt(<?php echo $stcnt; ?>);
+                    console.log(b + "/" + curval);
                     var totval = parseInt(document.getElementById("tsc").innerHTML);
                     var perc = parseInt(curval * 100 / totval);
                     // alert(perc);
@@ -138,6 +137,7 @@ foreach ($vcl as $cls) {
             //student loop
 
             $stnumber++;
+            $round++;
         }
 
 
