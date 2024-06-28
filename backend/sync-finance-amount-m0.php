@@ -90,7 +90,7 @@ if ($ind != '') {
             // $disp .= $stid2 . '/' . $z . ' **************** ';
             $newsl++;
 
-            $disp .= $z . ' - ';
+            // $disp .= $z . ' - ';
             $new++;
             $count++;
             $conn->query($query3plo);
