@@ -80,7 +80,7 @@ $month = date('m');
 
             <?php
             $upd = $ccc . '_update';
-            $sql5 = "SELECT id, $ccc, $upd FROM financesetup where sessionyear LIKE '$sy%' and sccode='$sccode'  order by id";
+            $sql5 = "SELECT id, $ccc, $upd FROM financesetup where sessionyear LIKE '$sy%' and sccode='$sccode'  order by partid, id";
             // echo $sql5; 
             $result5r = $conn->query($sql5);
             if ($result5r->num_rows > 0) {
