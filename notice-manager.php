@@ -383,7 +383,7 @@ include 'footer.php';
         var cate = document.getElementById('cate').value;
 
         var infor = "id=" + ids + '&ont=' + ont + '&title=' + title + '&descrip=' + descrip + '&expdate=' + expdate + '&teacher=' + teacher + '&smc=' + smc + '&guardian=' + guardian + "&sms=" + sms + "&push=" + push + "&cate=" + cate + "&email=" + email;
-        // alert(infor);
+        alert(infor);
         $("#sspd").html("");
 
         $.ajax({
@@ -396,7 +396,7 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#sspd").html(html);
-                window.location.href = 'notice-manager.php';
+                // window.location.href = 'notice-manager.php';
             }
         });
     }

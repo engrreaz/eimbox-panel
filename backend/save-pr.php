@@ -60,7 +60,6 @@ for ($lp = 0; $lp < $count; $lp++) {
     $tamt = $tamt + $amt;
 }
 
-
 $smstxt = '';
 $smscnt = 0;
 $st = 0;
@@ -75,18 +74,11 @@ $query3x = "update sessioninfo set lastpr='$prno' where stid='$stid' and session
 // echo $query3x;
 $conn->query($query3x);
 
-
-
-
-
 // SEnd Message
 // Message Table
 // Log Table
 // Notification Send
 // Notification Table
-
-
-
 
 ?>
 <button type="button" class="btn btn-outline-success pb-2 pt-2 text-lg-center w-100">
