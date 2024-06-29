@@ -19,6 +19,8 @@ SELECT stid, partid, particulareng, count(*) FROM `stfinance` WHERE sccode='1031
 // Check Existing PR in Multiple Entry?
 // if not remove them.
 
+update stfinance set idmon= CONCAT(stid, month) 
+
 // Check
 
 

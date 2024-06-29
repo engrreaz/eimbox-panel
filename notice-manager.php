@@ -24,10 +24,13 @@ if ($result0->num_rows > 0) {
         $teacher = $row5["teacher"];
         $smc = $row5["smc"];
         $guardian = $row5["guardian"];
-        // $ = $row5[""];
+        $sms = $row5["sms"];
+        $pushnoti = $row5["pushnoti"];
+        $category = $row5["category"];
+        $email = $row5["email"];
     }
 } else {
-    $exid = $title = $descrip = $expdate = $teacher = $smc = $guardian = '';
+    $exid = $title = $descrip = $expdate = $teacher = $smc = $guardian = $sms = $pushnoti = $category = $email = '';
 }
 ?>
 <div class="float-right">
@@ -36,8 +39,6 @@ if ($result0->num_rows > 0) {
         <i class="mdi mdi-library-plus"> Add New Class </i></button>
 </div>
 <h3>Notice Manager</h3>
-
-
 
 <div class="row" style="display:<?php echo $newblock; ?>;">
     <div class="col-12 grid-margin stretch-card">
@@ -94,23 +95,116 @@ if ($result0->num_rows > 0) {
                                     <td></td>
                                 </tr>
                                 <tr>
+                                    <td>Notice Type :
+                                    </td>
+                                    <td>
+                                        <select class="form-control text-white" id="cate" onchange="got();">
+                                            <option value="">---</option>
+                                            <?php
+                                            $sql0x = "SELECT * FROM notice_category order by id;";
+                                            echo $sql0x;
+                                            $result0rt = $conn->query($sql0x);
+                                            if ($result0rt->num_rows > 0) {
+                                                while ($row0x = $result0rt->fetch_assoc()) {
+                                                    $catcat = $row0x["category"];
+                                                    if ($catcat == $category) {
+                                                        $selsec = 'selected';
+                                                    } else {
+                                                        $selsec = '';
+                                                    }
+                                                    echo '<option value="' . $catcat . '" ' . $selsec . ' >' . $catcat . '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
                                     <td>User Group :
                                     </td>
                                     <td>
-                                        <?php 
+                                        <?php
                                         $teacherx = $smcx = $guardianx = '';
-                                            if($teacher == 1) {$teacherx = 'checked';}
-                                            if($smc == 1) {$smcx = 'checked';}
-                                            if($guardian == 1) {$guardianx = 'checked';}
+                                        if ($teacher == 1) {
+                                            $teacherx = 'checked';
+                                        }
+                                        if ($smc == 1) {
+                                            $smcx = 'checked';
+                                        }
+                                        if ($guardian == 1) {
+                                            $guardianx = 'checked';
+                                        }
                                         ?>
-                                        <input type="checkbox" class="form-control bg-dark" id="teacher"
-                                            value="<?php echo $teacher; ?>" <?php echo $teacherx;?> /> Teachers / Staffs
+                                        <table style="border:0;" class="table table-borderless">
+                                            <tr>
+                                                <td class="text-center">
+                                                    <input type="checkbox" class="form-control" id="teacher"
+                                                        value="<?php echo $teacher; ?>" <?php echo $teacherx; ?> />
+                                                    <br>Teachers / Staffs
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="checkbox" class="form-control" id="smc"
+                                                        value="<?php echo $smc; ?>" <?php echo $smcx; ?> /> <br>SMC
+                                                    Members
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="checkbox" class="form-control" id="guardian"
+                                                        value="<?php echo $guardian; ?>" <?php echo $guardianx; ?> />
+                                                    <br>Students /
+                                                    Guardians
+                                                </td>
+                                            </tr>
+                                        </table>
 
-                                        <input type="checkbox" class="form-control bg-dark" id="smc"
-                                            value="<?php echo $smc; ?>"  <?php echo $smcx;?> /> SMC Members
 
-                                        <input type="checkbox" class="form-control bg-dark" id="guardian"
-                                            value="<?php echo $guardian; ?>"  <?php echo $guardianx;?> /> Students / Guardians
+
+
+
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Notification :
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $teacherx = $smcx = $guardianx = $smsx = $pushnotix = $emailx = '';
+                                        if ($sms == 1) {
+                                            $smsx = 'checked';
+                                        }
+                                        if ($pushnoti == 1) {
+                                            $pushnotix = 'checked';
+                                        }
+                                        if ($email == 1) {
+                                            $emailx = 'checked';
+                                        }
+
+                                        ?>
+                                        <table style="border:0;" class="table table-borderless">
+                                            <tr>
+                                                <td class="text-center">
+                                                    <input type="checkbox" class="form-control" id="sms"
+                                                        value="<?php echo $sms; ?>" <?php echo $smsx; ?> />
+                                                    <br> Send SMS
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="checkbox" class="form-control" id="push"
+                                                        value="<?php echo $pushnoti; ?>" <?php echo $pushnotix; ?> />
+                                                    <br> Push Notification
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="checkbox" class="form-control" id="email"
+                                                     <?php echo $emailx; ?> /> <br> Send Email
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+
+
+
                                     </td>
                                     <td></td>
                                 </tr>
@@ -154,6 +248,7 @@ if ($result0->num_rows > 0) {
                                     <th>Notices</th>
                                     <th>Time Till</th>
                                     <th style="text-align:center;">To Whom</th>
+                                    <th style="text-align:center;">Notification</th>
                                     <th style="text-align:center;">Submition</th>
                                     <th style="text-align:right;"></th>
                                 </tr>
@@ -169,9 +264,16 @@ if ($result0->num_rows > 0) {
                                         $title = $row0x["title"];
                                         $descrip = $row0x["descrip"];
                                         $expdate = $row0x["expdate"];
+                                        $cates = $row0x["category"];
+
                                         $teacher = $row0x["teacher"];
                                         $smc = $row0x["smc"];
                                         $guardian = $row0x["guardian"];
+
+                                        $sms2 = $row0x["sms"];
+                                        $pushnoti2 = $row0x["pushnoti"];
+                                        $email2 = $row0x["email"];
+
                                         $eby = $row0x["entryby"];
                                         $etime = $row0x["entrytime"];
                                         ?>
@@ -181,13 +283,21 @@ if ($result0->num_rows > 0) {
                                             <td><?php echo date('d/m/y', strtotime($expdate)); ?></td>
                                             <td style="text-align:center;">
                                                 <?php
-                                                    echo '<i title="Teachers/Staffs" class="mdi mdi-account-circle mdi-18px p-2"></i>';
-                                                    echo '<i title="SMC Committee Member" class="mdi mdi-account-box mdi-18px p-2"></i>';
-                                                    echo '<i title="Guardians/Students" class="mdi mdi-account-multiple mdi-18px p-2"></i>';
+                                                echo '<i title="Teachers/Staffs" class="mdi mdi-account-circle mdi-18px p-2 text-muted"></i>';
+                                                echo '<i title="SMC Committee Member" class="mdi mdi-account-box mdi-18px p-2 text-muted"></i>';
+                                                echo '<i title="Guardians/Students" class="mdi mdi-account-multiple mdi-18px p-2"></i>';
                                                 ?>
                                             </td>
                                             <td style="text-align:center;">
-                                                <small><?php echo $eby; ?></small><br><small><?php echo $etime; ?></small></td>
+                                                <?php
+                                                echo '<i title="SMS" class="mdi mdi-message mdi-18px p-2 text-muted"></i>';
+                                                echo '<i title="Push Notification" class="mdi mdi-bell mdi-18px p-2"></i>';
+                                                echo '<i title="Email Notification" class="mdi mdi-email mdi-18px p-2 text-muted"></i>';
+                                                ?>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <small><?php echo $eby; ?></small><br><small><?php echo $etime; ?></small>
+                                            </td>
 
 
                                             <td style="text-align:right;">
@@ -237,43 +347,12 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById('defbtn').innerHTML = 'Add New Class';
+    document.getElementById('defbtn').innerHTML = 'New Notice';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
         addnew();
     }
 
-
-    function go() {
-        var m = document.getElementById('month').value;
-        var y = document.getElementById('year').value;
-        window.location.href = 'expenditure.php?&m=' + m + '&y=' + y;
-    }
-    function setbox() {
-        var datt = document.getElementById('clsx').value;
-        if (datt == '-') {
-            datt = '<?php echo $ccc; ?>';
-            document.getElementById('clstr').style.display = 'block';
-        } else {
-            document.getElementById('clstr').style.display = 'none';
-        }
-        document.getElementById('cls').value = datt;
-    }
-
-
-
-
-    function go2() {
-        var m = document.getElementById('ref').value;
-        window.location.href = 'expenditure.php?&ref=' + m;
-    }
-    function go3() {
-        var m = document.getElementById('ref').value;
-        window.location.href = 'expenditure.php?&undef';
-    }
-    function go4() {
-        document.getElementById('search').style.display = 'block';
-    }
     function addnew() {
         var tail = '';
         window.location.href = 'notice-manager.php?addnew' + tail;
@@ -294,12 +373,17 @@ include 'footer.php';
         var descrip = document.getElementById('descrip').value;
         var expdate = document.getElementById('expdate').value;
 
-        var teacher = document.getElementById('teacher').value;
-        var smc = document.getElementById('smc').value;
-        var guardian = document.getElementById('guardian').value;
+        var teacher = document.getElementById('teacher').checked;
+        var smc = document.getElementById('smc').checked;
+        var guardian = document.getElementById('guardian').checked;
 
-        var infor = "id=" + ids + '&ont=' + ont + '&title=' + title + '&descrip=' + descrip + '&expdate=' + expdate + '&teacher=' + teacher + '&smc=' + smc + '&guardian=' + guardian;
-        alert(infor);
+        var sms = document.getElementById('sms').checked;
+        var push = document.getElementById('push').checked;
+        var email = document.getElementById('email').checked;
+        var cate = document.getElementById('cate').value;
+
+        var infor = "id=" + ids + '&ont=' + ont + '&title=' + title + '&descrip=' + descrip + '&expdate=' + expdate + '&teacher=' + teacher + '&smc=' + smc + '&guardian=' + guardian + "&sms=" + sms + "&push=" + push + "&cate=" + cate + "&email=" + email;
+        // alert(infor);
         $("#sspd").html("");
 
         $.ajax({
