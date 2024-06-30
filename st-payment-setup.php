@@ -387,11 +387,13 @@ if ($result0xxd->num_rows > 0) {
                                                 <div id="freq<?php echo $idfin; ?>" style="display:none;">
                                                     <?php echo $freq; ?>
                                                 </div>
+                                                
                                                 <button onclick="syncfinance(<?php echo $idfin; ?>,1);"
                                                     class="btn btn-inverse-<?php echo $syncclr; ?>"><span
                                                         id="spn<?php echo $idfin; ?>"><i class="mdi mdi-sync mdi-18px pt-2"
                                                             title="<?php echo $ttl; ?>"></i></span></button>
-                                                <button onclick="syncfinancech(<?php echo $idfin; ?>,1);"
+                                                
+                                                            <button onclick="syncfinancech(<?php echo $idfin; ?>,1);"
                                                     class="btn btn-inverse-danger"><span
                                                         id="spn2<?php echo $idfin; ?>"><i class="mdi mdi-checkbox-marked-circle-outline mdi-18px pt-2"
                                                             title="<?php echo $ttl; ?>"></i></span></button>
@@ -436,9 +438,6 @@ include 'footer.php';
         window.location.href = 'st-payment-setup.php?&addnew=' + idn;
     }
 </script>
-
-
-
 <script>
     function push(idfin, id, cls, tail) {
         var taka = document.getElementById(tail).value;
@@ -461,7 +460,6 @@ include 'footer.php';
         });
     }
 </script>
-
 <script>
     function crud(id, tail) {
         var eng = document.getElementById('peng').value;
@@ -490,7 +488,6 @@ include 'footer.php';
         });
     }
 </script>
-
 <script>
     function myg() {
         document.getElementById("prog").classList.toggle('fade');
@@ -502,8 +499,6 @@ include 'footer.php';
         setTimeout(myg, 2000);
     }
 </script>
-
-
 <script>
     function syncfinance(id, tail) {
         document.getElementById("more").innerHTML = "";
@@ -550,7 +545,7 @@ include 'footer.php';
         // }, 10);
 
         $.ajax({
-            url: "backend/sync-finance-amount.php", type: "POST", data: infor, cache: false,
+            url: "backend/sync-finance-amount-slow.php", type: "POST", data: infor, cache: false,
             beforeSend: function () {
                 $("#gexx").html('<span class=""><small>Please wait, data syncing continue. It may take some time...</small> <br><span class="text-success">' + txt + '</span> </span>');
             },
