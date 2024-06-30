@@ -23,6 +23,10 @@ update stfinance set idmon= CONCAT(stid, month)
 
 // Check
 
+Search
+SELECT * FROM stfinance WHERE `sessionyear` = 2024 AND `sccode` = 103187 AND partid=49 and classname !='Ten' order by pr1 desc;
+
+Delete  FROM stfinance WHERE `sessionyear` = 2024 AND `sccode` = 103187 AND partid=49 and classname !='Ten' order by pr1 desc;
 
 
 

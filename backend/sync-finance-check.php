@@ -96,32 +96,33 @@ foreach ($vcl as $cls) {
 
                 $loopstart = $loopend = $loopstep = 0;
                 if ($mmm >= 1 && $mmm <= 12) {
-                    $loopstart = $mmm;  $loopend = $mmm+1; $loopstep = 1;
+                    $loopstart = $mmm;
+                    $loopend = $mmm + 1;
+                    $loopstep = 1;
                 } else if ($mmm == 0) {
-                    $loopstart = 1;  $loopend = 13; $loopstep = 1;
+                    $loopstart = 1;
+                    $loopend = 13;
+                    $loopstep = 1;
                 } else {
-                    $mmmx = $mmm/11;
-                    $loopstart = $mmmx;  $loopend = 13; $loopstep = $mmmx;
+                    $mmmx = $mmm / 11;
+                    $loopstart = $mmmx;
+                    $loopend = 13;
+                    $loopstep = $mmmx;
                 }
 
                 for ($lup = $loopstrat; $lup < $loopend; $lup += $loopstep) {
-$ch = '';
-                    $idmon = $stid *10+ $lup;
+                    $ch = '';
+                    $idmon = $stid * 10 + $lup;
                     $ch = array_search($idmon, array_column($finlist, 'idmon'));
-                    if($ch == '') {
+                    if ($ch == '') {
                         $disp .= ' / ' . $stid2;
                         $check++;
+                    } else {
+                        $disp .= ' / ' . $ch;
+                        $check++;
                     }
-
                 }
             }
-
-
-
-
-
-
-
 
 
 
