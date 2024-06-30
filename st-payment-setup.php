@@ -30,9 +30,9 @@ if ($result0xxd->num_rows > 0) {
 }
 
 
-$inex = $_COOKIE['inex'];
-$btnclr = $_COOKIE['clr'];
-$txt = $_COOKIE['txt'];
+// $inex = $_COOKIE['inex'];
+// $btnclr = $_COOKIE['clr'];
+// $txt = $_COOKIE['txt'];
 ?>
 <style>
     thead th {
@@ -391,6 +391,11 @@ $txt = $_COOKIE['txt'];
                                                     class="btn btn-inverse-<?php echo $syncclr; ?>"><span
                                                         id="spn<?php echo $idfin; ?>"><i class="mdi mdi-sync mdi-18px pt-2"
                                                             title="<?php echo $ttl; ?>"></i></span></button>
+                                                <button onclick="syncfinancech(<?php echo $idfin; ?>,1);"
+                                                    class="btn btn-inverse-danger"><span
+                                                        id="spn2<?php echo $idfin; ?>"><i class="mdi mdi-checkbox-marked-circle-outline mdi-18px pt-2"
+                                                            title="<?php echo $ttl; ?>"></i></span></button>
+                                                            <?php echo $idfin;?>
                             </div>
                             <div id="sspp<?php echo $id; ?>"></div>
                             </td>
@@ -514,6 +519,22 @@ include 'footer.php';
         document.getElementById("prog").classList.add('fade');
         syncfinance2(id, tail);
     }
+    
+    function syncfinancech(id, tail) {
+        document.getElementById("more").innerHTML = "";
+        document.getElementById("prog").style.display = 'flex';
+        document.getElementById("progbar").style.width = '0%';
+        var tsc = parseInt(<?php echo $tsc; ?>);
+        var freq = parseInt(document.getElementById("freq" + id).innerHTML);
+        if (freq == 0) {
+            // document.getElementById("tsc").innerHTML = tsc * 12;
+        }
+        document.getElementById("progx").focus();
+        // document.getElementById("prog").style.opacity = "1";
+        document.getElementById("prog").classList.add('fade');
+        syncfinancech2(id, tail);
+    }
+
     function syncfinance2(id, tail) {
         var mor = document.getElementById("more").innerHTML;
         var txt = document.getElementById("tags" + id).innerHTML;
@@ -549,6 +570,51 @@ include 'footer.php';
                     document.getElementById("more").innerHTML = 'Payment Updated Successfully.';
                     document.getElementById("prog").classList.toggle('fade');
                     done();
+                }
+                // window.location.href = 'st-payment-setup.php';
+                // if (document.getElementById("div" + tail).innerHTML == 'insert') {
+                //     window.location.href = 'st-payment-setup.php';
+                // }
+                // document.getElementById(tail).style.borderColor = 'green';
+            }
+        });
+    }
+
+    function syncfinancech2(id, tail) {
+        var mor = document.getElementById("more").innerHTML;
+        var txt = document.getElementById("tags" + id).innerHTML;
+        // alert("repeta" + mor);
+        if (mor == '') { document.getElementById("more").innerHTML = 0; }
+        var infor = "id=" + id + "&tail=" + tail + "&vcl=<?php echo $valid_class_list; ?>";
+        // alert(infor);
+        $("#gexx").html("----------");
+
+        // setInterval(function () {
+        //     var object = document.getElementById('spn' + id);
+        //     object.style.transform += "rotate(10deg)";
+        // }, 10);
+
+        $.ajax({
+            url: "backend/sync-finance-check.php", type: "POST", data: infor, cache: false,
+            beforeSend: function () {
+                $("#gexx").html('<span class=""><small>Please wait, data syncing continue. It may take some time...</small> <br><span class="text-success">' + txt + '</span> </span>');
+            },
+            success: function (html) {
+                $("#gexx").html(txt + '<br>' + html);
+                var more = document.getElementById("more").innerHTML;
+                let position = more.search("Done");
+                if (position < 0) {
+                    var curval = parseInt(more);
+                    var totval = parseInt(document.getElementById("tsc").innerHTML);
+                    var perc = curval * 100 / totval;
+                    document.getElementById("progbar").style.width = perc + '%';
+                    syncfinance2(id, tail);
+                } else {
+                    document.getElementById("progbar").style.width = '100%';
+                    document.getElementById("gexx").innerHTML = txt;
+                    // document.getElementById("more").innerHTML = 'Payment Checked Successfully.';
+                    document.getElementById("prog").classList.toggle('fade');
+                    // done();
                 }
                 // window.location.href = 'st-payment-setup.php';
                 // if (document.getElementById("div" + tail).innerHTML == 'insert') {
