@@ -7,6 +7,14 @@
 
 ----------- notice table whole transfer (REPLACE) -------------------------------
 ----------- notice Category table whole transfer (REPLACE) -------------------------------
+ALTER TABLE `financesetup` ADD `validationtime` DATETIME NULL DEFAULT '2024-01-01 00:00:00' AFTER `need_update`;
+ALTER TABLE `stfinance` ADD `validate` INT NOT NULL DEFAULT '0' AFTER `last_update`, ADD `validationtime` DATETIME NOT NULL DEFAULT '2024-01-01 00:00:00' AFTER `validate`;
+ALTER TABLE `sessioninfo` ADD `validate` INT NULL DEFAULT '0' AFTER `tracktoday`, ADD `validationtime` DATETIME NOT NULL DEFAULT '2024-01-01 00:00:00' AFTER `validate`;
+ALTER TABLE `stfinance` CHANGE `idmon` `idmon` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL;
+
+
+
+
 
 
 
@@ -20,6 +28,8 @@ SELECT stid, partid, particulareng, count(*) FROM `stfinance` WHERE sccode='1031
 // if not remove them.
 
 update stfinance set idmon= CONCAT(stid, month) 
+update stfinance set idmon= CONCAT(stid, '-', partid, '-', month) 
+
 
 // Check
 
@@ -32,3 +42,6 @@ Delete  FROM stfinance WHERE `sessionyear` = 2024 AND `sccode` = 103187 AND part
 
 
 //////////////////////////////////////////////////////////////////////////////
+
+
+Class Teacher/ Teacher / Principal Payment Option OK

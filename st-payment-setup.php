@@ -20,6 +20,7 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
+
 $classnamelist = ' playnurseryonetwothreefourfivesixseveneightnineten';
 $sql0x = "SELECT count(*) as cnt FROM sessioninfo where  sccode='$sccode' and sessionyear LIKE '$sy%'  ;";
 $result0xxd = $conn->query($sql0x);
@@ -266,8 +267,9 @@ if ($result0xxd->num_rows > 0) {
                                     if ($result0xxt->num_rows > 0) {
                                         while ($row0x = $result0xxt->fetch_assoc()) {
                                             $cname = strtoupper($row0x["areaname"]);
-                                            echo '<th class=" text-center">' . $cname . '</th>';
+                                            
                                             if (strpos($classnamelist, strtolower($cname)) > 0) {
+                                                echo '<th class=" text-center">' . $cname . '</th>';
                                                 $valid_class_list .= strtolower($cname) . '_';
                                             }
                                         }
@@ -356,9 +358,9 @@ if ($result0xxd->num_rows > 0) {
                                                     } else {
                                                         ?>
 
-                                                        <td class="pl-1 pr-1  text-center">
+                                                        <td class="pl-1 pr-1  text-center" hidden>
                                                             <input type="text" class="form-control bg-dark " id="" value=""
-                                                                style="width:50px;" disabled />
+                                                                style="width:50px;" hidden />
                                                         </td>
                                                         <?php
                                                     }
