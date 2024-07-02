@@ -3,7 +3,7 @@
     </style>
 
 <tr>
-    <td valign="top" class="backpic" background="assets/admit/sample_01.png"
+    <td valign="top" class="backpic" background="assets/admit/sample_02.png"
         style="width:210mm;  max-height:140mm; padding:3mm;   font-family:'Segoe UI';">
 
         <table style="font-size:10px; width:100%; border:0;" class="hideshow">

@@ -55,7 +55,7 @@ if (isset($_GET['addnew'])) {
 
         font-family: "Source Code Pro", monospace;
         font-optical-sizing: auto;
-        font-weight: 500;
+        font-weight: 400;
         font-style: italic;
 
     }
@@ -75,10 +75,10 @@ if (isset($_GET['addnew'])) {
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <div id="countus">dddd</div>
+                        <div id="countus"></div>
                         <button class="btn btn-inverse-primary p-2" onclick="checknow();">Check Now</button>
                         <div class="text-small mt-2" id="run-text">
-                            <div id="totaltotal">0</div>
+                            <div id="totaltotal"></div>
                             
                         </div>
 
