@@ -4,7 +4,7 @@
 
 <tr>
     <td valign="top" class="backpic" background="assets/admit/sample_02.png"
-        style="width:210mm;  max-height:140mm; padding:3mm;   font-family:'Segoe UI';">
+        style="width:210mm;  max-height:148mm; padding:3mm;   font-family:'Segoe UI';">
 
         <table style="font-size:10px; width:100%; border:0;" class="hideshow">
             <tr>
@@ -110,7 +110,7 @@
 
 
                             <td style="font-size:11px; padding-bottom:10px; text-align:center;" valign="bottom">
-                                <table style="width:100%; text-align:center; ">
+                                <table style="width:100%; text-align:center;">
                                     <tr>
                                         <td colspan="2" style="text-align:left; font-size:10px;">
                                             <ul>
