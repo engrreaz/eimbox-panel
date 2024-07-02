@@ -243,8 +243,9 @@ if (isset($_GET['addnew'])) {
                                 </div>
                                 <div
                                     class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                                    <div  style="float:right;">
-                                        <button id="btn<?php echo $i;?>" class="btn btn-inverse-success p-2"><?php echo $i;?></button>
+                                    <div style="float:right;">
+                                        <button id="btn<?php echo $i; ?>"
+                                            class="btn btn-inverse-success p-2"><?php echo $i; ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -315,9 +316,9 @@ $pgm = $pgl * $col;
 
     <table class="" id="hides">
         <?php
-
+        $ssl = 1;
         $sqlcccd = "SELECT * from sessioninfo WHERE  sccode='$sccode'  and sessionyear LIKE '$sy%' and classname='$cls2' and sectionname='$sec2' order by rollno";
-        	// echo $sqlcccd;
+        // echo $sqlcccd;
         $resultcccd = $conn->query($sqlcccd);
         if ($resultcccd->num_rows > 0) {
             while ($rowcccd = $resultcccd->fetch_assoc()) {
@@ -357,12 +358,13 @@ $pgm = $pgl * $col;
                     }
                 }
 
-         
+
+                $paad = 3;
                 include 'assets/admit/temp_01.php';
 
 
 
-
+                $ssl++;
 
             }
         }
@@ -508,5 +510,5 @@ include 'footer.php';
             }
         });
     }
-    
+
 </script>

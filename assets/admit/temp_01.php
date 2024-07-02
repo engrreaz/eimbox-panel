@@ -1,10 +1,12 @@
 <style>
-    #rout td{border:1px solid black;}
-    </style>
+    #rout td {
+        border: 1px solid black;
+    }
+</style>
 
 <tr>
     <td valign="top" class="backpic" background="assets/admit/sample_02.png"
-        style="width:210mm;  max-height:152mm; padding:3mm;   font-family:'Segoe UI';">
+        style="width:210mm;  max-height:147mm; padding:<?php echo $paad; ?>mm;   font-family:'Segoe UI'; border:0px solid red; border-collapse:collapse;">
 
         <table style="font-size:10px; width:100%; border:0;" class="hideshow">
             <tr>
@@ -62,11 +64,11 @@
                     $file_pointer = "../students/" . $stid . ".jpg";
                     if (file_exists($file_pointer) === TRUE) {
                         ?>
-                    <img src="<?php echo $domain; ?>/students/<?php echo $stid; ?>.jpg" alt="" height="85px"
-                        style="border-radius:0%; border : 1px solid black; padding:3px; " />
+                        <img src="<?php echo $domain; ?>/students/<?php echo $stid; ?>.jpg" alt="" height="85px"
+                            style="border-radius:0%; border : 1px solid black; padding:3px; " />
                     <?php } else { ?>
-                    <img src="http://www.eimbox.com/admit/noimg.jpg" alt="" height="90px"
-                        style="border-radius:0%; border : 1px solid black; padding:3px; right:10px;" />
+                        <img src="http://www.eimbox.com/admit/noimg.jpg" alt="" height="90px"
+                            style="border-radius:0%; border : 1px solid black; padding:3px; right:10px;" />
 
                     <?php } ?>
                 </td>
@@ -94,14 +96,14 @@
                                             $etime = $rowww["time"];
                                             $subj = $rowww["subj"];
                                             ?>
-                                    <tr>
-                                        <td style="text-align:center"><?php echo date('l, d/m/Y', strtotime($edate)); ?>
-                                        </td>
-                                        <td style="text-align:center"><?php echo date('h:i:s A', strtotime($etime)); ?>
-                                        </td>
-                                        <td style="text-align:center"><?php echo $subj; ?></td>
-                                    </tr>
-                                    <?php
+                                            <tr>
+                                                <td style="text-align:center"><?php echo date('l, d/m/Y', strtotime($edate)); ?>
+                                                </td>
+                                                <td style="text-align:center"><?php echo date('h:i:s A', strtotime($etime)); ?>
+                                                </td>
+                                                <td style="text-align:center"><?php echo $subj; ?></td>
+                                            </tr>
+                                            <?php
                                         }
                                     }
                                     ?>
@@ -166,3 +168,9 @@
 
     </td>
 </tr>
+
+<?php
+if ($ssl >= 3 && $ssl % 2 == 1) {
+    echo '<tr><td style="page-break-after:always;"></td></tr>';
+}
+?>
