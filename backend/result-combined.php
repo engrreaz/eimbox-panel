@@ -30,8 +30,8 @@ if ($result22v->num_rows > 0) {
 
         $u1 = substr($allfourth, 0, 3) * 1;
         $u2 = substr($allfourth, 3, 3) * 1;
-        $u3 = substr($allfourth, 6, 3) * 1;
-        $u4 = substr($allfourth, 9, 3) * 1;
+        $u3 = '';//substr($allfourth, 6, 3) * 1;
+        $u4 = '';//substr($allfourth, 9, 3) * 1;
 
         //echo $stid;
         $ben_sub = 0;
@@ -66,10 +66,9 @@ if ($result22v->num_rows > 0) {
         $totalgp = 0;
         $totalsubject = 0;
 
-        // include 'count_total_avg.php';
-
+        include 'result-count-total-avg.php';
+        echo '====' . $totalfullmarks . '************' . $totalsubject . '()()()<br>';
    
-
 
         $avgrate = $totalmarks * 100 / $totalfullmarks;
         if ($tfail == 0) {
@@ -125,11 +124,8 @@ if ($result22v->num_rows > 0) {
 								eng_sub = '$eng_sub', eng_obj = '$eng_obj', eng_pra = '$eng_pra', eng_ca = '$eng_ca', eng_total = '$eng_total', eng_gp = '$eng_gp', eng_gl = '$eng_gl',
 								totalgp = '$totalgp', totalsubject = '$totalsubject', failsub = '$fs'
 								WHERE sessionyear='$sessionyear' and exam='$exam' and stid='$stid'  ";
-        echo $query334;
-        
-        ?>
-        <script>console.log("active");</script>
-        <?php
+        echo $query334 . '<br>';
+  
         if ($conn->query($query334) === TRUE) {
             echo '';
         } else {
@@ -191,15 +187,15 @@ if ($result22vnp->num_rows > 0) {
             }
         }
 
-        $sql22vnhxc = "SELECT sum(yn) as attcnt FROM stattnd  where  sccode = '$sccode' and yn='1' and adate between '$efrom' and '$eto' and stid='$stid'";
-        $result22vnhxc = $conn->query($sql22vnhxc);
-        if ($result22vnhxc->num_rows > 0) {
-            while ($row22vnhxc = $result22vnhxc->fetch_assoc()) {
-                $upo = $row22vnhxc["attcnt"];
-            }
-        } else {
-            $upo = 0;
-        }
+        // $sql22vnhxc = "SELECT sum(yn) as attcnt FROM stattnd  where  sccode = '$sccode' and yn='1' and adate between '$efrom' and '$eto' and stid='$stid'";
+        // $result22vnhxc = $conn->query($sql22vnhxc);
+        // if ($result22vnhxc->num_rows > 0) {
+        //     while ($row22vnhxc = $result22vnhxc->fetch_assoc()) {
+        //         $upo = $row22vnhxc["attcnt"];
+        //     }
+        // } else {
+        //     $upo = 0;
+        // }
 
         $upo = 0;
         $mpla = $twday = $upo = 333;
