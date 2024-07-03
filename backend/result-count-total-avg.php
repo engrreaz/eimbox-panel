@@ -62,12 +62,12 @@ if ($result22vr->num_rows > 0) {
 
 
 
-        if ($cn != 'Eight') {
-            $totalgp = $totalgp + $ben_gp + $eng_gp;
+        // if ($cn != 'Eight') {
+        //     $totalgp = $totalgp + $ben_gp + $eng_gp;
 
-        } else {
-            $totalgp = $totalgp;
-        }
+        // } else {
+        //     $totalgp = $totalgp;
+        // }
         $totalsubject = $totalsubject + 2; //BENGALI + ENGLISH
         //echo $stid;
 
