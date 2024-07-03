@@ -19,12 +19,12 @@ if (isset($_GET['cls'])) {
 if (isset($_GET['sec'])) {
     $sec2 = $_GET['sec'];
 } else {
-    $sec2 = '';
+    $sec2 = 'Science';
 }
 if (isset($_GET['exam'])) {
     $exam2 = $_GET['exam'];
 } else {
-    $exam2 = 'Half yearly';
+    $exam2 = 'Half Yearly';
 }
 
 $col = 3;
