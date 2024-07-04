@@ -133,7 +133,7 @@ if ($result22v->num_rows > 0) {
 								eng_sub = '$eng_sub', eng_obj = '$eng_obj', eng_pra = '$eng_pra', eng_ca = '$eng_ca', eng_total = '$eng_total', eng_gp = '$eng_gp', eng_gl = '$eng_gl',
 								totalgp = '$totalgp', totalsubject = '$totalsubject', failsub = '$fs'
 								WHERE sessionyear='$sessionyear' and exam='$exam' and stid='$stid'  ";
-        // echo $query334 . '<br>';
+        echo $query334 . '<br>';
   $conn->query($query334);
     }
 }
