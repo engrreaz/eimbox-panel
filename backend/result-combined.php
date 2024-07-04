@@ -11,7 +11,7 @@ $exam = $_POST['exam'];
 
 $query334 = "UPDATE tabulatingsheet SET 
 prevexam = '0', thisexam = '0', 
-totalmarks = '0', avgrate = '0', gpa = '5', gla='0', totalfail='0'	, full_marks = '0',
+totalmarks = '0', avgrate = '0', gpa = '0', gla='0', totalfail='0'	, full_marks = '0',
 ben_sub = '0', ben_obj = '0', ben_pra = '0', ben_ca = '0', ben_total = '0', ben_gp = '0', ben_gl = '0',
 eng_sub = '0', eng_obj = '0', eng_pra = '0', eng_ca = '0', eng_total = '0', eng_gp = '0', eng_gl = '0',
 totalgp = '0', totalsubject = '0', failsub = '0'
@@ -21,7 +21,7 @@ $conn->query($query334);
 
 //************************************************************************************ END OF ATTENDANCE COUNT ********************************************
 
-$sql22v = "SELECT * FROM sessioninfo where classname ='$cn' and sectionname='$secname' and sessionyear ='$sessionyear' and sccode = '$sccode' order by rollno";
+$sql22v = "SELECT * FROM sessioninfo where classname ='$cn' and sectionname='$secname' and sessionyear ='$sessionyear' and sccode = '$sccode'  order by rollno";
 echo $sql22v . '<br>';
 $result22v = $conn->query($sql22v);
 if ($result22v->num_rows > 0) {
@@ -29,6 +29,8 @@ if ($result22v->num_rows > 0) {
         $stid = $row22v["stid"];
         $rollno = $row22v["rollno"];
         $fourth = $row22v["fourth_subject"];
+        echo '<br>' . $rollno . '....................................' . '<br>';
+
 
         $sql22vr = "SELECT * from tabulatingsheet where  classname ='$cn' and sectionname='$secname' and sessionyear ='$sessionyear' and sccode = '$sccode' and stid='$stid' ";
         $result22vr = $conn->query($sql22vr);
@@ -36,6 +38,8 @@ if ($result22v->num_rows > 0) {
             while ($row22vr = $result22vr->fetch_assoc()) {
                 $allfourth = $row22vr["allfourth"];
             }
+        } else {
+            $allfourth = 126134;
         }
 
         $u1 = substr($allfourth, 0, 3) * 1;
@@ -78,9 +82,10 @@ if ($result22v->num_rows > 0) {
 
         include 'result-count-total-avg.php';
         // echo '====' . $totalfullmarks . '************' . $totalsubject . '()()()<br>';
-   
+
 
         $avgrate = $totalmarks * 100 / $totalfullmarks;
+        echo $avgrate;
         if ($tfail == 0) {
             $gpa = $totalgp / $totalsubject;
             if ($gpa > 5) {
@@ -122,11 +127,11 @@ if ($result22v->num_rows > 0) {
 
 
         //$fs = $u1 . $u2 . $u3 . $u4;
-        
-      
-        
-        
-echo '<br>' . $rollno . '....................................' . '<br>';
+
+
+
+
+
         $query334 = "UPDATE tabulatingsheet SET 
 								prevexam = '$tms', thisexam = '$totalmarks', 
 								totalmarks = '$totaltotal', avgrate = '$avgrate', gpa = '$gpa', gla='$gla', totalfail='$tfail'	, full_marks = '$totalfullmarks',
@@ -135,7 +140,7 @@ echo '<br>' . $rollno . '....................................' . '<br>';
 								totalgp = '$totalgp', totalsubject = '$totalsubject', failsub = '$fs'
 								WHERE sessionyear='$sessionyear' and exam='$exam' and stid='$stid'  ";
         echo $query334 . '<br>';
-  $conn->query($query334);
+        $conn->query($query334);
     }
 }
 
