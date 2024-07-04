@@ -22,6 +22,7 @@ $conn->query($query334);
 //************************************************************************************ END OF ATTENDANCE COUNT ********************************************
 
 $sql22v = "SELECT * FROM sessioninfo where classname ='$cn' and sectionname='$secname' and sessionyear ='$sessionyear' and sccode = '$sccode' order by rollno";
+echo $sql22v . '<br>';
 $result22v = $conn->query($sql22v);
 if ($result22v->num_rows > 0) {
     while ($row22v = $result22v->fetch_assoc()) {
