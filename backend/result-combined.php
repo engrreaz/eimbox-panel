@@ -125,7 +125,7 @@ if ($result22v->num_rows > 0) {
       
         
         
-
+echo '<br>' . $rollno . '....................................' . '<br>';
         $query334 = "UPDATE tabulatingsheet SET 
 								prevexam = '$tms', thisexam = '$totalmarks', 
 								totalmarks = '$totaltotal', avgrate = '$avgrate', gpa = '$gpa', gla='$gla', totalfail='$tfail'	, full_marks = '$totalfullmarks',
