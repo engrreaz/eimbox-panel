@@ -9,6 +9,15 @@ $exam = $_POST['exam'];
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+$query334 = "UPDATE tabulatingsheet SET 
+prevexam = '0', thisexam = '0', 
+totalmarks = '0', avgrate = '0', gpa = '0', gla='0', totalfail='0'	, full_marks = '0',
+ben_sub = '0', ben_obj = '0', ben_pra = '0', ben_ca = '0', ben_total = '0', ben_gp = '0', ben_gl = '0',
+eng_sub = '0', eng_obj = '0', eng_pra = '0', eng_ca = '0', eng_total = '0', eng_gp = '0', eng_gl = '0',
+totalgp = '0', totalsubject = '0', failsub = '0'
+WHERE sessionyear='$sessionyear' and exam='$exam' and classname='$cn' and sectionname= '$secname'  ";
+// echo $query334 . '<br>';
+$conn->query($query334);
 
 //************************************************************************************ END OF ATTENDANCE COUNT ********************************************
 
