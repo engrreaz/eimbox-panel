@@ -204,6 +204,7 @@ if ($result22vnp->num_rows > 0) {
 								WHERE sessionyear='$sessionyear' and exam='$exam' and stid='$stid'  "; //echo $query3348;
         $conn->query($query3348);
 
+        echo $query3348;
         //	echo '<br><br>';
         $mp = $mp + 1;
 
