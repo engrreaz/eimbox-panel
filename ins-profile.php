@@ -253,7 +253,7 @@ if ($result0x->num_rows > 0) {
                                 <tr>
                                     <td></td>
                                     <td colspan="4"><button class="btn btn-inverse-primary p-2"
-                                            onclick="save(<?php echo $exid; ?>, 1);">Save
+                                            onclick="save(<?php echo $exid; ?>, 1);" disabled>Save
                                             Information</button>
 
                                         <div id="gex"></div>

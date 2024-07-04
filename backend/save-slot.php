@@ -14,8 +14,8 @@ if ($ont == 1) {
     } else {
         $query331 = "UPDATE slots SET slotname = '$gname'  where id = '$id' and sccode='$sccode'";
     }
-} if ($ont == 5) {
-$query331 = "INSERT INTO slots (id, sccode, slotname) 
+} else if ($ont == 5) {
+    $query331 = "INSERT INTO slots (id, sccode, slotname) 
                 VALUES (NULL, '$sccode', 'School');";
 } else {
     $query331 = "DELETE FROM slots where id = '$id' and sccode='$sccode'";

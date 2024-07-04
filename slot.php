@@ -98,7 +98,7 @@ if (isset($_GET['addnew'])) {
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
                                     class="btn btn-lg btn-inverse-primary btn-icon-text btn-block p-2" style=""
-                                    onclick="savegroup(0,1);"><i class="mdi mdi-plus"></i>
+                                    onclick="savegroup(<?php echo $ids2;?>,1);"><i class="mdi mdi-plus"></i>
                                     Add / Update Slot</button>
                             </div>
                         </div>
@@ -242,7 +242,7 @@ include 'footer.php';
         }
 
         var infor = "id=" + id + "&ont=" + ont + "&gname=" + gname;
-        // alert(infor);
+        alert(infor);
         $("#sscspan").html("");
         $.ajax({
             type: "POST",
