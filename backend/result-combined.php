@@ -67,7 +67,7 @@ if ($result22v->num_rows > 0) {
         $totalsubject = 0;
 
         include 'result-count-total-avg.php';
-        echo '====' . $totalfullmarks . '************' . $totalsubject . '()()()<br>';
+        // echo '====' . $totalfullmarks . '************' . $totalsubject . '()()()<br>';
    
 
         $avgrate = $totalmarks * 100 / $totalfullmarks;
@@ -116,7 +116,7 @@ if ($result22v->num_rows > 0) {
       
         
         
-        
+
         $query334 = "UPDATE tabulatingsheet SET 
 								prevexam = '$tms', thisexam = '$totalmarks', 
 								totalmarks = '$totaltotal', avgrate = '$avgrate', gpa = '$gpa', gla='$gla', totalfail='$tfail'	, full_marks = '$totalfullmarks',
@@ -125,99 +125,7 @@ if ($result22v->num_rows > 0) {
 								totalgp = '$totalgp', totalsubject = '$totalsubject', failsub = '$fs'
 								WHERE sessionyear='$sessionyear' and exam='$exam' and stid='$stid'  ";
         // echo $query334 . '<br>';
-  
-        if ($conn->query($query334) === TRUE) {
-            echo '';
-        } else {
-            echo '';
-        }
+  $conn->query($query334);
     }
 }
-
-
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-//*****************************************************************************************************************************************************************
-
-
-
-
-
-
-
-///********************************************************************************************
-
-
-
-
-
-$cn2 = '%' . substr($cn, 0, 3) . '%';
-$mp = 1;
-//Combined Merit List
-// 	$sql22vnp="SELECT * FROM tabulatingsheet where classname LIKE '$cn'  and sessionyear ='$sessionyear' and exam='$exam' and sccode='$sccode' order by totalfail, thisexam desc" ;
-//Indivisual Meril List
-$sql22vnp = "SELECT * FROM tabulatingsheet where classname LIKE '$cn'  and sessionyear ='$sessionyear' and exam='$exam' and sccode='$sccode' and sectionname='$secname' order by totalfail, thisexam desc";
-//Boys/Girl Merit List
-// $sql22vnp="SELECT * FROM tabulatingsheet where classname LIKE '$cn'  and sessionyear ='$sessionyear' and exam='$exam' and sccode='$sccode' and gender='Girl' order by totalfail, totalmarks desc" ;
-
-//if($sccode=='103187'){
-//    $sql22vnp="SELECT * FROM tabulatingsheet where classname LIKE '$cn'  and sessionyear ='$sessionyear' and exam='$exam' and sccode='$sccode' and sectionname='$secname' order by totalfail, totalmarks desc" ;
-//}
-
-echo $sql22vnp;
-
-$result22vnp = $conn->query($sql22vnp);
-if ($result22vnp->num_rows > 0) {
-    while ($row22vnp = $result22vnp->fetch_assoc()) {
-        $tf = $row22vnp["totalfail"];
-        $tm = $row22vnp["totalmarks"];
-        $stid = $row22vnp["stid"];
-
-        $sql22vnhx = "SELECT * FROM meritlist where numplace = '$mp'   ";
-        $result22vnhx = $conn->query($sql22vnhx);
-        if ($result22vnhx->num_rows > 0) {
-            while ($row22vnhx = $result22vnhx->fetch_assoc()) {
-                $mpla = $row22vnhx["meritplace"];
-            }
-        }
-
-        // $sql22vnhxc = "SELECT sum(yn) as attcnt FROM stattnd  where  sccode = '$sccode' and yn='1' and adate between '$efrom' and '$eto' and stid='$stid'";
-        // $result22vnhxc = $conn->query($sql22vnhxc);
-        // if ($result22vnhxc->num_rows > 0) {
-        //     while ($row22vnhxc = $result22vnhxc->fetch_assoc()) {
-        //         $upo = $row22vnhxc["attcnt"];
-        //     }
-        // } else {
-        //     $upo = 0;
-        // }
-
-        $upo = 0;
-        $mpla = $twday = $upo = 333;
-        $query3348 = "UPDATE tabulatingsheet SET 
-								meritplace = '$mpla' , twday = '$twday'	, attnd = '$upo'							
-								WHERE sessionyear='$sessionyear' and exam='$exam' and stid='$stid'  "; //echo $query3348;
-        $conn->query($query3348);
-
-        echo $query3348;
-        //	echo '<br><br>';
-        $mp = $mp + 1;
-
-
-
-
-
-    }
-}
-
-//include 'bhs105532.php';
-?>
-
-<span class="button cycle-button info"><span class="mif-right-arrow"></span> </span> <span class="fg-emerald"> Calculation Complete Successfully</span>
-
 

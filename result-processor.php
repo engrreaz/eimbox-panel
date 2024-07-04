@@ -82,6 +82,7 @@ if (isset($_GET['addnew'])) {
 
 
                         <button class="btn btn-inverse-danger p-2 m-2" onclick="combine();">Combined</button>
+                        <button class="btn btn-inverse-danger p-2 m-2" onclick="meritcalc();">Merit</button>
 
 
 
@@ -161,6 +162,39 @@ include 'footer.php';
         $.ajax({
             type: "POST",
             url: "backend/result-combined.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#run-text').html('<small>Processing...</small>');
+            },
+            success: function (html) {
+                $("#run-text").html(html);
+                var cnt = parseInt(document.getElementById("totaltotal").innerHTML);
+                document.getElementById("countus").innerHTML = cnt;
+
+                var fulltext = document.getElementById("full-text").innerHTML;
+                var runtext = document.getElementById("run-text").innerHTML;
+                document.getElementById("full-text").innerHTML = runtext + fulltext;
+
+
+                console.log(cnt + ' Remaing...');
+
+                if (cnt > 0) {
+                    checknow();
+                } else {
+                    document.getElementById("run-text").innerHTML = 'Done. Complete';
+                }
+            }
+        });
+    }
+
+
+    function meritcalc() {
+        var infor = "year=<?php echo $year; ?>&cls=<?php echo $cls2; ?>&sec=<?php echo $sec2; ?>&exam=<?php echo $exam2; ?>";
+        $("#run-text").html("");
+        $.ajax({
+            type: "POST",
+            url: "backend/result-merit-calc.php",
             data: infor,
             cache: false,
             beforeSend: function () {
