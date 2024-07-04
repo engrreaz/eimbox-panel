@@ -70,7 +70,7 @@ if ($result0x->num_rows > 0) {
                                 if (!file_exists('../logo/' . $sccode . '.png')) {
                                     $logopath = 'assets/imgs/logo.png';
                                 } else {
-                                    $logopath = '../logo/' . $sccode . '.png';
+                                    $logopath = $BASE__PATH . '/logo/' . $sccode . '.png';
                                 }
                                 ?>
                                 <img style="height:100px;" src="<?php echo $logopath; ?>" />

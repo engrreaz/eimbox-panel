@@ -40,3 +40,7 @@ Delete  FROM stfinance WHERE `sessionyear` = 2024 AND `sccode` = 103187 AND part
 
 
 Class Teacher/ Teacher / Principal Payment Option OK
+
+
+update `salarydetails` set sccode='103188' WHERE `month` = 6;
+UPDATE `salaryextracolumn` SET `sccode` = '103188' WHERE `salaryextracolumn`.`id` = 2;

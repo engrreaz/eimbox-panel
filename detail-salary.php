@@ -703,16 +703,16 @@ include 'footer.php';
     function issue(slot, cate, id) {
 
         var year = document.getElementById("year").value;
-        var month = document.getElementById("month").value;alert(id);
+        var month = document.getElementById("month").value;alert(id); alert(id);
         var a = slot;//document.getElementById("slot" + id).innerHTML;
-        var b = cate; //document.getElementById("cate" + id).innerHTML;
-        var c = parseInt(document.getElementById("amt" + id).innerHTML);
+        var b = cate; //document.getElementById("cate" + id).innerHTML; 
+        alert(id);var c = parseInt(document.getElementById("amt" + id).innerHTML);
         var d = document.getElementById("ref" + id).value;
         var e = document.getElementById("chq" + id).value;
         var f = document.getElementById("bank" + id).value;
-        var g = document.getElementById("dt" + id).value;
+        var g = document.getElementById("dt" + id).value; alert(id);
 
-        // alert(a);
+       
 
         var infor = "year=" + year + "&month=" + month +
             "&a=" + a + "&b=" + b + "&c=" + c + "&d=" + d + "&e=" + e + "&f=" + f + "&g=" + g + "&tail=" + tail;
