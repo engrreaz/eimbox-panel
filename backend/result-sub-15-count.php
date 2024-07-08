@@ -1,5 +1,5 @@
 <?php
-
+$totalsubject = $totalfullmarks = 0;
 if($sub_1>0){
 $sql22vf="SELECT * FROM subsetup where classname ='$cn' and sectionname = '$secname'  and sccode = '$sccode' and subject= '$sub_1'" ;
 $result22vf = $conn->query($sql22vf);
@@ -46,9 +46,9 @@ if($sub_1 == $fourth){
 
 $totalfullmarks = $totalfullmarks + $fm;
 $totalmarks = $totalmarks + $sub_1_total;
-$totalgp = $totalgp + $sub_1_gp;
+// $totalgp = $totalgp + $sub_1_gp;
 $totalsubject = $totalsubject +1;
-if($row22vr["sub_1_gp"]==0){$tfail = $tfail +1-1;} else {$tfail = $tfail + 0;}
+// if($row22vr["sub_1_gp"]==0){$tfail = $tfail +1-1;} else {$tfail = $tfail + 0;}
 
 
 
@@ -112,9 +112,9 @@ if($sub_2 == $fourth){
 
 $totalfullmarks = $totalfullmarks + $fm;
 $totalmarks = $totalmarks + $sub_2_total;
-$totalgp = $totalgp + $sub_2_gp;
+// $totalgp = $totalgp + $sub_2_gp;
 $totalsubject = $totalsubject +1;
-if($row22vr["sub_2_gp"]==0){$tfail = $tfail +1-1;} else {$tfail = $tfail + 0;}
+// if($row22vr["sub_2_gp"]==0){$tfail = $tfail +1-1;} else {$tfail = $tfail + 0;}
 }
 else{
 $totalfullmarks = $totalfullmarks + 0;
@@ -146,9 +146,9 @@ if($sub_3 == $fourth){
 
 $totalfullmarks = $totalfullmarks + $fm;
 $totalmarks = $totalmarks + $sub_3_total;
-$totalgp = $totalgp + $sub_3_gp;
+// $totalgp = $totalgp + $sub_3_gp;
 $totalsubject = $totalsubject +1;
-if($row22vr["sub_3_gp"]==0){$tfail = $tfail +1;} else {$tfail = $tfail + 0;}
+// if($row22vr["sub_3_gp"]==0){$tfail = $tfail +1;} else {$tfail = $tfail + 0;}
 }
 else{
 $totalfullmarks = $totalfullmarks + 0;
@@ -179,9 +179,9 @@ if($sub_4 == $fourth){
 
 $totalfullmarks = $totalfullmarks + $fm;
 $totalmarks = $totalmarks + $sub_4_total;
-$totalgp = $totalgp + $sub_4_gp;
+// $totalgp = $totalgp + $sub_4_gp;
 $totalsubject = $totalsubject +1;
-if($row22vr["sub_4_gp"]==0){$tfail = $tfail +1;} else {$tfail = $tfail + 0;}
+// if($row22vr["sub_4_gp"]==0){$tfail = $tfail +1;} else {$tfail = $tfail + 0;}
 }
 else{
 $totalfullmarks = $totalfullmarks + 0;
@@ -368,41 +368,43 @@ if ($result22vf->num_rows > 0)
 {while($row22vf = $result22vf->fetch_assoc()) {
 $fm = $row22vf["fullmarks"] ;$ss = $row22vf["subj"] ; $oo = $row22vf["obj"] ; $cc = $row22vf["ca"] ;}}
 //******************************************************************************
-if(($sub_8 == 101)||($sub_8 == 102)){
-    $ben_sub = $ben_sub + $row22vr["sub_8_sub"] ;
-    $ben_obj = $ben_obj + $row22vr["sub_8_obj"] ;
-    $ben_ca = $ben_ca + $row22vr["sub_8_ca"] ;
-    $ben_total = $ben_sub + $ben_obj + $ben_pra + $ben_ca;
-    $ben_fullmarks = $ben_fullmarks + $fm;
-    $sss = $sss + $ss;
-    $ooo = $ooo + $oo;
-    $ccc = $ccc + $cc;
-    $totalgp = $totalgp - $sub_8_gp;
-    $totalsubject = $totalsubject - 1;
-}
-if(($sub_8 == 107)||($sub_8 == 108)){
-    $eng_sub = $eng_sub + $row22vr["sub_8_sub"] ;
-    $eng_obj = $eng_obj + $row22vr["sub_8_obj"] ;
-    $eng_ca = $eng_ca + $row22vr["sub_8_ca"] ;
-    $eng_total = $eng_sub + $eng_obj + $eng_pra + $eng_ca;
-    $eng_fullmarks = $eng_fullmarks + $fm;
-    $ssss = $ssss + $ss;
-    $oooo = $oooo + $oo;
-    $cccc = $cccc + $cc;
-    $totalgp = $totalgp - $sub_8_gp;
-    $totalsubject = $totalsubject - 1;
-}
-//******************************************************************************
-if($sub_8 == $fourth || $sub_8 == 134){
-    $totalsubject = $totalsubject - 1;
-            if ($sub_8_gp == 0) {$tfail = $tfail -1; $sub_8_gp = 0;}
-    else    if ($sub_8_gp <=2)  {$tfail = $tfail + 0; $sub_8_gp = 0;}
-    else    {$tfail = $tfail + 0; $sub_8_gp = $sub_8_gp - 2;}
-}
+// if(($sub_8 == 101)||($sub_8 == 102)){
+//     $ben_sub = $ben_sub + $row22vr["sub_8_sub"] ;
+//     $ben_obj = $ben_obj + $row22vr["sub_8_obj"] ;
+//     $ben_ca = $ben_ca + $row22vr["sub_8_ca"] ;
+//     $ben_total = $ben_sub + $ben_obj + $ben_pra + $ben_ca;
+//     $ben_fullmarks = $ben_fullmarks + $fm;
+//     $sss = $sss + $ss;
+//     $ooo = $ooo + $oo;
+//     $ccc = $ccc + $cc;
+//     $totalgp = $totalgp - $sub_8_gp;
+//     $totalsubject = $totalsubject - 1;
+// }
+// if(($sub_8 == 107)||($sub_8 == 108)){
+//     $eng_sub = $eng_sub + $row22vr["sub_8_sub"] ;
+//     $eng_obj = $eng_obj + $row22vr["sub_8_obj"] ;
+//     $eng_ca = $eng_ca + $row22vr["sub_8_ca"] ;
+//     $eng_total = $eng_sub + $eng_obj + $eng_pra + $eng_ca;
+//     $eng_fullmarks = $eng_fullmarks + $fm;
+//     $ssss = $ssss + $ss;
+//     $oooo = $oooo + $oo;
+//     $cccc = $cccc + $cc;
+//     $totalgp = $totalgp - $sub_8_gp;
+//     $totalsubject = $totalsubject - 1;
+// }
+// //******************************************************************************
+// if($sub_8 == $fourth || $sub_8 == 134){
+//     $totalsubject = $totalsubject - 1;
+//             if ($sub_8_gp == 0) {$tfail = $tfail -1; $sub_8_gp = 0;}
+//     else    if ($sub_8_gp <=2)  {$tfail = $tfail + 0; $sub_8_gp = 0;}
+//     else    {$tfail = $tfail + 0; $sub_8_gp = $sub_8_gp - 2;}
+// }
 
+// echo '<br>-----------------'.$totalgp ;
 $totalfullmarks = $totalfullmarks + $fm;
 $totalmarks = $totalmarks + $sub_8_total;
-$totalgp = $totalgp + $sub_8_gp;
+$totalgp = $totalgp + $sub_8_gp + $sub_8_gp;
+// echo '------------------------' . $totalgp . '<br>';
 $totalsubject = $totalsubject +1;
 if($row22vr["sub_8_gp"]==0){$tfail = $tfail +1;} else {$tfail = $tfail + 0;}
 }
@@ -413,6 +415,16 @@ $totalgp = $totalgp + 0;
 $totalsubject = $totalsubject +0;
 $tfail = $tfail + 0;
 }
+
+
+
+
+
+
+
+
+
+
 if($sub_9>0){
 $sql22vf="SELECT * FROM subsetup where classname ='$cn' and sectionname = '$secname'  and sccode = '$sccode' and subject= '$sub_9'" ;
 $result22vf = $conn->query($sql22vf);
@@ -445,7 +457,7 @@ if(($sub_9 == 107)||($sub_9 == 108)){
     $totalsubject = $totalsubject - 1;
 }
 //******************************************************************************
-if($sub_9 == $fourth){
+if($sub_9 == $fourth || $sub_9 == 134){
     $totalsubject = $totalsubject - 1;
             if ($sub_9_gp == 0) {$tfail = $tfail -1; $sub_9_gp = 0;}
     else    if ($sub_9_gp <=2)  {$tfail = $tfail + 0; $sub_9_gp = 0;}

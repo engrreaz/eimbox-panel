@@ -60,10 +60,11 @@ if ($result22vr->num_rows > 0) {
 
         echo $totalfullmarks . '-'. $totalmarks. '-'. $tfail. '-'. $totalgp. '-'. $totalsubject . '//////////////////////';
 
-
-
+ $totalgp = $totalgp + $ben_gp + $eng_gp;
+echo $totalgp;
+echo '<br><br><br>';
         // if ($cn != 'Eight') {
-        //     $totalgp = $totalgp + $ben_gp + $eng_gp;
+            // $totalgp = $totalgp + $ben_gp + $eng_gp;
 
         // } else {
         //     $totalgp = $totalgp;

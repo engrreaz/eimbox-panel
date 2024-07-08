@@ -82,7 +82,7 @@ if ($result22v->num_rows > 0) {
 
         include 'result-count-total-avg.php';
         // echo '====' . $totalfullmarks . '************' . $totalsubject . '()()()<br>';
-
+$totalsubject-=1;
 
         $avgrate = $totalmarks * 100 / $totalfullmarks;
         echo $avgrate;
