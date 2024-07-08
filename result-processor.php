@@ -213,7 +213,7 @@ include 'footer.php';
                 console.log(cnt + ' Remaing...');
 
                 if (cnt > 0) {
-                    checknow();
+                   checknow();
                 } else {
                     document.getElementById("run-text").innerHTML = 'Done. Complete';
                 }

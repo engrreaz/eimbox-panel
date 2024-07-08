@@ -79,12 +79,12 @@ if (isset($_GET['addnew'])) {
                         <button class="btn btn-inverse-primary p-2" onclick="checknow();">Check Now</button>
                         <div class="text-small mt-2" id="run-text">
                             <div id="totaltotal"></div>
-                            
+
                         </div>
 
                     </div>
                     <div class="col-12 mt-3 text-small" style="font-style:italic;;" id="full-text">
-                        
+
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@ include 'footer.php';
 
         var infor = "br=12";
 
-        $("#run-text").html("");
+        $("#run-text").html(""); $("#full-text").html("");
         $.ajax({
             type: "POST",
             url: "backend/check-student-finance.php",

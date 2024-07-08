@@ -189,19 +189,12 @@ if ($result0xxdffl->num_rows > 0) {
 
                                 $new++;
                             }
-
                         }
                         // echo '* ' . $cls . ' * / ' . $stid . ' % ' . $partid . ' --- ' . $taka . ' m ' . $z . ' (' . $idmon . ') ' . $indx . ' @ ' . $fnd . '<br>';
                     }
-
-
-
-
                 }
 
                 // echo '<br>';
-
-
 
             }
         }
@@ -213,16 +206,12 @@ if ($result0xxdffl->num_rows > 0) {
         $query3pxdel1 = "update sessioninfo set validate=1, validationtime='$cur' where stid='$stid' and sccode='$sccode' and sessionyear='$sy' ;";
         $conn->query($query3pxdel1);
 
-
-
     }
+} else {
+    $cls=$sec=$roll=$stid=' ';
 }
+
 // End Student Loop
-
-
-
-
-
 
 
 // }
@@ -232,13 +221,6 @@ $sl++;
 
 
 // echo $check_count;
-
-
-
-
-
-
-
 
 
 // echo '<br><br>';

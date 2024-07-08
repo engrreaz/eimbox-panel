@@ -12,7 +12,6 @@ $exam = $_POST['exam'];
 
 //************************************************************************************ END OF ATTENDANCE COUNT ********************************************
 
-
 $mp = 1;
 $sql22vnp = "SELECT * FROM tabulatingsheet where classname = '$cn'  and sessionyear ='$sessionyear' and exam='$exam' and sccode='$sccode' and sectionname='$secname' order by totalfail, thisexam desc;";
 echo $sql22vnp;
@@ -49,12 +48,7 @@ if ($result22vnp->num_rows > 0) {
         $conn->query($query3348);
 
         echo $query3348;
-        //	echo '<br><br>';
+        echo '<br><br>';
         $mp = $mp + 1;
-
-
-
-
-
     }
 }
