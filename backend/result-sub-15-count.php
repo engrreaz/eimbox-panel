@@ -393,12 +393,12 @@ $fm = $row22vf["fullmarks"] ;$ss = $row22vf["subj"] ; $oo = $row22vf["obj"] ; $c
 //     $totalsubject = $totalsubject - 1;
 // }
 // //******************************************************************************
-// if($sub_8 == $fourth || $sub_8 == 134){
-//     $totalsubject = $totalsubject - 1;
-//             if ($sub_8_gp == 0) {$tfail = $tfail -1; $sub_8_gp = 0;}
-//     else    if ($sub_8_gp <=2)  {$tfail = $tfail + 0; $sub_8_gp = 0;}
-//     else    {$tfail = $tfail + 0; $sub_8_gp = $sub_8_gp - 2;}
-// }
+if($sub_8 == $fourth || $sub_8 == 134){
+    $totalsubject = $totalsubject - 1;
+            if ($sub_8_gp == 0) {$tfail = $tfail -1; $sub_8_gp = 0;}
+    else    if ($sub_8_gp <=2)  {$tfail = $tfail + 0; $sub_8_gp = 0;}
+    else    {$tfail = $tfail + 0; $sub_8_gp = $sub_8_gp - 2;}
+}
 
 // echo '<br>-----------------'.$totalgp ;
 $totalfullmarks = $totalfullmarks + $fm;
@@ -432,30 +432,30 @@ if ($result22vf->num_rows > 0)
 {while($row22vf = $result22vf->fetch_assoc()) {
 $fm = $row22vf["fullmarks"] ;$ss = $row22vf["subj"] ; $oo = $row22vf["obj"] ; $cc = $row22vf["ca"] ;}}
 //******************************************************************************
-if(($sub_9 == 101)||($sub_9 == 102)){
-    $ben_sub = $ben_sub + $row22vr["sub_9_sub"] ;
-    $ben_obj = $ben_obj + $row22vr["sub_9_obj"] ;
-    $ben_ca = $ben_ca + $row22vr["sub_9_ca"] ;
-    $ben_total = $ben_sub + $ben_obj + $ben_pra + $ben_ca;
-    $ben_fullmarks = $ben_fullmarks + $fm;
-    $sss = $sss + $ss;
-    $ooo = $ooo + $oo;
-    $ccc = $ccc + $cc;
-    $totalgp = $totalgp - $sub_9_gp;
-    $totalsubject = $totalsubject - 1;
-}
-if(($sub_9 == 107)||($sub_9 == 108)){
-    $eng_sub = $eng_sub + $row22vr["sub_9_sub"] ;
-    $eng_obj = $eng_obj + $row22vr["sub_9_obj"] ;
-    $eng_ca = $eng_ca + $row22vr["sub_9_ca"] ;
-    $eng_total = $eng_sub + $eng_obj + $eng_pra + $eng_ca;
-    $eng_fullmarks = $eng_fullmarks + $fm;
-    $ssss = $ssss + $ss;
-    $oooo = $oooo + $oo;
-    $cccc = $cccc + $cc;
-    $totalgp = $totalgp - $sub_9_gp;
-    $totalsubject = $totalsubject - 1;
-}
+// if(($sub_9 == 101)||($sub_9 == 102)){
+//     $ben_sub = $ben_sub + $row22vr["sub_9_sub"] ;
+//     $ben_obj = $ben_obj + $row22vr["sub_9_obj"] ;
+//     $ben_ca = $ben_ca + $row22vr["sub_9_ca"] ;
+//     $ben_total = $ben_sub + $ben_obj + $ben_pra + $ben_ca;
+//     $ben_fullmarks = $ben_fullmarks + $fm;
+//     $sss = $sss + $ss;
+//     $ooo = $ooo + $oo;
+//     $ccc = $ccc + $cc;
+//     $totalgp = $totalgp - $sub_9_gp;
+//     $totalsubject = $totalsubject - 1;
+// }
+// if(($sub_9 == 107)||($sub_9 == 108)){
+//     $eng_sub = $eng_sub + $row22vr["sub_9_sub"] ;
+//     $eng_obj = $eng_obj + $row22vr["sub_9_obj"] ;
+//     $eng_ca = $eng_ca + $row22vr["sub_9_ca"] ;
+//     $eng_total = $eng_sub + $eng_obj + $eng_pra + $eng_ca;
+//     $eng_fullmarks = $eng_fullmarks + $fm;
+//     $ssss = $ssss + $ss;
+//     $oooo = $oooo + $oo;
+//     $cccc = $cccc + $cc;
+//     $totalgp = $totalgp - $sub_9_gp;
+//     $totalsubject = $totalsubject - 1;
+// }
 //******************************************************************************
 if($sub_9 == $fourth || $sub_9 == 134){
     $totalsubject = $totalsubject - 1;
@@ -804,5 +804,5 @@ if ($result22vf->num_rows > 0)
 $fs = $row22vf["fs"] ;}}
 
 $totalfullmarks = $totalfullmarks - ($fs-1) * 100;
-
+$totalsubject = $totalsubject - 1;
 //if($sccode==105676 && $cn=='Eight'){$totalsubject = 10;}
