@@ -29,6 +29,25 @@ if ($result0->num_rows > 0) {
 } else {
     $acctype = $bankname = $branch = '';
 }
+
+$sql0 = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accno' and id='$exid' ;";
+$result01 = $conn->query($sql0);
+if ($result01->num_rows > 0) {
+    while ($row5 = $result01xg->fetch_assoc()) {
+        $date10 = $row5["date"];
+        $type10 = $row5["transtype"];
+        $chq10 = $row5["chqno"];
+        $amount10 = $row5["amount"];
+    }
+} else {
+    $date10 = $td;
+    $type10 = 'Withdraw';
+    $chq10 = '';
+    $amount10 = '';
+}
+
+
+
 ?>
 <div class="float-right">
     <button type="button" style="" title="Add New Expenditure" class="btn btn-inverse-success" style=""
@@ -79,6 +98,53 @@ if ($result0->num_rows > 0) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 p-2 pl-3">
+                        Date :
+                    </div>
+                    <div class="col-md-3">
+                        <input class="input form-control" type="date" id="date" value="<?php echo $date10; ?>" />
+                    </div>
+                    <div class="col-md-3 p-2 pl-3">
+                        Transaction Type :
+                    </div>
+                    <div class="col-md-3">
+                        <select id="type" class="form-control text-secondary">
+                            <option value="Deposit" <?php if ($type10 == 'Deposit') {
+                                echo ' selected ';
+                            } ?>>Deposit</option>
+                            <option value="Withdraw" <?php if ($type10 == 'Withdraw') {
+                                echo ' selected ';
+                            } ?>>Withdraw
+                            </option>
+                            <option value="Interest" <?php if ($type10 == 'Interest') {
+                                echo ' selected ';
+                            } ?>>Interest
+                            </option>
+                            <option value="Deduction" <?php if ($type10 == 'Deduction') {
+                                echo ' selected ';
+                            } ?>>Deduction
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3 p-2 pl-3">
+                        Receipt / Cheque No. :
+                    </div>
+                    <div class="col-md-3">
+                        <input class="input form-control" id="chq" type="text" value="<?php echo $chq10; ?>" />
+                    </div>
+                    <div class="col-md-3 p-2 pl-3">
+                        Amount :
+                    </div>
+                    <div class="col-md-3">
+                        <input class="input form-control" id="amt" type="text" value="<?php echo $amount10; ?>" />
+                    </div>
+                </div>
+
+
+
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-hover text-white">
@@ -184,7 +250,7 @@ if ($result0->num_rows > 0) {
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary" onclick="save(0,1);">Save</button>
+                                            <button class="btn btn-primary" onclick="save(0,0);">Save</button>
 
                                             <div id="gex"></div>
                                         </div>
@@ -254,7 +320,7 @@ if ($result0->num_rows > 0) {
                                         $ooo = $obal;
                                         if ($txt != 0) {
                                             // $trclr = 'text-warning';
-                                        } 
+                                        }
 
                                         ?>
                                         <tr class="<?php echo $trclr; ?>">
@@ -274,7 +340,7 @@ if ($result0->num_rows > 0) {
                                                     <button onclick="savex(<?php echo $id; ?>,2);"
                                                         class="btn btn-inverse-danger" disabled><i
                                                             class="mdi mdi-delete"></i></button>
-                                           
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -323,11 +389,11 @@ include 'footer.php';
     // }
     function addnew() {
         var tail = '';
-        window.location.href = 'bank-account.php?accno=<?php echo $accno;?>&addnew' + tail;
+        window.location.href = 'bank-account.php?accno=<?php echo $accno; ?>&addnew' + tail;
     }
 
     function edit(id, taill) {
-        window.location.href = 'bank-account.php?accno=<?php echo $accno;?>&addnew=' + id;
+        window.location.href = 'bank-account.php?accno=<?php echo $accno; ?>&addnew=' + id;
     }
 
 </script>
@@ -338,16 +404,20 @@ include 'footer.php';
         if (ids == 0) {
             var ids = document.getElementById('id').value;
         }
-        var cls = document.getElementById('cls').value;
-        var sec = document.getElementById('sec').value;
 
-        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont;
+        var accno = '<?php echo $accno;?>';
+        var date = document.getElementById('date').value;
+        var type = document.getElementById('type').value;
+        var chq = document.getElementById('chq').value;
+        var amt = document.getElementById('amt').value;
+
+        var infor = "id=" + ids + '&date=' + date + '&accno=' + accno + '&type=' + type + '&chq=' + chq + '&amt=' + amt + '&ont=' + ont;
         // alert(infor);
         $("#sspd").html("");
 
         $.ajax({
             type: "POST",
-            url: "backend/save-class.php",
+            url: "backend/save-bank-trans.php",
             data: infor,
             cache: false,
             beforeSend: function () {
@@ -355,7 +425,7 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#sspd").html(html);
-                window.location.href = 'classes.php';
+                // window.location.href = 'bank-account.php?accno=<?php echo $accno; ?>';
             }
         });
     }

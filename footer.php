@@ -100,7 +100,8 @@
             }
         });
     }
-
+</script>
+<script>
     const element = document.getElementById("logstatus");
     setInterval(function () {
         var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile); ?>";

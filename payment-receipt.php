@@ -258,22 +258,22 @@ if ($result0xw->num_rows > 0) {
                         <?php echo $year; ?> &nbsp;
                         <h6 class="text-muted"><small>Session</small></h6>
                     </div>
-                    <div class="col-md-2 text-info text-small">
-                        <?php echo $cls2; ?> &nbsp;
-                        <h6 class="text-muted"><small>Class</small></h6>
-                    </div>
-                    <div class="col-md-2 text-info text-small">
-                        <?php echo $sec2; ?> &nbsp;
-                        <h6 class="text-muted"><small>Section</small></h6>
+                    <div class="col-md-3 text-info text-small">
+                        <?php echo $cls2 . ' | ' . $sec2; ?> &nbsp;
+                        <h6 class="text-muted"><small>Class | Section</small></h6>
                     </div>
                     <div class="col-md-3 text-info text-small">
                         <?php echo date('d/m/Y', strtotime($datefrom)) . ' - ' . date('d/m/Y', strtotime($dateto)); ?>
                         &nbsp;
                         <h6 class="text-muted"><small>Date </small></h6>
                     </div>
-                    <div class="col-md-3 text-info text-small">
+                    <div class="col-md-2 text-info text-small">
                         <?php echo $collector; ?> &nbsp;
                         <h6 class="text-muted"><small>Collector</small></h6>
+                    </div>
+                    <div class="col-md-2 text-secondary font-weight-bold">
+                        <div id="tamt">0.00</div>
+                        <h6 class="text-muted"><small>Amount</small></h6>
                     </div>
                 </div>
             </div>
@@ -404,9 +404,9 @@ include 'footer.php';
     var uri = window.location.href;
     document.getElementById('defbtn').innerHTML = 'Print Receipt';
     document.getElementById('defmenu').innerHTML = '';
-
+document.getElementById('tamt').innerHTML = '<?php echo $tamt; ?>';
     document.getElementById('cnt').innerHTML = '<?php echo $cnt; ?>';
-    document.getElementById('tamt').innerHTML = '<?php echo $tamt; ?>';
+    
 
 
     function defbtn() {

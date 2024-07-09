@@ -49,8 +49,4 @@ if ($tail == 0) {
 } 
 
 
-
-
-
-
 echo 'Update Successfully ';
