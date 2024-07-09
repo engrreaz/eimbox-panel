@@ -1,11 +1,59 @@
 <?php
 include 'header.php';
 
+?>
+<button type="button" id="modalbox" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" hidden>
+    Launch demo modal
+</button>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Bank List</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="" class="input-control select full-size error">
+                    <select id="modaldata" name="modaldata" class="form-control text-white" onchange="modal();">
+                        <option value="">Select a Bank Account to Show Transaction</option>
+                        <?php
+                        $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";
+                        $resultix = $conn->query($sql000);
+                        // $conn -> close();
+                        if ($resultix->num_rows > 0) {
+                            while ($row000 = $resultix->fetch_assoc()) {
+                                $accno = $row000["accno"];
+                                $acctype = $row000["acctype"];
+                                $bankname = $row000["bankname"];
+                                echo '<option value="' . $accno . '"  >' . $accno . '/' . $acctype . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<?php
+$accno = 0;
+
 if (isset($_GET['accno'])) {
     $accno = $_GET['accno'];
 } else {
     $accno = '0';
 }
+
 
 if (isset($_GET['addnew'])) {
     $newblock = 'block';
@@ -17,6 +65,15 @@ if (isset($_GET['addnew'])) {
     $newblock = 'none';
     $exid = 0;
 }
+
+if ($exid == 0) {
+    $oneto = 0;
+} else {
+    $oneto = 1;
+}
+
+// echo $exid;
+
 
 $sql0 = "SELECT * FROM bankinfo where sccode='$sccode' and accno='$accno' ;";
 $result0 = $conn->query($sql0);
@@ -31,9 +88,10 @@ if ($result0->num_rows > 0) {
 }
 
 $sql0 = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accno' and id='$exid' ;";
+// echo $sql0;
 $result01 = $conn->query($sql0);
 if ($result01->num_rows > 0) {
-    while ($row5 = $result01xg->fetch_assoc()) {
+    while ($row5 = $result01->fetch_assoc()) {
         $date10 = $row5["date"];
         $type10 = $row5["transtype"];
         $chq10 = $row5["chqno"];
@@ -45,6 +103,8 @@ if ($result01->num_rows > 0) {
     $chq10 = '';
     $amount10 = '';
 }
+
+
 
 
 
@@ -142,127 +202,31 @@ if ($result01->num_rows > 0) {
                         <input class="input form-control" id="amt" type="text" value="<?php echo $amount10; ?>" />
                     </div>
                 </div>
+                <div class="row mt-3">
+                    <div class="col-md-3 p-2 pl-3">
 
-
-
-                <div class="row">
-                    <div class="table-responsive">
-                        <table class="table table-hover text-white">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ID :
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control bg-dark" id="id"
-                                            value="<?php echo $exid; ?>" disabled />
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Class :
-                                    </td>
-                                    <td>
-                                        <select class="form-control" id="cls">
-                                            <option value="Play" <?php if ($ccc == 'Play') {
-                                                echo 'selected';
-                                            } ?>>Play
-                                            </option>
-                                            <option value="Nursery" <?php if ($ccc == 'Nursery') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Nursery</option>
-                                            <option value="Pre-School" <?php if ($ccc == 'Pre-School') {
-                                                echo 'selected';
-                                            } ?>>
-                                                Pre-School</option>
-                                            <option value="One" <?php if ($ccc == 'One') {
-                                                echo 'selected';
-                                            } ?>>One</option>
-                                            <option value="Two" <?php if ($ccc == 'Two') {
-                                                echo 'selected';
-                                            } ?>>Two</option>
-                                            <option value="Three" <?php if ($ccc == 'Three') {
-                                                echo 'selected';
-                                            } ?>>Three
-                                            </option>
-                                            <option value="Four" <?php if ($ccc == 'Four') {
-                                                echo 'selected';
-                                            } ?>>Four
-                                            </option>
-                                            <option value="Five" <?php if ($ccc == 'Five') {
-                                                echo 'selected';
-                                            } ?>>Five
-                                            </option>
-                                            <option value="Six" <?php if ($ccc == 'Six') {
-                                                echo 'selected';
-                                            } ?>>Six</option>
-                                            <option value="Seven" <?php if ($ccc == 'Seven') {
-                                                echo 'selected';
-                                            } ?>>Seven
-                                            </option>
-                                            <option value="Eight" <?php if ($ccc == 'Eight') {
-                                                echo 'selected';
-                                            } ?>>Eight
-                                            </option>
-                                            <option value="Nine" <?php if ($ccc == 'Nine') {
-                                                echo 'selected';
-                                            } ?>>Nine
-                                            </option>
-                                            <option value="Ten" <?php if ($ccc == 'Ten') {
-                                                echo 'selected';
-                                            } ?>>Ten</option>
-                                            <option value="SSC" <?php if ($ccc == 'SSC') {
-                                                echo 'selected';
-                                            } ?>>SSC</option>
-                                            <option value="Eleven" <?php if ($ccc == 'Eleven') {
-                                                echo 'selected';
-                                            } ?>>Eleven
-                                            </option>
-                                            <option value="Twelve" <?php if ($ccc == 'Twelve') {
-                                                echo 'selected';
-                                            } ?>>Twelve
-                                            </option>
-                                            <option value="HSC" <?php if ($ccc == 'HSC') {
-                                                echo 'selected';
-                                            } ?>>HSC</option>
-                                        </select>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Section :
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="sec" value="<?php echo $sss; ?>" />
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div id="">
-                                            <button class="btn btn-primary" onclick="save(0,0);">Save</button>
-
-                                            <div id="gex"></div>
-                                        </div>
-
-
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-block p-2"
+                            onclick="save(<?php echo $exid; ?>, <?php echo $oneto; ?>);">Save</button>
+                    </div>
+                    <div class="col-md-2  ">
+                        <button class="btn btn-success btn-block p-2"
+                            onclick="save(<?php echo $exid; ?>, 2);">Verifify</button>
+                    </div>
+                    <div class="col-md-2 ">
+                        <button class="btn btn-danger btn-block p-2"
+                            onclick="save(<?php echo $exid; ?>, 3);">Delete</button>
+                    </div>
+                    <div class="col-md-3 p-2 pl-3">
+                        <div id="gex"></div>   <div id="sspd"></div>
+                    </div>
+
                 </div>
+
+
+
             </div>
         </div>
     </div>
@@ -273,11 +237,11 @@ if ($result01->num_rows > 0) {
         <div class="card">
             <div class="card-body">
 
-                <div id="sspd"></div>
+             
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-bordered text-white" style="border:1px solid gray;">
+                        <table id="main-table-search" class="table table-bordered text-white" style="border:1px solid gray;">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -296,9 +260,9 @@ if ($result01->num_rows > 0) {
                                 $slx = 1;
                                 $ooo = 0;
                                 $sql0x = "SELECT * FROM banktrans where sccode='$sccode'  and accno='$accno' order by  date desc, verifytime desc;";
-                                $result0x = $conn->query($sql0x);
-                                if ($result0x->num_rows > 0) {
-                                    while ($row0x = $result0x->fetch_assoc()) {
+                                $result0xd = $conn->query($sql0x);
+                                if ($result0xd->num_rows > 0) {
+                                    while ($row0x = $result0xd->fetch_assoc()) {
                                         $id = $row0x["id"];
                                         $date = $row0x["date"];
                                         $obal = $row0x["transopening"];
@@ -306,7 +270,9 @@ if ($result01->num_rows > 0) {
                                         $chqno = $row0x["chqno"];
                                         $amt = $row0x["amount"];
                                         $cbal = $row0x["balance"];
-                                        if ($ttype == 'Deposit') {
+                                        $etime = $row0x["entrytime"];
+                                        $verified = $row0x["verified"];
+                                        if ($ttype == 'Deposit' || $ttype == 'Interest') {
                                             $dr = $amt;
                                             $cr = '';
                                             $trclr = 'text-success';
@@ -333,15 +299,32 @@ if ($result01->num_rows > 0) {
                                             <td><?php echo $cr; ?></td>
                                             <td><?php echo $cbal; ?></td>
                                             <td>
-                                                <div id="ssp<?php echo $id; ?>" class="btn-group" role="group"
-                                                    aria-label="Basic example">
-                                                    <button onclick="edit(<?php echo $id; ?>,1);" class="btn btn-inverse-danger"
-                                                        disabled><i class="mdi mdi-grease-pencil"></i></button>
-                                                    <button onclick="savex(<?php echo $id; ?>,2);"
-                                                        class="btn btn-inverse-danger" disabled><i
-                                                            class="mdi mdi-delete"></i></button>
+                                                <?php
+                                                if ($verified == 0) {
+                                                    ?>
 
-                                                </div>
+
+                                                    <div id="ssp<?php echo $id; ?>" class="btn-groupx" role="groupx"
+                                                        aria-label="Basic example">
+                                                        <button onclick="edit(<?php echo $id; ?>,1);"
+                                                            class="btn btn-inverse-primary pt-2"><i
+                                                                class="mdi mdi-grease-pencil"></i></button>
+
+                                                        <button onclick="save(<?php echo $id; ?>,3);"
+                                                            class="btn btn-inverse-danger" hidden><i class="mdi mdi-delete"></i></button>
+
+
+                                                    </div>
+
+
+                                                <?php
+                                                } else {
+                                                    ?>
+                                                    <i class="mdi mdi-check-circle mdi-24px text-success"></i>
+                                                    <?php
+
+                                                }
+                                                ?>
                                             </td>
                                         </tr>
                                         <?php
@@ -400,12 +383,10 @@ include 'footer.php';
 
 <script>
     function save(ids, ont) {
-        // alert(ids);
-        if (ids == 0) {
-            var ids = document.getElementById('id').value;
-        }
+        // alert(ids + '/' + ont);
+        // var ids = document.getElementById('id').value;
 
-        var accno = '<?php echo $accno;?>';
+        var accno = '<?php echo $accno; ?>';
         var date = document.getElementById('date').value;
         var type = document.getElementById('type').value;
         var chq = document.getElementById('chq').value;
@@ -425,7 +406,7 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#sspd").html(html);
-                // window.location.href = 'bank-account.php?accno=<?php echo $accno; ?>';
+                window.location.href = 'bank-account.php?accno=<?php echo $accno; ?>';
             }
         });
     }
@@ -451,4 +432,27 @@ include 'footer.php';
             }
         });
     }
+
+</script>
+
+<script>
+    var accno = '<?php echo $accno; ?>';
+    if (accno == 0) {
+        $("#modalbox").click();
+    }
+
+    function modal() {
+        var x = document.getElementById("modaldata").value;
+        window.location.href = 'bank-account.php?accno=' + x;
+    }
+
+
+
+
+    
+    $(document).ready(function () {
+        $('#main-table-search').DataTable();
+    });
+
+
 </script>

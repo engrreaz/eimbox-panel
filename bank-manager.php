@@ -25,14 +25,14 @@ if ($result0->num_rows > 0) {
     $exid = $ccc = $sss = '';
 }
 ?>
-<div class="float-right">
+<div class="float-right " >
     <button type="button" style="" title="Add New Expenditure" class="btn btn-inverse-success" style=""
-        onclick="addnew();">
+        onclick="addnew();" hidden>
         <i class="mdi mdi-library-plus"> Add New Class </i></button>
+        <div class="text-primary mr-4 font-weight-bold" id="totalcash">0.00</div>
 </div>
+
 <h3>Bank Details</h3>
-
-
 
 <div class="row" style="display:<?php echo $newblock; ?>;">
     <div class="col-12 grid-margin stretch-card">
@@ -183,7 +183,7 @@ if ($result0->num_rows > 0) {
                             </thead>
                             <tbody>
                                 <?php
-                                $slx = 1;
+                                $slx = 1; $totalcash = 0;
                                 $sql0x = "SELECT * FROM bankinfo where sccode='$sccode'  order by  id;";
                                 $result0x = $conn->query($sql0x);
                                 if ($result0x->num_rows > 0) {
@@ -199,10 +199,13 @@ if ($result0->num_rows > 0) {
                                         if ($result0xg->num_rows > 0) {
                                             while ($row0x = $result0xg->fetch_assoc()) {
                                                 $balance = $row0x["balance"];
+                                                $verified = $row0x["verified"];
                                             }
                                         } else {
                                             $balance = 0;
+                                            $verified = 0;
                                         }
+                                        $totalcash += $balance;
 
                                         ?>
                                         <tr>
@@ -213,17 +216,18 @@ if ($result0->num_rows > 0) {
                                                 <?php echo $bankname . '<br><div class="pt-2"><small>' . $branch . '</small></div>'; ?>
                                             </td>
                                             <td class="text-right">
-                                                <h4><?php echo $balance; ?>.00</h4>
+                                                <h4><?php echo number_format($balance, 2); ?></h4>
                                             </td>
 
 
                                             <td>
                                                 <div id="ssp<?php echo $id; ?>" class="btn-group" role="group"
                                                     aria-label="Basic example">
-                                                    <button onclick="edit('<?php echo $accno; ?>',1);" class="btn btn-inverse-danger"
-                                                        ><i class="mdi mdi-grease-pencil"></i></button>
-                                                    <button onclick="savex(<?php echo $id; ?>,2);"
-                                                        class="btn btn-inverse-danger" disabled><i
+                                                    <button onclick="edit('<?php echo $accno; ?>',1);"
+                                                        class="btn btn-inverse-primary pt-2"><i
+                                                            class="mdi mdi-arrow-right"></i></button>
+                                                    <button onclick="savexx(<?php echo $id; ?>,2);"
+                                                        class="btn btn-inverse-danger pt-2"><i
                                                             class="mdi mdi-delete"></i></button>
                                                 </div>
                                             </td>
@@ -255,6 +259,7 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+    document.getElementById("totalcash").innerHTML = 'Total Cash : <?php echo number_format($totalcash, 2); ?>';
     function go() {
         var m = document.getElementById('month').value;
         var y = document.getElementById('year').value;

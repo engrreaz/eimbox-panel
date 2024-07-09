@@ -78,29 +78,41 @@ if ($tail == 0) {
     //     }
     // }
 } else if ($tail == 1) {
-    $bank = $_POST['bank'];
+    $id =  $_POST['id'];
+    $accno =  $_POST['accno'];
     $date = $_POST['date'];
-    $amount = $_POST['amount'];
     $type = $_POST['type'];
-    $chqno = $_POST['chqno'];
+    $chqno = $_POST['chq'];
+    $amount = $_POST['amt'];
 
-    $sql0 = "SELECT * FROM financesetup where sccode='$sccode' and id='$type' ";
-    //	echo $sql0;
-    $result01 = $conn->query($sql0);
-    if ($result01->num_rows > 0) {
-        while ($row0 = $result01->fetch_assoc()) {
-            $partid = $row0["id"];
-            $txt2 = $row0["particulareng"];
-            $inex = $row0["inexex"];
+    if ($chqno == '') {
+        if ($type == 'Deposit') {
+            $sql0 = "SELECT * FROM banktrans where accno = '$accno' and sccode='$sccode' and transtype = 'Deposit' order by date desc, id desc limit 1 ";
+            $result01xgg = $conn->query($sql0);
+            if ($result01xgg->num_rows > 0) {
+                while ($row0 = $result01xgg->fetch_assoc()) {
+                    $chq = $row0["chqno"];
+                }
+            } else {
+                $chq = ($sccode % 10000) * 10000;
+            }
+
+            if ($chq == NULL || $chq == '' || $chq == 0) {
+                $chq = ($sccode % 10000) * 10000;
+            }
+            $chq = $chq * 1;
+            $chq = $chq + 1;
+        } else if ($type == 'Interest' || $type == 'Deduction') {
+            $chqno = 'N/A';
+        } else {
+            $chqno = '-';
         }
     }
 
-    $sql0 = "SELECT * FROM banktrans where accid='$bank' and sccode='$sccode' order by entrytime desc limit 1 ";
-    //    echo $sql0;
+    $sql0 = "SELECT * FROM banktrans where accno='$accno' and sccode='$sccode' and date < '$date' order by date desc, entrytime desc limit 1 ";
     $result01xg = $conn->query($sql0);
     if ($result01xg->num_rows > 0) {
         while ($row0 = $result01xg->fetch_assoc()) {
-            $accid = $row0["accid"];
             $accno = $row0["accno"];
             $balance = $row0["balance"];
         }
@@ -108,31 +120,33 @@ if ($tail == 0) {
         $accno = 0;
         $balance = 0;
     }
-    if ($inex == 3) {
+
+    if ($type == 'Deposit' || $type == 'Interest') {
         $bala = $balance + $amount;
-        $ttt = 'Income';
-        $iii = $amount;
-        $eee = 0;
     } else {
         $bala = $balance - $amount;
-        $ttt = 'Expenditure';
-        $iii = 0;
-        $eee = $amount;
     }
 
-
-    $query33 = "insert into banktrans(id, sccode, accid, accno, date, transopening, transtype, amount, balance, entryby, entrytime, verified, chqno)
-    		VALUES (NULL,  '$sccode', '$accid', '$accno', '$date', '$balance', '$txt2', '$amount', '$bala', '$usr', '$cur', '0', '$chqno' );";
-    echo $query33;
+    $query33 = "UPDATE banktrans set date='$date', transopening='$balance', transtype='$type', chqno='$chqno', amount='$amount', balance='$bala', entryby='$usr', entrytime='$cur', verified='0', verifyby=NULL, verifytime=NULL where id='$id' and sccode='$sccode' and accno='$accno';";
     $conn->query($query33);
+}  
 
 
+else if ($tail == 2) {
+    $id =  $_POST['id'];
+    $accno =  $_POST['accno'];
 
-    // $jax = "insert into cashbook (id, sessionyear, sccode, date, type, partid, particulars, income, expenditure, amount, entryby, entrytime, status) 
-    //                             VALUES (NULL, '$sy', '$sccode', '$date', '$ttt', '$type', '$txt2', '$iii', '$eee', '$amount', 'System-Auto', '$cur', 1 );";
-    // // echo $jax;
-    // $conn->query($jax);
+    $query33 = "UPDATE banktrans set verified='1', verifyby='$usr', verifytime='$cur' where id='$id' and sccode='$sccode' and accno='$accno';";
 
+    $conn->query($query33);
+}
+else if ($tail == 3) {
+    $id =  $_POST['id'];
+    $accno =  $_POST['accno'];
+
+    $query33 = "DELETE FROM banktrans  where id='$id' and sccode='$sccode' and accno='$accno';";
+
+    $conn->query($query33);
 }
 
 
