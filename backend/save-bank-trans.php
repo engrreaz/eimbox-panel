@@ -36,7 +36,7 @@ if ($tail == 0) {
         }
     }
 
-    $sql0 = "SELECT * FROM banktrans where accno='$accno' and sccode='$sccode' order by entrytime desc limit 1 ";
+    $sql0 = "SELECT * FROM banktrans where accno='$accno' and sccode='$sccode'  order by entrytime desc limit 1 ";
     $result01xg = $conn->query($sql0);
     if ($result01xg->num_rows > 0) {
         while ($row0 = $result01xg->fetch_assoc()) {
@@ -109,7 +109,7 @@ if ($tail == 0) {
         }
     }
 
-    $sql0 = "SELECT * FROM banktrans where accno='$accno' and sccode='$sccode' and date < '$date' order by date desc, entrytime desc limit 1 ";
+    $sql0 = "SELECT * FROM banktrans where accno='$accno' and sccode='$sccode' and date <= '$date' order by verified desc, date desc, entrytime desc limit 1 ";
     $result01xg = $conn->query($sql0);
     if ($result01xg->num_rows > 0) {
         while ($row0 = $result01xg->fetch_assoc()) {
