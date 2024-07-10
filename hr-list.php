@@ -178,7 +178,7 @@ if (isset($_GET['tp'])) {
                                                 if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
                                                     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                                 }
-
+ $tpath = $BASE__PATH . "/teacher/no-img.jpg";
 
 
                                                 // if (!file_exists($tpath)) {
