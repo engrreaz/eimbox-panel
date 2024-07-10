@@ -179,7 +179,6 @@ if (isset($_GET['tp'])) {
                                                 $tpath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
 
                                                 $file_headers = @get_headers($tpath);
-                                                echo var_dump($file_headers);
                                                 if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
                                                     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                                     echo $tpath;
