@@ -211,14 +211,16 @@ if ($result01->num_rows > 0) {
                         <button class="btn btn-primary btn-block p-2"
                             onclick="save(<?php echo $exid; ?>, <?php echo $oneto; ?>);">Save</button>
                     </div>
+                    <?php if($exid > 0) { ?>
                     <div class="col-md-2  ">
                         <button class="btn btn-success btn-block p-2"
-                            onclick="save(<?php echo $exid; ?>, 2);">Verifify</button>
+                            onclick="save(<?php echo $exid; ?>, 2);">Update & Verify</button>
                     </div>
                     <div class="col-md-2 ">
                         <button class="btn btn-danger btn-block p-2"
                             onclick="save(<?php echo $exid; ?>, 3);">Delete</button>
                     </div>
+                    <?php } ?>
                     <div class="col-md-3 p-2 pl-3">
                         <div id="gex"></div>   <div id="sspd"></div>
                     </div>

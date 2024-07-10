@@ -136,9 +136,64 @@ else if ($tail == 2) {
     $id =  $_POST['id'];
     $accno =  $_POST['accno'];
 
-    $query33 = "UPDATE banktrans set verified='1', verifyby='$usr', verifytime='$cur' where id='$id' and sccode='$sccode' and accno='$accno';";
+    $date = $_POST['date'];
+    $type = $_POST['type'];
+    $chqno = $_POST['chq'];
+    $amount = $_POST['amt'];
 
+
+
+    if ($chqno == '') {
+        if ($type == 'Deposit') {
+            $sql0 = "SELECT * FROM banktrans where accno = '$accno' and sccode='$sccode' and transtype = 'Deposit' order by date desc, id desc limit 1 ";
+            $result01xgg = $conn->query($sql0);
+            if ($result01xgg->num_rows > 0) {
+                while ($row0 = $result01xgg->fetch_assoc()) {
+                    $chq = $row0["chqno"];
+                }
+            } else {
+                $chq = ($sccode % 10000) * 10000;
+            }
+
+            if ($chq == NULL || $chq == '' || $chq == 0) {
+                $chq = ($sccode % 10000) * 10000;
+            }
+            $chq = $chq * 1;
+            $chq = $chq + 1;
+        } else if ($type == 'Interest' || $type == 'Deduction') {
+            $chqno = 'N/A';
+        } else {
+            $chqno = '-';
+        }
+    }
+
+    $sql0 = "SELECT * FROM banktrans where accno='$accno' and sccode='$sccode' and date <= '$date' order by verified desc, date desc, entrytime desc limit 1 ";
+    $result01xg = $conn->query($sql0);
+    if ($result01xg->num_rows > 0) {
+        while ($row0 = $result01xg->fetch_assoc()) {
+            $accno = $row0["accno"];
+            $balance = $row0["balance"];
+        }
+    } else {
+        $accno = 0;
+        $balance = 0;
+    }
+
+    if ($type == 'Deposit' || $type == 'Interest') {
+        $bala = $balance + $amount;
+    } else {
+        $bala = $balance - $amount;
+    }
+
+    $query33 = "UPDATE banktrans set date='$date', transopening='$balance', transtype='$type', chqno='$chqno', amount='$amount', balance='$bala', entryby='$usr', entrytime='$cur', verified='0', verifyby=NULL, verifytime=NULL where id='$id' and sccode='$sccode' and accno='$accno';";
     $conn->query($query33);
+
+
+
+
+    $query34 = "UPDATE banktrans set verified='1', verifyby='$usr', verifytime='$cur' where id='$id' and sccode='$sccode' and accno='$accno';";
+
+    $conn->query($query34);
 }
 else if ($tail == 3) {
     $id =  $_POST['id'];
