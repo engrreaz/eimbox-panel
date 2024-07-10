@@ -177,24 +177,28 @@ if (isset($_GET['tp'])) {
                                             <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                                                 <?php
                                                 $tpath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
-
-                                                $file_headers = @get_headers($tpath);
-                                                if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
-                                                    $tpath = $BASE__PATH . "/teacher/no-img.jpg";
-                                                    echo $tpath;
-                                                }
+                                                // echo $tpath;
+                                                echo '<br>';
+                                                // $file_headers = @get_headers($tpath);
+                                                // if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
+                                                //     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
+                                                //     echo $tpath;
+                                                // }
 
 
                                                 //  $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                         
-                                                // if (!file_exists($tpath)) {
-                                                //     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
-                                                // }
-                      
+                                                if (!file_exists($tpath)) {
+                                                    $tpath = $BASE__PATH . "/teacher/no-img.jpg";
+                                                    // echo 'xx';
+                                                }
+                                                
+                                                echo dirname(__DIR__, 1);
+
+                                                // echo $tpath;
                                                 ?>
                                                 <img src="<?php echo $tpath; ?>"
                                                     style="width:30px; height:30px; border-radius:50%;">
-
                                             </td>
                                             <td style="padding : 3px 10px; border:1px solid gray;">
                                                 <div class="ooo"><small><?php echo $tid; ?></small></div>
