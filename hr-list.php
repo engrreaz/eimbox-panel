@@ -173,7 +173,7 @@ if (isset($_GET['tp'])) {
                                                 <?php
                                                 $tpath = "../teacher/" . $tid . ".jpg";
                                                 if (!file_exists($tpath)) {
-                                                    $tpath = "../teacher/no-img.jpg";
+                                                    $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                                 }
                                                 ?>
                                                 <img src="<?php echo $tpath; ?>"
@@ -202,7 +202,7 @@ if (isset($_GET['tp'])) {
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <button type="button" title="View Profile"
                                                             class="btn btn-inverse-warning"
-                                                            onclick="issuet(<?php echo $tid; ?>)" hidden>
+                                                            onclick="issuet(<?php echo $tid; ?>)">
                                                             <i class="mdi mdi-television" ></i>
                                                         </button>
 

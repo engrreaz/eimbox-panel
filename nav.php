@@ -452,7 +452,7 @@ $supernav = array('account-settings.php');
                         class="mdi mdi-account-box"></i>&nbsp; Teaching Staffs</a></li>
                   <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff"><i
                         class="mdi mdi-account-box-outline"></i>&nbsp; Management Staffs</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href="hr-profile.php">View Profile</a></li> -->
+                  <li class="nav-item"> <a class="nav-link" href="hr-profile.php">View Profile</a></li>
                   <li class="nav-item"> <a class="nav-link" href="hr-edit.php"><i
                   class="mdi mdi-account-box "></i>&nbsp; Profile Editor</a></li>
                   <li class="nav-item"> <a class="nav-link" href="tattnd.php"><i
