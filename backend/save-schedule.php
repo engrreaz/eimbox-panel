@@ -19,7 +19,7 @@ $year = $_POST['year'];
 
         $dura = strtotime($tend) - strtotime($tstart);
     if ($id == '' || $id == 0) {
-        $query331 = "INSERT INTO classschedule (id, sccode, sessionyear, slot, period, timestart, timeend, duration) 
+        $query331 = "INSERT INTO classschedule (id, sccode, sessionyear, slots, period, timestart, timeend, duration) 
                 VALUES (NULL, '$sccode', '$year', '$slot', '$period', '$tstart', '$tend', '$dura');";
     } else {
         $query331 = "UPDATE classschedule SET period = '$period', timestart = '$tstart', timeend='$tend', duration='$dura' where id = '$id' and sccode='$sccode'";
@@ -27,6 +27,6 @@ $year = $_POST['year'];
 } else {
     $query331 = "DELETE FROM classschedule where id = '$id' and sccode='$sccode'";
 }
-// echo $query331;
+echo $query331;
 $conn->query($query331);
 

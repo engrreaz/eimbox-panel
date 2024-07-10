@@ -257,7 +257,7 @@ if ($result0x->num_rows > 0) {
                                                         <i class="mdi mdi-pencil"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-inverse-danger"
-                                                        onclick="savegroup(<?php echo $idx; ?>, 2)">
+                                                        onclick="save(<?php echo $idx; ?>, 2)">
                                                         <i class="mdi mdi-close"></i>
                                                     </button>
                                             
@@ -366,7 +366,7 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#sscspan").html(html);
-                go();
+                // go();
             }
         });
     }
