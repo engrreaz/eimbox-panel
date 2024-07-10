@@ -148,6 +148,11 @@ if (isset($_GET['tp'])) {
 
 
                                 <?php
+
+
+                                $deld = "DELETE FROM teacher where sccode='$sccode' and gender='undefi'";
+                                $conn->query($deld);
+
                                 $cnt = 0;
                                 $cntamt = 0;
                                 if ($tp == 'all') {
@@ -172,14 +177,14 @@ if (isset($_GET['tp'])) {
                                             <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                                                 <?php
                                                 $tpath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
-                            
+
 
                                                 $file_headers = @get_headers($tpath);
                                                 if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
                                                     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                                 }
- $tpath = $BASE__PATH . "/teacher/no-img.jpg";
-
+                                                //  $tpath = $BASE__PATH . "/teacher/no-img.jpg";
+                                        
 
                                                 // if (!file_exists($tpath)) {
                                                 //     $tpath = $BASE__PATH . "/teacher/no-img.jpg";

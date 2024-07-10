@@ -18,7 +18,7 @@ if ($result0rt->num_rows > 0) {
     $tid = $sccode . '9999';
 }
 
-$query33 = "INSERT INTO teacher(id, sccode, tid, ranks) values(NULL, '$sccode', '$tid', '$rnk')";
+$query33 = "INSERT INTO teacher(id, sccode, tid, ranks, gender) values(NULL, '$sccode', '$tid', '$rnk', 'undefi')";
 $conn->query($query33);
 echo $tid;
 // header("Location:hr-edit.php?tid=". $tid);
