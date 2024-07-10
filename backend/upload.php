@@ -29,7 +29,7 @@ if ($catt == 'student') {
     $dir = $BASE__PATH . '/logo';
 } 
 
-//echo '///' . $dir . '****';
+echo '///' . $dir . '****';
 
 if (!file_exists($dir)) {
     mkdir($dir . 'uploads/', 0777, true);
