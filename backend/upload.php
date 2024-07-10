@@ -47,7 +47,7 @@ for ($i = 0; $i < count($_FILES['files']['tmp_name']); $i++) {
 
 
     move_uploaded_file($_FILES['files']['tmp_name'][$i], $file);
-    echo 'Uploaded Successfully';
+    echo 'Uploaded Successfully' . $file;
 
 
 
