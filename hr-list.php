@@ -186,7 +186,7 @@ if (isset($_GET['tp'])) {
                                                 //  $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                         
 
-                                                if (!file_exists($tpath)) {
+                                                if (file_exists($tpath)==FALSE) {
                                                     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                                 }
                                                 ?>
