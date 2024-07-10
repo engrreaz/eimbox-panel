@@ -1,4 +1,6 @@
 <?php
+include '../incvar.php';
+
 // // Make sure the captured data exists
 // if (isset($_FILES['files']) && !empty($_FILES['files'])) {
 //     // Upload destination directory
@@ -20,11 +22,11 @@ $fn = $_POST['destfilename'];
 //echo $catt . $fn;
 $dir = '';
 if ($catt == 'student') {
-    $dir = '../../students';
+    $dir = $BASE__PATH . '/students';
 } else if ($catt == 'teacher') {
     $dir = '../../teacher';
 } else if ($catt == 'logo') {
-    $dir = '../../logo';
+    $dir = $BASE__PATH . '/logo';
 } 
 
 //echo '///' . $dir . '****';

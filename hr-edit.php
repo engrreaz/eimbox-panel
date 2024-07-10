@@ -876,8 +876,8 @@ echo $dismsg; ?>">
                         <div class="form-group row text-center">
 
                             <?php
-                            $stphotopath = "https://eimbox.com/teacher/" . $tid . ".jpg";
-                            $stphotopath = "../teacher/" . $tid . ".jpg";
+                            $stphotopath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
+                            // $stphotopath = "../teacher/" . $tid . ".jpg";
                             // $file_headers = @get_headers($stphotopath);
                             // if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
                             //     $stphotopath = "https://eimbox.com/students/noimg.jpg";
@@ -885,7 +885,7 @@ echo $dismsg; ?>">
                             //     $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
                             // }
                             
-
+                    
 
                             ?>
                             <div

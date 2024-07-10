@@ -172,9 +172,18 @@ if (isset($_GET['tp'])) {
                                             <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                                                 <?php
                                                 $tpath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
-                                                if (!file_exists($tpath)) {
+                                                echo $tpath;
+
+                                                $file_headers = @get_headers($tpath);
+                                                if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
                                                     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                                 }
+
+
+
+                                                // if (!file_exists($tpath)) {
+                                                //     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
+                                                // }
                                                 ?>
                                                 <img src="<?php echo $tpath; ?>"
                                                     style="width:30px; height:30px; border-radius:50%;">
@@ -203,7 +212,7 @@ if (isset($_GET['tp'])) {
                                                         <button type="button" title="View Profile"
                                                             class="btn btn-inverse-warning"
                                                             onclick="issuet(<?php echo $tid; ?>)">
-                                                            <i class="mdi mdi-television" ></i>
+                                                            <i class="mdi mdi-television"></i>
                                                         </button>
 
                                                         <button type="button" title="Edit Profile" class="btn btn-inverse-info"
@@ -282,7 +291,7 @@ include 'footer.php';
 
 <script>
     function addnew() {
-        var infor = "hrt=<?php echo $hrtype; ?>" ;
+        var infor = "hrt=<?php echo $hrtype; ?>";
 
         $("#defbtn").html("");
         $.ajax({

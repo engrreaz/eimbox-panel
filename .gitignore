@@ -1,6 +1,7 @@
 #   ignore files
 inc.php
 inc2.php
+incvar.php
 .task.txt
 temp/
 assets/imgs/logo.ai
