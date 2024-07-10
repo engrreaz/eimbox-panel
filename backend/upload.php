@@ -29,7 +29,7 @@ if ($catt == 'student') {
     $dir = $BASE__PATH . '/logo';
 } 
 
-echo '///' . $dir . '****';
+
 
 if (!file_exists($dir)) {
     mkdir($dir . 'uploads/', 0777, true);
@@ -47,7 +47,7 @@ for ($i = 0; $i < count($_FILES['files']['tmp_name']); $i++) {
 
 
     move_uploaded_file($_FILES['files']['tmp_name'][$i], $file);
-    echo 'Uploaded Successfully' . $file;
+    echo 'Uploaded Successfully';
 
 
 
