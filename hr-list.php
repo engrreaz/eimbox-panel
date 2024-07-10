@@ -176,8 +176,9 @@ if (isset($_GET['tp'])) {
                                         <tr>
                                             <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                                                 <?php
-                                                $BASE__PATH = dirname(__DIR__, 1);
+                                                // $BASE__PATH = dirname(__DIR__, 1);
                                                 $tpath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
+                                                $tpath = "../teacher/" . $tid . ".jpg";
                                                 echo $tpath;
                                                 echo '<br>';
                                                 // $file_headers = @get_headers($tpath);
