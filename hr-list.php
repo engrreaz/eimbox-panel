@@ -171,7 +171,7 @@ if (isset($_GET['tp'])) {
                                         <tr>
                                             <td style="text-align:center; padding : 3px 5px; border:1px solid gray;" class="">
                                                 <?php
-                                                $tpath = "../teacher/" . $tid . ".jpg";
+                                                $tpath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
                                                 if (!file_exists($tpath)) {
                                                     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
                                                 }
