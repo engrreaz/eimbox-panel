@@ -179,8 +179,7 @@ if (isset($_GET['tp'])) {
                                                 // $BASE__PATH = dirname(__DIR__, 1);
                                                 $tpath = $BASE__PATH . "/teacher/" . $tid . ".jpg";
                                                 $tpath = "../teacher/" . $tid . ".jpg";
-                                                echo $tpath;
-                                                echo '<br>';
+                          
                                                 // $file_headers = @get_headers($tpath);
                                                 // if ($file_headers[0] == 'HTTP/1.1 404 Not Found') {
                                                 //     $tpath = $BASE__PATH . "/teacher/no-img.jpg";
@@ -192,12 +191,12 @@ if (isset($_GET['tp'])) {
                                         
                                                 if (!file_exists($tpath)) {
                                                     $tpath = "../teacher/no-img.jpg";
-                                                    echo 'xx';
+                                                    echo 'Not Found';
+                                                } else {
+                                                    echo 'Found';
                                                 }
                                                 
-                                                 
-
-                                                echo $tpath;
+               
                                                 ?>
                                                 <img src="<?php echo $tpath; ?>"
                                                     style="width:30px; height:30px; border-radius:50%;">
