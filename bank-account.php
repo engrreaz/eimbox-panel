@@ -253,8 +253,8 @@ if ($result01->num_rows > 0) {
                                     <th>Opening</th>
                                     <th>Type</th>
                                     <th>Cheque</th>
-                                    <th>Dr</th>
                                     <th>Cr</th>
+                                    <th>Dr</th>
                                     <th>Balance</th>
                                     <th style="text-align:right;"></th>
                                 </tr>
