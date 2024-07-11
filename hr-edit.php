@@ -258,7 +258,7 @@ echo $dismsg; ?>">
                                     <option value="Female" <?php if ($tinfo[0]['gender'] == 'Female') {
                                         echo 'selected';
                                     } ?>>
-                                        Femal</option>
+                                        Female</option>
 
                                 </select>
                             </div>
@@ -667,6 +667,385 @@ echo $dismsg; ?>">
     </div>
 </div>
 
+<div class="row"> <!--   Class/Roll Block -->
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row pl-3">
+                    <h4 class="font-weight-bold text-small">MPO Related Account</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Account Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="mpoaccno"
+                                    value="<?php echo $tinfo[0]['accno'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Bank Name</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="mpobankname"
+                                    value="<?php echo $tinfo[0]['bankname'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Branch Name</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="mpobranch"
+                                    value="<?php echo $tinfo[0]['branch']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Routing Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="mporouting"
+                                    value="<?php echo $tinfo[0]['routing']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row pl-3">
+                    <h4 class="font-weight-bold text-small">Institute Allowance Related Account</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Account Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="schaccno"
+                                    value="<?php echo $tinfo[0]['accnosch'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Bank Name</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="schbankname"
+                                    value="<?php echo $tinfo[0]['bnamesch'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Branch Name</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="schbranch"
+                                    value="<?php echo $tinfo[0]['bbrsch']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Routing Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="schrouting"
+                                    value="<?php echo $tinfo[0]['routesch']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row pl-3">
+                    <h4 class="font-weight-bold text-small">PF Related Account</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Account Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="pfaccno"
+                                    value="<?php echo $tinfo[0]['accnopf'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Bank Name</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="pfbankname"
+                                    value="<?php echo $tinfo[0]['bnamepf'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Branch Name</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="pfbranch"
+                                    value="<?php echo $tinfo[0]['bbrpf']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Routing Number</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="pfrouting"
+                                    value="<?php echo $tinfo[0]['routepf']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row"> <!--   Class/Roll Block -->
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row pl-3">
+                    <h4 class="font-weight-bold text-small">MPO Information</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Pay Code</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="paycode"
+                                    value="<?php echo $tinfo[0]['paycode'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Pay Scale</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="payscale"
+                                    value="<?php echo $tinfo[0]['payscale'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Basic Salary</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="basic"
+                                    value="<?php echo $tinfo[0]['basic']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">............</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id=""
+                                    value="<?php echo $tinfo[0]['routing']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Incentive</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="incentive"
+                                    value="<?php echo $tinfo[0]['incentive'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">House Rent</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="houserent"
+                                    value="<?php echo $tinfo[0]['house'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Medical Allowance</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="medical"
+                                    value="<?php echo $tinfo[0]['medical']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">........</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id=""
+                                    value="<?php echo $tinfo[0]['routesch']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Welfare</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="welfare"
+                                    value="<?php echo $tinfo[0]['welfare'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Retirement</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="retire"
+                                    value="<?php echo $tinfo[0]['retire'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">-----</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id=""
+                                    value="<?php echo $tinfo[0]['bbrpf']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">MPO Net Salary</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="mpototal"
+                                    value="<?php echo $tinfo[0]['netamtgovt']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="card-body">
+                <div class="row pl-3">
+                    <h4 class="font-weight-bold text-small">School Provided Salary</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Salary</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="salary"
+                                    value="<?php echo $tinfo[0]['salary'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Mobile Allowance</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="mobilevata"
+                                    value="<?php echo $tinfo[0]['mobilevata'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Travel allowance</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="travel"
+                                    value="<?php echo $tinfo[0]['travel']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Medical Allowance</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="medical2"
+                                    value="<?php echo $tinfo[0]['medical2']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">PF by Institute</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="pf"
+                                    value="<?php echo $tinfo[0]['pf'] ?? ''; ?>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">...</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">....</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="" value="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Net Salary</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="net2"
+                                    value="<?php echo $tinfo[0]['net2']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="row" hidden> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
@@ -885,7 +1264,7 @@ echo $dismsg; ?>">
                             //     $stphotopath = "https://eimbox.com/students/" . $stid . ".jpg";
                             // }
                             
-                    
+
 
                             ?>
                             <div
@@ -916,10 +1295,10 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3 middle"><br><br>&nbsp;</label>
                             <div class="col-12">
-                                <?php if($tid > 0) { ?>
-                                <button type="submit" id="savest" name="savest" class="btn btn-inverse-success pt-2"
-                                    onclick="upd();"><?php echo $btntext; ?></button>
-                                <div id="px"></div>
+                                <?php if ($tid > 0) { ?>
+                                    <button type="submit" id="savest" name="savest" class="btn btn-inverse-success pt-2"
+                                        onclick="upd();"><?php echo $btntext; ?></button>
+                                    <div id="px"></div>
                                 <?php } ?>
                             </div>
                         </div>
@@ -1089,43 +1468,43 @@ include 'footer.php';
 
 
 
-        /*
-                var accno = document.getElementById("accno").value;
-                var bname = document.getElementById("bname").value;
-                var bbr = document.getElementById("bbr").value;
-                var rno = document.getElementById("rno").value;
-        
-                var accno2 = document.getElementById("accnosch").value;
-                var bname2 = document.getElementById("bnamesch").value;
-                var bbr2 = document.getElementById("bbrsch").value;
-                var rno2 = document.getElementById("rnosch").value;
-        
-                var accno3 = document.getElementById("accnopf").value;
-                var bname3 = document.getElementById("bnamepf").value;
-                var bbr3 = document.getElementById("bbrpf").value;
-                var rno3 = document.getElementById("rnopf").value;
-        
-        
-                var paycode = document.getElementById("paycode").value;
-                var pscale = document.getElementById("pscale").value;
-                var basic = document.getElementById("basic").value;
-                var inten = document.getElementById("inten").value;
-                var hra = document.getElementById("hra").value;
-                var ma = document.getElementById("ma").value;
-                var arrea = document.getElementById("arrea").value;
-                var welfare = document.getElementById("welfare").value;
-                var retire = document.getElementById("retire").value;
-                var net = document.getElementById("net").value;
-                var salary = document.getElementById("salary").value;
-                var mpa = document.getElementById("mpa").value;
-                var travel = document.getElementById("travel").value;
-                var ma2 = document.getElementById("ma2").value;
-                var exam = document.getElementById("exam").value;
-                var fest = document.getElementById("fest").value;
-        
-                var pf = document.getElementById("pf").value;
-                var net2 = document.getElementById("net2").value;
-        */
+
+        var accno = document.getElementById("mpoaccno").value;
+        var bname = document.getElementById("mpobankname").value;
+        var bbr = document.getElementById("mpobranch").value;
+        var rno = document.getElementById("mporouting").value;
+
+        var accno2 = document.getElementById("schaccno").value;
+        var bname2 = document.getElementById("schbankname").value;
+        var bbr2 = document.getElementById("schbranch").value;
+        var rno2 = document.getElementById("schrouting").value;
+
+        var accno3 = document.getElementById("pfaccno").value;
+        var bname3 = document.getElementById("pfbankname").value;
+        var bbr3 = document.getElementById("pfbranch").value;
+        var rno3 = document.getElementById("pfrouting").value;
+
+
+        var paycode = document.getElementById("paycode").value;
+        var pscale = document.getElementById("payscale").value;
+        var basic = document.getElementById("basic").value;
+        var inten = document.getElementById("incentive").value;
+        var hra = document.getElementById("houserent").value;
+        var ma = document.getElementById("medical").value;
+        // var arrea = document.getElementById("arrea").value;////////////////////////////
+        var welfare = document.getElementById("welfare").value;
+        var retire = document.getElementById("retire").value;
+        var net = document.getElementById("mpototal").value;
+        var salary = document.getElementById("salary").value;
+        var mpa = document.getElementById("mobilevata").value;
+        var travel = document.getElementById("travel").value;
+        var ma2 = document.getElementById("medical2").value;
+        // var exam = document.getElementById("exam").value;//////////////////////////////////
+        // var fest = document.getElementById("fest").value;////////////////////////////
+
+        var pf = document.getElementById("pf").value;
+        var net2 = document.getElementById("net2").value;
+        // alert("tin");
 
 
 
@@ -1137,13 +1516,12 @@ include 'footer.php';
             + "&pervill=" + pervill + "&perpo=" + perpo + "&perps=" + perps + "&perdist=" + perdist
             + "&mpoindex=" + mpoindex + "&tin=" + tin + "&thisjoin=" + thisjoin + "&firstjoin=" + firstjoin
 
-            //+ "&dob=" + dob
-            // + "&paycode=" + paycode + "&pscale=" + pscale + "&basic=" + basic + "&inten=" + inten + "&hra=" + hra + "&ma=" + ma + "&arrea=" + arrea + "&welfare=" + welfare + "&retire=" + retire + "&net=" + net
-            // + "&salary=" + salary + "&mpa=" + mpa + "&travel=" + travel + "&ma2=" + ma2 + "&exam=" + exam + "&fest=" + fest + "&pf=" + pf + "&net2=" + net2
+            + "&paycode=" + paycode + "&pscale=" + pscale + "&basic=" + basic + "&inten=" + inten + "&hra=" + hra + "&ma=" + ma + "&welfare=" + welfare + "&retire=" + retire + "&net=" + net
+            + "&salary=" + salary + "&mpa=" + mpa + "&travel=" + travel + "&ma2=" + ma2 + "&pf=" + pf + "&net2=" + net2
 
-            // + "&accno=" + accno + "&bname=" + bname + "&bbr=" + bbr + "&rno=" + rno
-            // + "&accno2=" + accno2 + "&bname2=" + bname2 + "&bbr2=" + bbr2 + "&rno2=" + rno2
-            // + "&accno3=" + accno3 + "&bname3=" + bname3 + "&bbr3=" + bbr3 + "&rno3=" + rno3
+            + "&accno=" + accno + "&bname=" + bname + "&bbr=" + bbr + "&rno=" + rno
+            + "&accno2=" + accno2 + "&bname2=" + bname2 + "&bbr2=" + bbr2 + "&rno2=" + rno2
+            + "&accno3=" + accno3 + "&bname3=" + bname3 + "&bbr3=" + bbr3 + "&rno3=" + rno3
 
 
 
@@ -1223,10 +1601,6 @@ include 'footer.php';
         var scmot = parseInt(salary + mpa + travel + ma2 + exam + fest - pf);
         document.getElementById("net2").value = scmot;
         // 		var net2 = document.getElementById("net2").value;
-
-
-
-
     }
 
     function calc2() {
