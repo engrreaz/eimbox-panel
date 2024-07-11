@@ -211,18 +211,19 @@ if ($result01->num_rows > 0) {
                         <button class="btn btn-primary btn-block p-2"
                             onclick="save(<?php echo $exid; ?>, <?php echo $oneto; ?>);">Save</button>
                     </div>
-                    <?php if($exid > 0) { ?>
-                    <div class="col-md-2  ">
-                        <button class="btn btn-success btn-block p-2"
-                            onclick="save(<?php echo $exid; ?>, 2);">Update & Verify</button>
-                    </div>
-                    <div class="col-md-2 ">
-                        <button class="btn btn-danger btn-block p-2"
-                            onclick="save(<?php echo $exid; ?>, 3);">Delete</button>
-                    </div>
+                    <?php if ($exid > 0) { ?>
+                        <div class="col-md-2  ">
+                            <button class="btn btn-success btn-block p-2" onclick="save(<?php echo $exid; ?>, 2);">Update &
+                                Verify</button>
+                        </div>
+                        <div class="col-md-2 ">
+                            <button class="btn btn-danger btn-block p-2"
+                                onclick="save(<?php echo $exid; ?>, 3);">Delete</button>
+                        </div>
                     <?php } ?>
                     <div class="col-md-3 p-2 pl-3">
-                        <div id="gex"></div>   <div id="sspd"></div>
+                        <div id="gex"></div>
+                        <div id="sspd"></div>
                     </div>
 
                 </div>
@@ -239,11 +240,12 @@ if ($result01->num_rows > 0) {
         <div class="card">
             <div class="card-body">
 
-             
+
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table id="main-table-search" class="table table-bordered text-white" style="border:1px solid gray;">
+                        <table id="main-table-search" class="table table-bordered text-white"
+                            style="border:1px solid gray;">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -289,7 +291,6 @@ if ($result01->num_rows > 0) {
                                         if ($txt != 0) {
                                             // $trclr = 'text-warning';
                                         }
-
                                         ?>
                                         <tr class="<?php echo $trclr; ?>">
                                             <td><?php echo $slx; ?></td>
@@ -304,27 +305,20 @@ if ($result01->num_rows > 0) {
                                                 <?php
                                                 if ($verified == 0) {
                                                     ?>
-
-
                                                     <div id="ssp<?php echo $id; ?>" class="btn-groupx" role="groupx"
                                                         aria-label="Basic example">
                                                         <button onclick="edit(<?php echo $id; ?>,1);"
                                                             class="btn btn-inverse-primary pt-2"><i
                                                                 class="mdi mdi-grease-pencil"></i></button>
 
-                                                        <button onclick="save(<?php echo $id; ?>,3);"
-                                                            class="btn btn-inverse-danger" hidden><i class="mdi mdi-delete"></i></button>
-
-
+                                                        <button onclick="save(<?php echo $id; ?>,3);" class="btn btn-inverse-danger"
+                                                            hidden><i class="mdi mdi-delete"></i></button>
                                                     </div>
-
-
-                                                <?php
+                                                    <?php
                                                 } else {
                                                     ?>
                                                     <i class="mdi mdi-check-circle mdi-24px text-success"></i>
                                                     <?php
-
                                                 }
                                                 ?>
                                             </td>
@@ -332,11 +326,8 @@ if ($result01->num_rows > 0) {
                                         <?php
                                         $slx++;
                                     }
-
                                 } else { ?>
-                                    <tr>
-                                        <td colspan="7">No Data / Records Found.</td>
-                                    </tr>
+
                                 <?php } ?>
                             </tbody>
                         </table>
@@ -451,7 +442,7 @@ include 'footer.php';
 
 
 
-    
+
     $(document).ready(function () {
         $('#main-table-search').DataTable();
     });

@@ -194,7 +194,7 @@ if ($result0->num_rows > 0) {
                                         $bankname = $row0x["bankname"];
                                         $branch = $row0x["branch"];
 
-                                        $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accno'  order by id desc LIMIT 1;";
+                                        $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accno'   order by verifytime desc, date desc, id desc LIMIT 1;";
                                         $result0xg = $conn->query($sql0x);
                                         if ($result0xg->num_rows > 0) {
                                             while ($row0x = $result0xg->fetch_assoc()) {
