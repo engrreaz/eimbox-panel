@@ -112,10 +112,9 @@ if ($result01->num_rows > 0) {
 <div class="float-right">
     <button type="button" style="" title="Add New Expenditure" class="btn btn-inverse-success" style=""
         onclick="addnew();">
-        <i class="mdi mdi-library-plus"> Add New Class </i></button>
+        <i class="mdi mdi-library-plus"> Add a Transaction </i></button>
 </div>
 <h3>Account Details</h3>
-
 
 
 <div class="row">

@@ -101,6 +101,12 @@ $query33 = "update teacher set
     where tid='$tid' and sccode='$sccode';";
 $conn->query($query33);
 
+
+
+
+
+
+
 // echo $query33;
 echo 'Update Successfully ';
 

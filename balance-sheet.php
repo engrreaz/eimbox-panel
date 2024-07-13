@@ -233,6 +233,27 @@ if ($result00->num_rows > 0) {
 <?php
 $datefrom = '2024-01-01';
 $dateto = '2024-12-31';
+
+$sql0x = "SELECT * FROM bankinfo where sccode='$sccode' order by id;";
+$result0r10 = $conn->query($sql0x);
+if ($result0r10->num_rows > 0) {
+    while ($row0x = $result0r10->fetch_assoc()) {
+        $ban = $row0x['accno'];
+
+        $bankbal = 0;
+        $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$ban' and date < '$datefrom' and verified=1  order by verifytime desc limit 1;";
+        $result0r11 = $conn->query($sql0x);
+        if ($result0r11->num_rows > 0) {
+            while ($row0x = $result0r11->fetch_assoc()) {
+                $bankbal += $row0x['balance'];
+            }
+        }
+    }
+}
+
+
+
+
 $items = array();
 $sql0x = "SELECT * FROM financesetup where (sccode=0 or sccode='$sccode') order by id;";
 $result0r1 = $conn->query($sql0x);
@@ -248,7 +269,7 @@ if ($result0r1->num_rows > 0) {
 <div id="datam">
 
     <table class="table table-bordered table-striped "
-        style=" border:1px solid gray !important; border-collapse:collapse; width:100%;" id="main-tables">
+        style=" border:1px solid gray !important; border-collapse:collapse; width:100%; display:none;" id="main-tables">
         <thead>
             <tr>
                 <th class="txt-right">#</th>
@@ -307,8 +328,8 @@ if ($result0r1->num_rows > 0) {
     </table>
 
 
-    <div style="page-break-after:always;"></div>
-    
+    <!-- <div style="page-break-after:always;"></div> -->
+
 
     <table style="width:100%;">
         <tr>
@@ -344,15 +365,16 @@ if ($result0r1->num_rows > 0) {
                                 ?>
                                 <tr>
 
-                                    <td style="padding : 3px 10px; border:1px solid gray;">
+                                    <td style="padding : 2px 10px; border:1px solid gray;">
                                         <div class="ooo"><?php echo $parttext; ?></div>
                                     </td>
-                                    <td style="padding : 3px 10px; border:1px solid gray; text-align:right;">
+                                    <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
                                         <div class="ooo"><?php echo $inco; ?></div>
                                     </td>
                                 </tr>
                                 <?php
-                                $cnt++; $takain += $inco;
+                                $cnt++;
+                                $takain += $inco;
                             }
                         }
                         ?>
@@ -373,7 +395,8 @@ if ($result0r1->num_rows > 0) {
                     <tbody>
                         <?php
                         $cnt2 = 0;
-                        $cntamt = 0; $takaex = 0;
+                        $cntamt = 0;
+                        $takaex = 0;
                         $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
                         $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where sccode='$sccode' and expenditure > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
                         // echo $sql0; 
@@ -391,15 +414,16 @@ if ($result0r1->num_rows > 0) {
                                 ?>
                                 <tr>
 
-                                    <td style="padding : 3px 10px; border:1px solid gray;">
+                                    <td style="padding : 2px 10px; border:1px solid gray;">
                                         <div class="ooo"><?php echo $parttext; ?></div>
                                     </td>
-                                    <td style="padding : 3px 10px; border:1px solid gray; text-align:right;">
+                                    <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
                                         <div class="ooo"><?php echo $expe; ?></div>
                                     </td>
                                 </tr>
                                 <?php
-                                $cnt2++; $takaex += $expe;
+                                $cnt2++;
+                                $takaex += $expe;
                             }
                         }
                         ?>
@@ -426,27 +450,33 @@ if ($result0r1->num_rows > 0) {
         <tbody>
             <tr>
                 <td>Balance Before <?php echo $datefrom; ?></td>
-                <td class="txt-right2">000.00</td>
+                <td class="txt-right2"><?php echo number_format($bankbal); ?></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Total Income</td>
-                <td class="txt-right2">000.00</td>
+                <td class="txt-right2"><?php echo number_format($takain); ?></td>
                 <td>Total Expenditure</td>
-                <td class="txt-right2">000.00</td>
+                <td class="txt-right2"><?php echo number_format($takaex); ?></td>
             </tr>
+
+            <?php
+            $grand = $bankbal + $takain;
+            $tillbal = $grand - $takaex;
+            ?>
+
             <tr>
                 <td></td>
                 <td></td>
                 <td>Balance Till <?php echo $dateto; ?></td>
-                <td class="txt-right2">000.00</td>
+                <td class="txt-right2"><?php echo number_format($tillbal); ?></td>
             </tr>
             <tr>
                 <td></td>
-                <td class="txt-right2">22222000.00</td>
+                <td class="txt-right2"><?php echo number_format($grand); ?></td>
                 <td></td>
-                <td class="txt-right2">000.00</td>
+                <td class="txt-right2"><?php echo number_format($grand); ?></td>
             </tr>
         </tbody>
     </table>
@@ -476,16 +506,28 @@ if ($result0r1->num_rows > 0) {
                                 $acctype = $row0["acctype"];
                                 $bankname = $row0["bankname"];
                                 $branch = $row0["branch"];
+
+                                $grandtotal = $thisbal = 0;
+                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$ban' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
+                                $result0r12 = $conn->query($sql0x);
+                                if ($result0r12->num_rows > 0) {
+                                    while ($row0x = $result0r12->fetch_assoc()) {
+                                        $thisbal = $row0x['balance'];
+                                        $grandtotal += $thisbal;
+                                    }
+                                }
                                 ?>
                                 <tr>
                                     <td><?php echo $accno . ' (' . $acctype . ')'; ?></td>
-                                    <td class="txt-right2">0000000.00</td>
+                                    <td class="txt-right2"><?php echo number_format($thisbal); ?></td>
                                 </tr>
-                            <?php }
+                            <?php
+
+                            }
                         } ?>
                         <tr>
                             <td>Total :</td>
-                            <td class="txt-right2">0000000.00</td>
+                            <td class="txt-right2"><?php echo number_format($grandtotal); ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -495,15 +537,15 @@ if ($result0r1->num_rows > 0) {
                     <tr>
                         <td>
                             Chairman<br>
-                            xxx<br>
-                            3slkskfs sf sf<br>
-                            sfkjflskjf skjfls<br>
+                            <br>
+                            <?php echo $scname;?><br>
+                            <?php echo $scaddress;?>
                         </td>
                         <td>
-                            Chairman<br>
-                            xxx<br>
-                            3slkskfs sf sf<br>
-                            sfkjflskjf skjfls<br>
+                            Principal<br>
+                            <?php ?><br>
+                            <?php echo $scname;?><br>
+                            <?php echo $scaddress;?>
                         </td>
                     </tr>
                 </table>
@@ -569,8 +611,8 @@ include 'footer.php';
 
         var rowx = tbll.insertRow(totalno);
         var rowy = tblr.insertRow(totalno);
-       rowx.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo $takain;?></td>';
-       rowy.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo $takaex;?></td>';
+        rowx.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo $takain; ?></td>';
+        rowy.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo $takaex; ?></td>';
 
 
 
@@ -620,7 +662,7 @@ include 'footer.php';
         var datam = document.getElementById("datam").innerHTML;
         document.write('<title>Eimbox</title>');
         document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:50px; background: black;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to  List</button></div>');
-        document.write('<div id="margin" style="padding:  15mm;"></div>');
+        document.write('<div id="margin" style="padding: 5mm 15mm;"></div>');
         // document.write(pad);
         document.getElementById("margin").innerHTML = pad + txt + datam;
         // document.write(txt);

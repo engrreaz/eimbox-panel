@@ -196,7 +196,7 @@ $supernav = array('account-settings.php');
           </div>
         </li>
 
-
+        
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#fees" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
@@ -239,6 +239,21 @@ $supernav = array('account-settings.php');
             </span>
             <span class="menu-title">Privileges</span>
           </a>
+        </li>
+
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#data-repo" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-icon">
+              <i class="mdi mdi-laptop"></i>
+            </span>
+            <span class="menu-title">Data Repository</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="data-repo">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="#">Data Bank</a></li>
+            </ul>
+          </div>
         </li>
 
         <?php
@@ -527,12 +542,16 @@ $supernav = array('account-settings.php');
                 <span class="menu-icon">
                   <i class="mdi mdi-coin mdi-24px pt-1"></i>
                 </span>
-                <span class="menu-title">Salary Management</span>
+                <span class="menu-title">Payroll Manager</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="finance-sal">
                 <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="payroll-structure.php">Salary Structure</a></li>
+
+
                   <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-calc.php">Salary Calculation</a></li>
                 </ul>
               </div>
             </li>

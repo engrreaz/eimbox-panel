@@ -7,6 +7,11 @@
 
 ----------- notice table whole transfer (REPLACE) -------------------------------
 ----------- notice Category table whole transfer (REPLACE) -------------------------------
+----------- teacher_salary_structure ---------------------------------
+
+ALTER TABLE `financeitem` ADD `icon` VARCHAR(50) NULL DEFAULT NULL AFTER `sccode`;
+ALTER TABLE `salarydetails` ADD `edit_lock` INT NOT NULL DEFAULT '0' AFTER `entrytime`;
+
 
 
 

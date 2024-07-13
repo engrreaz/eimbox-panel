@@ -12,6 +12,12 @@ if (isset($_GET['m'])) {
 } else {
     $month = 0;
 }
+if (isset($_GET['slot'])) {
+    $slot = $_GET['slot'];
+} else {
+    $slot = 'School';
+}
+
 if (isset($_GET['y'])) {
     $year = $_GET['y'];
 } else {
@@ -26,6 +32,11 @@ if (isset($_GET['undef'])) {
     $undef = $_GET['undef'];
 } else {
     $undef = 99;
+}
+if (isset($_GET['all'])) {
+    $all = $_GET['all'];
+} else {
+    $all = $sccode;
 }
 
 
@@ -42,7 +53,135 @@ if (isset($_GET['addnew'])) {
     $exid = 0;
 }
 
+$items = array();
+$sql000 = "SELECT * FROM financeitem where sccode='$sccode' or sccode=0  order by id";
+$resultixx = $conn->query($sql000);
+// $conn -> close();
+if ($resultixx->num_rows > 0) {
+    while ($row000 = $resultixx->fetch_assoc()) {
+        $items[] = $row000;
+    }
+}
+
 ?>
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Issue Expenditure</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div id="" class="input-control select full-size error">
+
+                    <div class="d-flex">
+                        <label class="form-control bg-dark">Amount</label>
+                        <label id="cash" class="form-control text-right ">0.00</label>
+                    </div>
+                    <div class="d-flex">
+                        <label class="form-control bg-dark">Month</label>
+                        <select class="form-control text-white" id="monthissue">
+                            <option value="0"></option>
+                            <?php
+                            for ($x = 1; $x <= 12; $x++) {
+                                $flt = '';
+                                $xx = strtotime(date('Y') . '-' . $x . '-01');
+                                if ($month == $x) {
+                                    $flt = 'selected';
+                                }
+
+                                echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
+                            }
+                            ?>
+
+                        </select>
+                    </div>
+                    <div class="d-flex">
+                        <label class="form-control bg-dark">Year</label>
+                        <select class="form-control text-white" id="yearissue">
+                            <option value="0"></option>
+                            <?php
+                            for ($y = date('Y'); $y >= 2024; $y--) {
+                                $flt2 = '';
+                                if ($year == $y) {
+                                    $flt2 = 'selected';
+                                }
+                                echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="d-flex">
+                        <label class="form-control bg-dark">Ref. No.</label>
+                        <button class="btn"><i class="mdi mdi-sync"></i></button>
+                        <input type="text" class="form-control" id="refissue" />
+
+                    </div>
+
+                    <div class="d-flex">
+                        <label class="form-control bg-dark">Cheque No.</label>
+                        <input type="text" class="form-control" id="chqissue" />
+
+                    </div>
+
+                    <div class="d-flex">
+                        <label class="form-control bg-dark">Bank Account</label>
+                        <select id="accissue" name="accissue" class="form-control text-white" onchange="modal();">
+                            <option value="">Select Bank Account</option>
+                            <?php
+                            $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";
+                            $resultix = $conn->query($sql000);
+                            // $conn -> close();
+                            if ($resultix->num_rows > 0) {
+                                while ($row000 = $resultix->fetch_assoc()) {
+                                    $accno = $row000["accno"];
+                                    $acctype = $row000["acctype"];
+                                    $bankname = $row000["bankname"];
+                                    echo '<option value="' . $accno . '"  >' . $accno . '/' . $acctype . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-inverse-success" onclick="save(99,5);">Issue</button>
+                <button type="button" class="btn btn-inverse-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 <div id="varvar">
 
 </div>
@@ -59,6 +198,7 @@ if (isset($_GET['addnew'])) {
         document.cookie = "txt=Income;";
     }
     //localStorage.setItem("ex-routine-time", time);
+
 </script>
 
 
@@ -80,10 +220,34 @@ $txt = $_COOKIE['txt'];
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Select Month & Year and press 'Proceed' to proceed
+                    Select Month & Year / Ref. No to filter record
                 </h6>
                 <div class="row">
                     <div class="col-md-2">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Slot</label>
+                            <div class="col-12">
+                                <select class="form-control text-secondary" id="dept2x">
+                                    <?php
+                                    $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
+                                    $result0x2 = $conn->query($sql0x);
+                                    if ($result0x2->num_rows > 0) {
+                                        while ($row0x = $result0x2->fetch_assoc()) {
+                                            $slotname = $row0x["slotname"];
+                                            if ($slot == $slotname) {
+                                                $sel = 'selected';
+                                            } else {
+                                                $sel = '';
+                                            }
+                                            echo '<option value="' . $slotname . '"' . $sel . '>' . $slotname . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Month</label>
                             <div class="col-12">
@@ -104,11 +268,8 @@ $txt = $_COOKIE['txt'];
                                 </select>
                             </div>
                         </div>
-                    </div>
 
-
-                    <div class="col-md-2">
-                        <div class="form-group row">
+                        <div class="form-group row pl-1">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="year">
@@ -125,54 +286,122 @@ $txt = $_COOKIE['txt'];
                                 </select>
                             </div>
                         </div>
-                    </div>
 
-
-                    <div class="col-md-1">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
+                        <div class="form-group row pl-1">
+                            <label class="col-form-label pl-3  ">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary" style="" onclick="go();"><i class="mdi mdi-eye"></i></button>
+                                    class="btn btn-inverse-primary p-2  btn-block " style="" onclick="go();"><i
+                                        class="mdi mdi-eye"></i></button>
 
                             </div>
                         </div>
+
+
                     </div>
 
-                    <div class="col-md-2">
+
+
+
+
+
+
+
+                    <div class="col-md-2 d-flex">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Ref. No.</label>
                             <div class="col-12">
                                 <input type="text" class="form-control" id="ref" value="<?php echo $refno; ?>" />
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-1">
-                        <div class="form-group row">
+                        <div class="form-group row pl-1">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class=" btn-primary" style="" onclick="go2();"><i class="mdi mdi-eye"></i></button>
+                                    class="btn btn-inverse-warning p-1 pt-2  pl-3 pr-2 btn-block" style=""
+                                    onclick="go2();"><i class="mdi mdi-eye mdi-18px"></i></button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
-                            <div class="col-12">
-                                <button type="button" style="" class="icon-btn btn-info" title="Undefined Item" style=""
-                                    onclick="go3();">&nbsp;<i class="mdi mdi-crop-square"></i>&nbsp;</button>
 
-                                <button type="button" style="" title="Add New Expenditure" class="icon-btn btn-success"
-                                    style="" onclick="addnew();">&nbsp;<i
-                                        class="mdi mdi-library-plus"></i>&nbsp;</button>
-                                <button type="button" style="" title="Search" class="icon-btn btn-warning" style=""
-                                    onclick="go4();">&nbsp;<i class="mdi mdi-magnify"></i>&nbsp;</button>
+
+                    <div class="col-md-4 d-flex d-block">
+
+                        <div class="btn-group" role="group">
+                            <div class="form-group row">
+                                <label class="col-form-label d-md-flex d-sm-none pl-3">&nbsp;</label>
+                                <div class="col-12">
+                                    <button type="button" style="" class="btn btn-inverse-info  p-1 pt-2 btn-block"
+                                        title="Undefined Item" style="" onclick="go3();">&nbsp;<i
+                                            class="mdi mdi-crop-square mdi-18px"></i>&nbsp;</button>
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label pl-3  d-md-flex d-sm-none">&nbsp;</label>
+                                <div class="col-12">
+
+                                    <button type="button" style="" title="Show All Expenses"
+                                        class="btn btn-inverse-secondary  p-1 pt-2  btn-block" style=""
+                                        onclick="showall();">&nbsp;<i
+                                            class="mdi mdi-receipt mdi-18px"></i>&nbsp;</button>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label pl-3  d-md-flex d-sm-none">&nbsp;</label>
+                                <div class="col-12">
+
+                                    <button type="button" style="" title="Add New Expenditure"
+                                        class="btn btn-inverse-success  p-1 pt-2  btn-block" style=""
+                                        onclick="addnew();">&nbsp;<i
+                                            class="mdi mdi-library-plus mdi-18px"></i>&nbsp;</button>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label pl-3  d-md-flex d-sm-none">&nbsp;</label>
+                                <div class="col-12">
+
+                                    <button type="button" style="" title="Add New Expenditure"
+                                        class="btn btn-inverse-danger  p-1 pt-2  btn-block" style=""
+                                        onclick="pdf();">&nbsp;<i class="mdi mdi-file-pdf mdi-18px"></i>&nbsp;</button>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label pl-3  d-md-flex d-sm-none">&nbsp;</label>
+                                <div class="col-12">
+
+                                    <button type="button" style="" title="Add New Expenditure"
+                                        class="btn btn-inverse-primary  p-1 pt-2  btn-block" style=""
+                                        onclick="print();">&nbsp;<i
+                                            class="mdi mdi-printer mdi-18px "></i>&nbsp;</button>
+
+                                </div>
+                            </div>
+                            <div class="form-group row" hidden>
+                                <label class="col-form-label pl-3  d-md-flex d-sm-none">&nbsp;</label>
+                                <div class="col-12">
+
+                                    <button type="button" style="" title="Search" class="btn btn-inverse-warning"
+                                        style="" onclick="go4();" hidden>&nbsp;<i
+                                            class="mdi mdi-magnify mdi-18px"></i>&nbsp;</button>
+
+                                </div>
                             </div>
                         </div>
+
+
+
                     </div>
+
+
+
 
                 </div>
 
@@ -210,9 +439,6 @@ $txt = $_COOKIE['txt'];
                             </div>
                         </div>
                     </div>
-
-
-
 
 
                     <div class="col-md-3">
@@ -261,12 +487,14 @@ $txt = $_COOKIE['txt'];
                                         $pid = $row0x["partid"];
                                         $descrip = $row0x["particulars"];
                                         $amount = $row0x["amount"];
+                                        $stst = $row0x["status"];
                                     }
                                 } else {
                                     $date = '';
                                     $slots = 'school';
                                     $amount = '';
                                     $descrip = '';
+                                    $stst = '0';
 
                                 }
                                 // $ = $row0x[""];
@@ -327,21 +555,21 @@ $txt = $_COOKIE['txt'];
                                     <td>Description :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" id="descrip"  list="itemname"
+                                        <input type="text" class="form-control" id="descrip" list="itemname"
                                             value="<?php echo $descrip; ?>" />
 
-                                            <datalist id="itemname">
-                                    <?php
-                                    $sql000 = "SELECT particulars FROM cashbook where sccode='$sccode' or sccode='$sccodes' group by particulars order by particulars";
-                                    $result0001 = $conn->query($sql000);
-                                    if ($result0001->num_rows > 0) {
-                                        while ($row000 = $result0001->fetch_assoc()) {
-                                            $partpart = $row000["particulars"];
-                                            echo '<option value="' . $partpart . '">';
-                                        }
-                                    }
-                                    ?>
-                                </datalist>
+                                        <datalist id="itemname">
+                                            <?php
+                                            $sql000 = "SELECT particulars FROM cashbook where sccode='$sccode' or sccode='$sccodes' group by particulars order by particulars";
+                                            $result0001 = $conn->query($sql000);
+                                            if ($result0001->num_rows > 0) {
+                                                while ($row000 = $result0001->fetch_assoc()) {
+                                                    $partpart = $row000["particulars"];
+                                                    echo '<option value="' . $partpart . '">';
+                                                }
+                                            }
+                                            ?>
+                                        </datalist>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -358,9 +586,11 @@ $txt = $_COOKIE['txt'];
                                     <td></td>
                                     <td>
                                         <div id="">
-                                            <button class="btn btn-primary"
-                                                onclick="save(<?php echo $exid; ?>, 1);">Save</button>
+                                            <?php if ($stst == 0) { ?>
 
+                                                <button class="btn btn-primary"
+                                                    onclick="save(<?php echo $exid; ?>, 1);">Save</button>
+                                            <?php } ?>
                                             <div id="gex"></div>
                                         </div>
 
@@ -384,9 +614,7 @@ $txt = $_COOKIE['txt'];
 
                 <div id="sspd"></div>
                 <h6 class="text-muted font-weight-normal">
-                    Record found for the month of
-                    <b><?php $xx = strtotime($year . '-' . $month . '-01');
-                    echo date('F, Y', $xx) ?></b>
+
                 </h6>
 
                 <div class="row">
@@ -394,6 +622,7 @@ $txt = $_COOKIE['txt'];
                         <table class="table table-hover text-white">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Date</th>
                                     <th>Memo</th>
                                     <th>Particulars</th>
@@ -405,6 +634,7 @@ $txt = $_COOKIE['txt'];
                                 <?php
                                 $sccodes = $sccode * 10;
                                 $mottaka = 0;
+                                $memotaka = 0;
                                 if ($refno > 0) {
                                     // echo 'ref<br>';
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno'  order by memono, id;";
@@ -413,7 +643,9 @@ $txt = $_COOKIE['txt'];
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  order by memono, id;";
                                 } else if ($undef == '' || $undef == NULL) {
                                     // echo 'undef<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0 and type='Expenditure'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes')  and type='Expenditure'  order by memono, id;";
+                                } else if ($all != $sccode) {
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes')  and type='Expenditure'  order by date desc, memono, id;";
                                 } else {
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0 and type='Expenditure'  order by memono, id;";
                                 }
@@ -424,33 +656,68 @@ $txt = $_COOKIE['txt'];
                                         $id = $row0x["id"];
                                         $date = $row0x["date"];
                                         $memo = $row0x["memono"];
+
+                                        $mm = $row0x["month"];
+                                        $yy = $row0x["year"];
+                                        $rr = $row0x["refno"];
+                                        $pp = $row0x["partid"];
+                                        $ind = array_search($pp, array_column($items, 'id'));
+                                        $ppp = $items[$ind]['particulareng'] . ' / ' . $items[$ind]['particularben'];
+                                        $icons = $items[$ind]['icon'];
+
                                         $parti = $row0x["particulars"];
                                         $amt = $row0x["amount"];
+                                        $status = $row0x["status"];
+
+
                                         $mottaka += $amt;
+                                        if ($memo > 0) {
+                                            $memotaka += $amt;
+                                        }
                                         ?>
                                         <tr>
-                                            <td><?php echo date('d - m - Y', strtotime($date)); ?></td>
-                                            <td><?php echo $memo; ?></td>
-                                            <td><?php echo $parti; ?></td>
+                                            <td>
+                                                <?php if ($icons != '' || $icons != NULL) {
+                                                    echo '<i class="mdi mdi-' . $icons . ' mdi-18px"></i>';
+                                                } ?>
+                                            </td>
+
+                                            <td>
+                                                <?php echo date('d - m - Y', strtotime($date)); ?>
+                                                <small class="d-block text-muted pt-2"><?php echo $mm . '/' . $yy; ?></small>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $memo; ?>
+                                                <small class="d-block text-muted pt-2"><?php echo $rr; ?></small>
+                                            </td>
+                                            <td class="text-wrap " style="line-height:18px;">
+                                                <?php echo $parti; ?>
+                                                <small class="d-block text-muted pt-2"><?php echo $ppp; ?></small>
+                                            </td>
                                             <td style="text-align:right;"><?php echo $amt; ?>.00</td>
 
                                             <td>
                                                 <?php
                                                 if ($status == 0) {
                                                     ?>
-                                                    <div id="ssp<?php echo $id; ?>">
-                                                        <label onclick="edit(<?php echo $id; ?>,1);" class="icon-btn btn-info"><i
-                                                                class="mdi mdi-grease-pencil"></i></label>
-                                                        <label onclick="save(<?php echo $id; ?>,2);" class="icon-btn btn-danger"><i
-                                                                class="mdi mdi-delete"></i></label>
-                                                        <label onclick="save(<?php echo $id; ?>,3);" class="icon-btn btn-success"><i
-                                                                class="mdi mdi-receipt"></i></label>
+
+
+                                                    <div class="btn-group" role="group" id="ssp<?php echo $id; ?>">
+                                                        <button onclick="edit(<?php echo $id; ?>,1);"
+                                                            class="btn btn-inverse-primary"><i
+                                                                class="mdi mdi-grease-pencil"></i></button>
+                                                        <button onclick="save(<?php echo $id; ?>,2);"
+                                                            class="btn btn-inverse-danger"><i class="mdi mdi-delete"></i></button>
+                                                        <?php if ($memo < 1) { ?>
+                                                            <button onclick="save(<?php echo $id; ?>,3);"
+                                                                class="btn btn-inverse-info"><i class="mdi mdi-receipt"></i></button>
+                                                        <?php } ?>
                                                     </div>
 
                                                     <?php
                                                 } else {
                                                     ?>
-                                                    <label class="badge badge-success">Issued</label>
+                                                    <i class="mdi mdi-check-circle mdi-24px text-success"></i>
                                                     <?php
                                                 }
                                                 ?>
@@ -459,14 +726,43 @@ $txt = $_COOKIE['txt'];
                                     <?php }
                                 } else { ?>
                                     <tr>
-                                        <td colspan="7">No Data / Records Found.</td>
+                                        <td colspan="8">No Data / Records Found.</td>
+                                        <td></td>
                                     </tr>
                                 <?php } ?>
 
                                 <tr>
-                                    <td colspan="3" style="text-align:right;">Total : </td>
+                                    <td colspan="4" style="text-align:right;">Total : </td>
                                     <td style="text-align:right; font-weight:bold;"><?php echo $mottaka; ?>.00</td>
-                                    <td></td>
+                                    <td>
+
+
+
+
+                                        <button onclick="save(<?php echo $id; ?>,5);" class="icon-btn btn-success "
+                                            hidden><i class="mdi mdi-flower"></i></button>
+                                        <!-- set ref no. + month + year + issue check -->
+                                    </td>
+                                </tr>
+
+
+
+
+                                <tr>
+                                    <td colspan="4" style="text-align:right;">Total (Memo Amount) : </td>
+                                    <td style="text-align:right; font-weight:bold;"><?php echo $memotaka; ?>.00</td>
+                                    <td>
+
+                                        <button onclick="save(<?php echo $id; ?>,5);" class="icon-btn btn-success "
+                                            hidden><i class="mdi mdi-flower"></i></button>
+                                        <!-- set ref no. + month + year + issue check -->
+                                        <?php if ($memotaka > 0) { ?>
+                                            <button type="button" id="modalbox" class="btn btn-inverse-success btn-block"
+                                                data-bs-toggle="modal" data-bs-target="#myModal">
+                                                Issue Expense
+                                            </button>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
 
                             </tbody>
@@ -482,11 +778,16 @@ $txt = $_COOKIE['txt'];
 
 
 <?php
+
+
 include 'footer.php';
+
+
 ?>
 
 <script>
     var uri = window.location.href;
+    document.getElementById("cash").innerHTML = "<small>BDT &nbsp;&nbsp;&nbsp;</small> <?php echo number_format($memotaka, 2); ?>";
     function go() {
         var m = document.getElementById('month').value;
         var y = document.getElementById('year').value;
@@ -499,6 +800,9 @@ include 'footer.php';
     function go3() {
         var m = document.getElementById('ref').value;
         window.location.href = 'expenditure.php?&undef';
+    }
+    function showall() {
+        window.location.href = 'expenditure.php?&all';
     }
     function go4() {
         document.getElementById('search').style.display = 'block';
@@ -548,6 +852,15 @@ include 'footer.php';
             var infor = "dept=" + dept + '&date=' + date + '&cate=' + cate + '&descrip=' + descrip + '&amt=' + amt + '&id=' + id + "&tail=" + tail;
         } else if (tail == 2 || tail == 3) {
             var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
+        } else if (tail == 5) {
+            var month = document.getElementById('monthissue').value;
+            var year = document.getElementById('yearissue').value;
+            var ref = document.getElementById('refissue').value;
+            var chq = document.getElementById('chqissue').value;
+            var acc = document.getElementById('accissue').value;
+            var amt = '<?php echo $memotaka; ?>';
+
+            var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail;
         }
 
         // alert(infor);
@@ -592,6 +905,9 @@ include 'footer.php';
 <script>
     function catt(tu) {
         localStorage.setItem("inex-category", tu);
-        window.location.reload(true);
+        console.log('saved');
+        window.location.href = 'expenditure.php';
+        window.location.href = uri;
+
     }
 </script>
