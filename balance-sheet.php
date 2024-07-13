@@ -211,7 +211,8 @@ if ($result0r1->num_rows > 0) {
 <div id="datam">
     <div style="font-size:16px; font-weight:bold; text-align:center; border-bottom:1px solid black; padding:0 0 5px;">
         BALANCE SHEET : from <u><?php echo date('d/m/y', strtotime($datefrom));?></u> to <u><?php echo date('d/m/y', strtotime($dateto));?></u> </div>
-    <table class="table table-bordered table-striped "
+    
+        <table class="table table-bordered table-striped "
         style=" border:1px solid gray !important; border-collapse:collapse; width:100%; display:none;" id="main-tables">
         <thead>
             <tr>
@@ -319,6 +320,8 @@ if ($result0r1->num_rows > 0) {
                                 $cnt++;
                                 $takain += $inco;
                             }
+                        } else {
+                            $cnt = 0;
                         }
                         ?>
                         <div id="cntcnt"></div>
@@ -368,6 +371,8 @@ if ($result0r1->num_rows > 0) {
                                 $cnt2++;
                                 $takaex += $expe;
                             }
+                        } else {
+                            $cnt2 = 0;
                         }
                         ?>
                         <div id="cntcnt2"></div>
