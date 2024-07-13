@@ -231,8 +231,8 @@ if ($result00->num_rows > 0) {
 
 
 <?php
-$datefrom = '2024-01-01';
-$dateto = '2024-12-31';
+$datefrom = '2024-06-01';
+$dateto = '2024-06-30';
 
 $sql0x = "SELECT * FROM bankinfo where sccode='$sccode' order by id;";
 $result0r10 = $conn->query($sql0x);
@@ -372,7 +372,7 @@ if ($result0r1->num_rows > 0) {
                                         <div class="ooo"><?php echo $inco; ?></div>
                                     </td>
                                 </tr>
-                                <?php
+                                <?php 
                                 $cnt++;
                                 $takain += $inco;
                             }
