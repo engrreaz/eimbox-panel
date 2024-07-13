@@ -500,9 +500,9 @@ if ($result0r1->num_rows > 0) {
                         <?php
                         $sql0 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id;";
                         // echo $sql0; 
-                        $result0 = $conn->query($sql0);
-                        if ($result0->num_rows > 0) {
-                            while ($row0 = $result0->fetch_assoc()) {
+                        $result0l = $conn->query($sql0);
+                        if ($result0l->num_rows > 0) {
+                            while ($row0 = $result0l->fetch_assoc()) {
                                 $accno = $row0["accno"];
                                 $acctype = $row0["acctype"];
                                 $bankname = $row0["bankname"];
