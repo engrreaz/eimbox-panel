@@ -232,7 +232,7 @@ if ($result00->num_rows > 0) {
 
 <?php
 $datefrom = '2024-06-01';
-$dateto = '2024-06-30';
+$dateto = '2024-07-10';
 
 $sql0x = "SELECT * FROM bankinfo where sccode='$sccode' order by id;";
 $result0r10 = $conn->query($sql0x);
