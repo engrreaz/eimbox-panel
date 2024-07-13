@@ -6,27 +6,18 @@ $refno = '';
 $sccodes = $sccode * 10;
 $refdate = date('Y-m-d');
 
-if (isset($_GET['year'])) {
-    $year = $_GET['year'];
+if (isset($_GET['df'])) {
+    $datefrom = $_GET['df'];
 } else {
-    $year = date('Y');
+    $datefrom = date('Y-m-01');
 }
 
-if (isset($_GET['cls'])) {
-    $cls2 = $_GET['cls'];
+if (isset($_GET['dt'])) {
+    $dateto = $_GET['dt'];
 } else {
-    $cls2 = '';
+    $dateto = date('Y-m-d');
 }
-if (isset($_GET['sec'])) {
-    $sec2 = $_GET['sec'];
-} else {
-    $sec2 = '';
-}
-if (isset($_GET['exam'])) {
-    $exam2 = $_GET['exam'];
-} else {
-    $exam2 = '';
-}
+
 
 $col = 3;
 $status = 0;
@@ -68,74 +59,25 @@ if ($result00->num_rows > 0) {
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Year</label>
+                            <label class="col-form-label pl-3">Date From</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
-                                    <option value="0"></option>
-                                    <?php
-                                    for ($y = date('Y'); $y >= 2024; $y--) {
-                                        $flt2 = '';
-                                        if ($year == $y) {
-                                            $flt2 = 'selected';
-                                        }
-                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
-                                    }
-                                    ?>
-                                </select>
+                                <input type="date" class="form-control" value="<?php echo $datefrom; ?>" id="datefrom" />
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Class :</label>
+                            <label class="col-form-label pl-3">Date To</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
-                                    <option value=" ">---</option>
-                                    <?php
-                                    $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
-                                    $result0x = $conn->query($sql0x);
-                                    if ($result0x->num_rows > 0) {
-                                        while ($row0x = $result0x->fetch_assoc()) {
-                                            $cls = $row0x["areaname"];
-                                            if ($cls == $cls2) {
-                                                $selcls = 'selected';
-                                            } else {
-                                                $selcls = '';
-                                            }
-                                            echo '<option value="' . $cls . '" ' . $selcls . ' >' . $cls . '</option>';
-                                        }
-                                    }
-                                    ?>
-                                </select>
+                                <input type="date" class="form-control" value="<?php echo $dateto; ?>" id="dateto" />
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Section</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
-                                    <option value="">---</option>
-                                    <?php
-                                    $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
-                                    // echo $sql0x;
-                                    $result0r = $conn->query($sql0x);
-                                    if ($result0r->num_rows > 0) {
-                                        while ($row0x = $result0r->fetch_assoc()) {
-                                            $sec = $row0x["subarea"];
-                                            if ($sec == $sec2) {
-                                                $selsec = 'selected';
-                                            } else {
-                                                $selsec = '';
-                                            }
-                                            echo '<option value="' . $sec . '" ' . $selsec . ' >' . $sec . '</option>';
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+
                         </div>
                     </div>
 
@@ -147,7 +89,7 @@ if ($result00->num_rows > 0) {
                                 <label class="col-form-label pl-3">&nbsp;</label>
                                 <button type="button" class="btn btn-inverse-success btn-block p-2" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
-                                    Show List
+                                    Show Report
                                 </button>
                             </div>
                         </div>
@@ -232,16 +174,15 @@ if ($result00->num_rows > 0) {
 
 
 <?php
-$datefrom = '2024-06-01';
-$dateto = '2024-07-13';
 
+$bankbal = 0;
 $sql0x = "SELECT * FROM bankinfo where sccode='$sccode' order by id;";
 $result0r10 = $conn->query($sql0x);
 if ($result0r10->num_rows > 0) {
     while ($row0x = $result0r10->fetch_assoc()) {
         $ban = $row0x['accno'];
 
-        $bankbal = 0;
+
         $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$ban' and date < '$datefrom' and verified=1  order by verifytime desc limit 1;";
         $result0r11 = $conn->query($sql0x);
         if ($result0r11->num_rows > 0) {
@@ -268,7 +209,8 @@ if ($result0r1->num_rows > 0) {
 ?>
 
 <div id="datam">
-
+    <div style="font-size:16px; font-weight:bold; text-align:center; border-bottom:1px solid black; padding:0 0 5px;">
+        BALANCE SHEET : from <u><?php echo date('d/m/y', strtotime($datefrom));?></u> to <u><?php echo date('d/m/y', strtotime($dateto));?></u> </div>
     <table class="table table-bordered table-striped "
         style=" border:1px solid gray !important; border-collapse:collapse; width:100%; display:none;" id="main-tables">
         <thead>
@@ -370,10 +312,10 @@ if ($result0r1->num_rows > 0) {
                                         <div class="ooo"><?php echo $parttext; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo $inco; ?></div>
+                                        <div class="ooo"><?php echo number_format($inco, 2); ?></div>
                                     </td>
                                 </tr>
-                                <?php 
+                                <?php
                                 $cnt++;
                                 $takain += $inco;
                             }
@@ -419,7 +361,7 @@ if ($result0r1->num_rows > 0) {
                                         <div class="ooo"><?php echo $parttext; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo $expe; ?></div>
+                                        <div class="ooo"><?php echo number_format($expe, 2); ?></div>
                                     </td>
                                 </tr>
                                 <?php
@@ -435,7 +377,7 @@ if ($result0r1->num_rows > 0) {
         </tr>
     </table>
 
-    <div>Balance Sheet</div>
+    <div style="font-size:16px; font-weight:bold; text-align:center; padding:8px;">Balance Sheet</div>
 
     <table class="table table-bordered table-striped "
         style=" border:1px solid gray !important; border-collapse:collapse; width:100%;" id="main-table-2">
@@ -451,15 +393,15 @@ if ($result0r1->num_rows > 0) {
         <tbody>
             <tr>
                 <td>Balance Before <?php echo $datefrom; ?></td>
-                <td class="txt-right2"><?php echo number_format($bankbal); ?></td>
+                <td class="txt-right2"><?php echo number_format($bankbal, 2); ?></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Total Income</td>
-                <td class="txt-right2"><?php echo number_format($takain); ?></td>
+                <td class="txt-right2"><?php echo number_format($takain, 2); ?></td>
                 <td>Total Expenditure</td>
-                <td class="txt-right2"><?php echo number_format($takaex); ?></td>
+                <td class="txt-right2"><?php echo number_format($takaex, 2); ?></td>
             </tr>
 
             <?php
@@ -471,19 +413,19 @@ if ($result0r1->num_rows > 0) {
                 <td></td>
                 <td></td>
                 <td>Balance Till <?php echo $dateto; ?></td>
-                <td class="txt-right2"><?php echo number_format($tillbal); ?></td>
+                <td class="txt-right2"><?php echo number_format($tillbal, 2); ?></td>
             </tr>
             <tr>
                 <td></td>
-                <td class="txt-right2"><?php echo number_format($grand); ?></td>
+                <td class="txt-right2"><?php echo number_format($grand, 2); ?></td>
                 <td></td>
-                <td class="txt-right2"><?php echo number_format($grand); ?></td>
+                <td class="txt-right2"><?php echo number_format($grand, 2); ?></td>
             </tr>
         </tbody>
     </table>
 
 
-    <div>Balance Enquiry</div>
+    <div style="font-size:16px; font-weight:bold; text-align:center; padding:8px;">Balance Enquiry</div>
 
     <table style="width:100%;">
         <tr>
@@ -497,8 +439,8 @@ if ($result0r1->num_rows > 0) {
                     </thead>
 
                     <tbody>
-                        <?php 
-                        
+                        <?php
+
                         $grandtotal = $thisbal = 0;
                         $sql0 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id;";
                         // echo $sql0; 
@@ -510,8 +452,9 @@ if ($result0r1->num_rows > 0) {
                                 $bankname = $row0["bankname"];
                                 $branch = $row0["branch"];
 
-                               
+
                                 $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
+                                // echo $sql0x;
                                 $result0r12 = $conn->query($sql0x);
                                 if ($result0r12->num_rows > 0) {
                                     while ($row0x = $result0r12->fetch_assoc()) {
@@ -522,33 +465,32 @@ if ($result0r1->num_rows > 0) {
                                 ?>
                                 <tr>
                                     <td><?php echo $accnos . ' (' . $acctype . ')'; ?></td>
-                                    <td class="txt-right2"><?php echo number_format($thisbal,2); ?></td>
+                                    <td class="txt-right2"><?php echo number_format($thisbal, 2); ?></td>
                                 </tr>
-                            <?php
+                                <?php
 
                             }
                         } ?>
                         <tr>
                             <td>Total :</td>
-                            <td class="txt-right2"><?php echo number_format($grandtotal,2); ?></td>
+                            <td class="txt-right2"><?php echo number_format($grandtotal, 2); ?></td>
                         </tr>
                     </tbody>
                 </table>
             </td>
             <td style="text-align:center; vertical-align:bottom;">
-                <table style="width:100%;" class="text-small">
+                <table style="width:100%; font-size:13px;" class="text-small">
                     <tr>
-                        <td>
-                            Chairman<br>
-                            <br>
-                            <?php echo $scname;?><br>
-                            <?php echo $scaddress;?>
+                        <td style="text-align:center;">
+                            Chairman
+                        <td style="text-align:center;">
+                            Principal
                         </td>
-                        <td>
-                            Principal<br>
-                            <?php ?><br>
-                            <?php echo $scname;?><br>
-                            <?php echo $scaddress;?>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;">
+                            <?php echo $scname; ?><br>
+                            <?php echo $scaddress; ?>
                         </td>
                     </tr>
                 </table>
@@ -614,8 +556,8 @@ include 'footer.php';
 
         var rowx = tbll.insertRow(totalno);
         var rowy = tblr.insertRow(totalno);
-        rowx.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo $takain; ?></td>';
-        rowy.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo $takaex; ?></td>';
+        rowx.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takain, 2); ?></td>';
+        rowy.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takaex, 2); ?></td>';
 
 
 
@@ -672,10 +614,9 @@ include 'footer.php';
     }
 
     function go() {
-        var year = document.getElementById('year').value;
-        var cls = document.getElementById('cls').value;
-        var sec = document.getElementById('sec').value;
-        window.location.href = 'students-list.php?&cls=' + cls + '&sec=' + sec + '&year=' + year;
+        var datefrom = document.getElementById('datefrom').value;
+        var dateto = document.getElementById('dateto').value;
+        window.location.href = 'balance-sheet.php?&df=' + datefrom + '&dt=' + dateto;
     }
 </script>
 
