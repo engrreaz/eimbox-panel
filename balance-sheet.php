@@ -497,7 +497,9 @@ if ($result0r1->num_rows > 0) {
                     </thead>
 
                     <tbody>
-                        <?php
+                        <?php 
+                        
+                        $grandtotal = $thisbal = 0;
                         $sql0 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id;";
                         // echo $sql0; 
                         $result0l = $conn->query($sql0);
@@ -508,7 +510,7 @@ if ($result0r1->num_rows > 0) {
                                 $bankname = $row0["bankname"];
                                 $branch = $row0["branch"];
 
-                                $grandtotal = $thisbal = 0;
+                               
                                 $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
                                 $result0r12 = $conn->query($sql0x);
                                 if ($result0r12->num_rows > 0) {
