@@ -3,6 +3,7 @@ include 'header.php';
 
 
 $refno = '';
+$sccodes = $sccode * 10;
 $refdate = date('Y-m-d');
 
 if (isset($_GET['year'])) {
@@ -284,7 +285,7 @@ if ($result0r1->num_rows > 0) {
             $cnt = 0;
             $cntamt = 0;
             $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
-            $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where sccode='$sccode' and date between '$datefrom' and '$dateto' group by partid order by partid;";
+            $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and date between '$datefrom' and '$dateto' group by partid order by partid;";
             // echo $sql0; 
             $result0 = $conn->query($sql0);
             if ($result0->num_rows > 0) {
@@ -349,7 +350,7 @@ if ($result0r1->num_rows > 0) {
                         $cntamt = 0;
                         $takain = 0;
                         $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
-                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where sccode='$sccode' and income > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
+                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and income > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
                         // echo $sql0; 
                         $result0 = $conn->query($sql0);
                         if ($result0->num_rows > 0) {
@@ -388,7 +389,7 @@ if ($result0r1->num_rows > 0) {
                     <thead>
                         <tr>
                             <th class="txt-right">Description</th>
-                            <th class="txt-right">Income</th>
+                            <th class="txt-right">Expenditure</th>
                         </tr>
                     </thead>
 
@@ -398,7 +399,7 @@ if ($result0r1->num_rows > 0) {
                         $cntamt = 0;
                         $takaex = 0;
                         $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
-                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where sccode='$sccode' and expenditure > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
+                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where (sccode='$sccode' || sccode='$sccodes') and expenditure > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
                         // echo $sql0; 
                         $result02 = $conn->query($sql0);
                         if ($result02->num_rows > 0) {
