@@ -503,13 +503,13 @@ if ($result0r1->num_rows > 0) {
                         $result0l = $conn->query($sql0);
                         if ($result0l->num_rows > 0) {
                             while ($row0 = $result0l->fetch_assoc()) {
-                                $accno = $row0["accno"];
+                                $accnos = $row0["accno"];
                                 $acctype = $row0["acctype"];
                                 $bankname = $row0["bankname"];
                                 $branch = $row0["branch"];
 
                                 $grandtotal = $thisbal = 0;
-                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$ban' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
+                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
                                 $result0r12 = $conn->query($sql0x);
                                 if ($result0r12->num_rows > 0) {
                                     while ($row0x = $result0r12->fetch_assoc()) {
@@ -519,7 +519,7 @@ if ($result0r1->num_rows > 0) {
                                 }
                                 ?>
                                 <tr>
-                                    <td><?php echo $accno . ' (' . $acctype . ')'; ?></td>
+                                    <td><?php echo $accnos . ' (' . $acctype . ')'; ?></td>
                                     <td class="txt-right2"><?php echo number_format($thisbal); ?></td>
                                 </tr>
                             <?php
