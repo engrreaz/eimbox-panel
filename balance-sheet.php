@@ -520,7 +520,7 @@ if ($result0r1->num_rows > 0) {
                                 ?>
                                 <tr>
                                     <td><?php echo $accnos . ' (' . $acctype . ')'; ?></td>
-                                    <td class="txt-right2"><?php echo number_format($thisbal); ?></td>
+                                    <td class="txt-right2"><?php echo number_format($thisbal,2); ?></td>
                                 </tr>
                             <?php
 
@@ -528,7 +528,7 @@ if ($result0r1->num_rows > 0) {
                         } ?>
                         <tr>
                             <td>Total :</td>
-                            <td class="txt-right2"><?php echo number_format($grandtotal); ?></td>
+                            <td class="txt-right2"><?php echo number_format($grandtotal,2); ?></td>
                         </tr>
                     </tbody>
                 </table>
