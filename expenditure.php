@@ -843,9 +843,10 @@ include 'footer.php';
     var uri = window.location.href;
     document.getElementById("cash").innerHTML = "<small>BDT &nbsp;&nbsp;&nbsp;</small> <?php echo number_format($memotaka, 2); ?>";
     function go() {
+        var s = document.getElementById('dept2x').value;
         var m = document.getElementById('month').value;
         var y = document.getElementById('year').value;
-        window.location.href = 'expenditure.php?&m=' + m + '&y=' + y;
+        window.location.href = 'expenditure.php?&slot=' + s + '&m=' + m + '&y=' + y;
     }
     function go2() {
         var m = document.getElementById('ref').value;
