@@ -712,7 +712,7 @@ $txt = $_COOKIE['txt'];
                                             $memotaka += $amt;
                                         }
 
-                                        if($module == 'VOUCHER'){
+                                        if ($module == 'VOUCHER') {
                                             $vouchertotal += $amt;
                                         }
                                         ?>
@@ -757,9 +757,11 @@ $txt = $_COOKIE['txt'];
 
                                                     <?php
                                                 } else {
-                                                    ?>
-                                                    <i class="mdi mdi-check-circle mdi-24px text-success"></i>
-                                                    <?php
+                                                    if ($module == 'BANK') {
+                                                        echo '<i class="mdi mdi-bank mdi-24px text-warning"></i>';
+                                                    } else {
+                                                        echo '<i class="mdi mdi-check-circle mdi-24px text-success"></i>';
+                                                    }
                                                 }
                                                 ?>
                                             </td>
