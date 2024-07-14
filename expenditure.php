@@ -80,77 +80,112 @@ if ($resultixx->num_rows > 0) {
             <div class="modal-body">
 
                 <div id="" class="input-control select full-size error">
-
-                    <div class="d-flex">
-                        <label class="form-control bg-dark">Amount</label>
-                        <label id="cash" class="form-control text-right ">0.00</label>
+                    <div class="row">
+                        <div class="col-md-3"><label class="form-control bg-dark">Amount</label></div>
+                        <div class="col-md-9">
+                            <label id="cash" class="form-control text-right ">0.00</label>
+                        </div>
                     </div>
-                    <div class="d-flex">
-                        <label class="form-control bg-dark">Month</label>
-                        <select class="form-control text-white" id="monthissue">
-                            <option value="0"></option>
-                            <?php
-                            for ($x = 1; $x <= 12; $x++) {
-                                $flt = '';
-                                $xx = strtotime(date('Y') . '-' . $x . '-01');
-                                if ($month == $x) {
-                                    $flt = 'selected';
+
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Month</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control text-white" id="monthissue">
+                                <option value="0"></option>
+                                <?php
+                                for ($x = 1; $x <= 12; $x++) {
+                                    $flt = '';
+                                    $xx = strtotime(date('Y') . '-' . $x . '-01');
+                                    if ($month == $x) {
+                                        $flt = 'selected';
+                                    }
+
+                                    echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
                                 }
+                                ?>
 
-                                echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
-                            }
-                            ?>
-
-                        </select>
-                    </div>
-                    <div class="d-flex">
-                        <label class="form-control bg-dark">Year</label>
-                        <select class="form-control text-white" id="yearissue">
-                            <option value="0"></option>
-                            <?php
-                            for ($y = date('Y'); $y >= 2024; $y--) {
-                                $flt2 = '';
-                                if ($year == $y) {
-                                    $flt2 = 'selected';
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Year</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control text-white" id="yearissue">
+                                <option value="0"></option>
+                                <?php
+                                for ($y = date('Y'); $y >= 2024; $y--) {
+                                    $flt2 = '';
+                                    if ($year == $y) {
+                                        $flt2 = 'selected';
+                                    }
+                                    echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
                                 }
-                                echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="d-flex">
-                        <label class="form-control bg-dark">Ref. No.</label>
-                        <button class="btn"><i class="mdi mdi-sync"></i></button>
-                        <input type="text" class="form-control" id="refissue" />
-
+                                ?>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="d-flex">
-                        <label class="form-control bg-dark">Cheque No.</label>
-                        <input type="text" class="form-control" id="chqissue" />
-
+                    <div class="row">
+                        <div class="col-md-3"><label class="form-control bg-dark">Ref. No.</label></div>
+                        <div class="col-md-3">
+                            <button class="btn"><i class="mdi mdi-sync"></i></button>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="refissue" />
+                        </div>
                     </div>
 
-                    <div class="d-flex">
-                        <label class="form-control bg-dark">Bank Account</label>
-                        <select id="accissue" name="accissue" class="form-control text-white" onchange="modal();">
-                            <option value="">Select Bank Account</option>
-                            <?php
-                            $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";
-                            $resultix = $conn->query($sql000);
-                            // $conn -> close();
-                            if ($resultix->num_rows > 0) {
-                                while ($row000 = $resultix->fetch_assoc()) {
-                                    $accno = $row000["accno"];
-                                    $acctype = $row000["acctype"];
-                                    $bankname = $row000["bankname"];
-                                    echo '<option value="' . $accno . '"  >' . $accno . '/' . $acctype . '</option>';
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Ref. Title</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="reftitleissue" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Ref. Description</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="refdescripissue" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Cheque No.</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="chqissue" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Bank Account</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="accissue" name="accissue" class="form-control text-white" onchange="modal();">
+                                <option value="">Select Bank Account</option>
+                                <?php
+                                $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";
+                                $resultix = $conn->query($sql000);
+                                // $conn -> close();
+                                if ($resultix->num_rows > 0) {
+                                    while ($row000 = $resultix->fetch_assoc()) {
+                                        $accno = $row000["accno"];
+                                        $acctype = $row000["acctype"];
+                                        $bankname = $row000["bankname"];
+                                        echo '<option value="' . $accno . '"  >' . $accno . '/' . $acctype . '</option>';
+                                    }
                                 }
-                            }
-                            ?>
-                        </select>
-
+                                ?>
+                            </select>
+                        </div>
                     </div>
+
+
 
 
 
@@ -635,6 +670,7 @@ $txt = $_COOKIE['txt'];
                                 $sccodes = $sccode * 10;
                                 $mottaka = 0;
                                 $memotaka = 0;
+                                $vouchertotal = 0;
                                 if ($refno > 0) {
                                     // echo 'ref<br>';
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno'  order by memono, id;";
@@ -667,12 +703,17 @@ $txt = $_COOKIE['txt'];
 
                                         $parti = $row0x["particulars"];
                                         $amt = $row0x["amount"];
+                                        $module = $row0x["module"];
                                         $status = $row0x["status"];
 
 
                                         $mottaka += $amt;
                                         if ($memo > 0) {
                                             $memotaka += $amt;
+                                        }
+
+                                        if($module == 'VOUCHER'){
+                                            $vouchertotal += $amt;
                                         }
                                         ?>
                                         <tr>
@@ -732,7 +773,7 @@ $txt = $_COOKIE['txt'];
                                 <?php } ?>
 
                                 <tr>
-                                    <td colspan="4" style="text-align:right;">Total : </td>
+                                    <td colspan="4" style="text-align:right;">Total (Filtered Record) : </td>
                                     <td style="text-align:right; font-weight:bold;"><?php echo $mottaka; ?>.00</td>
                                     <td>
 
@@ -756,7 +797,17 @@ $txt = $_COOKIE['txt'];
                                         <button onclick="save(<?php echo $id; ?>,5);" class="icon-btn btn-success "
                                             hidden><i class="mdi mdi-flower"></i></button>
                                         <!-- set ref no. + month + year + issue check -->
-                                        <?php if ($memotaka > 0) { ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align:right;">Total Voucher (Memo Amount) : </td>
+                                    <td style="text-align:right; font-weight:bold;"><?php echo $vouchertotal; ?>.00</td>
+                                    <td>
+
+                                        <button onclick="save(<?php echo $id; ?>,5);" class="icon-btn btn-success "
+                                            hidden><i class="mdi mdi-flower"></i></button>
+                                        <!-- set ref no. + month + year + issue check -->
+                                        <?php if ($vouchertotal > 0) { ?>
                                             <button type="button" id="modalbox" class="btn btn-inverse-success btn-block"
                                                 data-bs-toggle="modal" data-bs-target="#myModal">
                                                 Issue Expense
@@ -858,9 +909,13 @@ include 'footer.php';
             var ref = document.getElementById('refissue').value;
             var chq = document.getElementById('chqissue').value;
             var acc = document.getElementById('accissue').value;
+
+            var title = document.getElementById('reftitleissue').value;
+            var descrip = document.getElementById('refdescripissue').value;
+
             var amt = '<?php echo $memotaka; ?>';
 
-            var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail;
+            var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail + "&title=" + title + "&descrip=" + descrip;
         }
 
         // alert(infor);

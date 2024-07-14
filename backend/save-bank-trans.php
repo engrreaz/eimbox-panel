@@ -5,8 +5,8 @@ include 'inc2.php';
 $tail = $_POST['ont'];
 
 if ($tail == 0) {
-    $id =  $_POST['id'];
-    $accno =  $_POST['accno'];
+    $id = $_POST['id'];
+    $accno = $_POST['accno'];
     $date = $_POST['date'];
     $type = $_POST['type'];
     $chqno = $_POST['chq'];
@@ -78,8 +78,8 @@ if ($tail == 0) {
     //     }
     // }
 } else if ($tail == 1) {
-    $id =  $_POST['id'];
-    $accno =  $_POST['accno'];
+    $id = $_POST['id'];
+    $accno = $_POST['accno'];
     $date = $_POST['date'];
     $type = $_POST['type'];
     $chqno = $_POST['chq'];
@@ -129,12 +129,13 @@ if ($tail == 0) {
 
     $query33 = "UPDATE banktrans set date='$date', transopening='$balance', transtype='$type', chqno='$chqno', amount='$amount', balance='$bala', entryby='$usr', entrytime='$cur', verified='0', verifyby=NULL, verifytime=NULL where id='$id' and sccode='$sccode' and accno='$accno';";
     $conn->query($query33);
-}  
 
 
-else if ($tail == 2) {
-    $id =  $_POST['id'];
-    $accno =  $_POST['accno'];
+
+
+} else if ($tail == 2) {
+    $id = $_POST['id'];
+    $accno = $_POST['accno'];
 
     $date = $_POST['date'];
     $type = $_POST['type'];
@@ -187,17 +188,33 @@ else if ($tail == 2) {
 
     $query33 = "UPDATE banktrans set date='$date', transopening='$balance', transtype='$type', chqno='$chqno', amount='$amount', balance='$bala', entryby='$usr', entrytime='$cur', verified='0', verifyby=NULL, verifytime=NULL where id='$id' and sccode='$sccode' and accno='$accno';";
     $conn->query($query33);
-
-
-
 
     $query34 = "UPDATE banktrans set verified='1', verifyby='$usr', verifytime='$cur' where id='$id' and sccode='$sccode' and accno='$accno';";
-
     $conn->query($query34);
-}
-else if ($tail == 3) {
-    $id =  $_POST['id'];
-    $accno =  $_POST['accno'];
+
+
+    /////////////////////////////////////////////////////
+    $mx = date('m', strtotime($date));
+    $yx = date('Y', strtotime($date));
+    if ($type = 'Deposit' || $type == 'Deduction') {
+        $tipe = 'Expenditure';
+    } else {
+        $tipe = 'Income';
+    }
+
+    $partidx = '00';
+    $particularx = '----';
+    $income = 0;
+    $expenditure = 0;
+
+    $cash = "INSERT INTO cashbook (id, sccode, sessionyear, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, module, status) 
+                VALUES (NULL, '$sccode', '$sy', '$mx', '$yx', '--', '$date', '$tipe', 'N/A', '$partidx', '--', '0', '$particularx', '$income', '$expenditure', '$amount', 'System-Auto', '$cur', 'BANK', '1' );";
+    $conn->query($cash);
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+} else if ($tail == 3) {
+    $id = $_POST['id'];
+    $accno = $_POST['accno'];
 
     $query33 = "DELETE FROM banktrans  where id='$id' and sccode='$sccode' and accno='$accno';";
 

@@ -32,9 +32,15 @@ include 'auth/gpConfig.php';
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
 
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
-
-
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
      -->
@@ -53,6 +59,15 @@ include 'auth/gpConfig.php';
         .bg-trans {
             background-color: #333333;
         }
+
+        .code-pro {
+
+            font-family: "Source Code Pro", monospace;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: italic;
+        }
+    </style>
     </style>
 </head>
 

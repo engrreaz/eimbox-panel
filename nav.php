@@ -548,10 +548,12 @@ $supernav = array('account-settings.php');
               <div class="collapse" id="finance-sal">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="payroll-structure.php">Salary Structure</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-bonus.php">Bonus & Incentive</a></li>
 
 
                   <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
                   <li class="nav-item"> <a class="nav-link" href="payroll-calc.php">Salary Calculation</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-payoff-dispuch.php">Payoff Salary</a></li>
                 </ul>
               </div>
             </li>

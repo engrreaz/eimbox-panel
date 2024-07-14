@@ -45,10 +45,6 @@ if (isset($_GET['addnew'])) {
 
 ?>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-    rel="stylesheet">
 
 <style>
     #full-text {
@@ -57,7 +53,6 @@ if (isset($_GET['addnew'])) {
         font-optical-sizing: auto;
         font-weight: 400;
         font-style: italic;
-
     }
 </style>
 

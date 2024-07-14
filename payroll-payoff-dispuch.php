@@ -70,7 +70,7 @@ if (isset($_GET['y'])) {
     }
 </script>
 
-<h3>Payroll Calculation</h3>
+<h3>Salary Payoff & Dispuch to Bank Account</h3>
 
 <div class="row d-print-none">
     <div class="col-12 grid-margin stretch-card">
@@ -239,6 +239,7 @@ if (isset($_GET['y'])) {
 
 <?php
 $edit_lock = 0;
+$t1 = $t2 = $t3 = 
 $sql0 = "SELECT * FROM teacher where sccode='$sccode' order by ranks, tid";
 // echo $sql0;
 $result0 = $conn->query($sql0);
