@@ -673,17 +673,17 @@ $txt = $_COOKIE['txt'];
                                 $vouchertotal = 0;
                                 if ($refno > 0) {
                                     // echo 'ref<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno' and slot = '$slot'  order by memono, id;";
                                 } else if ($month > 0) {
                                     // echo 'month<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  and slot = '$slot'  order by memono, id;";
                                 } else if ($undef == '' || $undef == NULL) {
                                     // echo 'undef<br>';
-                                    $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes')  and type='Expenditure'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes')  and type='Expenditure'  and slot = '$slot'  order by memono, id;";
                                 } else if ($all != $sccode) {
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes')  and type='Expenditure'  order by date desc, memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes')  and type='Expenditure'  and slot = '$slot'  order by date desc, memono, id;";
                                 } else {
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0 and type='Expenditure'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0 and type='Expenditure'  and slot = '$slot'  order by memono, id;";
                                 }
                                 // echo $sql0x;
                                 $result0x = $conn->query($sql0x);
