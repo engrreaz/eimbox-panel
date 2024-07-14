@@ -710,11 +710,12 @@ $txt = $_COOKIE['txt'];
                                         $mottaka += $amt;
                                         if ($memo > 0) {
                                             $memotaka += $amt;
+                                            if ($module == 'VOUCHER') {
+                                                $vouchertotal += $amt;
+                                            }
                                         }
 
-                                        if ($module == 'VOUCHER') {
-                                            $vouchertotal += $amt;
-                                        }
+
                                         ?>
                                         <tr>
                                             <td>
