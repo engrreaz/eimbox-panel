@@ -61,7 +61,8 @@ if ($result00->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date From</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" value="<?php echo $datefrom; ?>" id="datefrom" />
+                                <input type="date" class="form-control" value="<?php echo $datefrom; ?>"
+                                    id="datefrom" />
                             </div>
                         </div>
                     </div>
@@ -210,9 +211,11 @@ if ($result0r1->num_rows > 0) {
 
 <div id="datam">
     <div style="font-size:16px; font-weight:bold; text-align:center; border-bottom:1px solid black; padding:0 0 5px;">
-        BALANCE SHEET : from <u><?php echo date('d/m/y', strtotime($datefrom));?></u> to <u><?php echo date('d/m/y', strtotime($dateto));?></u> </div>
-    
-        <table class="table table-bordered table-striped "
+        BALANCE SHEET : from <u><?php echo date('d/m/y', strtotime($datefrom)); ?></u> to
+        <u><?php echo date('d/m/y', strtotime($dateto)); ?></u>
+    </div>
+
+    <table class="table table-bordered table-striped "
         style=" border:1px solid gray !important; border-collapse:collapse; width:100%; display:none;" id="main-tables">
         <thead>
             <tr>
@@ -238,9 +241,11 @@ if ($result0r1->num_rows > 0) {
                     $expe = $row0["expe"];
                     $taka = $row0["taka"];
 
-
+                    $parttext = '';
                     $ind = array_search($partid, array_column($items, 'id'));
-                    $parttext = $items[$ind]['particularben'];
+                    if ($ind != '' || $ind != NULL) {
+                        $parttext = $items[$ind]['particularben'];
+                    }
 
                     ?>
                     <tr>
@@ -303,14 +308,16 @@ if ($result0r1->num_rows > 0) {
                                 $expe = $row0["expe"];
                                 $taka = $row0["taka"];
 
+                                $parttext = '';
                                 $ind = array_search($partid, array_column($items, 'id'));
-                                $parttext = $items[$ind]['particularben'];
-
+                                if ($ind != '' || $ind != NULL) {
+                                    $parttext = $items[$ind]['particularben'];
+                                }
                                 ?>
                                 <tr>
 
                                     <td style="padding : 2px 10px; border:1px solid gray;">
-                                        <div class="ooo"><?php echo $parttext; ?></div>
+                                        <div class="ooo"><?php echo $partid . ' / ' . $parttext; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
                                         <div class="ooo"><?php echo number_format($inco, 2); ?></div>
@@ -354,14 +361,17 @@ if ($result0r1->num_rows > 0) {
                                 $expe = $row0["expe"];
                                 $taka = $row0["taka"];
 
+                                $parttext = '';
                                 $ind = array_search($partid, array_column($items, 'id'));
+                                if($ind !='' || $ind != NULL) {
                                 $parttext = $items[$ind]['particularben'];
+                                }
 
                                 ?>
                                 <tr>
 
                                     <td style="padding : 2px 10px; border:1px solid gray;">
-                                        <div class="ooo"><?php echo $parttext; ?></div>
+                                        <div class="ooo"><?php echo $partid . ' / ' . $parttext; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
                                         <div class="ooo"><?php echo number_format($expe, 2); ?></div>
