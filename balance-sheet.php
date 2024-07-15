@@ -476,6 +476,8 @@ if ($result0r1->num_rows > 0) {
                                         $thisbal = $row0x['balance'];
                                         $grandtotal += $thisbal;
                                     }
+                                } else {
+                                    $thisbal = 0;
                                 }
                                 ?>
                                 <tr>
