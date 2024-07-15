@@ -44,3 +44,9 @@ Class Teacher/ Teacher / Principal Payment Option OK
 
 update `salarydetails` set sccode='103188' WHERE `month` = 6;
 UPDATE `salaryextracolumn` SET `sccode` = '103188' WHERE `salaryextracolumn`.`id` = 2;
+
+
+
+31/12/2013 (bank)  5270966.03
+31/01/2024 (bank)  5968430.03
+

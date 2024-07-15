@@ -363,8 +363,8 @@ if ($result0r1->num_rows > 0) {
 
                                 $parttext = '';
                                 $ind = array_search($partid, array_column($items, 'id'));
-                                if($ind !='' || $ind != NULL) {
-                                $parttext = $items[$ind]['particularben'];
+                                if ($ind != '' || $ind != NULL) {
+                                    $parttext = $items[$ind]['particularben'];
                                 }
 
                                 ?>
@@ -444,7 +444,7 @@ if ($result0r1->num_rows > 0) {
 
     <table style="width:100%;">
         <tr>
-            <td style="width:50%;">
+            <td style="width:50%;" rowspan="2">
                 <table class="table table-bordered table-striped "
                     style=" border:1px solid gray !important; border-collapse:collapse; width:100%;" id="main-table-2">
                     <thead>
@@ -495,6 +495,22 @@ if ($result0r1->num_rows > 0) {
                     </tbody>
                 </table>
             </td>
+            <td>
+                <?php
+                $diff = $grandtotal - $tillbal;
+                if ($diff < 0) {
+                    $notes = 'Short';
+                } else if ($diff > 0) {
+                    $notes = 'Excess';
+                } else {
+                    $notes = 'Balanced';
+                }
+                echo $notes . ' ' . number_format($diff, 2);
+                ?>
+            </td>
+
+        </tr>
+        <tr>
             <td style="text-align:center; vertical-align:bottom;">
                 <table style="width:100%; font-size:13px;" class="text-small">
                     <tr>
