@@ -58,3 +58,7 @@ UPDATE `salaryextracolumn` SET `sccode` = '103188' WHERE `salaryextracolumn`.`id
 31/12/2013 (bank)  5270966.03
 31/01/2024 (bank)  5968430.03
 
+
+
+SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM `cashbook` WHERE `sccode` = 103187 AND `sessionyear` = 2024 AND `month` = 1 AND `year` = 2024 AND `type` LIKE 'Expenditure' and module = 'VOUCHER' group by partid order by partid;
+SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where sccode='103187' and sessionyear='2024' and month = '2' and year = '2024' and type LIKE 'Expenditure' and module = 'VOUCHER' group by partid order by partid;

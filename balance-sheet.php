@@ -47,7 +47,7 @@ if (isset($_GET['addnew'])) {
     $newblock = 'none';
     $exid = 0;
 }
-
+$month--;
 
 $stprofile = array();
 $sql00 = "SELECT * FROM students where  sccode='$sccode'";
