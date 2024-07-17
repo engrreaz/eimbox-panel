@@ -18,6 +18,21 @@ if (isset($_GET['dt'])) {
     $dateto = date('Y-m-d');
 }
 
+if (isset($_GET['month'])) {
+    $month = $_GET['month'];
+} else {
+    $month = date('m');
+}
+
+
+if (isset($_GET['year'])) {
+    $year = $_GET['year'];
+} else {
+    $year = date('Y');
+}
+
+$datefrom = '2024-02-01';
+$dateto = '2024-02-29';
 
 $col = 3;
 $status = 0;
@@ -57,7 +72,7 @@ if ($result00->num_rows > 0) {
                 <h6 class="text-muted font-weight-normal">
                 </h6>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3" >
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date From</label>
                             <div class="col-12">
@@ -67,7 +82,7 @@ if ($result00->num_rows > 0) {
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3" >
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date To</label>
                             <div class="col-12">
@@ -76,15 +91,57 @@ if ($result00->num_rows > 0) {
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="form-group row">
 
+
+                    <div class="col-md-2">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Month</label>
+                            <div class="col-12">
+                                <select class="form-control text-white" id="month">
+                                    <option value="0"></option>
+                                    <?php
+                                    for ($x = 1; $x <= 12; $x++) {
+                                        $flt = '';
+                                        $xx = strtotime(date('Y') . '-' . $x . '-01');
+                                        if ($month == $x) {
+                                            $flt = 'selected';
+                                        }
+                                        echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
+                                    }
+                                    ?>
+
+                                </select>
+                            </div>
                         </div>
                     </div>
 
 
+                    <div class="col-md-2">
+                        <div class="form-group row">
+                            <label class="col-form-label pl-3">Year</label>
+                            <div class="col-12">
+                                <select class="form-control text-white" id="year">
+                                    <option value="0"></option>
+                                    <?php
+                                    for ($y = date('Y'); $y >= 2024; $y--) {
+                                        $flt2 = '';
+                                        if ($year == $y) {
+                                            $flt2 = 'selected';
+                                        }
+                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="col-md-3">
+
+      
+
+
+
+                    <div class="col-md-2">
                         <div class="form-group row">
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
@@ -230,8 +287,9 @@ if ($result0r1->num_rows > 0) {
             <?php
             $cnt = 0;
             $cntamt = 0;
-            $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
-            $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and date between '$datefrom' and '$dateto' group by partid order by partid;";
+            // $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
+            // $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and date between '$datefrom' and '$dateto' group by partid order by partid;";
+            $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and month = '$month' and  year = '$year' group by partid order by partid;";
             // echo $sql0; 
             $result0 = $conn->query($sql0);
             if ($result0->num_rows > 0) {
@@ -297,8 +355,9 @@ if ($result0r1->num_rows > 0) {
                         $cnt = 0;
                         $cntamt = 0;
                         $takain = 0;
-                        $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
-                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and income > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
+                        // $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
+                        // $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and income > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
+                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and income > 0 and month = '$month' and year = '$year' group by partid order by partid;";
                         // echo $sql0; 
                         $result0 = $conn->query($sql0);
                         if ($result0->num_rows > 0) {
@@ -350,8 +409,9 @@ if ($result0r1->num_rows > 0) {
                         $cnt2 = 0;
                         $cntamt = 0;
                         $takaex = 0;
-                        $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
-                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where (sccode='$sccode' || sccode='$sccodes') and expenditure > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
+                        // $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
+                        // $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where (sccode='$sccode' || sccode='$sccodes') and expenditure > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
+                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where (sccode='$sccode' || sccode='$sccodes') and expenditure > 0 and month = '$month' and year = '$year' group by partid order by partid;";
                         // echo $sql0; 
                         $result02 = $conn->query($sql0);
                         if ($result02->num_rows > 0) {
@@ -647,9 +707,11 @@ include 'footer.php';
     }
 
     function go() {
-        var datefrom = document.getElementById('datefrom').value;
-        var dateto = document.getElementById('dateto').value;
-        window.location.href = 'balance-sheet.php?&df=' + datefrom + '&dt=' + dateto;
+        // var datefrom = document.getElementById('month').value;
+        // var dateto = document.getElementById('dateto').value;
+        var month = document.getElementById('month').value;
+        var year = document.getElementById('year').value;
+        window.location.href = 'balance-sheet.php?&month=' + month + '&year=' + year;
     }
 </script>
 

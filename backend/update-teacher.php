@@ -71,6 +71,7 @@ $travel = $_POST['travel'];
 $ma2 = $_POST['ma2'];
 $pf = $_POST['pf'];
 $net2 = $_POST['net2'];
+$tail = $_POST['tail'];
 
 
 $sql0 = "SELECT * FROM designation  where title='$des'";
@@ -81,6 +82,7 @@ if ($result0->num_rows > 0) {
     }
 }
 
+if($tail == 1) {
 $query33 = "update teacher set 
     tname = '$tnamee', tnameb = '$tnameb', position = '$des', slots = '$slot', subjects = '$subj', gender = '$gender', mobile = '$mob', email = '$email', ranks='$rnk',
     nid='$nid', dob = '$dob', religion = '$religion', bgroup  = '$bgroup',
@@ -99,12 +101,12 @@ $query33 = "update teacher set
     salary='$salary', mobilevata='$mpa', travel ='$travel', medical2 ='$ma2', pf='$pf', net2='$net2'
 
     where tid='$tid' and sccode='$sccode';";
+
+} else if($tail == 0) {
+    $query33 = "DELETE FROM teacher where  tid='$tid' and sccode='$sccode';";
+}
+
 $conn->query($query33);
-
-
-
-
-
 
 
 // echo $query33;

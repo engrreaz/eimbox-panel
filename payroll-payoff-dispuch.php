@@ -76,7 +76,7 @@ if (isset($_GET['y'])) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                
+
                 <div class="row">
 
                     <div class="col-md-2">
@@ -127,7 +127,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <button type="button" class="btn btn-inverse-success btn-block p-2 pt-2" 
+                                <button type="button" class="btn btn-inverse-success btn-block p-2 pt-2"
                                     onclick="go();">Show Details</button>
 
                             </div>
@@ -239,8 +239,8 @@ if (isset($_GET['y'])) {
 
 <?php
 $edit_lock = 0;
-$t1 = $t2 = $t3 = 
-$sql0 = "SELECT * FROM teacher where sccode='$sccode' order by ranks, tid";
+$t1 = $t2 = $t3 =
+    $sql0 = "SELECT * FROM teacher where sccode='$sccode' order by ranks, tid";
 // echo $sql0;
 $result0 = $conn->query($sql0);
 if ($result0->num_rows > 0) {
@@ -411,12 +411,13 @@ if ($result0->num_rows > 0) {
 
 
         if ($edit_lock == 1) {
-            $bbb = 'warning';
+            $bbb = 'success';
         } else {
+
             if ($found == 0) {
-                $bbb = 'success';
-            } else {
                 $bbb = 'danger';
+            } else {
+                $bbb = 'warning';
             }
         }
 
@@ -425,206 +426,222 @@ if ($result0->num_rows > 0) {
             <div class="col-12 grid-margin stretch-card">
                 <div class="card border-primary ">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-9 d-block">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="small"><?php echo $tid; ?></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class=""><?php echo $tnamee . ' / ' . $tnameb;
 
-                                        if ($slt == 'College') {
-                                            // echo '<div style="height:5px; background:yellow;"></div>';
-                                        }
-                                        ?>
+
+
+
+                        <div>
+                            <div class="row">
+                                <div class="col-md-9 d-block">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="small"><?php echo $tid; ?></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 text-small">
-                                        <?php echo $position; ?>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class=""><?php echo $tnamee . ' / ' . $tnameb;
+
+                                            if ($slt == 'College') {
+                                                // echo '<div style="height:5px; background:yellow;"></div>';
+                                            }
+                                            ?>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-12 text-small">
+                                            <?php echo $position; ?>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                                <div class="col-md-3">
+                                    <span class="p-2 mr-3 text-white border-danger" id="tot<?php echo $tid; ?>"
+                                        hidden><?php ; ?></span>
+                                    <div class="dropdown">
+                                        <button class="btn btn-inverse-<?php echo $bbb; ?> btn-block dropdown-toggle text-right"
+                                            type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <span class=" text-white mr-2" id="sto<?php echo $tid; ?>"></span>
+                                            <img src="assets/imgs/<?php echo $ico; ?>.png" style="width:30px;" />
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
+                                            <!-- <h6 class="dropdown-header">Settings</h6> -->
 
-                            <div class="col-md-3">
-                                <span class="p-2 mr-3 text-white border-danger" id="tot<?php echo $tid; ?>"
-                                    hidden><?php ; ?></span>
-                                <div class="dropdown">
-                                    <button class="btn btn-inverse-<?php echo $bbb; ?> btn-block dropdown-toggle text-right"
-                                        type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <span class=" text-white mr-2" id="sto<?php echo $tid; ?>"></span>
-                                        <img src="assets/imgs/<?php echo $ico; ?>.png" style="width:30px;" />
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                                        <!-- <h6 class="dropdown-header">Settings</h6> -->
-
-                                        <?php
-                                        if ($edit_lock == 0) {
-                                            if ($found == 0) { ?>
-                                                <button class="dropdown-item btn btn-inverse-success btn-fw p-2 "
-                                                    id="btt<?php echo $tid; ?>"
-                                                    onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Payoff</button>
-                                            <?php } else { ?>
+                                            <?php
+                                            if ($found == 1) {
+                                                if ($edit_lock == 0) { ?>
+                                                    <button class="dropdown-item btn btn-inverse-success btn-fw p-2 "
+                                                        id="btt<?php echo $tid; ?>"
+                                                        onclick="issueyn('yes', 'dispuch', <?php echo $iiid; ?>);">Dispuch this
+                                                        Bill</button>
+                                                <?php } else { ?>
+                                                    <button class="dropdown-item btn btn-inverse-warning btn-fw  p-2"
+                                                        id="btt<?php echo $tid; ?>"
+                                                        onclick="issueyn('no', 'dispuch', <?php echo $iiid; ?>);">Return this
+                                                        Bill</button>
+                                                <?php }
+                                            } else {
+                                                ?>
                                                 <button class="dropdown-item btn btn-inverse-danger btn-fw  p-2"
                                                     id="btt<?php echo $tid; ?>"
-                                                    onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Refund
-                                                    Amount</button>
-                                            <?php }
+                                                    onclick="issueyn('no', 'dispuch', <?php echo $iiid; ?>);">Return this
+                                                    Bill</button>
+                                                <?php
+                                            }
 
                                             ?>
-                                            <button class="dropdown-item btn btn-inverse-primary btn-fw   p-2"
-                                                onclick="calc(<?php echo $tid; ?>);">Re
-                                                Calc</button>
-
-                                        <?php } ?>
 
 
+
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="mt-2"></div>
-
-
-                        <?php if ($net >= 0) { ?>
-                            <!-- MPO Block ........................ -->
-                        <?php } ?>
-
-                        <div class="row pb-0">
-                            <div class="col-12 d-flex">
-                                <div class="ml-1"><input id="a<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $basic; ?>" />
-                                    <label class=" text-small pl-2">Basic</label>
-                                </div>
-                                <div class="ml-1"><input id="b<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $incen; ?>" />
-                                    <label class=" text-small pl-2">Incentive</label>
-                                </div>
-
-                                <div class="ml-1"><input id="c<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $house; ?>" />
-                                    <label class=" text-small pl-2">House Rent</label>
-                                </div>
-                                <div class="ml-1"><input id="d<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $medical; ?>" /><label class=" text-small pl-2">Medical</label></div>
-
-
-
-                                <div class="ml-1"><input id="q<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="0" /><label class=" text-small pl-2">--</label>
-                                </div>
-                                <div class="ml-1"><input id="f<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $welfare; ?>" /><label
-                                        class=" text-small pl-2 text-danger">Welfare</label></div>
-                                <div class="ml-1"><input id="g<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $retire; ?>" /><label
-                                        class=" text-small pl-2 text-danger">Retirement</label>
-                                </div>
-                                <div class="ml-1"><input id="e<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $arrea; ?>" />
-                                    <label class=" text-small pl-2 text-primary">Arrear</label>
-                                </div>
-                                <div class="ml-1"><input id="u<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $gex1; ?>" /><label class=" text-small pl-2 text-warning"
-                                        id="gex1"><?php echo $g1title; ?></label>
-                                </div>
-                                <div class="ml-1"><input id="v<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $gex2; ?>" /><label class=" text-small pl-2 text-warning"
-                                        id="gex2"><?php echo $g2title; ?></label>
-                                </div>
-                                <div class="ml-1"><input id="yo<?php echo $tid; ?>" type="text"
-                                        class="form-control text-right full-width" value="<?php echo $gex3; ?>" />
-                                    <label class=" text-small pl-2 text-warning" id="gex3"><?php echo $g3title; ?></label>
-                                </div>
-
-                                <div class="ml-1"><input id="h<?php echo $tid; ?>" type="text"
-                                        class="form-control text-right full-width" value="<?php echo $net; ?>" />
-                                    <label class=" text-small pl-2">Total</label>
+                                    <span id="sspx<?php echo $iiid; ?>"></span>
                                 </div>
 
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-12 d-flex">
-                                <div class="ml-1">
-                                    <input id="i<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $salary; ?>" />
-                                    <label class=" text-small pl-2">Salary</label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="j<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $mpa; ?>" />
-                                    <label class=" text-small pl-2">Mobile</label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="k<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $travel; ?>" />
-                                    <label class=" text-small pl-2">Travel</label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="l<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $med2; ?>" />
-                                    <label class=" text-small pl-2">Medical</label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="m<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $exam; ?>" />
-                                    <label class=" text-small pl-2"></label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="n<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $fest; ?>" />
-                                    <label class=" text-small pl-2"></label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="o<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $pf; ?>" />
-                                    <label class=" text-small pl-2 text-danger">PF</label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="r<?php echo $tid; ?>" type="text" class="form-control text-right" value="0" />
-                                    <label class=" text-small pl-2 text-primary">Arrear</label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="w<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $sex1; ?>" />
-                                    <label class=" text-small pl-2 text-warning" id="sex1"><?php echo $s1title; ?></label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="x<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $sex2; ?>" />
-                                    <label class=" text-small pl-2  text-warning" id="sex2"><?php echo $s2title; ?></label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="py<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $gex3; ?>" />
-                                    <label class=" text-small pl-2 text-warning" id="sex3"><?php echo $s3title; ?></label>
-                                </div>
-                                <div class="ml-1">
-                                    <input id="p<?php echo $tid; ?>" type="text" class="form-control text-right"
-                                        value="<?php echo $net2; ?>" />
-                                    <label class=" text-small pl-2">Total</label>
-                                </div>
 
+
+                            <div class="row pb-0" hidden>
+                                <div class="col-12 d-flex">
+                                    <div class="ml-1"><input id="a<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $basic; ?>" />
+                                        <label class=" text-small pl-2">Basic</label>
+                                    </div>
+                                    <div class="ml-1"><input id="b<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $incen; ?>" />
+                                        <label class=" text-small pl-2">Incentive</label>
+                                    </div>
+
+                                    <div class="ml-1"><input id="c<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $house; ?>" />
+                                        <label class=" text-small pl-2">House Rent</label>
+                                    </div>
+                                    <div class="ml-1"><input id="d<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $medical; ?>" /><label
+                                            class=" text-small pl-2">Medical</label></div>
+
+
+
+                                    <div class="ml-1"><input id="q<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="0" /><label
+                                            class=" text-small pl-2">--</label>
+                                    </div>
+                                    <div class="ml-1"><input id="f<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $welfare; ?>" /><label
+                                            class=" text-small pl-2 text-danger">Welfare</label></div>
+                                    <div class="ml-1"><input id="g<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $retire; ?>" /><label
+                                            class=" text-small pl-2 text-danger">Retirement</label>
+                                    </div>
+                                    <div class="ml-1"><input id="e<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $arrea; ?>" />
+                                        <label class=" text-small pl-2 text-primary">Arrear</label>
+                                    </div>
+                                    <div class="ml-1"><input id="u<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $gex1; ?>" /><label
+                                            class=" text-small pl-2 text-warning" id="gex1"><?php echo $g1title; ?></label>
+                                    </div>
+                                    <div class="ml-1"><input id="v<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right" value="<?php echo $gex2; ?>" /><label
+                                            class=" text-small pl-2 text-warning" id="gex2"><?php echo $g2title; ?></label>
+                                    </div>
+                                    <div class="ml-1"><input id="yo<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right full-width" value="<?php echo $gex3; ?>" />
+                                        <label class=" text-small pl-2 text-warning" id="gex3"><?php echo $g3title; ?></label>
+                                    </div>
+
+                                    <div class="ml-1"><input id="h<?php echo $tid; ?>" type="text"
+                                            class="form-control text-right full-width" value="<?php echo $net; ?>" />
+                                        <label class=" text-small pl-2">Total</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row" hidden>
+                                <div class="col-12 d-flex">
+                                    <div class="ml-1">
+                                        <input id="i<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $salary; ?>" />
+                                        <label class=" text-small pl-2">Salary</label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="j<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $mpa; ?>" />
+                                        <label class=" text-small pl-2">Mobile</label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="k<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $travel; ?>" />
+                                        <label class=" text-small pl-2">Travel</label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="l<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $med2; ?>" />
+                                        <label class=" text-small pl-2">Medical</label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="m<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $exam; ?>" />
+                                        <label class=" text-small pl-2"></label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="n<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $fest; ?>" />
+                                        <label class=" text-small pl-2"></label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="o<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $pf; ?>" />
+                                        <label class=" text-small pl-2 text-danger">PF</label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="r<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="0" />
+                                        <label class=" text-small pl-2 text-primary">Arrear</label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="w<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $sex1; ?>" />
+                                        <label class=" text-small pl-2 text-warning" id="sex1"><?php echo $s1title; ?></label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="x<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $sex2; ?>" />
+                                        <label class=" text-small pl-2  text-warning" id="sex2"><?php echo $s2title; ?></label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="py<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $gex3; ?>" />
+                                        <label class=" text-small pl-2 text-warning" id="sex3"><?php echo $s3title; ?></label>
+                                    </div>
+                                    <div class="ml-1">
+                                        <input id="p<?php echo $tid; ?>" type="text" class="form-control text-right"
+                                            value="<?php echo $net2; ?>" />
+                                        <label class=" text-small pl-2">Total</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="row" hidden>
+                                <div class="row  mt-4">
+
+                                    <script> calc(<?php echo $tid; ?>);</script>
+                                </div>
                             </div>
                         </div>
 
 
 
-                        <div class="row" hidden>
-                            <div class="row  mt-4">
 
-                                <script> calc(<?php echo $tid; ?>);</script>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -656,26 +673,102 @@ if ($result0->num_rows > 0) {
                                     while ($row0 = $result03456->fetch_assoc()) {
                                         $slots = $row0["slotname"];
 
-                                        for ($lp = 0; $lp < 10; $lp++) {
+                                        $sql0 = "SELECT * FROM salaryextracolumn where sccode='$sccode' and sessionyear='$year' and month='$month'";
+                                        $result03456r = $conn->query($sql0);
+                                        if ($result03456r->num_rows > 0) {
+                                            while ($row0 = $result03456r->fetch_assoc()) {
+                                                $a1 = $row0["govt1title"];
+                                                $b1 = $row0["govt1chq"];
+                                                $a2 = $row0["govt2title"];
+                                                $b2 = $row0["govt2chq"];
+                                                $a3 = $row0["govt3title"];
+                                                $b3 = $row0["govt3chq"];
+
+                                                $a4 = $row0["school1title"];
+                                                $b4 = $row0["school1chq"];
+                                                $a5 = $row0["school2title"];
+                                                $b5 = $row0["school2chq"];
+                                                $a6 = $row0["school3title"];
+                                                $b6 = $row0["school3chq"];
+                                            }
+                                        } else {
+                                            $a1 = 'fld';
+                                            $b1 = 0;
+                                            $a2 = 'fld';
+                                            $b2 = 0;
+                                            $a3 = 'fld';
+                                            $b3 = 0;
+
+                                            $a4 = 'fld';
+                                            $b4 = 0;
+                                            $a5 = 'fld';
+                                            $b5 = 0;
+                                            $a6 = 'fld';
+                                            $b6 = 0;
+                                        }
+
+
+                                        for ($lp = 0; $lp < 9; $lp++) {
                                             if ($lp == 0) {
                                                 $cate = 'govt';
                                                 $ratio = 1;
                                                 $cad = 'Government Pay';
+                                                $chk = 1;
                                             } else if ($lp == 1) {
                                                 $cate = 'school';
                                                 $ratio = 1;
                                                 $cad = 'School Pay';
+                                                $chk = 1;
                                             } else if ($lp == 2) {
                                                 $cate = 'pf';
                                                 $ratio = 2;
                                                 $cad = 'PF Bill';
+                                                $chk = 1;
                                             } else if ($lp == 3) {
-                                                $cate = 'expenditure';
+                                                $cate = 'govtcol1';
+                                                $cad = $a1;
                                                 $ratio = 1;
-                                                $cad = 'Expenditure';
-                                            } 
+                                                $chk = $b1;
+                                            } else if ($lp == 4) {
+                                                $cate = 'govtcol2';
+                                                $cad = $a2;
+                                                $ratio = 1;
+                                                $chk = $b2;
+                                            } else if ($lp == 5) {
+                                                $cate = 'govtcol3';
+                                                $cad = $a3;
+                                                $ratio = 1;
+                                                $chk = $b3;
+                                            } else if ($lp == 6) {
+                                                $cate = 'schoolcol1';
+                                                $cad = $a4;
+                                                $ratio = 1;
+                                                $chk = $b4;
+                                            } else if ($lp == 7) {
+                                                $cate = 'schoolcol2';
+                                                $cad = $a5;
+                                                $ratio = 1;
+                                                $chk = $b5;
+                                            } else if ($lp == 8) {
+                                                $cate = 'schoolcol3';
+                                                $cad = $a6;
+                                                $ratio = 1;
+                                                $chk = $b5;
+                                            }
 
-                                            
+                                            // else if ($lp == 3) {
+                                            //     $cate = 'expenditure';
+                                            //     $ratio = 1;
+                                            //     $cad = 'Expenditure';
+                                            // } 
+                                
+
+
+
+
+
+
+
 
 
 
@@ -692,6 +785,9 @@ if ($result0->num_rows > 0) {
                                                     $taka = 0;
                                                 }
                                             } else {
+
+
+
                                                 $sql0 = "SELECT sum($cate) as taka FROM salarydetails where sccode='$sccode' and month='$month' and year='$year' and slots='$slots' ";
                                                 // echo $sql0 . '<br>';
                                                 $result034567 = $conn->query($sql0);
@@ -721,73 +817,78 @@ if ($result0->num_rows > 0) {
                                                 $date = '';
                                                 $status = 0;
                                             }
+                                            if ($chk == 1) {
+                                                ?>
+                                                <tr>
+                                                    <td>
 
-                                            ?>
-                                            <tr>
-                                                <td>
+                                                        <span class="x1 text-small " id="slot<?php echo $slots; ?><?php echo $cate; ?>"
+                                                            style="font-weight:700; line-height:1.5;"><?php echo strtoupper($slots); ?></span>
+                                                        <br>
+                                                        <span class="x2" id="cate<?php echo $slots; ?><?php echo $cate; ?>"
+                                                            style=""><?php echo strtoupper($cad); ?></span>
 
-                                                    <span class="x1" id="slot<?php echo $slots; ?><?php echo $cate; ?>"
-                                                        style=""><?php echo strtoupper($slots); ?></span>
+                                                    </td>
+                                                    <td>
 
-                                                </td>
-                                                <td>
-                                                    <span class="x2" id="cate<?php echo $slots; ?><?php echo $cate; ?>"
-                                                        style=""><?php echo strtoupper($cate); ?></span>
-                                                </td>
-                                                <td>
-                                                    <input id="ref<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                        style="width:90px;" type="text" placeholder="Ref No." value="<?php if ($ref != '') {
-                                                            echo $ref;
-                                                        } ?>" />
+                                                    </td>
+                                                    <td>
+                                                        <input id="ref<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                            type="text" placeholder="Ref No." value="<?php if ($ref != '') {
+                                                                echo $ref;
+                                                            } ?>" />
 
-                                                </td>
-                                                <td>
-                                                    <input id="dt<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                        type="date" placeholder="Date" value="<?php if ($date != '') {
-                                                            echo $date;
-                                                        } ?>" />
-                                                </td>
-                                                <td>
-                                                    <input id="chq<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                        style="width:110px;" type="text" placeholder="Cheque No." value="<?php if ($chq != '') {
-                                                            echo $chq;
-                                                        } ?>" />
+                                                    </td>
+                                                    <td>
+                                                        <input id="dt<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                            type="date" placeholder="Date" value="<?php if ($date != '') {
+                                                                echo $date;
+                                                            } ?>" />
+                                                    </td>
 
-                                                </td>
-                                                <td>
-                                                    <input id="bank<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                        style="width:40px;" type="text" placeholder="..." />
-                                                </td>
-                                                <td>
-                                                    <div id="amt<?php echo $slots; ?><?php echo $cate; ?>"
-                                                        style="font-size:16px; text-align:right; font-weight:bold;">
-                                                        <?php echo $taka; ?>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div id="ssp<?php echo $slots; ?><?php echo $cate; ?>">
-                                                        <?php
-                                                        if ($status == 0) {
-                                                            if ($tonka > 0) { ?>
-                                                                <button class="btn btn-danger  btn-rounded btn-icon"
-                                                                    style="padding:5px 0 0 3px;"
-                                                                    onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
-                                                                    <i class="mdi mdi-delete-forever" style="font-size:18px;"></i>
-                                                                </button>
-                                                            <?php } else { ?>
-                                                                <button class="btn btn-success  btn-rounded btn-icon"
-                                                                    style="padding:5px 0 0 3px;"
-                                                                    onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
-                                                                    <i class="mdi mdi-content-save"></i>
-                                                                </button>
-                                                            <?php }
-                                                        } ?>
-                                                    </div>
-                                                    <div id=""></div>
-                                                </td>
-                                            </tr>
+                                                    <td>
+                                                        <input id="chq<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                            type="text" placeholder="Cheque No." value="<?php if ($chq != '') {
+                                                                echo $chq;
+                                                            } ?>" />
 
-                                        <?php }
+                                                    </td>
+                                                    <td>
+                                                        <input id="bank<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                            type="text" placeholder="..." />
+                                                    </td>
+                                                    <td>
+                                                        <div id="amt<?php echo $slots; ?><?php echo $cate; ?>"
+                                                            style="font-size:16px; text-align:right; font-weight:bold;">
+                                                            <?php echo $taka; ?>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="ssp<?php echo $slots; ?><?php echo $cate; ?>">
+                                                            <?php
+                                                            if ($status == 0) {
+                                                                if ($tonka > 0) { ?>
+                                                                    <button class="btn btn-danger  btn-rounded btn-icon"
+                                                                        style="padding:5px 0 0 3px;"
+                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
+                                                                        <i class="mdi mdi-delete-forever" style="font-size:18px;"></i>
+                                                                    </button>
+                                                                <?php } else { ?>
+                                                                    <button class="btn btn-success  btn-rounded btn-icon"
+                                                                        style="padding:5px 0 0 3px;"
+                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
+                                                                        <i class="mdi mdi-content-save"></i>
+                                                                    </button>
+                                                                <?php }
+                                                            } ?>
+                                                        </div>
+                                                        <div id=""></div>
+                                                    </td>
+                                                </tr>
+
+
+                                            <?php }
+                                        }
                                     }
                                 }
                                 ?>
@@ -812,7 +913,7 @@ include 'footer.php';
     function go() {
         var m = document.getElementById('month').value;
         var y = document.getElementById('year').value;
-        window.location.href = 'payroll-calc.php?m=' + m + '&y=' + y;
+        window.location.href = 'payroll-payoff-dispuch.php?m=' + m + '&y=' + y;
     }
 </script>
 
@@ -827,14 +928,14 @@ include 'footer.php';
     function issue(slot, cate, id) {
 
         var year = document.getElementById("year").value;
-        var month = document.getElementById("month").value; alert(id); alert(id);
+        var month = document.getElementById("month").value;
         var a = slot;//document.getElementById("slot" + id).innerHTML;
         var b = cate; //document.getElementById("cate" + id).innerHTML; 
         alert(id); var c = parseInt(document.getElementById("amt" + id).innerHTML);
         var d = document.getElementById("ref" + id).value;
         var e = document.getElementById("chq" + id).value;
         var f = document.getElementById("bank" + id).value;
-        var g = document.getElementById("dt" + id).value; alert(id);
+        var g = document.getElementById("dt" + id).value;
 
 
 
@@ -857,6 +958,28 @@ include 'footer.php';
                 // $("#gogg").html(html);
 
                 // document.location.href = 'report.php';
+            }
+        });
+    }
+</script>
+
+<script>
+    function issueyn(slot, cate, id) {
+        var infor = "yn=" + slot + "&cat=" + cate + "&id=" + id + "&tail=5";
+        // alert(infor);
+        $("#sspx" + id).html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/issuepay.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#sspx' + id).html('<span class=""><center>......</center></span>');
+            },
+            success: function (html) {
+                $("#sspx" + id).html(html);
+                document.location.href = 'payroll-payoff-dispuch.php?m=<?php echo $month; ?>&y=<?php echo $year; ?>';
             }
         });
     }

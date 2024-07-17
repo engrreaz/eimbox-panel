@@ -6,75 +6,91 @@ if (isset($_GET['cashbook-refno'])) {
     $accno = $_GET['accno'];
 
 
-$sql0x = "SELECT * FROM banktrans where sccode='$sccode' and verified = 1 order by id;";
-$result0xddx = $conn->query($sql0x);
-if ($result0xddx->num_rows > 0) {
-    while ($row0x = $result0xddx->fetch_assoc()) {
-        $id = $row0x["id"];
-        $etime = $row0x["entrytime"];
-        $type = $row0x["transtype"];
-        $date = $row0x["date"];
-        $amount = $row0x["amount"];
+    $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and verified = 1 order by id;";
+    $result0xddx = $conn->query($sql0x);
+    if ($result0xddx->num_rows > 0) {
+        while ($row0x = $result0xddx->fetch_assoc()) {
+            $id = $row0x["id"];
+            $etime = $row0x["entrytime"];
+            $type = $row0x["transtype"];
+            $date = $row0x["date"];
+            $amount = $row0x["amount"];
+            $partpart = $row0x["partid"];
 
-        $refno = $sccode . date('YmdHis', strtotime($etime));
-        $query20 = "update banktrans set refno='$refno' where id='$id' ;";
-        $conn->query($query20);
+            $refno = $sccode . date('YmdHis', strtotime($etime));
+            $query20 = "update banktrans set refno='$refno' where id='$id' ;";
+            $conn->query($query20);
 
-        $mx = date('m', strtotime($date));
-        $yx = date('Y', strtotime($date));
-        $slot = 'School';
-        if ($type == 'Deposit') {
-            $category = 'Deposit';
-            $tipe = 'Expenditure';
-            $partidx = '1';
-            $income = 0;
-            $expenditure = $amount;
-        } else if ($type == 'Deduction') {
-            $category = 'Deduction';
-            $tipe = 'Expenditure';
-            $partidx = '4';
-            $income = 0;
-            $expenditure = $amount;
-        } else if ($type == 'Interest') {
-            $category = 'Interest';
-            $tipe = 'Income';
-            $partidx = '3';
-            $income = $amount;
-            $expenditure = 0;
-        } else {
-            $category = 'Withdrawal';
-            $tipe = 'Income';
-            $partidx = '2';
-            $income = $amount;
-            $expenditure = 0;
-        }
-       
-        $particularx = 'from Bank Transaction';
-
-
-        $sql0x = "SELECT * FROM cashbook where sccode='$sccode' and refno='$refno';";
-        $result0xddxx = $conn->query($sql0x);
-        if ($result0xddxx->num_rows > 0) {
-            while ($row0x = $result0xddxx->fetch_assoc()) {
-                $refid = $row0x["id"];
-
-                echo 'update code<br>';
-
+            $mx = date('m', strtotime($date));
+            $yx = date('Y', strtotime($date));
+            $slot = 'School';
+            if ($type == 'Deposit') {
+                $category = 'Deposit';
+                $tipe = 'Expenditure';
+                $partidx = '1';
+                $income = 0;
+                $expenditure = $amount;
+            } else if ($type == 'Deduction') {
+                $category = 'Deduction';
+                $tipe = 'Expenditure';
+                $partidx = '4';
+                $income = 0;
+                $expenditure = $amount;
+            } else if ($type == 'Interest') {
+                $category = 'Interest';
+                $tipe = 'Income';
+                $partidx = '3';
+                $income = $amount;
+                $expenditure = 0;
+            } else {
+                $category = 'Withdrawal';
+                $tipe = 'Income';
+                $partidx = '2';
+                $income = $amount;
+                $expenditure = 0;
+                if ($partpart != 5) {
+                    $partidx2 = $partpart;
+                    $income2 = 0;
+                    $expenditure2 = $amount;
+                }
             }
-        } else {
-            $cash = "INSERT INTO cashbook (id, sccode, sessionyear, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, module, status) 
+
+            $particularx = $particularx2 = 'from Bank Transaction';
+
+
+            $sql0x = "SELECT * FROM cashbook where sccode='$sccode' and refno='$refno';";
+            $result0xddxx = $conn->query($sql0x);
+            if ($result0xddxx->num_rows > 0) {
+                while ($row0x = $result0xddxx->fetch_assoc()) {
+                    $refid = $row0x["id"];
+
+                    echo 'update code : ' . $type . '/' . $partpart . '<br>';
+                    
+                    if (($type == 'Withdraw' || $type == 'Withdrawal') && $partpart != 5) {
+                        $cash2 = "INSERT INTO cashbook (id, sccode, sessionyear, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, module, status) 
+                        VALUES (NULL, '$sccode', '$yx', '$mx', '$yx', '$slot', '$date', '$tipe', '$refno', '$partidx2', '$category', '0', '$particularx2', '$income2', '$expenditure2', '$amount', 'System-Auto', '$cur', 'BANK', '1' );";
+                        // $conn->query($cash2);
+                        // echo $cash2 . '<br>';
+                    }
+                }
+            } else {
+                $cash = "INSERT INTO cashbook (id, sccode, sessionyear, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, module, status) 
         VALUES (NULL, '$sccode', '$yx', '$mx', '$yx', '$slot', '$date', '$tipe', '$refno', '$partidx', '$category', '0', '$particularx', '$income', '$expenditure', '$amount', 'System-Auto', '$cur', 'BANK', '1' );";
-            $conn->query($cash);
-            echo $cash . '<br>';
+                $conn->query($cash);
+                echo $cash . '<br>';
+                echo $type . '/' . $partpart;
+                if (($type == 'Withdraw' || $type == 'Withdrawal') && $partpart != 5) {
+                    $cash2 = "INSERT INTO cashbook (id, sccode, sessionyear, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, module, status) 
+                    VALUES (NULL, '$sccode', '$yx', '$mx', '$yx', '$slot', '$date', '$tipe', '$refno', '$partidx2', '$category', '0', '$particularx2', '$income2', '$expenditure2', '$amount', 'System-Auto', '$cur', 'BANK', '1' );";
+                    $conn->query($cash);
+                    echo $cash2 . '<br>';
+                }
+            }
         }
-
-
-
     }
-}
 
 
-echo 'donessss';
+    echo 'donessss';
 
 
 }

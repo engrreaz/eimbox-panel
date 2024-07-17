@@ -128,6 +128,16 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+
+                    </div>
+
+                    <div class="col-md-2">
+                    <button type="submit" style="padding:4px 10px 3px; border-radius:5px;" name="srchst"
+                                    id="srchstx" class="btn btn-inverse-danger btn-block text-center p-2" style=""
+                                    title="Delete this Teacher/Staff" onclick="upd(0);"><i
+                                        class="mdi mdi-delete"></i> Delete </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1297,7 +1307,7 @@ echo $dismsg; ?>">
                             <div class="col-12">
                                 <?php if ($tid > 0) { ?>
                                     <button type="submit" id="savest" name="savest" class="btn btn-inverse-success pt-2"
-                                        onclick="upd();"><?php echo $btntext; ?></button>
+                                        onclick="upd(1);"><?php echo $btntext; ?></button>
                                     <div id="px"></div>
                                 <?php } ?>
                             </div>
@@ -1414,7 +1424,7 @@ include 'footer.php';
 
 
 <script>
-    function upd() {
+    function upd(tail) {
 
         var filelist = document.getElementById("files").value;
         if (filelist == '') {
@@ -1423,8 +1433,6 @@ include 'footer.php';
             var btn = document.getElementById("uploadfile");
             btn.click();
         }
-
-
 
         // 		var = document.getElementById("").value;
         var tid = document.getElementById("tid").value;
@@ -1464,11 +1472,6 @@ include 'footer.php';
         var thisjoin = document.getElementById("thisjoin").value;
         var firstjoin = document.getElementById("firstjoin").value;
 
-
-
-
-
-
         var accno = document.getElementById("mpoaccno").value;
         var bname = document.getElementById("mpobankname").value;
         var bbr = document.getElementById("mpobranch").value;
@@ -1483,7 +1486,6 @@ include 'footer.php';
         var bname3 = document.getElementById("pfbankname").value;
         var bbr3 = document.getElementById("pfbranch").value;
         var rno3 = document.getElementById("pfrouting").value;
-
 
         var paycode = document.getElementById("paycode").value;
         var pscale = document.getElementById("payscale").value;
@@ -1522,7 +1524,7 @@ include 'footer.php';
             + "&accno=" + accno + "&bname=" + bname + "&bbr=" + bbr + "&rno=" + rno
             + "&accno2=" + accno2 + "&bname2=" + bname2 + "&bbr2=" + bbr2 + "&rno2=" + rno2
             + "&accno3=" + accno3 + "&bname3=" + bname3 + "&bbr3=" + bbr3 + "&rno3=" + rno3
-
+            + "&tail=" + tail
 
 
 

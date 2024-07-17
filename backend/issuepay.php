@@ -4,15 +4,18 @@ include ('inc2.php');
 $ttt = 0;
 $tail = $_POST['tail'];
 
-$yyy = $_POST['year'];
-$mmm = $_POST['month'];
-$a = strtolower($_POST['a']);
-$b = strtolower($_POST['b']);
-$c = $_POST['c'];
-$d = $_POST['d'];
-$e = $_POST['e'];
-$f = $_POST['f'];
-$g = $_POST['g'];
+if ($tail != 5) {
+    $yyy = $_POST['year'];
+    $mmm = $_POST['month'];
+    $a = strtolower($_POST['a']);
+    $b = strtolower($_POST['b']);
+    $c = $_POST['c'];
+    $d = $_POST['d'];
+    $e = $_POST['e'];
+    $f = $_POST['f'];
+    $g = $_POST['g'];
+
+}
 
 
 if ($tail == 0) {
@@ -114,11 +117,27 @@ if ($tail == 0) {
     echo $query331;
     $conn->query($query331);
 
-    if($b == 'expenditure'){
+    if ($b == 'expenditure') {
         $sccodes = $sccode * 10;
         $sql0 = "UPDATE cashbook set refno='$d' where sccode='$sccodes' and type='$b' and slots='$a' ";
         $conn->query($sql0);
     }
+
+
+
+} else if ($tail == 5) {
+    $idx = $_POST['id'];
+    $ynx = $_POST['yn'];
+    if ($ynx == 'yes') {
+        $lock = 1;
+    } else {
+        $lock = 0;
+    }
+
+    $query331 = "UPDATE salarydetails set edit_lock = '$lock' where sccode='$sccode' and id='$idx' ;";
+    $conn->query($query331);
+    echo $query331;
+
 
 
 
@@ -140,7 +159,7 @@ if ($tail == 0) {
                 $ccc = $row0["category"];
             }
         }
-        if ($ccc == 'expenditure')  {
+        if ($ccc == 'expenditure') {
             $sccodes = $sccode * 10;
             $sql0 = "UPDATE cashbook set sccode='$sccode' where sccode='$sccodes' and type='$ccc' and slots='$sss' ";
             $conn->query($sql0);
