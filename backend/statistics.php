@@ -76,3 +76,43 @@ if ($result0rtx->num_rows > 0) {
 <div id="main-30"><?php echo $ts; ?></div>
 <div id="main-31"><?php echo $te; ?></div>
 <div id="main-32"><?php echo $dur; ?></div>
+
+<div id="sche">
+    <table class="table " style="width:100%;">
+        <?php
+        $day = date('l', strtotime($td));
+        if ($day == 'Sunday') {
+            $wday = 1;
+        } else if ($day == 'Monday') {
+            $wday = 2;
+        } else if ($day == 'Tuesday') {
+            $wday = 3;
+        } else if ($day == 'Wednesday') {
+            $wday = 4;
+        } else if ($day == 'Thursday') {
+            $wday = 5;
+        }
+
+        $sql0 = "SELECT * FROM clsroutine where sccode='$sccode' and sessionyear='$sy' and period='$period' and wday='$wday' order by classname, sectionname;";
+        // echo $sql0; 
+        $result0a = $conn->query($sql0);
+        if ($result0a->num_rows > 0) {
+            while ($row0 = $result0a->fetch_assoc()) {
+                $cls = $row0["classname"];
+                $sec = $row0["sectionname"];
+                $tid = $row0["tid"];
+                $subj = $row0["subcode"];
+
+                ?>
+                <tr>
+                    <td><?php echo $cls; ?></td>
+                    <td><?php echo $sec; ?></td>
+                    <td><?php echo $subj; ?></td>
+                    <td><?php echo $tid; ?></td>
+                </tr>
+                <?php
+            }
+        }
+        ?>
+    </table>
+</div>

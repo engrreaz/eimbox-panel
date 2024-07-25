@@ -144,7 +144,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                 <div class="preview-item-content d-sm-flex flex-grow">
                   <div class="flex-grow">
                     <div style="float:right;">
-                      <p class="text-muted"  id="tete">till 00:30:00</p>
+                      <p class="text-muted" id="tete">till 00:30:00</p>
                     </div>
                     <h6 class="preview-subject" id="main-29-main"></h6>
 
@@ -153,20 +153,23 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                       <!-- <div id="tete"></div> -->
                       <div id="durdur"></div>
                       <div id="onoff"></div>
-                      
+
                     </div>
 
                     <div class="progress progress-md portfolio-progress">
-                      <div class="progress-bar bg-success p-1 text-secondary" role="progressbar" style="width: 0%" aria-valuenow="25" id="pbar"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-success p-1 text-secondary" role="progressbar" style="width: 0%"
+                        aria-valuenow="25" id="pbar" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
+
+                    <div id="scheddd" style="">
+
+                    </div>
+
                   </div>
+
 
                 </div>
               </div>
-
-
-
             </div>
           </div>
         </div>
@@ -611,6 +614,8 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
         document.getElementById("tsts").innerHTML = document.getElementById("main-30").innerHTML;
         document.getElementById("tete").innerHTML = document.getElementById("main-31").innerHTML;
         document.getElementById("durdur").innerHTML = document.getElementById("main-32").innerHTML;
+        document.getElementById("durdur").innerHTML = document.getElementById("main-32").innerHTML;
+        document.getElementById("scheddd").innerHTML = document.getElementById("sche").innerHTML;
 
 
         document.getElementById("main-29-main").innerHTML = 'Current Period : <b>' + document.getElementById("main-29").innerHTML + '</b>';
@@ -629,47 +634,46 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
 
 
 <script>
-function secc() {
-            function refr() {
-                var t = new Date();
-                var h = t.getHours();
-                var m = t.getMinutes(); 
-                var s = t.getSeconds();
-                if(h<=9){h='0'+h;}if(m<=9){m='0'+m;}if(s<=9){s='0'+s;}
-                var k = h + ":" + m + ":" + s;
-                document.getElementById("time").innerHTML = k; 
+  function secc() {
+    function refr() {
+      var t = new Date();
+      var h = t.getHours();
+      var m = t.getMinutes();
+      var s = t.getSeconds();
+      if (h <= 9) { h = '0' + h; } if (m <= 9) { m = '0' + m; } if (s <= 9) { s = '0' + s; }
+      var k = h + ":" + m + ":" + s;
+      document.getElementById("time").innerHTML = k;
 
-                var te = document.getElementById("tete").innerHTML;
-                var hx =te.substring(0,2);
-                var mx =te.substring(3,5);
-                var sx =te.substring(6,8);
-                // alert(hx +'/' + mx + '/' + sx);
-                
-                
-                var a = new Date(2023,1,1,h,m,s);
-                var b = new Date(2023,1,1,hx, mx, sx);
-                
-                var dk = b.getTime() - a.getTime();
-                var ela = dk/1000;  // Second Remaining
-                var elas = ela % 60;
-                
-                var elam = (ela - elas)/60;
-                if(elas<10){elas = '0' + elas;} else if(elas == 0) {elas = '00';}
-                if(elam<10){elam = '0' + elam;} else if(elam == 0) {elam = '00';}
-                document.getElementById("onoff").innerHTML = elam + ":" + elas; 
-                var durs = parseInt(document.getElementById("durdur").innerHTML );
-                d = (dk/1000) * (100/durs);
-                if(d<=0 && te > 0){window.location.href='index.php';}
-                
-                var f = parseInt(d);
-                document.getElementById('pbar').style.width = d + "%";
-                document.getElementById('pbar').innerHTML =  f + "%";
-                
-                
-            }
-            setInterval(refr, 1000);
-        }
-        $(document).ready(secc);
+      var te = document.getElementById("tete").innerHTML;
+      var hx = te.substring(0, 2);
+      var mx = te.substring(3, 5);
+      var sx = te.substring(6, 8);
+      // alert(hx +'/' + mx + '/' + sx);
+
+
+      var a = new Date(2023, 1, 1, h, m, s);
+      var b = new Date(2023, 1, 1, hx, mx, sx);
+
+      var dk = b.getTime() - a.getTime();
+      var ela = dk / 1000;  // Second Remaining
+      var elas = ela % 60;
+
+      var elam = (ela - elas) / 60;
+      if (elas < 10) { elas = '0' + elas; } else if (elas == 0) { elas = '00'; }
+      if (elam < 10) { elam = '0' + elam; } else if (elam == 0) { elam = '00'; }
+      document.getElementById("onoff").innerHTML = elam + ":" + elas;
+      var durs = parseInt(document.getElementById("durdur").innerHTML);
+      d = (dk / 1000) * (100 / durs);
+      if (d <= 0 && te > 0) { window.location.href = 'index.php'; }
+
+      var f = parseInt(d);
+      document.getElementById('pbar').style.width = d + "%";
+      document.getElementById('pbar').innerHTML = f + "%";
+
+
+    }
+    setInterval(refr, 1000);
+  }
+  $(document).ready(secc);
 
 </script>
-

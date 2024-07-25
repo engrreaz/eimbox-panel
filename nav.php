@@ -196,7 +196,7 @@ $supernav = array('account-settings.php');
           </div>
         </li>
 
-        
+
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#fees" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
@@ -509,6 +509,7 @@ $supernav = array('account-settings.php');
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
                   <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="transaction-tracker.php">Transaction Summery</a></li>
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li> -->
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li> -->
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li> -->
@@ -547,13 +548,18 @@ $supernav = array('account-settings.php');
               </a>
               <div class="collapse" id="finance-sal">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="payroll-structure.php">Salary Structure</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-list.php"><i
+                        class="mdi mdi-numeric-1-box "></i>&nbsp; Payroll List</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-structure.php"><i
+                        class="mdi mdi-numeric-1-box "></i>&nbsp; Salary Structure</a></li>
+
                   <li class="nav-item"> <a class="nav-link" href="payroll-bonus.php">Bonus & Incentive</a></li>
 
 
                   <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="payroll-calc.php">Salary Calculation</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="payroll-payoff-dispuch.php">Payoff Salary</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-calc.php">Calculation & Payoff</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-payoff-dispuch.php">Dispuch Salary</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="payroll-statement.php">Payroll Statement</a></li>
                 </ul>
               </div>
             </li>
@@ -625,7 +631,7 @@ $supernav = array('account-settings.php');
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Committees</a></li> -->
+                  <li class="nav-item"> <a class="nav-link" href="committees.php">Committees</a></li>
                   <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
                   <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li> -->

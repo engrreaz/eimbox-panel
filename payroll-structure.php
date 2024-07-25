@@ -14,7 +14,7 @@ $new = 0; // check new entry or not
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Payroll Structure</h4>
+                <h4 class="modal-title">Salary Structure</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -22,7 +22,7 @@ $new = 0; // check new entry or not
             <div class="modal-body">
                 <div id="" class="input-control select full-size error">
                     <select id="modaldata" name="modaldata" class="form-control text-white" onchange="modal();">
-                        <option value="">Select a Teacher/Staff to Edit</option>
+                        <option value="">Select a Teacher/Staff to View/Edit Salary Structure</option>
                         <?php
                         $sql000 = "SELECT * FROM teacher where sccode='$sccode'  order by ranks";
                         $resultix = $conn->query($sql000);
@@ -58,9 +58,19 @@ if (isset($_GET['tid'])) {
 
 
 $tinfo = array();
+
+$sql5 = "SELECT * FROM teacher where sccode='0' and tid = '0' ;";
+$result6x = $conn->query($sql5);
+if ($result6x->num_rows > 0) {
+    while ($row5 = $result6x->fetch_assoc()) {
+        $tinfo[] = $row5;
+    }
+}
+
 $sql5 = "SELECT * FROM teacher where sccode='$sccode' and tid = '$tid' ;";
 $result6 = $conn->query($sql5);
 if ($result6->num_rows > 0) {
+    $tinfo = array();
     while ($row5 = $result6->fetch_assoc()) {
         $tinfo[] = $row5;
     }
@@ -82,14 +92,17 @@ if ($new == 1) {
 } else {
     $btntext = 'Update Info';
 }
-
+// echo $sql5 . '<br>';
+// echo var_dump($tinfo);
 ?>
 <style>
     .col-form-label {
         color: slategray;
     }
 </style>
-<h3>Payroll Structure</h3>
+
+
+<h3>Payroll &nbsp;: &nbsp;Salary Structure</h3>
 
 <div class="row" style="display:<?php if ($dismsg == 0) {
     $dismsg = 'hide';
@@ -121,8 +134,8 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Teacher's / Staff's ID.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="tid" value="<?php echo $tid; ?>"
-                                    disabled />
+                                <input type="text" class="form-control bg-dark text-secondary" id="tid"
+                                    value="<?php echo $tid; ?>" disabled />
                             </div>
                         </div>
                     </div>
@@ -141,16 +154,18 @@ echo $dismsg; ?>">
                     </div>
 
                     <div class="col-md-5">
-                        <?php echo $tinfo[0]['tname'];?>
+                        <?php echo $tinfo[0]['tname']; ?>
                         <br>
-                        <?php echo $tinfo[0]['tnameb'];?>
+                        <?php echo $tinfo[0]['tnameb']; ?>
+                        <br>
+                        <small><?php echo $tinfo[0]['position']; ?></small>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Applying From</label>
                             <div class="col-12">
-                                <input type="date" class="form-control bg-dark" id="applydate"
+                                <input type="date" class="form-control bg-muted text-secondary " id="applydate"
                                     value="<?php echo $applydate; ?>" />
                             </div>
                         </div>
@@ -172,8 +187,8 @@ echo $dismsg; ?>">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="row pl-3">
-                    <h4 class="font-weight-bold text-small">MPO Related Account</h4>
+                <div class="row pl-3 pb-0">
+                    <h3 class="font-weight-bold text-small p-0">MPO Related Account</h3>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -216,8 +231,8 @@ echo $dismsg; ?>">
                 </div>
 
 
-                <div class="row pl-3">
-                    <h4 class="font-weight-bold text-small">Institute Allowance Related Account</h4>
+                <div class="row pl-3 mt-2">
+                    <h3 class="font-weight-bold text-small">Institute Allowance Related Account</h3>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -261,8 +276,8 @@ echo $dismsg; ?>">
 
 
 
-                <div class="row pl-3">
-                    <h4 class="font-weight-bold text-small">PF Related Account</h4>
+                <div class="row pl-3 mt-2">
+                    <h3 class="font-weight-bold text-small">PF Related Account</h3>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -315,7 +330,7 @@ echo $dismsg; ?>">
         <div class="card">
             <div class="card-body">
                 <div class="row pl-3">
-                    <h4 class="font-weight-bold text-small">MPO Information</h4>
+                    <h4 class="font-weight-bold text-small">MPO Structure</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -346,7 +361,7 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" hidden>
                         <div class="form-group row">
                             <label class="col-form-label pl-3">............</label>
                             <div class="col-12">
@@ -386,7 +401,7 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" hidden>
                         <div class="form-group row">
                             <label class="col-form-label pl-3">........</label>
                             <div class="col-12">
@@ -417,7 +432,7 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" hidden>
                         <div class="form-group row">
                             <label class="col-form-label pl-3">-----</label>
                             <div class="col-12">
@@ -496,7 +511,7 @@ echo $dismsg; ?>">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3" hidden>
                         <div class="form-group row">
                             <label class="col-form-label pl-3">...</label>
                             <div class="col-12">
@@ -504,7 +519,7 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" hidden>
                         <div class="form-group row">
                             <label class="col-form-label pl-3">....</label>
                             <div class="col-12">
@@ -523,37 +538,17 @@ echo $dismsg; ?>">
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="row"> <!--   Class/Roll Block -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-
+                <div class="row p-0">
                     <div class="col-md-3">
                         <div class="form-group row">
                             <div class="col-12">
@@ -566,8 +561,11 @@ echo $dismsg; ?>">
                             </div>
                         </div>
                     </div>
+                    <div class="com-md-3">
+                        <div class="text-wrap" id="savedtext" hidden></div>
+                        <div class="text-wrap" id="prevdate" hidden></div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -596,6 +594,59 @@ include 'footer.php';
     }
 </script>
 
+<script>
+    function saveddata() {
+        var tid = document.getElementById("tid").value;
+        var applydate = document.getElementById("applydate").value;
+
+        var accno = document.getElementById("mpoaccno").value;
+        var bname = document.getElementById("mpobankname").value;
+        var bbr = document.getElementById("mpobranch").value;
+        var rno = document.getElementById("mporouting").value;
+
+        var accno2 = document.getElementById("schaccno").value;
+        var bname2 = document.getElementById("schbankname").value;
+        var bbr2 = document.getElementById("schbranch").value;
+        var rno2 = document.getElementById("schrouting").value;
+
+        var accno3 = document.getElementById("pfaccno").value;
+        var bname3 = document.getElementById("pfbankname").value;
+        var bbr3 = document.getElementById("pfbranch").value;
+        var rno3 = document.getElementById("pfrouting").value;
+
+
+        var paycode = document.getElementById("paycode").value;
+        var pscale = document.getElementById("payscale").value;
+        var basic = document.getElementById("basic").value;
+        var inten = document.getElementById("incentive").value;
+        var hra = document.getElementById("houserent").value;
+        var ma = document.getElementById("medical").value;
+        // var arrea = document.getElementById("arrea").value;////////////////////////////
+        var welfare = document.getElementById("welfare").value;
+        var retire = document.getElementById("retire").value;
+        var net = parseInt(basic) + parseInt(inten) + parseInt(hra) + parseInt(ma) - parseInt(welfare) - parseInt(retire);
+
+        document.getElementById("mpototal").value = net;
+
+        var salary = document.getElementById("salary").value;
+        var mpa = document.getElementById("mobilevata").value;
+        var travel = document.getElementById("travel").value;
+        var ma2 = document.getElementById("medical2").value;
+        // var exam = document.getElementById("exam").value;//////////////////////////////////
+        // var fest = document.getElementById("fest").value;////////////////////////////
+
+        var pf = document.getElementById("pf").value;
+        var net2 = parseInt(salary) + parseInt(mpa) + parseInt(travel) + parseInt(ma2) - parseInt(pf);
+
+
+        document.getElementById("net2").value = net2;
+        // alert("tin");
+        var datax = tid + paycode + pscale + basic + inten + hra + ma + welfare + retire + net + salary + mpa + + travel + ma2 + pf + net2 + accno + bname + bbr + rno + accno2 + bname2 + bbr2 + rno2 + accno3 + bname3 + bbr3 + rno3;
+        document.getElementById("savedtext").innerHTML = datax;
+        document.getElementById("prevdate").innerHTML = applydate;
+    }
+    saveddata();
+</script>
 
 <script>
     document.getElementById('stnameeng').focus();
@@ -679,20 +730,10 @@ include 'footer.php';
 <script>
     function upd() {
 
-
+        // calc();
         // 		var = document.getElementById("").value;
         var tid = document.getElementById("tid").value;
         var applydate = document.getElementById("applydate").value;
-    //   alert(applydate);
-        // var mpoindex = document.getElementById("mpoindex").value;
-        // var tin = document.getElementById("tin").value;//
-        // var thisjoin = document.getElementById("thisjoin").value;
-        // var firstjoin = document.getElementById("firstjoin").value;
-
-
-
-
-
 
         var accno = document.getElementById("mpoaccno").value;
         var bname = document.getElementById("mpobankname").value;
@@ -719,7 +760,10 @@ include 'footer.php';
         // var arrea = document.getElementById("arrea").value;////////////////////////////
         var welfare = document.getElementById("welfare").value;
         var retire = document.getElementById("retire").value;
-        var net = document.getElementById("mpototal").value;
+        var net = parseInt(basic) + parseInt(inten) + parseInt(hra) + parseInt(ma) - parseInt(welfare) - parseInt(retire);
+
+        document.getElementById("mpototal").value = net;
+
         var salary = document.getElementById("salary").value;
         var mpa = document.getElementById("mobilevata").value;
         var travel = document.getElementById("travel").value;
@@ -728,42 +772,64 @@ include 'footer.php';
         // var fest = document.getElementById("fest").value;////////////////////////////
 
         var pf = document.getElementById("pf").value;
-        var net2 = document.getElementById("net2").value;
+        var net2 = parseInt(salary) + parseInt(mpa) + parseInt(travel) + parseInt(ma2) - parseInt(pf);
+
+
+        document.getElementById("net2").value = net2;
         // alert("tin");
 
-
+        var datax = tid + paycode + pscale + basic + inten + hra + ma + welfare + retire + net + salary + mpa + + travel + ma2 + pf + net2 + accno + bname + bbr + rno + accno2 + bname2 + bbr2 + rno2 + accno3 + bname3 + bbr3 + rno3;
+        var saved = document.getElementById("savedtext").innerHTML;
 
         var infor = "tid=" + tid
             + "&applydate=" + applydate
-            // + "&mpoindex=" + mpoindex + "&tin=" + tin + "&thisjoin=" + thisjoin + "&firstjoin=" + firstjoin
-
             + "&paycode=" + paycode + "&pscale=" + pscale + "&basic=" + basic + "&inten=" + inten + "&hra=" + hra + "&ma=" + ma + "&welfare=" + welfare + "&retire=" + retire + "&net=" + net
             + "&salary=" + salary + "&mpa=" + mpa + "&travel=" + travel + "&ma2=" + ma2 + "&pf=" + pf + "&net2=" + net2
-
             + "&accno=" + accno + "&bname=" + bname + "&bbr=" + bbr + "&rno=" + rno
             + "&accno2=" + accno2 + "&bname2=" + bname2 + "&bbr2=" + bbr2 + "&rno2=" + rno2
             + "&accno3=" + accno3 + "&bname3=" + bname3 + "&bbr3=" + bbr3 + "&rno3=" + rno3
-
-
-
-
             ;
-        // alert(infor);
+
         $("#px").html("");
 
-        $.ajax({
-            type: "POST",
-            url: "backend/update-payroll-structure.php",
-            data: infor,
-            cache: false,
-            beforeSend: function () {
-                $('#px').html('<span class="">Updating...</span>');
-            },
-            success: function (html) {
-                $("#px").html(html);
-                window.location.href = 'payroll-structure.php?tid='+ tid;
+        if (saved == datax) {
+            $.ajax({
+                type: "POST",
+                url: "backend/update-payroll-structure.php",
+                data: infor,
+                cache: false,
+                beforeSend: function () {
+                    $('#px').html('<span class="">Updating...</span>');
+                },
+                success: function (html) {
+                    $("#px").html(html);
+                    window.location.href = 'payroll-list.php';
+                }
+            });
+        } else {
+            var pd = document.getElementById("prevdate").innerHTML;
+            if (pd == applydate) {
+                alert('You should change the Apply Date.');
+
+            } else {
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "backend/update-payroll-structure.php",
+                    data: infor,
+                    cache: false,
+                    beforeSend: function () {
+                        $('#px').html('<span class="">Updating...</span>');
+                    },
+                    success: function (html) {
+                        $("#px").html(html);
+                        window.location.href = 'payroll-list.php';
+                    }
+                });
             }
-        });
+        }
+
     }
 </script>
 

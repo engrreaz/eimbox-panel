@@ -32,6 +32,11 @@ if ($iid == 0) {
     $v = $_POST['v'];
     $w = $_POST['w'];
     $x = $_POST['x'];
+    $yo = $_POST['yo'];
+    $py = $_POST['py'];
+
+    $gchq = $_POST['gchq'];
+    $schq = $_POST['schq'];
 
     $tot = $h + $p;
 
@@ -68,16 +73,16 @@ if ($iid == 0) {
     $query33 = "INSERT INTO salarydetails(id, sessionyear, sccode, slots, month, year, refnogovt, refnosch, refnopf, tid, ranks, joindate, accno, bankname, bankbr, 
     		                                    basic, incentive, house, medical, arrear, welfare, retire, govt, 
     		                                    accnosch, banknamesch, bankbrsch, salary, mpa, travel, med2, exam, festival, pf, school, other2, arrear2,
-    		                                    accnopf, banknamepf, bankbrpf, total, entrytime, govtcol1, govtcol2, schoolcol1, schoolcol2) 
+    		                                    accnopf, banknamepf, bankbrpf, total, entrytime, govtcol1, govtcol2, schoolcol1, schoolcol2, govtcol3, schoolcol3, govtchq, schoolchq) 
     		                                values(NULL, '$sy', '$sccode', '$slt', '$mmm', '$yyy', '', '', '', '$tid', '$rnk', '$jdate', '$acc1', '$bn1', '$br1', 
     		                                    '$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', 
     		                                    '$acc2', '$bn2', '$br2', '$i', '$j', '$k', '$l', '$m', '$n', '$o', '$p',  '$q',  '$r', 
-    		                                    '$acc3', '$bn3', '$br3', '$tot', '$cur', '$u', '$v', '$w', '$x')";
+    		                                    '$acc3', '$bn3', '$br3', '$tot', '$cur', '$u', '$v', '$w', '$x', '$yo', '$py', '$gchq', '$schq')";
     $conn->query($query33);
     // echo $query33;
-    echo 'Payoff the amount <b>' . $tot . '</b> has been successfully.';
+    echo 'Amount ' . $tot . ' <i class="mdi mdi-check-circle mdi-24px text-success"></i>';
 } else {
     $query33 = "DELETE from salarydetails where id='$iid';";
     $conn->query($query33);
-    echo '<span style="color:red; font-weight:bold;">Payoff Reversed</span>';
+    echo 'Reverse  <i class="mdi mdi-delete mdi-24px text-danger"></i>';
 }

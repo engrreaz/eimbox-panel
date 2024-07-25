@@ -1,14 +1,34 @@
 <?php
 include 'header.php';
 
-
-if (isset($_GET['id'])) {
-    $idq = $_GET['id'];
+if (isset($_GET['refno'])) {
+    $refno = $_GET['refno'];
+    $sql0x = "SELECT * FROM refbook where sccode='$sccode' and refno='$refno' ;";
+    $result0xqxx = $conn->query($sql0x);
+    if ($result0xqxx->num_rows > 0) {
+        while ($row0x = $result0xqxx->fetch_assoc()) {
+            $idq = $row0x["id"];
+        }
+    } else {
+        if (isset($_GET['id'])) {
+            $idq = $_GET['id'];
+        } else {
+            $idq = 0;
+        }
+    }
 } else {
-    $idq = 0;
+    if (isset($_GET['id'])) {
+            $idq = $_GET['id'];
+        } else {
+            $idq = 0;
+        }
 }
 
-if (isset($_GET['id'])) {
+
+
+
+
+if ($idq > 0) {
     $sql0x = "SELECT * FROM refbook where sccode='$sccode' and id='$idq' ;";
     $result0xq = $conn->query($sql0x);
     if ($result0xq->num_rows > 0) {
@@ -35,12 +55,17 @@ if (isset($_GET['id'])) {
     ?>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body ">
+                <div class="row pl-4 d-block">
+                    <h4 class="mb-0 pb-0"><small><b>Add New/Edit Reference Information</b></small></h4>
+                    <h6 class="text-warning text-small mt-0 pt-0"><small>You'll edit this reference data within 24 hours. After that, it will lock permanently.</small></h6>
+
+                </div>
                 <div class="row">
                     <div class="col-12 d-flex">
                         <div class="col-md-2">
                             <label class="form-label text-small">ID</label>
-                            <input type="text" class="form-control" value="<?php echo $idq; ?>" id="id" />
+                            <input type="text" class="form-control bg-dark text-secondary" value="<?php echo $idq; ?>" id="id" disabled />
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small">Ref. No.</label>
@@ -48,17 +73,72 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small">Date</label>
-                            <input type="text" class="form-control" value="<?php echo $dateq; ?>" id="date" />
+                            <input type="date" class="form-control" value="<?php echo $dateq; ?>" id="date" />
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <label class="form-label text-small">Month</label>
-                            <input type="text" class="form-control" value="<?php echo $monthq; ?>" id="month" />
+                         
+                            <select class="form-control text-white" id="month">
+                                    <option value="0"></option>
+                                    <?php
+                                    for ($x = 1; $x <= 12; $x++) {
+                                        $flt = '';
+                                        $xx = strtotime(date('Y') . '-' . $x . '-01');
+                                        if ($monthq == $x) {
+                                            $flt = 'selected';
+                                        }
+                                        echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
+                                    }
+                                    ?>
+
+                                </select>
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small">Year</label>
-                            <input type="text" class="form-control" value="<?php echo $yearq; ?>" id="year" />
+                            <select class="form-control text-white" id="year">
+                                    <option value="0"></option>
+                                    <?php
+                                    for ($y = date('Y'); $y >= 2024; $y--) {
+                                        $flt2 = '';
+                                        if ($yearq == $y) {
+                                            $flt2 = 'selected';
+                                        }
+                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                                    }
+                                    ?>
+                                </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                            <div class="form-group row">
+                                <label class="col-form-label pl-3">Slot</label>
+                                <div class="col-12">
+                                    <select class="form-control text-secondary" id="slot">
+                                        <?php
+                                        $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
+                                        $result0x2z = $conn->query($sql0x);
+                                        if ($result0x2z->num_rows > 0) {
+                                            while ($row0x = $result0x2z->fetch_assoc()) {
+                                                $slotname = $row0x["slotname"];
+                                                if ($slot == $slotname) {
+                                                    $seld = 'selected';
+                                                } else {
+                                                    $seld = '';
+                                                }
+                                                echo '<option value="' . $slotname . '"' . $seld . '>' . $slotname . '</option>';
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex">
+                        
+                    <div class="col-md-3">
                             <label class="form-label text-small">Category</label>
                             <select class="form-control text-white" id="category">
                                 <?php
@@ -80,48 +160,25 @@ if (isset($_GET['id'])) {
                                 ?>
                             </select>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 d-flex">
-                    <div class="col-md-2">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Slot</label>
-                            <div class="col-12">
-                                <select class="form-control text-secondary" id="slot">
-                                    <?php
-                                    $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
-                                    $result0x2z = $conn->query($sql0x);
-                                    if ($result0x2z->num_rows > 0) {
-                                        while ($row0x = $result0x2z->fetch_assoc()) {
-                                            $slotname = $row0x["slotname"];
-                                            if ($slot == $slotname) {
-                                                $seld = 'selected';
-                                            } else {
-                                                $seld = '';
-                                            }
-                                            echo '<option value="' . $slotname . '"' . $seld . '>' . $slotname . '</option>';
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
 
                         <div class="col-md-3">
-                            <label class="form-label text-small">Title</label>
+                            <label class="form-label text-small">Title <b>(in a word only)</b></label>
                             <input type="text" class="form-control" value="<?php echo $titleq; ?>" id="title" />
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label class="form-label text-small">Description</label>
                             <input type="text" class="form-control" value="<?php echo $descripq; ?>" id="descrip" />
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small " id="stinfo">&nbsp;</label>
-                            <button class="btn btn-inverse-success p-2 btn-block"
-                                onclick="save(<?php echo $idq; ?>, 0);" >Save</button>
+                             <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                                    <button class="btn btn-inverse-success p-2 "
+                                onclick="save(<?php echo $idq; ?>, 0);">Save</button>
+
+                                <button class="btn btn-inverse-danger p-2"
+                                onclick="save(<?php echo $idq; ?>, 5);">Delete</button>
+
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -145,16 +202,17 @@ if (isset($_GET['id'])) {
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Reference Register</h4>
+            <h4 class="card-title">Reference Register Book</h4>
             </p>
             <div class="table-responsive">
-                <table class="table table-dark">
+                <table class="table table-dark" id="main-table-search">
                     <thead>
                         <tr>
                             <th> # </th>
-                            <th> Register Name </th>
-                            <th> Dept. </th>
-                            <th> Dept. </th>
+                            <th> Ref. No </th>
+                            <th> M/Y </th>
+                            <th> Date </th>
+                            <th> Description </th>
                             <th> Action </th>
                         </tr>
                     </thead>
@@ -170,6 +228,8 @@ if (isset($_GET['id'])) {
                                 $date = $row0x["date"];
                                 $title = $row0x["title"];
                                 $descrip = $row0x["descrip"];
+                                $my = $row0x["month"] . '/' . $row0x["year"];
+
 
                                 ?>
                                 <tr>
@@ -177,6 +237,7 @@ if (isset($_GET['id'])) {
                                         <img src="assets/images/faces-clipart/pic-1.png" alt="image" />
                                     </td>
                                     <td> <?php echo $refno; ?> </td>
+                                    <td> <?php echo $my; ?> </td>
                                     <td> <?php echo $date; ?> </td>
                                     <td> <?php echo $title; ?> </td>
                                     <td>
@@ -218,7 +279,7 @@ include 'footer.php';
         var descrip = document.getElementById("descrip").value;
         var slot = document.getElementById("slot").value;
 
-        var infor = "id=" + id + "&refno=" + refno  + "&slot=" + slot +  "&date=" + date + "&month=" + month + "&year=" + year + "&cate=" + cate + "&title=" + title + "&descrip=" + descrip + "&tail=" + tail;
+        var infor = "id=" + id + "&refno=" + refno + "&slot=" + slot + "&date=" + date + "&month=" + month + "&year=" + year + "&cate=" + cate + "&title=" + title + "&descrip=" + descrip + "&tail=" + tail;
         // alert(infor);
         $("#stinfo").html("");
 
@@ -236,11 +297,14 @@ include 'footer.php';
                 // if (stid == '0') {
                 //     window.location.href = 'students-edit.php?cls=' + classname + '&sec=' + sectionname + '&roll=' + rollno;
                 // } else {
-                    window.location.href = 'refbook.php';
+                window.location.href = 'refbook.php';
                 // }
             }
         });
     }
 
+    $(document).ready(function () {
+        $('#main-table-search').DataTable();
+    });
 
 </script>

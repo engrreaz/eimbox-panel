@@ -45,8 +45,9 @@ if (isset($_GET['y'])) {
         var q = parseInt(document.getElementById("q" + id).value);
         var u = parseInt(document.getElementById("u" + id).value);
         var v = parseInt(document.getElementById("v" + id).value);
+        var yo = parseInt(document.getElementById("yo" + id).value);
 
-        var h = a + b + c + d + e - f - g + q + u + v;
+        var h = a + b + c + d + e - f - g + q + u + v + yo;
 
 
         var i = parseInt(document.getElementById("i" + id).value);
@@ -59,8 +60,9 @@ if (isset($_GET['y'])) {
         var r = parseInt(document.getElementById("r" + id).value);
         var w = parseInt(document.getElementById("w" + id).value);
         var x = parseInt(document.getElementById("x" + id).value);
+        var py = parseInt(document.getElementById("py" + id).value);
 
-        var p = i + j + k + l + m + n - o + r + w + x;
+        var p = i + j + k + l + m + n - o + r + w + x + py;
         console.log(id + '/' + p + '<br>');
 
         document.getElementById("h" + id).value = h;
@@ -69,6 +71,201 @@ if (isset($_GET['y'])) {
         document.getElementById("sto" + id).innerHTML = "<small>BDT</small> &nbsp; " + zz + ".00";
     }
 </script>
+
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Issue Cheque</h4>
+                <div id="kotkot" hidden></div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div id="" class="input-control select full-size error">
+                    <div class="row">
+                        <div class="col-md-3"><label class="form-control bg-dark">Amount</label></div>
+                        <div class="col-md-3"><label id="ssll" class="form-control"></label></div>
+                        <div class="col-md-6">
+                            <label id="cash" class="form-control text-right ">0.00</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Month</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control text-white" id="monthissue">
+                                <option value="0"></option>
+                                <?php
+                                for ($x = 1; $x <= 12; $x++) {
+                                    $flt = '';
+                                    $xx = strtotime(date('Y') . '-' . $x . '-01');
+                                    if ($month == $x) {
+                                        $flt = 'selected';
+                                    }
+
+                                    echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Year</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control text-white" id="yearissue">
+                                <option value="0"></option>
+                                <?php
+                                for ($y = date('Y'); $y >= 2024; $y--) {
+                                    $flt2 = '';
+                                    if ($year == $y) {
+                                        $flt2 = 'selected';
+                                    }
+                                    echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3"><label class="form-control bg-dark">Ref. No.</label></div>
+                        <div class="col-md-3">
+                            <button title="Refresh Refrence Details" onclick="fetchref();" class="btn">
+                                <i class="mdi mdi-sync"></i></button>
+                              <div id="jabjab"></div>  
+                        </div>
+
+                        
+                        <div class="col-md-6">
+
+                            <div class="form-group btn-block">
+                                <div class="input-group btn-block">
+                                    <input type="text" class="form-control" placeholder="Find in facebook" id="refissue"
+                                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-inverse-warning" type="button" onclick="goref();">
+                                            <i class="mdi mdi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Ref. Title</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="reftitleissue" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Description</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="refdescripissue" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Category</label>
+                        </div>
+                        <div class="col-md-9">
+                            <select id="partissue" name="partissue" class="form-control text-white" onchange="modal();">
+
+                                <?php
+                                $sql0x = "SELECT * FROM financesetup where (sccode='$sccode' or sccode=0) and particulareng!='' and (sessionyear='$sy' or sessionyear=0) order by particulareng ;";
+                                $result0xt = $conn->query($sql0x);
+                                if ($result0xt->num_rows > 0) {
+                                    while ($row0x = $result0xt->fetch_assoc()) {
+                                        $partidx = $row0x["id"];
+                                        $pe = $row0x["particulareng"];
+                                        $pb = $row0x["particularben"];
+                                        if ($partidx == $partidq) {
+                                            $sel = 'selected';
+                                        } else {
+                                            $sel = '';
+                                        }
+                                        echo '<option value="' . $partidx . '" ' . $sel . '>' . $pe . ' &bull; ' . $pb . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Cheque #</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="chqissue" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Account #</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="accissue" name="accissue" class="form-control text-white" onchange="modal();">
+                                <option value="">Select Bank Account</option>
+                                <?php
+                                $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";
+                                $resultix = $conn->query($sql000);
+                                // $conn -> close();
+                                if ($resultix->num_rows > 0) {
+                                    while ($row000 = $resultix->fetch_assoc()) {
+                                        $accno = $row000["accno"];
+                                        $acctype = $row000["acctype"];
+                                        $bankname = $row000["bankname"];
+                                        echo '<option value="' . $accno . '"  >' . $accno . '/' . $acctype . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <span id="sspdxx"></span>
+                <button type="button" class="btn btn-inverse-success" onclick="save(99,5);">Issue</button>
+                <button type="button" class="btn btn-inverse-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
 
 <h3>Salary Payoff & Dispuch to Bank Account</h3>
 
@@ -81,7 +278,7 @@ if (isset($_GET['y'])) {
 
                     <div class="col-md-2">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Month</label>
+                            <label class="col-form-label pl-3">Salary Month</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="month">
                                     <option value="0"></option>
@@ -104,7 +301,7 @@ if (isset($_GET['y'])) {
 
                     <div class="col-md-2">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Year</label>
+                            <label class="col-form-label pl-3">Salary Year</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="year">
                                     <option value="0"></option>
@@ -165,6 +362,16 @@ if (isset($_GET['y'])) {
                                     $s3title = $row0["school3title"];
                                     $s3type = $row0["school3type"];
                                     $s3val = $row0["school3value"];
+
+                                    $g1chq = $row0["govt1chq"];
+                                    $g2chq = $row0["govt2chq"];
+                                    $g3chq = $row0["govt3chq"];
+                                    $s1chq = $row0["school1chq"];
+                                    $s2chq = $row0["school2chq"];
+                                    $s3chq = $row0["school3chq"];
+
+
+
                                 }
                             } else {
                                 $g1title = '';
@@ -186,38 +393,48 @@ if (isset($_GET['y'])) {
                                 $s3title = '';
                                 $s3type = '';
                                 $s3val = '';
+
+                                $g1chq = 0;
+                                $g2chq = 0;
+                                $g3chq = 0;
+                                $s1chq = 0;
+                                $s2chq = 0;
+                                $s3chq = 0;
                             }
 
 
+                            $alltitle = $g1title . $g2title . $g3title . $s1title . $s2title . $s3title;
 
 
                             ?>
 
                             <div class="cardx ">
                                 <div class="card-bodyx code-pro text-small">
-                                    <h6 class="text-muted font-weight-normal text-small">
-                                        Record found for the month of
-                                        <b><?php $xx = strtotime($year . '-' . $month . '-01');
-                                        echo date('F, Y', $xx) ?></b>
-                                    </h6>
-                                    <?php
-                                    if ($g1title != '') {
-                                        echo 'Extra Column Title (Govt.) : ' . $g1title . ' by ' . $g1type . ' of ' . $g1val . '<br>';
-                                    }
-                                    if ($g2title != '') {
-                                        echo 'Extra Column Title (Govt.) : ' . $g2title . ' by ' . $g2type . ' of ' . $g2val . '<br>';
-                                    }
-                                    if ($g3title != '') {
-                                        echo 'Extra Column Title (Govt.) : ' . $g3title . ' by ' . $g3type . ' of ' . $g3val . '<br>';
-                                    }
-                                    if ($s1title != '') {
-                                        echo 'Extra Column Title (School) : ' . $s1title . ' by ' . $s1type . ' of ' . $s1val . '<br>';
-                                    }
-                                    if ($s2title != '') {
-                                        echo 'Extra Column Title (School) : ' . $s2title . ' by ' . $s2type . ' of ' . $s2val . '<br>';
-                                    }
-                                    if ($s3title != '') {
-                                        echo 'Extra Column Title (School) : ' . $s3title . ' by ' . $s3type . ' of ' . $s3val . '<br>';
+                                    <?php if ($alltitle != '') { ?>
+                                        <h6 class="text-muted font-weight-normal text-small">
+                                            Record found for the month of
+                                            <b><?php $xx = strtotime($year . '-' . $month . '-01');
+                                            echo date('F, Y', $xx) ?></b>
+                                        </h6>
+                                        <?php
+                                        if ($g1title != '') {
+                                            echo 'Govt # 1 : ' . $g1title . ' by ' . $g1type . ' of ' . $g1val . '<br>';
+                                        }
+                                        if ($g2title != '') {
+                                            echo 'Govt # 2 : ' . $g2title . ' by ' . $g2type . ' of ' . $g2val . '<br>';
+                                        }
+                                        if ($g3title != '') {
+                                            echo 'Govt # 3 : ' . $g3title . ' by ' . $g3type . ' of ' . $g3val . '<br>';
+                                        }
+                                        if ($s1title != '') {
+                                            echo '<br>Institute # 1 : ' . $s1title . ' by ' . $s1type . ' of ' . $s1val . '<br>';
+                                        }
+                                        if ($s2title != '') {
+                                            echo 'Institute # 2 : ' . $s2title . ' by ' . $s2type . ' of ' . $s2val . '<br>';
+                                        }
+                                        if ($s3title != '') {
+                                            echo 'Institute # 3 : ' . $s3title . ' by ' . $s3type . ' of ' . $s3val . '<br>';
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -239,8 +456,10 @@ if (isset($_GET['y'])) {
 
 <?php
 $edit_lock = 0;
-$t1 = $t2 = $t3 =
-    $sql0 = "SELECT * FROM teacher where sccode='$sccode' order by ranks, tid";
+$t1 = $t2 = $t3 = 0;
+$dispuchtotal = 0;
+$total_total = $total_payoff = $total_dispuch = $total_issue = $total_nooff = 0;
+$sql0 = "SELECT * FROM teacher where sccode='$sccode' order by ranks, tid";
 // echo $sql0;
 $result0 = $conn->query($sql0);
 if ($result0->num_rows > 0) {
@@ -373,6 +592,19 @@ if ($result0->num_rows > 0) {
                 $kalar = '#eee';
                 $iiid = $row0["id"]; // $yes = $row0["tid"];
 
+                $p1 = $row0["refnogovt"];
+                $p2 = $row0["refnosch"];
+                $p3 = $row0["refnopf"];
+                $p4 = $row0["refnogovtcol1"];
+                $p5 = $row0["refnogovtcol2"];
+                $p6 = $row0["refnogovtcol3"];
+                $p7 = $row0["refnoschoolcol1"];
+                $p8 = $row0["refnoschoolcol2"];
+                $p9 = $row0["refnoschoolcol3"];
+
+                $allp = $p1 . $p2 . $p3 . $p4 . $p5 . $p6 . $p7 . $p8 . $p9;
+
+
                 $basic = $row0["basic"];
                 $incen = $row0["incentive"];
                 $house = $row0["house"];
@@ -382,6 +614,7 @@ if ($result0->num_rows > 0) {
                 $retire = $row0["retire"];
                 $gex1 = $row0["govtcol1"];
                 $gex2 = $row0["govtcol2"];
+                $gex3 = $row0["govtcol3"];
                 $net = $row0["govt"];  //
 
                 $salary = $row0["salary"];
@@ -394,9 +627,12 @@ if ($result0->num_rows > 0) {
                 $pf = $row0["pf"];
                 $sex1 = $row0["schoolcol1"];
                 $sex2 = $row0["schoolcol2"];
+                $sex3 = $row0["schoolcol3"];
                 $net2 = $row0["school"];
                 $edit_lock = $row0["edit_lock"];
+                $showhide = '';
 
+                $dispuchtotal += $net + $net2;
                 // $issslot = $row0["slots"]; $issgovt = $row0["govt"]; $isssch = $row0["school"]; $isspf = $row0["pf"];
             }
         } else {
@@ -404,32 +640,61 @@ if ($result0->num_rows > 0) {
             $kalar = 'white';
             $iiid = 0;
 
+            $allp = '';
 
+            $basic = 0;
+            $incen = 0;
+            $house = 0;
+            $medical = 0;
+            $arrea = 0;
+            $welfare = 0;
+            $retire = 0;
+            $gex1 = 0;
+            $gex2 = 0;
+            $gex3 = 0;
+            $net = 0;
 
-
+            $salary = 0;
+            $mpa = 0;
+            $travel = 0;
+            $med2 = 0;
+            $exam = 0;
+            $fest = 0;
+            $arr2 = 0;
+            $pf = 0;
+            $sex1 = 0;
+            $sex2 = 0;
+            $sex3 = 0;
+            $net2 = 0;
+            $edit_lock = 0;
+            $showhide = ' hidden';
         }
 
 
-        if ($edit_lock == 1) {
-            $bbb = 'success';
+        $total_total += $net + $net2;
+        if ($allp != '') {
+            $bbb = 'dark';
+            $total_issue += $net + $net2;
         } else {
-
-            if ($found == 0) {
-                $bbb = 'danger';
-            } else {
+            if ($edit_lock == 1) {
                 $bbb = 'warning';
+                $total_dispuch += $net + $net2;
+            } else {
+                if ($found == 0) {
+                    $bbb = 'success';
+                    $total_nooff += $net + $net2;
+                } else {
+                    $bbb = 'danger';
+                    $total_payoff += $net + $net2;
+                }
             }
         }
 
         ?>
-        <div class="row d-print-none">
+        <div class="row d-print-none" <?php echo $showhide; ?>>
             <div class="col-12 grid-margin stretch-card">
                 <div class="card border-primary ">
                     <div class="card-body">
-
-
-
-
                         <div>
                             <div class="row">
                                 <div class="col-md-9 d-block">
@@ -471,26 +736,35 @@ if ($result0->num_rows > 0) {
                                             <!-- <h6 class="dropdown-header">Settings</h6> -->
 
                                             <?php
-                                            if ($found == 1) {
-                                                if ($edit_lock == 0) { ?>
-                                                    <button class="dropdown-item btn btn-inverse-success btn-fw p-2 "
-                                                        id="btt<?php echo $tid; ?>"
-                                                        onclick="issueyn('yes', 'dispuch', <?php echo $iiid; ?>);">Dispuch this
-                                                        Bill</button>
-                                                <?php } else { ?>
-                                                    <button class="dropdown-item btn btn-inverse-warning btn-fw  p-2"
+
+                                            if ($allp != '') {
+                                                ?>
+                                                <button class="dropdown-item btn btn-inverse-dark text-secondary btn-fw p-2 "
+                                                    id="btt<?php echo $tid; ?>" onclick="dddd();">Check Already Issued</button>
+                                                <?php
+                                            } else {
+                                                if ($found == 1) {
+                                                    if ($edit_lock == 0) { ?>
+                                                        <button class="dropdown-item btn btn-inverse-success btn-fw p-2 "
+                                                            id="btt<?php echo $tid; ?>"
+                                                            onclick="issueyn('yes', 'dispuch', <?php echo $iiid; ?>);">Dispuch this
+                                                            Bill</button>
+                                                    <?php } else { ?>
+                                                        <button class="dropdown-item btn btn-inverse-warning btn-fw  p-2"
+                                                            id="btt<?php echo $tid; ?>"
+                                                            onclick="issueyn('no', 'dispuch', <?php echo $iiid; ?>);">Return this
+                                                            Bill</button>
+                                                    <?php }
+                                                } else {
+                                                    ?>
+                                                    <button class="dropdown-item btn btn-inverse-danger btn-fw  p-2"
                                                         id="btt<?php echo $tid; ?>"
                                                         onclick="issueyn('no', 'dispuch', <?php echo $iiid; ?>);">Return this
                                                         Bill</button>
-                                                <?php }
-                                            } else {
-                                                ?>
-                                                <button class="dropdown-item btn btn-inverse-danger btn-fw  p-2"
-                                                    id="btt<?php echo $tid; ?>"
-                                                    onclick="issueyn('no', 'dispuch', <?php echo $iiid; ?>);">Return this
-                                                    Bill</button>
-                                                <?php
+                                                    <?php
+                                                }
                                             }
+
 
                                             ?>
 
@@ -505,7 +779,7 @@ if ($result0->num_rows > 0) {
 
 
 
-                            <div class="row pb-0" hidden>
+                            <div class="row pb-0">
                                 <div class="col-12 d-flex">
                                     <div class="ml-1"><input id="a<?php echo $tid; ?>" type="text"
                                             class="form-control text-right" value="<?php echo $basic; ?>" />
@@ -562,7 +836,7 @@ if ($result0->num_rows > 0) {
                                 </div>
                             </div>
 
-                            <div class="row" hidden>
+                            <div class="row">
                                 <div class="col-12 d-flex">
                                     <div class="ml-1">
                                         <input id="i<?php echo $tid; ?>" type="text" class="form-control text-right"
@@ -654,6 +928,57 @@ if ($result0->num_rows > 0) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card  ">
             <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table text-right">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center text-white">
+                                            <b><?php echo number_format($total_nooff, 2); ?></b>
+                                        </th>
+                                        <th class="text-center text-white">
+                                            <b><?php echo number_format($total_payoff, 2); ?></b>
+                                        </th>
+                                        <th class="text-center text-white">
+                                            <b><?php echo number_format($total_dispuch, 2); ?></b>
+                                        </th>
+                                        <th class="text-center text-white">
+                                            <b><?php echo number_format($total_issue, 2); ?></b>
+                                        </th>
+                                        <th class="text-center text-white">
+                                            <b><?php echo number_format($total_total, 2); ?></b>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center text-white table-danger"><b><small>Not Paid</small></b>
+                                        </th>
+                                        <th class="text-center text-white table-success"><b><small>Paid Off</small></b>
+                                        </th>
+                                        <th class="text-center text-white table-warning"><b><small>Dispuched</small></b>
+                                        </th>
+                                        <th class="text-center text-white table-dark"><b><small>Cheque
+                                                    Issued</small></b></th>
+                                        <th class="text-center text-white table-info"><b><small>Calculated
+                                                    Total</small></b></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card  ">
+            <div class="card-body">
 
                 <div class="row">
                     <h4 class="text-white">Cheque Details</h4>
@@ -666,6 +991,7 @@ if ($result0->num_rows > 0) {
                                 <?php
 
                                 $ratio = 1;
+                                $totalchqvalue = 0;
                                 $sql0 = "SELECT * FROM slots where sccode='$sccode' order by id ";
                                 // echo $sql0;
                                 $result03456 = $conn->query($sql0);
@@ -787,7 +1113,9 @@ if ($result0->num_rows > 0) {
                                             } else {
 
 
-
+                                                if ($cate == 'school' || $cate == 'govt') {
+                                                    $cate .= 'chq';
+                                                }
                                                 $sql0 = "SELECT sum($cate) as taka FROM salarydetails where sccode='$sccode' and month='$month' and year='$year' and slots='$slots' ";
                                                 // echo $sql0 . '<br>';
                                                 $result034567 = $conn->query($sql0);
@@ -796,9 +1124,20 @@ if ($result0->num_rows > 0) {
                                                         $taka = $row0["taka"] * $ratio;
                                                     }
                                                 }
+                                                if ($cate == 'schoolchq') {
+                                                    $cate = 'school';
+                                                }
+                                                if ($cate == 'govtchq') {
+                                                    $cate = 'govt';
+                                                }
+
+                                                if ($lp > 2) {
+                                                    $cate = $cad;
+                                                }
                                             }
                                             $id = 0;
-                                            $sql0 = "SELECT * FROM salarysummery where sccode='$sccode' and month='$month' and year='$year' and slot='$slots' and category='$cate'";
+                                            $sql0 = "SELECT * FROM salarysummery where sccode='$sccode' and salarymonth='$month' and salaryyear='$year' and slot='$slots' and category='$cate'";
+                                            // echo $sql0;
                                             $result0345678 = $conn->query($sql0);
                                             if ($result0345678->num_rows > 0) {
                                                 while ($row0 = $result0345678->fetch_assoc()) {
@@ -808,6 +1147,7 @@ if ($result0->num_rows > 0) {
                                                     $chq = $row0["chequeno"];
                                                     $date = $row0["date"];
                                                     $status = $row0["status"];
+                                                    // $issuetaka = $row0["amount"];
                                                 }
                                             } else {
                                                 $tonka = 0;
@@ -816,83 +1156,117 @@ if ($result0->num_rows > 0) {
                                                 $chq = '';
                                                 $date = '';
                                                 $status = 0;
+                                                // $issuetaka = 0;
                                             }
                                             if ($chk == 1) {
-                                                ?>
-                                                <tr>
-                                                    <td>
+                                                if ($taka > 0) {
+                                                    ?>
+                                                    <tr>
+                                                        <td>
 
-                                                        <span class="x1 text-small " id="slot<?php echo $slots; ?><?php echo $cate; ?>"
-                                                            style="font-weight:700; line-height:1.5;"><?php echo strtoupper($slots); ?></span>
-                                                        <br>
-                                                        <span class="x2" id="cate<?php echo $slots; ?><?php echo $cate; ?>"
-                                                            style=""><?php echo strtoupper($cad); ?></span>
+                                                            <span class="x1 text-small " id="slot<?php echo $slots; ?><?php echo $cate; ?>"
+                                                                style="font-weight:700; line-height:1.5;"><?php echo strtoupper($slots); ?></span>
+                                                            <br>
+                                                            <span class="x2" id="cate<?php echo $slots; ?><?php echo $cate; ?>"
+                                                                style=""><?php echo strtoupper($cad); ?></span>
 
-                                                    </td>
-                                                    <td>
+                                                        </td>
+                                                        <td>
 
-                                                    </td>
-                                                    <td>
-                                                        <input id="ref<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                            type="text" placeholder="Ref No." value="<?php if ($ref != '') {
-                                                                echo $ref;
-                                                            } ?>" />
+                                                        </td>
+                                                        <td>
 
-                                                    </td>
-                                                    <td>
-                                                        <input id="dt<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                            type="date" placeholder="Date" value="<?php if ($date != '') {
-                                                                echo $date;
-                                                            } ?>" />
-                                                    </td>
+                                                            <div class="dropdown">
+                                                                <input type="text" class="input form-control"
+                                                                    id="ref<?php echo $slots; ?><?php echo $cate; ?>" data-toggle="dropdown"
+                                                                    placeholder="Ref No." aria-haspopup="true" aria-expanded="false" value="<?php if ($ref != '') {
+                                                                        echo $ref;
+                                                                    } ?>" />
 
-                                                    <td>
-                                                        <input id="chq<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                            type="text" placeholder="Cheque No." value="<?php if ($chq != '') {
-                                                                echo $chq;
-                                                            } ?>" />
-
-                                                    </td>
-                                                    <td>
-                                                        <input id="bank<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                            type="text" placeholder="..." />
-                                                    </td>
-                                                    <td>
-                                                        <div id="amt<?php echo $slots; ?><?php echo $cate; ?>"
-                                                            style="font-size:16px; text-align:right; font-weight:bold;">
-                                                            <?php echo $taka; ?>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div id="ssp<?php echo $slots; ?><?php echo $cate; ?>">
-                                                            <?php
-                                                            if ($status == 0) {
-                                                                if ($tonka > 0) { ?>
-                                                                    <button class="btn btn-danger  btn-rounded btn-icon"
-                                                                        style="padding:5px 0 0 3px;"
-                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
-                                                                        <i class="mdi mdi-delete-forever" style="font-size:18px;"></i>
-                                                                    </button>
-                                                                <?php } else { ?>
-                                                                    <button class="btn btn-success  btn-rounded btn-icon"
-                                                                        style="padding:5px 0 0 3px;"
-                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
-                                                                        <i class="mdi mdi-content-save"></i>
-                                                                    </button>
-                                                                <?php }
-                                                            } ?>
-                                                        </div>
-                                                        <div id=""></div>
-                                                    </td>
-                                                </tr>
+                                                                <div class=" dropdown-menu"
+                                                                    aria-labelledby="ref<?php echo $slots; ?><?php echo $cate; ?>">
+                                                                    <button class="dropdown-item btn btn-block text-secondary" id=""
+                                                                        onclick="getref('<?php echo $slots; ?>','<?php echo $cate; ?>', <?php echo $month; ?>,<?php echo $year; ?>);">Get
+                                                                        New Ref. ID</button>
+                                                                </div>
+                                                            </div>
 
 
-                                            <?php }
+
+                                                        </td>
+                                                        <td>
+                                                            <input id="dt<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                                type="date" placeholder="Date" value="<?php if ($date != '') {
+                                                                    echo $date;
+                                                                } ?>" />
+                                                        </td>
+
+                                                        <td>
+                                                            <input id="chq<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                                type="text" placeholder="Cheque No." value="<?php if ($chq != '') {
+                                                                    echo $chq;
+                                                                } ?>" />
+
+                                                        </td>
+                                                        <td>
+                                                            <input id="bank<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                                type="text" placeholder="..." />
+                                                        </td>
+                                                        <td>
+                                                            <div id="amt<?php echo $slots; ?><?php echo $cate; ?>"
+                                                                style="font-size:16px; text-align:right; font-weight:bold;">
+                                                                <?php echo $taka; ?>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="ssp<?php echo $slots; ?><?php echo $cate; ?>">
+
+
+                                                                <button class="btn btn-inverse-primary " data-bs-toggle="modal"
+                                                                    data-bs-target="#myModal" style="padding:5px 0 0 3px;"
+                                                                    onclick="modal('<?php echo $slots; ?>', '<?php echo $cate; ?>', <?php echo $id; ?>, <?php echo $status; ?>);">
+                                                                    <i class="mdi mdi-arrow-right" style="font-size:18px;"></i>
+                                                                </button>
+
+                                                                <?php
+                                                                if ($status == 0) {
+
+                                                                    if ($tonka > 0) { ?>
+                                                                        <button class="btn btn-danger  btn-rounded btn-icon"
+                                                                            style="padding:5px 0 0 3px;"
+                                                                            onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
+                                                                            <i class="mdi mdi-delete-forever" style="font-size:18px;"></i>
+                                                                        </button>
+                                                                    <?php } else { ?>
+                                                                        <button class="btn btn-success  btn-rounded btn-icon"
+                                                                            style="padding:5px 0 0 3px;"
+                                                                            onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
+                                                                            <i class="mdi mdi-content-save"></i>
+                                                                        </button>
+                                                                    <?php }
+                                                                } ?>
+                                                            </div>
+                                                            <div id=""></div>
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <?php
+                                                    $totalchqvalue += $taka;
+                                                }
+                                            }
                                         }
                                     }
                                 }
                                 ?>
                             </tbody>
+                            <tfotter>
+                                <tr class="bg-muted text-danger">
+                                    <th colspan="6" class="text-right text-danger">Total :</th>
+                                    <th class="text-right"><?php echo number_format($totalchqvalue, 2); ?></th>
+                                    <th></th>
+                                </tr>
+                            </tfotter>
                         </table>
                     </div>
                 </div>
@@ -921,7 +1295,31 @@ include 'footer.php';
 
 
 
+<script>
+    function getref(slot, cate, month, year) {
+        var infor = "year=" + year + "&month=" + month + "&slot=" + slot + "&category=" + cate + "&tail=0";
+        // alert(infor);
+        var x = document.getElementById("ref" + slot + cate).value;
+        // alert(x);
+        document.getElementById("ref" + slot + cate).value = '';
 
+        $.ajax({
+            type: "POST",
+            url: "backend/fetch-ref.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                document.getElementById("ref" + slot + cate).value = 'Checking...';
+            },
+            success: function (html) {
+                document.getElementById("ref" + slot + cate).value = html;
+                // $("#gogg").html(html);
+                // alert(html);
+                // document.location.href = 'report.php';
+            }
+        });
+    }
+</script>
 
 
 <script>
@@ -960,6 +1358,13 @@ include 'footer.php';
                 // document.location.href = 'report.php';
             }
         });
+    }
+</script>
+
+<script>
+    function goref() {
+        var refno = document.getElementById("refissue").value;
+        window.open("refbook.php?refno=" + refno);
     }
 </script>
 
@@ -1017,11 +1422,14 @@ include 'footer.php';
         var w = document.getElementById("w" + id).value;
         var x = document.getElementById("x" + id).value;
 
+        var yo = document.getElementById("yo" + id).value;
+        var py = document.getElementById("py" + id).value;
+
 
         var infor = "year=" + year + "&month=" + month + "&tid=" + id + "&iid=" + iid
             + "&a=" + a + "&b=" + b + "&c=" + c + "&d=" + d + "&e=" + e + "&f=" + f + "&g=" + g + "&h=" + h
             + "&i=" + i + "&j=" + j + "&k=" + k + "&l=" + l + "&m=" + m + "&n=" + n + "&o=" + o + "&p=" + p + "&q=" + q + "&r=" + r
-            + "&u=" + u + "&v=" + v + "&w=" + w + "&x=" + x
+            + "&u=" + u + "&v=" + v + "&w=" + w + "&x=" + x + "&yo=" + yo + "&py=" + py
             ;
         $("#sto" + id).html("");
 
@@ -1040,4 +1448,110 @@ include 'footer.php';
             }
         });
     }
+</script>
+
+<script>
+    function fetchref() {
+        var rrr = document.getElementById('refissue').value;
+        var infor = 'ref=' + rrr;
+
+
+        // alert(infor);
+        $("#jabjab").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/fetch-ref-info.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#jabjab').html('<span class=""><center>..</center></span>');
+            },
+            success: function (html) {
+                $("#jabjab").html(html);
+
+                var a1 = document.getElementById('a1').innerHTML;
+                document.getElementById('monthissue').value = a1;
+                var a2 = document.getElementById('a2').innerHTML;
+                document.getElementById('yearissue').value = a2;
+                var a3 = document.getElementById('a3').innerHTML;
+                document.getElementById('reftitleissue').value = a3;
+                var a4 = document.getElementById('a4').innerHTML;
+                document.getElementById('refdescripissue').value = a4;
+                var a5 = document.getElementById('a5').innerHTML;
+                document.getElementById('chqissue').value = a5;
+                var a6 = document.getElementById('a6').innerHTML;
+                document.getElementById('accissue').value = a6;
+                var a8 = document.getElementById('a8').innerHTML;
+                document.getElementById('partissue').value = a8;
+
+            }
+        });
+    }
+
+</script>
+
+<script>
+    function modal(slot, category, id, status) {
+
+        var ref = document.getElementById("ref" + slot + category).value;
+        var amt = parseInt(document.getElementById("amt" + slot + category).innerHTML);
+
+        document.getElementById("kotkot").innerHTML = category;
+        document.getElementById("ssll").innerHTML = slot;
+        document.getElementById("refissue").value = ref
+        document.getElementById("cash").innerHTML = amt
+
+
+        fetchref();
+
+    }
+</script>
+
+
+<script>
+    function save(id, tail) {
+        var month = document.getElementById('monthissue').value;
+        var year = document.getElementById('yearissue').value;
+
+        var salmonth = document.getElementById('month').value;
+        var salyear = document.getElementById('year').value;
+
+        var ref = document.getElementById('refissue').value;
+        var chq = document.getElementById('chqissue').value;
+        var acc = document.getElementById('accissue').value;
+
+        var partid = document.getElementById('partissue').value;
+        var slot = document.getElementById('ssll').innerHTML;
+        var kotkot = document.getElementById('kotkot').innerHTML;
+
+        var title = document.getElementById('reftitleissue').value;
+        var descrip = document.getElementById('refdescripissue').value;
+
+        var amt = document.getElementById('cash').innerHTML;
+
+
+        var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail + "&title=" + title + "&descrip=" + descrip + "&partid=" + partid + "&slot=" + slot + "&kotkot=" + kotkot + '&salmonth=' + salmonth + "&salyear=" + salyear;
+
+        // alert(infor);
+        $("#sspdxx").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/save-payroll-cheque.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#sspdxx').html('<span class=""><center>Check Issue....</center></span>');
+            },
+            success: function (html) {
+                $("#sspdxx").html(html);
+
+                // document.getElementById('sspdxx').innerHTML = document.getElementById('sspd').innerHTML;
+                // document.getElementById('sspd').innerHTML = '';
+                // window.location.href = 'expenditure.php?addnew' + taild;
+            }
+        });
+    }
+
 </script>

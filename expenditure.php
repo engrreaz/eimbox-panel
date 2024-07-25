@@ -82,7 +82,8 @@ if ($resultixx->num_rows > 0) {
                 <div id="" class="input-control select full-size error">
                     <div class="row">
                         <div class="col-md-3"><label class="form-control bg-dark">Amount</label></div>
-                        <div class="col-md-9">
+                        <div class="col-md-3"><label id="ssll" class="form-control"></label></div>
+                        <div class="col-md-6">
                             <label id="cash" class="form-control text-right ">0.00</label>
                         </div>
                     </div>
@@ -131,8 +132,9 @@ if ($resultixx->num_rows > 0) {
                     <div class="row">
                         <div class="col-md-3"><label class="form-control bg-dark">Ref. No.</label></div>
                         <div class="col-md-3">
-                            <button class="btn"><i class="mdi mdi-sync"></i></button>
+                            <button onclick="fetchref();" class="btn"><i class="mdi mdi-sync"></i></button>
                         </div>
+                        <div id="jabjab"></div>
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="refissue" />
                         </div>
@@ -157,13 +159,42 @@ if ($resultixx->num_rows > 0) {
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Cheque No.</label>
+                            <label class="form-control bg-dark">Ref. Category</label>
+                        </div>
+                        <div class="col-md-9">
+                            <select id="partissue" name="partissue" class="form-control text-white" onchange="modal();">
+
+                                <?php
+                                $sql0x = "SELECT * FROM financesetup where (sccode='$sccode' or sccode=0) and particulareng!='' and (sessionyear='$sy' or sessionyear=0) order by particulareng ;";
+                                $result0xt = $conn->query($sql0x);
+                                if ($result0xt->num_rows > 0) {
+                                    while ($row0x = $result0xt->fetch_assoc()) {
+                                        $partidx = $row0x["id"];
+                                        $pe = $row0x["particulareng"];
+                                        $pb = $row0x["particularben"];
+                                        if ($partidx == $partidq) {
+                                            $sel = 'selected';
+                                        } else {
+                                            $sel = '';
+                                        }
+                                        echo '<option value="' . $partidx . '" ' . $sel . '>' . $pe . ' &bull; ' . $pb . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-control bg-dark">Cheque #</label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="chqissue" />
                         </div>
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Bank Account</label>
+                            <label class="form-control bg-dark">Account #</label>
                         </div>
                         <div class="col-md-3">
                             <select id="accissue" name="accissue" class="form-control text-white" onchange="modal();">
@@ -201,6 +232,7 @@ if ($resultixx->num_rows > 0) {
 
             <!-- Modal footer -->
             <div class="modal-footer">
+                <span id="sspdxx"></span>
                 <button type="button" class="btn btn-inverse-success" onclick="save(99,5);">Issue</button>
                 <button type="button" class="btn btn-inverse-danger" data-bs-dismiss="modal">Close</button>
             </div>
@@ -523,6 +555,7 @@ $txt = $_COOKIE['txt'];
                                         $descrip = $row0x["particulars"];
                                         $amount = $row0x["amount"];
                                         $stst = $row0x["status"];
+                                        $mmox = $row0x["memono"];
                                     }
                                 } else {
                                     $date = '';
@@ -530,6 +563,7 @@ $txt = $_COOKIE['txt'];
                                     $amount = '';
                                     $descrip = '';
                                     $stst = '0';
+                                    $mmox = '';
 
                                 }
                                 // $ = $row0x[""];
@@ -550,6 +584,15 @@ $txt = $_COOKIE['txt'];
                                             }
                                             ?>
                                         </select>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Memo No (set blank if set memono later.):
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="mmo"
+                                            value="<?php echo $mmox; ?>" />
                                     </td>
                                     <td></td>
                                 </tr>
@@ -673,17 +716,17 @@ $txt = $_COOKIE['txt'];
                                 $vouchertotal = 0;
                                 if ($refno > 0) {
                                     // echo 'ref<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno' and slots = '$slot'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno' and slots = '$slot'  and type='$inex'  order by memono, id;";
                                 } else if ($month > 0) {
                                     // echo 'month<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  and slots = '$slot'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  and slots = '$slot'  and type='$inex'  order by memono, id;";
                                 } else if ($undef == '' || $undef == NULL) {
                                     // echo 'undef<br>';
-                                    $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes')  and type='Expenditure'  and slots = '$slot'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes' or sccode='$sccode')   and (status = 0 or status IS NULL) and type='$inex' and slots='$slot'  and partid > 4  order by date desc,  memono desc, id;";
                                 } else if ($all != $sccode) {
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes')  and type='Expenditure'  and slots = '$slot'  order by date desc, memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes')    order by date desc, memono desc, id;";
                                 } else {
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0 and type='Expenditure'  and slots = '$slot'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0   order by memono, id;";
                                 }
                                 // echo $sql0x;
                                 $result0x = $conn->query($sql0x);
@@ -705,12 +748,21 @@ $txt = $_COOKIE['txt'];
                                         $amt = $row0x["amount"];
                                         $module = $row0x["module"];
                                         $status = $row0x["status"];
+                                        $otg = $row0x["ongoing"] * 1;
+                                        $otgx = 7 - $otg;
+                                        if ($otg == 1) {
+                                            $otgcol = 'success';
+                                        } else {
+                                            $otgcol = 'secondary';
+                                        }
 
 
                                         $mottaka += $amt;
+                                        $fn = 'savenx';
                                         if ($memo > 0) {
                                             $memotaka += $amt;
-                                            if ($module == 'VOUCHER') {
+                                            $fn = 'saven';
+                                            if ($module == 'VOUCHER' && $status == 0 && $otg == 1) {
                                                 $vouchertotal += $amt;
                                             }
                                         }
@@ -719,9 +771,15 @@ $txt = $_COOKIE['txt'];
                                         ?>
                                         <tr>
                                             <td>
-                                                <?php if ($icons != '' || $icons != NULL) {
-                                                    echo '<i class="mdi mdi-' . $icons . ' mdi-18px"></i>';
-                                                } ?>
+                                                <?php if ($icons == '' || $icons == NULL) {
+                                                    $icons = 'hexagon';
+                                                }
+
+                                                ?>
+                                                <button class="btn" id="bbtn<?php echo $id; ?>"> <i
+                                                        class="mdi  mdi-<?php echo $icons; ?> text-<?php echo $otgcol; ?> mdi-18px"
+                                                        onclick="<?php echo $fn;?>(<?php echo $id; ?>, <?php echo $otgx; ?>)"></i></button>
+
                                             </td>
 
                                             <td>
@@ -736,7 +794,7 @@ $txt = $_COOKIE['txt'];
                                                 <?php echo $parti; ?>
                                                 <small class="d-block text-muted pt-2"><?php echo $ppp; ?></small>
                                             </td>
-                                            <td style="text-align:right;"><?php echo $amt; ?>.00</td>
+                                            <td style="text-align:right;"><?php echo number_format($amt, 2); ?></td>
 
                                             <td>
                                                 <?php
@@ -841,7 +899,8 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
-    document.getElementById("cash").innerHTML = "<small>BDT &nbsp;&nbsp;&nbsp;</small> <?php echo number_format($memotaka, 2); ?>";
+    document.getElementById("cash").innerHTML = "<small>BDT &nbsp;&nbsp;&nbsp;</small> <?php echo number_format($vouchertotal, 2); ?>";
+    document.getElementById("ssll").innerHTML = document.getElementById('dept2x').value;
     function go() {
         var s = document.getElementById('dept2x').value;
         var m = document.getElementById('month').value;
@@ -853,8 +912,8 @@ include 'footer.php';
         window.location.href = 'expenditure.php?&ref=' + m;
     }
     function go3() {
-        var m = document.getElementById('ref').value;
-        window.location.href = 'expenditure.php?&undef';
+        var m = document.getElementById('dept2x').value;
+        window.location.href = 'expenditure.php?&undef&slot='+m;
     }
     function showall() {
         window.location.href = 'expenditure.php?&all';
@@ -895,7 +954,7 @@ include 'footer.php';
 
 <script>
     function save(id, tail) {
-        // alert(tail);
+
         if (id == 0) tail = 0;
         if (tail == 0 || tail == 1) {
             var dept = document.getElementById('dept').value;
@@ -903,8 +962,9 @@ include 'footer.php';
             var cate = document.getElementById('cate').value;
             var descrip = document.getElementById('descrip').value;
             var amt = document.getElementById('amt').value;
+            var mmo = document.getElementById('mmo').value;
 
-            var infor = "dept=" + dept + '&date=' + date + '&cate=' + cate + '&descrip=' + descrip + '&amt=' + amt + '&id=' + id + "&tail=" + tail;
+            var infor = "dept=" + dept + '&date=' + date + '&cate=' + cate + '&descrip=' + descrip + '&amt=' + amt + '&id=' + id + "&tail=" + tail + "&mmo=" + mmo;
         } else if (tail == 2 || tail == 3) {
             var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
         } else if (tail == 5) {
@@ -914,12 +974,17 @@ include 'footer.php';
             var chq = document.getElementById('chqissue').value;
             var acc = document.getElementById('accissue').value;
 
+            var partid = document.getElementById('partissue').value;
+            var slot = document.getElementById('ssll').innerHTML;
+
             var title = document.getElementById('reftitleissue').value;
             var descrip = document.getElementById('refdescripissue').value;
 
-            var amt = '<?php echo $memotaka; ?>';
+            var amt = '<?php echo $vouchertotal; ?>';
 
-            var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail + "&title=" + title + "&descrip=" + descrip;
+            var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail + "&title=" + title + "&descrip=" + descrip + "&partid=" + partid + "&slot=" + slot;
+        } else if (tail == 6 || tail == 7) {
+            var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
         }
 
         // alert(infor);
@@ -954,12 +1019,89 @@ include 'footer.php';
                     document.getElementById('gex').innerHTML = document.getElementById('sspd').innerHTML;
                     document.getElementById('sspd').innerHTML = '';
                     window.location.href = 'expenditure.php?addnew' + taild;
+                } else if (tail == 5) {
+                    document.getElementById('sspdxx').innerHTML = document.getElementById('sspd').innerHTML;
+                    document.getElementById('sspd').innerHTML = '';
+                    // window.location.href = 'expenditure.php?addnew' + taild;
                 }
             }
         });
     }
 
 </script>
+
+<script>
+    function saven(id, tail) {
+
+        var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
+
+
+        // alert(infor);
+        $("#bbtn" + id).html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/savecash.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#bbtn' + id).html('<span class=""><center>..</center></span>');
+            },
+            success: function (html) {
+                $("#bbtn" + id).html(html);
+
+            }
+        });
+    }
+
+
+    function savenx(id, tail) {
+        alert('Sorry to select. Issue a memo first.');
+    }
+
+</script>
+
+<script>
+    function fetchref() {
+        var rrr = document.getElementById('refissue').value;
+        var infor = 'ref=' + rrr;
+
+
+        // alert(infor);
+        $("#jabjab").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "backend/fetch-ref-info.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#jabjab').html('<span class=""><center>..</center></span>');
+            },
+            success: function (html) {
+                $("#jabjab").html(html);
+
+                var a1 = document.getElementById('a1').innerHTML;
+                document.getElementById('monthissue').value = a1;
+                var a2 = document.getElementById('a2').innerHTML;
+                document.getElementById('yearissue').value = a2;
+                var a3 = document.getElementById('a3').innerHTML;
+                document.getElementById('reftitleissue').value = a3;
+                var a4 = document.getElementById('a4').innerHTML;
+                document.getElementById('refdescripissue').value = a4;
+                var a5 = document.getElementById('a5').innerHTML;
+                document.getElementById('chqissue').value = a5;
+                var a6 = document.getElementById('a6').innerHTML;
+                document.getElementById('accissue').value = a6;
+                var a8 = document.getElementById('a8').innerHTML;
+                document.getElementById('partissue').value = a8;
+
+            }
+        });
+    }
+
+</script>
+
 
 <script>
     function catt(tu) {

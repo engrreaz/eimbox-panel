@@ -6,17 +6,7 @@ $refno = '';
 $sccodes = $sccode * 10;
 $refdate = date('Y-m-d');
 
-if (isset($_GET['df'])) {
-    $datefrom = $_GET['df'];
-} else {
-    $datefrom = date('Y-m-01');
-}
 
-if (isset($_GET['dt'])) {
-    $dateto = $_GET['dt'];
-} else {
-    $dateto = date('Y-m-d');
-}
 
 if (isset($_GET['month'])) {
     $month = $_GET['month'];
@@ -31,9 +21,22 @@ if (isset($_GET['year'])) {
     $year = date('Y');
 }
 
-$datefrom = '2024-02-01';
-$dateto = '2024-02-29';
+// if (isset($_GET['df'])) {
+//     $datefrom = $_GET['df'];
+// } else {
+//     $datefrom = date('Y-m-01');
+// }
 
+// if (isset($_GET['dt'])) {
+//     $dateto = $_GET['dt'];
+// } else {
+//     $dateto = date('Y-m-d');
+// }
+
+$datefrom = date('Y-m-d', strtotime($year . '-' . $month . '-01'));
+$dateto = date('Y-m-d', strtotime($year . '-' . $month . '-' . date('t' , strtotime($datefrom))));
+
+echo $datefrom . '/' . $dateto;
 $col = 3;
 $status = 0;
 
@@ -47,7 +50,7 @@ if (isset($_GET['addnew'])) {
     $newblock = 'none';
     $exid = 0;
 }
-$month--;
+
 
 $stprofile = array();
 $sql00 = "SELECT * FROM students where  sccode='$sccode'";
@@ -60,9 +63,9 @@ if ($result00->num_rows > 0) {
 
 ?>
 
-<h3 class="d-print-none">Student's List</h3>
+<h3 class="d-print-none">Monthly Balance Sheet</h3>
 <p class="d-print-none">
-    <code>Reports <i class="mdi mdi-arrow-right"></i> Students List </code>
+    <code>Reports <i class="mdi mdi-arrow-right"></i> Monthly Balance Sheet </code>
 </p>
 
 <div class="row d-print-none">
@@ -72,21 +75,21 @@ if ($result00->num_rows > 0) {
                 <h6 class="text-muted font-weight-normal">
                 </h6>
                 <div class="row">
-                    <div class="col-md-3" >
+                    <div class="col-md-2" >
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date From</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" value="<?php echo $datefrom; ?>"
-                                    id="datefrom" />
+                                <input type="date" class="form-control  bg-dark " value="<?php echo $datefrom; ?>"
+                                    id="datefrom" disabled/>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-3" >
+                    <div class="col-md-2" >
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date To</label>
                             <div class="col-12">
-                                <input type="date" class="form-control" value="<?php echo $dateto; ?>" id="dateto" />
+                                <input type="date" class="form-control bg-dark" value="<?php echo $dateto; ?>" id="dateto" disabled />
                             </div>
                         </div>
                     </div>
@@ -270,6 +273,7 @@ if ($result0r1->num_rows > 0) {
     <div style="font-size:16px; font-weight:bold; text-align:center; border-bottom:1px solid black; padding:0 0 5px;">
         BALANCE SHEET : from <u><?php echo date('d/m/y', strtotime($datefrom)); ?></u> to
         <u><?php echo date('d/m/y', strtotime($dateto)); ?></u>
+        <div class="text-center mdi-format-bold">Income & Expenditure</div>
     </div>
 
     <table class="table table-bordered table-striped "
@@ -356,7 +360,7 @@ if ($result0r1->num_rows > 0) {
                         $cntamt = 0;
                         $takain = 0;
                         // $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
-                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and income > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";
+                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and income > 0 and date between '$datefrom' and '$dateto'  and partid > 2 group by partid order by partid;";
                         // $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and income > 0 and month = '$month' and year = '$year'  and module = 'VOUCHER' and type LIKE 'Income' group by partid order by partid;";
                         // echo $sql0; 
                         $result0 = $conn->query($sql0);
@@ -411,7 +415,7 @@ if ($result0r1->num_rows > 0) {
                         $takaex = 0;
                         // $sql0 = "SELECT * FROM financeitem where (sccode=0 or sccode='$sccode')  order by slno;";
                         // $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where (sccode='$sccode' || sccode='$sccodes') and expenditure > 0 and date between '$datefrom' and '$dateto' group by partid order by partid;";  and module = 'VOUCHER'
-                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where (sccode='$sccode' || sccode='$sccodes') and expenditure > 0 and month = '$month' and year = '$year' and type LIKE 'Expenditure' group by partid order by partid;";
+                        $sql0 = "SELECT partid, sum(income) as inco, sum(expenditure) as expe, sum(amount) as taka FROM cashbook where (sccode='$sccode' || sccode='$sccodes') and expenditure > 0 and month = '$month' and year = '$year' and type LIKE 'Expenditure' and partid > 2 group by partid order by partid;";
                         // echo $sql0; 
                         $result02 = $conn->query($sql0);
                         if ($result02->num_rows > 0) {
@@ -500,14 +504,17 @@ if ($result0r1->num_rows > 0) {
     </table>
 
 
-    <div style="font-size:16px; font-weight:bold; text-align:center; padding:8px;">Balance Enquiry</div>
+    
 
-    <table style="width:100%;">
+    <table style="width:100%; margin-top:5mm;">
         <tr>
             <td style="width:50%;" rowspan="2">
                 <table class="table table-bordered table-striped "
                     style=" border:1px solid gray !important; border-collapse:collapse; width:100%;" id="main-table-2">
                     <thead>
+                        <tr>
+                            <th colspan="2" class=""><div style="font-size:16px; font-weight:bold; border:0; text-align:center; padding:4px;">Balance Enquiry</div></th>
+                        </tr>
                         <tr>
                             <th class="txt-right">Description</th>
                             <th class="txt-right">Amount</th>
@@ -528,7 +535,7 @@ if ($result0r1->num_rows > 0) {
                                 $branch = $row0["branch"];
 
 
-                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
+                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1 and balance>0 order by verifytime desc limit 1;";
                                 // echo $sql0x;
                                 $result0r12 = $conn->query($sql0x);
                                 if ($result0r12->num_rows > 0) {
@@ -625,9 +632,11 @@ include 'footer.php';
                 // cont += '<tr><td style="padding : 3px 10px; border:1px solid gray;"></td><td style="padding : 3px 10px; border:1px solid gray;"></td></tr>';
                 var row = tblr.insertRow(lap);
                 var cell1 = row.insertCell(0);
-                cell1.innerHTML = "&nbsp;";
+                cell1.innerHTML = "";
                 var cell2 = row.insertCell(1);
-                cell2.innerHTML = "";
+
+                cell2.style.padding = '2px';
+                cell2.innerHTML = "&nbsp;";
             }
         } else if (cnt2 > cnt) {
             var ex = cnt2 - cnt;
@@ -637,9 +646,11 @@ include 'footer.php';
                 // cont += '<tr><td style="padding : 3px 10px; border:1px solid gray;"></td><td style="padding : 3px 10px; border:1px solid gray;"></td></tr>';
                 var row = tbll.insertRow(lap);
                 var cell1 = row.insertCell(0);
-                cell1.innerHTML = "&nbsp;";
+                cell1.innerHTML = "";
                 var cell2 = row.insertCell(1);
-                cell2.innerHTML = "";
+                
+                cell2.style.padding = '2px';
+                cell2.innerHTML = "&nbsp;";
             }
         }
 

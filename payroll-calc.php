@@ -45,8 +45,9 @@ if (isset($_GET['y'])) {
         var q = parseInt(document.getElementById("q" + id).value);
         var u = parseInt(document.getElementById("u" + id).value);
         var v = parseInt(document.getElementById("v" + id).value);
+        var yo = parseInt(document.getElementById("yo" + id).value);
 
-        var h = a + b + c + d + e - f - g + q + u + v;
+        var h = a + b + c + d + e - f - g + q + u + v + yo;
 
 
         var i = parseInt(document.getElementById("i" + id).value);
@@ -59,8 +60,9 @@ if (isset($_GET['y'])) {
         var r = parseInt(document.getElementById("r" + id).value);
         var w = parseInt(document.getElementById("w" + id).value);
         var x = parseInt(document.getElementById("x" + id).value);
+        var py = parseInt(document.getElementById("py" + id).value);
 
-        var p = i + j + k + l + m + n - o + r + w + x;
+        var p = i + j + k + l + m + n - o + r + w + x + py;
         console.log(id + '/' + p + '<br>');
 
         document.getElementById("h" + id).value = h;
@@ -76,7 +78,7 @@ if (isset($_GET['y'])) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                
+
                 <div class="row">
 
                     <div class="col-md-2">
@@ -127,7 +129,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <button type="button" class="btn btn-inverse-success btn-block p-2 pt-2" 
+                                <button type="button" class="btn btn-inverse-success btn-block p-2 pt-2"
                                     onclick="go();">Show Details</button>
 
                             </div>
@@ -165,6 +167,13 @@ if (isset($_GET['y'])) {
                                     $s3title = $row0["school3title"];
                                     $s3type = $row0["school3type"];
                                     $s3val = $row0["school3value"];
+
+                                    $g1chq = $row0["govt1chq"];
+                                    $g2chq = $row0["govt2chq"];
+                                    $g3chq = $row0["govt3chq"];
+                                    $s1chq = $row0["school1chq"];
+                                    $s2chq = $row0["school2chq"];
+                                    $s3chq = $row0["school3chq"];
                                 }
                             } else {
                                 $g1title = '';
@@ -186,38 +195,47 @@ if (isset($_GET['y'])) {
                                 $s3title = '';
                                 $s3type = '';
                                 $s3val = '';
+
+                                $g1chq = 0;
+                                $g2chq = 0;
+                                $g3chq = 0;
+                                $s1chq = 0;
+                                $s2chq = 0;
+                                $s3chq = 0;
                             }
 
-
+                            $alltitle = $g1title . $g2title . $g3title . $s1title . $s2title . $s3title;
 
 
                             ?>
 
                             <div class="cardx ">
                                 <div class="card-bodyx code-pro text-small">
-                                    <h6 class="text-muted font-weight-normal text-small">
-                                        Record found for the month of
-                                        <b><?php $xx = strtotime($year . '-' . $month . '-01');
-                                        echo date('F, Y', $xx) ?></b>
-                                    </h6>
-                                    <?php
-                                    if ($g1title != '') {
-                                        echo 'Extra Column Title (Govt.) : ' . $g1title . ' by ' . $g1type . ' of ' . $g1val . '<br>';
-                                    }
-                                    if ($g2title != '') {
-                                        echo 'Extra Column Title (Govt.) : ' . $g2title . ' by ' . $g2type . ' of ' . $g2val . '<br>';
-                                    }
-                                    if ($g3title != '') {
-                                        echo 'Extra Column Title (Govt.) : ' . $g3title . ' by ' . $g3type . ' of ' . $g3val . '<br>';
-                                    }
-                                    if ($s1title != '') {
-                                        echo 'Extra Column Title (School) : ' . $s1title . ' by ' . $s1type . ' of ' . $s1val . '<br>';
-                                    }
-                                    if ($s2title != '') {
-                                        echo 'Extra Column Title (School) : ' . $s2title . ' by ' . $s2type . ' of ' . $s2val . '<br>';
-                                    }
-                                    if ($s3title != '') {
-                                        echo 'Extra Column Title (School) : ' . $s3title . ' by ' . $s3type . ' of ' . $s3val . '<br>';
+                                    <?php if ($alltitle != '') { ?>
+                                        <h6 class="text-muted font-weight-normal text-small">
+                                            Bonus/Incentive found for the month of
+                                            <b><?php $xx = strtotime($year . '-' . $month . '-01');
+                                            echo date('F, Y', $xx) ?></b>
+                                        </h6>
+                                        <?php
+                                        if ($g1title != '') {
+                                            echo 'Govt # 1 : ' . $g1title . ' by ' . $g1type . ' of ' . $g1val . '<br>';
+                                        }
+                                        if ($g2title != '') {
+                                            echo 'Govt # 2 : ' . $g2title . ' by ' . $g2type . ' of ' . $g2val . '<br>';
+                                        }
+                                        if ($g3title != '') {
+                                            echo 'Govt # 3 : ' . $g3title . ' by ' . $g3type . ' of ' . $g3val . '<br>';
+                                        }
+                                        if ($s1title != '') {
+                                            echo '<br>Institute # 1 : ' . $s1title . ' by ' . $s1type . ' of ' . $s1val . '<br>';
+                                        }
+                                        if ($s2title != '') {
+                                            echo 'Institute # 2 : ' . $s2title . ' by ' . $s2type . ' of ' . $s2val . '<br>';
+                                        }
+                                        if ($s3title != '') {
+                                            echo 'Institute # 3 : ' . $s3title . ' by ' . $s3type . ' of ' . $s3val . '<br>';
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -239,6 +257,8 @@ if (isset($_GET['y'])) {
 
 <?php
 $edit_lock = 0;
+$total_sanctioned = 0;
+$total_total = $total_payoff = $total_dispuch = $total_issue = $total_nooff = 0;
 $sql0 = "SELECT * FROM teacher where sccode='$sccode' order by ranks, tid";
 // echo $sql0;
 $result0 = $conn->query($sql0);
@@ -372,6 +392,21 @@ if ($result0->num_rows > 0) {
                 $kalar = '#eee';
                 $iiid = $row0["id"]; // $yes = $row0["tid"];
 
+                $p1 = $row0["refnogovt"];
+                $p2 = $row0["refnosch"];
+                $p3 = $row0["refnopf"];
+                $p4 = $row0["refnogovtcol1"];
+                $p5 = $row0["refnogovtcol2"];
+                $p6 = $row0["refnogovtcol3"];
+                $p7 = $row0["refnoschoolcol1"];
+                $p8 = $row0["refnoschoolcol2"];
+                $p9 = $row0["refnoschoolcol3"];
+
+                $allp = $p1 . $p2 . $p3 . $p4 . $p5 . $p6 . $p7 . $p8 . $p9;
+
+
+
+
                 $basic = $row0["basic"];
                 $incen = $row0["incentive"];
                 $house = $row0["house"];
@@ -396,28 +431,39 @@ if ($result0->num_rows > 0) {
                 $net2 = $row0["school"];
                 $edit_lock = $row0["edit_lock"];
 
+                $total_sanctioned += $net + $net2;
                 // $issslot = $row0["slots"]; $issgovt = $row0["govt"]; $isssch = $row0["school"]; $isspf = $row0["pf"];
             }
         } else {
             $found = 0;
             $kalar = 'white';
             $iiid = 0;
-
-
+            $edit_lock = 0;
+            $allp = '';
 
 
         }
 
-
-        if ($edit_lock == 1) {
-            $bbb = 'warning';
+        $total_total += $net + $net2;
+        if ($allp != '') {
+            $bbb = 'dark';
+            $total_issue += $net + $net2;
         } else {
-            if ($found == 0) {
-                $bbb = 'success';
+            if ($edit_lock == 1) {
+                $bbb = 'warning';
+                $total_dispuch += $net + $net2;
             } else {
-                $bbb = 'danger';
+                if ($found == 0) {
+                    $bbb = 'success';
+                    $total_nooff += $net + $net2;
+                } else {
+                    $bbb = 'danger';
+                    $total_payoff += $net + $net2;
+                }
             }
         }
+
+
 
         ?>
         <div class="row d-print-none">
@@ -464,24 +510,39 @@ if ($result0->num_rows > 0) {
                                         <!-- <h6 class="dropdown-header">Settings</h6> -->
 
                                         <?php
-                                        if ($edit_lock == 0) {
-                                            if ($found == 0) { ?>
-                                                <button class="dropdown-item btn btn-inverse-success btn-fw p-2 "
-                                                    id="btt<?php echo $tid; ?>"
-                                                    onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Payoff</button>
-                                            <?php } else { ?>
-                                                <button class="dropdown-item btn btn-inverse-danger btn-fw  p-2"
-                                                    id="btt<?php echo $tid; ?>"
-                                                    onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Refund
-                                                    Amount</button>
-                                            <?php }
+                                        if ($allp == '') {
+                                            if ($edit_lock == 0) {
+                                                if ($found == 0) { ?>
+                                                    <button class="dropdown-item btn btn-inverse-success btn-fw p-2 "
+                                                        id="btt<?php echo $tid; ?>"
+                                                        onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Payoff</button>
+                                                <?php } else { ?>
+                                                    <button class="dropdown-item btn btn-inverse-danger btn-fw  p-2"
+                                                        id="btt<?php echo $tid; ?>"
+                                                        onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Refund
+                                                        Amount</button>
+                                                <?php }
 
+                                                ?>
+                                                <button class="dropdown-item btn btn-inverse-primary btn-fw   p-2"
+                                                    onclick="calc(<?php echo $tid; ?>);">Re
+                                                    Calc</button>
+
+                                            <?php } else {
+                                                ?>
+                                                <button class="dropdown-item btn btn-inverse-warning btn-fw   p-2"
+                                                    onclick="dissss();">Already Dispuched</button>
+                                                <?php
+                                            }
+
+                                        } else {
                                             ?>
-                                            <button class="dropdown-item btn btn-inverse-primary btn-fw   p-2"
-                                                onclick="calc(<?php echo $tid; ?>);">Re
-                                                Calc</button>
+                                            <button class="dropdown-item btn btn-inverse-dark text-secondary btn-fw   p-2"
+                                                onclick="dissss();">Cheque Already Issued.</button>
+                                            <?php
+                                        }
 
-                                        <?php } ?>
+                                        ?>
 
 
                                     </div>
@@ -611,8 +672,12 @@ if ($result0->num_rows > 0) {
                                     <input id="p<?php echo $tid; ?>" type="text" class="form-control text-right"
                                         value="<?php echo $net2; ?>" />
                                     <label class=" text-small pl-2">Total</label>
-                                </div>
 
+
+                                    <?php
+                                    // echo $total_sanctioned;
+                                    ?>
+                                </div>
                             </div>
                         </div>
 
@@ -628,11 +693,44 @@ if ($result0->num_rows > 0) {
                 </div>
             </div>
         </div>
-    <?php }
+        <?php
+    }
 } ?>
 
 
 <div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table text-right">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center text-white"><b><?php echo number_format($total_nooff, 2); ?></b></th>
+                                <th class="text-center text-white"><b><?php echo number_format($total_payoff, 2); ?></b></th>
+                                <th class="text-center text-white"><b><?php echo number_format($total_dispuch, 2); ?></b></th>
+                                <th class="text-center text-white"><b><?php echo number_format($total_issue, 2); ?></b></th>
+                                <th class="text-center text-white"><b><?php echo number_format($total_total, 2); ?></b></th>
+                            </tr>
+                            <tr>
+                                <th class="text-center text-white table-danger"><b><small>Not Paid</small></b></th>
+                                <th class="text-center text-white table-success"><b><small>Paid Off</small></b></th>
+                                <th class="text-center text-white table-warning"><b><small>Dispuched</small></b></th>
+                                <th class="text-center text-white table-dark"><b><small>Cheque Issued</small></b></th>
+                                <th class="text-center text-white table-info"><b><small>Calculated Total</small></b></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" hidden>
     <div class="col-12 grid-margin stretch-card">
         <div class="card  ">
             <div class="card-body">
@@ -672,9 +770,9 @@ if ($result0->num_rows > 0) {
                                                 $cate = 'expenditure';
                                                 $ratio = 1;
                                                 $cad = 'Expenditure';
-                                            } 
+                                            }
 
-                                            
+
 
 
 
@@ -893,11 +991,22 @@ include 'footer.php';
         var w = document.getElementById("w" + id).value;
         var x = document.getElementById("x" + id).value;
 
+        var yo = document.getElementById("yo" + id).value;
+        var py = document.getElementById("py" + id).value;
+
+        var g1 = '<?php echo $g1chq; ?>';
+        var g2 = '<?php echo $g2chq; ?>';
+        var g3 = '<?php echo $g3chq; ?>';
+        var gchq = h - (u * g1 + v * g2 + yo * g3);
+        var s1 = '<?php echo $s1chq; ?>';
+        var s2 = '<?php echo $s2chq; ?>';
+        var s3 = '<?php echo $s3chq; ?>';
+        var schq = p - (w * s1 + x * s2 + py * s3);
 
         var infor = "year=" + year + "&month=" + month + "&tid=" + id + "&iid=" + iid
             + "&a=" + a + "&b=" + b + "&c=" + c + "&d=" + d + "&e=" + e + "&f=" + f + "&g=" + g + "&h=" + h
             + "&i=" + i + "&j=" + j + "&k=" + k + "&l=" + l + "&m=" + m + "&n=" + n + "&o=" + o + "&p=" + p + "&q=" + q + "&r=" + r
-            + "&u=" + u + "&v=" + v + "&w=" + w + "&x=" + x
+            + "&u=" + u + "&v=" + v + "&w=" + w + "&x=" + x + "&yo=" + yo + "&py=" + py + "&gchq=" + gchq + "&schq=" + schq
             ;
         $("#sto" + id).html("");
 
