@@ -143,10 +143,10 @@ if (isset($_GET['y'])) {
                         <div class="col-md-3">
                             <button title="Refresh Refrence Details" onclick="fetchref();" class="btn">
                                 <i class="mdi mdi-sync"></i></button>
-                              <div id="jabjab"></div>  
+                            <div id="jabjab"></div>
                         </div>
 
-                        
+
                         <div class="col-md-6">
 
                             <div class="form-group btn-block">
@@ -1135,6 +1135,7 @@ if ($result0->num_rows > 0) {
                                                     $cate = $cad;
                                                 }
                                             }
+
                                             $id = 0;
                                             $sql0 = "SELECT * FROM salarysummery where sccode='$sccode' and salarymonth='$month' and salaryyear='$year' and slot='$slots' and category='$cate'";
                                             echo $sql0 . '<br><br>';
@@ -1160,16 +1161,15 @@ if ($result0->num_rows > 0) {
                                             }
                                             if ($chk == 1) {
                                                 if ($taka > 0) {
+                                                    echo "<br>---------------------<br>";
                                                     ?>
                                                     <tr>
                                                         <td>
-
                                                             <span class="x1 text-small " id="slot<?php echo $slots; ?><?php echo $cate; ?>"
                                                                 style="font-weight:700; line-height:1.5;"><?php echo strtoupper($slots); ?></span>
                                                             <br>
                                                             <span class="x2" id="cate<?php echo $slots; ?><?php echo $cate; ?>"
                                                                 style=""><?php echo strtoupper($cad); ?></span>
-
                                                         </td>
                                                         <td>
 
