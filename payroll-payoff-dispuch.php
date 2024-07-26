@@ -1114,7 +1114,7 @@ if ($result0->num_rows > 0) {
 
 
                                                 if ($cate == 'school' || $cate == 'govt') {
-                                                    $cate .= 'chq';
+                                                    // $cate .= 'chq';
                                                 }
                                                 $sql0 = "SELECT sum($cate) as taka FROM salarydetails where sccode='$sccode' and month='$month' and year='$year' and slots='$slots' ";
                                                 echo $sql0 . '<br>';
