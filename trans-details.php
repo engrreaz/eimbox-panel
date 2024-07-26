@@ -10,6 +10,23 @@ if (isset($_GET['user'])) {
     $user = '';
 }
 
+$tname = '-';
+$sql0x1 = "SELECT * FROM usersapp where sccode='$sccode' and email='$user'";
+$result0xn1 = $conn->query($sql0x1);
+if ($result0xn1->num_rows > 0) {
+    while ($row0x1 = $result0xn1->fetch_assoc()) {
+        $userid = $row0x1["userid"];
+    }
+}
+$sql0x2 = "SELECT * FROM teacher where sccode='$sccode' and tid='$userid'";
+$result0xn2 = $conn->query($sql0x2);
+if ($result0xn2->num_rows > 0) {
+    while ($row0x2 = $result0xn2->fetch_assoc()) {
+        $tname = $row0x2["tname"];
+    }
+}
+
+
 // DELETE PREVIOUS RECORD
 $setp3upd = "DELETE FROM transaction_details where sccode='$sccode' and user = '$user'; ";
 $conn->query($setp3upd);
@@ -115,7 +132,6 @@ if ($result0xn02->num_rows > 0) {
 
 
 // GET STUDENT STPR Records
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $sql0x = "SELECT prdate, sum(amount) as collec FROM stpr where sccode='$sccode' and entryby = '$user' group by prdate order by prdate";
@@ -138,8 +154,6 @@ if ($result0xn0->num_rows > 0) {
         }
     }
 }
-
-
 
 
 // GET Cashbook income
@@ -204,107 +218,31 @@ $conn->query($setp77upd);
 
 ?>
 
-<h3>Transactions Details by Users</h3>
+<h3>User Transactions Detail</h3>
 
-<div class="row" hidden>
+<div class="row">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-12">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Salary Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
-                                    <option value="0"></option>
-                                    <?php
-                                    for ($x = 1; $x <= 12; $x++) {
-                                        $flt = '';
-                                        $xx = strtotime(date('Y') . '-' . $x . '-01');
-                                        if ($month == $x) {
-                                            $flt = 'selected';
-                                        }
-                                        echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
-                                    }
-                                    ?>
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-2">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Salary Year</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="year">
-                                    <option value="0"></option>
-                                    <?php
-                                    for ($y = date('Y'); $y >= 2024; $y--) {
-                                        $flt2 = '';
-                                        if ($year == $y) {
-                                            $flt2 = 'selected';
-                                        }
-                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">Dispuch Period</label>
-                            <div class="col-12">
-                                <select class="form-control text-white" id="dispuch">
-
-                                    <?php
-                                    for ($dis = 1; $dis <= 1; $dis++) {
-                                        $flt22 = '';
-                                        if ($disx == $dis) {
-                                            $flt22 = 'selected';
-                                        }
-                                        echo '<option value="' . $dis . '"' . $flt22 . '>' . $dis . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
-                            <div class="col-12">
-                                <button type="button" class="btn btn-inverse-primary btn-block pb-2 pt-2"
-                                    onclick="go();">View Progress</button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group row">
-                            <label class="col-form-label pl-3">&nbsp;</label>
-                            <div class="col-12">
-
-                                <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-inverse-info">
-                                        <i class="mdi mdi-file-document mdi-18px"></i> View
-                                    </button>
-                                    <button type="button" class="btn btn-inverse-primary">
-                                        <i class="mdi mdi-printer mdi-18px"></i> Print
-                                    </button>
-                                    <button type="button" class="btn btn-inverse-danger">
-                                        <i class="mdi mdi-file-pdf mdi-18px"></i> PDF
-                                    </button>
+                                <div class="m-0 p-0 pb-1">
+                                     <?php echo $tname; ?>
                                 </div>
-
+                                <div class="p-0 m-0 text-small text-muted"><?php echo $user; ?></div>
+                                
+                               
                             </div>
                         </div>
                     </div>
+
+
+
+  
+
+          
                 </div>
             </div>
         </div>
@@ -318,7 +256,7 @@ $conn->query($setp77upd);
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-        
+
 
                 </h6>
                 <div class="row">
@@ -379,7 +317,8 @@ $conn->query($setp77upd);
 
                                                     <div id="ssp<?php echo $id; ?>">
                                                         <button class="btn btn-inverse-warning p-1 pl-2 pr-2 text-small"
-                                                            onclick="trans(<?php echo $user; ?>);" class=""><small>Details</small></button>
+                                                            onclick="trans(<?php echo $user; ?>);"
+                                                            class=""><small>Details</small></button>
 
                                                     </div>
 
