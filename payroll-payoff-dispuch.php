@@ -1117,7 +1117,7 @@ if ($result0->num_rows > 0) {
                                                     $cate .= 'chq';
                                                 }
                                                 $sql0 = "SELECT sum($cate) as taka FROM salarydetails where sccode='$sccode' and month='$month' and year='$year' and slots='$slots' ";
-                                                // echo $sql0 . '<br>';
+                                                echo $sql0 . '<br>';
                                                 $result034567 = $conn->query($sql0);
                                                 if ($result034567->num_rows > 0) {
                                                     while ($row0 = $result034567->fetch_assoc()) {
