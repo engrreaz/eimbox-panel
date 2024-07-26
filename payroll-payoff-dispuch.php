@@ -1159,101 +1159,103 @@ if ($result0->num_rows > 0) {
                                                 $status = 0;
                                                 // $issuetaka = 0;
                                             }
-                                            if ($chk == 1) {
-                                                if ($taka > 0) {
-                                                    echo "<br>---------------------<br>";
-                                                    ?>
-                                                    <tr>
-                                                        <td>
-                                                            <span class="x1 text-small " id="slot<?php echo $slots; ?><?php echo $cate; ?>"
-                                                                style="font-weight:700; line-height:1.5;"><?php echo strtoupper($slots); ?></span>
-                                                            <br>
-                                                            <span class="x2" id="cate<?php echo $slots; ?><?php echo $cate; ?>"
-                                                                style=""><?php echo strtoupper($cad); ?></span>
-                                                        </td>
-                                                        <td>
 
-                                                        </td>
-                                                        <td>
+                                            echo 'ABC ' . $chk . '/' . $taka . '//';
+                                            if ($chk == 1 && $taka > 0) {
 
-                                                            <div class="dropdown">
-                                                                <input type="text" class="input form-control"
-                                                                    id="ref<?php echo $slots; ?><?php echo $cate; ?>" data-toggle="dropdown"
-                                                                    placeholder="Ref No." aria-haspopup="true" aria-expanded="false" value="<?php if ($ref != '') {
-                                                                        echo $ref;
-                                                                    } ?>" />
+                                                echo "---------------------<br>";
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <span class="x1 text-small " id="slot<?php echo $slots; ?><?php echo $cate; ?>"
+                                                            style="font-weight:700; line-height:1.5;"><?php echo strtoupper($slots); ?></span>
+                                                        <br>
+                                                        <span class="x2" id="cate<?php echo $slots; ?><?php echo $cate; ?>"
+                                                            style=""><?php echo strtoupper($cad); ?></span>
+                                                    </td>
+                                                    <td>
 
-                                                                <div class=" dropdown-menu"
-                                                                    aria-labelledby="ref<?php echo $slots; ?><?php echo $cate; ?>">
-                                                                    <button class="dropdown-item btn btn-block text-secondary" id=""
-                                                                        onclick="getref('<?php echo $slots; ?>','<?php echo $cate; ?>', <?php echo $month; ?>,<?php echo $year; ?>);">Get
-                                                                        New Ref. ID</button>
-                                                                </div>
-                                                            </div>
+                                                    </td>
+                                                    <td>
 
-
-
-                                                        </td>
-                                                        <td>
-                                                            <input id="dt<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                                type="date" placeholder="Date" value="<?php if ($date != '') {
-                                                                    echo $date;
-                                                                } ?>" />
-                                                        </td>
-
-                                                        <td>
-                                                            <input id="chq<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                                type="text" placeholder="Cheque No." value="<?php if ($chq != '') {
-                                                                    echo $chq;
+                                                        <div class="dropdown">
+                                                            <input type="text" class="input form-control"
+                                                                id="ref<?php echo $slots; ?><?php echo $cate; ?>" data-toggle="dropdown"
+                                                                placeholder="Ref No." aria-haspopup="true" aria-expanded="false" value="<?php if ($ref != '') {
+                                                                    echo $ref;
                                                                 } ?>" />
 
-                                                        </td>
-                                                        <td>
-                                                            <input id="bank<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
-                                                                type="text" placeholder="..." />
-                                                        </td>
-                                                        <td>
-                                                            <div id="amt<?php echo $slots; ?><?php echo $cate; ?>"
-                                                                style="font-size:16px; text-align:right; font-weight:bold;">
-                                                                <?php echo $taka; ?>
+                                                            <div class=" dropdown-menu"
+                                                                aria-labelledby="ref<?php echo $slots; ?><?php echo $cate; ?>">
+                                                                <button class="dropdown-item btn btn-block text-secondary" id=""
+                                                                    onclick="getref('<?php echo $slots; ?>','<?php echo $cate; ?>', <?php echo $month; ?>,<?php echo $year; ?>);">Get
+                                                                    New Ref. ID</button>
                                                             </div>
-                                                        </td>
-                                                        <td>
-                                                            <div id="ssp<?php echo $slots; ?><?php echo $cate; ?>">
+                                                        </div>
 
 
-                                                                <button class="btn btn-inverse-primary " data-bs-toggle="modal"
-                                                                    data-bs-target="#myModal" style="padding:5px 0 0 3px;"
-                                                                    onclick="modal('<?php echo $slots; ?>', '<?php echo $cate; ?>', <?php echo $id; ?>, <?php echo $status; ?>);">
-                                                                    <i class="mdi mdi-arrow-right" style="font-size:18px;"></i>
-                                                                </button>
 
-                                                                <?php
-                                                                if ($status == 0) {
+                                                    </td>
+                                                    <td>
+                                                        <input id="dt<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                            type="date" placeholder="Date" value="<?php if ($date != '') {
+                                                                echo $date;
+                                                            } ?>" />
+                                                    </td>
 
-                                                                    if ($tonka > 0) { ?>
-                                                                        <button class="btn btn-danger  btn-rounded btn-icon"
-                                                                            style="padding:5px 0 0 3px;"
-                                                                            onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
-                                                                            <i class="mdi mdi-delete-forever" style="font-size:18px;"></i>
-                                                                        </button>
-                                                                    <?php } else { ?>
-                                                                        <button class="btn btn-success  btn-rounded btn-icon"
-                                                                            style="padding:5px 0 0 3px;"
-                                                                            onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
-                                                                            <i class="mdi mdi-content-save"></i>
-                                                                        </button>
-                                                                    <?php }
-                                                                } ?>
-                                                            </div>
-                                                            <div id=""></div>
-                                                        </td>
-                                                    </tr>
+                                                    <td>
+                                                        <input id="chq<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                            type="text" placeholder="Cheque No." value="<?php if ($chq != '') {
+                                                                echo $chq;
+                                                            } ?>" />
+
+                                                    </td>
+                                                    <td>
+                                                        <input id="bank<?php echo $slots; ?><?php echo $cate; ?>" class="form-control"
+                                                            type="text" placeholder="..." />
+                                                    </td>
+                                                    <td>
+                                                        <div id="amt<?php echo $slots; ?><?php echo $cate; ?>"
+                                                            style="font-size:16px; text-align:right; font-weight:bold;">
+                                                            <?php echo $taka; ?>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div id="ssp<?php echo $slots; ?><?php echo $cate; ?>">
 
 
-                                                    <?php
-                                                    $totalchqvalue += $taka;
-                                                }
+                                                            <button class="btn btn-inverse-primary " data-bs-toggle="modal"
+                                                                data-bs-target="#myModal" style="padding:5px 0 0 3px;"
+                                                                onclick="modal('<?php echo $slots; ?>', '<?php echo $cate; ?>', <?php echo $id; ?>, <?php echo $status; ?>);">
+                                                                <i class="mdi mdi-arrow-right" style="font-size:18px;"></i>
+                                                            </button>
+
+                                                            <?php
+                                                            if ($status == 0) {
+
+                                                                if ($tonka > 0) { ?>
+                                                                    <button class="btn btn-danger  btn-rounded btn-icon"
+                                                                        style="padding:5px 0 0 3px;"
+                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
+                                                                        <i class="mdi mdi-delete-forever" style="font-size:18px;"></i>
+                                                                    </button>
+                                                                <?php } else { ?>
+                                                                    <button class="btn btn-success  btn-rounded btn-icon"
+                                                                        style="padding:5px 0 0 3px;"
+                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
+                                                                        <i class="mdi mdi-content-save"></i>
+                                                                    </button>
+                                                                <?php }
+                                                            } ?>
+                                                        </div>
+                                                        <div id=""></div>
+                                                    </td>
+                                                </tr>
+
+
+                                                <?php
+                                                $totalchqvalue += $taka;
+
                                             }
                                         }
                                     }
