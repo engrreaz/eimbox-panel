@@ -707,18 +707,18 @@ if ($result0->num_rows > 0) {
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th class="text-center text-white"><b><?php echo number_format($total_nooff, 2); ?></b></th>
+                                <th class="text-center text-muted"><b><?php echo number_format($total_nooff, 2); ?></b></th>
                                 <th class="text-center text-white"><b><?php echo number_format($total_payoff, 2); ?></b></th>
-                                <th class="text-center text-white"><b><?php echo number_format($total_dispuch, 2); ?></b></th>
-                                <th class="text-center text-white"><b><?php echo number_format($total_issue, 2); ?></b></th>
-                                <th class="text-center text-white"><b><?php echo number_format($total_total, 2); ?></b></th>
+                                <th class="text-center text-muted"><b><?php echo number_format($total_dispuch, 2); ?></b></th>
+                                <th class="text-center text-muted"><b><?php echo number_format($total_issue, 2); ?></b></th>
+                                <th class="text-center text-muted"><b><?php echo number_format($total_total, 2); ?></b></th>
                             </tr>
                             <tr>
-                                <th class="text-center text-white table-danger"><b><small>Not Paid</small></b></th>
+                                <th class="text-center text-muted table-danger"><b><small>Not Paid</small></b></th>
                                 <th class="text-center text-white table-success"><b><small>Paid Off</small></b></th>
-                                <th class="text-center text-white table-warning"><b><small>Dispuched</small></b></th>
-                                <th class="text-center text-white table-dark"><b><small>Cheque Issued</small></b></th>
-                                <th class="text-center text-white table-info"><b><small>Calculated Total</small></b></th>
+                                <th class="text-center text-muted table-warning"><b><small>Dispuched</small></b></th>
+                                <th class="text-center text-muted table-dark"><b><small>Cheque Issued</small></b></th>
+                                <th class="text-center text-muted table-info"><b><small>Calculated Total</small></b></th>
                             </tr>
                         </thead>
                     </table>

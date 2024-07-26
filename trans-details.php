@@ -206,7 +206,7 @@ $conn->query($setp77upd);
 
 <h3>Transactions Details by Users</h3>
 
-<div class="row">
+<div class="row" hidden>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -318,7 +318,7 @@ $conn->query($setp77upd);
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted font-weight-normal">
-                    Record found for the month of
+        
 
                 </h6>
                 <div class="row">
@@ -327,14 +327,14 @@ $conn->query($setp77upd);
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th> date </th>
-                                        <th> Income </th>
-                                        <th> Coll </th>
-                                        <th> Withdraw </th>
-                                        <th> In </th>
-                                        <th> Ex </th>
-                                        <th> depo </th>
-                                        <th> Out </th>
+                                        <th> Date </th>
+                                        <th class="text-right"> Income </th>
+                                        <th class="text-right"> Collection </th>
+                                        <th class="text-right"> Withdrawal </th>
+                                        <th class="text-right"> Cash-In </th>
+                                        <th class="text-right"> Expense </th>
+                                        <th class="text-right"> To Bank </th>
+                                        <th class="text-right"> Cash-Out </th>
                                         <th class="text-right"> Balance </th>
                                         <th></th>
                                     </tr>
@@ -365,21 +365,21 @@ $conn->query($setp77upd);
                                             ?>
                                             <tr>
                                                 <td><?php echo $date; ?></td>
-                                                <td><?php echo $income; ?></td>
-                                                <td><?php echo $stpr; ?></td>
-                                                <td><?php echo $withdrawal; ?></td>
-                                                <td><?php echo $trans_in; ?></td>
-                                                <td><?php echo $expenditure; ?></td>
-                                                <td><?php echo $deposit; ?></td>
-                                                <td><?php echo $trans_out; ?></td>
+                                                <td class="text-right"><?php echo $income; ?></td>
+                                                <td class="text-right"><?php echo $stpr; ?></td>
+                                                <td class="text-right"><?php echo $withdrawal; ?></td>
+                                                <td class="text-right"><?php echo $trans_in; ?></td>
+                                                <td class="text-right"><?php echo $expenditure; ?></td>
+                                                <td class="text-right"><?php echo $deposit; ?></td>
+                                                <td class="text-right"><?php echo $trans_out; ?></td>
 
                                                 <td class="text-right"><?php echo number_format($balbal, 2); ?></td>
 
                                                 <td>
 
                                                     <div id="ssp<?php echo $id; ?>">
-                                                        <button class="btn btn-inverse-warning p-0 pl-2 pr-2 text-small"
-                                                            onclick="trans(<?php echo $user; ?>);" class="">Details</button>
+                                                        <button class="btn btn-inverse-warning p-1 pl-2 pr-2 text-small"
+                                                            onclick="trans(<?php echo $user; ?>);" class=""><small>Details</small></button>
 
                                                     </div>
 

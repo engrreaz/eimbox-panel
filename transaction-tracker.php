@@ -123,7 +123,7 @@ $conn->query($setp7upd);
 
 <h3>Transactions Summery by Users</h3>
 
-<div class="row">
+<div class="row" hidden>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -234,7 +234,7 @@ $conn->query($setp7upd);
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="text-muted font-weight-normal">
+                <h6 class="text-muted font-weight-normal" hidden>
                     Record found for the month of
                     <b><?php $xx = strtotime($year . '-' . $month . '-01');
                     echo date('F, Y', $xx) ?></b>
@@ -242,18 +242,19 @@ $conn->query($setp7upd);
                 <div class="row">
 
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover text-secondary">
                             <thead>
                                 <tr>
                                     <th> #</th>
                                     <th> User</th>
-                                    <th class="text-right"> Balance</th>
+                                    <th class="text-right"> Net Balance</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $sl = 1; $ttt = 0;
+                                $sl = 1;
+                                $ttt = 0;
                                 // $sql0x = "SELECT * FROM salarysummery where sccode='$sccode' and sessionyear = '$sy' and month='$month' and year='$year' order by refno;";
                                 $sql0x = "SELECT * FROM transaction_tracker where sccode='$sccode' and date='$track_date' order by balance desc";
                                 $result0xn = $conn->query($sql0x);
@@ -263,28 +264,53 @@ $conn->query($setp7upd);
                                         $user = $row0x["user"];
                                         $balance = $row0x["balance"];
                                         $ttt += $balance;
+                                        $tname = '-';
+                                        $sql0x1 = "SELECT * FROM usersapp where sccode='$sccode' and email='$user'";
+                                        $result0xn1 = $conn->query($sql0x1);
+                                        if ($result0xn1->num_rows > 0) {
+                                            while ($row0x1 = $result0xn1->fetch_assoc()) {
+                                                $userid = $row0x1["userid"];
+                                            }
+                                        }
+                                        $sql0x2 = "SELECT * FROM teacher where sccode='$sccode' and tid='$userid'";
+                                        $result0xn2 = $conn->query($sql0x2);
+                                        if ($result0xn2->num_rows > 0) {
+                                            while ($row0x2 = $result0xn2->fetch_assoc()) {
+                                                $tname = $row0x2["tname"];
+                                            }
+                                        }
+
                                         ?>
                                         <tr>
                                             <td><?php echo $sl; ?></td>
-                                            <td><?php echo $user; ?></td>
+                                            <td class="d-block">
+                                                <div class="m-0 p-0 pb-2 text-small text-muted">
+                                                    <?php echo $user; ?>
+                                                </div>
+                                                
+                                                <?php echo $tname; ?>
+                                            </td>
                                             <td class="text-right"><?php echo number_format($balance, 2); ?></td>
-                             
+
                                             <td>
 
                                                 <div id="ssp<?php echo $id; ?>">
-                                                    <button class="btn btn-inverse-warning p-1 pl-2 pr-2 text-small" onclick="trans('<?php echo $user; ?>');"> <small>Details</small></button>
+                                                    <button class="btn btn-inverse-warning p-1 pl-2 pr-2 text-small"
+                                                        onclick="trans('<?php echo $user; ?>');">
+                                                        <small>Details</small></button>
 
                                                 </div>
 
                                             </td>
                                         </tr>
-                                    <?php $sl++; }
+                                        <?php $sl++;
+                                    }
                                 } else { ?>
                                     <tr>
                                         <td colspan="7">No Data / Records Found.</td>
 
                                     </tr>
-                                <?php }  echo $ttt;?>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -314,7 +340,7 @@ include 'footer.php';
         window.location.href = 'detail-salary.php?m=' + m + '&y=' + y;
     }
     function trans(user) {
-       window.location.href = 'trans-details.php?user=' + user;
+        window.location.href = 'trans-details.php?user=' + user;
     }
 </script>
 
