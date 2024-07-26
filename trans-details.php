@@ -65,7 +65,7 @@ if ($result0xn2->num_rows > 0) {
         $setp44upd = "INSERT INTO transaction_details (id, sccode, user, date, income, stpr, withdrawal, deposit, expenditure, trans_in, trans_out, balance, entrytime) 
                                 VALUES (NULL, '$sccode', '$user', '$date', 0, 0, 0, 0, 0, '$trans_in', '$trans_out', 0, NULL); ";
         // echo $setp4upd;
-        // $conn->query($setp44upd);
+        $conn->query($setp44upd);
     }
 }
 
