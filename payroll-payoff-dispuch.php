@@ -1137,7 +1137,7 @@ if ($result0->num_rows > 0) {
                                             }
                                             $id = 0;
                                             $sql0 = "SELECT * FROM salarysummery where sccode='$sccode' and salarymonth='$month' and salaryyear='$year' and slot='$slots' and category='$cate'";
-                                            echo $sql0;
+                                            echo $sql0 . '<br><br>';
                                             $result0345678 = $conn->query($sql0);
                                             if ($result0345678->num_rows > 0) {
                                                 while ($row0 = $result0345678->fetch_assoc()) {
