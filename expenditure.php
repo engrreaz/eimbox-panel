@@ -316,7 +316,7 @@ $txt = $_COOKIE['txt'];
                     </div>
                     <div class="col-md-4 d-flex">
                         <div class="form-group row">
-                            <label class="col-form-label pl-3">Month</label>
+                            <label class="col-form-label pl-3">Issued Month</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="month">
                                     <option value="0"></option>
@@ -337,7 +337,7 @@ $txt = $_COOKIE['txt'];
                         </div>
 
                         <div class="form-group row pl-1">
-                            <label class="col-form-label pl-3">Year</label>
+                            <label class="col-form-label pl-3">Issued Year</label>
                             <div class="col-12">
                                 <select class="form-control text-white" id="year">
                                     <option value="0"></option>
@@ -572,7 +572,7 @@ $txt = $_COOKIE['txt'];
                                     <td>Dept. :
                                     </td>
                                     <td>
-                                        <select class="form-control" id="dept">
+                                        <select class="form-control text-secondary" id="dept">
                                             <?php
                                             $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
                                             $result0x2 = $conn->query($sql0x);
@@ -591,8 +591,7 @@ $txt = $_COOKIE['txt'];
                                     <td>Memo No (set blank if set memono later.):
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" id="mmo"
-                                            value="<?php echo $mmox; ?>" />
+                                        <input type="text" class="form-control" id="mmo" value="<?php echo $mmox; ?>" />
                                     </td>
                                     <td></td>
                                 </tr>
@@ -609,7 +608,7 @@ $txt = $_COOKIE['txt'];
                                     <td>Category :
                                     </td>
                                     <td>
-                                        <select class="form-control" id="cate">
+                                        <select class="form-control text-secondary" id="cate">
                                             <?php
                                             $sql0x = "SELECT * FROM financesetup where sccode='$sccode' and (sessionyear='$sy' || sessionyear=0) and inexex=1 order by particulareng;";
                                             $result0x3 = $conn->query($sql0x);
@@ -666,7 +665,7 @@ $txt = $_COOKIE['txt'];
                                         <div id="">
                                             <?php if ($stst == 0) { ?>
 
-                                                <button class="btn btn-primary"
+                                                <button class="btn btn-inverse-primary"
                                                     onclick="save(<?php echo $exid; ?>, 1);">Save</button>
                                             <?php } ?>
                                             <div id="gex"></div>
@@ -778,7 +777,7 @@ $txt = $_COOKIE['txt'];
                                                 ?>
                                                 <button class="btn" id="bbtn<?php echo $id; ?>"> <i
                                                         class="mdi  mdi-<?php echo $icons; ?> text-<?php echo $otgcol; ?> mdi-18px"
-                                                        onclick="<?php echo $fn;?>(<?php echo $id; ?>, <?php echo $otgx; ?>)"></i></button>
+                                                        onclick="<?php echo $fn; ?>(<?php echo $id; ?>, <?php echo $otgx; ?>)"></i></button>
 
                                             </td>
 
@@ -913,7 +912,7 @@ include 'footer.php';
     }
     function go3() {
         var m = document.getElementById('dept2x').value;
-        window.location.href = 'expenditure.php?&undef&slot='+m;
+        window.location.href = 'expenditure.php?&undef&slot=' + m;
     }
     function showall() {
         window.location.href = 'expenditure.php?&all';
@@ -954,7 +953,6 @@ include 'footer.php';
 
 <script>
     function save(id, tail) {
-
         if (id == 0) tail = 0;
         if (tail == 0 || tail == 1) {
             var dept = document.getElementById('dept').value;
@@ -966,6 +964,10 @@ include 'footer.php';
 
             var infor = "dept=" + dept + '&date=' + date + '&cate=' + cate + '&descrip=' + descrip + '&amt=' + amt + '&id=' + id + "&tail=" + tail + "&mmo=" + mmo;
         } else if (tail == 2 || tail == 3) {
+            if (tail == 2) {
+                var dia = confirm('Are you sure to delete this Expense?');
+                if (dia == false) { id = 0; }
+            }
             var infor = 'dept=&date=&cate=&descrip=&amt=&id=' + id + "&tail=" + tail;
         } else if (tail == 5) {
             var month = document.getElementById('monthissue').value;
