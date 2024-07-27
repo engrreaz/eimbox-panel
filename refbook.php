@@ -142,7 +142,7 @@ if ($idq > 0) {
                             <label class="form-label text-small">Category</label>
                             <select class="form-control text-white" id="category">
                                 <?php
-                                $sql0x = "SELECT * FROM financesetup where (sccode='$sccode' or sccode=0) and particulareng!='' and (sessionyear='$sy' or sessionyear=0) order by particulareng ;";
+                                $sql0x = "SELECT * FROM financesetup where (sccode=0) and particulareng!='' and (sessionyear=0) order by particulareng ;";
                                 $result0xt = $conn->query($sql0x);
                                 if ($result0xt->num_rows > 0) {
                                     while ($row0x = $result0xt->fetch_assoc()) {
