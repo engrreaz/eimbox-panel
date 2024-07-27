@@ -549,7 +549,7 @@ if ($result0r1->num_rows > 0) {
                                 ?>
                                 <tr>
                                     <td><?php echo $accnos . ' (' . $acctype . ')'; ?></td>
-                                    <td class="text-right"><?php echo number_format($thisbal, 2); ?></td>
+                                    <td class="txt-right"><?php echo number_format($thisbal, 2); ?></td>
                                 </tr>
                                 <?php
 
