@@ -38,6 +38,19 @@ if (isset($_GET['all'])) {
 } else {
     $all = $sccode;
 }
+if (isset($_GET['bank'])) {
+    $bank = $_GET['bank'];
+} else {
+    $bank = 0;
+}
+
+if ($bank == 1) {
+    $bnkclr = 'warning';
+    $sq = '';
+} else {
+    $bnkclr = 'dark';
+    $sq = " and module !='BANK' ";
+}
 
 
 $status = 0;
@@ -393,7 +406,7 @@ $txt = $_COOKIE['txt'];
 
 
 
-                    <div class="col-md-4 d-flex d-block">
+                    <div class="col-md-4 d-flex d-block btn-group">
 
                         <div class="btn-group" role="group">
                             <div class="form-group row">
@@ -451,13 +464,15 @@ $txt = $_COOKIE['txt'];
 
                                 </div>
                             </div>
-                            <div class="form-group row" hidden>
+                            <div class="form-group row">
                                 <label class="col-form-label pl-3  d-md-flex d-sm-none">&nbsp;</label>
                                 <div class="col-12">
 
-                                    <button type="button" style="" title="Search" class="btn btn-inverse-warning"
-                                        style="" onclick="go4();" hidden>&nbsp;<i
-                                            class="mdi mdi-magnify mdi-18px"></i>&nbsp;</button>
+
+                                    <button type="button" style="" title="Bank On/Off"
+                                        class="btn btn-inverse-<?php echo $bnkclr; ?>" style=""
+                                        onclick="go4(<?php echo $bank; ?>);">&nbsp;<i
+                                            class="mdi mdi-bank mdi-18px"></i>&nbsp;</button>
 
                                 </div>
                             </div>
@@ -713,19 +728,20 @@ $txt = $_COOKIE['txt'];
                                 $mottaka = 0;
                                 $memotaka = 0;
                                 $vouchertotal = 0;
+
                                 if ($refno > 0) {
                                     // echo 'ref<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno' and slots = '$slot'  and type='$inex'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno' and slots = '$slot'  and type='$inex' " . $sq . "  order by memono, id;";
                                 } else if ($month > 0) {
                                     // echo 'month<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  and slots = '$slot'  and type='$inex'  order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  and slots = '$slot'  and type='$inex'  " . $sq . "  order by memono, id;";
                                 } else if ($undef == '' || $undef == NULL) {
                                     // echo 'undef<br>';
-                                    $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes' or sccode='$sccode')   and (status = 0 or status IS NULL) and type='$inex' and slots='$slot'  and partid > 4  order by date desc,  memono desc, id;";
+                                    $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes' or sccode='$sccode')   and (status = 0 or status IS NULL) and type='$inex' and slots='$slot'  and partid > 4  " . $sq . "  order by date desc,  memono desc, id;";
                                 } else if ($all != $sccode) {
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes')    order by date desc, memono desc, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes')   " . $sq . "   order by date desc, memono desc, id;";
                                 } else {
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0   order by memono, id;";
+                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0  " . $sq . "   order by memono, id;";
                                 }
                                 // echo $sql0x;
                                 $result0x = $conn->query($sql0x);
@@ -917,8 +933,29 @@ include 'footer.php';
     function showall() {
         window.location.href = 'expenditure.php?&all';
     }
-    function go4() {
-        document.getElementById('search').style.display = 'block';
+    function go4(onoff) {
+        const searchParams = new URLSearchParams(window.location.search);
+        var par = '';
+        var bb = 0;
+        onoff = Math.abs(onoff - 1);
+
+        for (const param of searchParams) {
+            if (param[0] == 'bank') {
+                param[1] = onoff;
+                bb = 1;
+            }
+            par += param[0] + '=' + param[1] + '&';
+        }
+
+        // alert(searchParams);
+        if (bb == 0) {
+            par += 'bank=' + onoff;
+        }
+
+        var lnk = 'expenditure.php?' + par;
+        //    alert(lnk);
+        window.location.href = lnk;
+
     }
     function addnew() {
         var und = '<?php echo $undef; ?>';
