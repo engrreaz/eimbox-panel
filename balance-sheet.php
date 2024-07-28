@@ -238,6 +238,7 @@ if ($result00->num_rows > 0) {
 
 $bankbal = 0;
 $sql0x = "SELECT * FROM bankinfo where sccode='$sccode'  and (closingdate IS NULL or closingdate >= '$dateto')  order by id;";
+$sql0x = "SELECT * FROM bankinfo where sccode='$sccode'   order by id;";
 $result0r10 = $conn->query($sql0x);
 if ($result0r10->num_rows > 0) {
     while ($row0x = $result0r10->fetch_assoc()) {
