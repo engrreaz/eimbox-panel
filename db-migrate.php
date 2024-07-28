@@ -23,3 +23,5 @@ update stfinance set idmon= CONCAT(stid, '-', partid, '-', month)
 
 
 Class Teacher/ Teacher / Principal Payment Option OK
+
+We, the undersigned members of the Audit Committee, audited the income and expenditure accounts of Dhaka High School for the month of January (from 01-01-2024 to 31-01-2024) on 07/01/2024. Thoroughly audited all income sections and expenditure vouchers including receipts and found correct. All accounts and financial status are listed below.

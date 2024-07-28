@@ -76,7 +76,7 @@ if ($idq > 0) {
                             <input type="date" class="form-control" value="<?php echo $dateq; ?>" id="date" />
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label text-small">Month</label>
+                            <label class="form-label text-small">Audit Month</label>
                          
                             <select class="form-control text-white" id="month">
                                     <option value="0"></option>
@@ -94,7 +94,7 @@ if ($idq > 0) {
                                 </select>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label text-small">Year</label>
+                            <label class="form-label text-small">Audit Year</label>
                             <select class="form-control text-white" id="year">
                                     <option value="0"></option>
                                     <?php

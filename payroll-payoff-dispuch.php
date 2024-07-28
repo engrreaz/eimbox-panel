@@ -100,7 +100,7 @@ if (isset($_GET['y'])) {
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Month</label>
+                            <label class="form-control bg-dark">Audit Month</label>
                         </div>
                         <div class="col-md-3">
                             <select class="form-control text-white" id="monthissue">
