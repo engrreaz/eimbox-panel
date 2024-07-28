@@ -797,7 +797,7 @@ $txt = $_COOKIE['txt'];
                                         if ($memo > 0) {
                                             $memotaka += $amt;
                                             $fn = 'saven';
-                                            if ($module == 'VOUCHER' && $status == 0 && $otg == 1) {
+                                            if ($module == 'VOUCHER' && $status >= 0 && $otg == 1) {
                                                 $vouchertotal += $amt;
                                             }
                                         }
