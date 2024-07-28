@@ -903,7 +903,7 @@ $txt = $_COOKIE['txt'];
                                         <button onclick="save(<?php echo $id; ?>,5);" class="icon-btn btn-success "
                                             hidden><i class="mdi mdi-flower"></i></button>
                                         <!-- set ref no. + month + year + issue check -->
-                                        <?php if ($vouchertotal > 0) { ?>
+                                        <?php if ($vouchertotal >= 0) { ?>
                                             <button type="button" id="modalbox" class="btn btn-inverse-success btn-block"
                                                 data-bs-toggle="modal" data-bs-target="#myModal">
                                                 Issue Expense
