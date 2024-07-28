@@ -524,7 +524,7 @@ if ($result0r1->num_rows > 0) {
                         <?php
 
                         $grandtotal = $thisbal = 0;
-                        $sql0 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id;";
+                        $sql0 = "SELECT * FROM bankinfo where sccode='$sccode' and (closingdate = NULL or closingdate >= '$dateto')  order by id;";
                         // echo $sql0; 
                         $result0l = $conn->query($sql0);
                         if ($result0l->num_rows > 0) {
