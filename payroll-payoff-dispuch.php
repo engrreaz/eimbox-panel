@@ -1242,7 +1242,7 @@ if ($result0->num_rows > 0) {
                                                                 <?php } else { ?>
                                                                     <button class="btn btn-success  btn-rounded btn-icon"
                                                                         style="padding:5px 0 0 3px;"
-                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);">
+                                                                        onclick="issue('<?php echo $slots; ?><?php echo $cate; ?>', <?php echo $id; ?>);" disabled>
                                                                         <i class="mdi mdi-content-save"></i>
                                                                     </button>
                                                                 <?php }
@@ -1531,9 +1531,10 @@ include 'footer.php';
         var descrip = document.getElementById('refdescripissue').value;
 
         var amt = document.getElementById('cash').innerHTML;
+        var refdate = document.getElementById('a9').innerHTML;
 
 
-        var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail + "&title=" + title + "&descrip=" + descrip + "&partid=" + partid + "&slot=" + slot + "&kotkot=" + kotkot + '&salmonth=' + salmonth + "&salyear=" + salyear;
+        var infor = "month=" + month + '&year=' + year + '&ref=' + ref + '&chq=' + chq + '&amt=' + amt + '&acc=' + acc + "&tail=" + tail + "&title=" + title + "&descrip=" + descrip + "&partid=" + partid + "&slot=" + slot + "&kotkot=" + kotkot + '&salmonth=' + salmonth + "&salyear=" + salyear + "&refdate=" + refdate;
 
         // alert(infor);
         $("#sspdxx").html("");

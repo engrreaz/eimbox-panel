@@ -15,6 +15,7 @@ if ($result0->num_rows > 0) {
 		$year = $row5["year"];
 		$title = $row5["title"];
 		$descrip = $row5["descrip"];
+		$refdate = $row5["date"];
 	}
 } else {
 	$id = 0;
@@ -23,6 +24,7 @@ if ($result0->num_rows > 0) {
 	$year = 0;
 	$title = '';
 	$descrip = '';
+	$refdate=$td;
 }
 
 
@@ -57,3 +59,4 @@ if($partid == 0) $partid = 5;
 <div id="a6" hidden><?php echo $accno; ?></div>
 <div id="a7" hidden><?php echo $amt; ?></div>
 <div id="a8" hidden><?php echo $partid; ?></div>
+<div id="a9" hidden><?php echo $refdate; ?></div>

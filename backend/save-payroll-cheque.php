@@ -26,6 +26,7 @@ $acc = $_POST['acc'];
 $amt = $_POST['amt'];
 $partid = $_POST['partid'];
 $slot = $_POST['slot'];
+$refdate = $_POST['refdate'];
 
 $sql0 = "SELECT * FROM `financesetup` where (sccode = 0 || sccode = '$sccode') and id='$partid';";
 // echo $sql0;
@@ -177,7 +178,7 @@ if ($partid != 5) {
     $conn->query($query405x);
 
     $query405rx = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
-    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$datex', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex', 0, '$amt', '$amt', '$usr', '$cur', 0, 'BANK', 1);";
+    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$refdate', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex', 0, '$amt', '$amt', '$usr', '$cur', 0, 'BANK', 1);";
     $conn->query($query405rx);
 } else {
 
@@ -190,13 +191,13 @@ if ($partid != 5) {
         while ($row0 = $result01xgg3->fetch_assoc()) {
             $id = $row0["id"];
             //update
-            $query405 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot',  partid = '2', particulars = '$pex', income='$amt', expenditure='0', amount = '$amt', module = 'BANK', status = '1' where sccode='$sccode' and id='$id';";
+            $query405 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot',  partid = '2', particulars = '$pex', income='$amt', expenditure='0', amount = '$amt', module = 'BANK', status = '1', date='$refdate' where sccode='$sccode' and id='$id';";
             // echo $query405;
             $conn->query($query405);
         }
     } else {
         $query405 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
-                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$td', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex', 0, '$amt', '$amt', '$usr', '$cur', 0, 'BANK', 1);";
+                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$refdate', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex', 0, '$amt', '$amt', '$usr', '$cur', 0, 'BANK', 1);";
         // echo $query405;
         $conn->query($query405);
     }
@@ -212,13 +213,13 @@ if ($partid != 5) {
             $id = $row0["id"];
             //update
             // echo $id;
-            $query406 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot', category = '$pe', partid = '$partid', particulars = '$pex', income='0', expenditure='$amt', amount = '$amt', module = 'BANK', status = '1' where sccode='$sccode' and id='$id';";
+            $query406 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot', category = '$pe', partid = '$partid', particulars = '$pex', income='0', expenditure='$amt', amount = '$amt', module = 'BANK', status = '1', date='$refdate' where sccode='$sccode' and id='$id';";
             // echo $query406;
             $conn->query($query406);
         }
     } else {
         $query406 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
-                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$td', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex',  0, '$amt', '$amt', 'System-AUTO', '$cur', 0, 'BANK', 1);";
+                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$refdate', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex',  0, '$amt', '$amt', 'System-AUTO', '$cur', 0, 'BANK', 1);";
         // echo $query406;
         $conn->query($query406);
     }
