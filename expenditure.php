@@ -23,6 +23,15 @@ if (isset($_GET['y'])) {
 } else {
     $year = 0;
 }
+
+if (isset($_GET['cal'])) {
+    $cal = $_GET['cal'];
+} else {
+    $cal = 0;
+}
+
+
+
 if (isset($_GET['ref'])) {
     $refno = $_GET['ref'];
 } else {
@@ -733,8 +742,17 @@ $txt = $_COOKIE['txt'];
                                     // echo 'ref<br>';
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = '$refno' and slots = '$slot'  and type='$inex' " . $sq . "  order by memono, id;";
                                 } else if ($month > 0) {
-                                    // echo 'month<br>';
-                                    $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  and slots = '$slot'  and type='$inex'  " . $sq . "  order by memono, id;";
+                                    if ($cal == 0) {
+                                        // echo 'month<br>';
+                                        $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and month = '$month' and year='$year'  and slots = '$slot'  and type='$inex'  " . $sq . "  order by memono, id;";
+                                    } else {
+                                        // echo 'month<br>';
+                                        $monthx = $month - 1;
+                                        $d1 = date('Y-m-d' , strtotime($year  . '-' . $monthx . '-01'));
+                                        $d2 = date('Y-m-d' , strtotime($year  . '-' . $monthx . '-t'));
+                                        $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and date between '$d1' and '$d2'  and slots = '$slot'  and type='$inex'  " . $sq . "  order by memono, date, id;";
+                                    }
+
                                 } else if ($undef == '' || $undef == NULL) {
                                     // echo 'undef<br>';
                                     $sql0x = "SELECT * FROM cashbook where ( sccode='$sccodes' or sccode='$sccode')   and (status = 0 or status IS NULL) and type='$inex' and slots='$slot'  and partid > 4  " . $sq . "  order by date desc,  memono desc, id;";
