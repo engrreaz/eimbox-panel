@@ -225,29 +225,32 @@ if ($partid != 5) {
     }
 
 
-    if ($partid == 6) {
-        // expenses entry
-        $sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and type='Income';  ";
-        // echo $sql0;
-        $result01xgg4 = $conn->query($sql0);
-        if ($result01xgg4->num_rows == 1) {
-            while ($row0 = $result01xgg4->fetch_assoc()) {
-                $id = $row0["id"];
-                //update
-                // echo $id;
-                $query406 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot', category = '$pe', partid = '$partid', particulars = '$pex', income='$amt', expenditure='0', amount = '$amt', module = 'BANK', status = '1', date='$refdate' where sccode='$sccode' and id='$id';";
-                $conn->query($query406);
-            }
-        } else {
-            $query406 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
-                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$refdate', 'Income', '$ref', '$partid', '$pe', 0, '$pex',  '$amt', 0, '$amt', 'System-AUTO', '$cur', 0, 'BANK', 1);";
-            // echo $query406;
+    
+
+
+
+}
+
+
+if ($partid == 6) {
+    // expenses entry
+    $sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and type='Income';  ";
+    // echo $sql0;
+    $result01xgg4 = $conn->query($sql0);
+    if ($result01xgg4->num_rows == 1) {
+        while ($row0 = $result01xgg4->fetch_assoc()) {
+            $id = $row0["id"];
+            //update
+            // echo $id;
+            $query406 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot', category = '$pe', partid = '$partid', particulars = '$pex', income='$amt', expenditure='0', amount = '$amt', module = 'BANK', status = '1', date='$refdate' where sccode='$sccode' and id='$id';";
             $conn->query($query406);
         }
+    } else {
+        $query406 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
+                VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$refdate', 'Income', '$ref', '$partid', '$pe', 0, '$pex',  '$amt', 0, '$amt', 'System-AUTO', '$cur', 0, 'BANK', 1);";
+        // echo $query406;
+        $conn->query($query406);
     }
-
-
-
 }
 
 echo '<i class="mdi mdi-check-circle mdi-24px text-success"></i>';
