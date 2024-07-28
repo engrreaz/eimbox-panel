@@ -1342,7 +1342,7 @@ include 'footer.php';
         var infor = "year=" + year + "&month=" + month +
             "&a=" + a + "&b=" + b + "&c=" + c + "&d=" + d + "&e=" + e + "&f=" + f + "&g=" + g + "&tail=" + tail;
 
-        alert(infor + id);
+        // alert(infor + id);
         $("#ssp" + id).html("");
 
         $.ajax({

@@ -47,6 +47,9 @@ if (str_contains(strtolower($pe), 'govt')) {
 }
 
 
+
+
+
 // Get Total Amount
 $mottaka = 0;
 $sql0 = "SELECT * FROM `cashbook` where (sccode = '$sccodes' || sccode = '$sccode') and memono>0 and ongoing=1 and module='VOUCHER' order by memono;";
@@ -157,55 +160,68 @@ if ($result01xgg2->num_rows == 1) {
 
 
 
-
-if ($govt_chq == 1) {
-
-}
-
 $pex = $pe . ' ' . $refdescrip;
 
-// withdrawals entry
-$sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and category = 'withdrawal' and type='income';  ";
-// echo $sql0;
-$result01xgg3 = $conn->query($sql0);
-if ($result01xgg3->num_rows == 1) {
-    while ($row0 = $result01xgg3->fetch_assoc()) {
-        $id = $row0["id"];
-        //update
-        $query405 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot',  partid = '2', particulars = '$pex', income='$amt', expenditure='0', amount = '$amt', module = 'BANK', status = '1' where sccode='$sccode' and id='$id';";
+
+if ($partid != 5) {
+    $sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and type='Expenditure';  ";
+    // echo $sql0;
+    $result01xgg4y = $conn->query($sql0);
+    if ($result01xgg4y->num_rows == 1) {
+        while ($row0 = $result01xgg4y->fetch_assoc()) {
+            $idj = $row0["id"];
+            $datex = $row0["date"];
+        }
+    }
+    $query405x = "DELETE FROM cashbook where id='$idj';";
+    $conn->query($query405x);
+
+    $query405rx = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
+    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$datex', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex', 0, '$amt', '$amt', '$usr', '$cur', 0, 'BANK', 1);";
+    $conn->query($query405rx);
+} else {
+
+
+    // withdrawals entry
+    $sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and category = 'withdrawal' and type='income';  ";
+    // echo $sql0;
+    $result01xgg3 = $conn->query($sql0);
+    if ($result01xgg3->num_rows == 1) {
+        while ($row0 = $result01xgg3->fetch_assoc()) {
+            $id = $row0["id"];
+            //update
+            $query405 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot',  partid = '2', particulars = '$pex', income='$amt', expenditure='0', amount = '$amt', module = 'BANK', status = '1' where sccode='$sccode' and id='$id';";
+            // echo $query405;
+            $conn->query($query405);
+        }
+    } else {
+        $query405 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
+                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$td', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex', 0, '$amt', '$amt', '$usr', '$cur', 0, 'BANK', 1);";
         // echo $query405;
         $conn->query($query405);
     }
-} else {
-    $query405 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
-                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$td', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex', 0, '$amt', '$amt', '$usr', '$cur', 0, 'BANK', 1);";
-    // echo $query405;
-    $conn->query($query405);
-}
 
 
-// expenses entry
-$sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and partid = '$partid' and type='Expenditure';  ";
-// echo $sql0;
-$result01xgg4 = $conn->query($sql0);
-if ($result01xgg4->num_rows == 1) {
-    while ($row0 = $result01xgg4->fetch_assoc()) {
-        $id = $row0["id"];
-        //update
-        // echo $id;
-        $query406 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot', category = '$pe', partid = '$partid', particulars = '$pex', income='0', expenditure='$amt', amount = '$amt', module = 'BANK', status = '1' where sccode='$sccode' and id='$id';";
+    // expenses entry
+    $sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and partid = '$partid' and type='Expenditure';  ";
+    $sql0 = "SELECT * FROM cashbook where sccode='$sccode' and refno='$ref' and type='Expenditure';  ";
+    // echo $sql0;
+    $result01xgg4 = $conn->query($sql0);
+    if ($result01xgg4->num_rows == 1) {
+        while ($row0 = $result01xgg4->fetch_assoc()) {
+            $id = $row0["id"];
+            //update
+            // echo $id;
+            $query406 = "UPDATE cashbook SET month = '$month', year = '$year', refno = '$ref', slots = '$slot', category = '$pe', partid = '$partid', particulars = '$pex', income='0', expenditure='$amt', amount = '$amt', module = 'BANK', status = '1' where sccode='$sccode' and id='$id';";
+            // echo $query406;
+            $conn->query($query406);
+        }
+    } else {
+        $query406 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
+                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$td', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex',  0, '$amt', '$amt', 'System-AUTO', '$cur', 0, 'BANK', 1);";
         // echo $query406;
         $conn->query($query406);
     }
-} else {
-    $query406 = "INSERT INTO cashbook(id, sessionyear, sccode, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, ongoing, module, status)
-                    VALUES (NULL, '$sy', '$sccode', '$month', '$year', '$slot', '$td', 'Expenditure', '$ref', '$partid', '$pe', 0, '$pex',  0, '$amt', '$amt', 'System-AUTO', '$cur', 0, 'BANK', 1);";
-    // echo $query406;
-    $conn->query($query406);
 }
 
-
-
-
 echo '<i class="mdi mdi-check-circle mdi-24px text-success"></i>';
-
