@@ -750,7 +750,7 @@ $txt = $_COOKIE['txt'];
                                         $monthx = $month - 1;
 
                                         $d1 = date('Y-m-d' , strtotime($year  . '-' . $monthx . '-01'));
-                                        $tt = date('t', strtome($d1) );
+                                        $tt = date('t', strtotime($d1) );
                                         $d2 = date('Y-m-d' , strtotime($year  . '-' . $monthx . '-' .$tt));
                                         $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and date between '$d1' and '$d2'  and slots = '$slot'  and type='$inex'  " . $sq . "  order by memono, date, id;";
                                     }
