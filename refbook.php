@@ -18,10 +18,10 @@ if (isset($_GET['refno'])) {
     }
 } else {
     if (isset($_GET['id'])) {
-            $idq = $_GET['id'];
-        } else {
-            $idq = 0;
-        }
+        $idq = $_GET['id'];
+    } else {
+        $idq = 0;
+    }
 }
 
 
@@ -58,14 +58,16 @@ if ($idq > 0) {
             <div class="card-body ">
                 <div class="row pl-4 d-block">
                     <h4 class="mb-0 pb-0"><small><b>Add New/Edit Reference Information</b></small></h4>
-                    <h6 class="text-warning text-small mt-0 pt-0"><small>You'll edit this reference data within 24 hours. After that, it will lock permanently.</small></h6>
+                    <h6 class="text-warning text-small mt-0 pt-0"><small>You'll edit this reference data within 24 hours.
+                            After that, it will lock permanently.</small></h6>
 
                 </div>
                 <div class="row">
                     <div class="col-12 d-flex">
                         <div class="col-md-2">
                             <label class="form-label text-small">ID</label>
-                            <input type="text" class="form-control bg-dark text-secondary" value="<?php echo $idq; ?>" id="id" disabled />
+                            <input type="text" class="form-control bg-dark text-secondary" value="<?php echo $idq; ?>"
+                                id="id" disabled />
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small">Ref. No.</label>
@@ -77,36 +79,36 @@ if ($idq > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small">Audit Month</label>
-                         
-                            <select class="form-control text-white" id="month">
-                                    <option value="0"></option>
-                                    <?php
-                                    for ($x = 1; $x <= 12; $x++) {
-                                        $flt = '';
-                                        $xx = strtotime(date('Y') . '-' . $x . '-01');
-                                        if ($monthq == $x) {
-                                            $flt = 'selected';
-                                        }
-                                        echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
-                                    }
-                                    ?>
 
-                                </select>
+                            <select class="form-control text-white" id="month">
+                                <option value="0"></option>
+                                <?php
+                                for ($x = 1; $x <= 12; $x++) {
+                                    $flt = '';
+                                    $xx = strtotime(date('Y') . '-' . $x . '-01');
+                                    if ($monthq == $x) {
+                                        $flt = 'selected';
+                                    }
+                                    echo '<option value="' . $x . '"' . $flt . '>' . date('F', $xx) . '</option>';
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small">Audit Year</label>
                             <select class="form-control text-white" id="year">
-                                    <option value="0"></option>
-                                    <?php
-                                    for ($y = date('Y'); $y >= 2024; $y--) {
-                                        $flt2 = '';
-                                        if ($yearq == $y) {
-                                            $flt2 = 'selected';
-                                        }
-                                        echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                                <option value="0"></option>
+                                <?php
+                                for ($y = date('Y'); $y >= 2024; $y--) {
+                                    $flt2 = '';
+                                    if ($yearq == $y) {
+                                        $flt2 = 'selected';
                                     }
-                                    ?>
-                                </select>
+                                    echo '<option value="' . $y . '"' . $flt2 . '>' . $y . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group row">
@@ -132,13 +134,13 @@ if ($idq > 0) {
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 d-flex">
-                        
-                    <div class="col-md-3">
+
+                        <div class="col-md-3">
                             <label class="form-label text-small">Category</label>
                             <select class="form-control text-white" id="category">
                                 <?php
@@ -171,14 +173,14 @@ if ($idq > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small " id="stinfo">&nbsp;</label>
-                             <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                                    <button class="btn btn-inverse-success p-2 "
-                                onclick="save(<?php echo $idq; ?>, 0);">Save</button>
+                            <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                                <button class="btn btn-inverse-success p-2 "
+                                    onclick="save(<?php echo $idq; ?>, 0);">Save</button>
 
                                 <button class="btn btn-inverse-danger p-2"
-                                onclick="save(<?php echo $idq; ?>, 5);">Delete</button>
+                                    onclick="save(<?php echo $idq; ?>, 5);">Delete</button>
 
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -187,6 +189,8 @@ if ($idq > 0) {
     </div>
 
     <?php
+} else {
+    echo '<div id="new-part" hidden></div>';
 }
 
 ?>
@@ -263,6 +267,22 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+    document.getElementById('defbtn').innerHTML = 'New Ref.';
+    document.getElementById('defmenu').innerHTML = '';
+
+    function defbtn() {
+        document.getElementById("new-part"). innerHTML += '<input id="refno"><input id="date"><input id="month"><input id="year"><input id="category"><input id="title"><input id="descrip"><input id="slot">';
+        document.getElementById("refno").value = "";
+        document.getElementById("date").value = "<?php echo $td; ?>";
+        document.getElementById("month").value = "<?php echo date('m'); ?>";
+        document.getElementById("year").value = "<?php echo date('Y'); ?>";;
+        document.getElementById("category").value = '';
+        document.getElementById("title").value = '';
+        document.getElementById("descrip").value = '';
+        document.getElementById("slot").value = '';
+
+        save(0, 0);
+    }
 
     function edit(id) {
         window.location.href = 'refbook.php?id=' + id;

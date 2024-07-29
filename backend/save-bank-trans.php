@@ -303,18 +303,18 @@ if ($tail == 0) {
     }
 
     $query33 = "UPDATE banktrans set date='$date', transopening='$balance', transtype='$type', chqno='$chqno', amount='$amount', balance='$bala', entryby='$usr', entrytime='$cur', verified='0', verifyby=NULL, verifytime=NULL where id='$id' and sccode='$sccode' and accno='$accno';";
-    // $conn->query($query33);
+    $conn->query($query33);
 
 
     $query34 = "UPDATE banktrans set verified='1', verifyby='$usr', verifytime='$cur' where id='$id' and sccode='$sccode' and accno='$accno';";
-    // $conn->query($query34);
+    $conn->query($query34);
 
-
+  
 
     /////////////////////////////////////////////////////
     $mx = date('m', strtotime($date));
     $yx = date('Y', strtotime($date));
-    if ($type = 'Deposit' || $type == 'Deduction') {
+    if ($type == 'Deposit' || $type == 'Deduction') {
         $tipe = 'Expenditure';
         $income = 0;
         $expenditure = $amount;
@@ -323,6 +323,9 @@ if ($tail == 0) {
         $income = $amount; //
         $expenditure = 0;
     }
+
+
+
 
     if ($type == 'Deposit') {
         $partidx = 1;
@@ -346,11 +349,25 @@ if ($tail == 0) {
         $slot = 'School';
     }
 
+    $sql0 = "SELECT refno FROM banktrans where accno='$accno' and sccode='$sccode' and id='$id' ";
+    $result01xgid = $conn->query($sql0);
+    if ($result01xgid->num_rows > 0) {
+        while ($row0 = $result01xgid->fetch_assoc()) {
+            $rrfx = $row0["refno"];
+        }
+    }
+    if(strlen($rrfx)>0){
+        $rrf = $rrfx;
+    }
 
+
+    $delcash = "DELETE FROM cashbook where sccode='$sccode' and date='$date' and refno='$rrf' and slots='$slot' and amount='$amount' and module='BANK';";
+    $conn->query($delcash);
+    
     $cash = "INSERT INTO cashbook (id, sccode, sessionyear, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, module, status) 
                 VALUES (NULL, '$sccode', '$sy', '$mx', '$yx', '$slot', '$date', '$tipe', '$rrf', '$partidx', '--', '0', '$particularx', '$income', '$expenditure', '$amount', 'System-Auto', '$cur', 'BANK', '1' );";
     $conn->query($cash);
-    echo $cash;
+    // echo $cash;
     /////////////////////////////////////////////////////////////////////////////////////////
 
 } else if ($tail == 3) {
