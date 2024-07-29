@@ -320,7 +320,7 @@ if ($tail == 0) {
         $expenditure = $amount;
     } else {
         $tipe = 'Income';
-        $income = $amount;
+        $income = $amount; //
         $expenditure = 0;
     }
 
@@ -350,7 +350,7 @@ if ($tail == 0) {
     $cash = "INSERT INTO cashbook (id, sccode, sessionyear, month, year, slots, date, type, refno, partid, category, memono, particulars, income, expenditure, amount, entryby, entrytime, module, status) 
                 VALUES (NULL, '$sccode', '$sy', '$mx', '$yx', '$slot', '$date', '$tipe', '$rrf', '$partidx', '--', '0', '$particularx', '$income', '$expenditure', '$amount', 'System-Auto', '$cur', 'BANK', '1' );";
     $conn->query($cash);
-    // echo $cash;
+    echo $cash;
     /////////////////////////////////////////////////////////////////////////////////////////
 
 } else if ($tail == 3) {

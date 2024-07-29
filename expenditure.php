@@ -763,7 +763,7 @@ $txt = $_COOKIE['txt'];
                                 } else {
                                     $sql0x = "SELECT * FROM cashbook where (sccode='$sccode' or sccode='$sccodes') and refno = 0 and memono = 0  " . $sq . "   order by memono, id;";
                                 }
-                                echo $sql0x;
+                                // echo $sql0x;
                                 $result0x = $conn->query($sql0x);
                                 if ($result0x->num_rows > 0) {
                                     while ($row0x = $result0x->fetch_assoc()) {
