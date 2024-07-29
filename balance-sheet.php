@@ -538,7 +538,7 @@ if ($result0r1->num_rows > 0) {
 
 
                                 $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
-                                echo $sql0x;
+                                // echo $sql0x;
                                 $result0r12 = $conn->query($sql0x);
                                 if ($result0r12->num_rows > 0) {
                                     while ($row0x = $result0r12->fetch_assoc()) {
