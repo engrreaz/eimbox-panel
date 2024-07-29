@@ -537,7 +537,7 @@ if ($result0r1->num_rows > 0) {
                                 $branch = $row0["branch"];
 
 
-                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1 and balance>0 order by verifytime desc limit 1;";
+                                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and accno='$accnos' and date <= '$dateto' and verified=1  order by verifytime desc limit 1;";
                                 // echo $sql0x;
                                 $result0r12 = $conn->query($sql0x);
                                 if ($result0r12->num_rows > 0) {
@@ -548,13 +548,14 @@ if ($result0r1->num_rows > 0) {
                                 } else {
                                     $thisbal = 0;
                                 }
+                                if($thisbal > 0) {
                                 ?>
                                 <tr>
                                     <td><?php echo $accnos . ' (' . $acctype . ')'; ?></td>
                                     <td class="text-right"><?php echo number_format($thisbal, 2); ?></td>
                                 </tr>
                                 <?php
-
+                                }
                             }
                         } ?>
                         <tr>
