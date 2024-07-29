@@ -501,7 +501,7 @@ include 'footer.php';
             },
             success: function (html) {
                 $("#sspd").html(html);
-                window.location.href = 'bank-account.php?accno=<?php echo $accno; ?>';
+                // window.location.href = 'bank-account.php?accno=<?php echo $accno; ?>';
             }
         });
     }
