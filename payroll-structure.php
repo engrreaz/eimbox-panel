@@ -455,8 +455,11 @@ echo $dismsg; ?>">
                 </div>
 
             </div>
-
-            <button class="btn btn-inverse-danger p-2" onclick="recal();">New Structure</button>
+<div class="col-12 d-flex">
+<button class="btn btn-inverse-danger p-2" onclick="recal();">New Structure</button>
+<!-- <button class="btn btn-inverse-success p-2" onclick="recal2();">1000</button> -->
+</div>
+            
 
             <div class="card-body">
                 <div class="row pl-3">
@@ -847,8 +850,31 @@ include 'footer.php';
 
         basic = Math.round(basic * 1.05);
         incen = Math.round(basic * 0.05);
+        if(incen <1000) {
+            incen = 1000;
+        }
         wel = Math.round(basic * 0.04);
         ret = Math.round(basic * 0.06);
+
+        var total = basic + incen + hra + ma - wel - ret;
+
+        document.getElementById("basic").value = basic;
+        document.getElementById("incentive").value = incen;
+        document.getElementById("welfare").value = wel;
+        document.getElementById("retire").value = ret;
+        document.getElementById("mpototal").value = total; 
+        document.getElementById("applydate").value = '2024-07-01'; 
+
+    }
+
+    function recal2() {
+        var basic = parseInt(document.getElementById("basic").value);
+        var incen = 1000;// parseInt(document.getElementById("incentive").value);
+        var hra = parseInt(document.getElementById("houserent").value);
+        var ma = parseInt(document.getElementById("medical").value);
+        var wel = parseInt(document.getElementById("welfare").value);
+        var ret = parseInt(document.getElementById("retire").value);
+
 
         var total = basic + incen + hra + ma - wel - ret;
 
