@@ -166,7 +166,8 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Salary Applying From</label>
                             <div class="col-12">
                                 <input type="date" class="form-control bg-muted text-secondary " id="applydate"
-                                    value="<?php $applydate = '2024-07-01';
+                                    value="<?php 
+                         
                                     echo $applydate; ?>" />
                             </div>
                         </div>
@@ -856,6 +857,8 @@ include 'footer.php';
         document.getElementById("welfare").value = wel;
         document.getElementById("retire").value = ret;
         document.getElementById("mpototal").value = total; 
+        document.getElementById("applydate").value = '2024-07-01'; 
+
     }
 
 </script>
