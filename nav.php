@@ -15,7 +15,7 @@ $pagelist = array(
 );
 $accnav = array('account-settings.php');
 $adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
-$supernav = array('account-settings.php');
+$supernav = array('account-settings.php', 'bio-tree.php');
 ?>
 
 <div style="overflow-y:auto; ">
@@ -636,6 +636,8 @@ $supernav = array('account-settings.php');
                   <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="notice-manager.php">Notice Manager</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="ref-doc.php">Document Editor</a></li>
+                  
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li> -->
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li> -->
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li> -->
@@ -658,6 +660,7 @@ $supernav = array('account-settings.php');
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="regdbook.php">Register List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="refbook.php">Reference Book</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="ref-doc-archive.php">Documents / Letters</a></li>
                   <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columnar Cash Book</a></li>
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transfer Certificate</a></li> -->
                   <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>

@@ -7,36 +7,30 @@ $tail = $_POST['tail'];
 $editor = $_POST['editor'];
 $refno = $_POST['refno'];
 $title = $_POST['title'];
+$datee = $_POST['date'];
 
 if ($tail == 0) {
-    $query331 = "INSERT INTO ref_docs (id, sccode, date, refno, title, content, entryby, entrytime) 
-                VALUES (NULL, '$sccode', '$td', '$refno', '$title', '$editor', '$usr', '$cur');";
+    if ($id == 0) {
+        $query331 = "INSERT INTO ref_docs (id, sccode, date, refno, title, content, entryby, entrytime) 
+                VALUES (NULL, '$sccode', '$datee', '$refno', '$title', '$editor', '$usr', '$cur');";
+
+        $year = date('Y', strtotime($datee));
+        $month = date('m', strtotime($datee));
+        $descrip = '';
+        $query3g = "INsERT INTO refbook (id, sccode, sessionyear, refno, date, year, month, partid, title, descrip, module, dbtable, sqltext, entryby, entrytime, slot) 
+                    VALUES (NULL, '$sccode', '$sy', '$refno', '$datee', '$year', '$month', NULL, '$title', '$descrip', '-', '--', '---', '$usr', '$cur' , '' )";
+        $conn->query($query3g);
+
+    } else {
+        $query331 = "UPDATE ref_docs set date='$datee', refno='$refno', title='$title', content='$editor', entryby='$usr', entrytime='$cur' where id='$id' and sccode='$sccode';";
+
+        $query3g = "update refbook set refno='$refno', date='$datee', title='$title' where id='$id' and sccode='$sccode';";
+        // $conn->query($query3g);
+    }
+
 }
 
 
-// if ($ont == 1) {
-//     if ($id == '' || $id == 0) {
-
-//     } else {
-//         $query331 = "UPDATE areas SET areaname = '$cls', subarea = '$sec', sessionyear='$sy' where id = '$id' and user='$rootuser'";
-//     }
-// } else {
-//     $query331 = "DELETE FROM areas where id = '$id' and user='$rootuser'";
-// }
-
-echo $query331;
+// echo $query331;
 
 $conn->query($query331);
-
-
-$sql0x = "SELECT * FROM ref_docs order by id desc limit 1 ;";
-$result0xt = $conn->query($sql0x);
-if ($result0xt->num_rows > 0) {
-    while ($row0x = $result0xt->fetch_assoc()) {
-        $partidx = $row0x["id"];
-        $cont = $row0x["content"];
-    }
-}
-
-echo '<br><br>';
-echo $cont;
