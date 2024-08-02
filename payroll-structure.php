@@ -855,7 +855,7 @@ include 'footer.php';
         document.getElementById("incentive").value = incen;
         document.getElementById("welfare").value = wel;
         document.getElementById("retire").value = ret;
-        document.getElementById("mpototal").value = total; alert(1);
+        document.getElementById("mpototal").value = total; 
     }
 
 </script>
