@@ -844,10 +844,10 @@ include 'footer.php';
         var wel = parseInt(document.getElementById("welfare").value);
         var ret = parseInt(document.getElementById("retire").value);
 
-        basic = parseInt(basic * 1.05);
-        incen = parseInt(basic * 0.05);
-        wel = parseInt(basic * 0.04);
-        ret = parseInt(basic * 0.06);
+        basic = Math.round(basic * 1.05);
+        incen = Math.round(basic * 0.05);
+        wel = Math.round(basic * 0.04);
+        ret = Math.round(basic * 0.06);
 
         var total = basic + incen + hra + ma - wel - ret;
 
