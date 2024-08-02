@@ -166,7 +166,8 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Salary Applying From</label>
                             <div class="col-12">
                                 <input type="date" class="form-control bg-muted text-secondary " id="applydate"
-                                    value="<?php $applydate = '2024-07-01'; echo $applydate; ?>" />
+                                    value="<?php $applydate = '2024-07-01';
+                                    echo $applydate; ?>" />
                             </div>
                         </div>
                     </div>
@@ -454,7 +455,7 @@ echo $dismsg; ?>">
 
             </div>
 
-<button class="btn btn-inverse-danger p-2" onclick="recac();" >New Structure</button>
+            <button class="btn btn-inverse-danger p-2" onclick="recal();">New Structure</button>
 
             <div class="card-body">
                 <div class="row pl-3">
@@ -835,7 +836,7 @@ include 'footer.php';
 
 
 <script>
-function recal() {
+    function recal() {
         var basic = parseInt(document.getElementById("basic").value);
         var incen = parseInt(document.getElementById("incentive").value);
         var hra = parseInt(document.getElementById("houserent").value);
@@ -848,16 +849,17 @@ function recal() {
         wel = parseInt(basic * 0.04);
         ret = parseInt(basic * 0.06);
 
-        var total = basic + incen + hra + ma - wel - ret ;
+        var total = basic + incen + hra + ma - wel - ret;
 
         document.getElementById("basic").value = basic;
         document.getElementById("incentive").value = incen;
         document.getElementById("welfare").value = wel;
         document.getElementById("retire").value = ret;
-        document.getElementById("mpototal").value = total;
+        document.getElementById("mpototal").value = total; alert(1);
     }
 
-
+</script>
+<script>
 
     function calc() {
         var paycode = parseInt(document.getElementById("paycode").value);
