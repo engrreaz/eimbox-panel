@@ -455,10 +455,7 @@ echo $dismsg; ?>">
                 </div>
 
             </div>
-<div class="col-12 d-flex">
 
-<!-- <button class="btn btn-inverse-success p-2" onclick="recal2x();">1000</button> -->
-</div>
             <button class="btn btn-inverse-danger p-2" onclick="recal();">New Structure</button>
 
             <div class="card-body">
