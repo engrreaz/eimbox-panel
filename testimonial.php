@@ -369,6 +369,7 @@ if (isset($_GET['addnew'])) {
                                 ?>
                             </td>
                             <td style="padding : 3px 10px; border:1px solid gray;">
+                                <div class="ooo text-small"><?php echo $stid; ?></div>
                                 <div class="ooo"><?php echo $neng; ?></div>
                                 <div class="ooo"><?php echo $nben; ?></div>
                                 <?php if ($dob != "") { ?>
