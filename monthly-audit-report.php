@@ -325,7 +325,7 @@ if ($result0r1->num_rows > 0) {
         // $particul = "Govt. Salary/MPO";
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
-       
+
         $block = '';
 
         $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
@@ -382,7 +382,7 @@ if ($result0r1->num_rows > 0) {
                         $takain = 0;
                         $sql0 = "SELECT date, particular, sum(institute_in) as in1, sum(govt_in) as in2, sum(eduboard_in) as in3, sum(amount) as taka FROM audit_temp where  (sccode='$sccode' || sccode='$sccodes')  and type='Income' and amount > 0 and month='$month' and year='$year'   group by date, particular order by date, particular;";
                         // echo $sql0;
-
+                        
                         $result0 = $conn->query($sql0);
                         if ($result0->num_rows > 0) {
                             while ($row0 = $result0->fetch_assoc()) {
@@ -403,13 +403,16 @@ if ($result0r1->num_rows > 0) {
                                         <div class="ooo"><?php echo $particular; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php if($in1>0) echo number_format($in1, 2); ?></div>
+                                        <div class="ooo"><?php if ($in1 > 0)
+                                            echo number_format($in1, 2); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo number_format($in2, 2); ?></div>
+                                        <div class="ooo"><?php if ($in2 > 0)
+                                            echo number_format($in2, 2); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo number_format($in3, 2); ?></div>
+                                        <div class="ooo"><?php if ($in3 > 0)
+                                            echo number_format($in3, 2); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
                                         <div class="ooo"><?php echo number_format($taka, 2); ?></div>
@@ -463,24 +466,27 @@ if ($result0r1->num_rows > 0) {
                                 $out3 = $row0["out3"];
                                 $taka = $row0["taka"];
 
-                                
+
                                 ?>
                                 <tr>
 
-                                <td style="padding : 2px 10px; border:1px solid gray;">
+                                    <td style="padding : 2px 10px; border:1px solid gray;">
                                         <div class="ooo"><?php echo $date; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray;">
                                         <div class="ooo"><?php echo $particular; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo number_format($out1, 2); ?></div>
+                                        <div class="ooo"><?php if ($out1 > 0)
+                                            echo number_format($out1, 2); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo number_format($out2, 2); ?></div>
+                                        <div class="ooo"><?php if ($out2 > 0)
+                                            echo number_format($out2, 2); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo number_format($out3, 2); ?></div>
+                                        <div class="ooo"><?php if ($out3 > 0)
+                                            echo number_format($out3, 2); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
                                         <div class="ooo"><?php echo number_format($taka, 2); ?></div>
