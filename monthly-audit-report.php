@@ -735,6 +735,11 @@ include 'footer.php';
 
                 cell2.style.padding = '2px';
                 cell2.innerHTML = "&nbsp;";
+
+                var cell3 = row.insertCell(1); cell3.innerHTML = "";
+                var cell4 = row.insertCell(1); cell4.innerHTML = "";
+                var cell5 = row.insertCell(1); cell5.innerHTML = "";
+                var cell6 = row.insertCell(1); cell6.innerHTML = "";
             }
         }
 
