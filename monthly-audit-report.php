@@ -346,7 +346,7 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 
 <div id="datam">
 
-    <div id="apple" class="text-small" style="font-size:8px;">
+    <div id="apple" class="text-small" style="font-size:11px;">
         <div class="m-0 p-0">To,</div>
         <div class="m-0 p-0">The Chairman</div>
         <div class="m-0 p-0"><?php echo $scname; ?></div>
