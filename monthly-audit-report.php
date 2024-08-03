@@ -346,7 +346,21 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 
 <div id="datam">
 
-    <div id="apple" class="">
+    <div id="apple" class="text-small">
+        <div class="m-0 p-0">To,</div>
+        <div class="m-0 p-0">The Chairman</div>
+        <div class="m-0 p-0"><?php echo $scname; ?></div>
+        <div class="m-0 p-0"><?php echo $scaddress; ?></div>
+
+        <div class="m-0 p-0 pt-2 pb-2">Ambassador/Media : Head Teacher, <?php echo $scname . ', ' . $scaddress; ?></div>
+
+        <div class="m-0 p-0">Subject : Internal Audit Report.</div>
+        
+        <div class="m-0 p-0 pt-2 pb-2">Audit Period : From <b><?php echo $datefrom; ?></b> to <b><?php echo $dateto; ?></b></div>
+
+
+
+        <div class="m-0 p-0">Sir,</div>
         We, the undersigned members of the Audit Committee, audited the income and expenditure accounts of
         <?php echo $scname; ?> for the month of
         <?php echo $month . '/' . $year . ' (from ' . $datefrom . ' to ' . $dateto . ') on ' . $td; ?>. Thoroughly
