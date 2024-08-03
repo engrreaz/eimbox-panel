@@ -692,6 +692,7 @@ $supernav = array('account-settings.php', 'bio-tree.php');
                   <li class="nav-item"> <a class="nav-link" href="student-dues-list.php"><i
                         class="mdi mdi-currency-try"></i>&nbsp; Student's Dues List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="balance-sheet.php">Monthly Income-Expenditure</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="monthly-audit-report.php">Monthly Audit Report</a></li>
 
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li> -->
                   <!-- <li class="nav-item"> <a class="nav-link" href=".php">All Transactions</a></li> -->
