@@ -403,7 +403,7 @@ if ($result0r1->num_rows > 0) {
                                         <div class="ooo"><?php echo $particular; ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
-                                        <div class="ooo"><?php echo number_format($in1, 2); ?></div>
+                                        <div class="ooo"><?php if($in1>0) echo number_format($in1, 2); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray; text-align:right;">
                                         <div class="ooo"><?php echo number_format($in2, 2); ?></div>
