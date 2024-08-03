@@ -346,7 +346,7 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 
 <div id="datam">
 
-    <div id="apple" class="text-small">
+    <div id="apple" class="text-small" style="font-size:8px;">
         <div class="m-0 p-0">To,</div>
         <div class="m-0 p-0">The Chairman</div>
         <div class="m-0 p-0"><?php echo $scname; ?></div>
@@ -355,7 +355,7 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
         <div class="m-0 p-0 pt-2 pb-2">Ambassador/Media : Head Teacher, <?php echo $scname . ', ' . $scaddress; ?></div>
 
         <div class="m-0 p-0">Subject : Internal Audit Report.</div>
-        
+
         <div class="m-0 p-0 pt-2 pb-2">Audit Period : From <b><?php echo $datefrom; ?></b> to <b><?php echo $dateto; ?></b></div>
 
 
