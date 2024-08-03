@@ -339,6 +339,9 @@ if ($result0r1->num_rows > 0) {
 
 
 // echo var_dump($items);
+
+
+$t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 ?>
 
 <div id="datam">
@@ -392,7 +395,9 @@ if ($result0r1->num_rows > 0) {
                                 $in2 = $row0["in2"];
                                 $in3 = $row0["in3"];
                                 $taka = $row0["taka"];
-
+                                $t1 += $in1;
+                                $t2 += $in2;
+                                $t3 += $in3;
                                 ?>
                                 <tr>
 
@@ -465,7 +470,9 @@ if ($result0r1->num_rows > 0) {
                                 $out2 = $row0["out2"];
                                 $out3 = $row0["out3"];
                                 $taka = $row0["taka"];
-
+                                $t4 += $out1;
+                                $t5 += $out2;
+                                $t6 += $out3;
 
                                 ?>
                                 <tr>
@@ -717,10 +724,8 @@ include 'footer.php';
 
         var rowx = tbll.insertRow(totalno);
         var rowy = tblr.insertRow(totalno);
-        rowx.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takain, 2); ?></td>';
-        rowy.innerHTML = '<td>Total :</td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takaex, 2); ?></td>';
-
-
+        rowx.innerHTML = '<td colspan="2">Total :</td><td><?php echo number_format($in1, 2); ?></td><td><?php echo number_format($in2, 2); ?></td><td><?php echo number_format($in3, 2); ?></td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takain, 2); ?></td>';
+        rowy.innerHTML = '<td colspan="2">Total :</td><td><?php echo number_format($out1, 2); ?></td><td><?php echo number_format($out2, 2); ?></td><td><?php echo number_format($out3, 2); ?></td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takaex, 2); ?></td>';
 
         console.log(cnt);
         console.log(cnt2);
