@@ -356,7 +356,9 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 
         <div class="m-0 p-0">Subject : Internal Audit Report.</div>
 
-        <div class="m-0 p-0 pt-2 pb-2">Audit Period : From <b><?php echo $datefrom; ?></b> to <b><?php echo $dateto; ?></b></div>
+        <div class="m-0 p-0 pt-2 pb-2">Audit Period : From <b><?php echo $datefrom; ?></b> to
+            <b><?php echo $dateto; ?></b>
+        </div>
 
 
 
@@ -576,7 +578,7 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
     </table>
 
 
-
+    <?php echo $cnt . '/' . $cnt2; ?>
 
     <table style="width:100%; margin-top:5mm;">
         <tr>
@@ -698,15 +700,14 @@ include 'footer.php';
 
     bsheet();
     function bsheet() {
-        var cont = ''; var cont2 = ''; var cnt = <?php echo $cnt; ?>;
-        var cnt2 = <?php echo $cnt2; ?>;
+        var cont = ''; var cont2 = ''; var cnt = <?php echo $cnt; ?>; var cnt2 = <?php echo $cnt2; ?>;
         var tbll = document.getElementById('main-tablel');
         var tblr = document.getElementById('main-tabler');
         if (cnt > cnt2) {
             var ex = cnt - cnt2;
             var lap = 0;
 
-            for (lap = cnt2 + 1; lap <= cnt; lap++) {
+            for (lap = cnt2 + 2; lap <= cnt+1; lap++) {
                 // cont += '<tr><td style="padding : 3px 10px; border:1px solid gray;"></td><td style="padding : 3px 10px; border:1px solid gray;"></td></tr>';
                 var row = tblr.insertRow(lap);
                 var cell1 = row.insertCell(0);
@@ -715,12 +716,17 @@ include 'footer.php';
 
                 cell2.style.padding = '2px';
                 cell2.innerHTML = "&nbsp;";
+
+                var cell3 = row.insertCell(1); cell3.innerHTML = "";
+                var cell4 = row.insertCell(1); cell4.innerHTML = "";
+                var cell5 = row.insertCell(1); cell5.innerHTML = "";
+                var cell6 = row.insertCell(1); cell6.innerHTML = "";
             }
         } else if (cnt2 > cnt) {
             var ex = cnt2 - cnt;
             var lap = 0;
 
-            for (lap = cnt + 1; lap <= cnt2; lap++) {
+            for (lap = cnt + 2; lap <= cnt2+1; lap++) {
                 // cont += '<tr><td style="padding : 3px 10px; border:1px solid gray;"></td><td style="padding : 3px 10px; border:1px solid gray;"></td></tr>';
                 var row = tbll.insertRow(lap);
                 var cell1 = row.insertCell(0);
@@ -733,8 +739,7 @@ include 'footer.php';
         }
 
         var totalno = 0;
-        if (cnt > cnt2) { totalno = cnt + 1; } else { totalno = cnt2 + 1; }
-
+        if (cnt > cnt2) { totalno = cnt + 2; } else { totalno = cnt2 + 2; }
 
         var rowx = tbll.insertRow(totalno);
         var rowy = tblr.insertRow(totalno);
