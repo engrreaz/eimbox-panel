@@ -724,8 +724,8 @@ include 'footer.php';
 
         var rowx = tbll.insertRow(totalno);
         var rowy = tblr.insertRow(totalno);
-        rowx.innerHTML = '<td colspan="2">Total :</td><td><?php echo number_format($in1, 2); ?></td><td><?php echo number_format($in2, 2); ?></td><td><?php echo number_format($in3, 2); ?></td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takain, 2); ?></td>';
-        rowy.innerHTML = '<td colspan="2">Total :</td><td><?php echo number_format($out1, 2); ?></td><td><?php echo number_format($out2, 2); ?></td><td><?php echo number_format($out3, 2); ?></td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takaex, 2); ?></td>';
+        rowx.innerHTML = '<td colspan="2">Total :</td><td><?php echo number_format($t1, 2); ?></td><td><?php echo number_format($t2, 2); ?></td><td><?php echo number_format($t3, 2); ?></td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takain, 2); ?></td>';
+        rowy.innerHTML = '<td colspan="2">Total :</td><td><?php echo number_format($t4, 2); ?></td><td><?php echo number_format($t5, 2); ?></td><td><?php echo number_format($t6, 2); ?></td><td style="text-align:right; padding: 5px; font-weight:700;"><?php echo number_format($takaex, 2); ?></td>';
 
         console.log(cnt);
         console.log(cnt2);
