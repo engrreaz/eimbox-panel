@@ -316,6 +316,7 @@ if ($result0r1->num_rows > 0) {
 
 // Expenses..................................................
 $sql0 = "SELECT date, category, particulars, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
+
 $result0r1 = $conn->query($sql0);
 if ($result0r1->num_rows > 0) {
     while ($row0 = $result0r1->fetch_assoc()) {
@@ -334,7 +335,7 @@ if ($result0r1->num_rows > 0) {
 
         $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
                         VALUES (NULL, 0, '$sccode', '$month', '$year', 'Expenditure', '$date', '$particulars', '$in1', '$in2', '$in3', '$out1', '$out2', '$out3', '$amt', '$block')";
-        // $conn->query($insins);
+        $conn->query($insins);
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
