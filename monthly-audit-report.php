@@ -315,7 +315,7 @@ if ($result0r1->num_rows > 0) {
 
 
 // Expenses..................................................
-$sql0 = "SELECT date, particulars, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
+$sql0 = "SELECT date, category, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
 $result0r1 = $conn->query($sql0);
 if ($result0r1->num_rows > 0) {
     while ($row0 = $result0r1->fetch_assoc()) {
