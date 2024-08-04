@@ -321,7 +321,8 @@ if ($result0r1->num_rows > 0) {
     while ($row0 = $result0r1->fetch_assoc()) {
         $date = $row0["date"];
         $amt = $row0["amount"];
-        $particulars = 'Aaaa';// $row0["particulars"];
+        $particulars =$row0["particulars"]; 
+        // $particulars ='Aaaa';
         // $particul = "Govt. Salary/MPO";
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
@@ -344,9 +345,7 @@ if ($result0r1->num_rows > 0) {
 $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 ?>
 
-<div id="datam">
-
-    <div id="apple" class="text-small" style="font-size:11px;">
+<div id="apple" class="text-small" style="font-size:11px;" hidden>
         <div class="m-0 p-0">To,</div>
         <div class="m-0 p-0">The Chairman</div>
         <div class="m-0 p-0"><?php echo $scname; ?></div>
@@ -370,6 +369,10 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
         sections and expenditure vouchers including receipts and found correct. All accounts and financial status are
         listed below.
     </div>
+
+<div id="datam">
+
+
 
 
     <!-- <div style="page-break-after:always;"></div> -->
@@ -794,12 +797,13 @@ include 'footer.php';
     function goprint() {
         var txt = document.getElementById("alladmit").innerHTML;
         var pad = document.getElementById("pad").innerHTML;
+        var app = document.getElementById("apple").innerHTML;
         var datam = document.getElementById("datam").innerHTML;
         document.write('<title>Eimbox</title>');
         document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:50px; background: black;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to  List</button></div>');
         document.write('<div id="margin" style="padding: 5mm 15mm;"></div>');
         // document.write(pad);
-        document.getElementById("margin").innerHTML = pad + txt + datam;
+        document.getElementById("margin").innerHTML = pad + txt + app + datam;
         // document.write(txt);
     }
 
