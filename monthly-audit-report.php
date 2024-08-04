@@ -327,10 +327,32 @@ if ($result0r1->num_rows > 0) {
         if ($particulars == 'Deduction') {
             $particulars = $row0["particulars"];
         }
-        if(strlen($particulars)<3){
-            $particulars = $refno;
+        if (strlen($particulars) < 3) {
+            $chk = strpos($refno, '/');
+            if ($chk != '') {
+                $sql0x = "SELECT * FROM refbook where sccode='$sccode' and refno='$refno' order by date desc limit 1;";
+                $result0r11a = $conn->query($sql0x);
+                if ($result0r11a->num_rows > 0) {
+                    while ($row0x = $result0r11a->fetch_assoc()) {
+                       $particulars  = $row0x['title'];
+                    }
+                } else {
+                    $particulars = 'No REF';
+                }
+            } else {
+                $sql0x = "SELECT * FROM banktrans where sccode='$sccode' and refno='$refno' order by date desc limit 1;";
+                $result0r11b = $conn->query($sql0x);
+                if ($result0r11b->num_rows > 0) {
+                    while ($row0x = $result0r11b->fetch_assoc()) {
+                       $particulars  = $row0x['chqno'];
+                    }
+                } else {
+                    $particulars = 'Bank Ref not found';
+                }
+            } 
+            $particulars = $refno . '/' . $chk . '/';
         }
-        
+
         // $particul = "Govt. Salary/MPO";
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
