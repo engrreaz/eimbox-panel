@@ -315,13 +315,16 @@ if ($result0r1->num_rows > 0) {
 
 
 // Expenses..................................................
-$sql0 = "SELECT date, category, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
+$sql0 = "SELECT date, category, particulars, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
 $result0r1 = $conn->query($sql0);
 if ($result0r1->num_rows > 0) {
     while ($row0 = $result0r1->fetch_assoc()) {
         $date = $row0["date"];
         $amt = $row0["amount"];
-        $particulars =$row0["category"]; 
+        $particulars = $row0["category"];
+        if ($particulars == 'Deduction') {
+            $particulars = $row0["particulars"];
+        }
         // $particulars ='Aaaa';
         // $particul = "Govt. Salary/MPO";
 
@@ -346,29 +349,29 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 ?>
 
 <div id="apple" class="text-small" style="font-size:11px;" hidden>
-        <div class="m-0 p-0">To,</div>
-        <div class="m-0 p-0">The Chairman</div>
-        <div class="m-0 p-0"><?php echo $scname; ?></div>
-        <div class="m-0 p-0"><?php echo $scaddress; ?></div>
+    <div class="m-0 p-0">To,</div>
+    <div class="m-0 p-0">The Chairman</div>
+    <div class="m-0 p-0"><?php echo $scname; ?></div>
+    <div class="m-0 p-0"><?php echo $scaddress; ?></div>
 
-        <div class="m-0 p-0 pt-2 pb-2">Ambassador/Media : Head Teacher, <?php echo $scname . ', ' . $scaddress; ?></div>
+    <div class="m-0 p-0 pt-2 pb-2">Ambassador/Media : Head Teacher, <?php echo $scname . ', ' . $scaddress; ?></div>
 
-        <div class="m-0 p-0">Subject : Internal Audit Report.</div>
+    <div class="m-0 p-0">Subject : Internal Audit Report.</div>
 
-        <div class="m-0 p-0 pt-2 pb-2">Audit Period : From <b><?php echo $datefrom; ?></b> to
-            <b><?php echo $dateto; ?></b>
-        </div>
-
-
-
-        <div class="m-0 p-0">Sir,</div>
-        We, the undersigned members of the Audit Committee, audited the income and expenditure accounts of
-        <?php echo $scname; ?> for the month of
-        <?php echo $month . '/' . $year . ' (from ' . $datefrom . ' to ' . $dateto . ') on ' . $td; ?>. Thoroughly
-        audited all income
-        sections and expenditure vouchers including receipts and found correct. All accounts and financial status are
-        listed below.
+    <div class="m-0 p-0 pt-2 pb-2">Audit Period : From <b><?php echo $datefrom; ?></b> to
+        <b><?php echo $dateto; ?></b>
     </div>
+
+
+
+    <div class="m-0 p-0">Sir,</div>
+    We, the undersigned members of the Audit Committee, audited the income and expenditure accounts of
+    <?php echo $scname; ?> for the month of
+    <?php echo $month . '/' . $year . ' (from ' . $datefrom . ' to ' . $dateto . ') on ' . $td; ?>. Thoroughly
+    audited all income
+    sections and expenditure vouchers including receipts and found correct. All accounts and financial status are
+    listed below.
+</div>
 
 <div id="datam">
 
@@ -710,7 +713,7 @@ include 'footer.php';
             var ex = cnt - cnt2;
             var lap = 0;
 
-            for (lap = cnt2 + 2; lap <= cnt+1; lap++) {
+            for (lap = cnt2 + 2; lap <= cnt + 1; lap++) {
                 // cont += '<tr><td style="padding : 3px 10px; border:1px solid gray;"></td><td style="padding : 3px 10px; border:1px solid gray;"></td></tr>';
                 var row = tblr.insertRow(lap);
                 var cell1 = row.insertCell(0);
@@ -729,7 +732,7 @@ include 'footer.php';
             var ex = cnt2 - cnt;
             var lap = 0;
 
-            for (lap = cnt + 2; lap <= cnt2+1; lap++) {
+            for (lap = cnt + 2; lap <= cnt2 + 1; lap++) {
                 // cont += '<tr><td style="padding : 3px 10px; border:1px solid gray;"></td><td style="padding : 3px 10px; border:1px solid gray;"></td></tr>';
                 var row = tbll.insertRow(lap);
                 var cell1 = row.insertCell(0);
