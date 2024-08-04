@@ -332,7 +332,8 @@ if ($result0r2->num_rows > 0) {
 
         $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
                         VALUES (NULL, 0, '$sccode', '$month', '$year', '$type', '$date', '$particul', '$in1', '$in2', '$in3', '$out1', '$out2', '$out3', '$amt', '$block')";
-        $conn->query($insins);
+       echo $insins;
+       $conn->query($insins);
     }
 }
 
