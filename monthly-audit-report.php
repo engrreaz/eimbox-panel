@@ -350,7 +350,7 @@ if ($result0r1->num_rows > 0) {
                     $particulars = 'Bank Ref not found';
                 }
             } 
-            $particulars = $refno . '/' . $chk . '/';
+            // $particulars = $refno . '/' . $chk . '/';
         }
 
         // $particul = "Govt. Salary/MPO";
