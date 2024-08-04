@@ -315,7 +315,7 @@ if ($result0r1->num_rows > 0) {
 
 
 // Others Income
-$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and partid!=6 and particulars NOT LIKE 'Collection%' and type='Income' and date between '$datefrom' and '$dateto';";
+$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and partid=3 and type='Income' and date between '$datefrom' and '$dateto';";
 echo $sql0;
 $result0r2 = $conn->query($sql0);
 if ($result0r2->num_rows > 0) {
@@ -327,7 +327,8 @@ if ($result0r2->num_rows > 0) {
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
        
-        $block = 'UNDEF';
+        $block = 'BANK';
+        $in3 = $amt;
 
         $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
                         VALUES (NULL, 0, '$sccode', '$month', '$year', '$type', '$date', '$particul', '$in1', '$in2', '$in3', '$out1', '$out2', '$out3', '$amt', '$block')";
