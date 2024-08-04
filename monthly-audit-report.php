@@ -315,18 +315,19 @@ if ($result0r1->num_rows > 0) {
 
 
 // Expenses..................................................
-$sql0 = "SELECT date, category, particulars, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
+$sql0 = "SELECT date, category, particulars, refno, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
 
 $result0r1 = $conn->query($sql0);
 if ($result0r1->num_rows > 0) {
     while ($row0 = $result0r1->fetch_assoc()) {
         $date = $row0["date"];
+        $refno = $row0["refno"];
         $amt = $row0["amount"];
         $particulars = $row0["category"];
         if ($particulars == 'Deduction') {
             $particulars = $row0["particulars"];
         }
-        // $particulars ='Aaaa';
+        $particulars .= $refno;
         // $particul = "Govt. Salary/MPO";
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
