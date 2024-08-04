@@ -327,7 +327,10 @@ if ($result0r1->num_rows > 0) {
         if ($particulars == 'Deduction') {
             $particulars = $row0["particulars"];
         }
-        $particulars .= $refno;
+        if(strlen($particulars)<3){
+            $particulars = $refno;
+        }
+        
         // $particul = "Govt. Salary/MPO";
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
