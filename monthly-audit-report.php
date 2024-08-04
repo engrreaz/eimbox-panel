@@ -321,7 +321,7 @@ if ($result0r1->num_rows > 0) {
     while ($row0 = $result0r1->fetch_assoc()) {
         $date = $row0["date"];
         $amt = $row0["amount"];
-        $particulars =$row0["particulars"]; 
+        $particulars =$row0["category"]; 
         // $particulars ='Aaaa';
         // $particul = "Govt. Salary/MPO";
 
