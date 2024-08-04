@@ -315,7 +315,7 @@ if ($result0r1->num_rows > 0) {
 
 
 // Others Income
-$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and partid>6 and date between '$datefrom' and '$dateto';";
+$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and partid!=6 and type='Income' and date between '$datefrom' and '$dateto';";
 $result0r2 = $conn->query($sql0);
 if ($result0r2->num_rows > 0) {
     while ($row0 = $result0r2->fetch_assoc()) {
