@@ -194,7 +194,7 @@ if ($result00->num_rows > 0) {
                                 #main-table-2 td,
                                 #main-table-3 td {
                                     border: 1px solid black;
-                                    font-size: 11px;
+                                    font-size: 10px;
                                     padding: 3px 10px;
                                     border: 1px solid gray;
                                 }
@@ -290,14 +290,21 @@ if ($result0r1->num_rows > 0) {
 }
 
 // Govt Salary
-$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and partid=6 and month = '$month' and year='$year';";
+$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and (partid=6 or partid=13) and month = '$month' and year='$year';";
 $result0r1 = $conn->query($sql0);
 if ($result0r1->num_rows > 0) {
     while ($row0 = $result0r1->fetch_assoc()) {
         $date = $row0["date"];
         $amt = $row0["amount"];
         $type = $row0["type"];
-        $particul = "Govt. Salary/MPO";
+        $pid = $row0["partid"];
+        if($pid == 6) {
+            $particul = "Govt. Salary/MPO";
+        } else {
+            $particul = 'Stypend by Govt.';
+        }
+        // 
+        
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
         if ($type == 'Income') {
@@ -315,29 +322,39 @@ if ($result0r1->num_rows > 0) {
 
 
 // Others Income
-$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and partid=3 and type='Income' and date between '$datefrom' and '$dateto';";
-echo $sql0;
+$sql0 = "SELECT * FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and (particulars NOT LIKE 'collection%' || partid=3 || partid=12) and type='Income' and date between '$datefrom' and '$dateto';";
+// echo $sql0;
 $result0r2 = $conn->query($sql0);
 if ($result0r2->num_rows > 0) {
     while ($row0 = $result0r2->fetch_assoc()) {
         $date = $row0["date"];
         $amt = $row0["amount"];
         $type = $row0["type"];
-        $type = $row0["particulars"];
+        $partid = $row0["partid"];
+        $particul = $row0["particulars"];
 
         $in1 = $in2 = $in3 = $out1 = $out2 = $out3 = 0;
-       
+
+        // echo $type . ' - ' . $particul . ' -- ' .  $amt . ',<br> ';text-davinci-003
+
         $block = 'BANK';
         $in3 = $amt;
-
-        $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
+        if ($partid == 6 ||$partid == 13 || $partid == 2 || $particul == 'from Bank Transaction.') {
+            // Rejected.....
+        } else {
+            $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
                         VALUES (NULL, 0, '$sccode', '$month', '$year', '$type', '$date', '$particul', '$in1', '$in2', '$in3', '$out1', '$out2', '$out3', '$amt', '$block')";
-       echo $insins;
-       $conn->query($insins);
+            // echo $insins;
+            $conn->query($insins);
+        }
     }
 }
 
-
+//******************************************************************************************************************************************* */
+//******************************************************************************************************************************************* */
+//******************************************************************************************************************************************* */
+//******************************************************************************************************************************************* */
+//******************************************************************************************************************************************* */
 // Expenses..................................................
 $sql0 = "SELECT date, category, particulars, refno, sum(amount) as amount FROM cashbook where  (sccode='$sccode' || sccode='$sccodes')  and type='Expenditure' and month = '$month' and year='$year' and partid !=6 group by refno order by date;";
 
@@ -358,7 +375,7 @@ if ($result0r1->num_rows > 0) {
                 $result0r11a = $conn->query($sql0x);
                 if ($result0r11a->num_rows > 0) {
                     while ($row0x = $result0r11a->fetch_assoc()) {
-                       $particulars  = $row0x['title'];
+                        $particulars = $row0x['title'];
                     }
                 } else {
                     $particulars = 'No REF';
@@ -368,12 +385,12 @@ if ($result0r1->num_rows > 0) {
                 $result0r11b = $conn->query($sql0x);
                 if ($result0r11b->num_rows > 0) {
                     while ($row0x = $result0r11b->fetch_assoc()) {
-                       $particulars  = $row0x['chqno'];
+                        $particulars = $row0x['chqno'];
                     }
                 } else {
                     $particulars = 'Bank Ref not found';
                 }
-            } 
+            }
             // $particulars = $refno . '/' . $chk . '/';
         }
 
@@ -383,9 +400,14 @@ if ($result0r1->num_rows > 0) {
 
         $block = '';
 
-        $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
+        if ($particulars == 'Deposit') {
+            // REJECTED
+        } else {
+            $insins = "INSERT INTO audit_temp (id, cashbook_id, sccode, month, year, type, date, particular, institute_in, govt_in, eduboard_in, institute_out, govt_out, bank_out, amount, block) 
                         VALUES (NULL, 0, '$sccode', '$month', '$year', 'Expenditure', '$date', '$particulars', '$in1', '$in2', '$in3', '$out1', '$out2', '$out3', '$amt', '$block')";
-        $conn->query($insins);
+            $conn->query($insins);
+        }
+
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -399,29 +421,34 @@ if ($result0r1->num_rows > 0) {
 $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
 ?>
 
-<div id="apple" class="text-small" style="font-size:11px;" hidden>
-    <div class="m-0 p-0">To,</div>
-    <div class="m-0 p-0">The Chairman</div>
-    <div class="m-0 p-0"><?php echo $scname; ?></div>
-    <div class="m-0 p-0"><?php echo $scaddress; ?></div>
+<div id="apple" class="text-small" hidden>
+    <div style="font-size:11px;">
+        <div class="m-0 p-0">To,</div>
+        <div class="m-0 p-0">The Chairman</div>
+        <div class="m-0 p-0"><?php echo $scname; ?></div>
+        <div class="m-0 p-0"><?php echo $scaddress; ?></div>
 
-    <div class="m-0 p-0 pt-2 pb-2">Ambassador/Media : Head Teacher, <?php echo $scname . ', ' . $scaddress; ?></div>
+        <div class="m-0 p-0 " style="padding:8px 0">Ambassador/Media : Head Teacher,
+            <?php echo $scname . ', ' . $scaddress; ?>
+        </div>
 
-    <div class="m-0 p-0">Subject : Internal Audit Report.</div>
+        <div class="m-0 p-0">Subject : Internal Audit Report.</div>
 
-    <div class="m-0 p-0 pt-2 pb-2">Audit Period : From <b><?php echo $datefrom; ?></b> to
-        <b><?php echo $dateto; ?></b>
+        <div class="m-0 p-0" style="padding:8px 0">Audit Period : From <b><?php echo $datefrom; ?></b> to
+            <b><?php echo $dateto; ?></b>
+        </div>
+
+
+
+        <div class="m-0 p-0">Sir,</div>
+        We, the undersigned members of the Audit Committee, audited the income and expenditure accounts of
+        <?php echo $scname; ?> for the month of
+        <?php echo $month . '/' . $year . ' (from ' . $datefrom . ' to ' . $dateto . ') on ' . $td; ?>. Thoroughly
+        audited all income
+        sections and expenditure vouchers including receipts and found correct. All accounts and financial status are
+        listed below.
     </div>
 
-
-
-    <div class="m-0 p-0">Sir,</div>
-    We, the undersigned members of the Audit Committee, audited the income and expenditure accounts of
-    <?php echo $scname; ?> for the month of
-    <?php echo $month . '/' . $year . ' (from ' . $datefrom . ' to ' . $dateto . ') on ' . $td; ?>. Thoroughly
-    audited all income
-    sections and expenditure vouchers including receipts and found correct. All accounts and financial status are
-    listed below.
 </div>
 
 <div id="datam">
@@ -475,7 +502,7 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
                                 <tr>
 
                                     <td style="padding : 2px 10px; border:1px solid gray;">
-                                        <div class="ooo"><?php echo $date; ?></div>
+                                        <div class="ooo"><?php echo date('d/m/y', strtotime($date)); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray;">
                                         <div class="ooo"><?php echo $particular; ?></div>
@@ -551,7 +578,7 @@ $t1 = $t2 = $t3 = $t4 = $t5 = $t6 = 0;
                                 <tr>
 
                                     <td style="padding : 2px 10px; border:1px solid gray;">
-                                        <div class="ooo"><?php echo $date; ?></div>
+                                        <div class="ooo"><?php echo date('d/m/y', strtotime($date)); ?></div>
                                     </td>
                                     <td style="padding : 2px 10px; border:1px solid gray;">
                                         <div class="ooo"><?php echo $particular; ?></div>
@@ -855,7 +882,7 @@ include 'footer.php';
         var datam = document.getElementById("datam").innerHTML;
         document.write('<title>Eimbox</title>');
         document.write('<div class="d-print-nones" id="nono"><button style="z-index:9999; position:fixed; right:100px; top:50px; background: black;; color:white; padding:5px; border-radius:5px;"  onclick="reload();">Back to  List</button></div>');
-        document.write('<div id="margin" style="padding: 5mm 15mm;"></div>');
+        document.write('<div id="margin" style="padding: 5mm 10mm;"></div>');
         // document.write(pad);
         document.getElementById("margin").innerHTML = pad + txt + app + datam;
         // document.write(txt);
