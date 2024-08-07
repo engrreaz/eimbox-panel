@@ -5,7 +5,7 @@
 
     ?>
     
-    <div style="border:0px dashed gray; padding:15mm 25mm; page-break-before:always; ">
+    <div style="border:0px dashed gray; padding:7mm 15mm; page-break-before:always; ">
     <?php include 'assets/pad/temp-01.php';?>
     
     

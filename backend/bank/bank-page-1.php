@@ -14,7 +14,7 @@ if ($result0qt1->num_rows > 0) {
                 font-size: 16px;
             }
         </style>
-        <div style="border:0px dashed gray; padding:15mm 25mm; page-break-before:always; ">
+        <div style="border:0px dashed gray; padding:15mm 15mm; page-break-before:always; ">
             <?php include 'assets/pad/temp-01.php'; ?>
 
 
@@ -65,7 +65,7 @@ if ($result0qt1->num_rows > 0) {
             </div>
 
 
-            <div style="height:50px;">
+            <div style="height:30px;">
 
             </div>
 
