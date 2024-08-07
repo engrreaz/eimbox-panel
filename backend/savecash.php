@@ -80,8 +80,8 @@ else if ($tail == 5) {
 
     // Get Total Amount
     $mottaka = 0;
-    $sql0 = "SELECT * FROM `cashbook` where (sccode = '$sccodes' || sccode = '$sccode') and memono>0 and ongoing=1 and module='VOUCHER' order by memono;";
-    echo $sql0;
+    $sql0 = "SELECT * FROM `cashbook` where (sccode = '$sccodes' || sccode = '$sccode') and slots='$slot' and memono>0 and ongoing=1 and module='VOUCHER' order by memono;";
+    // echo $sql0;
     $result0rtd = $conn->query($sql0);
     if ($result0rtd->num_rows > 0) {
         while ($row0 = $result0rtd->fetch_assoc()) {
