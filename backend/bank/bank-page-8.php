@@ -55,8 +55,8 @@
                     $cate = $slt . ' Salary';
                 } else if ($cates == 'pf') {
                     $cate = 'Providend Fund';
-                } else if ($cates == 'expenditure') {
-                    $cate = 'Expenditure';
+                } else if (strtolower($cates) == 'expenditure' ) {
+                    $cate = 'Expenditure' ;
                 } else if ($cates == 'Eid') {
                     $cate = 'Govt. Festival Bonus';
                 } else if ($cates == 'Boishakhi') {
