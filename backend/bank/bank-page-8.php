@@ -56,7 +56,7 @@
                 } else if ($cates == 'pf') {
                     $cate = 'Providend Fund';
                 } else if (strtolower($cates) == 'expenditure' ) {
-                    $cate = 'Expenditure' ;
+                    $cate = 'Expenditure' . ' (' . $slot . ')' ;
                 } else if ($cates == 'Eid') {
                     $cate = 'Govt. Festival Bonus';
                 } else if ($cates == 'Boishakhi') {
