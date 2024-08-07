@@ -7,7 +7,7 @@
     <!---->
     
    <div style=" page-break-before:always; ">
-<div style="border:0px dashed gray; padding:8mm;  ">
+<div style="border:0px dashed gray; padding:4mm;  ">
     
     <div style="padding:5px; margin:0;  text-align:center; font-size:14px; font-weight:500;">
         <table style="width:100%; font-size:11px; ">
