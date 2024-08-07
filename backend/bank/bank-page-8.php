@@ -1,6 +1,6 @@
 <style>
     .pacpac {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .right {
