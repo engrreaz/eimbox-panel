@@ -1,6 +1,6 @@
 <style>
     .pacpac {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .right {
@@ -56,7 +56,7 @@
                 } else if ($cates == 'pf') {
                     $cate = 'Providend Fund';
                 } else if (strtolower($cates) == 'expenditure' ) {
-                    $cate = 'Expenditure' . ' (' . $slot . ')' ;
+                    $cate = 'Expenditure' . ' (' . $slt . ')' ;
                 } else if ($cates == 'Eid') {
                     $cate = 'Govt. Festival Bonus';
                 } else if ($cates == 'Boishakhi') {
