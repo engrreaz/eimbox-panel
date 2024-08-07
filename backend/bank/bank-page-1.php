@@ -65,7 +65,7 @@ if ($result0qt1->num_rows > 0) {
             </div>
 
 
-            <div style="height:30px;">
+            <div style="height:20px;">
 
             </div>
 

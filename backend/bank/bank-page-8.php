@@ -103,7 +103,7 @@
 
     </table>
 
-    <div style="font-size:13px;">
+    <div style="font-size:13px;  margin-top:20px;">
         Amount in word : <b>Taka <?php echo taka($taka8); ?> Only.</b>
     </div>
 
