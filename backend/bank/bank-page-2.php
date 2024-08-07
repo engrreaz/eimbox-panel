@@ -44,11 +44,11 @@
     
     ?>
         <tr>
-            <td><?php echo $sl;?></td>
-            <td><?php echo $tname;?></td>
-            <td><?php echo $mpoindex;?></td>
-            <td><?php echo $accno;?></td>
-            <td><?php echo $amount;?></td>
+            <td style="; padding:1px 5px;"><?php echo $sl;?></td>
+            <td style="; padding:1px 5px;"><?php echo $tname;?></td>
+            <td style="text-align:center; padding:1px 5px;"><?php echo $mpoindex;?></td>
+            <td style="text-align:center; padding:1px 5px;"><?php echo $accno;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo number_format($amount,2);?></td>
         </tr>
     <?php
     $sl++; $taka += $amount;
