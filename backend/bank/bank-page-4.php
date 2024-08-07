@@ -25,7 +25,7 @@
                 <th>Name of Teacher's/Staff's</th>
                 <th>Designation</th>
                 <th style="text-align:right;">Salary</th><th style="text-align:right;">Mobile Bill</th>
-                <th style="text-align:right;">Fest</th><th style="text-align:right;">Exam</th>
+                <th style="text-align:right;">Exam</th><th style="text-align:right;">Fest</th>
                 <th style="text-align:right;">Total</th><th style="text-align:right;">PF</th><th style="text-align:right;">Net</th>
             </tr>
         </thead>
