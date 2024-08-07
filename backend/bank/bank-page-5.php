@@ -11,7 +11,7 @@ if ($result0qt1->num_rows > 0) {
         // $chqamt = 226598;
         ?>
 
-        <div style="border:0px dashed gray; padding:8mm 10mm;   page-break-before:always; ">
+        <div style="border:0px dashed gray; padding:6mm 10mm;   page-break-before:always; ">
             <?php include 'assets/pad/temp-01.php'; ?>
 
 
@@ -33,11 +33,11 @@ if ($result0qt1->num_rows > 0) {
             </div>
 
             <div
-                style="padding:5px; margin: 7px auto; border-bottom: 1px solid gray; width: 40%; text-align:center; font-size:16px; font-weight:700;">
+                style="padding:5px; margin: 2px auto; border-bottom: 1px solid gray; width: 40%; text-align:center; font-size:16px; font-weight:700;">
                 Month : &nbsp;&nbsp;&nbsp; <?php echo $mtxt; ?>
             </div>
 
-            <div style="height:3px;"></div>
+            <div style="height:1px;"></div>
             <table style="width:100%; font-size:13px;" class="table table-striped">
                 <thead>
                     <tr>
@@ -95,7 +95,7 @@ if ($result0qt1->num_rows > 0) {
                 <thead>
                     <tr>
                         <th colspan="6">Grand Total :</th>
-                        <th style="text-align:right; font-size:16px;"><?php echo $taka3; ?></th>
+                        <th style="text-align:right; font-size:14px;"><?php echo $taka3; ?></th>
                     </tr>
                 </thead>
 
