@@ -6,7 +6,7 @@
     ?>
     <!---->
     
-   <div style=" page-break-before:always; width:110%; ">
+   <div style=" page-break-before:always; ">
 <div style="border:0px dashed gray; padding:8mm;  ">
     
     <div style="padding:5px; margin:0;  text-align:center; font-size:14px; font-weight:500;">
