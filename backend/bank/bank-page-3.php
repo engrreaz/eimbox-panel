@@ -93,8 +93,8 @@
                 <?php } ?>
                 
                 
-                <th>Amount (BDT)</th>
-                <th style="width:120px;">sign</th>
+                <th>Amount</th>
+                <th style="width:100px;">sign</th>
             </tr>
         </thead>
     <?php
@@ -117,7 +117,7 @@
     
     ?>
         <tr>
-            <td class="mpo-table"><?php echo $sl;?></td>
+            <td class="mpo-table" style="padding:3px;"><?php echo $sl;?></td>
             <td class="mpo-table"><?php echo $mpoindex;?></td>
             <td class="mpo-table"><?php echo $tname;?></td>
             <td class="mpo-table"><?php echo $accno;?></td>
