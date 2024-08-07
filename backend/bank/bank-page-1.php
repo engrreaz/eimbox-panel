@@ -14,7 +14,7 @@ if ($result0qt1->num_rows > 0) {
                 font-size: 16px;
             }
         </style>
-        <div style="border:0px dashed gray; padding:15mm 15mm; page-break-before:always; ">
+        <div style="border:0px dashed gray; padding:10mm 15mm; page-break-before:always; ">
             <?php include 'assets/pad/temp-01.php'; ?>
 
 
@@ -46,7 +46,7 @@ if ($result0qt1->num_rows > 0) {
 
             <table style="width:100%">
                 <tr>
-                    <td style="border:1px solid black; border-left:0; padding:10px;"><b><?php echo taka($chqamt); ?></b></td>
+                    <td style="border:1px solid black; border-left:0; padding:10px; max-width:50%;"><b><?php echo taka($chqamt); ?></b></td>
                     <td style="border:1px solid black; border-right:0; padding:25px 10px; line-height:2;">
                         Please check the order at ------ Bank ----- branch
                         <br>
