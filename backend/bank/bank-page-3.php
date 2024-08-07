@@ -1,5 +1,5 @@
     <?php
-    $sql0 = "SELECT * from salarysummery where sccode='$sccode' and month='$month' and year='$year' and (category='govt' or category='Eid' or category='Boishakhi') and status=0 ";  //ORDER BY , ID
+    $sql0 = "SELECT * from salarysummery where sccode='$sccode' and month='$month' and year='$year' and (category='govt' or category='Eid' or category='Boishakhi') and status=1 ";  //ORDER BY , ID
     $result0qt1 = $conn->query($sql0);if ($result0qt1->num_rows > 0) {while($row0 = $result0qt1->fetch_assoc()) {  
         $refno=$row0["refno"]; $slotname=$row0["slot"]; $chqamt=$row0["amount"];  $refdate=$row0["issuedate"];  $cat=$row0["category"]; 
 
