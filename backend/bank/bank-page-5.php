@@ -11,7 +11,7 @@ if ($result0qt1->num_rows > 0) {
         // $chqamt = 226598;
         ?>
 
-        <div style="border:0px dashed gray; padding:10mm 25mm;   page-break-before:always; ">
+        <div style="border:0px dashed gray; padding:8mm 15mm;   page-break-before:always; ">
             <?php include 'assets/pad/temp-01.php'; ?>
 
 
@@ -76,13 +76,13 @@ if ($result0qt1->num_rows > 0) {
 
                         ?>
                         <tr>
-                            <td><?php echo $sl; ?></td>
-                            <td><?php echo $tname; ?></td>
-                            <td><?php echo $posi; ?></td>
-                            <td><?php echo $bname; ?></td>
-                            <td><?php echo $bbr; ?></td>
-                            <td><?php echo $accno; ?></td>
-                            <td style="text-align:right;"><?php echo $ttk; ?></td>
+                            <td style=" padding:1px 5px;"><?php echo $sl; ?></td>
+                            <td style=" padding:1px 5px;"><?php echo $tname; ?></td>
+                            <td style="padding:1px 5px;"><?php echo $posi; ?></td>
+                            <td style=" padding:1px 5px;"><?php echo $bname; ?></td>
+                            <td style=" padding:1px 5px;"><?php echo $bbr; ?></td>
+                            <td style=" padding:1px 5px;"><?php echo $accno; ?></td>
+                            <td  style="text-align:right; padding:1px 5px;"><?php echo number_format($ttk,2); ?></td>
                         </tr>
                         <?php
                         $sl++;

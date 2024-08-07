@@ -5,7 +5,7 @@
 
     ?>
     
-    <div style="border:0px dashed gray; padding:15mm 25mm;   page-break-before:always;  ">
+    <div style="border:0px dashed gray; padding:8mm 15mm;   page-break-before:always;  ">
     <?php include 'assets/pad/temp-01.php';?>
     
     
@@ -52,13 +52,13 @@
     
     ?>
         <tr>
-            <td><?php echo $sl;?></td>
-            <td><?php echo $tname;?></td>
-            <td><?php echo $posi;?></td>
+            <td style="padding:1px 5px;"><?php echo $sl;?></td>
+            <td style=" padding:1px 5px;"><?php echo $tname;?></td>
+            <td style=" padding:1px 5px;"><?php echo $posi;?></td>
             <!--<td><?php echo $bname;?></td>-->
             <!--<td><?php echo $bbr;?></td>-->
-            <td><?php echo $accno;?></td>
-            <td><?php echo $amount*2;?></td>
+            <td style=" padding:1px 5px;"><?php echo $accno;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo number_format($amount*2,2);?></td>
         </tr>
     <?php
     $sl++; $taka6 += $amount*2;

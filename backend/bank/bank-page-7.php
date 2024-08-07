@@ -12,7 +12,8 @@ if ($result0qt1->num_rows > 0) {
 
         <style>
             .pacpac {
-                font-size: 16px;
+                font-size: 15px;
+                padding:1px 5px;
             }
 
             .right {
@@ -20,7 +21,7 @@ if ($result0qt1->num_rows > 0) {
             }
         </style>
 
-        <div style="border:0px dashed gray; padding:15mm 25mm;   page-break-before:always; ">
+        <div style="border:0px dashed gray; padding:10mm 15mm;   page-break-before:always; ">
             <?php include 'assets/pad/temp-01.php'; ?>
 
 
@@ -78,7 +79,7 @@ if ($result0qt1->num_rows > 0) {
                             <td class="pacpac"><?php echo $khat; ?></td>
                             <td class="pacpac"><?php echo $mno; ?></td>
                             <td class="pacpac"><?php echo $parti; ?></td>
-                            <td class="pacpac right"><?php echo $amount; ?></td>
+                            <td class="pacpac right"><?php echo number_format($amount,2); ?></td>
                         </tr>
                         <?php
                         $sl++;
