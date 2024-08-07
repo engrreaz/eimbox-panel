@@ -45,16 +45,16 @@
     
     ?>
         <tr>
-            <td><?php echo $sl;?></td>
-            <td><?php echo $tname;?></td>
-            <td><?php echo $posi;?></td>
-            <td style="text-align:right;"><?php echo $salary;?></td>
-            <td style="text-align:right;"><?php echo $mpa;?></td>
-            <td style="text-align:right;"><?php echo $ex1;?></td>
-            <td style="text-align:right;"><?php echo $ex2;?></td>
-            <td style="text-align:right;"><?php echo $salary + $mpa + $ex1 + $ex2;?></td>
-            <td style="text-align:right;"><?php echo $pf;?></td>
-            <td style="text-align:right;"><?php echo $mott;?></td>
+            <td style="padding:1px 5px;"><?php echo $sl;?></td>
+            <td style="padding:1px 5px;"><?php echo $tname;?></td>
+            <td style="padding:1px 5px;"><?php echo $posi;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo $salary;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo $mpa;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo $ex1;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo $ex2;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo $salary + $mpa + $ex1 + $ex2;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo $pf;?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo $mott;?></td>
         </tr>
     <?php
     $sl++; $taka3 += $mott;
