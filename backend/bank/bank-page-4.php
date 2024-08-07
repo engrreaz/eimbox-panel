@@ -5,7 +5,7 @@
 
     ?>
     
-    <div style="border:0px dashed gray; padding:15mm 25mm;  page-break-before:always;  ">
+    <div style="border:0px dashed gray; padding:8mm 15mm;  page-break-before:always;  ">
     <?php include 'assets/pad/temp-01.php';?>
     
     
@@ -21,12 +21,12 @@
     <table style="width:100%; font-size:14px;" class="table table-striped">
         <thead>
             <tr>
-                <th>SL</th>
-                <th>Name of Teacher's/Staff's</th>
-                <th>Designation</th>
-                <th style="text-align:right;">Salary</th><th style="text-align:right;">Mobile Bill</th>
-                <th style="text-align:right;">Exam</th><th style="text-align:right;">Fest</th>
-                <th style="text-align:right;">Total</th><th style="text-align:right;">PF</th><th style="text-align:right;">Net</th>
+                <th style="padding:1px 5px;">SL</th>
+                <th style="padding:1px 5px;">Name of Teacher's/Staff's</th>
+                <th style="padding:1px 5px;">Designation</th>
+                <th style="text-align:right; padding:1px 5px;">Salary</th><th style="text-align:right; padding:1px 5px;">Mobile Bill</th>
+                <th style="text-align:right; padding:1px 5px;">Exam</th><th style="text-align:right; padding:1px 5px;">Fest</th>
+                <th style="text-align:right; padding:1px 5px;">Total</th><th style="text-align:right; padding:1px 5px;">PF</th><th style="text-align:right;">Net</th>
             </tr>
         </thead>
     <?php
