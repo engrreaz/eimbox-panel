@@ -5,7 +5,7 @@
 
     ?>
     
-    <div style="border:0px dashed gray; padding:8mm 15mm;   page-break-before:always;  ">
+    <div style="border:0px dashed gray; padding:8mm 10mm;   page-break-before:always;  ">
     <?php include 'assets/pad/temp-01.php';?>
     
     
@@ -58,7 +58,7 @@
             <!--<td><?php echo $bname;?></td>-->
             <!--<td><?php echo $bbr;?></td>-->
             <td style=" padding:1px 5px;"><?php echo $accno;?></td>
-            <td style="text-align:right; padding:1px 5px;"><?php echo number_format($amount*2,2);?></td>
+            <td style="text-align:right; padding:1px 5px;"><?php echo number_format($amount*2);?></td>
         </tr>
     <?php
     $sl++; $taka6 += $amount*2;
