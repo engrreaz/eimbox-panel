@@ -69,6 +69,7 @@
         Amount in word : <b><?php echo taka($taka);?></b>
     </div>
     
+    <div style="height:20px;"></div>
     
     <?php include 'assets/pad/seal.php';?>
                     
