@@ -38,7 +38,7 @@ if ($result0qt1->num_rows > 0) {
             </div>
 
             <div style="height:3px;"></div>
-            <table style="width:100%; font-size:14px;" class="table table-striped">
+            <table style="width:100%; font-size:13px;" class="table table-striped">
                 <thead>
                     <tr>
                         <th>SL</th>
