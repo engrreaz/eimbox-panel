@@ -119,7 +119,7 @@
         <tr>
             <td class="mpo-table" style="padding:3px;"><?php echo $sl;?></td>
             <td class="mpo-table"><?php echo $mpoindex;?></td>
-            <td class="mpo-table" style="text-align:left;;"><?php echo $tname;?></td>
+            <td class="mpo-table" style="text-align:left;padding:5px;;"><?php echo $tname;?></td>
             <td class="mpo-table"><?php echo $accno;?></td>
             <td class="mpo-table"><?php echo $posi;?></td>
             <td class="mpo-table"><?php echo date('d/m/y', strtotime($dob));?></td>
