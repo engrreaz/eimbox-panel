@@ -76,13 +76,13 @@ if ($result0qt1->num_rows > 0) {
 
                         ?>
                         <tr>
-                            <td style=" padding:1px 5px;"><?php echo $sl; ?></td>
-                            <td style=" padding:1px 5px;"><?php echo $tname; ?></td>
-                            <td style="padding:1px 5px;"><?php echo $posi; ?></td>
-                            <td style=" padding:1px 5px;"><?php echo $bname; ?></td>
-                            <td style=" padding:1px 5px;"><?php echo $bbr; ?></td>
-                            <td style=" padding:1px 5px;"><?php echo $accno; ?></td>
-                            <td  style="text-align:right; padding:1px 5px;"><?php echo number_format($ttk); ?></td>
+                            <td style=" padding:1px 3px;"><?php echo $sl; ?></td>
+                            <td style=" padding:1px 3px;"><?php echo $tname; ?></td>
+                            <td style="padding:1px 3px;"><?php echo $posi; ?></td>
+                            <td style=" padding:1px 3px;"><?php echo $bname; ?></td>
+                            <td style=" padding:1px 3px;"><?php echo $bbr; ?></td>
+                            <td style=" padding:1px 3px;"><?php echo $accno; ?></td>
+                            <td  style="text-align:right; padding:1px 3px;"><?php echo number_format($ttk); ?></td>
                         </tr>
                         <?php
                         $sl++;
