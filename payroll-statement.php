@@ -117,7 +117,7 @@ if (isset($_GET['disx'])) {
                                     <button type="button" class="btn btn-inverse-danger" onclick="view(<?php echo $month;?>,<?php echo $year;?>,1,2);" disabled>
                                         <i class="mdi mdi-file-pdf mdi-18px"></i> PDF
                                     </button>
-                                    <button type="button" class="btn btn-inverse-dark" onclick="view(<?php echo $month;?>,<?php echo $year;?>,0,0);" disabled>
+                                    <button type="button" class="btn btn-inverse-dark" onclick="view(<?php echo $month;?>,<?php echo $year;?>,0,0);" >
                                         <i class="mdi mdi-file-pdf mdi-18px"></i> MPO
                                     </button>
                                 </div>
