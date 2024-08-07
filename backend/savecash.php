@@ -178,7 +178,7 @@ else if ($tail == 5) {
             $fff = 'refnopf';
         }
         $query414 = "UPDATE salarydetails SET $fff = '$ref'  where sccode='$sccode' and month='$month' and year= '$year' and sccode='$sccode';";
-        // echo $query404;
+        echo $query414;
         $conn->query($query414);
 
 
