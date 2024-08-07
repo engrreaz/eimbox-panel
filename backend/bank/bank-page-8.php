@@ -62,7 +62,7 @@
                 } else if ($cates == 'Boishakhi') {
                     $cate = 'Boishakhi Allowance';
                 } else {
-                    $cate = '***';
+                    $cate = $cates;//'***';
                 }
 
                 // $sql0 = "SELECT * from teacher where tid='$tid' and sccode = '$sccode'  ";
