@@ -38,8 +38,13 @@
         
     </div>
 
+    <style>
+        .mpo-tablex {
+            font-size:11px;
+        }
+    </style>
     
-    
+
     <div style="height:3px;"></div>
     <table style="width:100% " class="mpo-tables">
         <thead>
@@ -119,7 +124,7 @@
             <td class="mpo-table"><?php echo $posi;?></td>
             <td class="mpo-table"><?php echo date('d/m/y', strtotime($dob));?></td>
             <td class="mpo-table"><?php echo date('d/m/y', strtotime($join));?></td>
-            <td class="mpo-table" style="font-size:9px;"><?php echo $pcode . '<br>' . $pscale;?></td>
+            <td class="mpo-table" style="font-size:9px;"><?php echo $pcode . '/' . $pscale;?></td>
             <td class="mpo-table"><?php echo $basicz;?></td>
             
             
