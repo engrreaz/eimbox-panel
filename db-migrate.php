@@ -32,3 +32,7 @@ INSERT INTO `sessioninfo`
 (`id`, `stid`, `sessionyear`, `classname`, `sectionname`, `rollno`, `sccode`, `icardst`, `fourth_subject`, `voter_no`, `groupname`, `status`, `gender`, `religion`, `finsetup`, `lastpr`, `real_tution`, `sector`, `rate`, `amount`, `trackyesterday`, `tracktoday`, `validate`, `validationtime`) 
 VALUES 
 (NULL, '1031872294', '2024', 'Eleven', 'Science', '241001', '103187', '0', '0', NULL, NULL, '1', NULL, NULL, '0', NULL, '0', NULL, '100', '0', NULL, NULL, '0', '2024-01-01 00:00:00')
+
+
+
+GEMOINI API  AIzaSyBGK4pYmqLk1CGCjuOztXLtV4CUcLyaZOc
