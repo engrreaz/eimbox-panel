@@ -230,7 +230,7 @@ if ($step6 == 4) {
 }
 // echo $point . '/';
 
-$sql0x = "SELECT count(*) as ccc, sum(amount) as total FROM salarysummery where sccode='$sccode' and salaryyear='$year' and salarymonth='$month' and category !='expenditure' ;";
+$sql0x = "SELECT count(*) as ccc, sum(amount) as total FROM salarysummery where sccode='$sccode' and salaryyear='$year' and salarymonth='$month' and category !='expenditure' and partid !=9 ;";
 // echo $sql0x;
 $result5 = $conn->query($sql0x);
 if ($result5->num_rows > 0) {
