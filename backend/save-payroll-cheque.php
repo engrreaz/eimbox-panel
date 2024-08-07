@@ -262,7 +262,7 @@ if ($partid == 6) {
     $fff = 'refnopf';
 }
 $query414 = "UPDATE salarydetails SET $fff = '$ref'  where sccode='$sccode' and month='$month' and year= '$year' and sccode='$sccode' and slots='$slot';";
-echo $query414;
+// echo $query414;
 $conn->query($query414);
 
 echo '<i class="mdi mdi-check-circle mdi-24px text-success"></i>';
