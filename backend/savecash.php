@@ -170,7 +170,16 @@ else if ($tail == 5) {
         }
 
 
-
+        if ($partid == 6) {
+            $fff = 'refnogovt';
+        } else if ($partid == 8) {
+            $fff = 'refnosch';
+        } else if ($partid == 9) {
+            $fff = 'refnopf';
+        }
+        $query414 = "UPDATE salarydetails SET $fff = '$ref'  where sccode='$sccode' and month='$month' and year= '$year' and sccode='$sccode';";
+        // echo $query404;
+        $conn->query($query414);
 
 
 
@@ -194,7 +203,7 @@ else if ($tail == 5) {
 
 } else if ($tail == 6 || $tail == 7) {
     $ongoing = $tail - 6;
-    if($ongoing == 0) {
+    if ($ongoing == 0) {
         $mod = '';
     } else {
         $mod = 'VOUCHER';
@@ -204,7 +213,7 @@ else if ($tail == 5) {
     $conn->query($query402);
 }
 
-if($tail == 6 || $tail ==7){
+if ($tail == 6 || $tail == 7) {
     echo '<i class="mdi mdi-check mdi-18px text-primary"></i>';
 } else {
     echo 'Update Successfully ';
