@@ -65,7 +65,7 @@ if ($result0qt1->num_rows > 0) {
             </div>
 
 
-            <div style="height:10px;">
+            <div style="height:10px;" hidden>
 
             </div>
 
@@ -73,7 +73,7 @@ if ($result0qt1->num_rows > 0) {
             <?php include 'assets/pad/seal-both.php'; ?>
 
             <hr>
-            <div style="padding:5px; margin: 5px auto 0px;width: 100%; text-align:left; font-size:14px; font-weight:500;">
+            <div style="padding:5px 0 0 0 ; margin: 5px auto 0px;width: 100%; text-align:left; font-size:14px; font-weight:500;">
                 A bill of one hundred rupees was paid.
             </div>
 
