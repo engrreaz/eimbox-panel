@@ -225,7 +225,7 @@ if ($partid != 5) {
     }
 
 
-    
+
 
 
 
@@ -252,5 +252,17 @@ if ($partid == 6) {
         $conn->query($query406);
     }
 }
+
+
+if ($partid == 6) {
+    $fff = 'refnogovt';
+} else if ($partid == 8) {
+    $fff = 'refnosch';
+} else if ($partid == 9) {
+    $fff = 'refnopf';
+}
+$query414 = "UPDATE salarydetails SET $fff = '$ref'  where sccode='$sccode' and month='$month' and year= '$year' and sccode='$sccode';";
+echo $query414;
+$conn->query($query414);
 
 echo '<i class="mdi mdi-check-circle mdi-24px text-success"></i>';
