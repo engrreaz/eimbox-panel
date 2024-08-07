@@ -51,7 +51,7 @@ if ($result0qt1->num_rows > 0) {
                 $sl = 1;
                 $taka7 = 0;
                 $sccode2 = $sccode * 10;
-                $sql0 = "SELECT * from cashbook where (sccode='$sccode2' or sccode='$sccode') and month='$month' and year='$year'   and type='Expenditure' and slots='$slotname' order by memono, date ;"; //echo $sql0;
+                $sql0 = "SELECT * from cashbook where (sccode='$sccode2' or sccode='$sccode') and month='$month' and year='$year'   and type='Expenditure' and slots='$slotname' and memono>0 and status=1 order by memono, date ;"; //echo $sql0;
                 $result0qt2 = $conn->query($sql0);
                 if ($result0qt2->num_rows > 0) {
                     while ($row0 = $result0qt2->fetch_assoc()) {
