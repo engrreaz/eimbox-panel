@@ -175,7 +175,7 @@ else if ($tail == 5) {
 
 
 
-        $query402 = "UPDATE cashbook set sessionyear='$sy', month='$month', year='$year', sccode='$sccode',  refno='$ref', status='1', ongoing = 0  where (sccode = '$sccodes' or sccode = '$sccode') and memono > 0 and module='VOUCHER' and ongoing = 1 ;";
+        $query402 = "UPDATE cashbook set sessionyear='$sy', month='$month', year='$year', sccode='$sccode',  refno='$ref', status='1', ongoing = 0  where (sccode = '$sccodes' or sccode = '$sccode') and memono > 0 and module='VOUCHER' and ongoing = 1 and slots='$slot';";
         // echo $query402;
         $conn->query($query402);
         // $query402 = "UPDATE cashbook set month= NULL, year=NULL, sccode='$sccodes', refno=NULL, status='0'   where sccode = '$sccodes' and memono > 0 and refno='$ref' ;";
