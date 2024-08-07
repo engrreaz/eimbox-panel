@@ -8,7 +8,7 @@ if ($result0qt1->num_rows > 0) {
         $chqamt = $row0["amount"];
         $refdate = $row0["issuedate"];
         $chqno = $row0["chequeno"];
-        $chqamt = 226598;
+        // $chqamt = 226598;
         ?>
 
         <div style="border:0px dashed gray; padding:10mm 25mm;   page-break-before:always; ">
