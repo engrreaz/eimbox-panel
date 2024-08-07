@@ -24,11 +24,11 @@
         Cheque No. <?php echo $chqno;?>
     </div>
     
-    <div style="padding:5px; margin: 10px auto; border-bottom: 1px solid gray; width: 40%; text-align:center; font-size:16px; font-weight:700;">
+    <div style="padding:5px; margin: 6px auto; border-bottom: 1px solid gray; width: 40%; text-align:center; font-size:16px; font-weight:700;">
         Month : &nbsp;&nbsp;&nbsp; <?php echo $mtxt;?>
     </div>
     
-    <div style="height:30px;"></div>
+    <div style="height:15px;"></div>
     <table style="width:100%; font-size:14px;" class="table table-striped">
         <thead>
             <tr>
