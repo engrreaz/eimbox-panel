@@ -2,11 +2,14 @@
 $api_key = "AIzaSyBGK4pYmqLk1CGCjuOztXLtV4CUcLyaZOc";
 
 $url = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={$api_key}";
+$ask = "hello";
 if(isset($_GET["ask"])){
     $ask = $_GET["ask"];
-} else {
-    $ask = "hello";
-}
+} 
+
+if(isset($_POST["ask"])){
+    $ask = $_POST["ask"];
+} 
 
 $data = array(
     "contents" => array(
