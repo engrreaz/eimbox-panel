@@ -11,7 +11,7 @@ if(isset($_POST["ask"])){
     $ask = $_POST["ask"];
 } 
 
-echo $ask;
+// echo $ask;
 
 $data = array(
     "contents" => array(
