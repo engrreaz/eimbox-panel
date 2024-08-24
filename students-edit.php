@@ -22,9 +22,9 @@ if (isset($_GET['roll'])) {
 }
 
 if ($cls2 != '' && $sec2 != '' && $roll2 != '') {
-    $sql5 = "SELECT * FROM sessioninfo where classname='$cls2' and sectionname = '$sec2' and rollno='$roll2' and sessionyear = '$sy' and sccode='$sccode';";
+    $sql5 = "SELECT * FROM sessioninfo where classname='$cls2' and sectionname = '$sec2' and rollno='$roll2' and sessionyear LIKE '$sy%' and sccode='$sccode';";
 } else {
-    $sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear = '$sy' and sccode='$sccode';";
+    $sql5 = "SELECT * FROM sessioninfo where stid='$stid' and sessionyear LIKE '$sy%' and sccode='$sccode';";
 }
 $result6 = $conn->query($sql5);
 if ($result6->num_rows > 0) {
