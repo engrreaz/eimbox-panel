@@ -3,7 +3,7 @@ session_start();
 date_default_timezone_set('Asia/Dhaka');
 $dt = date('Y-m-d H:i:s');
 $sy = date('Y');
-include ('db.php');
+include('db.php');
 
 $user = $_POST['user'];
 $otp = $_POST['otp'];
@@ -44,7 +44,7 @@ if ($otp == $otp2) {
                 <script>
                     window.location.href = 'index.php';
                 </script>
-            <?php
+                <?php
 
             } else {
                 echo "OPT Expired!";

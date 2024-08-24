@@ -251,7 +251,7 @@ if ($result00->num_rows > 0) {
             <?php
             $cnt = 0;
             $cntamt = 0;
-            $sql0 = "SELECT * FROM sessioninfo where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
+            $sql0 = "SELECT * FROM sessioninfo where sessionyear LIKE '$sy%' and sccode='$sccode' and classname='$cls2' and sectionname = '$sec2' order by rollno";
             $result0 = $conn->query($sql0);
             if ($result0->num_rows > 0) {
                 while ($row0 = $result0->fetch_assoc()) {

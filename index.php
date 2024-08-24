@@ -1,6 +1,7 @@
 <?php include 'header.php'; ?>
 <!-- <?php include 'notice.php'; ?> -->
-
+ 
+<script type="text/javascript"> document.cookie = "fn=";</script>
 
 <?php
 if ($track <= 100 && $usr == 'engrreaz@gmail.com') {

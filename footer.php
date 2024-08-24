@@ -85,6 +85,8 @@
 
 
 <script>
+    myStopFunction();
+
     function loger() {
         var infor = "page=<?php echo $curfile; ?>&size=<?php echo filesize($curfile); ?>";
         $("#logstatus").html("----");

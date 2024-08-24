@@ -11,7 +11,11 @@ $pagelist = array(
   'access-denied-settings.php',
   'slot.php',
   'basic-settings.php',
-  'class-schedule.php'
+  'class-schedule.php',
+  'db-backup.php',
+  'db-restore.php',
+  'db-settings.php',
+  'db-bank.php'
 );
 $accnav = array('account-settings.php');
 $adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
@@ -251,7 +255,10 @@ $supernav = array('account-settings.php', 'bio-tree.php');
           </a>
           <div class="collapse" id="data-repo">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">Data Bank</a></li>
+              <li class="nav-item"> <a class="nav-link" href="db-bank.php">Data Bank</a></li>
+              <li class="nav-item"> <a class="nav-link" href="db-restore.php">Restore</a></li>
+              <li class="nav-item"> <a class="nav-link" href="db-backup.php">Backup</a></li>
+              <li class="nav-item"> <a class="nav-link" href="db-settings.php">Settings</a></li>
             </ul>
           </div>
         </li>

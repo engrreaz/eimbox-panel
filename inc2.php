@@ -73,6 +73,24 @@ if ($sccode > 100) {
             $scmail = $row0x["scmail"];
             $scweb = $row0x["scweb"];
 
+            
+            $headname = $row0x["headname"];
+            $headtitle = $row0x["headtitle"];
+
+            $progressguar = $row0x["progressguar"];
+            $track = $row0x["profile_track"];
+
+            $bup_backup = $row0x["backup"];
+            $bup_algorithm = $row0x["algorithm"];
+            $bup_secret = $row0x["secret_key"];
+            $bup_api = $row0x["api_key"];
+            $bup_mail_2 = $row0x["backup_mail_2"];
+            $bup_mail_3 = $row0x["backup_mail_3"];
+            $bup_daily = $row0x["daily_backup"];
+            $bup_monthly = $row0x["monthly_backup"];
+            $bup_cloud = $row0x["cloud_storage"];
+
+
             $progressguar = $row0x["progressguar"];
 
             $scaddress = $scadd1 . ', ' . $ps . ', ' . $dist;
