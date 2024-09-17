@@ -49,6 +49,9 @@ include 'auth/gpConfig.php';
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <?php if($usr == 'farukp2010@gmail.comx' || $usr == 'engrreaz@gmail.comx') { ?>
+    <link rel="stylesheet" href="assets/css/light.css">
+    <?php } ?>
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/imgs/logo.png" />
     <style>

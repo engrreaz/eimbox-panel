@@ -1,0 +1,30 @@
+body {
+    background: #ffffee;
+}
+.content-wrapper{
+    background: #eee;
+}
+.sidebar-block{
+    background:#ffffff;
+    border-right:1px solid lightgray;
+}
+.sidebar{
+    background:#ffffff;
+}
+
+.card, .form-control{
+    background:#ffffff;
+}
+.form-control:focus {
+    background: #d9e4e2;
+    color:teal;
+}
+select {
+    outline: 1px solid rgb(148, 148, 148);
+}
+.text-white {
+    color:#000000;
+}
+
+
+/* .sidebar .nav.sub-menu .nav-item .nav-link.active --- NAV */
