@@ -11,11 +11,11 @@ if(isset($_GET['y'])){$year = $_GET['y'];} else {$year = 0;}
 <style>
     .amt {
         width: 50px;
-        background: dimgray;
-        color: lightgray;
+        background: #eef;
+        color: black;
         padding: 6px 3px;
         text-align: center;
-        border: 1px solid white;
+        border: 1px solid gray;
         border-radius: 5px;
     }
     .amt2 {
@@ -76,7 +76,7 @@ if(isset($_GET['y'])){$year = $_GET['y'];} else {$year = 0;}
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
+                                <select class="form-control " id="month">
                                     <option value="0"></option>
                                     <?php
                                     for ($x = 1; $x <= 12; $x++) {
@@ -99,7 +99,7 @@ if(isset($_GET['y'])){$year = $_GET['y'];} else {$year = 0;}
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {

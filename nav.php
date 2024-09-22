@@ -22,7 +22,7 @@ $adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
 $supernav = array('account-settings.php', 'bio-tree.php');
 ?>
 
-<div style="overflow-y:auto; ">
+<div style="overflow-y:auto; " ‍class="sidebar-block">
   <nav class="sidebar sidebar-offcanvas no-print d-print-none" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
       <a class="sidebar-brand brand-logo" href="index.php"><img src="assets/imgs/logo-brand.png" alt="logo" /></a>

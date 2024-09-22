@@ -66,7 +66,7 @@ if ($idq > 0) {
                     <div class="col-12 d-flex">
                         <div class="col-md-2">
                             <label class="form-label text-small">ID</label>
-                            <input type="text" class="form-control bg-dark text-secondary" value="<?php echo $idq; ?>"
+                            <input type="text" class="form-control " value="<?php echo $idq; ?>"
                                 id="id" disabled />
                         </div>
                         <div class="col-md-2">
@@ -80,7 +80,7 @@ if ($idq > 0) {
                         <div class="col-md-2">
                             <label class="form-label text-small">Audit Month</label>
 
-                            <select class="form-control text-white" id="month">
+                            <select class="form-control " id="month">
                                 <option value="0"></option>
                                 <?php
                                 for ($x = 1; $x <= 12; $x++) {
@@ -97,7 +97,7 @@ if ($idq > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="form-label text-small">Audit Year</label>
-                            <select class="form-control text-white" id="year">
+                            <select class="form-control " id="year">
                                 <option value="0"></option>
                                 <?php
                                 for ($y = date('Y'); $y >= 2024; $y--) {
@@ -114,7 +114,7 @@ if ($idq > 0) {
                             <div class="form-group row">
                                 <label class="col-form-label pl-3">Slot</label>
                                 <div class="col-12">
-                                    <select class="form-control text-secondary" id="slot">
+                                    <select class="form-control " id="slot">
                                         <?php
                                         $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
                                         $result0x2z = $conn->query($sql0x);
@@ -142,7 +142,7 @@ if ($idq > 0) {
 
                         <div class="col-md-3">
                             <label class="form-label text-small">Category</label>
-                            <select class="form-control text-white" id="category">
+                            <select class="form-control " id="category">
                                 <?php
                                 $sql0x = "SELECT * FROM financesetup where (sccode=0) and particulareng!='' and (sessionyear=0) order by particulareng ;";
                                 $result0xt = $conn->query($sql0x);
@@ -209,7 +209,7 @@ if ($idq > 0) {
             <h4 class="card-title">Reference Register Book</h4>
             </p>
             <div class="table-responsive">
-                <table class="table table-dark" id="main-table-search">
+                <table class="table " id="main-table-search">
                     <thead>
                         <tr>
                             <th> # </th>
@@ -234,7 +234,6 @@ if ($idq > 0) {
                                 $descrip = $row0x["descrip"];
                                 $my = $row0x["month"] . '/' . $row0x["year"];
 
-
                                 ?>
                                 <tr>
                                     <td class="py-1">
@@ -245,12 +244,11 @@ if ($idq > 0) {
                                     <td> <?php echo $date; ?> </td>
                                     <td> <?php echo $title; ?> </td>
                                     <td>
-                                        <label class="badge badge-primary">View Book</label>
-                                        <button class="btn btn-inverse-warning"
+                                        <button class="btn btn-inverse-primary border-primary">View Book</button>
+                                        <button class="btn btn-inverse-warning border-warning"
                                             onclick="edit(<?php echo $id; ?>);">Edit</button>
                                     </td>
                                 </tr>
-
                             <?php }
                         } ?>
                     </tbody>

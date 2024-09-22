@@ -116,7 +116,7 @@ if ($resultixx->num_rows > 0) {
                             <label class="form-control bg-dark">Month</label>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control text-white" id="monthissue">
+                            <select class="form-control " id="monthissue">
                                 <option value="0"></option>
                                 <?php
                                 for ($x = 1; $x <= 12; $x++) {
@@ -133,10 +133,10 @@ if ($resultixx->num_rows > 0) {
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Year</label>
+                            <label class="form-control ">Year</label>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control text-white" id="yearissue">
+                            <select class="form-control " id="yearissue">
                                 <option value="0"></option>
                                 <?php
                                 for ($y = date('Y'); $y >= 2024; $y--) {
@@ -152,7 +152,7 @@ if ($resultixx->num_rows > 0) {
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3"><label class="form-control bg-dark">Ref. No.</label></div>
+                        <div class="col-md-3"><label class="form-control">Ref. No.</label></div>
                         <div class="col-md-3">
                             <button onclick="fetchref();" class="btn"><i class="mdi mdi-sync"></i></button>
                         </div>
@@ -164,7 +164,7 @@ if ($resultixx->num_rows > 0) {
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Ref. Title</label>
+                            <label class="form-control">Ref. Title</label>
                         </div>
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="reftitleissue" />
@@ -173,7 +173,7 @@ if ($resultixx->num_rows > 0) {
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Ref. Description</label>
+                            <label class="form-control ">Ref. Description</label>
                         </div>
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="refdescripissue" />
@@ -181,10 +181,10 @@ if ($resultixx->num_rows > 0) {
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Ref. Category</label>
+                            <label class="form-control ">Ref. Category</label>
                         </div>
                         <div class="col-md-9">
-                            <select id="partissue" name="partissue" class="form-control text-white" onchange="modal();">
+                            <select id="partissue" name="partissue" class="form-control " onchange="modal();">
 
                                 <?php
                                 $sql0x = "SELECT * FROM financesetup where (sccode='$sccode' or sccode=0) and particulareng!='' and (sessionyear='$sy' or sessionyear=0) order by particulareng ;";
@@ -210,16 +210,16 @@ if ($resultixx->num_rows > 0) {
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Cheque #</label>
+                            <label class="form-control ">Cheque #</label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="chqissue" />
                         </div>
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Account #</label>
+                            <label class="form-control">Account #</label>
                         </div>
                         <div class="col-md-3">
-                            <select id="accissue" name="accissue" class="form-control text-white" onchange="modal();">
+                            <select id="accissue" name="accissue" class="form-control " onchange="modal();">
                                 <option value="">Select Bank Account</option>
                                 <?php
                                 $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";
@@ -316,7 +316,7 @@ $txt = $_COOKIE['txt'];
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Slot</label>
                             <div class="col-12">
-                                <select class="form-control text-secondary" id="dept2x">
+                                <select class="form-control" id="dept2x">
                                     <?php
                                     $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
                                     $result0x2 = $conn->query($sql0x);
@@ -340,7 +340,7 @@ $txt = $_COOKIE['txt'];
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Issued Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
+                                <select class="form-control " id="month">
                                     <option value="0"></option>
                                     <?php
                                     for ($x = 1; $x <= 12; $x++) {
@@ -361,7 +361,7 @@ $txt = $_COOKIE['txt'];
                         <div class="form-group row pl-1">
                             <label class="col-form-label pl-3">Issued Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -524,7 +524,7 @@ $txt = $_COOKIE['txt'];
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Value</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="srchval">
+                                <select class="form-control " id="srchval">
                                     <option value="">....</option>
                                 </select>
                             </div>
@@ -559,7 +559,7 @@ $txt = $_COOKIE['txt'];
                 </h6>
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -596,7 +596,7 @@ $txt = $_COOKIE['txt'];
                                     <td>Dept. :
                                     </td>
                                     <td>
-                                        <select class="form-control text-secondary" id="dept">
+                                        <select class="form-control " id="dept">
                                             <?php
                                             $sql0x = "SELECT * FROM slots where sccode='$sccode' ;";
                                             $result0x2 = $conn->query($sql0x);
@@ -632,7 +632,7 @@ $txt = $_COOKIE['txt'];
                                     <td>Category :
                                     </td>
                                     <td>
-                                        <select class="form-control text-secondary" id="cate">
+                                        <select class="form-control " id="cate">
                                             <?php
                                             $sql0x = "SELECT * FROM financesetup where sccode='$sccode' and (sessionyear='$sy' || sessionyear=0) and inexex=1 order by particulareng;";
                                             $result0x3 = $conn->query($sql0x);
@@ -720,7 +720,7 @@ $txt = $_COOKIE['txt'];
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th></th>

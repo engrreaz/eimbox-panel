@@ -444,7 +444,7 @@ if ($point >= 100) {
 
 <div class="row" style="display:flex;">
   <div class="col-12 grid-margin">
-    <div class="card ">
+    <div class="card " style=" background:#111;">
       <div class="card-body text-secondary">
         <!-- -------------------------------------------------- -->
 

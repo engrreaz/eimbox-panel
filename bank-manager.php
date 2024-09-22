@@ -40,7 +40,7 @@ if ($result0->num_rows > 0) {
             <div class="card-body">
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -53,7 +53,7 @@ if ($result0->num_rows > 0) {
                                     <td>ID :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control bg-dark" id="id"
+                                        <input type="text" class="form-control" id="id"
                                             value="<?php echo $exid; ?>" disabled />
                                     </td>
                                     <td></td>
@@ -170,7 +170,7 @@ if ($result0->num_rows > 0) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th>#</th>

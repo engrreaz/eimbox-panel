@@ -32,7 +32,7 @@ if (isset($_GET['disx'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
+                                <select class="form-control" id="month">
                                     <option value="0"></option>
                                     <?php
                                     for ($x = 1; $x <= 12; $x++) {
@@ -55,7 +55,7 @@ if (isset($_GET['disx'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -75,7 +75,7 @@ if (isset($_GET['disx'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Dispuch Period</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="dispuch">
+                                <select class="form-control " id="dispuch">
 
                                     <?php
                                     for ($dis = 1; $dis <= 1; $dis++) {
@@ -182,7 +182,7 @@ if (isset($_GET['disx'])) {
                                             <td>
 
                                                 <div id="ssp<?php echo $id; ?>">
-                                                    <button onclick="issuex(<?php echo $id; ?>,0);"
+                                                    <button class="btn btn-inverse-danger border-danger" onclick="issuex(<?php echo $id; ?>,0);"
                                                         class="">Remove</button>
 
                                                 </div>

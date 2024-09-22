@@ -316,7 +316,7 @@ $conn->query($setp77upd);
                                                 <td>
 
                                                     <div id="ssp<?php echo $id; ?>">
-                                                        <button class="btn btn-inverse-warning p-1 pl-2 pr-2 text-small"
+                                                        <button class="btn btn-inverse-warning p-1 pl-2 pr-2 text-small" style="border: 1px solid orange;"
                                                             onclick="trans(<?php echo $user; ?>);"
                                                             class=""><small>Details</small></button>
 

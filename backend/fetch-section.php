@@ -4,7 +4,7 @@ include ('inc2.php');
 $classname = $_POST['classname'];
 ?>
 
-<select id="sectionname" name="sectionname" class="form-control text-white">
+<select id="sectionname" name="sectionname" class="form-control">
     <option value="">Select a Section</option>
 
     <?php

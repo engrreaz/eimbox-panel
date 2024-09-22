@@ -120,7 +120,7 @@ if (isset($_GET['cashbook-refno'])) {
             <!-- Modal body -->
             <div class="modal-body">
                 <div id="" class="input-control select full-size error">
-                    <select id="modaldata" name="modaldata" class="form-control text-white" onchange="modal();">
+                    <select id="modaldata" name="modaldata" class="form-control" onchange="modal();">
                         <option value="">Select a Bank Account to Show Transaction</option>
                         <?php
                         $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";
@@ -225,7 +225,7 @@ if ($result01->num_rows > 0) {
             <div class="card-body">
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="text-white">
+                        <table class="">
                             <tr>
                                 <td>Acoount # </td>
                                 <td class="pl-3"></td>
@@ -270,7 +270,7 @@ if ($result01->num_rows > 0) {
                         Transaction Type :
                     </div>
                     <div class="col-md-3">
-                        <select id="type" class="form-control text-secondary">
+                        <select id="type" class="form-control ">
                             <option value="Deposit" <?php if ($type10 == 'Deposit') {
                                 echo ' selected ';
                             } ?>>Deposit</option>
@@ -345,7 +345,7 @@ if ($result01->num_rows > 0) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table id="main-table-search" class="table table-bordered text-white"
+                        <table id="main-table-search" class="table table-bordered "
                             style="border:1px solid gray;">
                             <thead>
                                 <tr>

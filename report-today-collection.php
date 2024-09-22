@@ -215,7 +215,7 @@ if (isset($_GET['addnew'])) {
 
 
 
-<table class="table table-bordered table-striped " style=" border:1px solid gray !important; border-collapse:collapse;"
+<table class="table table-bordered  " style=" border:1px solid gray !important; border-collapse:collapse;"
     id="main-table">
     <thead>
         <tr>

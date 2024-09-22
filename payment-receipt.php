@@ -93,7 +93,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Session</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control" id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -113,7 +113,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control" id="cls" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -140,7 +140,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control " id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -198,7 +198,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Collector ID/Email</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="collector" onchange="go();">
+                                <select class="form-control" id="collector" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT entryby FROM stpr where sccode='$sccode' and sessionyear LIKE '$year%'  group by entryby order by entryby;";
@@ -249,12 +249,12 @@ if ($result0xw->num_rows > 0) {
 </style>
 
 <div class="row d-print-none" id="ren">
-    <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body p-0 p-3">
+    <div class="col-12 grid-margin stretch-card p-0">
+        <div class="card p-0">
+            <div class="card-body p-0 ">
 
-                <div class="row">
-                    <div class="col-md-2 text-info text-small">
+                <div class="row m-2 pt-2">
+                    <div class="col-md-2  text-info text-small">
                         <?php echo $year; ?> &nbsp;
                         <h6 class="text-muted"><small>Session</small></h6>
                     </div>
@@ -267,11 +267,11 @@ if ($result0xw->num_rows > 0) {
                         &nbsp;
                         <h6 class="text-muted"><small>Date </small></h6>
                     </div>
-                    <div class="col-md-2 text-info text-small">
+                    <div class="col-md-3 text-info text-small">
                         <?php echo $collector; ?> &nbsp;
                         <h6 class="text-muted"><small>Collector</small></h6>
                     </div>
-                    <div class="col-md-2 text-secondary font-weight-bold">
+                    <div class="col-md-1 text-secondary font-weight-bold">
                         <div id="tamt">0.00</div>
                         <h6 class="text-muted"><small>Amount</small></h6>
                     </div>

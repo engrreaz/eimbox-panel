@@ -85,7 +85,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
+                                <select class="form-control " id="month">
                                     <option value="0"></option>
                                     <?php
                                     for ($x = 1; $x <= 12; $x++) {
@@ -108,7 +108,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -500,7 +500,7 @@ if ($result0->num_rows > 0) {
                                 <span class="p-2 mr-3 text-white border-danger" id="tot<?php echo $tid; ?>"
                                     hidden><?php ; ?></span>
                                 <div class="dropdown">
-                                    <button class="btn btn-inverse-<?php echo $bbb; ?> btn-block dropdown-toggle text-right"
+                                    <button class="btn btn-<?php echo $bbb; ?> btn-block dropdown-toggle text-right border-<?php echo $bbb; ?>"
                                         type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         <span class=" text-white mr-2" id="sto<?php echo $tid; ?>"></span>
@@ -513,31 +513,31 @@ if ($result0->num_rows > 0) {
                                         if ($allp == '') {
                                             if ($edit_lock == 0) {
                                                 if ($found == 0) { ?>
-                                                    <button class="dropdown-item btn btn-inverse-success btn-fw p-2 "
+                                                    <button class="dropdown-item btn btn-inverse-success btn-fw p-2 border-success "
                                                         id="btt<?php echo $tid; ?>"
                                                         onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Payoff</button>
                                                 <?php } else { ?>
-                                                    <button class="dropdown-item btn btn-inverse-danger btn-fw  p-2"
+                                                    <button class="dropdown-item btn btn-inverse-danger btn-fw  p-2 border-danger"
                                                         id="btt<?php echo $tid; ?>"
                                                         onclick="payoff(<?php echo $tid; ?>, <?php echo $iiid; ?>);">Refund
                                                         Amount</button>
                                                 <?php }
 
                                                 ?>
-                                                <button class="dropdown-item btn btn-inverse-primary btn-fw   p-2"
+                                                <button class="dropdown-item btn btn-inverse-primary btn-fw   p-2 border-primary"
                                                     onclick="calc(<?php echo $tid; ?>);">Re
                                                     Calc</button>
 
                                             <?php } else {
                                                 ?>
-                                                <button class="dropdown-item btn btn-inverse-warning btn-fw   p-2"
+                                                <button class="dropdown-item btn btn-inverse-warning btn-fw   p-2 border-warning" 
                                                     onclick="dissss();">Already Dispuched</button>
                                                 <?php
                                             }
 
                                         } else {
                                             ?>
-                                            <button class="dropdown-item btn btn-inverse-dark text-secondary btn-fw   p-2"
+                                            <button class="dropdown-item btn btn-inverse-dark text-secondary btn-fw   p-2 "
                                                 onclick="dissss();">Cheque Already Issued.</button>
                                             <?php
                                         }
@@ -714,11 +714,11 @@ if ($result0->num_rows > 0) {
                                 <th class="text-center text-muted"><b><?php echo number_format($total_total, 2); ?></b></th>
                             </tr>
                             <tr>
-                                <th class="text-center text-muted table-danger"><b><small>Not Paid</small></b></th>
+                                <th class="text-center text-white table-danger"><b><small>Not Paid</small></b></th>
                                 <th class="text-center text-white table-success"><b><small>Paid Off</small></b></th>
-                                <th class="text-center text-muted table-warning"><b><small>Dispuched</small></b></th>
-                                <th class="text-center text-muted table-dark"><b><small>Cheque Issued</small></b></th>
-                                <th class="text-center text-muted table-info"><b><small>Calculated Total</small></b></th>
+                                <th class="text-center text-white table-warning"><b><small>Dispuched</small></b></th>
+                                <th class="text-center text-white table-dark"><b><small>Cheque Issued</small></b></th>
+                                <th class="text-center text-white table-info"><b><small>Calculated Total</small></b></th>
                             </tr>
                         </thead>
                     </table>

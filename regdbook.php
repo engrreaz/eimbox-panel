@@ -9,11 +9,11 @@ include 'header.php';
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">All Register of Institution</h4>
+            <h4 class="card-title text-lightv">All Register of Institution</h4>
             <p class="card-description"> Add class <code>.table-dark</code>
             </p>
             <div class="table-responsive">
-                <table class="table table-dark">
+                <table class="table">
                     <thead>
                         <tr>
                             <th> # </th>

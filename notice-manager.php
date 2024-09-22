@@ -46,7 +46,7 @@ if ($result0->num_rows > 0) {
             <div class="card-body">
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -59,7 +59,7 @@ if ($result0->num_rows > 0) {
                                     <td>ID :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control bg-dark" id="id"
+                                        <input type="text" class="form-control" id="id"
                                             value="<?php echo $exid; ?>" disabled />
                                     </td>
                                     <td></td>
@@ -69,7 +69,7 @@ if ($result0->num_rows > 0) {
                                     <td>Title :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control bg-dark" id="title"
+                                        <input type="text" class="form-control" id="title"
                                             value="<?php echo $title; ?>" />
                                     </td>
                                     <td></td>
@@ -79,7 +79,7 @@ if ($result0->num_rows > 0) {
                                     <td>Description :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control bg-dark" id="descrip"
+                                        <input type="text" class="form-control" id="descrip"
                                             value="<?php echo $descrip; ?>" />
                                     </td>
                                     <td></td>
@@ -89,7 +89,7 @@ if ($result0->num_rows > 0) {
                                     <td>Display Till :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control bg-dark" id="expdate"
+                                        <input type="text" class="form-control" id="expdate"
                                             value="<?php echo $expdate; ?>" />
                                     </td>
                                     <td></td>
@@ -241,7 +241,7 @@ if ($result0->num_rows > 0) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white" id="main-table-search">
+                        <table class="table table-hover " id="main-table-search">
                             <thead>
                                 <tr>
                                     <th>#</th>

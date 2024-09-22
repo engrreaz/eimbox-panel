@@ -321,8 +321,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class</label>
                             <div class="col-12">
-                                <select id="classname" name="classname" class="form-control text-white"
-                                    onchange="fetchsection();">
+                                <select id="classname" name="classname" class="form-control" onchange="fetchsection();">
                                     <option value="">Select a class</option>
                                     <?php
                                     $sql000 = "SELECT * FROM areas where user='$rootuser' group by areaname order by idno";
@@ -349,7 +348,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
                                 <div id="secn" class="input-control select full-size error">
-                                    <select id="sectionname" name="sectionname" class="form-control text-white">
+                                    <select id="sectionname" name="sectionname" class="form-control">
                                         <option value="">Select a Section</option>
                                         <?php
                                         $sql000 = "SELECT * FROM areas where user='$rootuser' and areaname = '$cls2' group by subarea order by idno";
@@ -388,7 +387,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Student's ID.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="stid" value="<?php echo $stid; ?>"
+                                <input type="text" class="form-control" id="stid" value="<?php echo $stid; ?>"
                                     disabled />
                             </div>
                         </div>
@@ -399,7 +398,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
                                 <button type="submit" style="padding:4px 10px 3px; border-radius:5px;" name="srchst"
-                                    id="srchst" class="btn btn-outline-primary btn-icon text-center" style=""
+                                    id="srchst" class="btn btn-inverse-primary pt-2 pb-2 " style=""
                                     title="Get Student Information" onclick="fetchstudent();"><i
                                         class="mdi mdi-arrow-right"></i></button>
                                 <div id="stinfo" style="display:none;"></div>
@@ -669,7 +668,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date of Birth</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="dob" placeholder="YYYY-MM-DD"
+                                <input type="date" class="form-control" id="dob" placeholder="YYYY-MM-DD"
                                     value="<?php echo $dob; ?>" />
                             </div>
                         </div>
@@ -684,7 +683,7 @@ echo $dismsg; ?>">
 
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select id="religion" name="religion" class="form-control text-white">
+                                        <select id="religion" name="religion" class="form-control">
                                             <option value=""></option>
                                             <option value="Islam" <?php if ($religion == 'Islam') {
                                                 echo 'selected';
@@ -711,7 +710,7 @@ echo $dismsg; ?>">
                                         <div class="input-group-append">
                                             <button class="btn btn-md btn-inverse-<?php echo $religion_check_color; ?>"
                                                 type="button">
-                                                <i class="mdi mdi-<?php echo $religion_check_icon; ?>"></i>
+                                                <i class="mdi mdi-<?php echo $religion_check_icon; ?> mdi-18px"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -736,7 +735,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Gender</label>
                             <div class="col-12">
-                                <select id="gender" name="gender" class="form-control text-white">
+                                <select id="gender" name="gender" class="form-control">
                                     <option value=""></option>
                                     <option value="Boy" <?php if ($gender == 'Boy') {
                                         echo 'selected';
@@ -758,7 +757,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Blood Group</label>
                             <div class="col-12">
-                                <select id="bgroup" name="bgroup" class="form-control text-white">
+                                <select id="bgroup" name="bgroup" class="form-control ">
                                     <option value=""></option>
                                     <option value="A+" <?php if ($bgroup == 'A+') {
                                         echo 'selected';
@@ -887,7 +886,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
+                                <input type="text" class="form-control" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
@@ -895,7 +894,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
+                                <input type="text" class="form-control" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
@@ -903,7 +902,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">&nbsp;</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="" value="" disabled />
+                                <input type="text" class="form-control" id="" value="" disabled />
                             </div>
                         </div>
                     </div>
@@ -951,12 +950,11 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date of Admission</label>
                             <div class="col-12">
-                                <input type="text" class="form-control" id="doa" value="<?php echo $doa; ?>" />
+                                <input type="date" class="form-control" id="doa" value="<?php echo $doa; ?>" />
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

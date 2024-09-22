@@ -186,13 +186,13 @@ if ($result0x3n->num_rows > 0) {
                                                 <div class="col-md-3">
                                                     <div class="form-group row">
                                                         <div class="col-12">
-                                                            <div class="text-muted text-small"><?php echo $role2[$i]; ?></div>
+                                                            <div class="text-muted text-small "><b><?php echo $role2[$i]; ?></b></div>
                                                         </div>
                                                         <div class="col-12">
                                                             <dfiv class="form-group row">
                                                                 <div class="form-check form-check-success">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input"
+                                                                    <label class="form-check-label ">
+                                                                        <input type="radio" class="form-check-input  "
                                                                             onclick="perma(<?php echo $id; ?>, '<?php echo $rolename; ?>', 3); "
                                                                             name="<?php echo $rolename . $id; ?>"
                                                                             id="<?php echo $rolename . $id; ?>3" value="3" <?php if ($perma == 3) {

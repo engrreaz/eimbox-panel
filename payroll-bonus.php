@@ -30,7 +30,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
+                                <select class="form-control" id="month">
                                     <option value="0"></option>
                                     <?php
                                     for ($x = 1; $x <= 12; $x++) {
@@ -53,7 +53,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control" id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -215,7 +215,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Calculation on</label>
-                            <select class="form-control text-secondary" id="govt1type">
+                            <select class="form-control " id="govt1type">
                                 <option value=""></option>
                                 <option value="basic" <?php if ($govt1type == 'basic')
                                     echo 'selected'; ?>>Basic</option>
@@ -238,7 +238,7 @@ if ($result0x->num_rows > 0) {
 
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Category</label>
-                            <select class="form-control text-secondary" id="govt1pool">
+                            <select class="form-control " id="govt1pool">
                                 <option value=""></option>
                                 <option value="festival" <?php if ($govt1pool == 'festival')
                                     echo 'selected'; ?>>Festival</option>
@@ -252,7 +252,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Cheque?</label>
-                            <select class="form-control text-secondary" id="govt1chq">
+                            <select class="form-control " id="govt1chq">
                                 <option value=""></option>
                                 <option value="1" <?php if ($govt1chq == 1)
                                     echo 'selected'; ?>>Yes</option>
@@ -277,7 +277,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Calculation on</label>
-                            <select class="form-control text-secondary" id="govt2type">
+                            <select class="form-control " id="govt2type">
                                 <option value=""></option>
                                 <option value="basic" <?php if ($govt2type == 'basic')
                                     echo 'selected'; ?>>Basic</option>
@@ -300,7 +300,7 @@ if ($result0x->num_rows > 0) {
 
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Category</label>
-                            <select class="form-control text-secondary" id="govt2pool">
+                            <select class="form-control " id="govt2pool">
                                 <option value=""></option>
                                 <option value="festival" <?php if ($govt2pool == 'festival')
                                     echo 'selected'; ?>>Festival</option>
@@ -314,7 +314,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Cheque?</label>
-                            <select class="form-control text-secondary" id="govt2chq">
+                            <select class="form-control " id="govt2chq">
                                 <option value=""></option>
                                 <option value="1" <?php if ($govt2chq == 1)
                                     echo 'selected'; ?>>Yes</option>
@@ -339,7 +339,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Calculation on</label>
-                            <select class="form-control text-secondary" id="govt3type">
+                            <select class="form-control " id="govt3type">
                                 <option value=""></option>
                                 <option value="basic" <?php if ($govt3type == 'basic')
                                     echo 'selected'; ?>>Basic</option>
@@ -362,7 +362,7 @@ if ($result0x->num_rows > 0) {
 
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Category</label>
-                            <select class="form-control text-secondary" id="govt3pool">
+                            <select class="form-control " id="govt3pool">
                                 <option value=""></option>
                                 <option value="festival" <?php if ($govt3pool == 'festival')
                                     echo 'selected'; ?>>Festival</option>
@@ -376,7 +376,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Cheque?</label>
-                            <select class="form-control text-secondary" id="govt3chq">
+                            <select class="form-control " id="govt3chq">
                                 <option value=""></option>
                                 <option value="1" <?php if ($govt3chq == 1)
                                     echo 'selected'; ?>>Yes</option>
@@ -415,7 +415,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Calculation on</label>
-                            <select class="form-control text-secondary" id="school1type">
+                            <select class="form-control " id="school1type">
                                 <option value=""></option>
                                 <option value="basic" <?php if ($school1type == 'basic')
                                     echo 'selected'; ?>>Basic</option>
@@ -438,7 +438,7 @@ if ($result0x->num_rows > 0) {
 
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Category</label>
-                            <select class="form-control text-secondary" id="school1pool">
+                            <select class="form-control " id="school1pool">
                                 <option value=""></option>
                                 <option value="festival" <?php if ($school1pool == 'festival')
                                     echo 'selected'; ?>>Festival</option>
@@ -452,7 +452,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Cheque?</label>
-                            <select class="form-control text-secondary" id="school1chq">
+                            <select class="form-control " id="school1chq">
                                 <option value=""></option>
                                 <option value="1" <?php if ($school1chq == 1)
                                     echo 'selected'; ?>>Yes</option>
@@ -478,7 +478,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Calculation on</label>
-                            <select class="form-control text-secondary" id="school2type">
+                            <select class="form-control " id="school2type">
                                 <option value=""></option>
                                 <option value="basic" <?php if ($school2type == 'basic')
                                     echo 'selected'; ?>>Basic</option>
@@ -501,7 +501,7 @@ if ($result0x->num_rows > 0) {
 
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Category</label>
-                            <select class="form-control text-secondary" id="school2pool">
+                            <select class="form-control " id="school2pool">
                                 <option value=""></option>
                                 <option value="festival" <?php if ($school2pool == 'festival')
                                     echo 'selected'; ?>>Festival</option>
@@ -515,7 +515,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Cheque?</label>
-                            <select class="form-control text-secondary" id="school2chq">
+                            <select class="form-control " id="school2chq">
                                 <option value=""></option>
                                 <option value="1" <?php if ($school2chq == 1)
                                     echo 'selected'; ?>>Yes</option>
@@ -541,7 +541,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Calculation on</label>
-                            <select class="form-control text-secondary" id="school3type">
+                            <select class="form-control " id="school3type">
                                 <option value=""></option>
                                 <option value="basic" <?php if ($school3type == 'basic')
                                     echo 'selected'; ?>>Basic</option>
@@ -564,7 +564,7 @@ if ($result0x->num_rows > 0) {
 
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Category</label>
-                            <select class="form-control text-secondary" id="school3pool">
+                            <select class="form-control " id="school3pool">
                                 <option value=""></option>
                                 <option value="festival" <?php if ($school3pool == 'festival')
                                     echo 'selected'; ?>>Festival</option>
@@ -578,7 +578,7 @@ if ($result0x->num_rows > 0) {
                         </div>
                         <div class="col-md-2">
                             <label class="text-small text-muted form-check-label">Cheque?</label>
-                            <select class="form-control text-secondary" id="school3chq">
+                            <select class="form-control " id="school3chq">
                                 <option value=""></option>
                                 <option value="1" <?php if ($school3chq == 1)
                                     echo 'selected'; ?>>Yes</option>

@@ -88,7 +88,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Session</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -109,7 +109,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Examination</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="exam" onchange="go();">
+                                <select class="form-control " id="exam" onchange="go();">
 
                                     <option value="">---</option>
                                     <?php
@@ -137,7 +137,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="classname" onchange="go();">
+                                <select class="form-control " id="classname" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -164,7 +164,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sectionname" onchange="go();">
+                                <select class="form-control " id="sectionname" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -197,7 +197,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Subjects</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="subject">
+                                <select class="form-control " id="subject">
                                     <option value="">------</option>
                                     <?php
                                     $sql0x = "SELECT * FROM subsetup where sccode='$sccode' and sessionyear = '$year' and classname='$cls2' and sectionname='$sec2' order by subject;";
@@ -234,7 +234,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Assessment</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="assessment" onchange="go();">
+                                <select class="form-control " id="assessment" onchange="go();">
                                     <option value="Continious Assessment" <?php if($assess == 'Continious Assessment') echo 'selected';?>>Continious Assessment (PI)</option>
                                     <option value="Total Assessment"  <?php if($assess == 'Total Assessment') echo 'selected';?>>Total Assessment (PI)</option>
                                     <option value="Behavioural Assessment" <?php if($assess == 'Behavioural Assessment') echo 'selected';?>>Behavioural Assessment (BI)</option>
@@ -253,7 +253,7 @@ if ($result0xw->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Sheet Type</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sheet" onchange="go();">
+                                <select class="form-control " id="sheet" onchange="go();">
                                     <option value="Blank" <?php if($sheet2 == 'Blank') echo 'selected';?>>Blank Sheet</option>
                                     <option value="Result"  <?php if($sheet2 == 'Result') echo 'selected';?>>Sheet with Result</option>
                                     

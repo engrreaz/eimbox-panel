@@ -114,8 +114,7 @@ if ($result0x->num_rows > 0) {
             <div class="card-body">
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table text-white">
-
+                        <table class="table ">
                             <tbody>
                                 <?php
                                 $sccodes = $sccode * 10;
@@ -248,20 +247,14 @@ if ($result0x->num_rows > 0) {
                                     </td>
                                 </tr>
 
-
-
                                 <tr>
                                     <td></td>
                                     <td colspan="4"><button class="btn btn-inverse-primary p-2"
-                                            onclick="save(<?php echo $exid; ?>, 1);" disabled>Save
-                                            Information</button>
-
+                                            onclick="save(<?php echo $exid; ?>, 1);" disabled>Save Information</button>
                                         <div id="gex"></div>
                                         <div id="">
-
                                         </div>
                                     </td>
-
                                 </tr>
                             </tbody>
                         </table>

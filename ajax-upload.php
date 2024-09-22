@@ -5,7 +5,7 @@
     <label for="files"><i class="fa-solid fa-folder-open fa-2x"></i>Select files
         ...</label>
     <input id="files" class="form-control" type="file" name="files[]" multiple>
-    <div class="progress"></div>
+    <div class="progress lightmode"></div>
     <button type="submit" id="uploadfile" class="btn btn-inverse-primary mt-2 pt-2">Upload</button>
     <div class="result"></div>
 </form>

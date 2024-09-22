@@ -46,7 +46,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Session Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control" id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -67,7 +67,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Slot :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="slot" onchange="go();">
+                                <select class="form-control" id="slot" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT * FROM slots where sccode='$sccode';";

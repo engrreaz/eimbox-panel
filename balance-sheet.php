@@ -79,7 +79,7 @@ if ($result00->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date From</label>
                             <div class="col-12">
-                                <input type="date" class="form-control  bg-dark " value="<?php echo $datefrom; ?>"
+                                <input type="date" class="form-control   " value="<?php echo $datefrom; ?>"
                                     id="datefrom" disabled/>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ if ($result00->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Date To</label>
                             <div class="col-12">
-                                <input type="date" class="form-control bg-dark" value="<?php echo $dateto; ?>" id="dateto" disabled />
+                                <input type="date" class="form-control " value="<?php echo $dateto; ?>" id="dateto" disabled />
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ if ($result00->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
+                                <select class="form-control " id="month">
                                     <option value="0"></option>
                                     <?php
                                     for ($x = 1; $x <= 12; $x++) {
@@ -123,7 +123,7 @@ if ($result00->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -148,7 +148,7 @@ if ($result00->num_rows > 0) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <label class="col-form-label pl-3">&nbsp;</label>
-                                <button type="button" class="btn btn-inverse-success btn-block p-2" style=""
+                                <button type="button" class="btn btn-inverse-success btn-block p-2 border-success" style=""
                                     onclick="go();"><i class="mdi mdi-eye"></i>
                                     Show Report
                                 </button>

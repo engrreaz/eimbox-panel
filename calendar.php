@@ -79,7 +79,7 @@ if ($result0rt->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -100,7 +100,7 @@ if ($result0rt->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control " id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -128,7 +128,7 @@ if ($result0rt->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control " id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -155,7 +155,7 @@ if ($result0rt->num_rows > 0) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Examination</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="exam">
+                                <select class="form-control " id="exam">
 
                                     <option value="">---</option>
                                     <?php
@@ -463,7 +463,7 @@ if ($result0rt->num_rows > 0) {
                         $month = date("F", mktime(0, 0, 0, $m + 1, 0));
                         ?>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group row">
                                 <label class="col-form-label pl-3"></label><?php echo $month . ' / ' . $sy; ?></label>
                                 <div class="col-12">
@@ -471,7 +471,7 @@ if ($result0rt->num_rows > 0) {
                                     $firstday = date("w", mktime(0, 0, 0, $m, 0, $sy));
                                     $last = date("t", mktime(0, 0, 0, $m + 1, 0, $sy));
 
-                                    echo '<table class="table table-responsive">';
+                                    echo '<table class="table table-responsivex">';
                                     echo '<thead><tr><td>S</td><td>M</td><td>T</td><td>W</td><td>T</td><td>F</td><td>S</td></tr></thead>';
                                     for ($j = 0; $j < 6; $j++) {
                                         echo '<tr>';
@@ -484,12 +484,15 @@ if ($result0rt->num_rows > 0) {
                                             }
                                             $trk = $j * 7 + $k - $firstday + $extd;
                                             if ($trk >= 1 && $trk <= $last) {
-                                                echo $trk;
+
                                                 $mkdate = $sy . '-' . str_pad($m, 2, '0', STR_PAD_LEFT) . '-' . str_pad($trk, 2, '0', STR_PAD_LEFT);
                                                 $ind = array_search($mkdate, array_column($datam, 'date'));
-                                     
-                                                if ($ind != '') {
-                                                    echo '<br>' . $datam[$ind]['descrip'];
+
+                                                if ($ind == '') {
+                                                    echo $trk;
+                                                } else {
+                                                    echo '<span class="bg-primary p-1 rounded text-white">' . $trk . '</span>';
+                                                    // echo '<br>' . $datam[$ind]['descrip'];
                                                 }
                                             }
                                             echo '</td>';

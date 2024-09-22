@@ -80,7 +80,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Session Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control" id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -100,7 +100,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control" id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -127,7 +127,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control" id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -239,7 +239,7 @@ if (isset($_GET['addnew'])) {
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table ">
-                                <thead class="text-white fw-bold">
+                                <thead class=" fw-bold">
                                     <tr>
                                         <td>Period</td>
                                         <td>Day</td>
@@ -326,7 +326,7 @@ if (isset($_GET['addnew'])) {
 
                                                 <td>
                                                     <div class="form-group input-group">
-                                                        <select class="form-control text-white" id="subj<?php echo $i . $j; ?>">
+                                                        <select class="form-control " id="subj<?php echo $i . $j; ?>">
 
                                                             <option value="">Select Subject</option>
                                                             <?php
@@ -361,7 +361,7 @@ if (isset($_GET['addnew'])) {
                                                 </td>
                                                 <td>
                                                     <div class="form-group input-group">
-                                                        <select class="form-control text-white" id="tid<?php echo $i . $j; ?>">
+                                                        <select class="form-control " id="tid<?php echo $i . $j; ?>">
                                                             <option value="">Select Teacher </option>
                                                             <?php
                                                             $sql00xgr = "SELECT * FROM teacher where sccode='$sccode' order by ranks, tid";

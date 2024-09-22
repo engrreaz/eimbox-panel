@@ -15,7 +15,7 @@ if ($result00->num_rows > 0) {
 <button type="button" id="modalbox" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" hidden>
     Launch demo modal
 </button>
-<div class="modal" id="myModal">
+<div class="modal" id="myModal ">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -28,7 +28,7 @@ if ($result00->num_rows > 0) {
             <!-- Modal body -->
             <div class="modal-body">
                 <div id="" class="input-control select full-size error">
-                    <select id="modaldata" name="modaldata" class="form-control text-white" onchange="modal();">
+                    <select id="modaldata" name="modaldata" class="form-control " onchange="modal();">
                         <option value="">Select a Bank Account to Show Transaction</option>
                         <?php
                         $sql000 = "SELECT * FROM bankinfo where sccode='$sccode'  order by id";

@@ -253,7 +253,7 @@ if ($result0xxd->num_rows > 0) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover">
                             <thead style="position:sticky;">
                                 <tr>
                                     <th>#</th>
@@ -308,7 +308,7 @@ if ($result0xxd->num_rows > 0) {
                                             </td>
 
                                             <td>
-                                                <input type="text" class="form-control bg-dark" id="" value=""
+                                                <input type="text" class="form-control" id="" value=""
                                                     style="width:60px;" disabled />
                                             </td>
                                             <?php

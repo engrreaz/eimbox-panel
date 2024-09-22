@@ -67,7 +67,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control" id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -88,7 +88,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control" id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -116,7 +116,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control " id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -176,7 +176,7 @@ if (isset($_GET['id'])) {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="text-muted font-weight-normal">
+                <h6 class=" font-weight-normal">
                     Add a Subject to the selected Class/Section 
                 </h6>
 
@@ -201,7 +201,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">ID</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" value="<?php echo $schid; ?>" id="slid"
+                                <input type="text" class="form-control" value="<?php echo $schid; ?>" id="slid"
                                     disabled />
                             </div>
                         </div>
@@ -212,7 +212,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Subjects</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="subcode">
+                                <select class="form-control " id="subcode">
                                     <option value="">------</option>
                                     <?php
 
@@ -246,7 +246,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Teacher</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="tid">
+                                <select class="form-control" id="tid">
                                     <option value="">------</option>
                                     <?php
                                     $sql0x = "SELECT * FROM teacher where sccode='$sccode'  order by sl, id;";
@@ -311,7 +311,7 @@ if (isset($_GET['id'])) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th>#</th>

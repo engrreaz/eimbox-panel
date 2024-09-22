@@ -67,7 +67,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -88,7 +88,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control"  id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -116,7 +116,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control " id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -143,7 +143,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Examination</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="exam" onchange="go();">
+                                <select class="form-control " id="exam" onchange="go();">
 
                                     <option value="">---</option>
                                     <?php
@@ -253,7 +253,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Subjects</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="subcode">
+                                <select class="form-control " id="subcode">
                                     <option value="">------</option>
                                     <?php
                                     $sql0x = "SELECT * FROM subsetup where sccode='$sccode' and sessionyear = '$year' and classname='$cls2' and sectionname='$sec2' order by subject;";

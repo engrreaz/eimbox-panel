@@ -103,7 +103,7 @@ if (isset($_GET['y'])) {
                             <label class="form-control bg-dark">Audit Month</label>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control text-white" id="monthissue">
+                            <select class="form-control" id="monthissue">
                                 <option value="0"></option>
                                 <?php
                                 for ($x = 1; $x <= 12; $x++) {
@@ -120,10 +120,10 @@ if (isset($_GET['y'])) {
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Year</label>
+                            <label class="form-control">Year</label>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control text-white" id="yearissue">
+                            <select class="form-control " id="yearissue">
                                 <option value="0"></option>
                                 <?php
                                 for ($y = date('Y'); $y >= 2024; $y--) {
@@ -139,7 +139,7 @@ if (isset($_GET['y'])) {
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3"><label class="form-control bg-dark">Ref. No.</label></div>
+                        <div class="col-md-3"><label class="form-control ">Ref. No.</label></div>
                         <div class="col-md-3">
                             <button title="Refresh Refrence Details" onclick="fetchref();" class="btn">
                                 <i class="mdi mdi-sync"></i></button>
@@ -165,7 +165,7 @@ if (isset($_GET['y'])) {
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Ref. Title</label>
+                            <label class="form-control ">Ref. Title</label>
                         </div>
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="reftitleissue" />
@@ -174,7 +174,7 @@ if (isset($_GET['y'])) {
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Description</label>
+                            <label class="form-control ">Description</label>
                         </div>
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="refdescripissue" />
@@ -182,7 +182,7 @@ if (isset($_GET['y'])) {
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Category</label>
+                            <label class="form-control">Category</label>
                         </div>
                         <div class="col-md-9">
                             <select id="partissue" name="partissue" class="form-control text-white" onchange="modal();">
@@ -211,13 +211,13 @@ if (isset($_GET['y'])) {
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Cheque #</label>
+                            <label class="form-control ">Cheque #</label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="chqissue" />
                         </div>
                         <div class="col-md-3">
-                            <label class="form-control bg-dark">Account #</label>
+                            <label class="form-control ">Account #</label>
                         </div>
                         <div class="col-md-3">
                             <select id="accissue" name="accissue" class="form-control text-white" onchange="modal();">
@@ -280,7 +280,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Month</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="month">
+                                <select class="form-control " id="month">
                                     <option value="0"></option>
                                     <?php
                                     for ($x = 1; $x <= 12; $x++) {
@@ -303,7 +303,7 @@ if (isset($_GET['y'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control " id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -726,7 +726,7 @@ if ($result0->num_rows > 0) {
                                     <span class="p-2 mr-3 text-white border-danger" id="tot<?php echo $tid; ?>"
                                         hidden><?php ; ?></span>
                                     <div class="dropdown">
-                                        <button class="btn btn-inverse-<?php echo $bbb; ?> btn-block dropdown-toggle text-right"
+                                        <button class="btn btn-<?php echo $bbb; ?> btn-block dropdown-toggle text-right"
                                             type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                             <span class=" text-white mr-2" id="sto<?php echo $tid; ?>"></span>

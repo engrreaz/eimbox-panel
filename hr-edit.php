@@ -21,7 +21,7 @@ $new = 0; // check new entry or not
             <!-- Modal body -->
             <div class="modal-body">
                 <div id="" class="input-control select full-size error">
-                    <select id="modaldata" name="modaldata" class="form-control text-white" onchange="modal();">
+                    <select id="modaldata" name="modaldata" class="form-control " onchange="modal();">
                         <option value="">Select a Teacher/Staff to Edit</option>
                         <?php
                         $sql000 = "SELECT * FROM teacher where sccode='$sccode'  order by ranks";
@@ -110,7 +110,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Teacher's / Staff's ID.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" id="tid" value="<?php echo $tid; ?>"
+                                <input type="text" class="form-control" id="tid" value="<?php echo $tid; ?>"
                                     disabled />
                             </div>
                         </div>
@@ -175,7 +175,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Slot</label>
                             <div class="col-12">
                                 <div id="secn" class="input-control select full-size error">
-                                    <select id="slot" name="sectionname" class="form-control text-white">
+                                    <select id="slot" name="sectionname" class="form-control ">
                                         <option value=""></option>
                                         <?php
                                         $sql000 = "SELECT * FROM slots where sccode='$sccode'  order by slotname";
@@ -203,7 +203,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Disignation</label>
                             <div class="col-12">
                                 <div id="" class="input-control select full-size error">
-                                    <select id="desig" name="sectionname" class="form-control text-white">
+                                    <select id="desig" name="sectionname" class="form-control ">
                                         <option value=""></option>
                                         <?php
                                         $sql000 = "SELECT * FROM designation  order by ranks";
@@ -231,7 +231,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Subject</label>
                             <div class="col-12">
                                 <div id="secn" class="input-control select full-size error">
-                                    <select id="subj" name="sectionname" class="form-control text-white">
+                                    <select id="subj" name="sectionname" class="form-control ">
                                         <option value=""></option>
                                         <?php
                                         $sql000 = "SELECT * FROM subjects  order by subcode";
@@ -259,7 +259,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Gender</label>
                             <div class="col-12">
-                                <select id="gender" name="gender" class="form-control text-white">
+                                <select id="gender" name="gender" class="form-control ">
                                     <option value=""></option>
                                     <option value="Male" <?php if ($tinfo[0]['gender'] == 'Male') {
                                         echo 'selected';
@@ -337,7 +337,7 @@ echo $dismsg; ?>">
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select id="religion" name="religion" class="form-control text-white">
+                                        <select id="religion" name="religion" class="form-control">
                                             <option value=""></option>
                                             <option value="Islam" <?php if ($tinfo[0]['religion'] == 'Islam') {
                                                 echo 'selected';
@@ -384,7 +384,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Blood Group</label>
                             <div class="col-12">
-                                <select id="bgroup" name="bgroup" class="form-control text-white">
+                                <select id="bgroup" name="bgroup" class="form-control ">
                                     <option value=""></option>
 
 

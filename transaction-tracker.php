@@ -242,7 +242,7 @@ $conn->query($setp7upd);
                 <div class="row">
 
                     <div class="table-responsive">
-                        <table class="table table-hover text-secondary">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th> #</th>
@@ -295,7 +295,7 @@ $conn->query($setp7upd);
                                             <td>
 
                                                 <div id="ssp<?php echo $id; ?>">
-                                                    <button class="btn btn-inverse-warning p-1 pl-2 pr-2 text-small"
+                                                    <button class="btn btn-inverse-warning  p-1 pl-2 pr-2 text-small" style="border:1px solid orange;"
                                                         onclick="trans('<?php echo $user; ?>');">
                                                         <small>Details</small></button>
 

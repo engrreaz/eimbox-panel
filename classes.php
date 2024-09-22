@@ -41,7 +41,7 @@ if ($result0->num_rows > 0) {
             <div class="card-body">
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -54,7 +54,7 @@ if ($result0->num_rows > 0) {
                                     <td>ID :
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control bg-dark" id="id"
+                                        <input type="text" class="form-control" id="id"
                                             value="<?php echo $exid; ?>" disabled />
                                     </td>
                                     <td></td>
@@ -150,21 +150,22 @@ if ($result0->num_rows > 0) {
                                 </tr>
 
                                 <tr>
-                                    <td>Session : 
+                                    <td>Session :
                                     </td>
                                     <td>
-                                        <?php $y1 = date('Y'); $y2 = date('Y') . '-' . date('y') + 1; ?>
+                                        <?php $y1 = date('Y');
+                                        $y2 = date('Y') . '-' . date('y') + 1; ?>
                                         <select class="form-control" id="syx" onchange="setbox();">
                                             <option value=""></option>
-                                            <option value="<?php echo $y1;?>" <?php if ($yyy == $y1) {
-                                                echo 'selected';
-                                            } ?>><?php echo $y1;?>
+                                            <option value="<?php echo $y1; ?>" <?php if ($yyy == $y1) {
+                                                  echo 'selected';
+                                              } ?>><?php echo $y1; ?>
                                             </option>
-                                            <option value="<?php echo $y2;?>" <?php if ($yyy == $y2) {
-                                                echo 'selected';
-                                            } ?>><?php echo $y2;?>
+                                            <option value="<?php echo $y2; ?>" <?php if ($yyy == $y2) {
+                                                  echo 'selected';
+                                              } ?>><?php echo $y2; ?>
                                             </option>
-                                            
+
                                         </select>
                                         <div id="clstr" class="mt-2" style="display:none; width:100%;">
                                             <input type="text" class="form-control" id="cls"
@@ -206,7 +207,7 @@ if ($result0->num_rows > 0) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -304,7 +305,7 @@ include 'footer.php';
     document.getElementById('defbtn').innerHTML = 'Add New Class';
     document.getElementById('defmenu').innerHTML = '';
     function defbtn() {
-      addnew();
+        addnew();
     }
 
 
@@ -358,7 +359,7 @@ include 'footer.php';
         var sec = document.getElementById('sec').value;
         var syx = document.getElementById('syx').value;
 
-        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont + '&sy=' + syx ;
+        var infor = "id=" + ids + '&cls=' + cls + '&sec=' + sec + '&ont=' + ont + '&sy=' + syx;
         // alert(infor);
         $("#sspd").html("");
 

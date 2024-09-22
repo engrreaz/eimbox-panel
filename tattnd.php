@@ -40,7 +40,7 @@ if (isset($_GET['tid'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Teacher/Staff</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="tidl" onchange="go();">
+                                <select class="form-control " id="tidl" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT * FROM teacher where sccode='$sccode'  order by ranks, sl;";

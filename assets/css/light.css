@@ -1,6 +1,6 @@
 body {
-    background: #ffffee;
-    color: slategray;
+    background: #ffffff;
+    color: darkslategray;
 }
 
 .content-wrapper {
@@ -18,23 +18,40 @@ body {
 
 .card, .form-control {
     background: #ffffff;
+    color: darkslategrey;
 }
 
 .form-control:focus {
-    background: #d9e4e2;
-    color: teal;
+    background: #ffffee;
+    color: darkslategrey;
 }
 
-select {
+.form-control:disabled {
+    background: #eeeeee;
+    color: darkslategrey;
+}
+
+select.form-control {
     outline: 1px solid rgb(148, 148, 148);
+    color: darkslategrey;
 }
 
-.text-white {
-    color: #000000;
+.input-group-append>button {
+    /* border: 1px solid rgb(148, 148, 148); */
+    outline: 1px solid rgb(148, 148, 148);
+    margin-left: 2px;
 }
+
+
+/* .text-white { */
+/* color: #000000; */
+/* } */
 
 
 /* .sidebar .nav.sub-menu .nav-item .nav-link.active --- NAV */
+.sidebar-block, .sidebar {
+    background: white;
+}
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {
     color: white;
@@ -58,4 +75,39 @@ select {
 
 .sub-menu>.nav-item>a:before {
     content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+}
+
+.lightmode {
+    background-color: white;
+}
+
+.footer {
+    background: #fff;
+    margin: 0;
+    padding: 5px;
+    border-top: 1px solid darkslategray;
+}
+
+.no-border {
+    border: 0;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #dad9d9;
+}
+
+.table-hover:hover {
+    background-color: #eff3f5;
+}
+
+.table-hover:hover tr:nth-of-type(odd) {
+    background: #edeeec;
+}
+
+.table-hover:hover tr:nth-of-type(even) {
+    background: #ffffff;
+}
+
+.text-lightv {
+    color: black;
 }

@@ -63,7 +63,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year">
+                                <select class="form-control" id="year">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -83,7 +83,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control " id="cls" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -110,7 +110,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control " id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -163,7 +163,7 @@ if (isset($_GET['addnew'])) {
                         <div class="tabel-responsive">
                             <table style="" class="table table-stripe">
                                 <thead>
-                                    <tr class="" style="background:black;">
+                                    <tr class="" style="">
                                         <td class="text-right font-weight-bold">Roll</td>
                                         <td class=" font-weight-bold">Name of Student</td>
                                         <td class="text-right  font-weight-bold">Dues</td>
@@ -474,5 +474,6 @@ include 'footer.php';
         }
         document.getElementById("amt").value = amtt + '.00';
         document.getElementById("chk").value = chk;
+        diss();
     }
 </script>

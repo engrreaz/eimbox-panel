@@ -27,7 +27,7 @@ $month = date('m');
 
 <div class="row d-print-none">
     <div class="col-12 grid-margin stretch-card">
-        <div class="card m-0">
+        <div class="card m-0 no-border">
             <div class="card-body p-0 m-0">
                 <div class="col-12 p-0  m-0">
                     <h4>
@@ -56,12 +56,12 @@ $month = date('m');
                         <input type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" id="prdate" />
                     </div>
                     <div class="col-3   pl-0 pr-1">
-                        <input type="text" class="form-control text-right text-warning bg-transparent  " value="0.00"
+                        <input type="text" class="form-control text-right text-warning bg-transparent  " value="0.00" onchange="diss();"
                             id="amt" style="font-weight:bold; font-size:1.25rem;" disabled />
                     </div>
                     <div class="col-3    p-0" id="btnblock">
-                        <button type="button" class="btn btn-inverse-success pb-2 pt-2 text-lg-center w-100"
-                            onclick="save(<?php echo $stid; ?>);" id="">
+                        <button type="button" class="btn btn-inverse-success pb-2 pt-2 text-lg-center w-100" id="bbttnn"
+                            onclick="save(<?php echo $stid; ?>);" disabled>
                             <div style="margin-top:5px;">Pay Now</div>
                         </button>
                     </div>
@@ -149,3 +149,19 @@ $month = date('m');
     <input type="number" id="chk" value="0" hidden />
 </div>
 <script>document.getElementById("total_due").innerHTML = '<?php echo $tamt; ?>.00';</script>
+
+<script>
+    function diss(){
+        var aaa =document.getElementById("amt").value;
+        var bb =document.getElementById("bbttnn");
+
+        if (aaa>0){
+            bb.disabled = false;
+            // alert("Yes");
+        } else {
+            bb.disabled = true;
+            // alert("NO");
+        }
+
+    }
+</script>

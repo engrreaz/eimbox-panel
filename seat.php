@@ -61,7 +61,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Year</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="year" onchange="go();">
+                                <select class="form-control " id="year" onchange="go();">
                                     <option value="0"></option>
                                     <?php
                                     for ($y = date('Y'); $y >= 2024; $y--) {
@@ -82,7 +82,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Class :</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="cls" onchange="go();">
+                                <select class="form-control " id="cls" onchange="go();">
                                     <option value=" ">---</option>
                                     <?php
                                     $sql0x = "SELECT areaname FROM areas where user='$rootuser' and sessionyear='$year' group by areaname order by idno;";
@@ -111,7 +111,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Section</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="sec" onchange="go();">
+                                <select class="form-control " id="sec" onchange="go();">
                                     <option value="">---</option>
                                     <?php
                                     $sql0x = "SELECT subarea FROM areas where user='$rootuser' and sessionyear='$year' and areaname='$cls2' group by subarea order by idno;";
@@ -140,7 +140,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Examination</label>
                             <div class="col-12">
-                                <select class="form-control text-white" id="exam" onchange="go();">
+                                <select class="form-control " id="exam" onchange="go();">
 
                                     <option value="">---</option>
                                     <?php
@@ -176,7 +176,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-outline-primary btn-block p-2" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i class="mdi mdi-eye"></i>
                                     Generate Card</button>
                             </div>
                         </div>
@@ -186,7 +186,7 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-outline-info btn-block p-2" style="" onclick="goprint();"><i
+                                    class="btn btn-inverse-info btn-block p-2" style="" onclick="goprint();"><i
                                         class="mdi mdi-eye"></i> Print
                                     View</button>
                             </div>

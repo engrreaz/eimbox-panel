@@ -206,7 +206,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group row">
                             <label class="col-form-label pl-3">ID</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark" value="<?php echo $schid; ?>" id="slid"
+                                <input type="text" class="form-control" value="<?php echo $schid; ?>" id="slid"
                                     disabled />
                             </div>
                         </div>
@@ -282,7 +282,7 @@ if (isset($_GET['id'])) {
 
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Code</th>

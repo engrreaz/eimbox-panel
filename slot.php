@@ -116,7 +116,7 @@ if (isset($_GET['addnew'])) {
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover text-secondary" style=" ">
+                    <table class="table table-hover" style=" ">
                         <thead>
                             <tr>
                                 <th class="txt-right">Slot Name <span id="sscspan"></span></th>
@@ -138,14 +138,8 @@ if (isset($_GET['addnew'])) {
                                 while ($row0 = $result0->fetch_assoc()) {
                                     $id = $row0["id"];
                                     $sname = $row0["slotname"];
-
-
-
-
-
                                     ?>
                                     <tr>
-
                                         <td style="padding : 3px 10px; border:0px solid gray;">
                                             <div class="ooo"><?php echo $sname; ?></div>
                                         </td>

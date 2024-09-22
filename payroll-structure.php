@@ -21,7 +21,7 @@ $new = 0; // check new entry or not
             <!-- Modal body -->
             <div class="modal-body">
                 <div id="" class="input-control select full-size error">
-                    <select id="modaldata" name="modaldata" class="form-control text-white" onchange="modal();">
+                    <select id="modaldata" name="modaldata" class="form-control " onchange="modal();">
                         <option value="">Select a Teacher/Staff to View/Edit Salary Structure</option>
                         <?php
                         $sql000 = "SELECT * FROM teacher where sccode='$sccode'  order by ranks";
@@ -134,7 +134,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Teacher's / Staff's ID.</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark text-secondary" id="tid"
+                                <input type="text" class="form-control" id="tid"
                                     value="<?php echo $tid; ?>" disabled />
                             </div>
                         </div>
@@ -165,7 +165,7 @@ echo $dismsg; ?>">
                         <div class="form-group row">
                             <label class="col-form-label pl-3">Salary Applying From</label>
                             <div class="col-12">
-                                <input type="date" class="form-control bg-muted text-secondary " id="applydate"
+                                <input type="date" class="form-control  " id="applydate"
                                     value="<?php 
                          
                                     echo $applydate; ?>" />
