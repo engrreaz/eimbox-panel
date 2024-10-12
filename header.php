@@ -1,6 +1,17 @@
 <?php
 include 'inc.php';
 include 'auth/gpConfig.php';
+
+
+if ($userlevel == 'Student') {
+    $sql0 = "SELECT * from students where sccode='$sccode' and stid='$userid'";
+    $result0 = $conn->query($sql0);
+    if ($result0->num_rows > 0) {
+        while ($row0 = $result0->fetch_assoc()) {
+            $mynameeng = $row0["stnameeng"];
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +60,8 @@ include 'auth/gpConfig.php';
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <?php if($usr == 'farukp2010@gmail.comx' || $usr == 'engrreaz@gmail.comx') { ?>
-    <link rel="stylesheet" href="assets/css/light.css">
+    <?php if ($usr == 'farukp2010@gmail.comx' || $usr == 'engrreaz@gmail.comx') { ?>
+        <link rel="stylesheet" href="assets/css/light.css">
     <?php } ?>
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/imgs/logo.png" />
@@ -69,6 +80,16 @@ include 'auth/gpConfig.php';
             font-optical-sizing: auto;
             font-weight: 400;
             font-style: italic;
+        }
+
+
+        .std-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 0;
+            margin: 2px;
+            outline: 2px solid gray;
         }
     </style>
     </style>
@@ -91,7 +112,7 @@ include 'auth/gpConfig.php';
 </head>
 <div id="loader" class="align-middle" style="height:80%; padding:18%; ">
     <div class="text-center align-middle" style="  ">
-        <?php include 'loader.php';?>
+        <?php include 'loader.php'; ?>
     </div>
 </div>
 
@@ -102,6 +123,7 @@ include 'auth/gpConfig.php';
     <div class="container-scroller" id="full-page" style="display:none;">
         <!-- partial:partials/_sidebar.html -->
         <?php
+
 
         include 'nav.php';
 

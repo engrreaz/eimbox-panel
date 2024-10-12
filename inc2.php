@@ -1,6 +1,9 @@
 <?php
 // include 'config.inc.php';
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// session_start();
 date_default_timezone_set('Asia/Dhaka');
 ;
 
@@ -73,7 +76,7 @@ if ($sccode > 100) {
             $scmail = $row0x["scmail"];
             $scweb = $row0x["scweb"];
 
-            
+
             $headname = $row0x["headname"];
             $headtitle = $row0x["headtitle"];
 

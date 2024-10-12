@@ -1,12 +1,6 @@
 <?php
 include 'header.php';
 
-// $month = $_GET['m'] ?? 0;
-// $year = $_GET['y'] ?? 0;
-
-// $refno = $_GET['ref'] ?? 0;
-// $undef = $_GET['undef'] ?? 99;
-
 if (isset($_GET['m'])) {
     $month = $_GET['m'];
 } else {
@@ -41,8 +35,6 @@ if (isset($_GET['addnew'])) {
     $newblock = 'none';
     $exid = 0;
 }
-
-
 
 
 $sql0x = "SELECT sum(duration) as dur, sum(filesize) as fs FROM logbook where sccode='$sccode'  and email = '$usr' ;";
@@ -107,7 +99,7 @@ if ($result0x->num_rows > 0) {
                 </h3>
                 <div class="row">
                     <div class="table-responsive full-width">
-                        <table class="table table-hover text-white">
+                        <table class="table table-hover ">
 
                             <tbody>
                                 <?php
@@ -189,16 +181,12 @@ if ($result0x->num_rows > 0) {
                                                             Token
                                                         </div>
                                                     </div>
-                                                   
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class=" d-flex">
-
-                                                    
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <input type="checkbox" id="" class="font-control " /> Login
@@ -243,24 +231,6 @@ if ($result0x->num_rows > 0) {
         </div>
     </div>
 </div>
-
-
-
-
-<!-- ***************************************************************************************************
-***************************************************************************************************
-***************************************************************************************************
-***************************************************************************************************
-***************************************************************************************************
-*************************************************************************************************** -->
-
-
-
-
-
-
-
-
 
 
 

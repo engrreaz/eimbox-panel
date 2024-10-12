@@ -7,103 +7,12 @@
 if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
   include 'track-line.php';
 }
-
-if($userlevel == 'Student'){
-  echo '<script>window.location.href="std-index.php";</script>';
-} else if($userlevel == 'Guardian'){
-  echo '<script>window.location.href="guar-index.php";</script>';
-} else if($userlevel == 'Teacher'){
-  echo '<script>window.location.href="teacher-index.php";</script>';
-} else {
 ?>
 
 
 
 
-<div class="row">
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="st_attnd_main">0</h3>
-              <p class="text-danger ml-2 mb-0 font-weight-medium" id="total_students_main">0</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-danger ">
-              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Today's Students</h6>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="t_attnd_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium">100%</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-success">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Teacher's Attendance</h6>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="users_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium" id="online_main">0</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-danger">
-              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Total Users</h6>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="expense_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium"></p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-success ">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Expense (Month)</h6>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
+<div class="row" hidden>
   <div class="col-md-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -237,9 +146,6 @@ if($userlevel == 'Student'){
 
 </div>
 
-
-
-
 <div class="row" style="display:none;">
   <div class="col-sm-4 grid-margin">
     <div class="card">
@@ -301,63 +207,126 @@ if($userlevel == 'Student'){
 </div>
 
 
-<div class="row ">
-  <div class="col-12 grid-margin">
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                       <img class="std-img" src="../students/no-img.jpg"/>
+                    </div>
+
+
+                    <div class="col-md-10">
+                   <h3><?php echo $mynameeng;?></h3>
+                   <div class="text-warning"><small>ID # <?php echo $userid;?></small></div>
+                   <div class=" text-small">Class : Nine ; Section : Humantities ; Roll : 103254 ; Slot : School (Day)</div>
+                    </div>
+                </div>
+                <!-- SEARCH BLOCK -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" >
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Request for Actions</h4>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>
-                  <div class="form-check form-check-muted m-0">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input">
-                    </label>
-                  </div>
-                </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="display:none;">
-                <td>
-                  <div class="form-check form-check-muted m-0">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input">
-                    </label>
-                  </div>
-                </td>
-                <td>
-                  <img src="assets/images/faces/face1.jpg" alt="image" />
-                  <span class="pl-2">-</span>
-                </td>
-                <td> - </td>
-                <td> -- </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-                <td>
-                  <div class="badge badge-outline-success">Approved</div>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
+              <h3 class="mb-0" id="st_attnd_main">0</h3>
+              <p class="text-danger ml-2 mb-0 font-weight-medium" id="total_students_main">0</p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="icon icon-box-danger ">
+              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+            </div>
+          </div>
         </div>
+        <h6 class="text-muted font-weight-normal">Today's Students</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
+              <h3 class="mb-0" id="t_attnd_main">0</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium">100%</p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="icon icon-box-success">
+              <span class="mdi mdi-arrow-top-right icon-item"></span>
+            </div>
+          </div>
+        </div>
+        <h6 class="text-muted font-weight-normal">Teacher's Attendance</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
+              <h3 class="mb-0" id="users_main">0</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium" id="online_main">0</p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="icon icon-box-danger">
+              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+            </div>
+          </div>
+        </div>
+        <h6 class="text-muted font-weight-normal">Total Users</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
+              <h3 class="mb-0" id="expense_main">0</h3>
+              <p class="text-success ml-2 mb-0 font-weight-medium"></p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="icon icon-box-success ">
+              <span class="mdi mdi-arrow-top-right icon-item"></span>
+            </div>
+          </div>
+        </div>
+        <h6 class="text-muted font-weight-normal">Expense (Month)</h6>
       </div>
     </div>
   </div>
 </div>
 
-<?php } ?>
+
+
+
+<div class="row " hidden>
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Request for Actions</h4>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="row" style="display:none;">
   <div class="col-md-6 col-xl-4 grid-margin stretch-card">

@@ -12,6 +12,11 @@ $otp2 = date('Ymd');
 $otp2 = '10567600';
 
 
+// if (substr($user, 6) > 100000 && strlen($user) >= 10 ) {
+//     echo '<script>alert("XXXPP");</script>';
+// }
+
+
 if ($otp == $otp2) {
     $_SESSION["user"] = $user;
     ?>

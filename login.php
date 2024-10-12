@@ -132,7 +132,7 @@ $authUrl = $gClient->createAuthUrl();
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" id="btn" onclick="eiin();"
+                      <button id="btn" onclick="eiin();"
                         class="btn btn-inverse-primary btn-block enter-btn">Login</button>
                       <div id="status"></div>
                     </div>

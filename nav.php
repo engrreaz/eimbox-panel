@@ -20,6 +20,25 @@ $pagelist = array(
 $accnav = array('account-settings.php');
 $adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
 $supernav = array('account-settings.php', 'bio-tree.php');
+$stdnav = array('std-index.php', 'guar-index.php', 'std-attnd.php', 'std-profile.php', 'std-result.php', 'std-messages.php', 'std-routine.php', 'std-syllabus.php');
+$teanav = array('teacher-index.php');
+
+if ($userlevel == 'Student') {
+  if (!in_array($curfile, $stdnav)) {
+    echo "<script>window.location.href = 'std-index.php';</script>";
+  }
+} else if ($userlevel == 'Guardian') {
+  if (!in_array($curfile, $stdnav)) {
+    echo "<script>window.location.href = 'guar-index.php';</script>";
+  }
+} else if ($userlevel == 'Teacher') {
+  if (!in_array($curfile, $teanav)) {
+    echo "<script>window.location.href = 'teacher-index.php';</script>";
+  }
+}
+
+
+
 ?>
 
 <div style="overflow-y:auto; " ‍class="sidebar-block">
@@ -284,32 +303,140 @@ $supernav = array('account-settings.php', 'bio-tree.php');
           -----------------------------------------------------------------------------------------------------
           ----------------------------------------------------------------------------------------------------- -->
         <?php
+      } else if (in_array($curfile, $stdnav)) {
+        ?>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="std-profile.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Profile</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="std-attnd.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Attendance</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="std-result.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Results</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="std-messages.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Messages</span>
+              </a>
+            </li>
+
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="std-routine.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Class Routine</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="std-syllabus.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Syllabus</span>
+              </a>
+            </li>
+
+        <?php
+      } else if (in_array($curfile, $teanav)) {
+        ?>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="teacher-profile.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Profile</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="teacher-class.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">My Class</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="teacher-subject.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">My Subjects</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="teacher-attnd.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Attendance</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="teacher-marks.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Marks Entry</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="teacher-collection.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">My Collection</span>
+              </a>
+            </li>
+        
+           
+
+
+        <?php
       } else if (in_array($curfile, $adminnav)) {
         ?>
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" href="admin.php">
-                <span class="menu-icon">
-                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Admin Home</span>
-              </a>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" href="admin-pibi-topic.php">
-                <span class="menu-icon">
-                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">PI/BI Topics</span>
-              </a>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="admin.php">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Admin Home</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="admin-pibi-topic.php">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">PI/BI Topics</span>
+                </a>
+              </li>
 
 
 
 
 
 
-            <!-- -----------------------------------------------------------------------------------------------------
+              <!-- -----------------------------------------------------------------------------------------------------
           -----------------------------------------------------------------------------------------------------
           -----------------------------------------------------------------------------------------------------
           -----------------------------------------------------------------------------------------------------
@@ -319,22 +446,22 @@ $supernav = array('account-settings.php', 'bio-tree.php');
 
         <?php if ($admin > 3) {
           ?>
-              <li class="nav-item menu-items">
-                <a class="nav-link" href="filelist.php">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-settings mdi-24px pt-1"></i>
-                  </span>
-                  <span class="menu-title">Package Setting</span>
-                </a>
-              </li>
-              <li class="nav-item menu-items">
-                <a class="nav-link" href="filelist.php">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-settings mdi-24px pt-1"></i>
-                  </span>
-                  <span class="menu-title">Privileges Setting</span>
-                </a>
-              </li>
+                <li class="nav-item menu-items">
+                  <a class="nav-link" href="filelist.php">
+                    <span class="menu-icon">
+                      <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                    </span>
+                    <span class="menu-title">Package Setting</span>
+                  </a>
+                </li>
+                <li class="nav-item menu-items">
+                  <a class="nav-link" href="filelist.php">
+                    <span class="menu-icon">
+                      <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                    </span>
+                    <span class="menu-title">Privileges Setting</span>
+                  </a>
+                </li>
           <?php
         } ?>
 
@@ -348,7 +475,7 @@ $supernav = array('account-settings.php', 'bio-tree.php');
 
 
 
-            <!-- -----------------------------------------------------------------------------------------------------
+              <!-- -----------------------------------------------------------------------------------------------------
           -----------------------------------------------------------------------------------------------------
           -----------------------------------------------------------------------------------------------------
           -----------------------------------------------------------------------------------------------------
@@ -363,7 +490,7 @@ $supernav = array('account-settings.php', 'bio-tree.php');
 
 
 
-            <!-- <li class="nav-item menu-items">
+              <!-- <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#execution" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
               <i class="mdi mdi-laptop"></i>
@@ -373,11 +500,11 @@ $supernav = array('account-settings.php', 'bio-tree.php');
           </a>
           <div class="collapse" id="execution">
             <ul class="nav flex-column sub-menu"> -->
-            <!-- <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Management Salary</a></li> -->
-            <!-- <li class="nav-item"> <a class="nav-link" href="detail-salary.php">details Exec. Salary</a></li> -->
-            <!-- <li class="nav-item"> <a class="nav-link" href="bank-cheque.php">Bank Cheque Management</a></li> -->
-            <!-- <li class="nav-item"> <a class="nav-link" href="expenditure.php">Expenditure</a></li> -->
-            <!-- </ul>
+              <!-- <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Management Salary</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="detail-salary.php">details Exec. Salary</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="bank-cheque.php">Bank Cheque Management</a></li> -->
+              <!-- <li class="nav-item"> <a class="nav-link" href="expenditure.php">Expenditure</a></li> -->
+              <!-- </ul>
           </div>
         </li> -->
 
@@ -387,360 +514,360 @@ $supernav = array('account-settings.php', 'bio-tree.php');
 
 
 
-            <li class="nav-item menu-items" hidden>
-              <a class="nav-link" data-toggle="collapse" href="#tttax" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-laptop mdi-18px pt-1 "></i>
-                </span>
-                <span class="menu-title">On Going Module</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="tttax">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">-</a></li>
+              <li class="nav-item menu-items" hidden>
+                <a class="nav-link" data-toggle="collapse" href="#tttax" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-laptop mdi-18px pt-1 "></i>
+                  </span>
+                  <span class="menu-title">On Going Module</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="tttax">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="#">-</a></li>
 
-                </ul>
-              </div>
-            </li>
+                  </ul>
+                </div>
+              </li>
 
-            <!-- -----------------------------------------------------------------------------------------------------
+              <!-- -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------- -->
 
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#students" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-account-multiple-outline mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Students</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="students">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="students-edit.php"><i class="mdi mdi-account"></i>&nbsp;
-                      Student Enrollment</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="online-enroll.php"><i
-                        class="mdi mdi-account-star"></i>&nbsp; Online Enrollment</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="students-payment.php"><i class="mdi mdi-coin"></i>&nbsp;
-                      Fees & Payments</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="payment-receipt.php"><i class="mdi mdi-printer"></i>&nbsp;
-                      Print Receipt</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="search-receipt.php"><i
-                        class="mdi mdi-file-document-box"></i>&nbsp; Search Receipt</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="student-attendance.php">
-                      <i class="mdi mdi-account-multiple"></i>
-                      &nbsp; Query Attendance</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#examination" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-pen   mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Examination</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="examination">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="exam-list.php"><i class="mdi mdi-grease-pencil"></i>&nbsp;
-                      Exam List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="seat.php"><i class="mdi mdi-note"></i>&nbsp; Seat Card</a>
-                  </li>
-                  <li class="nav-item"> <a class="nav-link" href="admit-card.php">
-                      <i class="mdi mdi-account-card-details"></i>&nbsp;
-                      Admit Card</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="exam-routine.php"><i class="mdi mdi-timer"></i>&nbsp; Exam
-                      Routine</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href="seatplan.php">Hall Setup</a></li> -->
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#result" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-file-document  mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Gradebook</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="result">
-                <ul class="nav flex-column sub-menu">
-                  <!-- <li class="nav-item"> <a class="nav-link" href="access-denied.php">Marks/Assessment Entry</a></li> -->
-                  <li class="nav-item"> <a class="nav-link" href="result-pibi-sheet.php"><i
-                        class="mdi mdi-triangle"></i>&nbsp; PI/BI Sheet</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Result Processing</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Tabulating Sheet</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transcript</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Report Card</a></li> -->
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-account-circle mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Teachers/Staffs</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="hrd">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Teacher"><i
-                        class="mdi mdi-account-box"></i>&nbsp; Teaching Staffs</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff"><i
-                        class="mdi mdi-account-box-outline"></i>&nbsp; Management Staffs</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-profile.php"><i
-                        class="mdi mdi-account-box-outline "></i>&nbsp; View Profile</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="hr-edit.php"><i class="mdi mdi-account-box "></i>&nbsp;
-                      Profile Editor</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="tattnd.php"><i class="mdi mdi-cards-outline "></i>&nbsp; HRD
-                      Attendance</a></li>
-                </ul>
-              </div>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#students" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-account-multiple-outline mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Students</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="students">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="students-edit.php"><i class="mdi mdi-account"></i>&nbsp;
+                        Student Enrollment</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="online-enroll.php"><i
+                          class="mdi mdi-account-star"></i>&nbsp; Online Enrollment</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="students-payment.php"><i class="mdi mdi-coin"></i>&nbsp;
+                        Fees & Payments</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="payment-receipt.php"><i class="mdi mdi-printer"></i>&nbsp;
+                        Print Receipt</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="search-receipt.php"><i
+                          class="mdi mdi-file-document-box"></i>&nbsp; Search Receipt</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="student-attendance.php">
+                        <i class="mdi mdi-account-multiple"></i>
+                        &nbsp; Query Attendance</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#examination" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-pen   mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Examination</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="examination">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="exam-list.php"><i class="mdi mdi-grease-pencil"></i>&nbsp;
+                        Exam List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="seat.php"><i class="mdi mdi-note"></i>&nbsp; Seat Card</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="admit-card.php">
+                        <i class="mdi mdi-account-card-details"></i>&nbsp;
+                        Admit Card</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="exam-routine.php"><i class="mdi mdi-timer"></i>&nbsp; Exam
+                        Routine</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href="seatplan.php">Hall Setup</a></li> -->
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#result" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-file-document  mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Gradebook</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="result">
+                  <ul class="nav flex-column sub-menu">
+                    <!-- <li class="nav-item"> <a class="nav-link" href="access-denied.php">Marks/Assessment Entry</a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="result-pibi-sheet.php"><i
+                          class="mdi mdi-triangle"></i>&nbsp; PI/BI Sheet</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Result Processing</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Tabulating Sheet</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transcript</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Report Card</a></li> -->
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#hrd" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-account-circle mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Teachers/Staffs</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="hrd">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Teacher"><i
+                          class="mdi mdi-account-box"></i>&nbsp; Teaching Staffs</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="hr-list.php?hr=Staff"><i
+                          class="mdi mdi-account-box-outline"></i>&nbsp; Management Staffs</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="hr-profile.php"><i
+                          class="mdi mdi-account-box-outline "></i>&nbsp; View Profile</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="hr-edit.php"><i class="mdi mdi-account-box "></i>&nbsp;
+                        Profile Editor</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="tattnd.php"><i class="mdi mdi-cards-outline "></i>&nbsp; HRD
+                        Attendance</a></li>
+                  </ul>
+                </div>
+              </li>
 
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#finance" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-coin mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Finance</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="finance">
-                <ul class="nav flex-column sub-menu">
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li> -->
-                  <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="transaction-tracker.php">Transaction Summery</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li> -->
-                </ul>
-              </div>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#finance" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-coin mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Finance</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="finance">
+                  <ul class="nav flex-column sub-menu">
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">MPO Management</a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="exec-salary.php">Monthly Expances</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="expenditure.php">Income & Expenditures</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="transaction-tracker.php">Transaction Summery</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Collections from Students</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Liabilities</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Budgets</a></li> -->
+                  </ul>
+                </div>
+              </li>
 
 
 
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#bank-management" aria-expanded="false"
-                aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-currency-try  mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Bank Management</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="bank-management">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Accounts</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="bank-account.php">Accounts Transactions</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li> -->
-                </ul>
-              </div>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#bank-management" aria-expanded="false"
+                  aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-currency-try  mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Bank Management</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="bank-management">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="bank-manager.php">Bank Accounts</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="bank-account.php">Accounts Transactions</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Cheque Management</a></li> -->
+                  </ul>
+                </div>
+              </li>
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#finance-sal" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-coin mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Payroll Manager</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="finance-sal">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="payroll-list.php"><i
-                        class="mdi mdi-numeric-1-box "></i>&nbsp; Payroll List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="payroll-structure.php"><i
-                        class="mdi mdi-numeric-1-box "></i>&nbsp; Salary Structure</a></li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#finance-sal" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-coin mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Payroll Manager</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="finance-sal">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="payroll-list.php"><i
+                          class="mdi mdi-numeric-1-box "></i>&nbsp; Payroll List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="payroll-structure.php"><i
+                          class="mdi mdi-numeric-1-box "></i>&nbsp; Salary Structure</a></li>
 
-                  <li class="nav-item"> <a class="nav-link" href="payroll-bonus.php">Bonus & Incentive</a></li>
-
-
-                  <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="payroll-calc.php">Calculation & Payoff</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="payroll-payoff-dispuch.php">Dispuch Salary</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="payroll-statement.php">Payroll Statement</a></li>
-                </ul>
-              </div>
-            </li>
+                    <li class="nav-item"> <a class="nav-link" href="payroll-bonus.php">Bonus & Incentive</a></li>
 
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#library" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-book-open-page-variant  mdi-18px pt-1"></i>
-                </span>
-                <span class="menu-title">Library</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="library">
-                <ul class="nav flex-column sub-menu">
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Book Issue & Return</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Book Tracker</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Catalogue management</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Fine/Overdue Settings</a></li> -->
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#transport" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-bus mdi-18px pt-1"></i>
-                </span>
-                <span class="menu-title">Transport</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="transport">
-                <ul class="nav flex-column sub-menu">
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Student Route Manager</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Location Tracking</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transport Management</a></li> -->
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#hostel" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-hotel mdi-18px pt-1"></i>
-                </span>
-                <span class="menu-title">Hostel Management</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="hostel">
-                <ul class="nav flex-column sub-menu">
-                  <!-- <li class="nav-item"> <a class="nav-link" href="under-construction.php">Room Allocation</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Hostel Attendance</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Meal Management</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Event & Activities</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Room Settings</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Management Authority</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Payments & Other Setup</a></li> -->
-                </ul>
-              </div>
-            </li>
-
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#modules" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-view-module  mdi-24px pt-2"></i>
-                </span>
-                <span class="menu-title">Modules</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="modules">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li> -->
-                  <li class="nav-item"> <a class="nav-link" href="committees.php">Committees</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li> -->
-                  <li class="nav-item"> <a class="nav-link" href="notice-manager.php">Notice Manager</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="ref-doc.php">Document Editor</a></li>
-                  
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Voter List for SMC</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Voter List for St. Cabinet</a></li> -->
-                </ul>
-              </div>
-            </li>
+                    <li class="nav-item"> <a class="nav-link" href="detail-salary.php">HRD Salar`y</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="payroll-calc.php">Calculation & Payoff</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="payroll-payoff-dispuch.php">Dispuch Salary</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="payroll-statement.php">Payroll Statement</a></li>
+                  </ul>
+                </div>
+              </li>
 
 
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#register" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-folder-multiple mdi-18px pt-1"></i>
-                </span>
-                <span class="menu-title">Registers</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="register">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="regdbook.php">Register List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="refbook.php">Reference Book</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="ref-doc-archive.php">Documents / Letters</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columnar Cash Book</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transfer Certificate</a></li> -->
-                  <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-file-document mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Reports & Analytics</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="reports">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="live-attendance.php">Live Attendance</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="report-daily.php">Daily Report</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="report-today-collection.php">Today's Collection</a></li>
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Monthly Collection</a></li> -->
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#library" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-book-open-page-variant  mdi-18px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Library</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="library">
+                  <ul class="nav flex-column sub-menu">
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Book Issue & Return</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Book Tracker</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Catalogue management</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Fine/Overdue Settings</a></li> -->
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#transport" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-bus mdi-18px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Transport</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="transport">
+                  <ul class="nav flex-column sub-menu">
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Student Route Manager</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Location Tracking</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transport Management</a></li> -->
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#hostel" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-hotel mdi-18px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Hostel Management</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="hostel">
+                  <ul class="nav flex-column sub-menu">
+                    <!-- <li class="nav-item"> <a class="nav-link" href="under-construction.php">Room Allocation</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Hostel Attendance</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Meal Management</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Event & Activities</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Room Settings</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Management Authority</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Payments & Other Setup</a></li> -->
+                  </ul>
+                </div>
+              </li>
 
-                  <!-- <li class="nav-item"> <a class="nav-link" href="#">Monthly Balance Sheet</a></li> -->
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#modules" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-view-module  mdi-24px pt-2"></i>
+                  </span>
+                  <span class="menu-title">Modules</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="modules">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="calendar.php">Academic Calendar</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Extra Curricular Activities</a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="committees.php">Committees</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="club-list.php">Clubs in Institution</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="data-scanner.php">Data Validation Scanner</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Feedback & Surveys</a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="notice-manager.php">Notice Manager</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="ref-doc.php">Document Editor</a></li>
 
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li> -->
-                  <li class="nav-item"> <a class="nav-link" href="students-list.php"><i class="mdi mdi-account"></i>&nbsp;
-                      Student's List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="admission-form.php"><i class="mdi mdi-accountx"></i>&nbsp;
-                      Admission Form</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="student-dues-list.php"><i
-                        class="mdi mdi-currency-try"></i>&nbsp; Student's Dues List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="balance-sheet.php">Monthly Income-Expenditure</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="monthly-audit-report.php">Monthly Audit Report</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Profile</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">User Log</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Notifications</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Voter List for SMC</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Voter List for St. Cabinet</a></li> -->
+                  </ul>
+                </div>
+              </li>
 
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">All Transactions</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Collection</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Bank Report</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">Attendance Report</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">MPO Statement</a></li> -->
 
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">MY --------- </a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Collections</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li> -->
-                  <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Classes</a></li> -->
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-icon">
-                  <i class="mdi mdi-account mdi-24px"></i>
-                </span>
-                <span class="menu-title">Users Management</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="users">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="users.php"><i class="mdi mdi-account-circle"></i>&nbsp; User
-                      List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href=".php">User Profile</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="users-permission.php"><i class="mdi mdi-key"></i>&nbsp;
-                      Access Permission</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item menu-items">
-              <a class="nav-link" href="settings.php">
-                <span class="menu-icon">
-                  <i class="mdi mdi-settings mdi-24px pt-1"></i>
-                </span>
-                <span class="menu-title">Settings</span>
-              </a>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#register" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-folder-multiple mdi-18px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Registers</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="register">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="regdbook.php">Register List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="refbook.php">Reference Book</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="ref-doc-archive.php">Documents / Letters</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="cashbook.php">Columnar Cash Book</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Transfer Certificate</a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="testimonial.php">Testimonial</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-file-document mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Reports & Analytics</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="reports">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="live-attendance.php">Live Attendance</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="report-daily.php">Daily Report</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="report-today-collection.php">Today's Collection</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Monthly Collection</a></li> -->
+
+                    <!-- <li class="nav-item"> <a class="nav-link" href="#">Monthly Balance Sheet</a></li> -->
+
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Bank Deposit Slip</a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="students-list.php"><i class="mdi mdi-account"></i>&nbsp;
+                        Student's List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admission-form.php"><i class="mdi mdi-accountx"></i>&nbsp;
+                        Admission Form</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="student-dues-list.php"><i
+                          class="mdi mdi-currency-try"></i>&nbsp; Student's Dues List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="balance-sheet.php">Monthly Income-Expenditure</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="monthly-audit-report.php">Monthly Audit Report</a></li>
+
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">All Transactions</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Collection</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Bank Report</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">Attendance Report</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">MPO Statement</a></li> -->
+
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">MY --------- </a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Collections</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Transactions</a></li> -->
+                    <!-- <li class="nav-item"> <a class="nav-link" href=".php">My Classes</a></li> -->
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-account mdi-24px"></i>
+                  </span>
+                  <span class="menu-title">Users Management</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="users">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="users.php"><i class="mdi mdi-account-circle"></i>&nbsp; User
+                        List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href=".php">User Profile</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="users-permission.php"><i class="mdi mdi-key"></i>&nbsp;
+                        Access Permission</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="settings.php">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-settings mdi-24px pt-1"></i>
+                  </span>
+                  <span class="menu-title">Settings</span>
+                </a>
+              </li>
 
 
 
