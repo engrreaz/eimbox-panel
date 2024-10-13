@@ -21,7 +21,7 @@ $accnav = array('account-settings.php');
 $adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
 $supernav = array('account-settings.php', 'bio-tree.php');
 $stdnav = array('std-index.php', 'guar-index.php', 'std-attnd.php', 'std-profile.php', 'std-result.php', 'std-messages.php', 'std-routine.php', 'std-syllabus.php');
-$teanav = array('teacher-index.php');
+$teanav = array('teacher-index.php', 'teacher-profile.php', 'teacher-class.php', 'teacher-subject.php', 'teacher-attnd.php', 'teacher-marks.php', 'teacher-collection.php');
 
 if ($userlevel == 'Student') {
   if (!in_array($curfile, $stdnav)) {

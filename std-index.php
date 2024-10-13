@@ -9,7 +9,9 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
 }
 ?>
 
+<style>
 
+</style>
 
 
 <div class="row" hidden>
@@ -234,6 +236,17 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
     <div class="card">
       <div class="card-body">
         <div class="row">
+          <div class="col-12 text-center">
+            <div class="outer-ring">
+              <div class="inner-ring">
+                <div class="inner-text">
+                  <b>74</b><small>%</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-9">
             <div class="d-flex align-items-center align-self-start">
               <h3 class="mb-0" id="st_attnd_main">0</h3>
@@ -246,7 +259,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Today's Students</h6>
+        <h6 class="text-muted font-weight-normal text-center">Attendance</h6>
       </div>
     </div>
   </div>
@@ -266,7 +279,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Teacher's Attendance</h6>
+        <h6 class="text-muted font-weight-normal text-center">Results</h6>
       </div>
     </div>
   </div>
@@ -286,7 +299,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Total Users</h6>
+        <h6 class="text-muted font-weight-normal text-center">Co-Curricular Activities</h6>
       </div>
     </div>
   </div>
@@ -306,7 +319,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
             </div>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal">Expense (Month)</h6>
+        <h6 class="text-muted font-weight-normal text-center">Dues</h6>
       </div>
     </div>
   </div>

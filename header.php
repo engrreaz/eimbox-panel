@@ -84,15 +84,54 @@ if ($userlevel == 'Student') {
 
 
         .std-img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             border: 0;
             margin: 2px;
             outline: 2px solid gray;
         }
+        .teacher-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 0;
+            margin: 2px;
+            outline: 2px solid gray;
+        }
+
+        .outer-ring {
+    margin:auto;
+    width:100px;
+    height:100px;
+    background:black;
+    border-radius:50%;
+
+  } 
+  .inner-ring {
+    margin:auto;
+    width:80px;
+    height:80px;
+    background:#222;
+    border-radius:50%;
+    position:relative;
+    top:10px;
+  }
+  .inner-text {
+    font-size:16px;
+    top:38%;
+    position:relative;
+
+  }
+
+  .circle-icon {
+    border:1px solid #222;
+    border-radius:50%;
+  }
+
+
     </style>
-    </style>
+
     <script>
 
         document.onreadystatechange = function () {

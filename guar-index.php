@@ -63,26 +63,87 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
     while ($row0 = $resultu->fetch_assoc()) {
       $guarstid = $row0["stid"];
 
+
+      $sql0 = "SELECT * from students where sccode='$sccode' and stid='$guarstid'";
+      $result0n = $conn->query($sql0);
+      if ($result0n->num_rows > 0) {
+        while ($row0 = $result0n->fetch_assoc()) {
+          $mystname = $row0['stnameeng'];
+        }
+      }
+
+      $sql0 = "SELECT * from sessioninfo where sccode='$sccode' and stid='$guarstid' and sessionyear='$sy' order by sessionyear desc limit 1";
+      $result0nsess = $conn->query($sql0);
+      if ($result0nsess->num_rows > 0) {
+        while ($row0 = $result0nsess->fetch_assoc()) {
+          $mystcls = $row0['classname'];
+          $mystsec = $row0['sectionname'];
+          $mystroll = $row0['rollno'];
+        }
+      }
+
       ?>
-      <div class="col-xl-4 col-sm-6 grid-margin stretch-card" onclick="profile(<?php echo $guarstid;?>);">
+      <div class="col-xl-4 col-sm-6 grid-margin stretch-card" onclick="profile(<?php echo $guarstid; ?>);">
         <div class="card">
           <div class="card-body">
             <div class="row text-center">
-              <div class="text-center" style="margin:auto;">
-                <img class="guar-stu-image" src="../students/no-img.jpg" />
-                <h6 class="pt-3 text-warning font-weight-bold">Iftekhar Amin</h6>
+              <div class="text-center " style="margin:auto;">
+
+                <div class="count-indicator">
+                  <img class="guar-stu-image rounded-circle" src="../students/no-img.jpg" />
+                  <span class="count" style="font-size:70px; color:green; position:relative; right:25px; top:50px;">&bull;</span>
+                </div>
+
+                <h6 class="pt-3 text-warning font-weight-bold"><?php echo $mystname; ?></h6>
                 <div class="text-small">
                   <span style="line:height:12px;">
-                    Student ID # 1031872459<br>
-                    Class : Ten ; Section : Business Studeies<br>
-                    Shift : College ; Roll # 12
+                    Student ID # <?php echo $guarstid; ?><br>
+                    Class : <?php echo $mystcls; ?> ; Section : <?php echo $mystsec; ?><br>
+                    Shift : College ; Roll # <?php echo $mystroll; ?>
                   </span>
 
                 </div>
               </div>
 
             </div>
-            <div class="row">
+
+            <div class="row mt-3">
+              <div class="col-1"></div>
+              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+                <button type="button" class="btn btn-inverse-primary  btn-rounded btn-icon float-right pt-1"
+                  onclick="logins(1)">
+                  <i class="mdi mdi-fingerprint pl-1 mdi-18px"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+                <button type="button" class="btn btn-inverse-secondary  btn-rounded btn-icon float-right pt-1"
+                  onclick="logins(1)">
+                  <i class="mdi mdi-file-document pl-1 mdi-18px"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+                <button type="button" class="btn btn-inverse-success  btn-rounded btn-icon float-right pt-1"
+                  onclick="logins(1)">
+                  <i class="mdi mdi-bell pl-1 mdi-18px"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+                <button type="button" class="btn btn-inverse-info  btn-rounded btn-icon float-right pt-1"
+                  onclick="logins(1)">
+                  <i class="mdi mdi-blur-linear pl-1 mdi-18px"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+                <button type="button" class="btn btn-inverse-warning  btn-rounded btn-icon float-right pt-1"
+                  onclick="logins(1)">
+                  <i class="mdi mdi-book-open-page-variant pl-1 mdi-18px"></i>
+                </button>
+              </div>
+              <div class="col-1"></div>
+            </div>
+
+
+            <div class="row" hidden>
               <div class="col-9">
                 <div class="d-flex align-items-center align-self-start">
                   <h3 class="mb-0" id="st_attnd_main">0</h3>
@@ -95,7 +156,6 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                 </div>
               </div>
             </div>
-            <h6 class="text-muted font-weight-normal">Today's Students</h6>
           </div>
         </div>
       </div>
@@ -154,10 +214,15 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
     });
   }
 
-
+  function attnd(stid) {
+    event.stopPropagation();
+    window.location.href = 'std-attnd.php?stid=' + stid;
+  }
   function profile(stid) {
     window.location.href = 'std-profile.php?stid=' + stid;
   }
+
+
 </script>
 
 <script>

@@ -33,11 +33,6 @@ VALUES
 (NULL, '1031872294', '2024', 'Eleven', 'Science', '241001', '103187', '0', '0', NULL, NULL, '1', NULL, NULL, '0', NULL, '0', NULL, '100', '0', NULL, NULL, '0', '2024-01-01 00:00:00')
 
 
-ALTER TABLE `usersapp` CHANGE `userid` `userid` BIGINT(11) NULL DEFAULT NULL;
-guar_student whole table
-
-ALTER TABLE `guar_student` ADD `sccode` INT NULL DEFAULT NULL AFTER `id`;
-
 GEMOINI API  AIzaSyBGK4pYmqLk1CGCjuOztXLtV4CUcLyaZOc
 
 
