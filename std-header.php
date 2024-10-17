@@ -30,8 +30,9 @@ if ($resultix2->num_rows > 0) {
                 <div class="row">
                     <div class="col-md-2">
                     <?php
-                    echo 'xx' . __DIR__ . 'xx';
+                    
                         $stphoto = __DIR__ . "../students/" . $stid . ".jpg";
+                        echo $stphoto;
                         // echo $stphoto;
                         if (!file_exists($stphoto)) {
                             $stphoto = __DIR__ .  "../students/no-img.jpg";
