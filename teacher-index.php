@@ -16,11 +16,12 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
       <div class="card-body">
         <div class="row">
           <div class="col-md-2">
-          <?php
-                       $stphoto = $BASE__PATH . "/teacher" . "/" . $userid . ".jpg";
-                       $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
-                       ?>
-                       <img class="std-img" src="<?php echo $stphoto; ?>" onerror="this.onerror=null;this.src='<?php echo $stphoto2;?>';" />
+            <?php
+            $stphoto = $BASE__PATH . "/teacher" . "/" . $userid . ".jpg";
+            $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
+            ?>
+            <img class="std-img" src="<?php echo $stphoto; ?>"
+              onerror="this.onerror=null;this.src='<?php echo $stphoto2; ?>';" />
           </div>
 
 
@@ -47,7 +48,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
             </div>
           </div>
           <div class="col-6">
-          <div class="d-flex align-items-center align-self-start">
+            <div class="d-flex align-items-center align-self-start">
               <h3 class="mb-0" id="st_attnd_main">0</h3>
               <p class="text-danger ml-2 mb-0 font-weight-medium" id="total_students_main">0</p>
             </div>
@@ -67,7 +68,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
               <div class="text-small m-0 p-0"><small>My Subjects</small></div>
             </div>
           </div>
-   
+
         </div>
         <h6 class="text-muted font-weight-normal">Marks Entry Progress</h6>
       </div>
@@ -83,7 +84,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
               <p class="text-success ml-2 mb-0 font-weight-medium" id="online_main">0</p>
             </div>
           </div>
-      
+
         </div>
         <h6 class="text-muted font-weight-normal">My Collections</h6>
       </div>
@@ -206,23 +207,48 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">To do list</h4>
+        <div id="tas"></div>
         <div class="add-items d-flex">
-          <input type="text" class="form-control todo-list-input" placeholder="enter task..">
-          <button class="add btn btn-primary todo-list-add-btn">Add</button>
+          <input type="text" id="taskbox" class="form-control todo-list-input" placeholder="enter task..">
+          <button class="add btn btn-primary todo-list-add-btn" onclick="addtask(1);">Add</button>
         </div>
         <div class="list-wrapper">
           <ul class="d-flex flex-column-reverse text-white todo-list todo-list-custom">
-           
-           
-            <li class="completed">
-              <div class="form-check form-check-primary">
-                <label class="form-check-label">
-                  <input class="checkbox" type="checkbox" checked> Submit Attendance </label>
-              </div>
-              <i class="remove mdi mdi-close-box"></i>
-            </li>
-  
-          
+
+            <?php
+            $sql000 = "SELECT * FROM todolist where sccode='$sccode' and user='$usr' and (status=0 || date='$td') order by id desc";
+
+            $resultix2j = $conn->query($sql000);
+            // $conn -> close();
+            if ($resultix2j->num_rows > 0) {
+              while ($row000 = $resultix2j->fetch_assoc()) {
+                $id = $row000["id"];
+                $text = $row000["descrip1"];
+                $stt = $row000["status"];
+                
+                if($stt == 1) {
+                  $comp = 'completed';
+                  $chk = 'checked';
+                } else {
+                  $comp = '';
+                  $chk = '';
+                }
+                ?>
+
+                <li class="<?php echo $comp;?>">
+                  <div class="form-check form-check-primary">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" <?php echo $chk;?> > <?php echo $text;?> </label>
+                  </div>
+                  <i class="remove mdi mdi-close-box"></i>
+                </li>
+
+              <?php
+              }
+            } ?>
+
+
+
           </ul>
         </div>
       </div>
@@ -275,6 +301,25 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
 
 
         document.getElementById("main-29-main").innerHTML = 'Current Period : <b>' + document.getElementById("main-29").innerHTML + '</b>';
+      }
+    });
+  }
+
+  function addtask(tail) {
+    var tas = document.getElementById('taskbox').value;
+
+    var infor = "task=" + tas + '&tail=' + tail;
+    $("#tas").html("");
+    $.ajax({
+      type: "POST",
+      url: "backend/addtask.php",
+      data: infor,
+      cache: false,
+      beforeSend: function () {
+        $('#tas').html('Adding...');
+      },
+      success: function (html) {
+        $("#tas").html(html);
       }
     });
   }
