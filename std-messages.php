@@ -149,11 +149,7 @@ if ($result0rt->num_rows > 0) {
                                             $slx++;
                                         }
 
-                                    } else { ?>
-                                        <tr>
-                                            <td colspan="3">No Data / Records Found.</td>
-                                        </tr>
-                                    <?php } ?>
+                                    }  ?>
                                 </tbody>
                             </table>
                         </div>
