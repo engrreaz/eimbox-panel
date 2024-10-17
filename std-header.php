@@ -32,10 +32,9 @@ if ($resultix2->num_rows > 0) {
                         <?php
 
                         $stphoto = $BASE__PATH . "/students/" . $stid . ".jpg";
-                        echo $stphoto;
                         // echo $stphoto;
                         if (!file_exists($stphoto)) {
-                            $stphoto = $BASE__PATH . "/students/no-img.jpg";
+                            $stphoto = $BASE__PATH . "/students/noimg.jpg";
                         }
                         ?>
                         <img class="std-img" src="<?php echo $stphoto; ?>" />

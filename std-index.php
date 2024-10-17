@@ -250,7 +250,7 @@
             $stphoto = "../students/" . $userid . ".jpg";
             // echo $stphoto;
             if (!file_exists($stphoto)) {
-              $stphoto = "../students/no-img.jpg";
+              $stphoto = "../students/noimg.jpg";
             }
             ?>
             <img class="std-img-2" src="<?php echo $stphoto; ?>" />
