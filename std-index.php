@@ -246,14 +246,10 @@
 
 
 
-
-            $stphoto = "../students/" . $userid . ".jpg";
-            // echo $stphoto;
-            if (!file_exists($stphoto)) {
-              $stphoto = "../students/noimg.jpg";
-            }
+            $stphoto = $BASE__PATH . "/students" . "/" . $userid . ".jpg";
+            $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
             ?>
-            <img class="std-img-2" src="<?php echo $stphoto; ?>" />
+            <img class="std-img" src="<?php echo $stphoto; ?>" onerror="this.onerror=null;this.src='<?php echo $stphoto2;?>';" />
           </div>
 
 

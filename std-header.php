@@ -30,12 +30,8 @@ if ($resultix2->num_rows > 0) {
                 <div class="row">
                     <div class="col-md-2">
                         <?php
-
                         $stphoto = $BASE__PATH . "/students" . "/" . $stid . ".jpg";
                         $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
-                        // if (!file_exists($stphoto)) {
-                        //     $stphoto = $BASE__PATH . "/students/noimg.jpg";
-                        // }echo $stphoto;
                         ?>
                         <img class="std-img" src="<?php echo $stphoto; ?>" onerror="this.onerror=null;this.src='<?php echo $stphoto2;?>';" />
                     </div>
