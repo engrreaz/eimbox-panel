@@ -101,7 +101,7 @@ if ($result0rt->num_rows > 0) {
                     <div class="row">
                         <?php
                         $file = '1';
-                        $file2 = $BASE__PATH . "/syllabus/" . $file . ".pdf";
+                        $file2 =  "https://eimbox.com/syllabus/" . $file . ".pdf";
                         $file3 = $BASE__PATH . "/syllabus/1.pdf";
                         echo "<embed src='$file2' type='application/pdf' width='1000%' height='600px' onerror='this.onerror=null;this.src=".$file3.";' />";
                         ?>
