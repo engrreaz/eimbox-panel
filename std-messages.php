@@ -151,7 +151,7 @@ if ($result0rt->num_rows > 0) {
 
                                     } else { ?>
                                         <tr>
-                                            <td colspan="7">No Data / Records Found.</td>
+                                            <td colspan="3">No Data / Records Found.</td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
