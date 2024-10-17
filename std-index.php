@@ -3,17 +3,9 @@
 
 <script type="text/javascript"> document.cookie = "fn=";</script>
 
-<?php
-if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
-  include 'track-line.php';
-}
-?>
+
 
 <style>
-  #attnd {
-    background-image: conic-gradient(seagreen 0deg, seagreen 265deg, yellow 265deg);
-  }
-
   #attstat td {
     border: 1px solid gray;
     text-align: center;
@@ -30,7 +22,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
   }
 
   .uppers {
-    border:  1px solid red;
+    border: 1px solid red;
   }
 </style>
 
@@ -235,22 +227,41 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-2 text-center">
             <?php
+
+
+
+            $sql000 = "SELECT * FROM sessioninfo where sccode='$sccode' and stid='$userid' and sessionyear='$sy' order by id desc limit 1";
+            $resultix2 = $conn->query($sql000);
+            // $conn -> close();
+            if ($resultix2->num_rows > 0) {
+              while ($row000 = $resultix2->fetch_assoc()) {
+                $klass = $row000["classname"];
+                $seksion = $row000["sectionname"];
+                $rol = $row000["rollno"];
+                $sloot = $row000["slot"];
+              }
+            }
+
+
+
+
             $stphoto = "../students/" . $userid . ".jpg";
             // echo $stphoto;
             if (!file_exists($stphoto)) {
               $stphoto = "../students/no-img.jpg";
             }
             ?>
-            <img class="std-img" src="<?php echo $stphoto; ?>" />
+            <img class="std-img-2" src="<?php echo $stphoto; ?>" />
           </div>
 
 
           <div class="col-md-10">
             <h3><?php echo $mynameeng; ?></h3>
-            <div class="text-warning"><small>ID # <?php echo $userid; ?></small></div>
-            <div class=" text-small">Class : Nine ; Section : Humantities ; Roll : 103254 ; Slot : School (Day)</div>
+            <div class="text-warning m-0 p-0 text-small"><small>ID # <?php echo $userid; ?></small></div>
+            <div class=" text-small">Class : <b><?php echo $klass; ?></b> ; Section : <b><?php echo $seksion; ?></b> ;
+              Roll : <b><?php echo $rol; ?></b> ; Slot : <b><?php echo $sloot; ?></b></div>
           </div>
         </div>
         <!-- SEARCH BLOCK -->
@@ -273,8 +284,33 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
       $www = $row0['www'];
     }
   }
-  ?>
 
+
+
+  $sql0 = "SELECT count(adate) as wd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy' group by adate  ;";
+  $result0rtn121 = $conn->query($sql0);
+  if ($result0rtn121->num_rows > 0) {
+    while ($row0 = $result0rtn121->fetch_assoc()) {
+      $www = $row0['wd'];
+    }
+  }
+  $sql0 = "SELECT count(yn) as wd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy' and stid='$userid'  ;";
+  $result0rtn122 = $conn->query($sql0);
+  if ($result0rtn122->num_rows > 0) {
+    while ($row0 = $result0rtn122->fetch_assoc()) {
+      $ppp = $row0['wd'];
+    }
+  }
+
+  $rrr = ($ppp * 100 / $www);
+  $rate = ($ppp * 100 / $www) * 3.6;
+
+  ?>
+  <style>
+    #attnd {
+      background-image: conic-gradient(#1e8449 0deg, #1e8449 <?php echo $rate; ?>deg, #f39c12 <?php echo $rate; ?>deg);
+    }
+  </style>
 
 
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
@@ -285,7 +321,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
             <div class="outer-ring" id="attnd">
               <div class="inner-ring">
                 <div class="inner-text">
-                  <b>74</b><small> %</small>
+                  <b><?php echo number_format($rrr, 2); ?></b><small> %</small>
                 </div>
               </div>
             </div>
@@ -295,12 +331,12 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
           <div class="col-12 text-center">
             <table style="width:100%; border:1px solid gray; " id="attstat">
               <tr>
-                <td class="val">200</td>
-                <td class="val">12</td>
-                <td class="val" rowspan="3">43</td>
+                <td class="val"><?php echo $ppp; ?></td>
+                <td class="val"><?php echo $www - $ppp; ?></td>
+                <td class="val" rowspan="3">-</td>
               </tr>
               <tr>
-                <td class="lbl uppers" >Present</td>
+                <td class="lbl uppers">Present</td>
                 <td class="lbl">Absent</td>
 
               </tr>
@@ -343,7 +379,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
         <div class="row">
           <div class="col-12 text-center">
             <div class="outer-ring" id="rejult"
-              style="background-image: conic-gradient(seagreen 0deg, seagreen <?php echo $rperc; ?>deg, gray <?php echo $rperc; ?>deg);">
+              style="background-image: conic-gradient(#145a32  0deg, #52be80 <?php echo $rperc; ?>deg, gray <?php echo $rperc; ?>deg);">
               <div class="inner-ring">
                 <div class="inner-text">
                   <b><?php echo $avgrate; ?></b><small> %</small>
@@ -384,7 +420,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                 <span class="sr-only">70% Complete</span>
               </div>
             </div>
-            <div class="text-small"><b><small>Recite / Singing</small></b></div>
+            <div class="text-small"><b><small>Indoor Games</small></b></div>
           </div>
         </div>
         <div class="row  mb-3">
@@ -395,7 +431,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                 <span class="sr-only">70% Complete</span>
               </div>
             </div>
-            <div class="text-small"><b><small>Recite / Singing</small></b></div>
+            <div class="text-small"><b><small>Outdoor Games</small></b></div>
           </div>
         </div>
         <div class="row  mb-3">
@@ -406,7 +442,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                 <span class="sr-only">70% Complete</span>
               </div>
             </div>
-            <div class="text-small"><b><small>Recite / Singing</small></b></div>
+            <div class="text-small"><b><small>Science Fair</small></b></div>
           </div>
         </div>
         <div class="row  mb-3">
@@ -417,7 +453,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                 <span class="sr-only">70% Complete</span>
               </div>
             </div>
-            <div class="text-small"><b><small>Recite / Singing</small></b></div>
+            <div class="text-small"><b><small>Cultural Activities</small></b></div>
           </div>
         </div>
 
@@ -449,7 +485,8 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
 
         <div class="row">
           <div class="col-12 text-center">
-            <div class="outer-ring" id="duesbox" style="background-image: conic-gradient(red 0deg, red <?php echo $dperc; ?>deg);" >
+            <div class="outer-ring" id="duesbox"
+              style="background-image: conic-gradient(red 0deg, red <?php echo $dperc; ?>deg);">
               <div class="inner-ring">
                 <div class="inner-text">
                   <small>TK </small><b><?php echo $dues; ?></b>
@@ -457,19 +494,10 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
               </div>
             </div>
 
-            <table style="width:100%; border:0px solid gray; " id="" class="mt-4" hidden>
-              <tr>
-                <td class="val"><?php echo $gpa; ?></td>
-                <td class="val"><?php echo $gla; ?></td>
-                <td class="val"><?php echo $totalmarks; ?></td>
-              </tr>
-              <tr>
-                <td class="lbl" style="">GPA</td>
-                <td class="lbl">GLA</td>
-                <td class="lbl">Marks<br>Obtained</td>
-              </tr>
-            </table>
-            <div class="text-small mt-3 mb-3">Dues Till : <b><?php $kk = date('t', strtotime($sy.'-'.$month.'-01')); echo $kk . '-' . $month . '-' . $sy; ?></b></div>
+            <div class="text-small mt-3 mb-3">Dues Till :
+              <b><?php $kk = date('t', strtotime($sy . '-' . $month . '-01'));
+              echo $kk . '-' . $month . '-' . $sy; ?></b>
+            </div>
 
           </div>
         </div>

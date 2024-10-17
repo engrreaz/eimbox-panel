@@ -91,6 +91,14 @@ if ($userlevel == 'Student') {
             margin: 2px;
             outline: 2px solid gray;
         }
+        .std-img-2 {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 0;
+            margin: 2px;
+            outline: 2px solid gray;
+        }
 
         .teacher-img {
             width: 60px;

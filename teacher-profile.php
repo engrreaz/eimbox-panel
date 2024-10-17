@@ -234,7 +234,7 @@ include 'footer.php';
 
 
 <script>
-    var stid = '<?php echo $stid; ?>';
+    var stid = '<?php echo $tid; ?>';
     if (stid < 1) {
         document.getElementById('wholeblock').style.display = 'none';
         $("#modalbox").click();
