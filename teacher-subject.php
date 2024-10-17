@@ -52,7 +52,7 @@ if ($result0rt->num_rows > 0) {
                                     }
                                 }
                                 ?>
-                                <div class="col-md-3 mb-3" onclick="viewsyllabus('<?php echo $ccc;?>', '<?php echo $sss;?>');">
+                                <div class="col-md-3 mb-3" onclick="viewsyllabus('<?php echo $ccc; ?>', '<?php echo $sss; ?>');">
                                     <div class="card w-40 d-block mx-auto">
                                         <img class="card-img-top" src="assets/imgs/book.png" alt="Tutorialspoint Logo">
                                         <p class="card-img-overlay text-center pt-4"
@@ -73,7 +73,7 @@ if ($result0rt->num_rows > 0) {
                                     </div>
                                 </div>
 
-                  
+
                                 <?php
                             }
                         } ?>
@@ -83,7 +83,7 @@ if ($result0rt->num_rows > 0) {
 
 
 
-                        <div class="table-responsive ">
+                        <div class="table-responsive " hidden>
                             <table class="table  table-stripe">
                                 <thead>
                                     <tr>
@@ -133,7 +133,7 @@ if ($result0rt->num_rows > 0) {
         <div class="col-md-4 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body" id="sspn">
-                    dddddddddddddddddd
+                    <button class="btn btn-inverse-info">Books Link</button>
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@ include 'footer.php';
 <script>
     function viewsyllabus(cls, sec) {
         var page = '';
-        infor = "cls=<?php echo $clscls;?>&sec=<?php echo $clssec;?>";
+        infor = "cls=<?php echo $clscls; ?>&sec=<?php echo $clssec; ?>";
 
         $("#sspn").html("");
 

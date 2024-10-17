@@ -28,14 +28,11 @@ if ($result0rt->num_rows > 0) {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-2 mb-4">
-                        <?php
-                        $stphoto = "../teacher/" . $tid . ".jpg";
-                        // echo $stphoto;
-                        if (!file_exists($stphoto)) {
-                            $stphoto = "../students/no-img.jpg";
-                        }
-                        ?>
-                        <img class="std-img" src="<?php echo $stphoto; ?>" />
+                    <?php
+                       $stphoto = $BASE__PATH . "/teacher" . "/" . $tid . ".jpg";
+                       $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
+                       ?>
+                       <img class="std-img" src="<?php echo $stphoto; ?>" onerror="this.onerror=null;this.src='<?php echo $stphoto2;?>';" />
                     </div>
 
 

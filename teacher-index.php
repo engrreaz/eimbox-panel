@@ -16,7 +16,11 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
       <div class="card-body">
         <div class="row">
           <div class="col-md-2">
-            <img class="std-img" src="../teacher/<?php echo $userid; ?>.jpg" />
+          <?php
+                       $stphoto = $BASE__PATH . "/teacher" . "/" . $userid . ".jpg";
+                       $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
+                       ?>
+                       <img class="std-img" src="<?php echo $stphoto; ?>" onerror="this.onerror=null;this.src='<?php echo $stphoto2;?>';" />
           </div>
 
 

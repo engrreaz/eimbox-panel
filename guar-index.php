@@ -38,7 +38,13 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
       <div class="card-body">
         <div class="row">
           <div class="col-md-2">
-            <img class="std-img" src="../students/no-img.jpg" />
+            <?php
+            $stphoto = $BASE__PATH . "/guardian" . "/" . $userid . ".jpg";
+            $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
+            ?>
+            <img class="std-img" src="<?php echo $stphoto; ?>"
+              onerror="this.onerror=null;this.src='<?php echo $stphoto2; ?>';" />
+
           </div>
 
           <div class="col-md-10">
@@ -91,7 +97,8 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
 
                 <div class="count-indicator">
                   <img class="guar-stu-image rounded-circle" src="../students/no-img.jpg" />
-                  <span class="count" style="font-size:70px; color:green; position:relative; right:25px; top:50px;">&bull;</span>
+                  <span class="count"
+                    style="font-size:70px; color:green; position:relative; right:25px; top:50px;">&bull;</span>
                 </div>
 
                 <h6 class="pt-3 text-warning font-weight-bold"><?php echo $mystname; ?></h6>
@@ -115,25 +122,25 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                   <i class="mdi mdi-fingerprint pl-1 mdi-18px"></i>
                 </button>
               </div>
-              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+              <div class="col-2 text-center text-muted" onclick="result(<?php echo $guarstid; ?>);">
                 <button type="button" class="btn btn-inverse-secondary  btn-rounded btn-icon float-right pt-1"
                   onclick="logins(1)">
                   <i class="mdi mdi-file-document pl-1 mdi-18px"></i>
                 </button>
               </div>
-              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+              <div class="col-2 text-center text-muted" onclick="message(<?php echo $guarstid; ?>);">
                 <button type="button" class="btn btn-inverse-success  btn-rounded btn-icon float-right pt-1"
                   onclick="logins(1)">
                   <i class="mdi mdi-bell pl-1 mdi-18px"></i>
                 </button>
               </div>
-              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+              <div class="col-2 text-center text-muted" onclick="dues(<?php echo $guarstid; ?>);">
                 <button type="button" class="btn btn-inverse-info  btn-rounded btn-icon float-right pt-1"
                   onclick="logins(1)">
                   <i class="mdi mdi-blur-linear pl-1 mdi-18px"></i>
                 </button>
               </div>
-              <div class="col-2 text-center text-muted" onclick="attnd(<?php echo $guarstid; ?>);">
+              <div class="col-2 text-center text-muted" onclick="syllabus(<?php echo $guarstid; ?>);">
                 <button type="button" class="btn btn-inverse-warning  btn-rounded btn-icon float-right pt-1"
                   onclick="logins(1)">
                   <i class="mdi mdi-book-open-page-variant pl-1 mdi-18px"></i>
@@ -220,6 +227,18 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
   }
   function profile(stid) {
     window.location.href = 'std-profile.php?stid=' + stid;
+  }
+  function result(stid) {
+    event.stopPropagation(); window.location.href = 'std-result.php?stid=' + stid;
+  }
+  function message(stid) {
+    event.stopPropagation(); window.location.href = 'std-messages.php?stid=' + stid;
+  }
+  function dues(stid) {
+    event.stopPropagation(); window.location.href = 'std-payments.php?stid=' + stid;
+  }
+  function syllabus(stid) {
+    event.stopPropagation(); window.location.href = 'std-syllabus.php?stid=' + stid;
   }
 
 

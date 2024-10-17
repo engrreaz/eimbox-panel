@@ -116,19 +116,46 @@ $std_right .= 'Attnd Rate : ' . ' 56.90%.</small>';
                     <div class="row ">
                         <?php
                         for ($i = 1; $i <= 12; $i++) {
+                            $ccu = $sy . '-' . $i . '-01';
+                            $ccu2 = date('Y-m-t', strtotime($ccu));
+                            $rrr = $rate = 0;
+
+                            $sql0 = "SELECT count(DISTINCT  adate) as wdd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy' and adate between '$ccu' and '$ccu2'  ;";
+                            // echo $sql0;
+                            $result0rtn121 = $conn->query($sql0);
+                            if ($result0rtn121->num_rows > 0) {
+                                while ($row0 = $result0rtn121->fetch_assoc()) {
+                                    $www = $row0['wdd'];
+                                }
+                            }
+                            $sql0 = "SELECT count(yn) as wd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy' and stid='$stid'  and adate between '$ccu' and '$ccu2'   ;";
+                            $result0rtn122 = $conn->query($sql0);
+                            if ($result0rtn122->num_rows > 0) {
+                                while ($row0 = $result0rtn122->fetch_assoc()) {
+                                    $ppp = $row0['wd'];
+                                }
+                            }
+                            if ($www > 0) {
+                                $rrr = ($ppp * 100 / $www);
+                                $rate = ($ppp * 100 / $www) * 3.6;
+                            }
+
+
+
+
                             ?>
                             <div class="col-lg-1 col-md-3 col-sm-6">
-                                <div class="outer-ring-att" id="attnd">
+                                <div class="outer-ring-att" id="attnd" style="background-image: conic-gradient(#52be80  0deg, #52be80 <?php echo $rate; ?>deg, #FFBF00 <?php echo $rate; ?>deg);">
                                     <div class="inner-ring-att">
-                                        <div class="inner-text-att">
-                                            <b><?php echo 26.3; ?></b><small> %</small>
+                                        <div class="inner-text-att text-warning">
+                                            <b><?php echo number_format($rrr, 2); ?></b><small> %</small>
                                             <br>
-                                            <small><b>JAN</b></small>
+                                            <span class="text-white"><b><?php echo date('M', strtotime($ccu)); ?></b></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        <?php
+                            <?php
                         }
                         ?>
                     </div>

@@ -78,8 +78,11 @@ if ($result0rt->num_rows > 0) {
     <style>
         .pic {
             width: 72px;
-            width: 72px;
+            height: 72px;
             border-radius: 50%;
+            padding:2px;
+            margin:5px; border:1px solid white;
+            
         }
 
         .a {
@@ -188,7 +191,7 @@ if ($result0rt->num_rows > 0) {
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body p-0">
                     <?php
                     $cnt = 0;
                     $found = 0;
@@ -243,19 +246,18 @@ if ($result0rt->num_rows > 0) {
                                 $found++;
                             }
                             ?>
-                            <div class="card text-center"
+                            <div class="card text-center m-0 p-0"
                                 onclick="<?php echo $fun; ?>(<?php echo $stid; ?>, <?php echo $rollno; ?>)"
                                 id="block<?php echo $stid; ?>" <?php echo $dsbl; ?>>
-                                <img class="card-img-top" alt="">
-                                <div class="card-body">
+                                <div class="card-body m-0 p-0">
                                     <table width="100%">
                                         <tr>
                                             <td style="padding-left:10px; width:50px;">
 
                                                 <?php if ($period < 2) { ?>
-                                                    <input style="scale:1.25; border:1px solid red;" class="form-control"   type="checkbox" name="darkmode" id="sta<?php echo $stid; ?>"  onchange="grpssx(<?php echo $stid; ?>, <?php echo $rollno; ?>);" <?php echo $gip; ?>>
+                                                    <input style="scale:1; border:1px solid red;" class="form-control"   type="checkbox" name="darkmode" id="sta<?php echo $stid; ?>"  onchange="grpssx(<?php echo $stid; ?>, <?php echo $rollno; ?>);" <?php echo $gip; ?>>
                                                 <?php } else { ?>
-                                                    <input style="scale:2; border:1px solid black; " class="form-control"  type="checkbox" name="darkmodes" id="sta2<?php echo $stid; ?>"  onchange="grpssx2(<?php echo $stid; ?>, <?php echo $rollno; ?>);" <?php echo $gip; ?>>
+                                                    <input style="scale:1; border:1px solid black; " class="form-control"  type="checkbox" name="darkmodes" id="sta2<?php echo $stid; ?>"  onchange="grpssx2(<?php echo $stid; ?>, <?php echo $rollno; ?>);" <?php echo $gip; ?>>
                                                 <?php } ?>
                                              
                                             </td>
