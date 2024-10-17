@@ -17,9 +17,6 @@ if($userlevel == 'Student'){
 } else {
 ?>
 
-
-
-
 <div class="row">
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
@@ -236,9 +233,6 @@ if($userlevel == 'Student'){
 
 
 </div>
-
-
-
 
 <div class="row" style="display:none;">
   <div class="col-sm-4 grid-margin">
@@ -520,8 +514,6 @@ if($userlevel == 'Student'){
     </div>
   </div>
 </div>
-
-
 
 <div class="row" style="display:none;">
   <div class="col-12">
