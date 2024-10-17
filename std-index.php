@@ -283,11 +283,12 @@
 
 
 
-  $sql0 = "SELECT count(adate) as wd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy' group by adate  ;";
+  $sql0 = "SELECT count(DISTINCT  adate) as wdd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy'   ;";
+  // echo $sql0;
   $result0rtn121 = $conn->query($sql0);
   if ($result0rtn121->num_rows > 0) {
     while ($row0 = $result0rtn121->fetch_assoc()) {
-      $www = $row0['wd'];
+      $www = $row0['wdd'];
     }
   }
   $sql0 = "SELECT count(yn) as wd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy' and stid='$userid'  ;";
