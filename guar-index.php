@@ -96,7 +96,14 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
               <div class="text-center " style="margin:auto;">
 
                 <div class="count-indicator">
-                  <img class="guar-stu-image rounded-circle" src="../students/no-img.jpg" />
+                  <?php
+                  $stphoto = $BASE__PATH . "/students" . "/" . $guarstid . ".jpg";
+                  $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
+                  ?>
+                  <img class="guar-stu-image rounded-circle" src="<?php echo $stphoto; ?>"
+                    onerror="this.onerror=null;this.src='<?php echo $stphoto2; ?>';" />
+
+
                   <span class="count"
                     style="font-size:70px; color:green; position:relative; right:25px; top:50px;">&bull;</span>
                 </div>
