@@ -31,11 +31,11 @@ if ($resultix2->num_rows > 0) {
                     <div class="col-md-2">
                         <?php
 
-                        $stphoto = dirname(__DIR__, 1) . "/students/" . $stid . ".jpg";
+                        $stphoto = $BASE__PATH . "/students/" . $stid . ".jpg";
                         echo $stphoto;
                         // echo $stphoto;
                         if (!file_exists($stphoto)) {
-                            $stphoto = dirname(__DIR__, 1) . "/students/no-img.jpg";
+                            $stphoto = $BASE__PATH . "/students/no-img.jpg";
                         }
                         ?>
                         <img class="std-img" src="<?php echo $stphoto; ?>" />
