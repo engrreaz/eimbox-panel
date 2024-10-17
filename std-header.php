@@ -5,7 +5,7 @@ $resultix1 = $conn->query($sql000);
 if ($resultix1->num_rows > 0) {
     while ($row000 = $resultix1->fetch_assoc()) {
         $pronamee = $row000["stnameeng"];
-        $pronameb= $row000["stnameben"];
+        $pronameb = $row000["stnameben"];
     }
 }
 $sql000 = "SELECT * FROM sessioninfo where sccode='$sccode' and stid='$stid' and sessionyear='$sy' order by id desc limit 1";
@@ -29,13 +29,13 @@ if ($resultix2->num_rows > 0) {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-2">
-                    <?php
-                    
-                        $stphoto = __DIR__ . "../students/" . $stid . ".jpg";
+                        <?php
+
+                        $stphoto = dirname(__DIR__, 1) . "/students/" . $stid . ".jpg";
                         echo $stphoto;
                         // echo $stphoto;
                         if (!file_exists($stphoto)) {
-                            $stphoto = __DIR__ .  "../students/no-img.jpg";
+                            $stphoto = dirname(__DIR__, 1) . "/students/no-img.jpg";
                         }
                         ?>
                         <img class="std-img" src="<?php echo $stphoto; ?>" />
@@ -45,11 +45,13 @@ if ($resultix2->num_rows > 0) {
                     <div class="col-md-7">
                         <h3><b><?php echo $pronamee; ?></b></h3>
                         <div class="text-warning"><small>ID # <?php echo $userid; ?></small></div>
-                        <div class=" text-small">Class : <b><?php echo $klass; ?></b> ; Section : <b><?php echo $seksion; ?></b> ; Roll : <b><?php echo $rol; ?></b> ; Slot : <b><?php echo $sloot; ?></b></div>
+                        <div class=" text-small">Class : <b><?php echo $klass; ?></b> ; Section :
+                            <b><?php echo $seksion; ?></b> ; Roll : <b><?php echo $rol; ?></b> ; Slot :
+                            <b><?php echo $sloot; ?></b></div>
                     </div>
 
                     <div class="col-md-3">
-                        <?php echo $std_right;?>
+                        <?php echo $std_right; ?>
                     </div>
                 </div>
                 <!-- SEARCH BLOCK -->
