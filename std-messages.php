@@ -93,53 +93,70 @@ if ($result0rt->num_rows > 0) {
 
     <?php include 'std-header.php'; ?>
 
-    <h3 class="text-center text-small"><b>Messages & Notifications</b></h3>
+    <h3 class="text-center "><b>Messages & Notifications</b></h3>
 
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
+                    <div id="sspd"></div>
+
                     <div class="row">
-                        <div class="table-responsive ">
-                            <table class="table  table-stripe">
+                        <div class="table-responsive">
+                            <table class="table table-hover " id="main-table-search">
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
-                                        <th>Message</th>
-                                        <th>Time</th>
-                                        <th>Msg By</th>
+                                        <th>#</th>
+                                        <th>Notices</th>
+                                        <th></th>
+                                       
                                     </tr>
-
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql0 = "SELECT * FROM clsroutine where sccode = '25' and sessionyear='$sy';";
-                                    $result0rtrx = $conn->query($sql0);
-                                    if ($result0rtrx->num_rows > 0) {
-                                        while ($row0 = $result0rtrx->fetch_assoc()) {
-                                            $period = $row0['period'];
-                                            $wday = $row0['wday'];
-                                            $subcode = $row0['subcode'];
-                                            $tid = $row0['tid'];
+                                    $slx = 1;
+                                    $sql0x = "SELECT * FROM notice where sccode='$sccode' and guardian=1  order by id desc;";
+                                    $result0x = $conn->query($sql0x);
+                                    if ($result0x->num_rows > 0) {
+                                        while ($row0x = $result0x->fetch_assoc()) {
+                                            $id = $row0x["id"];
+                                            $title = $row0x["title"];
+                                            $descrip = $row0x["descrip"];
+                                            $expdate = $row0x["expdate"];
+                                            $cates = $row0x["category"];
 
+                                            $teacher = $row0x["teacher"];
+                                            $smc = $row0x["smc"];
+                                            $guardian = $row0x["guardian"];
+
+                                            $sms2 = $row0x["sms"];
+                                            $pushnoti2 = $row0x["pushnoti"];
+                                            $email2 = $row0x["email"];
+
+                                            $eby = $row0x["entryby"];
+                                            $etime = $row0x["entrytime"];
                                             ?>
-
                                             <tr>
-                                                <td><?php echo $period; ?></td>
-                                                <td><?php echo $wday; ?></td>
-                                                <td><?php echo $subcode; ?></td>
-                                                <td><?php echo $tid; ?></td>
-                                            </tr>
+                                                <td class="text-white"><?php echo $slx; ?></td>
+                                                <td>
+                                                    <div class="text-white pb-1 pt-2"><?php echo $title; ?></div><small class="text-white"><?php echo $descrip; ?></small><br><small><?php echo '&#8702; submitted by ' . $eby . ' @ ' . $etime; ?></small>
+                                            </td>
+                                                
+                                         <td class="text-right"></td>
 
+                                            </tr>
                                             <?php
+                                            $slx++;
                                         }
-                                    }
-                                    ?>
+
+                                    } else { ?>
+                                        <tr>
+                                            <td colspan="7">No Data / Records Found.</td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
 
 
@@ -180,4 +197,9 @@ include 'footer.php';
         var x = document.getElementById("modaldata").value;
         window.location.href = 'std-messages.php?stid=' + x;
     }
+
+    
+    $(document).ready(function () {
+        $('#main-table-search').DataTable();
+    });
 </script>

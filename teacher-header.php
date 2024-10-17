@@ -12,6 +12,7 @@ if ($resultix1->num_rows > 0) {
 
 $clscls = $clssec = '';
 $sql000 = "SELECT * FROM areas where sccode='$sccode' and classteacher='$tid' and sessionyear='$sy'";
+
 $resultix2 = $conn->query($sql000);
 // $conn -> close();
 if ($resultix2->num_rows > 0) {
@@ -27,15 +28,26 @@ if ($resultix2->num_rows > 0) {
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-1">
-                        <img class="teacher-img" src="../students/no-img.jpg" />
+                    <div class="col-md-2">
+                    <?php
+                        $stphoto = "../teacher/" . $tid . ".jpg";
+                        // echo $stphoto;
+                        if (!file_exists($stphoto)) {
+                            $stphoto = "../students/no-img.jpg";
+                        }
+                        ?>
+                        <img class="std-img" src="<?php echo $stphoto; ?>" />
                     </div>
 
 
-                    <div class="col-md-11 pt-2">
+                    <div class="col-md-6 pt-2">
                         <h4  style="line-height:10px;"><b><?php echo $tnamebx; ?></b></h4>
                         <div class="text-warning"><small>ID # <?php echo $userid; ?></small></div>
                         <div class=" text-small"><?php echo $positionbx; ?> (<?php echo $subjectbx; ?>)</div>
+                    </div>
+
+                    <div class="col-md-4 pt-2">
+                        <?php echo $tea_right;?>
                     </div>
                 </div>
                 <!-- SEARCH BLOCK -->

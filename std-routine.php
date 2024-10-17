@@ -80,6 +80,56 @@ if ($result0rt->num_rows > 0) {
     $datam[] = '';
 }
 // echo var_dump($datam);
+
+$subname = array();
+$sql0 = "SELECT * FROM subjects where ( sccode = '$sccode' or sccode=0)  ;";
+$result0rt1 = $conn->query($sql0);
+if ($result0rt1->num_rows > 0) {
+    while ($row0 = $result0rt1->fetch_assoc()) {
+        $subname[] = $row0;
+    }
+} else {
+    $subname[] = '';
+}
+
+$tnames = array();
+$sql0 = "SELECT * FROM teacher where sccode = '$sccode'   ;";
+$result0rt2 = $conn->query($sql0);
+if ($result0rt2->num_rows > 0) {
+    while ($row0 = $result0rt2->fetch_assoc()) {
+        $tnames[] = $row0;
+    }
+} else {
+    $tnames[] = '';
+}
+$sch = array();
+$sql0 = "SELECT * FROM classschedule where sccode = '$sccode' and sessionyear='$sy' order by period   ;";
+$result0rt3 = $conn->query($sql0);
+if ($result0rt3->num_rows > 0) {
+    while ($row0 = $result0rt3->fetch_assoc()) {
+        $sch[] = $row0;
+    }
+} else {
+    $sch[] = '';
+}
+
+// echo var_dump($tnames);
+
+
+if (isset($_GET['type'])) {
+    $rtntype = $_GET['type'];
+} else {
+    $rtntype = '1';
+}
+if ($rtntype == '1') {
+    $btntext = 'Whole Routine';
+    $fnc = 2;
+} else {
+    $btntext = 'Individual Routine';
+    $fnc = 1;
+}
+
+$std_right .= '<button class="btn btn-inverse-warning" onclick="cngroutine(' . $fnc . ');" >Show ' . $btntext . '</button>';
 ?>
 
 
@@ -88,15 +138,15 @@ if ($result0rt->num_rows > 0) {
 
 
     <?php include 'std-header.php'; ?>
-    <h3 class="text-center">Class Routine</h3>
+    <h3 class="text-center"><b>Class Routine</b></h3> 
 
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="table-responsive ">
-                            <table class="table  table-stripe">
+                        <div class="table-responsive  ">
+                            <table class="table  table-stripe text-white">
                                 <thead>
                                     <tr>
                                         <th>Period</th>
@@ -108,7 +158,14 @@ if ($result0rt->num_rows > 0) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql0 = "SELECT * FROM clsroutine where sccode = '$sccode' and sessionyear='$sy' and classname='$cn' and sectionname='$sec' order by period, wday ;";
+                                    $dayday = array('Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+                                    $dayno = date('N', strtotime($td)) + 1;
+                                    // echo $dayno;
+                                    if ($rtntype == '1') {
+                                        $sql0 = "SELECT * FROM clsroutine where sccode = '$sccode' and sessionyear='$sy' and classname='$cn' and sectionname='$sec' and wday='$dayno' order by period, wday ;";
+                                    } else {
+                                        $sql0 = "SELECT * FROM clsroutine where sccode = '$sccode' and sessionyear='$sy' and classname='$cn' and sectionname='$sec' order by period, wday ;";
+                                    }
                                     $result0rtrx = $conn->query($sql0);
                                     if ($result0rtrx->num_rows > 0) {
                                         while ($row0 = $result0rtrx->fetch_assoc()) {
@@ -117,13 +174,18 @@ if ($result0rt->num_rows > 0) {
                                             $subcode = $row0['subcode'];
                                             $tid = $row0['tid'];
 
+                                            $ind = array_search($subcode, array_column($subname, 'subcode'));
+                                            $ind2 = array_search($tid, array_column($tnames, 'tid'));
+                                            $ind3 = array_search($period, array_column($sch, 'period'));
+
                                             ?>
 
                                             <tr>
-                                                <td><?php echo $period; ?></td>
-                                                <td><?php echo $wday; ?></td>
-                                                <td><?php echo $subcode; ?></td>
-                                                <td><?php echo $tid; ?></td>
+                                                <td><?php echo $period . ' : <small>[' . $sch[$ind3]['timestart'] . ' - ' . $sch[$ind3]['timeend'] . ']</small>'; ?>
+                                                </td>
+                                                <td><?php echo $dayday[$wday]; ?></td>
+                                                <td><?php echo $subname[$ind]['subject']; ?></td>
+                                                <td><?php echo $tnames[$ind2]['tname']; ?></td>
                                             </tr>
 
                                             <?php
@@ -159,7 +221,9 @@ include 'footer.php';
     function refbook() {
         window.location.href = 'refbook.php';
     }
-
+    function cngroutine(rnt) {
+        window.location.href = 'std-routine.php?type=' + rnt;
+    }
 
 </script>
 

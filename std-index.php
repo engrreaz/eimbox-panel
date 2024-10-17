@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <!-- <?php include 'notice.php'; ?> -->
- 
+
 <script type="text/javascript"> document.cookie = "fn=";</script>
 
 <?php
@@ -10,7 +10,28 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
 ?>
 
 <style>
+  #attnd {
+    background-image: conic-gradient(seagreen 0deg, seagreen 265deg, yellow 265deg);
+  }
 
+  #attstat td {
+    border: 1px solid gray;
+    text-align: center;
+  }
+
+  .val {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .lbl {
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .uppers {
+    border:  1px solid red;
+  }
 </style>
 
 
@@ -210,75 +231,143 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
 
 
 <div class="row">
-    <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-2">
-                       <img class="std-img" src="../students/no-img.jpg"/>
-                    </div>
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <?php
+            $stphoto = "../students/" . $userid . ".jpg";
+            // echo $stphoto;
+            if (!file_exists($stphoto)) {
+              $stphoto = "../students/no-img.jpg";
+            }
+            ?>
+            <img class="std-img" src="<?php echo $stphoto; ?>" />
+          </div>
 
 
-                    <div class="col-md-10">
-                   <h3><?php echo $mynameeng;?></h3>
-                   <div class="text-warning"><small>ID # <?php echo $userid;?></small></div>
-                   <div class=" text-small">Class : Nine ; Section : Humantities ; Roll : 103254 ; Slot : School (Day)</div>
-                    </div>
-                </div>
-                <!-- SEARCH BLOCK -->
-            </div>
+          <div class="col-md-10">
+            <h3><?php echo $mynameeng; ?></h3>
+            <div class="text-warning"><small>ID # <?php echo $userid; ?></small></div>
+            <div class=" text-small">Class : Nine ; Section : Humantities ; Roll : 103254 ; Slot : School (Day)</div>
+          </div>
         </div>
+        <!-- SEARCH BLOCK -->
+      </div>
     </div>
+  </div>
 </div>
 
-<div class="row" >
+
+<div class="row">
+
+  <?php
+  $ds = date('Y') . '-01-01';
+  $de = date('Y') . '-12-31';
+  $sql0 = "SELECT count(*) as www from calendar where (sccode='$sccode' or sccode=0) and work='1' and date between '$ds' and '$td'";
+  // echo $sql0; 
+  $a1 = $conn->query($sql0);
+  if ($a1->num_rows > 0) {
+    while ($row0 = $a1->fetch_assoc()) {
+      $www = $row0['www'];
+    }
+  }
+  ?>
+
+
+
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="row">
           <div class="col-12 text-center">
-            <div class="outer-ring">
+            <div class="outer-ring" id="attnd">
               <div class="inner-ring">
                 <div class="inner-text">
-                  <b>74</b><small>%</small>
+                  <b>74</b><small> %</small>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="st_attnd_main">0</h3>
-              <p class="text-danger ml-2 mb-0 font-weight-medium" id="total_students_main">0</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-danger ">
-              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-            </div>
+        <div class="row mt-3">
+          <div class="col-12 text-center">
+            <table style="width:100%; border:1px solid gray; " id="attstat">
+              <tr>
+                <td class="val">200</td>
+                <td class="val">12</td>
+                <td class="val" rowspan="3">43</td>
+              </tr>
+              <tr>
+                <td class="lbl uppers" >Present</td>
+                <td class="lbl">Absent</td>
+
+              </tr>
+              <tr>
+                <td class="val" colspan="2"><?php echo $www; ?></td>
+              </tr>
+              <tr>
+                <td class="lbl" colspan="2">Total Working Day</td>
+                <td class="lbl">Holidays</td>
+              </tr>
+            </table>
           </div>
         </div>
-        <h6 class="text-muted font-weight-normal text-center">Attendance</h6>
+
+        <h6 class="text-muted font-weight-normal text-center mt-3">Attendance</h6>
       </div>
     </div>
   </div>
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
+        <?php
+        $sql0 = "SELECT * FROM tabulatingsheet where sccode = '$sccode' and stid='$userid' and sessionyear='$sy' order by id desc limit 1  ;";
+        $result0rtn = $conn->query($sql0);
+        if ($result0rtn->num_rows > 0) {
+          while ($row0 = $result0rtn->fetch_assoc()) {
+            $exname = $row0['exam'];
+            $avgrate = $row0['avgrate'];
+            $totalmarks = $row0['totalmarks'];
+            $gpa = $row0['gpa'];
+            $gla = $row0['gla'];
+            $rperc = $avgrate * 3.6;
+          }
+        }
+
+        // echo var_dump($lastexam);
+        ?>
+
+
         <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="t_attnd_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium">100%</p>
+          <div class="col-12 text-center">
+            <div class="outer-ring" id="rejult"
+              style="background-image: conic-gradient(seagreen 0deg, seagreen <?php echo $rperc; ?>deg, gray <?php echo $rperc; ?>deg);">
+              <div class="inner-ring">
+                <div class="inner-text">
+                  <b><?php echo $avgrate; ?></b><small> %</small>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-success">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
+
+            <table style="width:100%; border:1px solid gray; " id="" class="mt-4">
+              <tr>
+                <td style="border:1px solid white; padding: 5px;" class="val"><?php echo $gpa; ?><br><span
+                    class="lbl">GPA</span></td>
+                <td style="border:1px solid white; padding: 5px;" class="val"><?php echo $gla; ?><br><span
+                    class="lbl m-0">GLA</span></td>
+                <td style="border:1px solid white; padding: 5px;" class="val"><?php echo $totalmarks; ?><br><span
+                    class="lbl">Marks Obtained</span></td>
+              </tr>
+
+            </table>
+            <div class="text-small mt-2 mb-2"><b><?php echo $exname; ?> Examination</b></div>
+
           </div>
         </div>
+
+
         <h6 class="text-muted font-weight-normal text-center">Results</h6>
       </div>
     </div>
@@ -286,37 +375,102 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="users_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium" id="online_main">0</p>
+
+        <div class="row  mb-3">
+          <div class="col-md-12">
+            <div class="progress mb-">
+              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                style="width:0%">
+                <span class="sr-only">70% Complete</span>
+              </div>
             </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-danger">
-              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-            </div>
+            <div class="text-small"><b><small>Recite / Singing</small></b></div>
           </div>
         </div>
+        <div class="row  mb-3">
+          <div class="col-md-12">
+            <div class="progress mb-">
+              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                style="width:0%">
+                <span class="sr-only">70% Complete</span>
+              </div>
+            </div>
+            <div class="text-small"><b><small>Recite / Singing</small></b></div>
+          </div>
+        </div>
+        <div class="row  mb-3">
+          <div class="col-md-12">
+            <div class="progress mb-">
+              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                style="width:0%">
+                <span class="sr-only">70% Complete</span>
+              </div>
+            </div>
+            <div class="text-small"><b><small>Recite / Singing</small></b></div>
+          </div>
+        </div>
+        <div class="row  mb-3">
+          <div class="col-md-12">
+            <div class="progress mb-">
+              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                style="width:0%">
+                <span class="sr-only">70% Complete</span>
+              </div>
+            </div>
+            <div class="text-small"><b><small>Recite / Singing</small></b></div>
+          </div>
+        </div>
+
+
         <h6 class="text-muted font-weight-normal text-center">Co-Curricular Activities</h6>
       </div>
     </div>
   </div>
+
+  <?php
+  $month = date('m');
+  $sql0 = "SELECT sum(dues) as dues FROM stfinance where sccode = '$sccode' and stid='$userid' and sessionyear='$sy' and month<='$month'   ;";
+  // echo $sql0;
+  $result0rtng = $conn->query($sql0);
+  if ($result0rtng->num_rows > 0) {
+    while ($row0 = $result0rtng->fetch_assoc()) {
+      $dues = $row0['dues'];
+      $dperc = 100; //$avgrate * 3.6;
+    }
+  }
+
+  // echo var_dump($lastexam);
+  ?>
+
+
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
+
         <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="expense_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium"></p>
+          <div class="col-12 text-center">
+            <div class="outer-ring" id="duesbox" style="background-image: conic-gradient(red 0deg, red <?php echo $dperc; ?>deg);" >
+              <div class="inner-ring">
+                <div class="inner-text">
+                  <small>TK </small><b><?php echo $dues; ?></b>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-success ">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
+
+            <table style="width:100%; border:0px solid gray; " id="" class="mt-4" hidden>
+              <tr>
+                <td class="val"><?php echo $gpa; ?></td>
+                <td class="val"><?php echo $gla; ?></td>
+                <td class="val"><?php echo $totalmarks; ?></td>
+              </tr>
+              <tr>
+                <td class="lbl" style="">GPA</td>
+                <td class="lbl">GLA</td>
+                <td class="lbl">Marks<br>Obtained</td>
+              </tr>
+            </table>
+            <div class="text-small mt-3 mb-3">Dues Till : <b><?php $kk = date('t', strtotime($sy.'-'.$month.'-01')); echo $kk . '-' . $month . '-' . $sy; ?></b></div>
+
           </div>
         </div>
         <h6 class="text-muted font-weight-normal text-center">Dues</h6>

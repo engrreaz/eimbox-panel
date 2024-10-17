@@ -26,8 +26,6 @@ if ($result0b->num_rows > 0) {
     }
 }
 
-
-
 // $tsheet = array();
 // $sql0 = "SELECT * FROM tabulatingsheet where sccode='$sccode' and id='$tsheetid' order by id desc limit 1;";
 // $result0 = $conn->query($sql0);
@@ -42,17 +40,15 @@ if ($result0b->num_rows > 0) {
 
 
 <style>
-    #trans table,
     #trans tr,
     #trans td {
-        border: 1px solid gray;
+        border: 1px solid black;
         padding: 2px;
     }
 
-    #gsys table,
     #gsys tr,
     #gsys td {
-        border: 1px solid gray;
+        border: 1px solid black;
     }
 </style>
 
@@ -316,16 +312,30 @@ if ($result0001->num_rows > 0) {
         }
         //echo $sql000111;
         ?>
-
-        <div>
+        <?php if ($run > 1) {
+            echo '<div style="height:0mm;"></div>';
+        } ?>
+        <div
+            style="border:0; background-image: url('https://eimbox.com/transcript/4444.png'); height:290mm;background-size:220mm; page-break-after:always;">
             <div style="padding:8mm 8mm;">
 
-                <table >
+                <table border="0" valign="top" style="border-collapse:collapse; width:193mm; height:270mm; ">
                     <tr>
 
                         <td valign="top">
 
-                  
+                            <div style="height:40mm">
+                                <center>
+                                    <img src="https://eimbox.com/logo/<?php echo $sccode; ?>.png" width="70px"
+                                        style="background-image: url('/images/no-image.png') ;  padding:2px 0 3px 0; margin-bottom:7px;"
+                                        onerror="this.onerror=null; this.src='http://www.eimbox.com/images/no-image.png';" />
+                                    <br>
+                                    <span
+                                        style="font-family:segoe ui; font-size:24px; font-weight:bold;"><?php echo $einame; ?></span><br>
+                                    <?php echo $eiaddress . "<br>Contact : " . $eicontact; ?>
+
+                                </center>
+                            </div>
 
 
                             <?php
@@ -341,17 +351,99 @@ if ($result0001->num_rows > 0) {
                                 $examt = $exam;
                             }
                             ?>
-                            <div class="text-center">
-         
+                            <center>
+                                <h4 style=" line-height:28px;"><b><span style="color: #4286f4 !important;">P R O G R E S S
+                                            &nbsp;&nbsp;&nbsp;&nbsp; R E P O R T</span></b></h4>
                                 <b>
                                     <div style="color: #2c7a64 !important; line-height:12px;">Exam :
                                         <?php echo $examt . ' Examination - ' . $sessionyear; ?>
                                     </div>
                                 </b>
-                            </div>
+                            </center>
 
 
-              
+                            <table>
+                                <tr>
+                                    <td width="600px">
+                                        <span style="font-size:10px;">Student's Info</span><br>
+                                        <b><span
+                                                style="font-size:20px; color: #9900cc !important"><?php echo $stnameeng . '<br>' . $stnameben; ?></span></b><br>
+                                        <span
+                                            style="font-size:12px; "><?php echo $lingo . ' : ' . $fname . ' & ' . $mname; ?></span><br>
+
+                                        <span style="font-size:12px; font-weight:bold;">ID # <?php echo $stid; ?></span>
+                                        <br><br><br>
+
+
+                                        Class : <b><?php echo $cn; ?></b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Group : <b><?php echo $secname; ?></b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Roll No. : <b>
+                                            <?php
+
+                                            //echo $sccode . $cn.$secname;
+                                    
+                                            echo $rollno;
+                                            //echo $tcno;
+                                            ?>
+                                        </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    </td>
+
+                                    <td width="120px" align="right">
+                                        <br>
+                                        <img src="https://eimbox.com/students/<?php echo $stid; ?>.jpg" width="100px"
+                                            style="background-image: url('/images/no-image.png') ; border:1px solid black ; padding:3px; margin-bottom:10px;"
+                                            onerror="this.onerror=null; this.src='http://www.eimbox.com/images/no-image.png';" />
+                                    </td>
+                                    <td width="10px"></td>
+                                    <td width="120px">
+                                        <center><span style="font-size:10px">Grading System</span></center>
+                                        <table id="gsys" border="1" width="100%"
+                                            style="color:#1c702c; border-collapse:collapse;">
+                                            <tr>
+                                                <td colspan="2" align="center" style="font-size:9px; font-weight:bold;">Grade
+                                                </td>
+                                                <td align="center" style="font-size:9px; font-weight:bold;">Marks Range</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="font-size:9px;">A+</td>
+                                                <td align="center" style="font-size:9px;">5.00</td>
+                                                <td align="center" style="font-size:9px;">80+</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="font-size:9px;">A</td>
+                                                <td align="center" style="font-size:9px;">4.00</td>
+                                                <td align="center" style="font-size:9px;">70 - 79</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="font-size:9px;">A-</td>
+                                                <td align="center" style="font-size:9px;">3.50</td>
+                                                <td align="center" style="font-size:9px;">60 - 69</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="font-size:9px;">B</td>
+                                                <td align="center" style="font-size:9px;">3.00</td>
+                                                <td align="center" style="font-size:9px;">50 - 59</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="font-size:9px;">C</td>
+                                                <td align="center" style="font-size:9px;">2.00</td>
+                                                <td align="center" style="font-size:9px;">40 - 49</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="font-size:9px;">D</td>
+                                                <td align="center" style="font-size:9px;">1.00</td>
+                                                <td align="center" style="font-size:9px;">33 - 39</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="font-size:9px;">F</td>
+                                                <td align="center" style="font-size:9px;">0.00</td>
+                                                <td align="center" style="font-size:9px;">0 - 32</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
 
                             <style>
                                 .mag {
@@ -361,7 +453,7 @@ if ($result0001->num_rows > 0) {
                                 }
                             </style>
 
-                            <table class="text-white" id="trans" border="1" width="100%"
+                            <table id="trans" border="1" width="100%"
                                 style="border-collapse:collapse; -webkit-print-color-adjust: exact; border:1px black solid !important; font-family:segoe UI;">
                                 <tr height="10px">
                                     <td width="300px" class="mag" rowspan="2">
@@ -390,9 +482,9 @@ if ($result0001->num_rows > 0) {
                                     if ($sub_1_gp == 0) {
                                         $cl = 'red';
                                     } else if ($sub_1_gp == 5) {
-                                        $cl = '#00ff00';
+                                        $cl = 'green';
                                     } else {
-                                        $cl = '#ffffff';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -533,7 +625,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_2_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -577,7 +669,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($ben_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -603,7 +695,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_3_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -645,7 +737,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_4_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -688,7 +780,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($eng_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -715,7 +807,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_2_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     } ?>
                                     <tr>
                                         <td style="padding:4px 4px 4px 10px;"><?php
@@ -750,7 +842,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_3_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -785,7 +877,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_4_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -872,7 +964,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_5_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -924,7 +1016,7 @@ if ($result0001->num_rows > 0) {
                                     } else if ($sub_6_gp == 5) {
                                         $cl = 'green';
                                     } else {
-                                        $cl = 'white';
+                                        $cl = 'black';
                                     }
                                     ?>
                                     <tr>
@@ -979,7 +1071,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_7_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1033,7 +1125,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_8_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1087,7 +1179,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_9_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1142,7 +1234,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_10_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1197,7 +1289,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_11_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1252,7 +1344,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_12_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1308,7 +1400,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_13_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1364,7 +1456,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_14_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1419,7 +1511,7 @@ if ($result0001->num_rows > 0) {
                                         } else if ($sub_15_gp == 5) {
                                             $cl = 'green';
                                         } else {
-                                            $cl = 'white';
+                                            $cl = 'black';
                                         }
                                         ?>
                                         <tr>
@@ -1547,7 +1639,115 @@ if ($result0001->num_rows > 0) {
 
 
 
-                 
+                            <table width="100%" style="margin:5px 0 0 0;" border="0">
+
+                                <tr>
+                                    <td valign="bottom">
+                                        <?php
+                                        if ($exam == 'Half Yearly') {
+                                            $exx = 1;
+                                        } else {
+                                            $exx = 0;
+                                        }
+                                        $lnk = 'http://www.students.eimbox.com/transcript.php?qr=' . $sessionyear . $stid . $exx;
+                                        //echo $lnk;
+                                        ?>
+
+                                        <img style="padding: 10px;"
+                                            src="https://chart.googleapis.com/chart?chs=75x75&cht=qr&chl=<?php echo $lnk; ?>&choe=UTF-8&chld=L|0" />
+                                        <br>
+
+                                    </td>
+                                    <?php if ($progressguar == 1) { ?>
+
+                                        <td valign="bottom" style="font-size:11px;">
+                                            <center>
+                                                ............................................
+                                                <br>
+                                                Guardian's Signature<br><br><br>
+                                            </center>
+                                        </td>
+                                    <?php } ?>
+
+                                    <td valign="bottom">
+                                        <center>
+                                            <?php
+                                            $tna = 'KKK';
+                                            $sql000 = "SELECT * FROM classroutine where sccode='$sccode' and classname='$cn' and sectionname = '$secname' and period='First' ";
+                                            $result000 = $conn->query($sql000);
+                                            if ($result000->num_rows > 0) {
+                                                while ($row000 = $result000->fetch_assoc()) {
+                                                    $tid = $row000["tid"];
+                                                }
+                                            }
+
+                                            $sql000 = "SELECT * FROM teacher where tid='$tid' ";
+                                            $result000 = $conn->query($sql000);
+                                            if ($result000->num_rows > 0) {
+                                                while ($row000 = $result000->fetch_assoc()) {
+                                                    $tname = $row000["tname"];
+                                                }
+                                            }
+                                            $tna = $tname;
+                                            $tna = '';
+                                            ?>
+                                        </center>
+                                        <center><span style="font-size:11px;">
+                                                <!--<img src="sign/<?php echo $tid; ?>.png" width="120px" /><br>-->
+                                                <img src="https://eimbox.com/sign/<?php echo $ctid; ?>.png" class="tsign" alt=""
+                                                    style="height:12mm;"
+                                                    onerror="this.onerror=null;this.src='https://eimbox.com/sign/nosign.png';" /><br><br>
+
+                                                <b><small><?php echo '( ' . $cteacher . ' )'; ?></small></b><br>
+                                                Class Teacher (<?php echo $cn . ' : ' . $secname;
+                                                ; ?>)<br>
+                                                <?php echo $einame; ?><br>
+                                                <?php echo $eiaddress; ?>
+                                                <!--
+                                                <br>
+                                                <?php echo '<b>t' . $tna . '</b>'; ?><br><?php echo $mno; ?>
+                                                -->
+                                            </span></center>
+                                    </td>
+
+                                    <td valign="botttom">
+                                        <center>
+                                            <?php
+                                            if ($sign == 'true') {
+                                                ?>
+
+                                                <div style="font-size:12px;">
+                                                    <img src="https://eimbox.com/sign/<?php echo $htid; ?>.png" class="tsign" alt=""
+                                                        style="height:12mm;"
+                                                        onerror="this.onerror=null;this.src='https://eimbox.com/sign/nosign.png';" /><br>
+
+                                                </div>
+
+
+
+                                                <?php
+                                            } else {
+                                                echo '<span style="height:100px;"></span>';
+                                            }
+
+                                            ?>
+                                        </center>
+
+                                        <center><span style="font-size:11px;">
+                                                <?php echo '<b>( ' . $hname . ' )</b>'; ?><br>
+                                                <small><?php echo $hpos; ?></small><br>
+                                                <?php echo $scname; ?><br>
+                                                <?php echo $eiaddress; ?>
+                                            </span></center>
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="height:1mm;">&nbsp;</td>
+                                </tr>
+
+                            </table>
 
 
                         </td>

@@ -20,7 +20,7 @@ $pagelist = array(
 $accnav = array('account-settings.php');
 $adminnav = array('admin.php', 'filelist.php', 'admin-pibi-topic.php');
 $supernav = array('account-settings.php', 'bio-tree.php');
-$stdnav = array('std-index.php', 'guar-index.php', 'std-attnd.php', 'std-profile.php', 'std-result.php', 'std-messages.php', 'std-routine.php', 'std-syllabus.php');
+$stdnav = array('std-index.php', 'guar-index.php', 'std-attnd.php', 'std-profile.php', 'std-result.php', 'std-payments.php', 'std-messages.php', 'std-routine.php', 'std-syllabus.php');
 $teanav = array('teacher-index.php', 'teacher-profile.php', 'teacher-class.php', 'teacher-subject.php', 'teacher-attnd.php', 'teacher-marks.php', 'teacher-collection.php');
 
 if ($userlevel == 'Student') {
@@ -327,6 +327,14 @@ if ($userlevel == 'Student') {
                   <i class="mdi mdi-settings mdi-24px pt-1"></i>
                 </span>
                 <span class="menu-title">Results</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="std-payments.php">
+                <span class="menu-icon">
+                  <i class="mdi mdi-coin mdi-24px pt-1"></i>
+                </span>
+                <span class="menu-title">Payments & Dues</span>
               </a>
             </li>
             <li class="nav-item menu-items">

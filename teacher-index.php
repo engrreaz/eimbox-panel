@@ -21,7 +21,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-2">
-                       <img class="std-img" src="../students/no-img.jpg"/>
+                       <img class="std-img" src="../teacher/<?php echo $userid; ?>.jpg"/>
                     </div>
 
 

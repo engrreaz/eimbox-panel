@@ -92,14 +92,17 @@ if ($result0rt->num_rows > 0) {
 
     <?php include 'std-header.php'; ?>
 
-    <h3 class="text-center text-small">Attendance Report</h3>
+    <h3 class="text-center font-bold"><b>Syllabus</b></h3>
 
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        gggggggg
+                        <?php
+                        $file = '../1.pdf';
+                        echo "<embed src='$file' type='application/pdf' width='1000%' height='600px' />";
+                        ?>
 
                     </div>
 
@@ -139,6 +142,6 @@ include 'footer.php';
     }
     function modal() {
         var x = document.getElementById("modaldata").value;
-        window.location.href = 'std-messages.php?stid=' + x;
+        window.location.href = 'std-syllabus.php?stid=' + x;
     }
 </script>

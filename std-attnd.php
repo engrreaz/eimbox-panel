@@ -95,6 +95,11 @@ if ($result0rtr->num_rows > 0) {
 } else {
     $stattnd[] = '';
 }
+
+$std_right .= '<small>Attendance Summery<br>from <b>01-01-2024</b> to <b> ' . date('d-m-Y', strtotime($td)) . '</b></small>';
+$std_right .= '<br><br><small>Total Working days : ' . ' 211 Days.<br>';
+$std_right .= 'Present / Absent : ' . ' 200 / 11 Days.<br>';
+$std_right .= 'Attnd Rate : ' . ' 56.90%.</small>';
 ?>
 
 
@@ -103,6 +108,35 @@ if ($result0rtr->num_rows > 0) {
     <?php include 'std-header.php'; ?>
 
     <h3 class="text-center">Attendance Report</h3>
+
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row ">
+                        <?php
+                        for ($i = 1; $i <= 12; $i++) {
+                            ?>
+                            <div class="col-lg-1 col-md-3 col-sm-6">
+                                <div class="outer-ring-att" id="attnd">
+                                    <div class="inner-ring-att">
+                                        <div class="inner-text-att">
+                                            <b><?php echo 26.3; ?></b><small> %</small>
+                                            <br>
+                                            <small><b>JAN</b></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-12 grid-margin stretch-card">

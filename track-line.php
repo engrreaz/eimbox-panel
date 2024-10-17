@@ -250,3 +250,6 @@ if($scinfo[0]['logo'] == '' ) {
     </div>
   </div>
 </div>
+
+
+Calendar Setting : holioday set. weekend set.....

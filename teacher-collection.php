@@ -20,6 +20,10 @@ if ($result0rt->num_rows > 0) {
 
 <div id="wholeblock">
 
+<?php
+$tea_right .= '<h2 class="p-0 m-0"><b>0.00</b></h2>';
+$tea_right .= '<span class="text-small p-0 m-0">Cash-in-Hand</span>';
+?>
 
 
     <?php include 'teacher-header.php'; ?>
@@ -36,31 +40,37 @@ if ($result0rt->num_rows > 0) {
                             <table class="table  table-stripe">
                                 <thead>
                                     <tr>
-                                        <th>Period</th>
-                                        <th>Day</th>
-                                        <th>Subject</th>
-                                        <th>Teacher/Lecturer</th>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Class</th>
+                                        <th>Section</th>
+                                        <th>Roll</th>
+                                        <th>Amount</th>
                                     </tr>
 
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql0 = "SELECT * FROM clsroutine where sccode = '$sccode' and sessionyear='$sy' and tid='$tid' order by period, wday ;";
+                                    $sql0 = "SELECT * FROM stpr where sccode = '$sccode' and sessionyear LIKE '$sy%' and entryby='$usr' order by prdate desc, entrytime desc ;";
                                     $result0rtrx = $conn->query($sql0);
                                     if ($result0rtrx->num_rows > 0) {
                                         while ($row0 = $result0rtrx->fetch_assoc()) {
-                                            $period = $row0['period'];
-                                            $wday = $row0['wday'];
-                                            $subcode = $row0['subcode'];
-                                            $tid = $row0['tid'];
-
+                                            $prno = $row0['prno'];
+                                            $prdate = $row0['prdate'];
+                                            $amount = $row0['amount'];
+                                            $cc = $row0['classname'];
+                                            $ss = $row0['sectionname'];
+                                            $rr = $row0['rollno'];
                                             ?>
 
                                             <tr>
-                                                <td><?php echo $period; ?></td>
-                                                <td><?php echo $wday; ?></td>
-                                                <td><?php echo $subcode; ?></td>
-                                                <td><?php echo $tid; ?></td>
+                                                <td><?php echo $prno; ?></td>
+                                                <td><?php echo date('d F, Y', strtotime($prdate)); ?></td>
+                                                <td><?php echo $cc; ?></td>
+                                                <td><?php echo $ss; ?></td>
+                                                <td><?php echo $rr; ?></td>
+                                                <td><?php echo number_format($amount, 2, '.', ','); ?></td>
+                    
                                             </tr>
 
                                             <?php

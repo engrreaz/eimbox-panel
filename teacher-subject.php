@@ -30,7 +30,7 @@ if ($result0rt->num_rows > 0) {
     <h3 class="text-center"><b>My Subjects</b></h3>
 
     <div class="row">
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-md-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -52,7 +52,7 @@ if ($result0rt->num_rows > 0) {
                                     }
                                 }
                                 ?>
-                                <div class="col-md-2 mb-3">
+                                <div class="col-md-3 mb-3" onclick="viewsyllabus('<?php echo $ccc;?>', '<?php echo $sss;?>');">
                                     <div class="card w-40 d-block mx-auto">
                                         <img class="card-img-top" src="assets/imgs/book.png" alt="Tutorialspoint Logo">
                                         <p class="card-img-overlay text-center pt-4"
@@ -73,54 +73,10 @@ if ($result0rt->num_rows > 0) {
                                     </div>
                                 </div>
 
-                                <div class="col-xl-4 col-sm-6 grid-margin stretch-card"
-                                    onclick="profile(<?php echo $guarstid; ?>);" hidden>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row text-center">
-                                                <div class="text-center" style="margin:auto;">
-                                                    <img class="guar-stu-image" src="../students/no-img.jpg" />
-                                                    <h6 class="pt-3 text-warning font-weight-bold">Iftekhar Amin</h6>
-                                                    <div class="text-small">
-                                                        <span style="line:height:12px;">
-                                                            Student ID # 1031872459<br>
-                                                            Class : Ten ; Section : Business Studeies<br>
-                                                            Shift : College ; Roll # 12
-                                                        </span>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-9">
-                                                    <div class="d-flex align-items-center align-self-start">
-                                                        <h3 class="mb-0" id="st_attnd_main">0</h3>
-                                                        <p class="text-danger ml-2 mb-0 font-weight-medium"
-                                                            id="total_students_main">0</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-3">
-                                                    <div class="icon icon-box-danger ">
-                                                        <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <h6 class="text-muted font-weight-normal">Today's Students</h6>
-                                        </div>
-                                    </div>
-                                </div>
+                  
                                 <?php
                             }
                         } ?>
-
-
-
-
-
-
-
-
 
 
 
@@ -173,6 +129,14 @@ if ($result0rt->num_rows > 0) {
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body" id="sspn">
+                    dddddddddddddddddd
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -189,4 +153,28 @@ include 'footer.php';
 
 <script>
     var uri = window.location.href;
+</script>
+
+<script>
+    function viewsyllabus(cls, sec) {
+        var page = '';
+        infor = "cls=<?php echo $clscls;?>&sec=<?php echo $clssec;?>";
+
+        $("#sspn").html("");
+
+        $.ajax({
+            type: "POST",
+            url: "teacher-syllabus.php",
+            data: infor,
+            cache: false,
+            beforeSend: function () {
+                $('#sspn').html('<span class=""><center><small>Please wail while loading</small></center></span>');
+            },
+            success: function (html) {
+                $("#sspn").html(html);
+                // window.location.href = 'subjects.php?&y=' + year + '&c=' + cls + '&s=' + sec;
+            }
+        });
+    }
+
 </script>

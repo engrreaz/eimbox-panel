@@ -91,6 +91,7 @@ if ($userlevel == 'Student') {
             margin: 2px;
             outline: 2px solid gray;
         }
+
         .teacher-img {
             width: 60px;
             height: 60px;
@@ -101,35 +102,63 @@ if ($userlevel == 'Student') {
         }
 
         .outer-ring {
-    margin:auto;
-    width:100px;
-    height:100px;
-    background:black;
-    border-radius:50%;
+            margin: auto;
+            width: 100px;
+            height: 100px;
+            background: black;
+            border-radius: 50%;
 
-  } 
-  .inner-ring {
-    margin:auto;
-    width:80px;
-    height:80px;
-    background:#222;
-    border-radius:50%;
-    position:relative;
-    top:10px;
-  }
-  .inner-text {
-    font-size:16px;
-    top:38%;
-    position:relative;
+        }
 
-  }
+        .inner-ring {
+            margin: auto;
+            width: 80px;
+            height: 80px;
+            background: #222;
+            border-radius: 50%;
+            position: relative;
+            top: 10px;
+        }
 
-  .circle-icon {
-    border:1px solid #222;
-    border-radius:50%;
-  }
+        .inner-text {
+            font-size: 16px;
+            top: 38%;
+            position: relative;
+
+        }
 
 
+        .outer-ring-att {
+            margin: auto;
+            width: 60px;
+            height: 60px;
+            background: black;
+            border-radius: 50%;
+
+        }
+
+        .inner-ring-att {
+            margin: auto;
+            width: 50px;
+            height:50px;
+            background: #222;
+            border-radius: 50%;
+            position: relative;
+            top: 5px;
+        }
+
+        .inner-text-att {
+            font-size: 10px;
+            top: 20%;
+            position: relative;
+            text-align:center;
+
+        }
+
+        .circle-icon {
+            border: 1px solid #222;
+            border-radius: 50%;
+        }
     </style>
 
     <script>
@@ -180,6 +209,8 @@ if ($userlevel == 'Student') {
                     $enum = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '0');
                     $bnum = array('১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০');
 
+                    $std_right = '';
+                    $tea_right = '';
 
                     // echo '----' . $key . '----';
                     // echo '<br><br>';
