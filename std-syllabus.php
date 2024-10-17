@@ -100,8 +100,10 @@ if ($result0rt->num_rows > 0) {
                 <div class="card-body">
                     <div class="row">
                         <?php
-                        $file = '../1.pdf';
-                        echo "<embed src='$file' type='application/pdf' width='1000%' height='600px' />";
+                        $file = '1';
+                        $file2 = $BASE__PATH . "/syllabus/" . $file . ".pdf";
+                        $file3 = $BASE__PATH . "/syllabus/1.pdf";
+                        echo "<embed src='$file2' type='application/pdf' width='1000%' height='600px' onerror='this.onerror=null;this.src=".$file3.";' />";
                         ?>
 
                     </div>
