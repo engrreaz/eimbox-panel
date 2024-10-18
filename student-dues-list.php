@@ -54,7 +54,12 @@ if ($result00->num_rows > 0) {
 }
 
 $stdues = array();
-$month = date('m');
+if($sccode=='103187'){
+    $month = 12;
+} else {
+    $month = date('m');
+}
+
 $sql0 = "SELECT stid, sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' group by stid";
 $result01x = $conn->query($sql0);
 if ($result01x->num_rows > 0) {

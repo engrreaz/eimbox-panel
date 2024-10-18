@@ -228,7 +228,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                 
                 if($stt == 1) {
                   $comp = 'completed';
-                  $chk = 'checked';
+                  $chk = 'checked disabled';
                 } else {
                   $comp = '';
                   $chk = '';
@@ -240,7 +240,7 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
                     <label class="form-check-label">
                       <input class="checkbox" type="checkbox" <?php echo $chk;?> > <?php echo $text;?> </label>
                   </div>
-                  <i class="remove mdi mdi-close-box"></i>
+                  <i class="remove mdi mdi-close-box" ></i>
                 </li>
 
               <?php
