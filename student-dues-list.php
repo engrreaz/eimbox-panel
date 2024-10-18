@@ -54,7 +54,7 @@ if ($result00->num_rows > 0) {
 }
 
 $stdues = array();
-if($sccode=='103187'){
+if ($sccode == '103187') {
     $month = 12;
 } else {
     $month = date('m');
@@ -183,7 +183,8 @@ if ($result01x->num_rows > 0) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i
+                                        class="mdi mdi-eye"></i>
                                     Show Dues</button>
                             </div>
                         </div>
@@ -194,7 +195,7 @@ if ($result01x->num_rows > 0) {
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
                                     class="btn btn-inverse-info btn-block p-2" style="" onclick="goprint();"><i
-                                        class="mdi mdi-printer"></i> Print  View</button>
+                                        class="mdi mdi-printer"></i> Print View</button>
                             </div>
                         </div>
                     </div>
@@ -209,7 +210,7 @@ if ($result01x->num_rows > 0) {
 
 <div id="pad" style="display:none;">
     <div style="font-size:10px; font-style:italic;">
-        <?php include ('assets/pad/temp-01.php'); ?>
+        <?php include('assets/pad/temp-01.php'); ?>
     </div>
 </div>
 
@@ -306,7 +307,7 @@ if ($result01x->num_rows > 0) {
 
                         //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
                 
-                        
+
 
                         ?>
                         <tr>
