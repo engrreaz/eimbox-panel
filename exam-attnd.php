@@ -29,7 +29,7 @@ if (isset($_GET['exam'])) {
     $exam2 = '';
 }
 
-$col = 3;
+$col = 2;
 $status = 0;
 
 if (isset($_GET['addnew'])) {
@@ -176,7 +176,8 @@ if (isset($_GET['addnew'])) {
                         <div class="form-group row">
                             <div class="col-12">
                                 <button type="button" style="padding:4px 10px 3px; border-radius:5px;"
-                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i class="mdi mdi-eye"></i>
+                                    class="btn btn-inverse-primary btn-block p-2" style="" onclick="go();"><i
+                                        class="mdi mdi-eye"></i>
                                     Generate Card</button>
                             </div>
                         </div>
@@ -193,9 +194,6 @@ if (isset($_GET['addnew'])) {
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
@@ -237,133 +235,198 @@ $pgm = $pgl * $col;
                 }
             }
 
-            td {
+            #rout th {
                 border-collapse: collapse;
+                border: 1px solid black;
+                padding: 3px 12px;
+                ;
+                text-align: center;
+            }
+
+            #rout td {
+                border-collapse: collapse;
+                border: 1px solid black;
+                padding: 8px 12px;
+                ;
             }
         </style>
     </head>
 
-    <table style="left:0; top:0; border:0;" width="100%">
-        <tr>
 
-            <?php
-            if ($exam2 != '') {
+    <?php
+    if ($exam2 != '') {
 
-                for ($i = 0; $i < $col; $i++) {
-                    $s = $pgl * $i;
-                    ?>
-                    <td valign="top" style=" border-collapse:collapse;">
+        $i = 1;
+        $s = $pgl * $i;
+        ?>
 
-                        <?php
-                        $rw = 0;
-                        $sql = "SELECT * FROM sessioninfo WHERE sccode='$sccode'  and sessionyear='$sy'  and classname = '$cls2' and sectionname = '$sec2'  order by classname, sectionname, rollno LIMIT $s, $pgl "; //and (classname='Sux' or classname='Sejven' or classname='Nine') ";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                $k = $row["id"];
-                                $iid = $row["stid"];
-                                $clname = $row["classname"];
-                                $secname = $row["sectionname"];
-                                $roll = $row["rollno"];
+        <?php
+        $rw = 0;
+        $sql = "SELECT * FROM sessioninfo WHERE sccode='$sccode'  and sessionyear='$sy'  and classname = '$cls2' and sectionname = '$sec2'  order by classname, sectionname, rollno  "; //and (classname='Sux' or classname='Sejven' or classname='Nine') ";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $k = $row["id"];
+                $iid = $row["stid"];
+                $clname = $row["classname"];
+                $secname = $row["sectionname"];
+                $roll = $row["rollno"];
 
-                                $rw++;
+                $rw++;
 
 
-                                $sqlw = "SELECT * FROM students WHERE sccode='$sccode' and stid =  '$iid'  ";
-                                $resultw = $conn->query($sqlw);
-                                if ($resultw->num_rows > 0) {
-                                    while ($roww = $resultw->fetch_assoc()) {
-                                        $stname = $roww["stnameben"];
-                                        $stnameeng = $roww["stnameeng"];
-                                    }
+                $sqlw = "SELECT * FROM students WHERE sccode='$sccode' and stid =  '$iid'  ";
+                $resultw = $conn->query($sqlw);
+                if ($resultw->num_rows > 0) {
+                    while ($roww = $resultw->fetch_assoc()) {
+                        $stname = $roww["stnameben"];
+                        $stnameeng = $roww["stnameeng"];
+                    }
+                }
+                $loc = '../students/' . $row["stid"] . '.jpg';
+                if (file_exists($loc) == 1) {
+                    $pt = $loc;
+                } else {
+                    $pt = 'students/noimg.jpg';
+                } ?>
+                <table style="width:100%; border:0px solid gray;  border-collapse:collapse;">
+                    <tr>
+                        <td valign="top" style="text-align:center;  padding:7mm 5mm 7mm;">
+                            <div style="font-size:12px; font-weight:bold;"><?php echo $scname; ?></div>
+
+                            <div style="font-size:11px;"><?php echo $scadd2 . ', ' . $ps . ', ' . $dist; ?></div>
+                            <div style="font-size:16px; font-weight:bold; margin:10px 0; border:1px">
+                                <?php echo $exam2 . ' Examination - ' . $sy; ?>
+                            </div>
+
+
+                            <style>
+                                .std-img {
+                                    height: 72px;
+                                    width: 72px;
+                                    border: 1px solid black;
+                                    border-radius: 50%;
                                 }
-                                $loc = '../students/' . $row["stid"] . '.jpg';
-                                if (file_exists($loc) == 1) {
-                                    $pt = $loc;
-                                } else {
-                                    $pt = 'students/noimg.jpg';
-                                } ?>
-                                <table style=" border:1px solid gray;  border-collapse:collapse;">
+                            </style>
+                            <table style="border:0; width:100%;">
+                                <tr>
+                                    <td style="text-align:left; padding:2px;">
+                                        <span style=" font-weight:bold; font-size:18px;  color:blue;">
+                                            <?php echo $stnameeng; ?>
+                                        </span><br>
+                                        <span
+                                            style="position:static;  left:240px; top:80px; font-family:SutonnyOMJ; font-weight:bold; font-size:24px;  color:red;">
+                                            <?php echo $stname; ?><br>
+                                        </span>
+                                    </td>
+                                    <td class="text-right">
+                                        <?php
+                                        $stphoto = $BASE__PATH . "/students" . "/" . $iid . ".jpg";
+                                        $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
+                                        ?>
+                                        <img class="std-img" src="<?php echo $stphoto; ?>"
+                                            onerror="this.onerror=null;this.src='<?php echo $stphoto2; ?>';" />
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td>
+                                                    CLASS : <?php echo $clname; ?>
+                                                </td>
+                                                <td>
+                                                    Section : <?php echo $secname; ?>
+                                                </td>
+                                                <td>
+                                                    ROLL #<span style="font-size:16px; ">&nbsp;&nbsp;<?php $led = '';
+                                                    if ($roll < 10) {
+                                                        $led = "0";
+                                                    }
+                                                    echo '<b>' . $led . $roll . '</b>'; ?></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                            <div class="">
+                                <table class="" id="rout" style="width:100%; border-collapse:collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Subject</th>
+                                            <th>Student</th>
+                                            <th>Invigilator</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+                                        $sqlw = "SELECT * FROM examroutine WHERE sccode='$sccode' and examname =  '$exam2' and sessionyear LIKE '$sy%' and clsname='$cls2' and secname='$sec2'  ";
+                                        $resultwg = $conn->query($sqlw);
+                                        if ($resultwg->num_rows > 0) {
+                                            while ($roww = $resultwg->fetch_assoc()) {
+                                                $exdate = $roww["date"];
+                                                $extime = $roww["time"];
+                                                $exsubj = $roww["subj"];
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo date('d - m - Y', strtotime($exdate)); ?></td>
+                                                    <td><?php echo date('h:i:s a', strtotime($extime)); ?></td>
+                                                    <td><?php echo $exsubj; ?></td>
+                                                    <td style="width:120px;"></td>
+                                                    <td style="width:80px;"></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                                <table style="width:100%;">
                                     <tr>
-                                        <td valign="top" style="text-align:center; width:105mm;  padding:7mm 5mm 7mm;">
-                                            <div style="font-size:12px; font-weight:bold;"><?php echo $scname; ?></div>
+                                        <td>
 
-                                            <div style="font-size:11px;"><?php echo $scadd2 . ', ' . $ps . ', ' . $dist; ?></div>
-                                            <div style="font-size:16px; font-weight:bold; margin:10px 0; border:1px">
-                                                <?php echo $exam2 . ' Examination - ' . $sy; ?>
-                                            </div>
-
-
-<style>
-    .std-img {
-        height:72px;
-        width:72px;
-        border:1px solid black;
-        border-radius : 50%;
-    }
-</style>
-                                            <table style="border:0; width:100%;">
-                                                <tr>
-                                                    <td  style="text-align:left; padding:2px;">
-                                                        <span style=" font-weight:bold; font-size:18px;  color:blue;">
-                                                            <?php echo $stnameeng; ?>
-                                                        </span><br>
-                                                        <span
-                                                            style="position:static;  left:240px; top:80px; font-family:SutonnyOMJ; font-weight:bold; font-size:24px;  color:red;">
-                                                            <?php echo $stname; ?><br>
-                                                        </span>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        <?php 
-                                                        $stphoto = $BASE__PATH . "/students" . "/" . $iid . ".jpg";
-                                                        $stphoto2 = $BASE__PATH . "/students/noimg.jpg";
-                                                        ?>
-                                                        <img class="std-img" src="<?php echo $stphoto; ?>" onerror="this.onerror=null;this.src='<?php echo $stphoto2;?>';" />
-          
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span>
-                                                            CLASS : <?php echo $clname; ?><br>
-                                                            Section : <?php echo $secname; ?><br>
-                                                            ROLL #<span style="font-size:16px; ">&nbsp;&nbsp;<?php $led = '';
-                                                            if ($roll < 10) {
-                                                                $led = "0";
-                                                            }
-                                                            echo '<b>' . $led . $roll . '</b>'; ?></span>
-                                                        </span>
-
-                                                    </td>
-                                                    <td valign="bottom" style="text-align:center;">
-                                                        <img src="https://eimbox.com/sign/<?php echo $sccode; ?>.png"
-                                                            width="75px" /><br>
-                                                        <span style="font-size:9px;"><?php echo $headtitle; ?></span>
-                                                    </td>
-                                                </tr>
-
-                                            </table>
-
+                                        </td>
+                                        <td style="text-align:center; width:100px;">
+                                            <img src="https://eimbox.com/sign/<?php echo $sccode; ?>.png" width="75px" /><br>
+                                            <span style="font-size:9px;"><?php echo $headtitle; ?></span>
                                         </td>
                                     </tr>
                                 </table>
-                                <?php
-                                if ($rw % 3 == 0) {
-                                    echo '<div style="page-break-before:always; margin:0; padding:0; height:10px; "></div>';
-                                }
-                                ?>
-                            <?php }
-                        } ?>
-                    </td>
-                    <!--*****************************************************************************************
-            -->
-                <?php }
+
+
+                            </div>
+
+
+                        </td>
+                    </tr>
+                </table>
+
+
+                <div style="page-break-after:always"></div>
+                <?php
+
             } ?>
 
+            <!--*****************************************************************************************
+            -->
+        <?php }
+    } ?>
 
-        </tr>
-    </table>
+
+
 </div>
 
 
