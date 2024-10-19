@@ -67,7 +67,6 @@ if ($result01x->num_rows > 0) {
         $stdues[] = $row0;
     }
 }
-
 ?>
 
 <h3 class="d-print-none">Student's Dues Report @ <?php echo date('l, d F, Y'); ?> </h3>

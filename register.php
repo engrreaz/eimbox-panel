@@ -119,7 +119,7 @@ $authUrl = $gClient->createAuthUrl();
                   </div>
 
 
-                  <form id="loginform" class="mt-3" method="POST" onsubmit="eiin(this);" autocomplete="on">
+                  <!-- <form id="loginform" class="mt-3" method="POST" onsubmit="eiins(this);" autocomplete="on"> -->
                     <div class="row">
                       <div class="col-md-6">
 
@@ -129,19 +129,19 @@ $authUrl = $gClient->createAuthUrl();
                           <div class="input-group">
 
                             <select class="form-control border-white" id="usrtype">
-                              <option value="student">Student</option>
-                              <option value="student">Guardian</option>
-                              <option value="student">Teacher</option>
+                              <option value="Student">Student</option>
+                              <option value="Guardian">Guardian</option>
+                              <option value="Teacher">Teacher</option>
                             </select>
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label class="text-danger" for="userid">ID*</label>
+                          <label class="text-danger" for="userid">ID Number*</label>
                           <div class="input-group">
 
                             <input type="text" id="userid" name="userid" class="form-control bg-transparent text-white"
-                              placeholder="Mobile Number" aria-label="ID Number" aria-describedby="basic-addon1">
+                              placeholder="ID Number" aria-label="Student's ID Number" aria-describedby="basic-addon1">
                           </div>
                         </div>
                         <div class="form-group">
@@ -185,7 +185,7 @@ $authUrl = $gClient->createAuthUrl();
                         <div class="text-center">
                           <button id="btn" onclick="eiins();" class="btn btn-inverse-success btn-block enter-btn">Submit
                             Form</button>
-                          <div id="status"></div>
+                          <div id="status">ddddddddddd</div>
                         </div>
                       </div>
                     </div>
@@ -198,7 +198,7 @@ $authUrl = $gClient->createAuthUrl();
 
                     <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
                   </form>
-                </div>
+                <!-- </div> -->
               </div>
 
 
@@ -350,8 +350,8 @@ $authUrl = $gClient->createAuthUrl();
     var mobile = document.getElementById("mobile").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    var infor = "type=" + usrtype + "&userid" + userid + "&dob=" + dob  + "&mobile=" + mobile + "&email=" + email + "&password=" + password;
-   alert(infor);
+    var infor = "type=" + usrtype + "&userid=" + userid + "&dob=" + dob  + "&mobile=" + mobile + "&email=" + email + "&password=" + password;
+// alert(infor);
     $("#status").html("");
 
     $.ajax({
@@ -360,10 +360,11 @@ $authUrl = $gClient->createAuthUrl();
       data: infor,
       cache: false,
       beforeSend: function () {
-        $('#status').html('<span class=""><center>Processing....</center></span>');
+        $('#status').html('<span class=""><center>***</center></span>');
       },
       success: function (html) {
         $("#status").html(html);
+        // alert(html);
       }
     });
   }

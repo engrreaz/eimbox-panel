@@ -96,10 +96,35 @@ if ($result0rtr->num_rows > 0) {
     $stattnd[] = '';
 }
 
+
+$sql0 = "SELECT count(DISTINCT  adate) as wdd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy'   ;";
+// echo $sql0;
+$result0rtn121 = $conn->query($sql0);
+if ($result0rtn121->num_rows > 0) {
+  while ($row0 = $result0rtn121->fetch_assoc()) {
+    $www = $row0['wdd'];
+  }
+}
+$sql0 = "SELECT count(yn) as wd FROM stattnd where sccode = '$sccode' and  sessionyear='$sy' and stid='$userid'  ;";
+$result0rtn122 = $conn->query($sql0);
+if ($result0rtn122->num_rows > 0) {
+  while ($row0 = $result0rtn122->fetch_assoc()) {
+    $ppp = $row0['wd'];
+  }
+}
+
+$rrr = ($ppp * 100 / $www);
+$rate = ($ppp * 100 / $www) * 3.6;
+
+
+
+
+
+
 $std_right .= '<small>Attendance Summery<br>from <b>01-01-2024</b> to <b> ' . date('d-m-Y', strtotime($td)) . '</b></small>';
-$std_right .= '<br><br><small>Total Working days : ' . ' 211 Days.<br>';
-$std_right .= 'Present / Absent : ' . ' 200 / 11 Days.<br>';
-$std_right .= 'Attnd Rate : ' . ' 56.90%.</small>';
+$std_right .= '<br><br><small>Total Working days : ' . $www . '  Days.<br>';
+$std_right .= 'Present / Absent : ' . $ppp . ' / ' . $www-$ppp . ' Days.<br>';
+$std_right .= 'Attnd Rate : ' . $rate . ' .</small>';
 ?>
 
 
