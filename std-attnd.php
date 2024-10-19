@@ -124,7 +124,7 @@ $rate = ($ppp * 100 / $www) * 3.6;
 $std_right .= '<small>Attendance Summery<br>from <b>01-01-2024</b> to <b> ' . date('d-m-Y', strtotime($td)) . '</b></small>';
 $std_right .= '<br><br><small>Total Working days : ' . $www . '  Days.<br>';
 $std_right .= 'Present / Absent : ' . $ppp . ' / ' . $www-$ppp . ' Days.<br>';
-$std_right .= 'Attnd Rate : ' . $rate . ' .</small>';
+$std_right .= 'Attnd Rate : ' . $rrr . ' .</small>';
 ?>
 
 
