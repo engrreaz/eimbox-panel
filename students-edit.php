@@ -21,6 +21,8 @@ if (isset($_GET['roll'])) {
     $roll2 = $_GET['roll'];
 }
 
+
+
 if ($cls2 != '' && $sec2 != '' && $roll2 != '') {
     $sql5 = "SELECT * FROM sessioninfo where classname='$cls2' and sectionname = '$sec2' and rollno='$roll2' and sessionyear LIKE '$sy%' and sccode='$sccode';";
 } else {
@@ -377,7 +379,7 @@ echo $dismsg; ?>">
                             <label class="col-form-label pl-3">Roll. No.</label>
                             <div class="col-12">
                                 <input type="text" class="form-control" id="rollno" value="<?php echo $rollno; ?>"
-                                    onkeydown="if(event.keyCode==13) document.getElementById('srchst').click()" />
+                                    onblur="document.getElementById('srchst').click()"  onkeydown="if(event.keyCode==13) document.getElementById('srchst').click()" />
                             </div>
                         </div>
                     </div>
@@ -1218,20 +1220,22 @@ include 'footer.php';
         var weight = document.getElementById("weight").value;
         var guarnid = document.getElementById("guarnid").value;
 
-        if (stid == "") {
-            // if (stid == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
-            //     if (stid == "") { alert("You must search a student first after input class and roll no."); } else { }
-            //     if (classname == "") { alert("You must select a class first."); } else { }
-            //     if (isNaN(rollno) || rollno == "") { alert("You must enter a numeric value as roll."); } else { }
-            //     if (stnameeng == "") { alert("You must enter Student Name in English."); } else { }
-            //     if (dob == "") { alert("You must select his/her Birth Date."); } else { }
-            //     if (religion == "") { alert("You must select his/her religion"); } else { }
-            //     if (gender == "") { alert("You must select his/her gender"); } else { }
-            //     if (guarname == "") { alert("You must enter his/her guardian's name."); } else { }
-            //     if (guaradd == "") { alert("You must enter guardian's address."); } else { }
-            //     if (guarrelation == "") { alert("You must enter guardian's relation"); } else { }
-            //     if (guarmobile == "") { alert("You must enter a 11 digits valid guardian's mobile number."); } else { }
-            //     if (doa == "") { alert("You must select admission date."); } else { }
+        // if (stid == "") {
+            if (stid == "" || classname == "" || sectionname == "" || isNaN(rollno) || rollno == "" ) {
+                alert("You must select Class / Section & Roll first before saving profile.");
+            // if (stid == "" || classname == "" || classname == "" || isNaN(rollno) || rollno == "" || stnameeng == "" || dob == "" || religion == "" || gender == "" || guarname == "" || guaradd == "" || guarrelation == "" || guarmobile == "" || doa == "") {
+                // if (stid == "") { alert("You must select Class / Section & Roll first before saving profile."); } else { }
+                // if (classname == "") { alert("You must select a class first."); } else { }
+                // if (isNaN(rollno) || rollno == "") { alert("You must enter a numeric value as roll."); } else { }
+                // if (stnameeng == "") { alert("You must enter Student Name in English."); } else { }
+                // if (dob == "") { alert("You must select his/her Birth Date."); } else { }
+                // if (religion == "") { alert("You must select his/her religion"); } else { }
+                // if (gender == "") { alert("You must select his/her gender"); } else { }
+                // if (guarname == "") { alert("You must enter his/her guardian's name."); } else { }
+                // if (guaradd == "") { alert("You must enter guardian's address."); } else { }
+                // if (guarrelation == "") { alert("You must enter guardian's relation"); } else { }
+                // if (guarmobile == "") { alert("You must enter a 11 digits valid guardian's mobile number."); } else { }
+                // if (doa == "") { alert("You must select admission date."); } else { }
         }
         else {
             var infor = "stid=" + stid + "&classname=" + classname + "&sectionname=" + sectionname + "&rollno=" + rollno + "&stnameeng=" + stnameeng + "&stnameben="

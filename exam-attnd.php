@@ -381,8 +381,8 @@ $pgm = $pgl * $col;
                                                 $exsubj = $roww["subj"];
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo date('d-m-Y', strtotime($exdate)); ?></td>
-                                                    <td><?php echo date('h:i:s a', strtotime($extime)); ?></td>
+                                                    <td style="width:100px;"><?php echo date('d-m-Y', strtotime($exdate)); ?></td>
+                                                    <td style="width:100px;"><?php echo date('h:i:s a', strtotime($extime)); ?></td>
                                                     <td><?php echo $exsubj; ?></td>
                                                     <td style="width:120px;"></td>
                                                     <td style="width:80px;"></td>

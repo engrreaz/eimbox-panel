@@ -200,6 +200,7 @@ if (isset($_GET['addnew'])) {
                                             //if($card == '1'){$qrc = '<img src="https://chart.googleapis.com/chart?chs=20x20&cht=qr&chl=http://www.students.eimbox.com/myinfo.php?id=5000&choe=UTF-8&chld=L|0" />';} else {$qrc = '';}
                                     
                                             $month = date('m');
+                                            $month = 12;
                                             $sql0 = "SELECT sum(dues) as dues, sum(payableamt) as paya, sum(paid) as paid FROM stfinance where sessionyear='$sy' and sccode='$sccode' and classname='$cls2' and sectionname='$sec2' and month<='$month' and stid='$stid'";
                                             $result01x = $conn->query($sql0);
                                             if ($result01x->num_rows > 0) {
