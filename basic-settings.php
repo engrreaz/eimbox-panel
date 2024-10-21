@@ -165,6 +165,70 @@ if (isset($_GET['addnew'])) {
         </div>
     </div>
 </div>
+<div class="row d-print-none">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="m-0">Additional Panels</h4>
+                <small class="text-muted">Mark your weekly holidays / weekends</small>
+                <div class="row ">
+                    <div class="col-md-2">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label ">
+                                <input type="checkbox" class="form-check-input"> Sunday
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label ">
+                                <input type="checkbox" class="form-check-input"> Monday
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label ">
+                                <input type="checkbox" class="form-check-input"> Tuesday
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label ">
+                                <input type="checkbox" class="form-check-input"> Wednesday
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label ">
+                                <input type="checkbox" class="form-check-input"> Thursday
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label ">
+                                <input type="checkbox" class="form-check-input"> Friday
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label ">
+                                <input type="checkbox" class="form-check-input"> Saturday
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-md-10 pt-2 float-right" style="float:right;">
+                        <button class="btn btn-inverse-success pt-2" onclick="weekends(0);">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

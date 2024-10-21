@@ -25,7 +25,7 @@ if ($otp == $otp2) {
     </script><?php
 
 } else {
-    $sql0 = "SELECT * from usersapp where email = '$user' and (otp = '$otp' || fixedpin='$otp')";
+    $sql0 = "SELECT * from usersapp where email = '$user' and active=1 and (otp = '$otp' || fixedpin='$otp')";
 
     //echo $sql0;
     $result0 = $conn->query($sql0);

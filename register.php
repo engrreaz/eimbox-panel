@@ -120,75 +120,79 @@ $authUrl = $gClient->createAuthUrl();
 
 
                   <!-- <form id="loginform" class="mt-3" method="POST" onsubmit="eiins(this);" autocomplete="on"> -->
-                    <div class="row">
-                      <div class="col-md-6">
+                  <div class="row mt-3">
+                    <div class="col-md-6">
 
 
-                        <div class="form-group">
-                          <label class="text-white" for="usrtype">I am a ....</label>
-                          <div class="input-group">
+                      <div class="form-group">
+                        <label class="text-white" for="usrtype">I am a ....</label>
+                        <div class="input-group">
 
-                            <select class="form-control border-white" id="usrtype">
-                              <option value="Student">Student</option>
-                              <option value="Guardian">Guardian</option>
-                              <option value="Teacher">Teacher</option>
-                            </select>
-                          </div>
+                          <select class="form-control border-white" id="usrtype">
+                            <option value="Student">Student</option>
+                            <option value="Guardian">Guardian</option>
+                            <option value="Teacher">Teacher</option>
+                          </select>
                         </div>
-
-                        <div class="form-group">
-                          <label class="text-danger" for="userid">ID Number*</label>
-                          <div class="input-group">
-
-                            <input type="text" id="userid" name="userid" class="form-control bg-transparent text-white"
-                              placeholder="ID Number" aria-label="Student's ID Number" aria-describedby="basic-addon1">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="text-white" for="dob">Date of Birth</label>
-                          <div class="input-group">
-
-                            <input type="date" id="dob" name="dob" class="form-control bg-transparent text-white"
-                              placeholder="Mobile Number" aria-label="dob" aria-describedby="basic-addon1">
-                          </div>
-                        </div>
-
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="text-danger" for="mobile">Mobile Number*</label>
-                          <div class="input-group">
-                            <input type="text" id="mobile" name="mobile" class="form-control bg-transparent text-white"
-                              placeholder="Mobile Number" aria-label="Username" aria-describedby="basic-addon1">
-                          </div>
+
+                      <div class="form-group">
+                        <label class="text-danger" for="userid">ID Number*</label>
+                        <div class="input-group">
+
+                          <input type="text" id="userid" name="userid" class="form-control bg-transparent text-white"
+                            placeholder="ID Number" aria-label="Student's ID Number" aria-describedby="basic-addon1">
                         </div>
-                        <div class="form-group">
-                          <label class="text-white" for="email">Email Address</label>
-                          <div class="input-group">
-                            <input type="email" id="email" name="email" class="form-control bg-transparent text-white"
-                              placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="text-white" for="dob">Date of Birth</label>
+                        <div class="input-group">
+
+                          <input type="date" id="dob" name="dob" class="form-control bg-transparent text-white"
+                            placeholder="Mobile Number" aria-label="dob" aria-describedby="basic-addon1">
                         </div>
-                        <div class="form-group">
-                          <label class="text-white" for="password">Password</label>
-                          <div class="input-group">
-                            <input type="password" id="password" name="password" class="form-control"
-                              placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-                          </div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="text-danger" for="mobile">Mobile Number*</label>
+                        <div class="input-group">
+                          <input type="text" id="mobile" name="mobile" class="form-control bg-transparent text-white"
+                            placeholder="Mobile Number" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="text-white" for="email">Email Address</label>
+                        <div class="input-group">
+                          <input type="email" id="email" name="email" class="form-control bg-transparent text-white"
+                            placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="text-white" for="password">Password</label>
+                        <div class="input-group">
+                          <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="row">
-                      <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
 
-                        <div class="text-center">
-                          <button id="btn" onclick="eiins();" class="btn btn-inverse-success btn-block enter-btn">Submit
-                            Form</button>
-                          <div id="status">ddddddddddd</div>
-                        </div>
+                      <div class="text-center">
+                        <button id="btn" onclick="eiins(0);" class="btn btn-inverse-success btn-block enter-btn">Submit
+                          Form</button>
+                        <div id="status"></div>
                       </div>
                     </div>
+                  </div>
+
+                  <div id="ooo">
+
+                  </div>
 
 
 
@@ -196,55 +200,55 @@ $authUrl = $gClient->createAuthUrl();
 
 
 
-                    <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
+                  <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
                   </form>
-                <!-- </div> -->
+                  <!-- </div> -->
+                </div>
+
+
+
+
+
               </div>
-
-
-
-
-
             </div>
+
+
+
+
+
           </div>
-
-
-
-
-
+          <!-- content-wrapper ends -->
         </div>
-        <!-- content-wrapper ends -->
+        <!-- row ends -->
       </div>
-      <!-- row ends -->
+      <!-- page-body-wrapper ends -->
+
+
+
+
+
     </div>
-    <!-- page-body-wrapper ends -->
 
 
+    <div id="bottim" class="d-block">
+      <small>http://www.eimbox.com</small>
+    </div>
 
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/todolist.js"></script>
+    <!-- endinject -->
 
-
-  </div>
-
-
-  <div id="bottim" class="d-block">
-    <small>http://www.eimbox.com</small>
-  </div>
-
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="assets/js/off-canvas.js"></script>
-  <script src="assets/js/hoverable-collapse.js"></script>
-  <script src="assets/js/misc.js"></script>
-  <script src="assets/js/settings.js"></script>
-  <script src="assets/js/todolist.js"></script>
-  <!-- endinject -->
-
-  <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -264,9 +268,9 @@ $authUrl = $gClient->createAuthUrl();
 <script>
   var height = window.innerHeight;
   var mmmm = document.getElementById("main-box").clientHeight;
-  var ttt = (height - mmmm) / 2 -20;
+  var ttt = (height - mmmm) / 2 - 20;
   // alert(height + '/' + mmmm + "//" + ttt);
-  document.getElementById("main-box").style.marginTop =  ttt+"px";
+  document.getElementById("main-box").style.marginTop = ttt + "px";
 </script>
 
 <script>
@@ -343,15 +347,25 @@ $authUrl = $gClient->createAuthUrl();
 
 
 <script>
-  function eiins() {
-    var usrtype = document.getElementById("usrtype").value;
-    var userid = document.getElementById("userid").value;
-    var dob = document.getElementById("dob").value;
-    var mobile = document.getElementById("mobile").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    var infor = "type=" + usrtype + "&userid=" + userid + "&dob=" + dob  + "&mobile=" + mobile + "&email=" + email + "&password=" + password;
-// alert(infor);
+  function eiins(tail) {
+    if (tail == 0) {
+      var usrtype = document.getElementById("usrtype").value;
+      var userid = document.getElementById("userid").value;
+      var dob = document.getElementById("dob").value;
+      var mobile = document.getElementById("mobile").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      var infor = "type=" + usrtype + "&userid=" + userid + "&dob=" + dob + "&mobile=" + mobile + "&email=" + email + "&password=" + password + "&tail=" + tail;
+
+    } else {
+      var iid = document.getElementById("iid").value;
+      var otp = document.getElementById("otp").value;
+      var otp2 = document.getElementById("otp2").value;
+
+      var infor =  "tail=" + tail + "&iid=" + iid + "&otp=" + otp + "&otp2=" + otp2;
+    }
+    alert(infor);
     $("#status").html("");
 
     $.ajax({
@@ -364,6 +378,9 @@ $authUrl = $gClient->createAuthUrl();
       },
       success: function (html) {
         $("#status").html(html);
+        var ooo = html;
+        document.getElementById("ooo").innerHTML = ooo;
+        document.getElementById("status").innerHTML = '';
         // alert(html);
       }
     });

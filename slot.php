@@ -236,7 +236,7 @@ include 'footer.php';
         }
 
         var infor = "id=" + id + "&ont=" + ont + "&gname=" + gname;
-        alert(infor);
+        // alert(infor);
         $("#sscspan").html("");
         $.ajax({
             type: "POST",

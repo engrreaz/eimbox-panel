@@ -165,9 +165,11 @@ if ($result7->num_rows > 0) {
 
 if ($doa == '') {
     $doa = date('Y-01-01');
+    $doa = NULL;
 }
 if ($dob == '') {
     $dob = date('Y-m-d');
+    $dob = NULL;
 }
 ?>
 <style>
@@ -185,7 +187,7 @@ if ($dob == '') {
 echo $dismsg; ?>">
 
     <?php
-    if ($new == 0 && ($dob == '' || $dob == '1970-01-01')) {
+    if ($new == 0 && ($dob == '' || $dob == NULL)) {
         ?>
         <div class="col-12 grid-margin stretch-card mb-1">
             <div class="card">

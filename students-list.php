@@ -366,7 +366,7 @@ include 'footer.php';
     var uri = window.location.href;
     document.getElementById('defbtn').innerHTML = 'Print Student List';
     document.getElementById('defmenu').innerHTML = '';
-    document.getElementById("cnt").innerHTML = '<?php echo $cnt-1; ?>';
+    document.getElementById("cnt").innerHTML = '<?php echo $cnt; ?>';
     function defbtn() {
         goprint(0);
     }
