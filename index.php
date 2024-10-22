@@ -187,6 +187,13 @@ if ($userlevel == 'Student') {
                 <p class="text-muted mb-1 mt-1">-</p>
               </div>
 
+              
+              <div class="col-12">
+                  <button class="btn btn-danger" onclick="punch();">Resolve Receipt</button>
+                </div>
+
+
+                
               <div class="row" style="display:none;">
                 <div class="col-12">
                   <div class="preview-list">
@@ -216,9 +223,6 @@ if ($userlevel == 'Student') {
                   </div>
                 </div>
 
-                <div class="col-12">
-                  <button class="btn btn-danger" onclick="punch();">Resolve Receipt</button>
-                </div>
               </div>
 
 
