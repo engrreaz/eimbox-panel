@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 <!-- <?php include 'notice.php'; ?> -->
- 
+
 <script type="text/javascript"> document.cookie = "fn=";</script>
 
 <?php
@@ -8,348 +8,352 @@ if ($track <= 100 && $usr == 'engrreaz@gmail.com') {
   include 'track-line.php';
 }
 
-if($userlevel == 'Student'){
+if ($userlevel == 'Student') {
   echo '<script>window.location.href="std-index.php";</script>';
-} else if($userlevel == 'Guardian'){
+} else if ($userlevel == 'Guardian') {
   echo '<script>window.location.href="guar-index.php";</script>';
-} else if($userlevel == 'Teacher'){
+} else if ($userlevel == 'Teacher') {
   echo '<script>window.location.href="teacher-index.php";</script>';
 } else {
-?>
+  ?>
 
-<div class="row">
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="st_attnd_main">0</h3>
-              <p class="text-danger ml-2 mb-0 font-weight-medium" id="total_students_main">0</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-danger ">
-              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Today's Students</h6>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="t_attnd_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium">100%</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-success">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Teacher's Attendance</h6>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="users_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium" id="online_main">0</p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-danger">
-              <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Total Users</h6>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-9">
-            <div class="d-flex align-items-center align-self-start">
-              <h3 class="mb-0" id="expense_main">0</h3>
-              <p class="text-success ml-2 mb-0 font-weight-medium"></p>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="icon icon-box-success ">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <h6 class="text-muted font-weight-normal">Expense (Month)</h6>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-4 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Collections </h4>
-        <canvas id="transaction-history" class="transaction-chart"></canvas>
-        <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-          <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">৳ 0</h6>
-            <p class="text-muted mb-0">Collection (This Month)</p>
-          </div>
-          <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-            <div class="icon icon-box-warning" style="float:right;">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-          <div class="text-md-center text-xl-left">
-            <h6 class="mb-1">৳ 0</h6>
-            <p class="text-muted mb-0">Total Dues</p>
-          </div>
-          <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-            <div class="icon icon-box-warning" style="float:right;">
-              <span class="mdi mdi-arrow-top-right icon-item"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col-md-8 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex flex-row justify-content-between">
-          <h2 class="card-title mb-1" id="time"><?php echo date('H:i:s'); ?></h2>
-          <p class="text-muted mb-1"><?php echo date('l, d F, Y'); ?></p>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="preview-list">
-              <div class="preview-item border-bottom">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-primary">
-                    <i class="mdi mdi-pandora mdi-24px"></i>
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0" id="st_attnd_main">0</h3>
+                    <p class="text-danger ml-2 mb-0 font-weight-medium" id="total_students_main">0</p>
                   </div>
                 </div>
-                <div class="preview-item-content d-sm-flex flex-grow">
-                  <div class="flex-grow">
-                    <div style="float:right;">
-                      <p class="text-muted" id="tete">till 00:30:00</p>
-                    </div>
-                    <h6 class="preview-subject" id="main-29-main"></h6>
-
-                    <div hidden>
-                      <div id="tsts"></div>
-                      <!-- <div id="tete"></div> -->
-                      <div id="durdur"></div>
-                      <div id="onoff"></div>
-
-                    </div>
-
-                    <div class="progress progress-md portfolio-progress">
-                      <div class="progress-bar bg-success p-1 text-secondary" role="progressbar" style="width: 0%"
-                        aria-valuenow="25" id="pbar" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-
-                    <div id="scheddd" style="">
-
-                    </div>
-
+                <div class="col-3">
+                  <div class="icon icon-box-danger ">
+                    <span class="mdi mdi-arrow-bottom-left icon-item"></span>
                   </div>
+                </div>
+              </div>
+              <h6 class="text-muted font-weight-normal">Today's Students</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0" id="t_attnd_main">0</h3>
+                    <p class="text-success ml-2 mb-0 font-weight-medium">100%</p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-success">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-muted font-weight-normal">Teacher's Attendance</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0" id="users_main">0</h3>
+                    <p class="text-success ml-2 mb-0 font-weight-medium" id="online_main">0</p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-danger">
+                    <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-muted font-weight-normal">Total Users</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0" id="expense_main">0</h3>
+                    <p class="text-success ml-2 mb-0 font-weight-medium"></p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-success ">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-muted font-weight-normal">Expense (Month)</h6>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
+      <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Collections </h4>
+              <canvas id="transaction-history" class="transaction-chart"></canvas>
+              <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                <div class="text-md-center text-xl-left">
+                  <h6 class="mb-1">৳ 0</h6>
+                  <p class="text-muted mb-0">Collection (This Month)</p>
+                </div>
+                <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                  <div class="icon icon-box-warning" style="float:right;">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                <div class="text-md-center text-xl-left">
+                  <h6 class="mb-1">৳ 0</h6>
+                  <p class="text-muted mb-0">Total Dues</p>
+                </div>
+                <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                  <div class="icon icon-box-warning" style="float:right;">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="d-flex flex-row justify-content-between">
-          <h4 class="card-title mb-1 mt-4">Notices/Events</h4>
-          <p class="text-muted mb-1 mt-1">-</p>
-        </div>
 
-        <div class="row" style="display:none;">
-          <div class="col-12">
-            <div class="preview-list">
+        <div class="col-md-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-row justify-content-between">
+                <h2 class="card-title mb-1" id="time"><?php echo date('H:i:s'); ?></h2>
+                <p class="text-muted mb-1"><?php echo date('l, d F, Y'); ?></p>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="preview-list">
+                    <div class="preview-item border-bottom">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-primary">
+                          <i class="mdi mdi-pandora mdi-24px"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content d-sm-flex flex-grow">
+                        <div class="flex-grow">
+                          <div style="float:right;">
+                            <p class="text-muted" id="tete">till 00:30:00</p>
+                          </div>
+                          <h6 class="preview-subject" id="main-29-main"></h6>
 
-              <!-- ITEM -->
+                          <div hidden>
+                            <div id="tsts"></div>
+                            <!-- <div id="tete"></div> -->
+                            <div id="durdur"></div>
+                            <div id="onoff"></div>
 
-              <?php for ($i = 0; $i < 5; $i++) { ?>
-                <div class="preview-item border-bottom">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-danger">
-                      <i class="mdi mdi-cloud-download"></i>
-                    </div>
-                  </div>
+                          </div>
 
-                  <div class="preview-item-content d-sm-flex flex-grow">
-                    <div class="flex-grow">
-                      <h6 class="preview-subject">Vacation</h6>
-                      <p class="text-muted mb-0">Eid-Ul-Adha Vacation</p>
-                    </div>
-                    <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                      <p class="text-muted">1 hour ago</p>
-                      <p class="text-muted mb-0">23 tasks, 5 issues </p>
+                          <div class="progress progress-md portfolio-progress">
+                            <div class="progress-bar bg-success p-1 text-secondary" role="progressbar" style="width: 0%"
+                              aria-valuenow="25" id="pbar" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+
+                          <div id="scheddd" style="">
+
+                          </div>
+
+                        </div>
+
+
+                      </div>
                     </div>
                   </div>
                 </div>
-              <?php } ?>
-            </div>
-          </div>
-        </div>
+              </div>
 
+              <div class="d-flex flex-row justify-content-between">
+                <h4 class="card-title mb-1 mt-4">Notices/Events</h4>
+                <p class="text-muted mb-1 mt-1">-</p>
+              </div>
 
+              <div class="row" style="display:none;">
+                <div class="col-12">
+                  <div class="preview-list">
 
+                    <!-- ITEM -->
 
-      </div>
-    </div>
+                <?php for ($i = 0; $i < 5; $i++) { ?>
+                      <div class="preview-item border-bottom">
+                        <div class="preview-thumbnail">
+                          <div class="preview-icon bg-danger">
+                            <i class="mdi mdi-cloud-download"></i>
+                          </div>
+                        </div>
 
-
-
-
-
-  </div>
-
-
-
-
-</div>
-
-<div class="row" style="display:none;">
-  <div class="col-sm-4 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h5>Revenue</h5>
-        <div class="row">
-          <div class="col-8 col-sm-12 col-xl-8 my-auto">
-            <div class="d-flex d-sm-block d-md-flex align-items-center">
-              <h2 class="mb-0">$32123</h2>
-              <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
-            </div>
-            <h6 class="text-muted font-weight-normal">11.38% Since last month</h6>
-          </div>
-          <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-            <i class="icon-lg mdi mdi-codepen text-primary ml-auto"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h5>Sales</h5>
-        <div class="row">
-          <div class="col-8 col-sm-12 col-xl-8 my-auto">
-            <div class="d-flex d-sm-block d-md-flex align-items-center">
-              <h2 class="mb-0">$45850</h2>
-              <p class="text-success ml-2 mb-0 font-weight-medium">+8.3%</p>
-            </div>
-            <h6 class="text-muted font-weight-normal"> 9.61% Since last month</h6>
-          </div>
-          <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-            <i class="icon-lg mdi mdi-wallet-travel text-danger ml-auto"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h5>Purchase</h5>
-        <div class="row">
-          <div class="col-8 col-sm-12 col-xl-8 my-auto">
-            <div class="d-flex d-sm-block d-md-flex align-items-center">
-              <h2 class="mb-0">$2039</h2>
-              <p class="text-danger ml-2 mb-0 font-weight-medium">-2.1% </p>
-            </div>
-            <h6 class="text-muted font-weight-normal">2.27% Since last month</h6>
-          </div>
-          <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-            <i class="icon-lg mdi mdi-monitor text-success ml-auto"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="row ">
-  <div class="col-12 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Request for Actions</h4>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>
-                  <div class="form-check form-check-muted m-0">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input">
-                    </label>
+                        <div class="preview-item-content d-sm-flex flex-grow">
+                          <div class="flex-grow">
+                            <h6 class="preview-subject">Vacation</h6>
+                            <p class="text-muted mb-0">Eid-Ul-Adha Vacation</p>
+                          </div>
+                          <div class="mr-auto text-sm-right pt-2 pt-sm-0">
+                            <p class="text-muted">1 hour ago</p>
+                            <p class="text-muted mb-0">23 tasks, 5 issues </p>
+                          </div>
+                        </div>
+                      </div>
+                <?php } ?>
                   </div>
-                </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-                <th> - </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="display:none;">
-                <td>
-                  <div class="form-check form-check-muted m-0">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input">
-                    </label>
-                  </div>
-                </td>
-                <td>
-                  <img src="assets/images/faces/face1.jpg" alt="image" />
-                  <span class="pl-2">-</span>
-                </td>
-                <td> - </td>
-                <td> -- </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-                <td>
-                  <div class="badge badge-outline-success">Approved</div>
-                </td>
-              </tr>
+                </div>
 
-            </tbody>
-          </table>
+                <div class="col-12">
+                  <button class="btn btn-danger" onclick="punch();">Resolve Receipt</button>
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+
+
+
+
+      </div>
+
+      <div class="row" style="display:none;">
+        <div class="col-sm-4 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h5>Revenue</h5>
+              <div class="row">
+                <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                    <h2 class="mb-0">$32123</h2>
+                    <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                  </div>
+                  <h6 class="text-muted font-weight-normal">11.38% Since last month</h6>
+                </div>
+                <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                  <i class="icon-lg mdi mdi-codepen text-primary ml-auto"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h5>Sales</h5>
+              <div class="row">
+                <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                    <h2 class="mb-0">$45850</h2>
+                    <p class="text-success ml-2 mb-0 font-weight-medium">+8.3%</p>
+                  </div>
+                  <h6 class="text-muted font-weight-normal"> 9.61% Since last month</h6>
+                </div>
+                <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                  <i class="icon-lg mdi mdi-wallet-travel text-danger ml-auto"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h5>Purchase</h5>
+              <div class="row">
+                <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                    <h2 class="mb-0">$2039</h2>
+                    <p class="text-danger ml-2 mb-0 font-weight-medium">-2.1% </p>
+                  </div>
+                  <h6 class="text-muted font-weight-normal">2.27% Since last month</h6>
+                </div>
+                <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                  <i class="icon-lg mdi mdi-monitor text-success ml-auto"></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+
+      <div class="row ">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Request for Actions</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="form-check form-check-muted m-0">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input">
+                          </label>
+                        </div>
+                      </th>
+                      <th> - </th>
+                      <th> - </th>
+                      <th> - </th>
+                      <th> - </th>
+                      <th> - </th>
+                      <th> - </th>
+                      <th> - </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="display:none;">
+                      <td>
+                        <div class="form-check form-check-muted m-0">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input">
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <img src="assets/images/faces/face1.jpg" alt="image" />
+                        <span class="pl-2">-</span>
+                      </td>
+                      <td> - </td>
+                      <td> -- </td>
+                      <td> - </td>
+                      <td> - </td>
+                      <td> - </td>
+                      <td>
+                        <div class="badge badge-outline-success">Approved</div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <?php } ?>
 
@@ -679,4 +683,24 @@ if($userlevel == 'Student'){
   }
   $(document).ready(secc);
 
+</script>
+
+
+<script>
+  function punch() {
+    var infor = "";
+    $("#statistics").html("");
+    $.ajax({
+      type: "POST",
+      url: "backend/punch.php",
+      data: infor,
+      cache: false,
+      beforeSend: function () {
+        $('#statistics').html('');
+      },
+      success: function (html) {
+        $("#statistics").html(html);
+      }
+    });
+  }
 </script>

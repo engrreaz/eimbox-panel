@@ -38,11 +38,9 @@ GEMOINI API  AIzaSyBGK4pYmqLk1CGCjuOztXLtV4CUcLyaZOc
 
 usersrequest whole table...................................
 
-ALTER TABLE `usersapp` ADD `reg_status` VARCHAR(15) NULL DEFAULT NULL AFTER `whatsnew_last_id`, ADD `reg_value` VARCHAR(15) NULL DEFAULT NULL AFTER `reg_status`;
-ALTER TABLE `usersapp` ADD `active` INT NOT NULL DEFAULT '0' AFTER `reg_value`;
-update usersapp set active=1;
 
 
+nqmunqhalukkrbrq
 
 
 
